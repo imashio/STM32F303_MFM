@@ -92,7 +92,7 @@ u8g2_t u8g2; // a structure which will contain all the data for one display
 #define	FP_y			52
 #define	FP_height		14
 #define	FP_volt_width	45
-#define	FP_duty_width	25
+#define	FP_duty_width	70
 
 // logo parameter definition
 #define logo_width 48
@@ -353,14 +353,11 @@ int main(void)
   u8g2_SendBuffer(&u8g2);
 
   // Fuel Pump voltage & duty
-  /*
+  
   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
-  u8g2_DrawStr(&u8g2, FP_x, FP_y+12, "FPV");
-  u8g2_SetFont(&u8g2, u8g2_font_4x6_tf);
-  draw_MeasUnit(&u8g2, FP_x, FP_y, FP_volt_width, FP_height, "V");
-  draw_Value_s(&u8g2, FP_x+FP_volt_width+2, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%"); // debug
-  draw_MeasUnit(&u8g2, FP_x+FP_volt_width+2, FP_y, FP_duty_width, FP_height, "%");
-  */
+  u8g2_DrawStr(&u8g2, FP_x, FP_y+12, "DUTY");
+  draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%");
+
   // update display
   u8g2_SendBuffer(&u8g2);
 
@@ -404,13 +401,14 @@ int main(void)
 
 
 		// read O2 sensor ADC output
+		meas_value[2] = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
 		meas_value[5] = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
 
 		// read Fuel Pump Voltage ADC output
 		FP_volt = (int16_t)(330*(float)g_ADCBuffer[0]/255);
 
 		// update Fuel Pump Voltage
-//		draw_Value_s(&u8g2, FP_x, FP_y, FP_volt_width, FP_height, FP_volt, 3, 1, 0, "V");
+//    draw_Value_xs(&u8g2, FP_x+FP_volt_width+2, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%"); // debug
 
 		// draw bar graph
 		draw_BarGraph(&u8g2, rpmbar_x, rpmbar_y, rpmbar_width, rpmbar_height, rpm, rpm_min, rpm_max);

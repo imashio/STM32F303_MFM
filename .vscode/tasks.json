@@ -30,7 +30,8 @@
         },{
             // RUN
             "taskName":"Run",
-            "command": "/usr/local/openocd/bin/openocd -f openocd.cfg -c \"flash_elf build/STM32F303_MFM.elf\"",
+            //"command": "/usr/local/openocd/bin/openocd -f openocd.cfg -c \"flash_elf build/STM32F303_MFM.elf\"",
+            "command": "make all; /usr/local/openocd/bin/openocd -f openocd.cfg -c \"flash_elf build/STM32F303_MFM.elf\"",
             "problemMatcher": [
                 "$gcc"
             ],
