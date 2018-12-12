@@ -1,0 +1,588 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_d_pcf8812.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_d_pcf8812_96x65_generic,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	u8x8_d_pcf8812_96x65_generic:
+  25              	.LFB0:
+  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   u8x8_d_pcf8812.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   pcf8812: 65x102
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   pcf8814: 65x96
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   Copyright (c) 2017, olikraus@gmail.com
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   All rights reserved.
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   are permitted provided that the following conditions are met:
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     of conditions and the following disclaimer.
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     materials provided with the distribution.
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 2
+
+
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** */
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** #include "u8x8.h"
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** static const uint8_t u8x8_d_pcf8812_96x65_init_seq[] = {
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x020),		                /* activate chip (PD=0), horizontal increment (V=0), enter normal
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x008),		                /* blank display */
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x021),		                /* activate chip (PD=0), horizontal increment (V=0), enter extend
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x006),		                /* temp. control: b10 = 2 */
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x013),		                /* bias system, 0x010..0x07 1:48 */
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x09f),				/* contrast setting, 0..127 */
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   //U8X8_CA(0x020 | 2, 0x080 | 0),				/* contrast setting, pcf8814 */
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x024),		                /* deactivate chip (PD=1), horizontal increment (V=0), enter norm
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_END()             			/* end of sequence */
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** };
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** static const uint8_t u8x8_d_pcf8812_96x65_powersave0_seq[] = {
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x020),		                /* power on */
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x00c),		                /* display on */
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_END()             			/* end of sequence */
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** };
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** static const uint8_t u8x8_d_pcf8812_96x65_powersave1_seq[] = {
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x020),		                /* power on */
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x008),		                /* blank display */
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_C(0x024),		                /* power down */
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   U8X8_END()             			/* end of sequence */
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** };
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** static uint8_t u8x8_d_pcf8812_96x65_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_p
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** {
+  27              		.loc 1 82 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  33              	.LCFI0:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 3
+
+
+  34              		.cfi_def_cfa_offset 24
+  35              		.cfi_offset 3, -24
+  36              		.cfi_offset 4, -20
+  37              		.cfi_offset 5, -16
+  38              		.cfi_offset 6, -12
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 0546     		mov	r5, r0
+  42 0004 1446     		mov	r4, r2
+  43 0006 1E46     		mov	r6, r3
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   uint8_t x, c;
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   uint8_t *ptr;
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   switch(msg)
+  44              		.loc 1 85 0
+  45 0008 0A39     		subs	r1, r1, #10
+  46              	.LVL1:
+  47 000a 0529     		cmp	r1, #5
+  48 000c 50D8     		bhi	.L10
+  49 000e DFE801F0 		tbb	[pc, r1]
+  50              	.LVL2:
+  51              	.L4:
+  52 0012 03       		.byte	(.L3-.L4)/2
+  53 0013 0B       		.byte	(.L5-.L4)/2
+  54 0014 4F       		.byte	(.L10-.L4)/2
+  55 0015 4F       		.byte	(.L10-.L4)/2
+  56 0016 16       		.byte	(.L6-.L4)/2
+  57 0017 27       		.byte	(.L7-.L4)/2
+  58              		.p2align 1
+  59              	.L3:
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   {
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     /* handled by the calling function
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_pcf8812_96x65_display_info);
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       break;
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     */
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     case U8X8_MSG_DISPLAY_INIT:
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_d_helper_display_init(u8x8);
+  60              		.loc 1 93 0
+  61 0018 FFF7FEFF 		bl	u8x8_d_helper_display_init
+  62              	.LVL3:
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_pcf8812_96x65_init_seq);    
+  63              		.loc 1 94 0
+  64 001c 2549     		ldr	r1, .L12
+  65 001e 2846     		mov	r0, r5
+  66 0020 FFF7FEFF 		bl	u8x8_cad_SendSequence
+  67              	.LVL4:
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       break;
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       if ( arg_int == 0 )
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_pcf8812_96x65_powersave0_seq);
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       else
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_pcf8812_96x65_powersave1_seq);
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       break;
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** /*
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     case U8X8_MSG_DISPLAY_SET_FLIP_MODE:
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       if ( arg_int == 0 )
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 4
+
+
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_pcf8812_96x65_flip0_seq);
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	u8x8->x_offset = u8x8->display_info->default_x_offset;
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       }
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       else
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       {
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_pcf8812_96x65_flip1_seq);
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       }
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       break;
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** */
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** #ifdef U8X8_WITH_SET_CONTRAST
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     case U8X8_MSG_DISPLAY_SET_CONTRAST:
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_StartTransfer(u8x8);
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_SendCmd(u8x8, 0x021 );    /* command mode, extended function set */
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_SendArg(u8x8, (arg_int>>1)|0x80 );	/* 0..127 for contrast */
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_EndTransfer(u8x8);
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       break;
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** #endif
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     case U8X8_MSG_DISPLAY_DRAW_TILE:
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_StartTransfer(u8x8);
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       x *= 8;
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       x += u8x8->x_offset;
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_SendCmd(u8x8, 0x020 );	/* activate chip (PD=0), horizontal increment (V=0), enter no
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_SendCmd(u8x8, 0x080 | x);
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_SendCmd(u8x8, 0x040 | ((u8x8_tile_t *)arg_ptr)->y_pos);
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       do
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       {
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	c = ((u8x8_tile_t *)arg_ptr)->cnt;
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	u8x8_cad_SendData(u8x8, c*8, ptr); 	/* note: SendData can not handle more than 255 bytes */
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	/*
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	do
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	{
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	  u8x8_cad_SendData(u8x8, 8, ptr);
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	  ptr += 8;
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	  c--;
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	} while( c > 0 );
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	*/
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	arg_int--;
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       } while( arg_int > 0 );
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_EndTransfer(u8x8);
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       break;
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     default:
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       return 0;
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   }
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   return 1;
+  68              		.loc 1 155 0
+  69 0024 0120     		movs	r0, #1
+  70              	.LVL5:
+  71              	.L2:
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** }
+  72              		.loc 1 156 0
+  73 0026 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 5
+
+
+  74              	.LVL6:
+  75              	.L5:
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_pcf8812_96x65_powersave0_seq);
+  76              		.loc 1 97 0
+  77 0028 22B9     		cbnz	r2, .L8
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       else
+  78              		.loc 1 98 0
+  79 002a 2349     		ldr	r1, .L12+4
+  80 002c FFF7FEFF 		bl	u8x8_cad_SendSequence
+  81              	.LVL7:
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** }
+  82              		.loc 1 155 0
+  83 0030 0120     		movs	r0, #1
+  84 0032 F8E7     		b	.L2
+  85              	.LVL8:
+  86              	.L8:
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       break;
+  87              		.loc 1 100 0
+  88 0034 2149     		ldr	r1, .L12+8
+  89 0036 FFF7FEFF 		bl	u8x8_cad_SendSequence
+  90              	.LVL9:
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** }
+  91              		.loc 1 155 0
+  92 003a 0120     		movs	r0, #1
+  93 003c F3E7     		b	.L2
+  94              	.LVL10:
+  95              	.L6:
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_SendCmd(u8x8, 0x021 );    /* command mode, extended function set */
+  96              		.loc 1 118 0
+  97 003e FFF7FEFF 		bl	u8x8_cad_StartTransfer
+  98              	.LVL11:
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_SendArg(u8x8, (arg_int>>1)|0x80 );	/* 0..127 for contrast */
+  99              		.loc 1 119 0
+ 100 0042 2121     		movs	r1, #33
+ 101 0044 2846     		mov	r0, r5
+ 102 0046 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 103              	.LVL12:
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_EndTransfer(u8x8);
+ 104              		.loc 1 120 0
+ 105 004a 6108     		lsrs	r1, r4, #1
+ 106 004c 41F08001 		orr	r1, r1, #128
+ 107 0050 2846     		mov	r0, r5
+ 108 0052 FFF7FEFF 		bl	u8x8_cad_SendArg
+ 109              	.LVL13:
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       break;
+ 110              		.loc 1 121 0
+ 111 0056 2846     		mov	r0, r5
+ 112 0058 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 113              	.LVL14:
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** }
+ 114              		.loc 1 155 0
+ 115 005c 0120     		movs	r0, #1
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** #endif
+ 116              		.loc 1 122 0
+ 117 005e E2E7     		b	.L2
+ 118              	.LVL15:
+ 119              	.L7:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 6
+
+
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+ 120              		.loc 1 125 0
+ 121 0060 FFF7FEFF 		bl	u8x8_cad_StartTransfer
+ 122              	.LVL16:
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       x *= 8;
+ 123              		.loc 1 126 0
+ 124 0064 7779     		ldrb	r7, [r6, #5]	@ zero_extendqisi2
+ 125              	.LVL17:
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       x += u8x8->x_offset;
+ 126              		.loc 1 127 0
+ 127 0066 FF00     		lsls	r7, r7, #3
+ 128              	.LVL18:
+ 129 0068 FBB2     		uxtb	r3, r7
+ 130              	.LVL19:
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     
+ 131              		.loc 1 128 0
+ 132 006a AF7F     		ldrb	r7, [r5, #30]	@ zero_extendqisi2
+ 133 006c 1F44     		add	r7, r7, r3
+ 134 006e FFB2     		uxtb	r7, r7
+ 135              	.LVL20:
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_SendCmd(u8x8, 0x080 | x);
+ 136              		.loc 1 130 0
+ 137 0070 2021     		movs	r1, #32
+ 138 0072 2846     		mov	r0, r5
+ 139 0074 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 140              	.LVL21:
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_cad_SendCmd(u8x8, 0x040 | ((u8x8_tile_t *)arg_ptr)->y_pos);
+ 141              		.loc 1 131 0
+ 142 0078 47F08001 		orr	r1, r7, #128
+ 143 007c 2846     		mov	r0, r5
+ 144 007e FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 145              	.LVL22:
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       
+ 146              		.loc 1 132 0
+ 147 0082 B179     		ldrb	r1, [r6, #6]	@ zero_extendqisi2
+ 148 0084 41F04001 		orr	r1, r1, #64
+ 149 0088 2846     		mov	r0, r5
+ 150 008a FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 151              	.LVL23:
+ 152              	.L9:
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
+ 153              		.loc 1 136 0 discriminator 1
+ 154 008e 3179     		ldrb	r1, [r6, #4]	@ zero_extendqisi2
+ 155              	.LVL24:
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 	/*
+ 156              		.loc 1 138 0 discriminator 1
+ 157 0090 C900     		lsls	r1, r1, #3
+ 158              	.LVL25:
+ 159 0092 3268     		ldr	r2, [r6]
+ 160 0094 01F0F801 		and	r1, r1, #248
+ 161 0098 2846     		mov	r0, r5
+ 162 009a FFF7FEFF 		bl	u8x8_cad_SendData
+ 163              	.LVL26:
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       } while( arg_int > 0 );
+ 164              		.loc 1 147 0 discriminator 1
+ 165 009e 013C     		subs	r4, r4, #1
+ 166              	.LVL27:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 7
+
+
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       
+ 167              		.loc 1 148 0 discriminator 1
+ 168 00a0 14F0FF04 		ands	r4, r4, #255
+ 169              	.LVL28:
+ 170 00a4 F3D1     		bne	.L9
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       break;
+ 171              		.loc 1 150 0
+ 172 00a6 2846     		mov	r0, r5
+ 173 00a8 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 174              	.LVL29:
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** }
+ 175              		.loc 1 155 0
+ 176 00ac 0120     		movs	r0, #1
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     default:
+ 177              		.loc 1 151 0
+ 178 00ae BAE7     		b	.L2
+ 179              	.LVL30:
+ 180              	.L10:
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   }
+ 181              		.loc 1 153 0
+ 182 00b0 0020     		movs	r0, #0
+ 183              	.LVL31:
+ 184 00b2 B8E7     		b	.L2
+ 185              	.L13:
+ 186              		.align	2
+ 187              	.L12:
+ 188 00b4 00000000 		.word	.LANCHOR0
+ 189 00b8 00000000 		.word	.LANCHOR1
+ 190 00bc 00000000 		.word	.LANCHOR2
+ 191              		.cfi_endproc
+ 192              	.LFE0:
+ 194              		.section	.text.u8x8_d_pcf8812_96x65,"ax",%progbits
+ 195              		.align	1
+ 196              		.global	u8x8_d_pcf8812_96x65
+ 197              		.syntax unified
+ 198              		.thumb
+ 199              		.thumb_func
+ 200              		.fpu fpv4-sp-d16
+ 202              	u8x8_d_pcf8812_96x65:
+ 203              	.LFB1:
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** static const u8x8_display_info_t u8x8_pcf8812_96x65_display_info =
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** {
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* chip_enable_level = */ 0,
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* chip_disable_level = */ 1,
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* post_chip_enable_wait_ns = */ 100,
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* pre_chip_disable_wait_ns = */ 100,
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* reset_pulse_width_ms = */ 100, 
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* post_reset_wait_ms = */ 100, 
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* sda_setup_time_ns = */ 100,	
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* sck_pulse_width_ns = */ 100,	
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* sck_clock_hz = */ 4000000UL,	/* since Arduino 1.6.0, the SPI bus speed in Hz. Should be  10000
+ 171:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* spi_mode = */ 0,		/* active high, rising edge */
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* i2c_bus_clock_100kHz = */ 4,
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* data_setup_time_ns = */ 40,
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 8
+
+
+ 174:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* write_pulse_width_ns = */ 150,	
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* tile_width = */ 12,
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* tile_hight = */ 9,
+ 177:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* default_x_offset = */ 0,
+ 178:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* flipmode_x_offset = */ 0,
+ 179:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* pixel_width = */ 96,
+ 180:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****   /* pixel_height = */ 65
+ 181:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** };
+ 182:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** 
+ 183:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** uint8_t u8x8_d_pcf8812_96x65(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 184:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** {
+ 204              		.loc 1 184 0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208              	.LVL32:
+ 209 0000 08B5     		push	{r3, lr}
+ 210              	.LCFI1:
+ 211              		.cfi_def_cfa_offset 8
+ 212              		.cfi_offset 3, -8
+ 213              		.cfi_offset 14, -4
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     if ( msg == U8X8_MSG_DISPLAY_SETUP_MEMORY )
+ 214              		.loc 1 185 0
+ 215 0002 0929     		cmp	r1, #9
+ 216 0004 02D0     		beq	.L18
+ 186:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     {
+ 187:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_pcf8812_96x65_display_info);
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       return 1;
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     }
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     return u8x8_d_pcf8812_96x65_generic(u8x8, msg, arg_int, arg_ptr);
+ 217              		.loc 1 190 0
+ 218 0006 FFF7FEFF 		bl	u8x8_d_pcf8812_96x65_generic
+ 219              	.LVL33:
+ 220              	.L16:
+ 191:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c **** }
+ 221              		.loc 1 191 0
+ 222 000a 08BD     		pop	{r3, pc}
+ 223              	.LVL34:
+ 224              	.L18:
+ 187:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****       return 1;
+ 225              		.loc 1 187 0
+ 226 000c 0249     		ldr	r1, .L19
+ 227              	.LVL35:
+ 228 000e FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
+ 229              	.LVL36:
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c ****     }
+ 230              		.loc 1 188 0
+ 231 0012 0120     		movs	r0, #1
+ 232 0014 F9E7     		b	.L16
+ 233              	.L20:
+ 234 0016 00BF     		.align	2
+ 235              	.L19:
+ 236 0018 00000000 		.word	.LANCHOR3
+ 237              		.cfi_endproc
+ 238              	.LFE1:
+ 240              		.section	.rodata.u8x8_d_pcf8812_96x65_init_seq,"a",%progbits
+ 241              		.align	2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 9
+
+
+ 242              		.set	.LANCHOR0,. + 0
+ 245              	u8x8_d_pcf8812_96x65_init_seq:
+ 246 0000 18       		.byte	24
+ 247 0001 15       		.byte	21
+ 248 0002 20       		.byte	32
+ 249 0003 15       		.byte	21
+ 250 0004 08       		.byte	8
+ 251 0005 15       		.byte	21
+ 252 0006 21       		.byte	33
+ 253 0007 15       		.byte	21
+ 254 0008 06       		.byte	6
+ 255 0009 15       		.byte	21
+ 256 000a 13       		.byte	19
+ 257 000b 15       		.byte	21
+ 258 000c 9F       		.byte	-97
+ 259 000d 15       		.byte	21
+ 260 000e 24       		.byte	36
+ 261 000f 19       		.byte	25
+ 262 0010 FF       		.byte	-1
+ 263              		.section	.rodata.u8x8_d_pcf8812_96x65_powersave0_seq,"a",%progbits
+ 264              		.align	2
+ 265              		.set	.LANCHOR1,. + 0
+ 268              	u8x8_d_pcf8812_96x65_powersave0_seq:
+ 269 0000 18       		.byte	24
+ 270 0001 15       		.byte	21
+ 271 0002 20       		.byte	32
+ 272 0003 15       		.byte	21
+ 273 0004 0C       		.byte	12
+ 274 0005 19       		.byte	25
+ 275 0006 FF       		.byte	-1
+ 276              		.section	.rodata.u8x8_d_pcf8812_96x65_powersave1_seq,"a",%progbits
+ 277              		.align	2
+ 278              		.set	.LANCHOR2,. + 0
+ 281              	u8x8_d_pcf8812_96x65_powersave1_seq:
+ 282 0000 18       		.byte	24
+ 283 0001 15       		.byte	21
+ 284 0002 20       		.byte	32
+ 285 0003 15       		.byte	21
+ 286 0004 08       		.byte	8
+ 287 0005 15       		.byte	21
+ 288 0006 24       		.byte	36
+ 289 0007 19       		.byte	25
+ 290 0008 FF       		.byte	-1
+ 291              		.section	.rodata.u8x8_pcf8812_96x65_display_info,"a",%progbits
+ 292              		.align	2
+ 293              		.set	.LANCHOR3,. + 0
+ 296              	u8x8_pcf8812_96x65_display_info:
+ 297 0000 00       		.byte	0
+ 298 0001 01       		.byte	1
+ 299 0002 64       		.byte	100
+ 300 0003 64       		.byte	100
+ 301 0004 64       		.byte	100
+ 302 0005 64       		.byte	100
+ 303 0006 64       		.byte	100
+ 304 0007 64       		.byte	100
+ 305 0008 00093D00 		.word	4000000
+ 306 000c 00       		.byte	0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 10
+
+
+ 307 000d 04       		.byte	4
+ 308 000e 28       		.byte	40
+ 309 000f 96       		.byte	-106
+ 310 0010 0C       		.byte	12
+ 311 0011 09       		.byte	9
+ 312 0012 00       		.byte	0
+ 313 0013 00       		.byte	0
+ 314 0014 6000     		.short	96
+ 315 0016 4100     		.short	65
+ 316              		.text
+ 317              	.Letext0:
+ 318              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 319              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 320              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_d_pcf8812.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:18     .text.u8x8_d_pcf8812_96x65_generic:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:24     .text.u8x8_d_pcf8812_96x65_generic:0000000000000000 u8x8_d_pcf8812_96x65_generic
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:52     .text.u8x8_d_pcf8812_96x65_generic:0000000000000012 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:58     .text.u8x8_d_pcf8812_96x65_generic:0000000000000018 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:188    .text.u8x8_d_pcf8812_96x65_generic:00000000000000b4 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:195    .text.u8x8_d_pcf8812_96x65:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:202    .text.u8x8_d_pcf8812_96x65:0000000000000000 u8x8_d_pcf8812_96x65
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:236    .text.u8x8_d_pcf8812_96x65:0000000000000018 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:241    .rodata.u8x8_d_pcf8812_96x65_init_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:245    .rodata.u8x8_d_pcf8812_96x65_init_seq:0000000000000000 u8x8_d_pcf8812_96x65_init_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:264    .rodata.u8x8_d_pcf8812_96x65_powersave0_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:268    .rodata.u8x8_d_pcf8812_96x65_powersave0_seq:0000000000000000 u8x8_d_pcf8812_96x65_powersave0_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:277    .rodata.u8x8_d_pcf8812_96x65_powersave1_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:281    .rodata.u8x8_d_pcf8812_96x65_powersave1_seq:0000000000000000 u8x8_d_pcf8812_96x65_powersave1_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:292    .rodata.u8x8_pcf8812_96x65_display_info:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccC5aUxw.s:296    .rodata.u8x8_pcf8812_96x65_display_info:0000000000000000 u8x8_pcf8812_96x65_display_info
+
+UNDEFINED SYMBOLS
+u8x8_d_helper_display_init
+u8x8_cad_SendSequence
+u8x8_cad_StartTransfer
+u8x8_cad_SendCmd
+u8x8_cad_SendArg
+u8x8_cad_EndTransfer
+u8x8_cad_SendData
+u8x8_d_helper_display_setup_memory

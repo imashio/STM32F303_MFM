@@ -1,0 +1,210 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccQ4aZGC.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"draw_IndicatorBox.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.draw_IndicatorBox,"ax",%progbits
+  18              		.align	1
+  19              		.global	draw_IndicatorBox
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	draw_IndicatorBox:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c"
+   1:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c ****  * drawIndicatorBox.c
+   3:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c ****  *
+   4:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c ****  *  Created on: Jan 29, 2018
+   5:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c ****  *      Author: imashio
+   6:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c ****  */
+   7:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 
+   8:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** #include "u8g2.h"		// graphic display library
+   9:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 
+  11:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** #define	idct_font		u8g2_font_micro_tr
+  12:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** void draw_IndicatorBox(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t c
+  28              		.loc 1 13 0
+  29              		.cfi_startproc
+  30              		@ args = 12, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 28
+  36              		.cfi_offset 4, -28
+  37              		.cfi_offset 5, -24
+  38              		.cfi_offset 6, -20
+  39              		.cfi_offset 7, -16
+  40              		.cfi_offset 8, -12
+  41              		.cfi_offset 9, -8
+  42              		.cfi_offset 14, -4
+  43 0004 83B0     		sub	sp, sp, #12
+  44              	.LCFI1:
+  45              		.cfi_def_cfa_offset 40
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccQ4aZGC.s 			page 2
+
+
+  46 0006 0646     		mov	r6, r0
+  47 0008 0F46     		mov	r7, r1
+  48 000a 1546     		mov	r5, r2
+  49 000c 1C46     		mov	r4, r3
+  50 000e 9DF82880 		ldrb	r8, [sp, #40]	@ zero_extendqisi2
+  14:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	uint8_t	str_offset;
+  15:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	u8g2_SetDrawColor(u8g2, 1); // default color
+  51              		.loc 1 15 0
+  52 0012 0121     		movs	r1, #1
+  53              	.LVL1:
+  54 0014 FFF7FEFF 		bl	u8g2_SetDrawColor
+  55              	.LVL2:
+  16:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	u8g2_SetFont(u8g2, idct_font);
+  56              		.loc 1 16 0
+  57 0018 2249     		ldr	r1, .L6
+  58 001a 3046     		mov	r0, r6
+  59 001c FFF7FEFF 		bl	u8g2_SetFont
+  60              	.LVL3:
+  17:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	if( color == 1 ){
+  61              		.loc 1 17 0
+  62 0020 9DF82C30 		ldrb	r3, [sp, #44]	@ zero_extendqisi2
+  63 0024 012B     		cmp	r3, #1
+  64 0026 28D0     		beq	.L5
+  18:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 		u8g2_DrawRBox(u8g2, x, y, width, height, 2);
+  19:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 		u8g2_SetDrawColor(u8g2, 2); // xor color
+  20:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 		u8g2_SetFontMode(u8g2, 1); // set font mode transparent
+  21:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	}else{
+  22:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	  u8g2_DrawRFrame(u8g2, x, y, width, height, 2);
+  65              		.loc 1 22 0
+  66 0028 0223     		movs	r3, #2
+  67 002a 0193     		str	r3, [sp, #4]
+  68 002c CDF80080 		str	r8, [sp]
+  69 0030 2346     		mov	r3, r4
+  70 0032 2A46     		mov	r2, r5
+  71 0034 3946     		mov	r1, r7
+  72 0036 3046     		mov	r0, r6
+  73 0038 FFF7FEFF 		bl	u8g2_DrawRFrame
+  74              	.LVL4:
+  75              	.L3:
+  23:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	}
+  24:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	str_offset = ( (width - StrLength(str)*4)>>1 ) + 1;
+  76              		.loc 1 24 0
+  77 003c 0C98     		ldr	r0, [sp, #48]
+  78 003e FFF7FEFF 		bl	StrLength
+  79              	.LVL5:
+  80 0042 A4EB8001 		sub	r1, r4, r0, lsl #2
+  81 0046 C1F34701 		ubfx	r1, r1, #1, #8
+  82 004a 0131     		adds	r1, r1, #1
+  83              	.LVL6:
+  25:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	u8g2_DrawStr(u8g2, x+str_offset, y+(height-2), str);
+  84              		.loc 1 25 0
+  85 004c 05EB0802 		add	r2, r5, r8
+  86 0050 D2B2     		uxtb	r2, r2
+  87 0052 023A     		subs	r2, r2, #2
+  88 0054 57FA81F1 		uxtab	r1, r7, r1
+  89              	.LVL7:
+  90 0058 0C9B     		ldr	r3, [sp, #48]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccQ4aZGC.s 			page 3
+
+
+  91 005a D2B2     		uxtb	r2, r2
+  92 005c C9B2     		uxtb	r1, r1
+  93 005e 3046     		mov	r0, r6
+  94              	.LVL8:
+  95 0060 FFF7FEFF 		bl	u8g2_DrawStr
+  96              	.LVL9:
+  26:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	u8g2_SetFontMode(u8g2, 0); // set font mode normal
+  97              		.loc 1 26 0
+  98 0064 0021     		movs	r1, #0
+  99 0066 3046     		mov	r0, r6
+ 100 0068 FFF7FEFF 		bl	u8g2_SetFontMode
+ 101              	.LVL10:
+  27:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	u8g2_SetDrawColor(u8g2, 1); // default color
+ 102              		.loc 1 27 0
+ 103 006c 0121     		movs	r1, #1
+ 104 006e 3046     		mov	r0, r6
+ 105 0070 FFF7FEFF 		bl	u8g2_SetDrawColor
+ 106              	.LVL11:
+  28:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** }
+ 107              		.loc 1 28 0
+ 108 0074 03B0     		add	sp, sp, #12
+ 109              	.LCFI2:
+ 110              		.cfi_remember_state
+ 111              		.cfi_def_cfa_offset 28
+ 112              		@ sp needed
+ 113 0076 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 114              	.LVL12:
+ 115              	.L5:
+ 116              	.LCFI3:
+ 117              		.cfi_restore_state
+  18:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 		u8g2_SetDrawColor(u8g2, 2); // xor color
+ 118              		.loc 1 18 0
+ 119 007a 4FF00209 		mov	r9, #2
+ 120 007e CDF80490 		str	r9, [sp, #4]
+ 121 0082 CDF80080 		str	r8, [sp]
+ 122 0086 2346     		mov	r3, r4
+ 123 0088 2A46     		mov	r2, r5
+ 124 008a 3946     		mov	r1, r7
+ 125 008c 3046     		mov	r0, r6
+ 126 008e FFF7FEFF 		bl	u8g2_DrawRBox
+ 127              	.LVL13:
+  19:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 		u8g2_SetFontMode(u8g2, 1); // set font mode transparent
+ 128              		.loc 1 19 0
+ 129 0092 4946     		mov	r1, r9
+ 130 0094 3046     		mov	r0, r6
+ 131 0096 FFF7FEFF 		bl	u8g2_SetDrawColor
+ 132              	.LVL14:
+  20:/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.c **** 	}else{
+ 133              		.loc 1 20 0
+ 134 009a 0121     		movs	r1, #1
+ 135 009c 3046     		mov	r0, r6
+ 136 009e FFF7FEFF 		bl	u8g2_SetFontMode
+ 137              	.LVL15:
+ 138 00a2 CBE7     		b	.L3
+ 139              	.L7:
+ 140              		.align	2
+ 141              	.L6:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccQ4aZGC.s 			page 4
+
+
+ 142 00a4 00000000 		.word	u8g2_font_micro_tr
+ 143              		.cfi_endproc
+ 144              	.LFE0:
+ 146              		.text
+ 147              	.Letext0:
+ 148              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 149              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 150              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 151              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccQ4aZGC.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 draw_IndicatorBox.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccQ4aZGC.s:18     .text.draw_IndicatorBox:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccQ4aZGC.s:25     .text.draw_IndicatorBox:0000000000000000 draw_IndicatorBox
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccQ4aZGC.s:142    .text.draw_IndicatorBox:00000000000000a4 $d
+
+UNDEFINED SYMBOLS
+u8g2_SetDrawColor
+u8g2_SetFont
+u8g2_DrawRFrame
+StrLength
+u8g2_DrawStr
+u8g2_SetFontMode
+u8g2_DrawRBox
+u8g2_font_micro_tr

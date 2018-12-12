@@ -1,0 +1,3165 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_byte.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.i2c_delay,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	i2c_delay:
+  25              	.LFB12:
+  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_byte.c 
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 2
+
+
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** */
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** #include "u8x8.h"
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_SetDC(u8x8_t *u8x8, uint8_t dc)
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return u8x8->byte_cb(u8x8, U8X8_MSG_BYTE_SET_DC, dc, NULL);
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_SendBytes(u8x8_t *u8x8, uint8_t cnt, uint8_t *data)
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return u8x8->byte_cb(u8x8, U8X8_MSG_BYTE_SEND, cnt, (void *)data);
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_SendByte(u8x8_t *u8x8, uint8_t byte)
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return u8x8_byte_SendBytes(u8x8, 1, &byte);
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_StartTransfer(u8x8_t *u8x8)
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return u8x8->byte_cb(u8x8, U8X8_MSG_BYTE_START_TRANSFER, 0, NULL);
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_EndTransfer(u8x8_t *u8x8)
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return u8x8->byte_cb(u8x8, U8X8_MSG_BYTE_END_TRANSFER, 0, NULL);
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** /*
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   Uses:
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     u8x8->display_info->sda_setup_time_ns
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     u8x8->display_info->sck_pulse_width_ns
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     u8x8->display_info->spi_mode
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     u8x8->display_info->chip_disable_level
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     u8x8->display_info->chip_enable_level
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     u8x8->display_info->post_chip_enable_wait_ns
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     u8x8->display_info->pre_chip_disable_wait_ns
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   Calls to GPIO and DELAY:
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     U8X8_MSG_DELAY_NANO
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     U8X8_MSG_GPIO_DC
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     U8X8_MSG_GPIO_CS
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     U8X8_MSG_GPIO_CLOCK
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     U8X8_MSG_GPIO_DATA
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   Handles:
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     U8X8_MSG_BYTE_INIT
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     U8X8_MSG_BYTE_SEND
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     U8X8_MSG_BYTE_SET_DC
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     U8X8_MSG_BYTE_START_TRANSFER
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     U8X8_MSG_BYTE_END_TRANSFER
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** */
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_4wire_sw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 3
+
+
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i, b;
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t *data;
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t takeover_edge = u8x8_GetSPIClockPhase(u8x8);
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t not_takeover_edge = 1 - takeover_edge;
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   switch(msg)
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SEND:
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       data = (uint8_t *)arg_ptr;
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       while( arg_int > 0 )
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	b = *data;
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	arg_int--;
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = 0; i < 8; i++ )
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  if ( b & 128 )
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	    u8x8_gpio_SetSPIData(u8x8, 1);
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  else
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	    u8x8_gpio_SetSPIData(u8x8, 0);
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b <<= 1;
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_SetSPIClock(u8x8, not_takeover_edge);
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->sda_setup_time_ns);
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_SetSPIClock(u8x8, takeover_edge);
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->sck_pulse_width_ns);
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_INIT:
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* disable chipselect */
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* no wait required here */
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* for SPI: setup correct level of the clock signal */
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetSPIClock(u8x8, u8x8_GetSPIClockPhase(u8x8));
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetDC(u8x8, arg_int);
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_enable_level);  
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->pre_chip_disable_wait_
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       return 0;
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return 1;
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** /*=========================================*/
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 4
+
+
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_8bit_6800mode(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i, b;
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t *data;
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   switch(msg)
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SEND:
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       data = (uint8_t *)arg_ptr;
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       while( arg_int > 0 )
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	b = *data;
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	arg_int--;
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = U8X8_MSG_GPIO_D0; i <= U8X8_MSG_GPIO_D7; i++ )
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_call(u8x8, i, b&1);
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b >>= 1;
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->data_setup_time_ns);
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 1);
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->write_pulse_width_ns);
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 0);
+ 171:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 174:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_INIT:
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* disable chipselect */
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);    
+ 177:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* ensure that the enable signal is high */
+ 178:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 0);
+ 179:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 180:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 181:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetDC(u8x8, arg_int);
+ 182:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 183:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 184:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_enable_level);  
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_
+ 186:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 187:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->pre_chip_disable_wait_
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 191:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 192:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       return 0;
+ 193:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return 1;
+ 195:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 196:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 197:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_8bit_8080mode(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 198:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i, b;
+ 200:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t *data;
+ 201:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 202:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   switch(msg)
+ 203:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 5
+
+
+ 204:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SEND:
+ 205:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       data = (uint8_t *)arg_ptr;
+ 206:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       while( arg_int > 0 )
+ 207:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 208:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	b = *data;
+ 209:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 210:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	arg_int--;
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = U8X8_MSG_GPIO_D0; i <= U8X8_MSG_GPIO_D7; i++ )
+ 212:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 213:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_call(u8x8, i, b&1);
+ 214:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b >>= 1;
+ 215:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 216:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	
+ 217:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->data_setup_time_ns);
+ 218:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 0);
+ 219:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->write_pulse_width_ns);
+ 220:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 1);
+ 221:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 222:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 223:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 224:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_INIT:
+ 225:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* disable chipselect */
+ 226:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);    
+ 227:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* ensure that the enable signal is high */
+ 228:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 1);
+ 229:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 230:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 231:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetDC(u8x8, arg_int);
+ 232:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 233:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 234:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_enable_level);  
+ 235:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_
+ 236:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 237:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 238:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->pre_chip_disable_wait_
+ 239:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+ 240:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 241:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 242:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       return 0;
+ 243:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return 1;
+ 245:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 246:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 247:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** /*=========================================*/
+ 248:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 249:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_3wire_sw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 250:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 251:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i;
+ 252:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t *data;
+ 253:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t takeover_edge = u8x8_GetSPIClockPhase(u8x8);
+ 254:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t not_takeover_edge = 1 - takeover_edge;
+ 255:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint16_t b;
+ 256:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   static uint8_t last_dc;
+ 257:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 258:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   switch(msg)
+ 259:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 260:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SEND:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 6
+
+
+ 261:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       data = (uint8_t *)arg_ptr;
+ 262:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       while( arg_int > 0 )
+ 263:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 264:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	b = *data;
+ 265:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	if ( last_dc != 0 )
+ 266:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b |= 256;
+ 267:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 268:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	arg_int--;
+ 269:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = 0; i < 9; i++ )
+ 270:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 271:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  if ( b & 256 )
+ 272:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	    u8x8_gpio_SetSPIData(u8x8, 1);
+ 273:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  else
+ 274:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	    u8x8_gpio_SetSPIData(u8x8, 0);
+ 275:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b <<= 1;
+ 276:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  
+ 277:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_SetSPIClock(u8x8, not_takeover_edge);
+ 278:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->sda_setup_time_ns);
+ 279:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_SetSPIClock(u8x8, takeover_edge);
+ 280:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->sck_pulse_width_ns);
+ 281:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 282:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 283:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 284:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 285:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_INIT:
+ 286:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* disable chipselect */
+ 287:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+ 288:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* no wait required here */
+ 289:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 290:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* for SPI: setup correct level of the clock signal */
+ 291:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetSPIClock(u8x8, u8x8_GetSPIClockPhase(u8x8));
+ 292:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 293:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 294:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       last_dc = arg_int;
+ 295:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 296:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 297:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_enable_level);  
+ 298:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_
+ 299:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 300:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 301:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->pre_chip_disable_wait_
+ 302:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+ 303:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 304:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 305:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       return 0;
+ 306:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 307:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return 1;
+ 308:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 309:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 310:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** /*=========================================*/
+ 311:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 312:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** void u8x8_byte_set_ks0108_cs(u8x8_t *u8x8, uint8_t arg)
+ 313:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 314:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_SetCS(u8x8, arg&1);
+ 315:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   arg = arg >> 1;
+ 316:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_CS1, arg&1);
+ 317:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   arg = arg >> 2;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 7
+
+
+ 318:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_CS2, arg&1);
+ 319:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 320:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 321:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** /* 6800 mode */
+ 322:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_ks0108(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 323:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 324:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i, b;
+ 325:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t *data;
+ 326:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 327:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   switch(msg)
+ 328:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 329:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SEND:
+ 330:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       data = (uint8_t *)arg_ptr;
+ 331:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       while( arg_int > 0 )
+ 332:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 333:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	b = *data;
+ 334:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 335:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	arg_int--;
+ 336:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = U8X8_MSG_GPIO_D0; i <= U8X8_MSG_GPIO_D7; i++ )
+ 337:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 338:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_call(u8x8, i, b&1);
+ 339:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b >>= 1;
+ 340:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 341:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	
+ 342:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->data_setup_time_ns);
+ 343:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 1);
+ 344:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->write_pulse_width_ns);
+ 345:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 0);
+ 346:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 347:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 348:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 349:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_INIT:
+ 350:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* disable chipselect */
+ 351:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);    
+ 352:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* ensure that the enable signal is low */
+ 353:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 0);
+ 354:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 355:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 356:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetDC(u8x8, arg_int);
+ 357:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 358:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 359:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* expects 3 bits in arg_int for the chip select lines */ 
+ 360:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_byte_set_ks0108_cs(u8x8, arg_int);
+ 361:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_
+ 362:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 363:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 364:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->pre_chip_disable_wait_
+ 365:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_byte_set_ks0108_cs(u8x8, arg_int);
+ 366:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 367:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 368:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       return 0;
+ 369:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 370:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return 1;
+ 371:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 372:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 373:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 374:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** /* sed1520 or sbn1661 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 8
+
+
+ 375:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   U8X8_MSG_GPIO_E --> E1
+ 376:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   U8X8_MSG_GPIO_CS --> E2
+ 377:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** */
+ 378:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_sed1520(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 379:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 380:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i, b;
+ 381:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t *data;
+ 382:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   static uint8_t enable_pin;
+ 383:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 384:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   switch(msg)
+ 385:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 386:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SEND:
+ 387:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       data = (uint8_t *)arg_ptr;
+ 388:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       while( arg_int > 0 )
+ 389:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 390:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	b = *data;
+ 391:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 392:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	arg_int--;
+ 393:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = U8X8_MSG_GPIO_D0; i <= U8X8_MSG_GPIO_D7; i++ )
+ 394:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 395:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_call(u8x8, i, b&1);
+ 396:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b >>= 1;
+ 397:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 398:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	
+ 399:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->data_setup_time_ns);
+ 400:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, enable_pin, 1);
+ 401:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->write_pulse_width_ns);
+ 402:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, enable_pin, 0);
+ 403:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 404:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 405:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 406:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_INIT:
+ 407:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* disable chipselect */
+ 408:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);    
+ 409:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* ensure that the enable signals are low */
+ 410:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 0);
+ 411:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_CS, 0);
+ 412:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       enable_pin = U8X8_MSG_GPIO_E;
+ 413:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 414:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 415:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetDC(u8x8, arg_int);
+ 416:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 417:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 418:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* cs lines are not supported for the SED1520/SBN1661 */
+ 419:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* instead, this will select the E1 or E2 line */ 
+ 420:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       enable_pin = U8X8_MSG_GPIO_E;
+ 421:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       if ( arg_int != 0 )
+ 422:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	enable_pin = U8X8_MSG_GPIO_CS;
+ 423:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 424:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 425:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 426:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 427:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       return 0;
+ 428:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 429:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return 1;
+ 430:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 431:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 9
+
+
+ 432:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** /*=========================================*/
+ 433:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 434:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 435:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** /*
+ 436:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   software i2c,
+ 437:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   ignores ACK response (which is anyway not provided by some displays)
+ 438:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   also does not allow reading from the device
+ 439:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** */
+ 440:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_delay(u8x8_t *u8x8) U8X8_NOINLINE;
+ 441:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_delay(u8x8_t *u8x8)
+ 442:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+  27              		.loc 1 442 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 08B5     		push	{r3, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 3, -8
+  36              		.cfi_offset 14, -4
+ 443:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   //u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_10MICRO, u8x8->display_info->i2c_bus_clock_100kHz);
+ 444:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_I2C, u8x8->display_info->i2c_bus_clock_100kHz);
+  37              		.loc 1 444 0
+  38 0002 0368     		ldr	r3, [r0]
+  39 0004 5A7B     		ldrb	r2, [r3, #13]	@ zero_extendqisi2
+  40 0006 2D21     		movs	r1, #45
+  41 0008 FFF7FEFF 		bl	u8x8_gpio_call
+  42              	.LVL1:
+ 445:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+  43              		.loc 1 445 0
+  44 000c 08BD     		pop	{r3, pc}
+  45              		.cfi_endproc
+  46              	.LFE12:
+  48              		.section	.text.i2c_init,"ax",%progbits
+  49              		.align	1
+  50              		.syntax unified
+  51              		.thumb
+  52              		.thumb_func
+  53              		.fpu fpv4-sp-d16
+  55              	i2c_init:
+  56              	.LFB13:
+ 446:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 447:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_init(u8x8_t *u8x8)
+ 448:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+  57              		.loc 1 448 0
+  58              		.cfi_startproc
+  59              		@ args = 0, pretend = 0, frame = 0
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61              	.LVL2:
+  62 0000 10B5     		push	{r4, lr}
+  63              	.LCFI1:
+  64              		.cfi_def_cfa_offset 8
+  65              		.cfi_offset 4, -8
+  66              		.cfi_offset 14, -4
+  67 0002 0446     		mov	r4, r0
+ 449:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_SetI2CClock(u8x8, 1);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 10
+
+
+  68              		.loc 1 449 0
+  69 0004 0122     		movs	r2, #1
+  70 0006 4C21     		movs	r1, #76
+  71 0008 FFF7FEFF 		bl	u8x8_gpio_call
+  72              	.LVL3:
+ 450:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_SetI2CData(u8x8, 1);
+  73              		.loc 1 450 0
+  74 000c 0122     		movs	r2, #1
+  75 000e 4D21     		movs	r1, #77
+  76 0010 2046     		mov	r0, r4
+  77 0012 FFF7FEFF 		bl	u8x8_gpio_call
+  78              	.LVL4:
+ 451:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   
+ 452:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_delay(u8x8);
+  79              		.loc 1 452 0
+  80 0016 2046     		mov	r0, r4
+  81 0018 FFF7FEFF 		bl	i2c_delay
+  82              	.LVL5:
+ 453:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+  83              		.loc 1 453 0
+  84 001c 10BD     		pop	{r4, pc}
+  85              		.cfi_endproc
+  86              	.LFE13:
+  88              		.section	.text.i2c_read_scl_and_delay,"ax",%progbits
+  89              		.align	1
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  93              		.fpu fpv4-sp-d16
+  95              	i2c_read_scl_and_delay:
+  96              	.LFB14:
+ 454:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 455:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** /* actually, the scl line is not observed, so this procedure does not return a value */
+ 456:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 457:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_read_scl_and_delay(u8x8_t *u8x8)
+ 458:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+  97              		.loc 1 458 0
+  98              		.cfi_startproc
+  99              		@ args = 0, pretend = 0, frame = 0
+ 100              		@ frame_needed = 0, uses_anonymous_args = 0
+ 101              	.LVL6:
+ 102 0000 10B5     		push	{r4, lr}
+ 103              	.LCFI2:
+ 104              		.cfi_def_cfa_offset 8
+ 105              		.cfi_offset 4, -8
+ 106              		.cfi_offset 14, -4
+ 107 0002 0446     		mov	r4, r0
+ 459:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* set as input (line will be high) */
+ 460:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_SetI2CClock(u8x8, 1);
+ 108              		.loc 1 460 0
+ 109 0004 0122     		movs	r2, #1
+ 110 0006 4C21     		movs	r1, #76
+ 111 0008 FFF7FEFF 		bl	u8x8_gpio_call
+ 112              	.LVL7:
+ 461:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 462:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_delay(u8x8);
+ 113              		.loc 1 462 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 11
+
+
+ 114 000c 2046     		mov	r0, r4
+ 115 000e FFF7FEFF 		bl	i2c_delay
+ 116              	.LVL8:
+ 463:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 117              		.loc 1 463 0
+ 118 0012 10BD     		pop	{r4, pc}
+ 119              		.cfi_endproc
+ 120              	.LFE14:
+ 122              		.section	.text.i2c_read_sda,"ax",%progbits
+ 123              		.align	1
+ 124              		.syntax unified
+ 125              		.thumb
+ 126              		.thumb_func
+ 127              		.fpu fpv4-sp-d16
+ 129              	i2c_read_sda:
+ 130              	.LFB16:
+ 464:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 465:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_clear_scl(u8x8_t *u8x8)
+ 466:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 467:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_SetI2CClock(u8x8, 0);
+ 468:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 469:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 470:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_read_sda(u8x8_t *u8x8)
+ 471:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 131              		.loc 1 471 0
+ 132              		.cfi_startproc
+ 133              		@ args = 0, pretend = 0, frame = 0
+ 134              		@ frame_needed = 0, uses_anonymous_args = 0
+ 135              	.LVL9:
+ 136 0000 08B5     		push	{r3, lr}
+ 137              	.LCFI3:
+ 138              		.cfi_def_cfa_offset 8
+ 139              		.cfi_offset 3, -8
+ 140              		.cfi_offset 14, -4
+ 472:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* set as input (line will be high) */
+ 473:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_SetI2CData(u8x8, 1);
+ 141              		.loc 1 473 0
+ 142 0002 0122     		movs	r2, #1
+ 143 0004 4D21     		movs	r1, #77
+ 144 0006 FFF7FEFF 		bl	u8x8_gpio_call
+ 145              	.LVL10:
+ 474:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 146              		.loc 1 474 0
+ 147 000a 08BD     		pop	{r3, pc}
+ 148              		.cfi_endproc
+ 149              	.LFE16:
+ 151              		.section	.text.i2c_clear_sda,"ax",%progbits
+ 152              		.align	1
+ 153              		.syntax unified
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.fpu fpv4-sp-d16
+ 158              	i2c_clear_sda:
+ 159              	.LFB17:
+ 475:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 476:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_clear_sda(u8x8_t *u8x8)
+ 477:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 12
+
+
+ 160              		.loc 1 477 0
+ 161              		.cfi_startproc
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164              	.LVL11:
+ 165 0000 08B5     		push	{r3, lr}
+ 166              	.LCFI4:
+ 167              		.cfi_def_cfa_offset 8
+ 168              		.cfi_offset 3, -8
+ 169              		.cfi_offset 14, -4
+ 478:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* set open collector and drive low */
+ 479:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_SetI2CData(u8x8, 0);
+ 170              		.loc 1 479 0
+ 171 0002 0022     		movs	r2, #0
+ 172 0004 4D21     		movs	r1, #77
+ 173 0006 FFF7FEFF 		bl	u8x8_gpio_call
+ 174              	.LVL12:
+ 480:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 175              		.loc 1 480 0
+ 176 000a 08BD     		pop	{r3, pc}
+ 177              		.cfi_endproc
+ 178              	.LFE17:
+ 180              		.section	.text.i2c_stop,"ax",%progbits
+ 181              		.align	1
+ 182              		.syntax unified
+ 183              		.thumb
+ 184              		.thumb_func
+ 185              		.fpu fpv4-sp-d16
+ 187              	i2c_stop:
+ 188              	.LFB19:
+ 481:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 482:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_start(u8x8_t *u8x8)
+ 483:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 484:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   if ( u8x8->i2c_started != 0 )
+ 485:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 486:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     /* if already started: do restart */
+ 487:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     i2c_read_sda(u8x8);     /* SDA = 1 */
+ 488:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     i2c_delay(u8x8);
+ 489:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     i2c_read_scl_and_delay(u8x8);
+ 490:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 491:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_read_sda(u8x8);
+ 492:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* send the start condition, both lines go from 1 to 0 */
+ 493:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_clear_sda(u8x8);
+ 494:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_delay(u8x8);
+ 495:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_clear_scl(u8x8);
+ 496:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8->i2c_started = 1;
+ 497:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 498:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 499:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 500:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_stop(u8x8_t *u8x8)
+ 501:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 189              		.loc 1 501 0
+ 190              		.cfi_startproc
+ 191              		@ args = 0, pretend = 0, frame = 0
+ 192              		@ frame_needed = 0, uses_anonymous_args = 0
+ 193              	.LVL13:
+ 194 0000 10B5     		push	{r4, lr}
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 13
+
+
+ 195              	.LCFI5:
+ 196              		.cfi_def_cfa_offset 8
+ 197              		.cfi_offset 4, -8
+ 198              		.cfi_offset 14, -4
+ 199 0002 0446     		mov	r4, r0
+ 502:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* set SDA to 0 */
+ 503:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_clear_sda(u8x8);  
+ 200              		.loc 1 503 0
+ 201 0004 FFF7FEFF 		bl	i2c_clear_sda
+ 202              	.LVL14:
+ 504:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_delay(u8x8);
+ 203              		.loc 1 504 0
+ 204 0008 2046     		mov	r0, r4
+ 205 000a FFF7FEFF 		bl	i2c_delay
+ 206              	.LVL15:
+ 505:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 506:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* now release all lines */
+ 507:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_read_scl_and_delay(u8x8);
+ 207              		.loc 1 507 0
+ 208 000e 2046     		mov	r0, r4
+ 209 0010 FFF7FEFF 		bl	i2c_read_scl_and_delay
+ 210              	.LVL16:
+ 508:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 509:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* set SDA to 1 */
+ 510:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_read_sda(u8x8);
+ 211              		.loc 1 510 0
+ 212 0014 2046     		mov	r0, r4
+ 213 0016 FFF7FEFF 		bl	i2c_read_sda
+ 214              	.LVL17:
+ 511:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_delay(u8x8);
+ 215              		.loc 1 511 0
+ 216 001a 2046     		mov	r0, r4
+ 217 001c FFF7FEFF 		bl	i2c_delay
+ 218              	.LVL18:
+ 512:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8->i2c_started = 0;
+ 219              		.loc 1 512 0
+ 220 0020 0023     		movs	r3, #0
+ 221 0022 84F82130 		strb	r3, [r4, #33]
+ 513:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 222              		.loc 1 513 0
+ 223 0026 10BD     		pop	{r4, pc}
+ 224              		.cfi_endproc
+ 225              	.LFE19:
+ 227              		.section	.text.i2c_clear_scl,"ax",%progbits
+ 228              		.align	1
+ 229              		.syntax unified
+ 230              		.thumb
+ 231              		.thumb_func
+ 232              		.fpu fpv4-sp-d16
+ 234              	i2c_clear_scl:
+ 235              	.LFB15:
+ 466:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_SetI2CClock(u8x8, 0);
+ 236              		.loc 1 466 0
+ 237              		.cfi_startproc
+ 238              		@ args = 0, pretend = 0, frame = 0
+ 239              		@ frame_needed = 0, uses_anonymous_args = 0
+ 240              	.LVL19:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 14
+
+
+ 241 0000 08B5     		push	{r3, lr}
+ 242              	.LCFI6:
+ 243              		.cfi_def_cfa_offset 8
+ 244              		.cfi_offset 3, -8
+ 245              		.cfi_offset 14, -4
+ 467:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 246              		.loc 1 467 0
+ 247 0002 0022     		movs	r2, #0
+ 248 0004 4C21     		movs	r1, #76
+ 249 0006 FFF7FEFF 		bl	u8x8_gpio_call
+ 250              	.LVL20:
+ 468:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 251              		.loc 1 468 0
+ 252 000a 08BD     		pop	{r3, pc}
+ 253              		.cfi_endproc
+ 254              	.LFE15:
+ 256              		.section	.text.i2c_start,"ax",%progbits
+ 257              		.align	1
+ 258              		.syntax unified
+ 259              		.thumb
+ 260              		.thumb_func
+ 261              		.fpu fpv4-sp-d16
+ 263              	i2c_start:
+ 264              	.LFB18:
+ 483:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   if ( u8x8->i2c_started != 0 )
+ 265              		.loc 1 483 0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 0
+ 268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 269              	.LVL21:
+ 270 0000 10B5     		push	{r4, lr}
+ 271              	.LCFI7:
+ 272              		.cfi_def_cfa_offset 8
+ 273              		.cfi_offset 4, -8
+ 274              		.cfi_offset 14, -4
+ 275 0002 0446     		mov	r4, r0
+ 484:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 276              		.loc 1 484 0
+ 277 0004 90F82130 		ldrb	r3, [r0, #33]	@ zero_extendqisi2
+ 278 0008 7BB9     		cbnz	r3, .L18
+ 279              	.LVL22:
+ 280              	.L16:
+ 491:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* send the start condition, both lines go from 1 to 0 */
+ 281              		.loc 1 491 0
+ 282 000a 2046     		mov	r0, r4
+ 283 000c FFF7FEFF 		bl	i2c_read_sda
+ 284              	.LVL23:
+ 493:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_delay(u8x8);
+ 285              		.loc 1 493 0
+ 286 0010 2046     		mov	r0, r4
+ 287 0012 FFF7FEFF 		bl	i2c_clear_sda
+ 288              	.LVL24:
+ 494:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_clear_scl(u8x8);
+ 289              		.loc 1 494 0
+ 290 0016 2046     		mov	r0, r4
+ 291 0018 FFF7FEFF 		bl	i2c_delay
+ 292              	.LVL25:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 15
+
+
+ 495:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8->i2c_started = 1;
+ 293              		.loc 1 495 0
+ 294 001c 2046     		mov	r0, r4
+ 295 001e FFF7FEFF 		bl	i2c_clear_scl
+ 296              	.LVL26:
+ 496:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 297              		.loc 1 496 0
+ 298 0022 0123     		movs	r3, #1
+ 299 0024 84F82130 		strb	r3, [r4, #33]
+ 497:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 300              		.loc 1 497 0
+ 301 0028 10BD     		pop	{r4, pc}
+ 302              	.LVL27:
+ 303              	.L18:
+ 487:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     i2c_delay(u8x8);
+ 304              		.loc 1 487 0
+ 305 002a FFF7FEFF 		bl	i2c_read_sda
+ 306              	.LVL28:
+ 488:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     i2c_read_scl_and_delay(u8x8);
+ 307              		.loc 1 488 0
+ 308 002e 2046     		mov	r0, r4
+ 309 0030 FFF7FEFF 		bl	i2c_delay
+ 310              	.LVL29:
+ 489:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 311              		.loc 1 489 0
+ 312 0034 2046     		mov	r0, r4
+ 313 0036 FFF7FEFF 		bl	i2c_read_scl_and_delay
+ 314              	.LVL30:
+ 315 003a E6E7     		b	.L16
+ 316              		.cfi_endproc
+ 317              	.LFE18:
+ 319              		.section	.text.i2c_write_bit,"ax",%progbits
+ 320              		.align	1
+ 321              		.syntax unified
+ 322              		.thumb
+ 323              		.thumb_func
+ 324              		.fpu fpv4-sp-d16
+ 326              	i2c_write_bit:
+ 327              	.LFB20:
+ 514:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 515:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_write_bit(u8x8_t *u8x8, uint8_t val)
+ 516:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 328              		.loc 1 516 0
+ 329              		.cfi_startproc
+ 330              		@ args = 0, pretend = 0, frame = 0
+ 331              		@ frame_needed = 0, uses_anonymous_args = 0
+ 332              	.LVL31:
+ 333 0000 10B5     		push	{r4, lr}
+ 334              	.LCFI8:
+ 335              		.cfi_def_cfa_offset 8
+ 336              		.cfi_offset 4, -8
+ 337              		.cfi_offset 14, -4
+ 338 0002 0446     		mov	r4, r0
+ 517:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   if (val)
+ 339              		.loc 1 517 0
+ 340 0004 59B9     		cbnz	r1, .L23
+ 518:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     i2c_read_sda(u8x8);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 16
+
+
+ 519:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   else
+ 520:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     i2c_clear_sda(u8x8);
+ 341              		.loc 1 520 0
+ 342 0006 FFF7FEFF 		bl	i2c_clear_sda
+ 343              	.LVL32:
+ 344              	.L21:
+ 521:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 522:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_delay(u8x8);
+ 345              		.loc 1 522 0
+ 346 000a 2046     		mov	r0, r4
+ 347 000c FFF7FEFF 		bl	i2c_delay
+ 348              	.LVL33:
+ 523:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_read_scl_and_delay(u8x8);
+ 349              		.loc 1 523 0
+ 350 0010 2046     		mov	r0, r4
+ 351 0012 FFF7FEFF 		bl	i2c_read_scl_and_delay
+ 352              	.LVL34:
+ 524:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_clear_scl(u8x8);
+ 353              		.loc 1 524 0
+ 354 0016 2046     		mov	r0, r4
+ 355 0018 FFF7FEFF 		bl	i2c_clear_scl
+ 356              	.LVL35:
+ 525:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 357              		.loc 1 525 0
+ 358 001c 10BD     		pop	{r4, pc}
+ 359              	.LVL36:
+ 360              	.L23:
+ 518:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   else
+ 361              		.loc 1 518 0
+ 362 001e FFF7FEFF 		bl	i2c_read_sda
+ 363              	.LVL37:
+ 364 0022 F2E7     		b	.L21
+ 365              		.cfi_endproc
+ 366              	.LFE20:
+ 368              		.section	.text.i2c_read_bit,"ax",%progbits
+ 369              		.align	1
+ 370              		.syntax unified
+ 371              		.thumb
+ 372              		.thumb_func
+ 373              		.fpu fpv4-sp-d16
+ 375              	i2c_read_bit:
+ 376              	.LFB21:
+ 526:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 527:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_read_bit(u8x8_t *u8x8)
+ 528:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 377              		.loc 1 528 0
+ 378              		.cfi_startproc
+ 379              		@ args = 0, pretend = 0, frame = 0
+ 380              		@ frame_needed = 0, uses_anonymous_args = 0
+ 381              	.LVL38:
+ 382 0000 10B5     		push	{r4, lr}
+ 383              	.LCFI9:
+ 384              		.cfi_def_cfa_offset 8
+ 385              		.cfi_offset 4, -8
+ 386              		.cfi_offset 14, -4
+ 387 0002 0446     		mov	r4, r0
+ 529:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   //uint8_t val;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 17
+
+
+ 530:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* do not drive SDA */
+ 531:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_read_sda(u8x8);
+ 388              		.loc 1 531 0
+ 389 0004 FFF7FEFF 		bl	i2c_read_sda
+ 390              	.LVL39:
+ 532:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_delay(u8x8);
+ 391              		.loc 1 532 0
+ 392 0008 2046     		mov	r0, r4
+ 393 000a FFF7FEFF 		bl	i2c_delay
+ 394              	.LVL40:
+ 533:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_read_scl_and_delay(u8x8);
+ 395              		.loc 1 533 0
+ 396 000e 2046     		mov	r0, r4
+ 397 0010 FFF7FEFF 		bl	i2c_read_scl_and_delay
+ 398              	.LVL41:
+ 534:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_read_sda(u8x8);
+ 399              		.loc 1 534 0
+ 400 0014 2046     		mov	r0, r4
+ 401 0016 FFF7FEFF 		bl	i2c_read_sda
+ 402              	.LVL42:
+ 535:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_delay(u8x8);
+ 403              		.loc 1 535 0
+ 404 001a 2046     		mov	r0, r4
+ 405 001c FFF7FEFF 		bl	i2c_delay
+ 406              	.LVL43:
+ 536:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_clear_scl(u8x8);
+ 407              		.loc 1 536 0
+ 408 0020 2046     		mov	r0, r4
+ 409 0022 FFF7FEFF 		bl	i2c_clear_scl
+ 410              	.LVL44:
+ 537:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   //return val;
+ 538:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 411              		.loc 1 538 0
+ 412 0026 10BD     		pop	{r4, pc}
+ 413              		.cfi_endproc
+ 414              	.LFE21:
+ 416              		.section	.text.i2c_write_byte,"ax",%progbits
+ 417              		.align	1
+ 418              		.syntax unified
+ 419              		.thumb
+ 420              		.thumb_func
+ 421              		.fpu fpv4-sp-d16
+ 423              	i2c_write_byte:
+ 424              	.LFB22:
+ 539:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 540:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** static void i2c_write_byte(u8x8_t *u8x8, uint8_t b)
+ 541:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 425              		.loc 1 541 0
+ 426              		.cfi_startproc
+ 427              		@ args = 0, pretend = 0, frame = 0
+ 428              		@ frame_needed = 0, uses_anonymous_args = 0
+ 429              	.LVL45:
+ 430 0000 38B5     		push	{r3, r4, r5, lr}
+ 431              	.LCFI10:
+ 432              		.cfi_def_cfa_offset 16
+ 433              		.cfi_offset 3, -16
+ 434              		.cfi_offset 4, -12
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 18
+
+
+ 435              		.cfi_offset 5, -8
+ 436              		.cfi_offset 14, -4
+ 437 0002 0446     		mov	r4, r0
+ 438 0004 0D46     		mov	r5, r1
+ 542:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_write_bit(u8x8, b & 128);
+ 439              		.loc 1 542 0
+ 440 0006 01F08001 		and	r1, r1, #128
+ 441              	.LVL46:
+ 442 000a FFF7FEFF 		bl	i2c_write_bit
+ 443              	.LVL47:
+ 543:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_write_bit(u8x8, b & 64);
+ 444              		.loc 1 543 0
+ 445 000e 05F04001 		and	r1, r5, #64
+ 446 0012 2046     		mov	r0, r4
+ 447 0014 FFF7FEFF 		bl	i2c_write_bit
+ 448              	.LVL48:
+ 544:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_write_bit(u8x8, b & 32);
+ 449              		.loc 1 544 0
+ 450 0018 05F02001 		and	r1, r5, #32
+ 451 001c 2046     		mov	r0, r4
+ 452 001e FFF7FEFF 		bl	i2c_write_bit
+ 453              	.LVL49:
+ 545:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_write_bit(u8x8, b & 16);
+ 454              		.loc 1 545 0
+ 455 0022 05F01001 		and	r1, r5, #16
+ 456 0026 2046     		mov	r0, r4
+ 457 0028 FFF7FEFF 		bl	i2c_write_bit
+ 458              	.LVL50:
+ 546:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_write_bit(u8x8, b & 8);
+ 459              		.loc 1 546 0
+ 460 002c 05F00801 		and	r1, r5, #8
+ 461 0030 2046     		mov	r0, r4
+ 462 0032 FFF7FEFF 		bl	i2c_write_bit
+ 463              	.LVL51:
+ 547:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_write_bit(u8x8, b & 4);
+ 464              		.loc 1 547 0
+ 465 0036 05F00401 		and	r1, r5, #4
+ 466 003a 2046     		mov	r0, r4
+ 467 003c FFF7FEFF 		bl	i2c_write_bit
+ 468              	.LVL52:
+ 548:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_write_bit(u8x8, b & 2);
+ 469              		.loc 1 548 0
+ 470 0040 05F00201 		and	r1, r5, #2
+ 471 0044 2046     		mov	r0, r4
+ 472 0046 FFF7FEFF 		bl	i2c_write_bit
+ 473              	.LVL53:
+ 549:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_write_bit(u8x8, b & 1);
+ 474              		.loc 1 549 0
+ 475 004a 05F00101 		and	r1, r5, #1
+ 476 004e 2046     		mov	r0, r4
+ 477 0050 FFF7FEFF 		bl	i2c_write_bit
+ 478              	.LVL54:
+ 550:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     
+ 551:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* read ack from client */
+ 552:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* 0: ack was given by client */
+ 553:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   /* 1: nothing happend during ack cycle */  
+ 554:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   i2c_read_bit(u8x8);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 19
+
+
+ 479              		.loc 1 554 0
+ 480 0054 2046     		mov	r0, r4
+ 481 0056 FFF7FEFF 		bl	i2c_read_bit
+ 482              	.LVL55:
+ 555:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 483              		.loc 1 555 0
+ 484 005a 38BD     		pop	{r3, r4, r5, pc}
+ 485              		.cfi_endproc
+ 486              	.LFE22:
+ 488              		.section	.text.u8x8_byte_SetDC,"ax",%progbits
+ 489              		.align	1
+ 490              		.global	u8x8_byte_SetDC
+ 491              		.syntax unified
+ 492              		.thumb
+ 493              		.thumb_func
+ 494              		.fpu fpv4-sp-d16
+ 496              	u8x8_byte_SetDC:
+ 497              	.LFB0:
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return u8x8->byte_cb(u8x8, U8X8_MSG_BYTE_SET_DC, dc, NULL);
+ 498              		.loc 1 40 0
+ 499              		.cfi_startproc
+ 500              		@ args = 0, pretend = 0, frame = 0
+ 501              		@ frame_needed = 0, uses_anonymous_args = 0
+ 502              	.LVL56:
+ 503 0000 10B5     		push	{r4, lr}
+ 504              	.LCFI11:
+ 505              		.cfi_def_cfa_offset 8
+ 506              		.cfi_offset 4, -8
+ 507              		.cfi_offset 14, -4
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 508              		.loc 1 41 0
+ 509 0002 0469     		ldr	r4, [r0, #16]
+ 510 0004 0023     		movs	r3, #0
+ 511 0006 0A46     		mov	r2, r1
+ 512 0008 2021     		movs	r1, #32
+ 513              	.LVL57:
+ 514 000a A047     		blx	r4
+ 515              	.LVL58:
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 516              		.loc 1 42 0
+ 517 000c 10BD     		pop	{r4, pc}
+ 518              		.cfi_endproc
+ 519              	.LFE0:
+ 521              		.section	.text.u8x8_byte_SendBytes,"ax",%progbits
+ 522              		.align	1
+ 523              		.global	u8x8_byte_SendBytes
+ 524              		.syntax unified
+ 525              		.thumb
+ 526              		.thumb_func
+ 527              		.fpu fpv4-sp-d16
+ 529              	u8x8_byte_SendBytes:
+ 530              	.LFB1:
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return u8x8->byte_cb(u8x8, U8X8_MSG_BYTE_SEND, cnt, (void *)data);
+ 531              		.loc 1 45 0
+ 532              		.cfi_startproc
+ 533              		@ args = 0, pretend = 0, frame = 0
+ 534              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 20
+
+
+ 535              	.LVL59:
+ 536 0000 10B5     		push	{r4, lr}
+ 537              	.LCFI12:
+ 538              		.cfi_def_cfa_offset 8
+ 539              		.cfi_offset 4, -8
+ 540              		.cfi_offset 14, -4
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 541              		.loc 1 46 0
+ 542 0002 0469     		ldr	r4, [r0, #16]
+ 543 0004 1346     		mov	r3, r2
+ 544 0006 0A46     		mov	r2, r1
+ 545              	.LVL60:
+ 546 0008 1721     		movs	r1, #23
+ 547              	.LVL61:
+ 548 000a A047     		blx	r4
+ 549              	.LVL62:
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 550              		.loc 1 47 0
+ 551 000c 10BD     		pop	{r4, pc}
+ 552              		.cfi_endproc
+ 553              	.LFE1:
+ 555              		.section	.text.u8x8_byte_SendByte,"ax",%progbits
+ 556              		.align	1
+ 557              		.global	u8x8_byte_SendByte
+ 558              		.syntax unified
+ 559              		.thumb
+ 560              		.thumb_func
+ 561              		.fpu fpv4-sp-d16
+ 563              	u8x8_byte_SendByte:
+ 564              	.LFB2:
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return u8x8_byte_SendBytes(u8x8, 1, &byte);
+ 565              		.loc 1 50 0
+ 566              		.cfi_startproc
+ 567              		@ args = 0, pretend = 0, frame = 8
+ 568              		@ frame_needed = 0, uses_anonymous_args = 0
+ 569              	.LVL63:
+ 570 0000 00B5     		push	{lr}
+ 571              	.LCFI13:
+ 572              		.cfi_def_cfa_offset 4
+ 573              		.cfi_offset 14, -4
+ 574 0002 83B0     		sub	sp, sp, #12
+ 575              	.LCFI14:
+ 576              		.cfi_def_cfa_offset 16
+ 577 0004 02AA     		add	r2, sp, #8
+ 578 0006 02F8011D 		strb	r1, [r2, #-1]!
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 579              		.loc 1 51 0
+ 580 000a 0121     		movs	r1, #1
+ 581              	.LVL64:
+ 582 000c FFF7FEFF 		bl	u8x8_byte_SendBytes
+ 583              	.LVL65:
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 584              		.loc 1 52 0
+ 585 0010 03B0     		add	sp, sp, #12
+ 586              	.LCFI15:
+ 587              		.cfi_def_cfa_offset 4
+ 588              		@ sp needed
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 21
+
+
+ 589 0012 5DF804FB 		ldr	pc, [sp], #4
+ 590              		.cfi_endproc
+ 591              	.LFE2:
+ 593              		.section	.text.u8x8_byte_StartTransfer,"ax",%progbits
+ 594              		.align	1
+ 595              		.global	u8x8_byte_StartTransfer
+ 596              		.syntax unified
+ 597              		.thumb
+ 598              		.thumb_func
+ 599              		.fpu fpv4-sp-d16
+ 601              	u8x8_byte_StartTransfer:
+ 602              	.LFB3:
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return u8x8->byte_cb(u8x8, U8X8_MSG_BYTE_START_TRANSFER, 0, NULL);
+ 603              		.loc 1 55 0
+ 604              		.cfi_startproc
+ 605              		@ args = 0, pretend = 0, frame = 0
+ 606              		@ frame_needed = 0, uses_anonymous_args = 0
+ 607              	.LVL66:
+ 608 0000 10B5     		push	{r4, lr}
+ 609              	.LCFI16:
+ 610              		.cfi_def_cfa_offset 8
+ 611              		.cfi_offset 4, -8
+ 612              		.cfi_offset 14, -4
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 613              		.loc 1 56 0
+ 614 0002 0469     		ldr	r4, [r0, #16]
+ 615 0004 0023     		movs	r3, #0
+ 616 0006 1A46     		mov	r2, r3
+ 617 0008 1821     		movs	r1, #24
+ 618 000a A047     		blx	r4
+ 619              	.LVL67:
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 620              		.loc 1 57 0
+ 621 000c 10BD     		pop	{r4, pc}
+ 622              		.cfi_endproc
+ 623              	.LFE3:
+ 625              		.section	.text.u8x8_byte_EndTransfer,"ax",%progbits
+ 626              		.align	1
+ 627              		.global	u8x8_byte_EndTransfer
+ 628              		.syntax unified
+ 629              		.thumb
+ 630              		.thumb_func
+ 631              		.fpu fpv4-sp-d16
+ 633              	u8x8_byte_EndTransfer:
+ 634              	.LFB4:
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return u8x8->byte_cb(u8x8, U8X8_MSG_BYTE_END_TRANSFER, 0, NULL);
+ 635              		.loc 1 60 0
+ 636              		.cfi_startproc
+ 637              		@ args = 0, pretend = 0, frame = 0
+ 638              		@ frame_needed = 0, uses_anonymous_args = 0
+ 639              	.LVL68:
+ 640 0000 10B5     		push	{r4, lr}
+ 641              	.LCFI17:
+ 642              		.cfi_def_cfa_offset 8
+ 643              		.cfi_offset 4, -8
+ 644              		.cfi_offset 14, -4
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 22
+
+
+ 645              		.loc 1 61 0
+ 646 0002 0469     		ldr	r4, [r0, #16]
+ 647 0004 0023     		movs	r3, #0
+ 648 0006 1A46     		mov	r2, r3
+ 649 0008 1921     		movs	r1, #25
+ 650 000a A047     		blx	r4
+ 651              	.LVL69:
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 652              		.loc 1 62 0
+ 653 000c 10BD     		pop	{r4, pc}
+ 654              		.cfi_endproc
+ 655              	.LFE4:
+ 657              		.section	.text.u8x8_byte_4wire_sw_spi,"ax",%progbits
+ 658              		.align	1
+ 659              		.global	u8x8_byte_4wire_sw_spi
+ 660              		.syntax unified
+ 661              		.thumb
+ 662              		.thumb_func
+ 663              		.fpu fpv4-sp-d16
+ 665              	u8x8_byte_4wire_sw_spi:
+ 666              	.LFB5:
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i, b;
+ 667              		.loc 1 89 0
+ 668              		.cfi_startproc
+ 669              		@ args = 0, pretend = 0, frame = 0
+ 670              		@ frame_needed = 0, uses_anonymous_args = 0
+ 671              	.LVL70:
+ 672 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 673              	.LCFI18:
+ 674              		.cfi_def_cfa_offset 32
+ 675              		.cfi_offset 4, -32
+ 676              		.cfi_offset 5, -28
+ 677              		.cfi_offset 6, -24
+ 678              		.cfi_offset 7, -20
+ 679              		.cfi_offset 8, -16
+ 680              		.cfi_offset 9, -12
+ 681              		.cfi_offset 10, -8
+ 682              		.cfi_offset 14, -4
+ 683 0004 0446     		mov	r4, r0
+ 684 0006 9146     		mov	r9, r2
+ 685 0008 9A46     		mov	r10, r3
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t not_takeover_edge = 1 - takeover_edge;
+ 686              		.loc 1 92 0
+ 687 000a 0268     		ldr	r2, [r0]
+ 688              	.LVL71:
+ 689 000c 177B     		ldrb	r7, [r2, #12]	@ zero_extendqisi2
+ 690 000e 07F00107 		and	r7, r7, #1
+ 691              	.LVL72:
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 692              		.loc 1 93 0
+ 693 0012 87F00108 		eor	r8, r7, #1
+ 694              	.LVL73:
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 695              		.loc 1 95 0
+ 696 0016 1439     		subs	r1, r1, #20
+ 697              	.LVL74:
+ 698 0018 0C29     		cmp	r1, #12
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 23
+
+
+ 699 001a 6ED8     		bhi	.L51
+ 700 001c DFE801F0 		tbb	[pc, r1]
+ 701              	.LVL75:
+ 702              	.L41:
+ 703 0020 3F       		.byte	(.L40-.L41)/2
+ 704 0021 6D       		.byte	(.L51-.L41)/2
+ 705 0022 6D       		.byte	(.L51-.L41)/2
+ 706 0023 31       		.byte	(.L42-.L41)/2
+ 707 0024 53       		.byte	(.L43-.L41)/2
+ 708 0025 60       		.byte	(.L44-.L41)/2
+ 709 0026 6D       		.byte	(.L51-.L41)/2
+ 710 0027 6D       		.byte	(.L51-.L41)/2
+ 711 0028 6D       		.byte	(.L51-.L41)/2
+ 712 0029 6D       		.byte	(.L51-.L41)/2
+ 713 002a 6D       		.byte	(.L51-.L41)/2
+ 714 002b 6D       		.byte	(.L51-.L41)/2
+ 715 002c 4D       		.byte	(.L45-.L41)/2
+ 716 002d 00       		.p2align 1
+ 717              	.L53:
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  else
+ 718              		.loc 1 107 0
+ 719 002e 0122     		movs	r2, #1
+ 720 0030 4121     		movs	r1, #65
+ 721 0032 2046     		mov	r0, r4
+ 722 0034 FFF7FEFF 		bl	u8x8_gpio_call
+ 723              	.LVL76:
+ 724              	.L48:
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  
+ 725              		.loc 1 110 0 discriminator 2
+ 726 0038 7600     		lsls	r6, r6, #1
+ 727              	.LVL77:
+ 728 003a F6B2     		uxtb	r6, r6
+ 729              	.LVL78:
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->sda_setup_time_ns);
+ 730              		.loc 1 112 0 discriminator 2
+ 731 003c 4246     		mov	r2, r8
+ 732 003e 4021     		movs	r1, #64
+ 733 0040 2046     		mov	r0, r4
+ 734 0042 FFF7FEFF 		bl	u8x8_gpio_call
+ 735              	.LVL79:
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_SetSPIClock(u8x8, takeover_edge);
+ 736              		.loc 1 113 0 discriminator 2
+ 737 0046 2368     		ldr	r3, [r4]
+ 738 0048 9A79     		ldrb	r2, [r3, #6]	@ zero_extendqisi2
+ 739 004a 2C21     		movs	r1, #44
+ 740 004c 2046     		mov	r0, r4
+ 741 004e FFF7FEFF 		bl	u8x8_gpio_call
+ 742              	.LVL80:
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->sck_pulse_width_ns);
+ 743              		.loc 1 114 0 discriminator 2
+ 744 0052 3A46     		mov	r2, r7
+ 745 0054 4021     		movs	r1, #64
+ 746 0056 2046     		mov	r0, r4
+ 747 0058 FFF7FEFF 		bl	u8x8_gpio_call
+ 748              	.LVL81:
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 749              		.loc 1 115 0 discriminator 2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 24
+
+
+ 750 005c 2368     		ldr	r3, [r4]
+ 751 005e DA79     		ldrb	r2, [r3, #7]	@ zero_extendqisi2
+ 752 0060 2C21     		movs	r1, #44
+ 753 0062 2046     		mov	r0, r4
+ 754 0064 FFF7FEFF 		bl	u8x8_gpio_call
+ 755              	.LVL82:
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 756              		.loc 1 104 0 discriminator 2
+ 757 0068 0135     		adds	r5, r5, #1
+ 758              	.LVL83:
+ 759 006a EDB2     		uxtb	r5, r5
+ 760              	.LVL84:
+ 761              	.L46:
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 762              		.loc 1 104 0 is_stmt 0 discriminator 1
+ 763 006c 072D     		cmp	r5, #7
+ 764 006e 08D8     		bhi	.L42
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	    u8x8_gpio_SetSPIData(u8x8, 1);
+ 765              		.loc 1 106 0 is_stmt 1
+ 766 0070 16F0800F 		tst	r6, #128
+ 767 0074 DBD1     		bne	.L53
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b <<= 1;
+ 768              		.loc 1 109 0
+ 769 0076 0022     		movs	r2, #0
+ 770 0078 4121     		movs	r1, #65
+ 771 007a 2046     		mov	r0, r4
+ 772 007c FFF7FEFF 		bl	u8x8_gpio_call
+ 773              	.LVL85:
+ 774 0080 DAE7     		b	.L48
+ 775              	.LVL86:
+ 776              	.L42:
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 777              		.loc 1 99 0
+ 778 0082 B9F1000F 		cmp	r9, #0
+ 779 0086 07D0     		beq	.L54
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 780              		.loc 1 101 0
+ 781 0088 1AF8016B 		ldrb	r6, [r10], #1	@ zero_extendqisi2
+ 782              	.LVL87:
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = 0; i < 8; i++ )
+ 783              		.loc 1 103 0
+ 784 008c 09F1FF39 		add	r9, r9, #-1
+ 785              	.LVL88:
+ 786 0090 5FFA89F9 		uxtb	r9, r9
+ 787              	.LVL89:
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 788              		.loc 1 104 0
+ 789 0094 0025     		movs	r5, #0
+ 790 0096 E9E7     		b	.L46
+ 791              	.LVL90:
+ 792              	.L54:
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 793              		.loc 1 142 0
+ 794 0098 0120     		movs	r0, #1
+ 795              	.LVL91:
+ 796              	.L39:
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 25
+
+
+ 797              		.loc 1 143 0
+ 798 009a BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 799              	.LVL92:
+ 800              	.L40:
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* no wait required here */
+ 801              		.loc 1 122 0
+ 802 009e 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
+ 803 00a0 4921     		movs	r1, #73
+ 804 00a2 FFF7FEFF 		bl	u8x8_gpio_call
+ 805              	.LVL93:
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 806              		.loc 1 126 0
+ 807 00a6 2368     		ldr	r3, [r4]
+ 808 00a8 1A7B     		ldrb	r2, [r3, #12]	@ zero_extendqisi2
+ 809 00aa 02F00102 		and	r2, r2, #1
+ 810 00ae 4021     		movs	r1, #64
+ 811 00b0 2046     		mov	r0, r4
+ 812 00b2 FFF7FEFF 		bl	u8x8_gpio_call
+ 813              	.LVL94:
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 814              		.loc 1 142 0
+ 815 00b6 0120     		movs	r0, #1
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 816              		.loc 1 127 0
+ 817 00b8 EFE7     		b	.L39
+ 818              	.LVL95:
+ 819              	.L45:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 820              		.loc 1 129 0
+ 821 00ba 4A46     		mov	r2, r9
+ 822 00bc 4A21     		movs	r1, #74
+ 823 00be FFF7FEFF 		bl	u8x8_gpio_call
+ 824              	.LVL96:
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 825              		.loc 1 142 0
+ 826 00c2 0120     		movs	r0, #1
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 827              		.loc 1 130 0
+ 828 00c4 E9E7     		b	.L39
+ 829              	.LVL97:
+ 830              	.L43:
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_
+ 831              		.loc 1 132 0
+ 832 00c6 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 833 00c8 4921     		movs	r1, #73
+ 834 00ca FFF7FEFF 		bl	u8x8_gpio_call
+ 835              	.LVL98:
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 836              		.loc 1 133 0
+ 837 00ce 6569     		ldr	r5, [r4, #20]
+ 838 00d0 2268     		ldr	r2, [r4]
+ 839 00d2 0023     		movs	r3, #0
+ 840 00d4 9278     		ldrb	r2, [r2, #2]	@ zero_extendqisi2
+ 841 00d6 2C21     		movs	r1, #44
+ 842 00d8 2046     		mov	r0, r4
+ 843 00da A847     		blx	r5
+ 844              	.LVL99:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 26
+
+
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 845              		.loc 1 142 0
+ 846 00dc 0120     		movs	r0, #1
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 847              		.loc 1 134 0
+ 848 00de DCE7     		b	.L39
+ 849              	.LVL100:
+ 850              	.L44:
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+ 851              		.loc 1 136 0
+ 852 00e0 4569     		ldr	r5, [r0, #20]
+ 853 00e2 0023     		movs	r3, #0
+ 854 00e4 D278     		ldrb	r2, [r2, #3]	@ zero_extendqisi2
+ 855 00e6 2C21     		movs	r1, #44
+ 856 00e8 A847     		blx	r5
+ 857              	.LVL101:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 858              		.loc 1 137 0
+ 859 00ea 2368     		ldr	r3, [r4]
+ 860 00ec 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 861 00ee 4921     		movs	r1, #73
+ 862 00f0 2046     		mov	r0, r4
+ 863 00f2 FFF7FEFF 		bl	u8x8_gpio_call
+ 864              	.LVL102:
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 865              		.loc 1 142 0
+ 866 00f6 0120     		movs	r0, #1
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 867              		.loc 1 138 0
+ 868 00f8 CFE7     		b	.L39
+ 869              	.LVL103:
+ 870              	.L51:
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 871              		.loc 1 140 0
+ 872 00fa 0020     		movs	r0, #0
+ 873              	.LVL104:
+ 874 00fc CDE7     		b	.L39
+ 875              		.cfi_endproc
+ 876              	.LFE5:
+ 878              		.section	.text.u8x8_byte_8bit_6800mode,"ax",%progbits
+ 879              		.align	1
+ 880              		.global	u8x8_byte_8bit_6800mode
+ 881              		.syntax unified
+ 882              		.thumb
+ 883              		.thumb_func
+ 884              		.fpu fpv4-sp-d16
+ 886              	u8x8_byte_8bit_6800mode:
+ 887              	.LFB6:
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i, b;
+ 888              		.loc 1 148 0
+ 889              		.cfi_startproc
+ 890              		@ args = 0, pretend = 0, frame = 0
+ 891              		@ frame_needed = 0, uses_anonymous_args = 0
+ 892              	.LVL105:
+ 893 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 894              	.LCFI19:
+ 895              		.cfi_def_cfa_offset 24
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 27
+
+
+ 896              		.cfi_offset 4, -24
+ 897              		.cfi_offset 5, -20
+ 898              		.cfi_offset 6, -16
+ 899              		.cfi_offset 7, -12
+ 900              		.cfi_offset 8, -8
+ 901              		.cfi_offset 14, -4
+ 902 0004 0646     		mov	r6, r0
+ 903 0006 1746     		mov	r7, r2
+ 904 0008 9846     		mov	r8, r3
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 905              		.loc 1 152 0
+ 906 000a 1439     		subs	r1, r1, #20
+ 907              	.LVL106:
+ 908 000c 0C29     		cmp	r1, #12
+ 909 000e 60D8     		bhi	.L66
+ 910 0010 DFE801F0 		tbb	[pc, r1]
+ 911              	.LVL107:
+ 912              	.L58:
+ 913 0014 32       		.byte	(.L57-.L58)/2
+ 914 0015 5F       		.byte	(.L66-.L58)/2
+ 915 0016 5F       		.byte	(.L66-.L58)/2
+ 916 0017 28       		.byte	(.L59-.L58)/2
+ 917 0018 43       		.byte	(.L60-.L58)/2
+ 918 0019 51       		.byte	(.L61-.L58)/2
+ 919 001a 5F       		.byte	(.L66-.L58)/2
+ 920 001b 5F       		.byte	(.L66-.L58)/2
+ 921 001c 5F       		.byte	(.L66-.L58)/2
+ 922 001d 5F       		.byte	(.L66-.L58)/2
+ 923 001e 5F       		.byte	(.L66-.L58)/2
+ 924 001f 5F       		.byte	(.L66-.L58)/2
+ 925 0020 3E       		.byte	(.L62-.L58)/2
+ 926 0021 00       		.p2align 1
+ 927              	.L64:
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b >>= 1;
+ 928              		.loc 1 163 0 discriminator 3
+ 929 0022 05F00102 		and	r2, r5, #1
+ 930 0026 2146     		mov	r1, r4
+ 931 0028 3046     		mov	r0, r6
+ 932 002a FFF7FEFF 		bl	u8x8_gpio_call
+ 933              	.LVL108:
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 934              		.loc 1 164 0 discriminator 3
+ 935 002e 6D08     		lsrs	r5, r5, #1
+ 936              	.LVL109:
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 937              		.loc 1 161 0 discriminator 3
+ 938 0030 0134     		adds	r4, r4, #1
+ 939              	.LVL110:
+ 940 0032 E4B2     		uxtb	r4, r4
+ 941              	.LVL111:
+ 942              	.L63:
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 943              		.loc 1 161 0 is_stmt 0 discriminator 1
+ 944 0034 472C     		cmp	r4, #71
+ 945 0036 F4D9     		bls	.L64
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 1);
+ 946              		.loc 1 167 0 is_stmt 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 28
+
+
+ 947 0038 3368     		ldr	r3, [r6]
+ 948 003a 9A7B     		ldrb	r2, [r3, #14]	@ zero_extendqisi2
+ 949 003c 2C21     		movs	r1, #44
+ 950 003e 3046     		mov	r0, r6
+ 951 0040 FFF7FEFF 		bl	u8x8_gpio_call
+ 952              	.LVL112:
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->write_pulse_width_ns);
+ 953              		.loc 1 168 0
+ 954 0044 0122     		movs	r2, #1
+ 955 0046 4821     		movs	r1, #72
+ 956 0048 3046     		mov	r0, r6
+ 957 004a FFF7FEFF 		bl	u8x8_gpio_call
+ 958              	.LVL113:
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 0);
+ 959              		.loc 1 169 0
+ 960 004e 3368     		ldr	r3, [r6]
+ 961 0050 DA7B     		ldrb	r2, [r3, #15]	@ zero_extendqisi2
+ 962 0052 2C21     		movs	r1, #44
+ 963 0054 3046     		mov	r0, r6
+ 964 0056 FFF7FEFF 		bl	u8x8_gpio_call
+ 965              	.LVL114:
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 966              		.loc 1 170 0
+ 967 005a 0022     		movs	r2, #0
+ 968 005c 4821     		movs	r1, #72
+ 969 005e 3046     		mov	r0, r6
+ 970 0060 FFF7FEFF 		bl	u8x8_gpio_call
+ 971              	.LVL115:
+ 972              	.L59:
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 973              		.loc 1 156 0
+ 974 0064 2FB1     		cbz	r7, .L68
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 975              		.loc 1 158 0
+ 976 0066 18F8015B 		ldrb	r5, [r8], #1	@ zero_extendqisi2
+ 977              	.LVL116:
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = U8X8_MSG_GPIO_D0; i <= U8X8_MSG_GPIO_D7; i++ )
+ 978              		.loc 1 160 0
+ 979 006a 013F     		subs	r7, r7, #1
+ 980              	.LVL117:
+ 981 006c FFB2     		uxtb	r7, r7
+ 982              	.LVL118:
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 983              		.loc 1 161 0
+ 984 006e 4024     		movs	r4, #64
+ 985 0070 E0E7     		b	.L63
+ 986              	.LVL119:
+ 987              	.L68:
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 988              		.loc 1 194 0
+ 989 0072 0120     		movs	r0, #1
+ 990              	.LVL120:
+ 991              	.L56:
+ 195:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 992              		.loc 1 195 0
+ 993 0074 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 994              	.LVL121:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 29
+
+
+ 995              	.L57:
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* ensure that the enable signal is high */
+ 996              		.loc 1 176 0
+ 997 0078 0368     		ldr	r3, [r0]
+ 998 007a 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 999              	.LVL122:
+ 1000 007c 4921     		movs	r1, #73
+ 1001 007e FFF7FEFF 		bl	u8x8_gpio_call
+ 1002              	.LVL123:
+ 178:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1003              		.loc 1 178 0
+ 1004 0082 0022     		movs	r2, #0
+ 1005 0084 4821     		movs	r1, #72
+ 1006 0086 3046     		mov	r0, r6
+ 1007 0088 FFF7FEFF 		bl	u8x8_gpio_call
+ 1008              	.LVL124:
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1009              		.loc 1 194 0
+ 1010 008c 0120     		movs	r0, #1
+ 179:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 1011              		.loc 1 179 0
+ 1012 008e F1E7     		b	.L56
+ 1013              	.LVL125:
+ 1014              	.L62:
+ 181:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1015              		.loc 1 181 0
+ 1016 0090 4A21     		movs	r1, #74
+ 1017 0092 FFF7FEFF 		bl	u8x8_gpio_call
+ 1018              	.LVL126:
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1019              		.loc 1 194 0
+ 1020 0096 0120     		movs	r0, #1
+ 182:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 1021              		.loc 1 182 0
+ 1022 0098 ECE7     		b	.L56
+ 1023              	.LVL127:
+ 1024              	.L60:
+ 184:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_
+ 1025              		.loc 1 184 0
+ 1026 009a 0368     		ldr	r3, [r0]
+ 1027 009c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 1028              	.LVL128:
+ 1029 009e 4921     		movs	r1, #73
+ 1030 00a0 FFF7FEFF 		bl	u8x8_gpio_call
+ 1031              	.LVL129:
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1032              		.loc 1 185 0
+ 1033 00a4 7469     		ldr	r4, [r6, #20]
+ 1034 00a6 3268     		ldr	r2, [r6]
+ 1035 00a8 0023     		movs	r3, #0
+ 1036 00aa 9278     		ldrb	r2, [r2, #2]	@ zero_extendqisi2
+ 1037 00ac 2C21     		movs	r1, #44
+ 1038 00ae 3046     		mov	r0, r6
+ 1039 00b0 A047     		blx	r4
+ 1040              	.LVL130:
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1041              		.loc 1 194 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 30
+
+
+ 1042 00b2 0120     		movs	r0, #1
+ 186:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 1043              		.loc 1 186 0
+ 1044 00b4 DEE7     		b	.L56
+ 1045              	.LVL131:
+ 1046              	.L61:
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+ 1047              		.loc 1 188 0
+ 1048 00b6 4469     		ldr	r4, [r0, #20]
+ 1049 00b8 0268     		ldr	r2, [r0]
+ 1050              	.LVL132:
+ 1051 00ba 0023     		movs	r3, #0
+ 1052 00bc D278     		ldrb	r2, [r2, #3]	@ zero_extendqisi2
+ 1053 00be 2C21     		movs	r1, #44
+ 1054 00c0 A047     		blx	r4
+ 1055              	.LVL133:
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1056              		.loc 1 189 0
+ 1057 00c2 3368     		ldr	r3, [r6]
+ 1058 00c4 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 1059 00c6 4921     		movs	r1, #73
+ 1060 00c8 3046     		mov	r0, r6
+ 1061 00ca FFF7FEFF 		bl	u8x8_gpio_call
+ 1062              	.LVL134:
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1063              		.loc 1 194 0
+ 1064 00ce 0120     		movs	r0, #1
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 1065              		.loc 1 190 0
+ 1066 00d0 D0E7     		b	.L56
+ 1067              	.LVL135:
+ 1068              	.L66:
+ 192:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 1069              		.loc 1 192 0
+ 1070 00d2 0020     		movs	r0, #0
+ 1071              	.LVL136:
+ 1072 00d4 CEE7     		b	.L56
+ 1073              		.cfi_endproc
+ 1074              	.LFE6:
+ 1076              		.section	.text.u8x8_byte_8bit_8080mode,"ax",%progbits
+ 1077              		.align	1
+ 1078              		.global	u8x8_byte_8bit_8080mode
+ 1079              		.syntax unified
+ 1080              		.thumb
+ 1081              		.thumb_func
+ 1082              		.fpu fpv4-sp-d16
+ 1084              	u8x8_byte_8bit_8080mode:
+ 1085              	.LFB7:
+ 198:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i, b;
+ 1086              		.loc 1 198 0
+ 1087              		.cfi_startproc
+ 1088              		@ args = 0, pretend = 0, frame = 0
+ 1089              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1090              	.LVL137:
+ 1091 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1092              	.LCFI20:
+ 1093              		.cfi_def_cfa_offset 24
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 31
+
+
+ 1094              		.cfi_offset 4, -24
+ 1095              		.cfi_offset 5, -20
+ 1096              		.cfi_offset 6, -16
+ 1097              		.cfi_offset 7, -12
+ 1098              		.cfi_offset 8, -8
+ 1099              		.cfi_offset 14, -4
+ 1100 0004 0646     		mov	r6, r0
+ 1101 0006 1746     		mov	r7, r2
+ 1102 0008 9846     		mov	r8, r3
+ 202:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 1103              		.loc 1 202 0
+ 1104 000a 1439     		subs	r1, r1, #20
+ 1105              	.LVL138:
+ 1106 000c 0C29     		cmp	r1, #12
+ 1107 000e 60D8     		bhi	.L80
+ 1108 0010 DFE801F0 		tbb	[pc, r1]
+ 1109              	.LVL139:
+ 1110              	.L72:
+ 1111 0014 32       		.byte	(.L71-.L72)/2
+ 1112 0015 5F       		.byte	(.L80-.L72)/2
+ 1113 0016 5F       		.byte	(.L80-.L72)/2
+ 1114 0017 28       		.byte	(.L73-.L72)/2
+ 1115 0018 43       		.byte	(.L74-.L72)/2
+ 1116 0019 51       		.byte	(.L75-.L72)/2
+ 1117 001a 5F       		.byte	(.L80-.L72)/2
+ 1118 001b 5F       		.byte	(.L80-.L72)/2
+ 1119 001c 5F       		.byte	(.L80-.L72)/2
+ 1120 001d 5F       		.byte	(.L80-.L72)/2
+ 1121 001e 5F       		.byte	(.L80-.L72)/2
+ 1122 001f 5F       		.byte	(.L80-.L72)/2
+ 1123 0020 3E       		.byte	(.L76-.L72)/2
+ 1124 0021 00       		.p2align 1
+ 1125              	.L78:
+ 213:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b >>= 1;
+ 1126              		.loc 1 213 0 discriminator 3
+ 1127 0022 05F00102 		and	r2, r5, #1
+ 1128 0026 2146     		mov	r1, r4
+ 1129 0028 3046     		mov	r0, r6
+ 1130 002a FFF7FEFF 		bl	u8x8_gpio_call
+ 1131              	.LVL140:
+ 214:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 1132              		.loc 1 214 0 discriminator 3
+ 1133 002e 6D08     		lsrs	r5, r5, #1
+ 1134              	.LVL141:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1135              		.loc 1 211 0 discriminator 3
+ 1136 0030 0134     		adds	r4, r4, #1
+ 1137              	.LVL142:
+ 1138 0032 E4B2     		uxtb	r4, r4
+ 1139              	.LVL143:
+ 1140              	.L77:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1141              		.loc 1 211 0 is_stmt 0 discriminator 1
+ 1142 0034 472C     		cmp	r4, #71
+ 1143 0036 F4D9     		bls	.L78
+ 217:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 0);
+ 1144              		.loc 1 217 0 is_stmt 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 32
+
+
+ 1145 0038 3368     		ldr	r3, [r6]
+ 1146 003a 9A7B     		ldrb	r2, [r3, #14]	@ zero_extendqisi2
+ 1147 003c 2C21     		movs	r1, #44
+ 1148 003e 3046     		mov	r0, r6
+ 1149 0040 FFF7FEFF 		bl	u8x8_gpio_call
+ 1150              	.LVL144:
+ 218:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->write_pulse_width_ns);
+ 1151              		.loc 1 218 0
+ 1152 0044 0022     		movs	r2, #0
+ 1153 0046 4821     		movs	r1, #72
+ 1154 0048 3046     		mov	r0, r6
+ 1155 004a FFF7FEFF 		bl	u8x8_gpio_call
+ 1156              	.LVL145:
+ 219:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 1);
+ 1157              		.loc 1 219 0
+ 1158 004e 3368     		ldr	r3, [r6]
+ 1159 0050 DA7B     		ldrb	r2, [r3, #15]	@ zero_extendqisi2
+ 1160 0052 2C21     		movs	r1, #44
+ 1161 0054 3046     		mov	r0, r6
+ 1162 0056 FFF7FEFF 		bl	u8x8_gpio_call
+ 1163              	.LVL146:
+ 220:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 1164              		.loc 1 220 0
+ 1165 005a 0122     		movs	r2, #1
+ 1166 005c 4821     		movs	r1, #72
+ 1167 005e 3046     		mov	r0, r6
+ 1168 0060 FFF7FEFF 		bl	u8x8_gpio_call
+ 1169              	.LVL147:
+ 1170              	.L73:
+ 206:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 1171              		.loc 1 206 0
+ 1172 0064 2FB1     		cbz	r7, .L82
+ 208:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 1173              		.loc 1 208 0
+ 1174 0066 18F8015B 		ldrb	r5, [r8], #1	@ zero_extendqisi2
+ 1175              	.LVL148:
+ 210:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = U8X8_MSG_GPIO_D0; i <= U8X8_MSG_GPIO_D7; i++ )
+ 1176              		.loc 1 210 0
+ 1177 006a 013F     		subs	r7, r7, #1
+ 1178              	.LVL149:
+ 1179 006c FFB2     		uxtb	r7, r7
+ 1180              	.LVL150:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1181              		.loc 1 211 0
+ 1182 006e 4024     		movs	r4, #64
+ 1183 0070 E0E7     		b	.L77
+ 1184              	.LVL151:
+ 1185              	.L82:
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1186              		.loc 1 244 0
+ 1187 0072 0120     		movs	r0, #1
+ 1188              	.LVL152:
+ 1189              	.L70:
+ 245:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 1190              		.loc 1 245 0
+ 1191 0074 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1192              	.LVL153:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 33
+
+
+ 1193              	.L71:
+ 226:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* ensure that the enable signal is high */
+ 1194              		.loc 1 226 0
+ 1195 0078 0368     		ldr	r3, [r0]
+ 1196 007a 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 1197              	.LVL154:
+ 1198 007c 4921     		movs	r1, #73
+ 1199 007e FFF7FEFF 		bl	u8x8_gpio_call
+ 1200              	.LVL155:
+ 228:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1201              		.loc 1 228 0
+ 1202 0082 0122     		movs	r2, #1
+ 1203 0084 4821     		movs	r1, #72
+ 1204 0086 3046     		mov	r0, r6
+ 1205 0088 FFF7FEFF 		bl	u8x8_gpio_call
+ 1206              	.LVL156:
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1207              		.loc 1 244 0
+ 1208 008c 0120     		movs	r0, #1
+ 229:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 1209              		.loc 1 229 0
+ 1210 008e F1E7     		b	.L70
+ 1211              	.LVL157:
+ 1212              	.L76:
+ 231:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1213              		.loc 1 231 0
+ 1214 0090 4A21     		movs	r1, #74
+ 1215 0092 FFF7FEFF 		bl	u8x8_gpio_call
+ 1216              	.LVL158:
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1217              		.loc 1 244 0
+ 1218 0096 0120     		movs	r0, #1
+ 232:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 1219              		.loc 1 232 0
+ 1220 0098 ECE7     		b	.L70
+ 1221              	.LVL159:
+ 1222              	.L74:
+ 234:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_
+ 1223              		.loc 1 234 0
+ 1224 009a 0368     		ldr	r3, [r0]
+ 1225 009c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 1226              	.LVL160:
+ 1227 009e 4921     		movs	r1, #73
+ 1228 00a0 FFF7FEFF 		bl	u8x8_gpio_call
+ 1229              	.LVL161:
+ 235:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1230              		.loc 1 235 0
+ 1231 00a4 7469     		ldr	r4, [r6, #20]
+ 1232 00a6 3268     		ldr	r2, [r6]
+ 1233 00a8 0023     		movs	r3, #0
+ 1234 00aa 9278     		ldrb	r2, [r2, #2]	@ zero_extendqisi2
+ 1235 00ac 2C21     		movs	r1, #44
+ 1236 00ae 3046     		mov	r0, r6
+ 1237 00b0 A047     		blx	r4
+ 1238              	.LVL162:
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1239              		.loc 1 244 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 34
+
+
+ 1240 00b2 0120     		movs	r0, #1
+ 236:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 1241              		.loc 1 236 0
+ 1242 00b4 DEE7     		b	.L70
+ 1243              	.LVL163:
+ 1244              	.L75:
+ 238:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+ 1245              		.loc 1 238 0
+ 1246 00b6 4469     		ldr	r4, [r0, #20]
+ 1247 00b8 0268     		ldr	r2, [r0]
+ 1248              	.LVL164:
+ 1249 00ba 0023     		movs	r3, #0
+ 1250 00bc D278     		ldrb	r2, [r2, #3]	@ zero_extendqisi2
+ 1251 00be 2C21     		movs	r1, #44
+ 1252 00c0 A047     		blx	r4
+ 1253              	.LVL165:
+ 239:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1254              		.loc 1 239 0
+ 1255 00c2 3368     		ldr	r3, [r6]
+ 1256 00c4 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 1257 00c6 4921     		movs	r1, #73
+ 1258 00c8 3046     		mov	r0, r6
+ 1259 00ca FFF7FEFF 		bl	u8x8_gpio_call
+ 1260              	.LVL166:
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1261              		.loc 1 244 0
+ 1262 00ce 0120     		movs	r0, #1
+ 240:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 1263              		.loc 1 240 0
+ 1264 00d0 D0E7     		b	.L70
+ 1265              	.LVL167:
+ 1266              	.L80:
+ 242:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 1267              		.loc 1 242 0
+ 1268 00d2 0020     		movs	r0, #0
+ 1269              	.LVL168:
+ 1270 00d4 CEE7     		b	.L70
+ 1271              		.cfi_endproc
+ 1272              	.LFE7:
+ 1274              		.section	.text.u8x8_byte_3wire_sw_spi,"ax",%progbits
+ 1275              		.align	1
+ 1276              		.global	u8x8_byte_3wire_sw_spi
+ 1277              		.syntax unified
+ 1278              		.thumb
+ 1279              		.thumb_func
+ 1280              		.fpu fpv4-sp-d16
+ 1282              	u8x8_byte_3wire_sw_spi:
+ 1283              	.LFB8:
+ 250:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i;
+ 1284              		.loc 1 250 0
+ 1285              		.cfi_startproc
+ 1286              		@ args = 0, pretend = 0, frame = 0
+ 1287              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1288              	.LVL169:
+ 1289 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 1290              	.LCFI21:
+ 1291              		.cfi_def_cfa_offset 32
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 35
+
+
+ 1292              		.cfi_offset 4, -32
+ 1293              		.cfi_offset 5, -28
+ 1294              		.cfi_offset 6, -24
+ 1295              		.cfi_offset 7, -20
+ 1296              		.cfi_offset 8, -16
+ 1297              		.cfi_offset 9, -12
+ 1298              		.cfi_offset 10, -8
+ 1299              		.cfi_offset 14, -4
+ 1300 0004 0446     		mov	r4, r0
+ 1301 0006 9146     		mov	r9, r2
+ 1302 0008 9A46     		mov	r10, r3
+ 253:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t not_takeover_edge = 1 - takeover_edge;
+ 1303              		.loc 1 253 0
+ 1304 000a 0268     		ldr	r2, [r0]
+ 1305              	.LVL170:
+ 1306 000c 177B     		ldrb	r7, [r2, #12]	@ zero_extendqisi2
+ 1307 000e 07F00107 		and	r7, r7, #1
+ 1308              	.LVL171:
+ 254:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint16_t b;
+ 1309              		.loc 1 254 0
+ 1310 0012 87F00108 		eor	r8, r7, #1
+ 1311              	.LVL172:
+ 258:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 1312              		.loc 1 258 0
+ 1313 0016 1439     		subs	r1, r1, #20
+ 1314              	.LVL173:
+ 1315 0018 0C29     		cmp	r1, #12
+ 1316 001a 74D8     		bhi	.L97
+ 1317 001c DFE801F0 		tbb	[pc, r1]
+ 1318              	.LVL174:
+ 1319              	.L86:
+ 1320 0020 46       		.byte	(.L85-.L86)/2
+ 1321 0021 73       		.byte	(.L97-.L86)/2
+ 1322 0022 73       		.byte	(.L97-.L86)/2
+ 1323 0023 31       		.byte	(.L87-.L86)/2
+ 1324 0024 59       		.byte	(.L88-.L86)/2
+ 1325 0025 66       		.byte	(.L89-.L86)/2
+ 1326 0026 73       		.byte	(.L97-.L86)/2
+ 1327 0027 73       		.byte	(.L97-.L86)/2
+ 1328 0028 73       		.byte	(.L97-.L86)/2
+ 1329 0029 73       		.byte	(.L97-.L86)/2
+ 1330 002a 73       		.byte	(.L97-.L86)/2
+ 1331 002b 73       		.byte	(.L97-.L86)/2
+ 1332 002c 54       		.byte	(.L90-.L86)/2
+ 1333 002d 00       		.p2align 1
+ 1334              	.L93:
+ 274:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b <<= 1;
+ 1335              		.loc 1 274 0
+ 1336 002e 0022     		movs	r2, #0
+ 1337 0030 4121     		movs	r1, #65
+ 1338 0032 2046     		mov	r0, r4
+ 1339 0034 FFF7FEFF 		bl	u8x8_gpio_call
+ 1340              	.LVL175:
+ 1341              	.L94:
+ 275:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  
+ 1342              		.loc 1 275 0 discriminator 2
+ 1343 0038 7600     		lsls	r6, r6, #1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 36
+
+
+ 1344              	.LVL176:
+ 1345 003a B6B2     		uxth	r6, r6
+ 1346              	.LVL177:
+ 277:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->sda_setup_time_ns);
+ 1347              		.loc 1 277 0 discriminator 2
+ 1348 003c 4246     		mov	r2, r8
+ 1349 003e 4021     		movs	r1, #64
+ 1350 0040 2046     		mov	r0, r4
+ 1351 0042 FFF7FEFF 		bl	u8x8_gpio_call
+ 1352              	.LVL178:
+ 278:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_SetSPIClock(u8x8, takeover_edge);
+ 1353              		.loc 1 278 0 discriminator 2
+ 1354 0046 2368     		ldr	r3, [r4]
+ 1355 0048 9A79     		ldrb	r2, [r3, #6]	@ zero_extendqisi2
+ 1356 004a 2C21     		movs	r1, #44
+ 1357 004c 2046     		mov	r0, r4
+ 1358 004e FFF7FEFF 		bl	u8x8_gpio_call
+ 1359              	.LVL179:
+ 279:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->sck_pulse_width_ns);
+ 1360              		.loc 1 279 0 discriminator 2
+ 1361 0052 3A46     		mov	r2, r7
+ 1362 0054 4021     		movs	r1, #64
+ 1363 0056 2046     		mov	r0, r4
+ 1364 0058 FFF7FEFF 		bl	u8x8_gpio_call
+ 1365              	.LVL180:
+ 280:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 1366              		.loc 1 280 0 discriminator 2
+ 1367 005c 2368     		ldr	r3, [r4]
+ 1368 005e DA79     		ldrb	r2, [r3, #7]	@ zero_extendqisi2
+ 1369 0060 2C21     		movs	r1, #44
+ 1370 0062 2046     		mov	r0, r4
+ 1371 0064 FFF7FEFF 		bl	u8x8_gpio_call
+ 1372              	.LVL181:
+ 269:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1373              		.loc 1 269 0 discriminator 2
+ 1374 0068 0135     		adds	r5, r5, #1
+ 1375              	.LVL182:
+ 1376 006a EDB2     		uxtb	r5, r5
+ 1377              	.LVL183:
+ 1378              	.L92:
+ 269:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1379              		.loc 1 269 0 is_stmt 0 discriminator 1
+ 1380 006c 082D     		cmp	r5, #8
+ 1381 006e 08D8     		bhi	.L87
+ 271:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	    u8x8_gpio_SetSPIData(u8x8, 1);
+ 1382              		.loc 1 271 0 is_stmt 1
+ 1383 0070 16F4807F 		tst	r6, #256
+ 1384 0074 DBD0     		beq	.L93
+ 272:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  else
+ 1385              		.loc 1 272 0
+ 1386 0076 0122     		movs	r2, #1
+ 1387 0078 4121     		movs	r1, #65
+ 1388 007a 2046     		mov	r0, r4
+ 1389 007c FFF7FEFF 		bl	u8x8_gpio_call
+ 1390              	.LVL184:
+ 1391 0080 DAE7     		b	.L94
+ 1392              	.LVL185:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 37
+
+
+ 1393              	.L87:
+ 262:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 1394              		.loc 1 262 0
+ 1395 0082 B9F1000F 		cmp	r9, #0
+ 1396 0086 0ED0     		beq	.L99
+ 264:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	if ( last_dc != 0 )
+ 1397              		.loc 1 264 0
+ 1398 0088 9AF80060 		ldrb	r6, [r10]	@ zero_extendqisi2
+ 1399              	.LVL186:
+ 265:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b |= 256;
+ 1400              		.loc 1 265 0
+ 1401 008c 1F4B     		ldr	r3, .L100
+ 1402 008e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1403 0090 0BB1     		cbz	r3, .L91
+ 266:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 1404              		.loc 1 266 0
+ 1405 0092 46F48076 		orr	r6, r6, #256
+ 1406              	.LVL187:
+ 1407              	.L91:
+ 267:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	arg_int--;
+ 1408              		.loc 1 267 0
+ 1409 0096 0AF1010A 		add	r10, r10, #1
+ 1410              	.LVL188:
+ 268:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = 0; i < 9; i++ )
+ 1411              		.loc 1 268 0
+ 1412 009a 09F1FF39 		add	r9, r9, #-1
+ 1413              	.LVL189:
+ 1414 009e 5FFA89F9 		uxtb	r9, r9
+ 1415              	.LVL190:
+ 269:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1416              		.loc 1 269 0
+ 1417 00a2 0025     		movs	r5, #0
+ 1418 00a4 E2E7     		b	.L92
+ 1419              	.LVL191:
+ 1420              	.L99:
+ 307:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1421              		.loc 1 307 0
+ 1422 00a6 0120     		movs	r0, #1
+ 1423              	.LVL192:
+ 1424              	.L84:
+ 308:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 1425              		.loc 1 308 0
+ 1426 00a8 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 1427              	.LVL193:
+ 1428              	.L85:
+ 287:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* no wait required here */
+ 1429              		.loc 1 287 0
+ 1430 00ac 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
+ 1431 00ae 4921     		movs	r1, #73
+ 1432 00b0 FFF7FEFF 		bl	u8x8_gpio_call
+ 1433              	.LVL194:
+ 291:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1434              		.loc 1 291 0
+ 1435 00b4 2368     		ldr	r3, [r4]
+ 1436 00b6 1A7B     		ldrb	r2, [r3, #12]	@ zero_extendqisi2
+ 1437 00b8 02F00102 		and	r2, r2, #1
+ 1438 00bc 4021     		movs	r1, #64
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 38
+
+
+ 1439 00be 2046     		mov	r0, r4
+ 1440 00c0 FFF7FEFF 		bl	u8x8_gpio_call
+ 1441              	.LVL195:
+ 307:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1442              		.loc 1 307 0
+ 1443 00c4 0120     		movs	r0, #1
+ 292:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 1444              		.loc 1 292 0
+ 1445 00c6 EFE7     		b	.L84
+ 1446              	.LVL196:
+ 1447              	.L90:
+ 294:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1448              		.loc 1 294 0
+ 1449 00c8 104B     		ldr	r3, .L100
+ 1450 00ca 83F80090 		strb	r9, [r3]
+ 307:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1451              		.loc 1 307 0
+ 1452 00ce 0120     		movs	r0, #1
+ 1453              	.LVL197:
+ 295:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 1454              		.loc 1 295 0
+ 1455 00d0 EAE7     		b	.L84
+ 1456              	.LVL198:
+ 1457              	.L88:
+ 297:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_
+ 1458              		.loc 1 297 0
+ 1459 00d2 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 1460 00d4 4921     		movs	r1, #73
+ 1461 00d6 FFF7FEFF 		bl	u8x8_gpio_call
+ 1462              	.LVL199:
+ 298:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1463              		.loc 1 298 0
+ 1464 00da 6569     		ldr	r5, [r4, #20]
+ 1465 00dc 2268     		ldr	r2, [r4]
+ 1466 00de 0023     		movs	r3, #0
+ 1467 00e0 9278     		ldrb	r2, [r2, #2]	@ zero_extendqisi2
+ 1468 00e2 2C21     		movs	r1, #44
+ 1469 00e4 2046     		mov	r0, r4
+ 1470 00e6 A847     		blx	r5
+ 1471              	.LVL200:
+ 307:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1472              		.loc 1 307 0
+ 1473 00e8 0120     		movs	r0, #1
+ 299:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 1474              		.loc 1 299 0
+ 1475 00ea DDE7     		b	.L84
+ 1476              	.LVL201:
+ 1477              	.L89:
+ 301:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+ 1478              		.loc 1 301 0
+ 1479 00ec 4569     		ldr	r5, [r0, #20]
+ 1480 00ee 0023     		movs	r3, #0
+ 1481 00f0 D278     		ldrb	r2, [r2, #3]	@ zero_extendqisi2
+ 1482 00f2 2C21     		movs	r1, #44
+ 1483 00f4 A847     		blx	r5
+ 1484              	.LVL202:
+ 302:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 39
+
+
+ 1485              		.loc 1 302 0
+ 1486 00f6 2368     		ldr	r3, [r4]
+ 1487 00f8 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 1488 00fa 4921     		movs	r1, #73
+ 1489 00fc 2046     		mov	r0, r4
+ 1490 00fe FFF7FEFF 		bl	u8x8_gpio_call
+ 1491              	.LVL203:
+ 307:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1492              		.loc 1 307 0
+ 1493 0102 0120     		movs	r0, #1
+ 303:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 1494              		.loc 1 303 0
+ 1495 0104 D0E7     		b	.L84
+ 1496              	.LVL204:
+ 1497              	.L97:
+ 305:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 1498              		.loc 1 305 0
+ 1499 0106 0020     		movs	r0, #0
+ 1500              	.LVL205:
+ 1501 0108 CEE7     		b	.L84
+ 1502              	.L101:
+ 1503 010a 00BF     		.align	2
+ 1504              	.L100:
+ 1505 010c 00000000 		.word	.LANCHOR0
+ 1506              		.cfi_endproc
+ 1507              	.LFE8:
+ 1509              		.section	.text.u8x8_byte_set_ks0108_cs,"ax",%progbits
+ 1510              		.align	1
+ 1511              		.global	u8x8_byte_set_ks0108_cs
+ 1512              		.syntax unified
+ 1513              		.thumb
+ 1514              		.thumb_func
+ 1515              		.fpu fpv4-sp-d16
+ 1517              	u8x8_byte_set_ks0108_cs:
+ 1518              	.LFB9:
+ 313:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   u8x8_gpio_SetCS(u8x8, arg&1);
+ 1519              		.loc 1 313 0
+ 1520              		.cfi_startproc
+ 1521              		@ args = 0, pretend = 0, frame = 0
+ 1522              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1523              	.LVL206:
+ 1524 0000 38B5     		push	{r3, r4, r5, lr}
+ 1525              	.LCFI22:
+ 1526              		.cfi_def_cfa_offset 16
+ 1527              		.cfi_offset 3, -16
+ 1528              		.cfi_offset 4, -12
+ 1529              		.cfi_offset 5, -8
+ 1530              		.cfi_offset 14, -4
+ 1531 0002 0546     		mov	r5, r0
+ 1532 0004 0C46     		mov	r4, r1
+ 314:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   arg = arg >> 1;
+ 1533              		.loc 1 314 0
+ 1534 0006 01F00102 		and	r2, r1, #1
+ 1535 000a 4921     		movs	r1, #73
+ 1536              	.LVL207:
+ 1537 000c FFF7FEFF 		bl	u8x8_gpio_call
+ 1538              	.LVL208:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 40
+
+
+ 316:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   arg = arg >> 2;
+ 1539              		.loc 1 316 0
+ 1540 0010 C4F34002 		ubfx	r2, r4, #1, #1
+ 1541 0014 4E21     		movs	r1, #78
+ 1542 0016 2846     		mov	r0, r5
+ 1543 0018 FFF7FEFF 		bl	u8x8_gpio_call
+ 1544              	.LVL209:
+ 318:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1545              		.loc 1 318 0
+ 1546 001c C4F3C002 		ubfx	r2, r4, #3, #1
+ 1547 0020 4F21     		movs	r1, #79
+ 1548 0022 2846     		mov	r0, r5
+ 1549 0024 FFF7FEFF 		bl	u8x8_gpio_call
+ 1550              	.LVL210:
+ 319:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 1551              		.loc 1 319 0
+ 1552 0028 38BD     		pop	{r3, r4, r5, pc}
+ 1553              		.cfi_endproc
+ 1554              	.LFE9:
+ 1556              		.section	.text.u8x8_byte_ks0108,"ax",%progbits
+ 1557              		.align	1
+ 1558              		.global	u8x8_byte_ks0108
+ 1559              		.syntax unified
+ 1560              		.thumb
+ 1561              		.thumb_func
+ 1562              		.fpu fpv4-sp-d16
+ 1564              	u8x8_byte_ks0108:
+ 1565              	.LFB10:
+ 323:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i, b;
+ 1566              		.loc 1 323 0
+ 1567              		.cfi_startproc
+ 1568              		@ args = 0, pretend = 0, frame = 0
+ 1569              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1570              	.LVL211:
+ 1571 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1572              	.LCFI23:
+ 1573              		.cfi_def_cfa_offset 24
+ 1574              		.cfi_offset 4, -24
+ 1575              		.cfi_offset 5, -20
+ 1576              		.cfi_offset 6, -16
+ 1577              		.cfi_offset 7, -12
+ 1578              		.cfi_offset 8, -8
+ 1579              		.cfi_offset 14, -4
+ 1580 0004 0646     		mov	r6, r0
+ 1581 0006 1746     		mov	r7, r2
+ 1582 0008 9846     		mov	r8, r3
+ 327:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 1583              		.loc 1 327 0
+ 1584 000a 1439     		subs	r1, r1, #20
+ 1585              	.LVL212:
+ 1586 000c 0C29     		cmp	r1, #12
+ 1587 000e 5CD8     		bhi	.L115
+ 1588 0010 DFE801F0 		tbb	[pc, r1]
+ 1589              	.LVL213:
+ 1590              	.L107:
+ 1591 0014 32       		.byte	(.L106-.L107)/2
+ 1592 0015 5B       		.byte	(.L115-.L107)/2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 41
+
+
+ 1593 0016 5B       		.byte	(.L115-.L107)/2
+ 1594 0017 28       		.byte	(.L108-.L107)/2
+ 1595 0018 43       		.byte	(.L109-.L107)/2
+ 1596 0019 4F       		.byte	(.L110-.L107)/2
+ 1597 001a 5B       		.byte	(.L115-.L107)/2
+ 1598 001b 5B       		.byte	(.L115-.L107)/2
+ 1599 001c 5B       		.byte	(.L115-.L107)/2
+ 1600 001d 5B       		.byte	(.L115-.L107)/2
+ 1601 001e 5B       		.byte	(.L115-.L107)/2
+ 1602 001f 5B       		.byte	(.L115-.L107)/2
+ 1603 0020 3E       		.byte	(.L111-.L107)/2
+ 1604 0021 00       		.p2align 1
+ 1605              	.L113:
+ 338:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b >>= 1;
+ 1606              		.loc 1 338 0 discriminator 3
+ 1607 0022 05F00102 		and	r2, r5, #1
+ 1608 0026 2146     		mov	r1, r4
+ 1609 0028 3046     		mov	r0, r6
+ 1610 002a FFF7FEFF 		bl	u8x8_gpio_call
+ 1611              	.LVL214:
+ 339:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 1612              		.loc 1 339 0 discriminator 3
+ 1613 002e 6D08     		lsrs	r5, r5, #1
+ 1614              	.LVL215:
+ 336:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1615              		.loc 1 336 0 discriminator 3
+ 1616 0030 0134     		adds	r4, r4, #1
+ 1617              	.LVL216:
+ 1618 0032 E4B2     		uxtb	r4, r4
+ 1619              	.LVL217:
+ 1620              	.L112:
+ 336:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1621              		.loc 1 336 0 is_stmt 0 discriminator 1
+ 1622 0034 472C     		cmp	r4, #71
+ 1623 0036 F4D9     		bls	.L113
+ 342:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 1);
+ 1624              		.loc 1 342 0 is_stmt 1
+ 1625 0038 3368     		ldr	r3, [r6]
+ 1626 003a 9A7B     		ldrb	r2, [r3, #14]	@ zero_extendqisi2
+ 1627 003c 2C21     		movs	r1, #44
+ 1628 003e 3046     		mov	r0, r6
+ 1629 0040 FFF7FEFF 		bl	u8x8_gpio_call
+ 1630              	.LVL218:
+ 343:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->write_pulse_width_ns);
+ 1631              		.loc 1 343 0
+ 1632 0044 0122     		movs	r2, #1
+ 1633 0046 4821     		movs	r1, #72
+ 1634 0048 3046     		mov	r0, r6
+ 1635 004a FFF7FEFF 		bl	u8x8_gpio_call
+ 1636              	.LVL219:
+ 344:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_E, 0);
+ 1637              		.loc 1 344 0
+ 1638 004e 3368     		ldr	r3, [r6]
+ 1639 0050 DA7B     		ldrb	r2, [r3, #15]	@ zero_extendqisi2
+ 1640 0052 2C21     		movs	r1, #44
+ 1641 0054 3046     		mov	r0, r6
+ 1642 0056 FFF7FEFF 		bl	u8x8_gpio_call
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 42
+
+
+ 1643              	.LVL220:
+ 345:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 1644              		.loc 1 345 0
+ 1645 005a 0022     		movs	r2, #0
+ 1646 005c 4821     		movs	r1, #72
+ 1647 005e 3046     		mov	r0, r6
+ 1648 0060 FFF7FEFF 		bl	u8x8_gpio_call
+ 1649              	.LVL221:
+ 1650              	.L108:
+ 331:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 1651              		.loc 1 331 0
+ 1652 0064 2FB1     		cbz	r7, .L117
+ 333:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 1653              		.loc 1 333 0
+ 1654 0066 18F8015B 		ldrb	r5, [r8], #1	@ zero_extendqisi2
+ 1655              	.LVL222:
+ 335:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = U8X8_MSG_GPIO_D0; i <= U8X8_MSG_GPIO_D7; i++ )
+ 1656              		.loc 1 335 0
+ 1657 006a 013F     		subs	r7, r7, #1
+ 1658              	.LVL223:
+ 1659 006c FFB2     		uxtb	r7, r7
+ 1660              	.LVL224:
+ 336:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1661              		.loc 1 336 0
+ 1662 006e 4024     		movs	r4, #64
+ 1663 0070 E0E7     		b	.L112
+ 1664              	.LVL225:
+ 1665              	.L117:
+ 370:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1666              		.loc 1 370 0
+ 1667 0072 0120     		movs	r0, #1
+ 1668              	.LVL226:
+ 1669              	.L105:
+ 371:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 1670              		.loc 1 371 0
+ 1671 0074 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1672              	.LVL227:
+ 1673              	.L106:
+ 351:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* ensure that the enable signal is low */
+ 1674              		.loc 1 351 0
+ 1675 0078 0368     		ldr	r3, [r0]
+ 1676 007a 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 1677              	.LVL228:
+ 1678 007c 4921     		movs	r1, #73
+ 1679 007e FFF7FEFF 		bl	u8x8_gpio_call
+ 1680              	.LVL229:
+ 353:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1681              		.loc 1 353 0
+ 1682 0082 0022     		movs	r2, #0
+ 1683 0084 4821     		movs	r1, #72
+ 1684 0086 3046     		mov	r0, r6
+ 1685 0088 FFF7FEFF 		bl	u8x8_gpio_call
+ 1686              	.LVL230:
+ 370:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1687              		.loc 1 370 0
+ 1688 008c 0120     		movs	r0, #1
+ 354:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 43
+
+
+ 1689              		.loc 1 354 0
+ 1690 008e F1E7     		b	.L105
+ 1691              	.LVL231:
+ 1692              	.L111:
+ 356:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1693              		.loc 1 356 0
+ 1694 0090 4A21     		movs	r1, #74
+ 1695 0092 FFF7FEFF 		bl	u8x8_gpio_call
+ 1696              	.LVL232:
+ 370:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1697              		.loc 1 370 0
+ 1698 0096 0120     		movs	r0, #1
+ 357:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 1699              		.loc 1 357 0
+ 1700 0098 ECE7     		b	.L105
+ 1701              	.LVL233:
+ 1702              	.L109:
+ 360:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_
+ 1703              		.loc 1 360 0
+ 1704 009a 1146     		mov	r1, r2
+ 1705 009c FFF7FEFF 		bl	u8x8_byte_set_ks0108_cs
+ 1706              	.LVL234:
+ 361:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1707              		.loc 1 361 0
+ 1708 00a0 7469     		ldr	r4, [r6, #20]
+ 1709 00a2 3268     		ldr	r2, [r6]
+ 1710 00a4 0023     		movs	r3, #0
+ 1711 00a6 9278     		ldrb	r2, [r2, #2]	@ zero_extendqisi2
+ 1712 00a8 2C21     		movs	r1, #44
+ 1713 00aa 3046     		mov	r0, r6
+ 1714 00ac A047     		blx	r4
+ 1715              	.LVL235:
+ 370:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1716              		.loc 1 370 0
+ 1717 00ae 0120     		movs	r0, #1
+ 362:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 1718              		.loc 1 362 0
+ 1719 00b0 E0E7     		b	.L105
+ 1720              	.LVL236:
+ 1721              	.L110:
+ 364:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_byte_set_ks0108_cs(u8x8, arg_int);
+ 1722              		.loc 1 364 0
+ 1723 00b2 4469     		ldr	r4, [r0, #20]
+ 1724 00b4 0268     		ldr	r2, [r0]
+ 1725              	.LVL237:
+ 1726 00b6 0023     		movs	r3, #0
+ 1727 00b8 D278     		ldrb	r2, [r2, #3]	@ zero_extendqisi2
+ 1728 00ba 2C21     		movs	r1, #44
+ 1729 00bc A047     		blx	r4
+ 1730              	.LVL238:
+ 365:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1731              		.loc 1 365 0
+ 1732 00be 3946     		mov	r1, r7
+ 1733 00c0 3046     		mov	r0, r6
+ 1734 00c2 FFF7FEFF 		bl	u8x8_byte_set_ks0108_cs
+ 1735              	.LVL239:
+ 370:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 44
+
+
+ 1736              		.loc 1 370 0
+ 1737 00c6 0120     		movs	r0, #1
+ 366:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 1738              		.loc 1 366 0
+ 1739 00c8 D4E7     		b	.L105
+ 1740              	.LVL240:
+ 1741              	.L115:
+ 368:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 1742              		.loc 1 368 0
+ 1743 00ca 0020     		movs	r0, #0
+ 1744              	.LVL241:
+ 1745 00cc D2E7     		b	.L105
+ 1746              		.cfi_endproc
+ 1747              	.LFE10:
+ 1749              		.section	.text.u8x8_byte_sed1520,"ax",%progbits
+ 1750              		.align	1
+ 1751              		.global	u8x8_byte_sed1520
+ 1752              		.syntax unified
+ 1753              		.thumb
+ 1754              		.thumb_func
+ 1755              		.fpu fpv4-sp-d16
+ 1757              	u8x8_byte_sed1520:
+ 1758              	.LFB11:
+ 379:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t i, b;
+ 1759              		.loc 1 379 0
+ 1760              		.cfi_startproc
+ 1761              		@ args = 0, pretend = 0, frame = 0
+ 1762              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1763              	.LVL242:
+ 1764 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1765              	.LCFI24:
+ 1766              		.cfi_def_cfa_offset 24
+ 1767              		.cfi_offset 4, -24
+ 1768              		.cfi_offset 5, -20
+ 1769              		.cfi_offset 6, -16
+ 1770              		.cfi_offset 7, -12
+ 1771              		.cfi_offset 8, -8
+ 1772              		.cfi_offset 14, -4
+ 1773 0004 0646     		mov	r6, r0
+ 1774 0006 1746     		mov	r7, r2
+ 1775 0008 9846     		mov	r8, r3
+ 384:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 1776              		.loc 1 384 0
+ 1777 000a 1439     		subs	r1, r1, #20
+ 1778              	.LVL243:
+ 1779 000c 0C29     		cmp	r1, #12
+ 1780 000e 08D8     		bhi	.L119
+ 1781 0010 DFE801F0 		tbb	[pc, r1]
+ 1782              	.LVL244:
+ 1783              	.L121:
+ 1784 0014 34       		.byte	(.L120-.L121)/2
+ 1785 0015 07       		.byte	(.L119-.L121)/2
+ 1786 0016 07       		.byte	(.L119-.L121)/2
+ 1787 0017 2B       		.byte	(.L122-.L121)/2
+ 1788 0018 4D       		.byte	(.L123-.L121)/2
+ 1789 0019 55       		.byte	(.L129-.L121)/2
+ 1790 001a 07       		.byte	(.L119-.L121)/2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 45
+
+
+ 1791 001b 07       		.byte	(.L119-.L121)/2
+ 1792 001c 07       		.byte	(.L119-.L121)/2
+ 1793 001d 07       		.byte	(.L119-.L121)/2
+ 1794 001e 07       		.byte	(.L119-.L121)/2
+ 1795 001f 07       		.byte	(.L119-.L121)/2
+ 1796 0020 48       		.byte	(.L125-.L121)/2
+ 1797 0021 00       		.p2align 1
+ 1798              	.L119:
+ 427:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 1799              		.loc 1 427 0
+ 1800 0022 0020     		movs	r0, #0
+ 1801              	.LVL245:
+ 1802 0024 4CE0     		b	.L124
+ 1803              	.LVL246:
+ 1804              	.L127:
+ 395:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  b >>= 1;
+ 1805              		.loc 1 395 0 discriminator 3
+ 1806 0026 05F00102 		and	r2, r5, #1
+ 1807 002a 2146     		mov	r1, r4
+ 1808 002c 3046     		mov	r0, r6
+ 1809 002e FFF7FEFF 		bl	u8x8_gpio_call
+ 1810              	.LVL247:
+ 396:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	}    
+ 1811              		.loc 1 396 0 discriminator 3
+ 1812 0032 6D08     		lsrs	r5, r5, #1
+ 1813              	.LVL248:
+ 393:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1814              		.loc 1 393 0 discriminator 3
+ 1815 0034 0134     		adds	r4, r4, #1
+ 1816              	.LVL249:
+ 1817 0036 E4B2     		uxtb	r4, r4
+ 1818              	.LVL250:
+ 1819              	.L126:
+ 393:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1820              		.loc 1 393 0 is_stmt 0 discriminator 1
+ 1821 0038 472C     		cmp	r4, #71
+ 1822 003a F4D9     		bls	.L127
+ 399:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, enable_pin, 1);
+ 1823              		.loc 1 399 0 is_stmt 1
+ 1824 003c 3368     		ldr	r3, [r6]
+ 1825 003e 9A7B     		ldrb	r2, [r3, #14]	@ zero_extendqisi2
+ 1826 0040 2C21     		movs	r1, #44
+ 1827 0042 3046     		mov	r0, r6
+ 1828 0044 FFF7FEFF 		bl	u8x8_gpio_call
+ 1829              	.LVL251:
+ 400:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->write_pulse_width_ns);
+ 1830              		.loc 1 400 0
+ 1831 0048 1F4C     		ldr	r4, .L133
+ 1832              	.LVL252:
+ 1833 004a 0122     		movs	r2, #1
+ 1834 004c 2178     		ldrb	r1, [r4]	@ zero_extendqisi2
+ 1835 004e 3046     		mov	r0, r6
+ 1836 0050 FFF7FEFF 		bl	u8x8_gpio_call
+ 1837              	.LVL253:
+ 401:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	u8x8_gpio_call(u8x8, enable_pin, 0);
+ 1838              		.loc 1 401 0
+ 1839 0054 3368     		ldr	r3, [r6]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 46
+
+
+ 1840 0056 DA7B     		ldrb	r2, [r3, #15]	@ zero_extendqisi2
+ 1841 0058 2C21     		movs	r1, #44
+ 1842 005a 3046     		mov	r0, r6
+ 1843 005c FFF7FEFF 		bl	u8x8_gpio_call
+ 1844              	.LVL254:
+ 402:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 1845              		.loc 1 402 0
+ 1846 0060 0022     		movs	r2, #0
+ 1847 0062 2178     		ldrb	r1, [r4]	@ zero_extendqisi2
+ 1848 0064 3046     		mov	r0, r6
+ 1849 0066 FFF7FEFF 		bl	u8x8_gpio_call
+ 1850              	.LVL255:
+ 1851              	.L122:
+ 388:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 1852              		.loc 1 388 0
+ 1853 006a 2FB1     		cbz	r7, .L132
+ 390:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 1854              		.loc 1 390 0
+ 1855 006c 18F8015B 		ldrb	r5, [r8], #1	@ zero_extendqisi2
+ 1856              	.LVL256:
+ 392:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	for( i = U8X8_MSG_GPIO_D0; i <= U8X8_MSG_GPIO_D7; i++ )
+ 1857              		.loc 1 392 0
+ 1858 0070 013F     		subs	r7, r7, #1
+ 1859              	.LVL257:
+ 1860 0072 FFB2     		uxtb	r7, r7
+ 1861              	.LVL258:
+ 393:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	{
+ 1862              		.loc 1 393 0
+ 1863 0074 4024     		movs	r4, #64
+ 1864 0076 DFE7     		b	.L126
+ 1865              	.LVL259:
+ 1866              	.L132:
+ 429:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1867              		.loc 1 429 0
+ 1868 0078 0120     		movs	r0, #1
+ 1869 007a 21E0     		b	.L124
+ 1870              	.LVL260:
+ 1871              	.L120:
+ 408:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       /* ensure that the enable signals are low */
+ 1872              		.loc 1 408 0
+ 1873 007c 0368     		ldr	r3, [r0]
+ 1874 007e 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 1875              	.LVL261:
+ 1876 0080 4921     		movs	r1, #73
+ 1877 0082 FFF7FEFF 		bl	u8x8_gpio_call
+ 1878              	.LVL262:
+ 410:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       u8x8_gpio_call(u8x8, U8X8_MSG_GPIO_CS, 0);
+ 1879              		.loc 1 410 0
+ 1880 0086 0022     		movs	r2, #0
+ 1881 0088 4821     		movs	r1, #72
+ 1882 008a 3046     		mov	r0, r6
+ 1883 008c FFF7FEFF 		bl	u8x8_gpio_call
+ 1884              	.LVL263:
+ 411:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       enable_pin = U8X8_MSG_GPIO_E;
+ 1885              		.loc 1 411 0
+ 1886 0090 0022     		movs	r2, #0
+ 1887 0092 4921     		movs	r1, #73
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 47
+
+
+ 1888 0094 3046     		mov	r0, r6
+ 1889 0096 FFF7FEFF 		bl	u8x8_gpio_call
+ 1890              	.LVL264:
+ 412:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1891              		.loc 1 412 0
+ 1892 009a 0B4B     		ldr	r3, .L133
+ 1893 009c 4822     		movs	r2, #72
+ 1894 009e 1A70     		strb	r2, [r3]
+ 429:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1895              		.loc 1 429 0
+ 1896 00a0 0120     		movs	r0, #1
+ 413:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 1897              		.loc 1 413 0
+ 1898 00a2 0DE0     		b	.L124
+ 1899              	.LVL265:
+ 1900              	.L125:
+ 415:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1901              		.loc 1 415 0
+ 1902 00a4 4A21     		movs	r1, #74
+ 1903 00a6 FFF7FEFF 		bl	u8x8_gpio_call
+ 1904              	.LVL266:
+ 429:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1905              		.loc 1 429 0
+ 1906 00aa 0120     		movs	r0, #1
+ 416:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 1907              		.loc 1 416 0
+ 1908 00ac 08E0     		b	.L124
+ 1909              	.LVL267:
+ 1910              	.L123:
+ 420:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       if ( arg_int != 0 )
+ 1911              		.loc 1 420 0
+ 1912 00ae 064B     		ldr	r3, .L133
+ 1913 00b0 4822     		movs	r2, #72
+ 1914              	.LVL268:
+ 1915 00b2 1A70     		strb	r2, [r3]
+ 421:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	enable_pin = U8X8_MSG_GPIO_CS;
+ 1916              		.loc 1 421 0
+ 1917 00b4 37B1     		cbz	r7, .L130
+ 422:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 1918              		.loc 1 422 0
+ 1919 00b6 4922     		movs	r2, #73
+ 1920 00b8 1A70     		strb	r2, [r3]
+ 429:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1921              		.loc 1 429 0
+ 1922 00ba 0120     		movs	r0, #1
+ 1923              	.LVL269:
+ 1924 00bc 00E0     		b	.L124
+ 1925              	.LVL270:
+ 1926              	.L129:
+ 1927 00be 0120     		movs	r0, #1
+ 1928              	.LVL271:
+ 1929              	.L124:
+ 430:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 1930              		.loc 1 430 0
+ 1931 00c0 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1932              	.LVL272:
+ 1933              	.L130:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 48
+
+
+ 429:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 1934              		.loc 1 429 0
+ 1935 00c4 0120     		movs	r0, #1
+ 1936              	.LVL273:
+ 1937 00c6 FBE7     		b	.L124
+ 1938              	.L134:
+ 1939              		.align	2
+ 1940              	.L133:
+ 1941 00c8 00000000 		.word	.LANCHOR1
+ 1942              		.cfi_endproc
+ 1943              	.LFE11:
+ 1945              		.section	.text.u8x8_byte_sw_i2c,"ax",%progbits
+ 1946              		.align	1
+ 1947              		.global	u8x8_byte_sw_i2c
+ 1948              		.syntax unified
+ 1949              		.thumb
+ 1950              		.thumb_func
+ 1951              		.fpu fpv4-sp-d16
+ 1953              	u8x8_byte_sw_i2c:
+ 1954              	.LFB23:
+ 556:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 557:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 558:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 559:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** #ifdef OBSOLETE_HANDLED_BY_CAD_PROCEDURE
+ 560:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_ssd13xx_sw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 561:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 562:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t *data;
+ 563:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   static uint8_t last_dc = 0;
+ 564:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   static uint8_t is_send_dc = 0;	/* instruction, whether i2c-start including dc has to be sent */
+ 565:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 566:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   switch(msg)
+ 567:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 568:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SEND:
+ 569:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       data = (uint8_t *)arg_ptr;
+ 570:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     
+ 571:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       if ( is_send_dc != 0 )
+ 572:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 573:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	
+ 574:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	i2c_start(u8x8);
+ 575:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	i2c_write_byte(u8x8, 0x078);		/* write slave adr and read/write bit */
+ 576:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	
+ 577:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	if ( last_dc == 0 )
+ 578:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  i2c_write_byte(u8x8, 0);
+ 579:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	else
+ 580:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	  i2c_write_byte(u8x8, 0x040);
+ 581:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	is_send_dc = 0;
+ 582:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 583:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     
+ 584:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       while( arg_int > 0 )
+ 585:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 586:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	i2c_write_byte(u8x8, *data);
+ 587:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 588:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	arg_int--;
+ 589:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 590:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 591:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 592:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 49
+
+
+ 593:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_INIT:
+ 594:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       i2c_init(u8x8);
+ 595:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 596:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 597:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       if ( last_dc != arg_int )
+ 598:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 599:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	last_dc = arg_int;
+ 600:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	is_send_dc = 1;
+ 601:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 602:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 603:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 604:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       last_dc = 0;
+ 605:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       is_send_dc = 1;
+ 606:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 607:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 608:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       i2c_stop(u8x8);
+ 609:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 610:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 611:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       return 0;
+ 612:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 613:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return 1;
+ 614:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 615:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** #endif
+ 616:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 
+ 617:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** uint8_t u8x8_byte_sw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 618:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** {
+ 1955              		.loc 1 618 0
+ 1956              		.cfi_startproc
+ 1957              		@ args = 0, pretend = 0, frame = 0
+ 1958              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1959              	.LVL274:
+ 1960 0000 70B5     		push	{r4, r5, r6, lr}
+ 1961              	.LCFI25:
+ 1962              		.cfi_def_cfa_offset 16
+ 1963              		.cfi_offset 4, -16
+ 1964              		.cfi_offset 5, -12
+ 1965              		.cfi_offset 6, -8
+ 1966              		.cfi_offset 14, -4
+ 1967 0002 0646     		mov	r6, r0
+ 1968 0004 1446     		mov	r4, r2
+ 1969 0006 1D46     		mov	r5, r3
+ 619:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   uint8_t *data;
+ 620:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****  
+ 621:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   switch(msg)
+ 1970              		.loc 1 621 0
+ 1971 0008 1439     		subs	r1, r1, #20
+ 1972              	.LVL275:
+ 1973 000a 0C29     		cmp	r1, #12
+ 1974 000c 08D8     		bhi	.L136
+ 1975 000e DFE801F0 		tbb	[pc, r1]
+ 1976              	.LVL276:
+ 1977              	.L138:
+ 1978 0012 14       		.byte	(.L137-.L138)/2
+ 1979 0013 07       		.byte	(.L136-.L138)/2
+ 1980 0014 07       		.byte	(.L136-.L138)/2
+ 1981 0015 10       		.byte	(.L139-.L138)/2
+ 1982 0016 18       		.byte	(.L140-.L138)/2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 50
+
+
+ 1983 0017 21       		.byte	(.L141-.L138)/2
+ 1984 0018 07       		.byte	(.L136-.L138)/2
+ 1985 0019 07       		.byte	(.L136-.L138)/2
+ 1986 001a 07       		.byte	(.L136-.L138)/2
+ 1987 001b 07       		.byte	(.L136-.L138)/2
+ 1988 001c 07       		.byte	(.L136-.L138)/2
+ 1989 001d 07       		.byte	(.L136-.L138)/2
+ 1990 001e 25       		.byte	(.L144-.L138)/2
+ 1991 001f 00       		.p2align 1
+ 1992              	.L136:
+ 622:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   {
+ 623:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SEND:
+ 624:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       data = (uint8_t *)arg_ptr;
+ 625:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 626:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       while( arg_int > 0 )
+ 627:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 628:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	i2c_write_byte(u8x8, *data);
+ 629:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 630:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	arg_int--;
+ 631:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 632:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 633:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 634:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       
+ 635:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_INIT:
+ 636:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       i2c_init(u8x8);
+ 637:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 638:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 639:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 640:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_START_TRANSFER:
+ 641:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       i2c_start(u8x8);
+ 642:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       i2c_write_byte(u8x8, u8x8_GetI2CAddress(u8x8));
+ 643:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       //i2c_write_byte(u8x8, 0x078);
+ 644:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 645:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 646:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       i2c_stop(u8x8);
+ 647:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 648:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 649:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       return 0;
+ 1993              		.loc 1 649 0
+ 1994 0020 0020     		movs	r0, #0
+ 1995              	.LVL277:
+ 1996 0022 1CE0     		b	.L142
+ 1997              	.LVL278:
+ 1998              	.L143:
+ 628:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** 	data++;
+ 1999              		.loc 1 628 0
+ 2000 0024 15F8011B 		ldrb	r1, [r5], #1	@ zero_extendqisi2
+ 2001              	.LVL279:
+ 2002 0028 3046     		mov	r0, r6
+ 2003 002a FFF7FEFF 		bl	i2c_write_byte
+ 2004              	.LVL280:
+ 630:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       }
+ 2005              		.loc 1 630 0
+ 2006 002e 013C     		subs	r4, r4, #1
+ 2007              	.LVL281:
+ 2008 0030 E4B2     		uxtb	r4, r4
+ 2009              	.LVL282:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 51
+
+
+ 2010              	.L139:
+ 626:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       {
+ 2011              		.loc 1 626 0
+ 2012 0032 002C     		cmp	r4, #0
+ 2013 0034 F6D1     		bne	.L143
+ 650:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   }
+ 651:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****   return 1;
+ 2014              		.loc 1 651 0
+ 2015 0036 0120     		movs	r0, #1
+ 2016 0038 11E0     		b	.L142
+ 2017              	.LVL283:
+ 2018              	.L137:
+ 636:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 2019              		.loc 1 636 0
+ 2020 003a FFF7FEFF 		bl	i2c_init
+ 2021              	.LVL284:
+ 2022              		.loc 1 651 0
+ 2023 003e 0120     		movs	r0, #1
+ 637:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_SET_DC:
+ 2024              		.loc 1 637 0
+ 2025 0040 0DE0     		b	.L142
+ 2026              	.LVL285:
+ 2027              	.L140:
+ 641:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       i2c_write_byte(u8x8, u8x8_GetI2CAddress(u8x8));
+ 2028              		.loc 1 641 0
+ 2029 0042 FFF7FEFF 		bl	i2c_start
+ 2030              	.LVL286:
+ 642:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       //i2c_write_byte(u8x8, 0x078);
+ 2031              		.loc 1 642 0
+ 2032 0046 96F82010 		ldrb	r1, [r6, #32]	@ zero_extendqisi2
+ 2033 004a 3046     		mov	r0, r6
+ 2034 004c FFF7FEFF 		bl	i2c_write_byte
+ 2035              	.LVL287:
+ 2036              		.loc 1 651 0
+ 2037 0050 0120     		movs	r0, #1
+ 644:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     case U8X8_MSG_BYTE_END_TRANSFER:
+ 2038              		.loc 1 644 0
+ 2039 0052 04E0     		b	.L142
+ 2040              	.LVL288:
+ 2041              	.L141:
+ 646:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****       break;
+ 2042              		.loc 1 646 0
+ 2043 0054 FFF7FEFF 		bl	i2c_stop
+ 2044              	.LVL289:
+ 2045              		.loc 1 651 0
+ 2046 0058 0120     		movs	r0, #1
+ 647:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c ****     default:
+ 2047              		.loc 1 647 0
+ 2048 005a 00E0     		b	.L142
+ 2049              	.LVL290:
+ 2050              	.L144:
+ 2051              		.loc 1 651 0
+ 2052 005c 0120     		movs	r0, #1
+ 2053              	.LVL291:
+ 2054              	.L142:
+ 652:/Users/imashio/Electronics/ARM/_Library/u8x8_byte.c **** }
+ 2055              		.loc 1 652 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 52
+
+
+ 2056 005e 70BD     		pop	{r4, r5, r6, pc}
+ 2057              		.cfi_endproc
+ 2058              	.LFE23:
+ 2060              		.section	.bss.enable_pin.6400,"aw",%nobits
+ 2061              		.set	.LANCHOR1,. + 0
+ 2064              	enable_pin.6400:
+ 2065 0000 00       		.space	1
+ 2066              		.section	.bss.last_dc.6351,"aw",%nobits
+ 2067              		.set	.LANCHOR0,. + 0
+ 2070              	last_dc.6351:
+ 2071 0000 00       		.space	1
+ 2072              		.text
+ 2073              	.Letext0:
+ 2074              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 2075              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 2076              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 53
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_byte.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:18     .text.i2c_delay:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:24     .text.i2c_delay:0000000000000000 i2c_delay
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:49     .text.i2c_init:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:55     .text.i2c_init:0000000000000000 i2c_init
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:89     .text.i2c_read_scl_and_delay:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:95     .text.i2c_read_scl_and_delay:0000000000000000 i2c_read_scl_and_delay
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:123    .text.i2c_read_sda:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:129    .text.i2c_read_sda:0000000000000000 i2c_read_sda
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:152    .text.i2c_clear_sda:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:158    .text.i2c_clear_sda:0000000000000000 i2c_clear_sda
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:181    .text.i2c_stop:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:187    .text.i2c_stop:0000000000000000 i2c_stop
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:228    .text.i2c_clear_scl:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:234    .text.i2c_clear_scl:0000000000000000 i2c_clear_scl
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:257    .text.i2c_start:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:263    .text.i2c_start:0000000000000000 i2c_start
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:320    .text.i2c_write_bit:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:326    .text.i2c_write_bit:0000000000000000 i2c_write_bit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:369    .text.i2c_read_bit:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:375    .text.i2c_read_bit:0000000000000000 i2c_read_bit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:417    .text.i2c_write_byte:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:423    .text.i2c_write_byte:0000000000000000 i2c_write_byte
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:489    .text.u8x8_byte_SetDC:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:496    .text.u8x8_byte_SetDC:0000000000000000 u8x8_byte_SetDC
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:522    .text.u8x8_byte_SendBytes:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:529    .text.u8x8_byte_SendBytes:0000000000000000 u8x8_byte_SendBytes
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:556    .text.u8x8_byte_SendByte:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:563    .text.u8x8_byte_SendByte:0000000000000000 u8x8_byte_SendByte
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:594    .text.u8x8_byte_StartTransfer:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:601    .text.u8x8_byte_StartTransfer:0000000000000000 u8x8_byte_StartTransfer
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:626    .text.u8x8_byte_EndTransfer:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:633    .text.u8x8_byte_EndTransfer:0000000000000000 u8x8_byte_EndTransfer
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:658    .text.u8x8_byte_4wire_sw_spi:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:665    .text.u8x8_byte_4wire_sw_spi:0000000000000000 u8x8_byte_4wire_sw_spi
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:703    .text.u8x8_byte_4wire_sw_spi:0000000000000020 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:879    .text.u8x8_byte_8bit_6800mode:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:886    .text.u8x8_byte_8bit_6800mode:0000000000000000 u8x8_byte_8bit_6800mode
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:913    .text.u8x8_byte_8bit_6800mode:0000000000000014 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1077   .text.u8x8_byte_8bit_8080mode:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1084   .text.u8x8_byte_8bit_8080mode:0000000000000000 u8x8_byte_8bit_8080mode
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1111   .text.u8x8_byte_8bit_8080mode:0000000000000014 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1275   .text.u8x8_byte_3wire_sw_spi:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1282   .text.u8x8_byte_3wire_sw_spi:0000000000000000 u8x8_byte_3wire_sw_spi
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1320   .text.u8x8_byte_3wire_sw_spi:0000000000000020 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1505   .text.u8x8_byte_3wire_sw_spi:000000000000010c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1510   .text.u8x8_byte_set_ks0108_cs:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1517   .text.u8x8_byte_set_ks0108_cs:0000000000000000 u8x8_byte_set_ks0108_cs
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1557   .text.u8x8_byte_ks0108:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1564   .text.u8x8_byte_ks0108:0000000000000000 u8x8_byte_ks0108
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1591   .text.u8x8_byte_ks0108:0000000000000014 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1750   .text.u8x8_byte_sed1520:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1757   .text.u8x8_byte_sed1520:0000000000000000 u8x8_byte_sed1520
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1784   .text.u8x8_byte_sed1520:0000000000000014 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1941   .text.u8x8_byte_sed1520:00000000000000c8 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1946   .text.u8x8_byte_sw_i2c:0000000000000000 $t
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s 			page 54
+
+
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1953   .text.u8x8_byte_sw_i2c:0000000000000000 u8x8_byte_sw_i2c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1978   .text.u8x8_byte_sw_i2c:0000000000000012 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:2064   .bss.enable_pin.6400:0000000000000000 enable_pin.6400
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:2065   .bss.enable_pin.6400:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:2070   .bss.last_dc.6351:0000000000000000 last_dc.6351
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:2071   .bss.last_dc.6351:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:716    .text.u8x8_byte_4wire_sw_spi:000000000000002d $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:716    .text.u8x8_byte_4wire_sw_spi:000000000000002e $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:926    .text.u8x8_byte_8bit_6800mode:0000000000000021 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:926    .text.u8x8_byte_8bit_6800mode:0000000000000022 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1124   .text.u8x8_byte_8bit_8080mode:0000000000000021 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1124   .text.u8x8_byte_8bit_8080mode:0000000000000022 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1333   .text.u8x8_byte_3wire_sw_spi:000000000000002d $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1333   .text.u8x8_byte_3wire_sw_spi:000000000000002e $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1604   .text.u8x8_byte_ks0108:0000000000000021 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1604   .text.u8x8_byte_ks0108:0000000000000022 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1797   .text.u8x8_byte_sed1520:0000000000000021 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1797   .text.u8x8_byte_sed1520:0000000000000022 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1991   .text.u8x8_byte_sw_i2c:000000000000001f $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cchsHKni.s:1991   .text.u8x8_byte_sw_i2c:0000000000000020 $t
+
+UNDEFINED SYMBOLS
+u8x8_gpio_call

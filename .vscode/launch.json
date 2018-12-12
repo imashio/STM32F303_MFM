@@ -1,0 +1,26 @@
+{
+    "type": "shell", // added
+    "echoCommand": true, // added
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Debug",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+
+            //"executable": "./build/${workspaceRootFolderName}.elf",
+            //"executable": "${workspaceRoot}/build/${workspaceRootFolderName}.elf",
+            "executable": "${workspaceRoot}/build/STM32F303_MFM.elf",
+            "cwd": "${workspaceRoot}",
+            "device": "STM32F303",
+            "runToMain": true,
+            "configFiles": [
+                //"board/st_nucleo_f0.cfg"
+                "/usr/local/openocd/scripts/board/st_nucleo_f3.cfg"
+                // set Open OCD configuration file full path
+            ],
+        }
+    ]
+}

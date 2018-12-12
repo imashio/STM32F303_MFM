@@ -1,0 +1,268 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_setup.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_dummy_cb,"ax",%progbits
+  18              		.align	1
+  19              		.global	u8x8_dummy_cb
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	u8x8_dummy_cb:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   u8x8_setup.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s 			page 2
+
+
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** */
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** #include "u8x8.h"
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** uint8_t u8x8_dummy_cb(U8X8_UNUSED u8x8_t *u8x8, U8X8_UNUSED uint8_t msg, U8X8_UNUSED uint8_t arg_in
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** {
+  28              		.loc 1 40 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   /* the dummy callback will not handle any message and will fail for all messages */
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   return 0;
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** }
+  34              		.loc 1 43 0
+  35 0000 0020     		movs	r0, #0
+  36              	.LVL1:
+  37 0002 7047     		bx	lr
+  38              		.cfi_endproc
+  39              	.LFE0:
+  41              		.section	.text.u8x8_SetupDefaults,"ax",%progbits
+  42              		.align	1
+  43              		.global	u8x8_SetupDefaults
+  44              		.syntax unified
+  45              		.thumb
+  46              		.thumb_func
+  47              		.fpu fpv4-sp-d16
+  49              	u8x8_SetupDefaults:
+  50              	.LFB1:
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** /*
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   Description:
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     Setup u8x8
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   Args:
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8	An empty u8x8 structure
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** */
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** void u8x8_SetupDefaults(u8x8_t *u8x8)
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** {
+  51              		.loc 1 53 0
+  52              		.cfi_startproc
+  53              		@ args = 0, pretend = 0, frame = 0
+  54              		@ frame_needed = 0, uses_anonymous_args = 0
+  55              		@ link register save eliminated.
+  56              	.LVL2:
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8->display_info = NULL;
+  57              		.loc 1 54 0
+  58 0000 0023     		movs	r3, #0
+  59 0002 0360     		str	r3, [r0]
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8->display_cb = u8x8_dummy_cb;
+  60              		.loc 1 55 0
+  61 0004 074A     		ldr	r2, .L3
+  62 0006 8260     		str	r2, [r0, #8]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s 			page 3
+
+
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8->cad_cb = u8x8_dummy_cb;
+  63              		.loc 1 56 0
+  64 0008 C260     		str	r2, [r0, #12]
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8->byte_cb = u8x8_dummy_cb;
+  65              		.loc 1 57 0
+  66 000a 0261     		str	r2, [r0, #16]
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8->gpio_and_delay_cb = u8x8_dummy_cb;
+  67              		.loc 1 58 0
+  68 000c 4261     		str	r2, [r0, #20]
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8->is_font_inverse_mode = 0;
+  69              		.loc 1 59 0
+  70 000e C377     		strb	r3, [r0, #31]
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8->device_address = 0;
+  71              		.loc 1 60 0
+  72 0010 80F82230 		strb	r3, [r0, #34]
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8->utf8_state = 0;		/* also reset by u8x8_utf8_init */
+  73              		.loc 1 61 0
+  74 0014 80F82330 		strb	r3, [r0, #35]
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8->i2c_address = 255;
+  75              		.loc 1 62 0
+  76 0018 FF23     		movs	r3, #255
+  77 001a 80F82030 		strb	r3, [r0, #32]
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8->debounce_default_pin_state = 255;	/* assume all low active buttons */
+  78              		.loc 1 63 0
+  79 001e 80F82530 		strb	r3, [r0, #37]
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** #ifdef U8X8_USE_PINS 
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   {
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     uint8_t i;
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     for( i = 0; i < U8X8_PIN_CNT; i++ )
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****       u8x8->pins[i] = U8X8_PIN_NONE;
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   }
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** #endif
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** }
+  80              		.loc 1 72 0
+  81 0022 7047     		bx	lr
+  82              	.L4:
+  83              		.align	2
+  84              	.L3:
+  85 0024 00000000 		.word	u8x8_dummy_cb
+  86              		.cfi_endproc
+  87              	.LFE1:
+  89              		.section	.text.u8x8_Setup,"ax",%progbits
+  90              		.align	1
+  91              		.global	u8x8_Setup
+  92              		.syntax unified
+  93              		.thumb
+  94              		.thumb_func
+  95              		.fpu fpv4-sp-d16
+  97              	u8x8_Setup:
+  98              	.LFB2:
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** /*
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   Description:
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     Setup u8x8 and assign the callback function. The dummy 
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     callback "u8x8_dummy_cb" can be used, if no callback is required.
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s 			page 4
+
+
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     This setup will not communicate with the display itself.
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     Use u8x8_InitDisplay() to send the startup code to the Display.
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   Args:
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     u8x8				An empty u8x8 structure
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     display_cb			Display/controller specific callback function
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     cad_cb				Display controller specific communication callback function
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     byte_cb			Display controller/communication specific callback funtion
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****     gpio_and_delay_cb	Environment specific callback function
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** */
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** void u8x8_Setup(u8x8_t *u8x8, u8x8_msg_cb display_cb, u8x8_msg_cb cad_cb, u8x8_msg_cb byte_cb, u8x8
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** {
+  99              		.loc 1 90 0
+ 100              		.cfi_startproc
+ 101              		@ args = 4, pretend = 0, frame = 0
+ 102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103              	.LVL3:
+ 104 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 105              	.LCFI0:
+ 106              		.cfi_def_cfa_offset 24
+ 107              		.cfi_offset 3, -24
+ 108              		.cfi_offset 4, -20
+ 109              		.cfi_offset 5, -16
+ 110              		.cfi_offset 6, -12
+ 111              		.cfi_offset 7, -8
+ 112              		.cfi_offset 14, -4
+ 113 0002 0446     		mov	r4, r0
+ 114 0004 0F46     		mov	r7, r1
+ 115 0006 1646     		mov	r6, r2
+ 116 0008 1D46     		mov	r5, r3
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   /* setup defaults and reset pins to U8X8_PIN_NONE */
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   u8x8_SetupDefaults(u8x8);
+ 117              		.loc 1 92 0
+ 118 000a FFF7FEFF 		bl	u8x8_SetupDefaults
+ 119              	.LVL4:
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   /* setup specific callbacks */
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   u8x8->display_cb = display_cb;
+ 120              		.loc 1 95 0
+ 121 000e A760     		str	r7, [r4, #8]
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   u8x8->cad_cb = cad_cb;
+ 122              		.loc 1 96 0
+ 123 0010 E660     		str	r6, [r4, #12]
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   u8x8->byte_cb = byte_cb;
+ 124              		.loc 1 97 0
+ 125 0012 2561     		str	r5, [r4, #16]
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   u8x8->gpio_and_delay_cb = gpio_and_delay_cb;
+ 126              		.loc 1 98 0
+ 127 0014 069B     		ldr	r3, [sp, #24]
+ 128 0016 6361     		str	r3, [r4, #20]
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** 
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   /* setup display info */
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c ****   u8x8_SetupMemory(u8x8);
+ 129              		.loc 1 101 0
+ 130 0018 2046     		mov	r0, r4
+ 131 001a FFF7FEFF 		bl	u8x8_SetupMemory
+ 132              	.LVL5:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s 			page 5
+
+
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_setup.c **** }
+ 133              		.loc 1 102 0
+ 134 001e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 135              		.cfi_endproc
+ 136              	.LFE2:
+ 138              		.text
+ 139              	.Letext0:
+ 140              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 141              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 142              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_setup.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s:18     .text.u8x8_dummy_cb:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s:25     .text.u8x8_dummy_cb:0000000000000000 u8x8_dummy_cb
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s:42     .text.u8x8_SetupDefaults:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s:49     .text.u8x8_SetupDefaults:0000000000000000 u8x8_SetupDefaults
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s:85     .text.u8x8_SetupDefaults:0000000000000024 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s:90     .text.u8x8_Setup:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccErXBjo.s:97     .text.u8x8_Setup:0000000000000000 u8x8_Setup
+
+UNDEFINED SYMBOLS
+u8x8_SetupMemory

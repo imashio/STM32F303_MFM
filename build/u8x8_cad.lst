@@ -1,0 +1,2894 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_cad.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_i2c_data_transfer,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	u8x8_i2c_data_transfer:
+  25              	.LFB13:
+  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   u8x8_cad.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   "command arg data" interface to the graphics controller
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   Copyright (c) 2016, olikraus@gmail.com
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   All rights reserved.
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   are permitted provided that the following conditions are met:
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     of conditions and the following disclaimer.
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     materials provided with the distribution.
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 2
+
+
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   The following sequence must be used for any data, which is set to the display:
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t u8x8_cad_StartTransfer(u8x8_t *u8x8)
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   any of the following calls
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     uint8_t u8x8_cad_SendCmd(u8x8_t *u8x8, uint8_t cmd)
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     uint8_t u8x8_cad_SendArg(u8x8_t *u8x8, uint8_t arg)
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     uint8_t u8x8_cad_SendData(u8x8_t *u8x8, uint8_t cnt, uint8_t *data)
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t u8x8_cad_EndTransfer(u8x8_t *u8x8)
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** */
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /*
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_template(u8x8_t *u8x8, uint8_t msg, uint16_t arg_int, void *arg_ptr)
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t i;
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_mcd_byte_SetDC(mcd->next, 1);
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_mcd_byte_Send(mcd->next, arg_int);
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_mcd_byte_SetDC(mcd->next, 1);
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_mcd_byte_Send(mcd->next, arg_int);
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_mcd_byte_SetDC(mcd->next, 0);
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       for( i = 0; i < 8; i++ )
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_mcd_byte_Send(mcd->next, ((uint8_t *)arg_ptr)[i]);
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_RESET:
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return mcd->next->cb(mcd->next, msg, arg_int, arg_ptr);
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return mcd->next->cb(mcd->next, msg, arg_int, arg_ptr);
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return mcd->next->cb(mcd->next, msg, arg_int, arg_ptr);
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** */
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** #include "u8x8.h"
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_SendCmd(u8x8_t *u8x8, uint8_t cmd)
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 3
+
+
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return u8x8->cad_cb(u8x8, U8X8_MSG_CAD_SEND_CMD, cmd, NULL);
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_SendArg(u8x8_t *u8x8, uint8_t arg)
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return u8x8->cad_cb(u8x8, U8X8_MSG_CAD_SEND_ARG, arg, NULL);
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_SendMultipleArg(u8x8_t *u8x8, uint8_t cnt, uint8_t arg)
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   while( cnt > 0 )
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     u8x8->cad_cb(u8x8, U8X8_MSG_CAD_SEND_ARG, arg, NULL);
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     cnt--;
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_SendData(u8x8_t *u8x8, uint8_t cnt, uint8_t *data)
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return u8x8->cad_cb(u8x8, U8X8_MSG_CAD_SEND_DATA, cnt, data);
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_StartTransfer(u8x8_t *u8x8)
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return u8x8->cad_cb(u8x8, U8X8_MSG_CAD_START_TRANSFER, 0, NULL);
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_EndTransfer(u8x8_t *u8x8)
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, 0, NULL);
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /*
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   21 c		send command c
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   22 a		send arg a
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   23 d		send data d
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   24			CS on
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   25			CS off
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   254 milli	delay by milliseconds
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   255		end of sequence
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** */
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** void u8x8_cad_SendSequence(u8x8_t *u8x8, uint8_t const *data)
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t cmd;
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t v;
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   for(;;)
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     cmd = *data;
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     data++;
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     switch( cmd )
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     {
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       case U8X8_MSG_CAD_SEND_CMD:
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       case U8X8_MSG_CAD_SEND_ARG:
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  v = *data;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 4
+
+
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8->cad_cb(u8x8, cmd, v, NULL);
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  data++;
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  break;
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       case U8X8_MSG_CAD_SEND_DATA:
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  v = *data;
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_cad_SendData(u8x8, 1, &v);
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  data++;
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  break;
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       case U8X8_MSG_CAD_START_TRANSFER:
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       case U8X8_MSG_CAD_END_TRANSFER:
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8->cad_cb(u8x8, cmd, 0, NULL);
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  break;
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       case 0x0fe:
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  v = *data;
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_MILLI, v);	    
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  data++;
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  break;
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       default:
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	return;
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     }
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 171:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_empty(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 174:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 177:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 178:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 179:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 180:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 181:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 182:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 183:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 184:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 186:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 187:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return 0;
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 191:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 192:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 193:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /*
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   convert to bytes by using 
+ 195:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     dc = 1 for commands and args and
+ 196:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     dc = 0 for data
+ 197:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** */
+ 198:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_110(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 200:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 201:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 202:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+ 203:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 1);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 5
+
+
+ 204:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 205:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 206:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 207:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 1);
+ 208:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 209:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 210:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 0);
+ 212:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SendBytes(u8x8, arg_int, arg_ptr);
+ 213:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //break;
+ 214:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* fall through */
+ 215:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 216:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 217:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 218:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 219:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 220:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return 0;
+ 221:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 222:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ 223:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 224:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 225:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /*
+ 226:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   convert to bytes by using 
+ 227:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     dc = 1 for commands and args and
+ 228:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     dc = 0 for data
+ 229:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     t6963
+ 230:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** */
+ 231:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_100(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 232:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 233:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 234:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 235:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+ 236:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 1);
+ 237:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 238:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 239:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 240:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 0);
+ 241:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 242:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 243:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 0);
+ 245:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SendBytes(u8x8, arg_int, arg_ptr);
+ 246:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //break;
+ 247:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* fall through */
+ 248:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 249:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 250:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 251:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 252:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 253:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return 0;
+ 254:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 255:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ 256:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 257:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 258:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /*
+ 259:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   convert to bytes by using 
+ 260:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     dc = 0 for commands and args and
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 6
+
+
+ 261:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     dc = 1 for data
+ 262:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** */
+ 263:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_001(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 264:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 265:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 266:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 267:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+ 268:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 0);
+ 269:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 270:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 271:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 272:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 0);
+ 273:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 274:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 275:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 276:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 1);
+ 277:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SendBytes(u8x8, arg_int, arg_ptr);
+ 278:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //break;
+ 279:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* fall through */
+ 280:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 281:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 282:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 283:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 284:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 285:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return 0;
+ 286:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 287:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ 288:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 289:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 290:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /*
+ 291:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   convert to bytes by using 
+ 292:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     dc = 0 for commands 
+ 293:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     dc = 1 for args and data
+ 294:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** */
+ 295:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_011(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 296:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 297:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 298:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 299:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+ 300:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 0);
+ 301:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 302:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 303:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 304:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 1);
+ 305:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 306:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 307:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 308:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SetDC(u8x8, 1);
+ 309:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SendBytes(u8x8, arg_int, arg_ptr);
+ 310:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //break;
+ 311:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* fall through */
+ 312:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 313:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 314:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 315:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 316:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 317:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return 0;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 7
+
+
+ 318:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 319:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ 320:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 321:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 322:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* cad procedure for the ST7920 in SPI mode */
+ 323:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* u8x8_byte_SetDC is not used */
+ 324:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_st7920_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 325:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 326:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t *data;
+ 327:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t b;
+ 328:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t i;
+ 329:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   static uint8_t buf[16];
+ 330:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t *ptr;
+ 331:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   
+ 332:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 333:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 334:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+ 335:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, 0x0f8);
+ 336:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, 1);
+ 337:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int & 0x0f0);
+ 338:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, 1);
+ 339:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int << 4);
+ 340:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, 1);
+ 341:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 342:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 343:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, 0x0f8);
+ 344:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int & 0x0f0);
+ 345:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int << 4);
+ 346:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 347:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 348:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     
+ 349:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, 0x0fa);
+ 350:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, 1);
+ 351:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 352:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* this loop should be optimized: multiple bytes should be sent */
+ 353:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* u8x8_byte_SendBytes(u8x8, arg_int, arg_ptr); */
+ 354:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       data = (uint8_t *)arg_ptr;
+ 355:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     
+ 356:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* the following loop increases speed by 20% */
+ 357:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       while( arg_int >= 8 )
+ 358:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 359:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	i = 8;
+ 360:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	ptr = buf;
+ 361:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	do
+ 362:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	{
+ 363:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  b = *data++;
+ 364:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  *ptr++= b & 0x0f0;
+ 365:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  b <<= 4;
+ 366:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  *ptr++= b;
+ 367:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  i--;
+ 368:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	} while( i > 0 );
+ 369:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int -= 8;
+ 370:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_SendBytes(u8x8, 16, buf); 
+ 371:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 372:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       
+ 373:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     
+ 374:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       while( arg_int > 0 )
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 8
+
+
+ 375:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 376:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	b = *data;
+ 377:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_SendByte(u8x8, b & 0x0f0);
+ 378:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_SendByte(u8x8, b << 4);
+ 379:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	data++;
+ 380:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int--;
+ 381:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 382:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, 1);
+ 383:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 384:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 385:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 386:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 387:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 388:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 389:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return 0;
+ 390:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 391:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ 392:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 393:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 394:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 395:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* cad procedure for the SSD13xx family in I2C mode */
+ 396:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* this procedure is also used by the ST7588 */
+ 397:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* u8x8_byte_SetDC is not used */
+ 398:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* U8X8_MSG_BYTE_START_TRANSFER starts i2c transfer, U8X8_MSG_BYTE_END_TRANSFER stops transfer */
+ 399:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* After transfer start, a full byte indicates command or data mode */
+ 400:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 401:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** static void u8x8_i2c_data_transfer(u8x8_t *u8x8, uint8_t arg_int, void *arg_ptr) U8X8_NOINLINE;
+ 402:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** static void u8x8_i2c_data_transfer(u8x8_t *u8x8, uint8_t arg_int, void *arg_ptr)
+ 403:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+  27              		.loc 1 403 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 24
+  35              		.cfi_offset 3, -24
+  36              		.cfi_offset 4, -20
+  37              		.cfi_offset 5, -16
+  38              		.cfi_offset 6, -12
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 0446     		mov	r4, r0
+  42 0004 0E46     		mov	r6, r1
+  43 0006 1746     		mov	r7, r2
+ 404:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     u8x8_byte_StartTransfer(u8x8);    
+  44              		.loc 1 404 0
+  45 0008 FFF7FEFF 		bl	u8x8_byte_StartTransfer
+  46              	.LVL1:
+ 405:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     u8x8_byte_SendByte(u8x8, 0x040);
+  47              		.loc 1 405 0
+  48 000c 4021     		movs	r1, #64
+  49 000e 2046     		mov	r0, r4
+  50 0010 FFF7FEFF 		bl	u8x8_byte_SendByte
+  51              	.LVL2:
+ 406:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     u8x8->byte_cb(u8x8, U8X8_MSG_CAD_SEND_DATA, arg_int, arg_ptr);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 9
+
+
+  52              		.loc 1 406 0
+  53 0014 2569     		ldr	r5, [r4, #16]
+  54 0016 3B46     		mov	r3, r7
+  55 0018 3246     		mov	r2, r6
+  56 001a 1721     		movs	r1, #23
+  57 001c 2046     		mov	r0, r4
+  58 001e A847     		blx	r5
+  59              	.LVL3:
+ 407:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     u8x8_byte_EndTransfer(u8x8);
+  60              		.loc 1 407 0
+  61 0020 2046     		mov	r0, r4
+  62 0022 FFF7FEFF 		bl	u8x8_byte_EndTransfer
+  63              	.LVL4:
+ 408:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+  64              		.loc 1 408 0
+  65 0026 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+  66              		.cfi_endproc
+  67              	.LFE13:
+  69              		.section	.text.u8x8_cad_SendCmd,"ax",%progbits
+  70              		.align	1
+  71              		.global	u8x8_cad_SendCmd
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  75              		.fpu fpv4-sp-d16
+  77              	u8x8_cad_SendCmd:
+  78              	.LFB0:
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return u8x8->cad_cb(u8x8, U8X8_MSG_CAD_SEND_CMD, cmd, NULL);
+  79              		.loc 1 89 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              	.LVL5:
+  84 0000 10B5     		push	{r4, lr}
+  85              	.LCFI1:
+  86              		.cfi_def_cfa_offset 8
+  87              		.cfi_offset 4, -8
+  88              		.cfi_offset 14, -4
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+  89              		.loc 1 90 0
+  90 0002 C468     		ldr	r4, [r0, #12]
+  91 0004 0023     		movs	r3, #0
+  92 0006 0A46     		mov	r2, r1
+  93 0008 1521     		movs	r1, #21
+  94              	.LVL6:
+  95 000a A047     		blx	r4
+  96              	.LVL7:
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+  97              		.loc 1 91 0
+  98 000c 10BD     		pop	{r4, pc}
+  99              		.cfi_endproc
+ 100              	.LFE0:
+ 102              		.section	.text.u8x8_cad_SendArg,"ax",%progbits
+ 103              		.align	1
+ 104              		.global	u8x8_cad_SendArg
+ 105              		.syntax unified
+ 106              		.thumb
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 10
+
+
+ 107              		.thumb_func
+ 108              		.fpu fpv4-sp-d16
+ 110              	u8x8_cad_SendArg:
+ 111              	.LFB1:
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return u8x8->cad_cb(u8x8, U8X8_MSG_CAD_SEND_ARG, arg, NULL);
+ 112              		.loc 1 94 0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116              	.LVL8:
+ 117 0000 10B5     		push	{r4, lr}
+ 118              	.LCFI2:
+ 119              		.cfi_def_cfa_offset 8
+ 120              		.cfi_offset 4, -8
+ 121              		.cfi_offset 14, -4
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 122              		.loc 1 95 0
+ 123 0002 C468     		ldr	r4, [r0, #12]
+ 124 0004 0023     		movs	r3, #0
+ 125 0006 0A46     		mov	r2, r1
+ 126 0008 1621     		movs	r1, #22
+ 127              	.LVL9:
+ 128 000a A047     		blx	r4
+ 129              	.LVL10:
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 130              		.loc 1 96 0
+ 131 000c 10BD     		pop	{r4, pc}
+ 132              		.cfi_endproc
+ 133              	.LFE1:
+ 135              		.section	.text.u8x8_cad_SendMultipleArg,"ax",%progbits
+ 136              		.align	1
+ 137              		.global	u8x8_cad_SendMultipleArg
+ 138              		.syntax unified
+ 139              		.thumb
+ 140              		.thumb_func
+ 141              		.fpu fpv4-sp-d16
+ 143              	u8x8_cad_SendMultipleArg:
+ 144              	.LFB2:
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   while( cnt > 0 )
+ 145              		.loc 1 99 0
+ 146              		.cfi_startproc
+ 147              		@ args = 0, pretend = 0, frame = 0
+ 148              		@ frame_needed = 0, uses_anonymous_args = 0
+ 149              	.LVL11:
+ 150 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 151              	.LCFI3:
+ 152              		.cfi_def_cfa_offset 24
+ 153              		.cfi_offset 3, -24
+ 154              		.cfi_offset 4, -20
+ 155              		.cfi_offset 5, -16
+ 156              		.cfi_offset 6, -12
+ 157              		.cfi_offset 7, -8
+ 158              		.cfi_offset 14, -4
+ 159 0002 0546     		mov	r5, r0
+ 160 0004 0C46     		mov	r4, r1
+ 161 0006 1746     		mov	r7, r2
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 11
+
+
+ 162              		.loc 1 100 0
+ 163 0008 07E0     		b	.L8
+ 164              	.LVL12:
+ 165              	.L9:
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     cnt--;
+ 166              		.loc 1 102 0
+ 167 000a EE68     		ldr	r6, [r5, #12]
+ 168 000c 0023     		movs	r3, #0
+ 169 000e 3A46     		mov	r2, r7
+ 170 0010 1621     		movs	r1, #22
+ 171 0012 2846     		mov	r0, r5
+ 172 0014 B047     		blx	r6
+ 173              	.LVL13:
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 174              		.loc 1 103 0
+ 175 0016 013C     		subs	r4, r4, #1
+ 176              	.LVL14:
+ 177 0018 E4B2     		uxtb	r4, r4
+ 178              	.LVL15:
+ 179              	.L8:
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 180              		.loc 1 100 0
+ 181 001a 002C     		cmp	r4, #0
+ 182 001c F5D1     		bne	.L9
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 183              		.loc 1 106 0
+ 184 001e 0120     		movs	r0, #1
+ 185 0020 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 186              		.cfi_endproc
+ 187              	.LFE2:
+ 189              		.section	.text.u8x8_cad_SendData,"ax",%progbits
+ 190              		.align	1
+ 191              		.global	u8x8_cad_SendData
+ 192              		.syntax unified
+ 193              		.thumb
+ 194              		.thumb_func
+ 195              		.fpu fpv4-sp-d16
+ 197              	u8x8_cad_SendData:
+ 198              	.LFB3:
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return u8x8->cad_cb(u8x8, U8X8_MSG_CAD_SEND_DATA, cnt, data);
+ 199              		.loc 1 109 0
+ 200              		.cfi_startproc
+ 201              		@ args = 0, pretend = 0, frame = 0
+ 202              		@ frame_needed = 0, uses_anonymous_args = 0
+ 203              	.LVL16:
+ 204 0000 10B5     		push	{r4, lr}
+ 205              	.LCFI4:
+ 206              		.cfi_def_cfa_offset 8
+ 207              		.cfi_offset 4, -8
+ 208              		.cfi_offset 14, -4
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 209              		.loc 1 110 0
+ 210 0002 C468     		ldr	r4, [r0, #12]
+ 211 0004 1346     		mov	r3, r2
+ 212 0006 0A46     		mov	r2, r1
+ 213              	.LVL17:
+ 214 0008 1721     		movs	r1, #23
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 12
+
+
+ 215              	.LVL18:
+ 216 000a A047     		blx	r4
+ 217              	.LVL19:
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 218              		.loc 1 111 0
+ 219 000c 10BD     		pop	{r4, pc}
+ 220              		.cfi_endproc
+ 221              	.LFE3:
+ 223              		.section	.text.u8x8_cad_StartTransfer,"ax",%progbits
+ 224              		.align	1
+ 225              		.global	u8x8_cad_StartTransfer
+ 226              		.syntax unified
+ 227              		.thumb
+ 228              		.thumb_func
+ 229              		.fpu fpv4-sp-d16
+ 231              	u8x8_cad_StartTransfer:
+ 232              	.LFB4:
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return u8x8->cad_cb(u8x8, U8X8_MSG_CAD_START_TRANSFER, 0, NULL);
+ 233              		.loc 1 114 0
+ 234              		.cfi_startproc
+ 235              		@ args = 0, pretend = 0, frame = 0
+ 236              		@ frame_needed = 0, uses_anonymous_args = 0
+ 237              	.LVL20:
+ 238 0000 10B5     		push	{r4, lr}
+ 239              	.LCFI5:
+ 240              		.cfi_def_cfa_offset 8
+ 241              		.cfi_offset 4, -8
+ 242              		.cfi_offset 14, -4
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 243              		.loc 1 115 0
+ 244 0002 C468     		ldr	r4, [r0, #12]
+ 245 0004 0023     		movs	r3, #0
+ 246 0006 1A46     		mov	r2, r3
+ 247 0008 1821     		movs	r1, #24
+ 248 000a A047     		blx	r4
+ 249              	.LVL21:
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 250              		.loc 1 116 0
+ 251 000c 10BD     		pop	{r4, pc}
+ 252              		.cfi_endproc
+ 253              	.LFE4:
+ 255              		.section	.text.u8x8_cad_EndTransfer,"ax",%progbits
+ 256              		.align	1
+ 257              		.global	u8x8_cad_EndTransfer
+ 258              		.syntax unified
+ 259              		.thumb
+ 260              		.thumb_func
+ 261              		.fpu fpv4-sp-d16
+ 263              	u8x8_cad_EndTransfer:
+ 264              	.LFB5:
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, 0, NULL);
+ 265              		.loc 1 119 0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 0
+ 268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 269              	.LVL22:
+ 270 0000 10B5     		push	{r4, lr}
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 13
+
+
+ 271              	.LCFI6:
+ 272              		.cfi_def_cfa_offset 8
+ 273              		.cfi_offset 4, -8
+ 274              		.cfi_offset 14, -4
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 275              		.loc 1 120 0
+ 276 0002 C468     		ldr	r4, [r0, #12]
+ 277 0004 0023     		movs	r3, #0
+ 278 0006 1A46     		mov	r2, r3
+ 279 0008 1921     		movs	r1, #25
+ 280 000a A047     		blx	r4
+ 281              	.LVL23:
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 282              		.loc 1 121 0
+ 283 000c 10BD     		pop	{r4, pc}
+ 284              		.cfi_endproc
+ 285              	.LFE5:
+ 287              		.section	.text.u8x8_cad_SendSequence,"ax",%progbits
+ 288              		.align	1
+ 289              		.global	u8x8_cad_SendSequence
+ 290              		.syntax unified
+ 291              		.thumb
+ 292              		.thumb_func
+ 293              		.fpu fpv4-sp-d16
+ 295              	u8x8_cad_SendSequence:
+ 296              	.LFB6:
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t cmd;
+ 297              		.loc 1 134 0
+ 298              		.cfi_startproc
+ 299              		@ args = 0, pretend = 0, frame = 8
+ 300              		@ frame_needed = 0, uses_anonymous_args = 0
+ 301              	.LVL24:
+ 302 0000 70B5     		push	{r4, r5, r6, lr}
+ 303              	.LCFI7:
+ 304              		.cfi_def_cfa_offset 16
+ 305              		.cfi_offset 4, -16
+ 306              		.cfi_offset 5, -12
+ 307              		.cfi_offset 6, -8
+ 308              		.cfi_offset 14, -4
+ 309 0002 82B0     		sub	sp, sp, #8
+ 310              	.LCFI8:
+ 311              		.cfi_def_cfa_offset 24
+ 312 0004 0646     		mov	r6, r0
+ 313 0006 0D46     		mov	r5, r1
+ 314              	.LVL25:
+ 315              	.L18:
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     data++;
+ 316              		.loc 1 140 0
+ 317 0008 2C46     		mov	r4, r5
+ 318 000a 14F8011B 		ldrb	r1, [r4], #1	@ zero_extendqisi2
+ 319              	.LVL26:
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     {
+ 320              		.loc 1 142 0
+ 321 000e 1729     		cmp	r1, #23
+ 322 0010 18D0     		beq	.L20
+ 323 0012 0CD9     		bls	.L28
+ 324 0014 1929     		cmp	r1, #25
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 14
+
+
+ 325 0016 1FD9     		bls	.L23
+ 326 0018 FE29     		cmp	r1, #254
+ 327 001a 24D1     		bne	.L17
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_MILLI, v);	    
+ 328              		.loc 1 160 0
+ 329 001c 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+ 330 001e 8DF80720 		strb	r2, [sp, #7]
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  data++;
+ 331              		.loc 1 161 0
+ 332 0022 2921     		movs	r1, #41
+ 333              	.LVL27:
+ 334 0024 3046     		mov	r0, r6
+ 335 0026 FFF7FEFF 		bl	u8x8_gpio_call
+ 336              	.LVL28:
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  break;
+ 337              		.loc 1 162 0
+ 338 002a 0235     		adds	r5, r5, #2
+ 339              	.LVL29:
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       default:
+ 340              		.loc 1 163 0
+ 341 002c ECE7     		b	.L18
+ 342              	.LVL30:
+ 343              	.L28:
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     {
+ 344              		.loc 1 142 0
+ 345 002e 1529     		cmp	r1, #21
+ 346 0030 19D3     		bcc	.L17
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8->cad_cb(u8x8, cmd, v, NULL);
+ 347              		.loc 1 146 0
+ 348 0032 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+ 349 0034 8DF80720 		strb	r2, [sp, #7]
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  data++;
+ 350              		.loc 1 147 0
+ 351 0038 F468     		ldr	r4, [r6, #12]
+ 352              	.LVL31:
+ 353 003a 0023     		movs	r3, #0
+ 354 003c 3046     		mov	r0, r6
+ 355 003e A047     		blx	r4
+ 356              	.LVL32:
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  break;
+ 357              		.loc 1 148 0
+ 358 0040 0235     		adds	r5, r5, #2
+ 359              	.LVL33:
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       case U8X8_MSG_CAD_SEND_DATA:
+ 360              		.loc 1 149 0
+ 361 0042 E1E7     		b	.L18
+ 362              	.LVL34:
+ 363              	.L20:
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_cad_SendData(u8x8, 1, &v);
+ 364              		.loc 1 151 0
+ 365 0044 6B78     		ldrb	r3, [r5, #1]	@ zero_extendqisi2
+ 366 0046 02AA     		add	r2, sp, #8
+ 367 0048 02F8013D 		strb	r3, [r2, #-1]!
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  data++;
+ 368              		.loc 1 152 0
+ 369 004c 0121     		movs	r1, #1
+ 370              	.LVL35:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 15
+
+
+ 371 004e 3046     		mov	r0, r6
+ 372 0050 FFF7FEFF 		bl	u8x8_cad_SendData
+ 373              	.LVL36:
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  break;
+ 374              		.loc 1 153 0
+ 375 0054 0235     		adds	r5, r5, #2
+ 376              	.LVL37:
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       case U8X8_MSG_CAD_START_TRANSFER:
+ 377              		.loc 1 154 0
+ 378 0056 D7E7     		b	.L18
+ 379              	.LVL38:
+ 380              	.L23:
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  break;
+ 381              		.loc 1 157 0
+ 382 0058 F568     		ldr	r5, [r6, #12]
+ 383 005a 0023     		movs	r3, #0
+ 384 005c 1A46     		mov	r2, r3
+ 385 005e 3046     		mov	r0, r6
+ 386 0060 A847     		blx	r5
+ 387              	.LVL39:
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     switch( cmd )
+ 388              		.loc 1 141 0
+ 389 0062 2546     		mov	r5, r4
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       case 0x0fe:
+ 390              		.loc 1 158 0
+ 391 0064 D0E7     		b	.L18
+ 392              	.LVL40:
+ 393              	.L17:
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 394              		.loc 1 168 0
+ 395 0066 02B0     		add	sp, sp, #8
+ 396              	.LCFI9:
+ 397              		.cfi_def_cfa_offset 16
+ 398              		@ sp needed
+ 399 0068 70BD     		pop	{r4, r5, r6, pc}
+ 400              		.cfi_endproc
+ 401              	.LFE6:
+ 403              		.section	.text.u8x8_cad_empty,"ax",%progbits
+ 404              		.align	1
+ 405              		.global	u8x8_cad_empty
+ 406              		.syntax unified
+ 407              		.thumb
+ 408              		.thumb_func
+ 409              		.fpu fpv4-sp-d16
+ 411              	u8x8_cad_empty:
+ 412              	.LFB7:
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 413              		.loc 1 172 0
+ 414              		.cfi_startproc
+ 415              		@ args = 0, pretend = 0, frame = 0
+ 416              		@ frame_needed = 0, uses_anonymous_args = 0
+ 417              	.LVL41:
+ 418 0000 10B5     		push	{r4, lr}
+ 419              	.LCFI10:
+ 420              		.cfi_def_cfa_offset 8
+ 421              		.cfi_offset 4, -8
+ 422              		.cfi_offset 14, -4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 16
+
+
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 423              		.loc 1 173 0
+ 424 0002 A1F11404 		sub	r4, r1, #20
+ 425 0006 052C     		cmp	r4, #5
+ 426 0008 11D8     		bhi	.L35
+ 427 000a DFE804F0 		tbb	[pc, r4]
+ 428              	.L32:
+ 429 000e 0D       		.byte	(.L31-.L32)/2
+ 430 000f 03       		.byte	(.L33-.L32)/2
+ 431 0010 08       		.byte	(.L34-.L32)/2
+ 432 0011 0D       		.byte	(.L31-.L32)/2
+ 433 0012 0D       		.byte	(.L31-.L32)/2
+ 434 0013 0D       		.byte	(.L31-.L32)/2
+ 435              		.p2align 1
+ 436              	.L33:
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 437              		.loc 1 176 0
+ 438 0014 1146     		mov	r1, r2
+ 439              	.LVL42:
+ 440 0016 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 441              	.LVL43:
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 442              		.loc 1 189 0
+ 443 001a 0120     		movs	r0, #1
+ 444              	.L30:
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 445              		.loc 1 190 0
+ 446 001c 10BD     		pop	{r4, pc}
+ 447              	.LVL44:
+ 448              	.L34:
+ 179:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 449              		.loc 1 179 0
+ 450 001e 1146     		mov	r1, r2
+ 451              	.LVL45:
+ 452 0020 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 453              	.LVL46:
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 454              		.loc 1 189 0
+ 455 0024 0120     		movs	r0, #1
+ 180:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 456              		.loc 1 180 0
+ 457 0026 F9E7     		b	.L30
+ 458              	.LVL47:
+ 459              	.L31:
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 460              		.loc 1 185 0
+ 461 0028 0469     		ldr	r4, [r0, #16]
+ 462 002a A047     		blx	r4
+ 463              	.LVL48:
+ 464 002c F6E7     		b	.L30
+ 465              	.LVL49:
+ 466              	.L35:
+ 187:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 467              		.loc 1 187 0
+ 468 002e 0020     		movs	r0, #0
+ 469              	.LVL50:
+ 470 0030 F4E7     		b	.L30
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 17
+
+
+ 471              		.cfi_endproc
+ 472              	.LFE7:
+ 474              		.section	.text.u8x8_cad_110,"ax",%progbits
+ 475              		.align	1
+ 476              		.global	u8x8_cad_110
+ 477              		.syntax unified
+ 478              		.thumb
+ 479              		.thumb_func
+ 480              		.fpu fpv4-sp-d16
+ 482              	u8x8_cad_110:
+ 483              	.LFB8:
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 484              		.loc 1 199 0
+ 485              		.cfi_startproc
+ 486              		@ args = 0, pretend = 0, frame = 0
+ 487              		@ frame_needed = 0, uses_anonymous_args = 0
+ 488              	.LVL51:
+ 489 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 490              	.LCFI11:
+ 491              		.cfi_def_cfa_offset 24
+ 492              		.cfi_offset 4, -24
+ 493              		.cfi_offset 5, -20
+ 494              		.cfi_offset 6, -16
+ 495              		.cfi_offset 7, -12
+ 496              		.cfi_offset 8, -8
+ 497              		.cfi_offset 14, -4
+ 498 0004 0446     		mov	r4, r0
+ 499 0006 0D46     		mov	r5, r1
+ 500 0008 1646     		mov	r6, r2
+ 501 000a 9846     		mov	r8, r3
+ 200:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 502              		.loc 1 200 0
+ 503 000c A1F11403 		sub	r3, r1, #20
+ 504              	.LVL52:
+ 505 0010 052B     		cmp	r3, #5
+ 506 0012 21D8     		bhi	.L44
+ 507 0014 DFE803F0 		tbb	[pc, r3]
+ 508              	.LVL53:
+ 509              	.L40:
+ 510 0018 18       		.byte	(.L39-.L40)/2
+ 511 0019 03       		.byte	(.L41-.L40)/2
+ 512 001a 0C       		.byte	(.L42-.L40)/2
+ 513 001b 15       		.byte	(.L43-.L40)/2
+ 514 001c 18       		.byte	(.L39-.L40)/2
+ 515 001d 18       		.byte	(.L39-.L40)/2
+ 516              		.p2align 1
+ 517              	.L41:
+ 203:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 518              		.loc 1 203 0
+ 519 001e 0121     		movs	r1, #1
+ 520              	.LVL54:
+ 521 0020 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 522              	.LVL55:
+ 204:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 523              		.loc 1 204 0
+ 524 0024 3146     		mov	r1, r6
+ 525 0026 2046     		mov	r0, r4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 18
+
+
+ 526 0028 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 527              	.LVL56:
+ 222:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 528              		.loc 1 222 0
+ 529 002c 0120     		movs	r0, #1
+ 205:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 530              		.loc 1 205 0
+ 531 002e 11E0     		b	.L38
+ 532              	.LVL57:
+ 533              	.L42:
+ 207:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 534              		.loc 1 207 0
+ 535 0030 0121     		movs	r1, #1
+ 536              	.LVL58:
+ 537 0032 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 538              	.LVL59:
+ 208:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 539              		.loc 1 208 0
+ 540 0036 3146     		mov	r1, r6
+ 541 0038 2046     		mov	r0, r4
+ 542 003a FFF7FEFF 		bl	u8x8_byte_SendByte
+ 543              	.LVL60:
+ 222:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 544              		.loc 1 222 0
+ 545 003e 0120     		movs	r0, #1
+ 209:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 546              		.loc 1 209 0
+ 547 0040 08E0     		b	.L38
+ 548              	.LVL61:
+ 549              	.L43:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SendBytes(u8x8, arg_int, arg_ptr);
+ 550              		.loc 1 211 0
+ 551 0042 0021     		movs	r1, #0
+ 552              	.LVL62:
+ 553 0044 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 554              	.LVL63:
+ 555              	.L39:
+ 218:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 556              		.loc 1 218 0
+ 557 0048 2769     		ldr	r7, [r4, #16]
+ 558 004a 4346     		mov	r3, r8
+ 559 004c 3246     		mov	r2, r6
+ 560 004e 2946     		mov	r1, r5
+ 561 0050 2046     		mov	r0, r4
+ 562 0052 B847     		blx	r7
+ 563              	.LVL64:
+ 564              	.L38:
+ 223:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 565              		.loc 1 223 0
+ 566 0054 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 567              	.LVL65:
+ 568              	.L44:
+ 220:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 569              		.loc 1 220 0
+ 570 0058 0020     		movs	r0, #0
+ 571              	.LVL66:
+ 572 005a FBE7     		b	.L38
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 19
+
+
+ 573              		.cfi_endproc
+ 574              	.LFE8:
+ 576              		.section	.text.u8x8_cad_100,"ax",%progbits
+ 577              		.align	1
+ 578              		.global	u8x8_cad_100
+ 579              		.syntax unified
+ 580              		.thumb
+ 581              		.thumb_func
+ 582              		.fpu fpv4-sp-d16
+ 584              	u8x8_cad_100:
+ 585              	.LFB9:
+ 232:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 586              		.loc 1 232 0
+ 587              		.cfi_startproc
+ 588              		@ args = 0, pretend = 0, frame = 0
+ 589              		@ frame_needed = 0, uses_anonymous_args = 0
+ 590              	.LVL67:
+ 591 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 592              	.LCFI12:
+ 593              		.cfi_def_cfa_offset 24
+ 594              		.cfi_offset 4, -24
+ 595              		.cfi_offset 5, -20
+ 596              		.cfi_offset 6, -16
+ 597              		.cfi_offset 7, -12
+ 598              		.cfi_offset 8, -8
+ 599              		.cfi_offset 14, -4
+ 600 0004 0446     		mov	r4, r0
+ 601 0006 0D46     		mov	r5, r1
+ 602 0008 1646     		mov	r6, r2
+ 603 000a 9846     		mov	r8, r3
+ 233:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 604              		.loc 1 233 0
+ 605 000c A1F11403 		sub	r3, r1, #20
+ 606              	.LVL68:
+ 607 0010 052B     		cmp	r3, #5
+ 608 0012 21D8     		bhi	.L53
+ 609 0014 DFE803F0 		tbb	[pc, r3]
+ 610              	.LVL69:
+ 611              	.L49:
+ 612 0018 18       		.byte	(.L48-.L49)/2
+ 613 0019 03       		.byte	(.L50-.L49)/2
+ 614 001a 0C       		.byte	(.L51-.L49)/2
+ 615 001b 15       		.byte	(.L52-.L49)/2
+ 616 001c 18       		.byte	(.L48-.L49)/2
+ 617 001d 18       		.byte	(.L48-.L49)/2
+ 618              		.p2align 1
+ 619              	.L50:
+ 236:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 620              		.loc 1 236 0
+ 621 001e 0121     		movs	r1, #1
+ 622              	.LVL70:
+ 623 0020 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 624              	.LVL71:
+ 237:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 625              		.loc 1 237 0
+ 626 0024 3146     		mov	r1, r6
+ 627 0026 2046     		mov	r0, r4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 20
+
+
+ 628 0028 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 629              	.LVL72:
+ 255:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 630              		.loc 1 255 0
+ 631 002c 0120     		movs	r0, #1
+ 238:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 632              		.loc 1 238 0
+ 633 002e 11E0     		b	.L47
+ 634              	.LVL73:
+ 635              	.L51:
+ 240:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 636              		.loc 1 240 0
+ 637 0030 0021     		movs	r1, #0
+ 638              	.LVL74:
+ 639 0032 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 640              	.LVL75:
+ 241:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 641              		.loc 1 241 0
+ 642 0036 3146     		mov	r1, r6
+ 643 0038 2046     		mov	r0, r4
+ 644 003a FFF7FEFF 		bl	u8x8_byte_SendByte
+ 645              	.LVL76:
+ 255:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 646              		.loc 1 255 0
+ 647 003e 0120     		movs	r0, #1
+ 242:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 648              		.loc 1 242 0
+ 649 0040 08E0     		b	.L47
+ 650              	.LVL77:
+ 651              	.L52:
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SendBytes(u8x8, arg_int, arg_ptr);
+ 652              		.loc 1 244 0
+ 653 0042 0021     		movs	r1, #0
+ 654              	.LVL78:
+ 655 0044 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 656              	.LVL79:
+ 657              	.L48:
+ 251:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 658              		.loc 1 251 0
+ 659 0048 2769     		ldr	r7, [r4, #16]
+ 660 004a 4346     		mov	r3, r8
+ 661 004c 3246     		mov	r2, r6
+ 662 004e 2946     		mov	r1, r5
+ 663 0050 2046     		mov	r0, r4
+ 664 0052 B847     		blx	r7
+ 665              	.LVL80:
+ 666              	.L47:
+ 256:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 667              		.loc 1 256 0
+ 668 0054 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 669              	.LVL81:
+ 670              	.L53:
+ 253:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 671              		.loc 1 253 0
+ 672 0058 0020     		movs	r0, #0
+ 673              	.LVL82:
+ 674 005a FBE7     		b	.L47
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 21
+
+
+ 675              		.cfi_endproc
+ 676              	.LFE9:
+ 678              		.section	.text.u8x8_cad_001,"ax",%progbits
+ 679              		.align	1
+ 680              		.global	u8x8_cad_001
+ 681              		.syntax unified
+ 682              		.thumb
+ 683              		.thumb_func
+ 684              		.fpu fpv4-sp-d16
+ 686              	u8x8_cad_001:
+ 687              	.LFB10:
+ 264:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 688              		.loc 1 264 0
+ 689              		.cfi_startproc
+ 690              		@ args = 0, pretend = 0, frame = 0
+ 691              		@ frame_needed = 0, uses_anonymous_args = 0
+ 692              	.LVL83:
+ 693 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 694              	.LCFI13:
+ 695              		.cfi_def_cfa_offset 24
+ 696              		.cfi_offset 4, -24
+ 697              		.cfi_offset 5, -20
+ 698              		.cfi_offset 6, -16
+ 699              		.cfi_offset 7, -12
+ 700              		.cfi_offset 8, -8
+ 701              		.cfi_offset 14, -4
+ 702 0004 0446     		mov	r4, r0
+ 703 0006 0D46     		mov	r5, r1
+ 704 0008 1646     		mov	r6, r2
+ 705 000a 9846     		mov	r8, r3
+ 265:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 706              		.loc 1 265 0
+ 707 000c A1F11403 		sub	r3, r1, #20
+ 708              	.LVL84:
+ 709 0010 052B     		cmp	r3, #5
+ 710 0012 21D8     		bhi	.L62
+ 711 0014 DFE803F0 		tbb	[pc, r3]
+ 712              	.LVL85:
+ 713              	.L58:
+ 714 0018 18       		.byte	(.L57-.L58)/2
+ 715 0019 03       		.byte	(.L59-.L58)/2
+ 716 001a 0C       		.byte	(.L60-.L58)/2
+ 717 001b 15       		.byte	(.L61-.L58)/2
+ 718 001c 18       		.byte	(.L57-.L58)/2
+ 719 001d 18       		.byte	(.L57-.L58)/2
+ 720              		.p2align 1
+ 721              	.L59:
+ 268:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 722              		.loc 1 268 0
+ 723 001e 0021     		movs	r1, #0
+ 724              	.LVL86:
+ 725 0020 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 726              	.LVL87:
+ 269:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 727              		.loc 1 269 0
+ 728 0024 3146     		mov	r1, r6
+ 729 0026 2046     		mov	r0, r4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 22
+
+
+ 730 0028 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 731              	.LVL88:
+ 287:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 732              		.loc 1 287 0
+ 733 002c 0120     		movs	r0, #1
+ 270:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 734              		.loc 1 270 0
+ 735 002e 11E0     		b	.L56
+ 736              	.LVL89:
+ 737              	.L60:
+ 272:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 738              		.loc 1 272 0
+ 739 0030 0021     		movs	r1, #0
+ 740              	.LVL90:
+ 741 0032 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 742              	.LVL91:
+ 273:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 743              		.loc 1 273 0
+ 744 0036 3146     		mov	r1, r6
+ 745 0038 2046     		mov	r0, r4
+ 746 003a FFF7FEFF 		bl	u8x8_byte_SendByte
+ 747              	.LVL92:
+ 287:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 748              		.loc 1 287 0
+ 749 003e 0120     		movs	r0, #1
+ 274:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 750              		.loc 1 274 0
+ 751 0040 08E0     		b	.L56
+ 752              	.LVL93:
+ 753              	.L61:
+ 276:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SendBytes(u8x8, arg_int, arg_ptr);
+ 754              		.loc 1 276 0
+ 755 0042 0121     		movs	r1, #1
+ 756              	.LVL94:
+ 757 0044 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 758              	.LVL95:
+ 759              	.L57:
+ 283:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 760              		.loc 1 283 0
+ 761 0048 2769     		ldr	r7, [r4, #16]
+ 762 004a 4346     		mov	r3, r8
+ 763 004c 3246     		mov	r2, r6
+ 764 004e 2946     		mov	r1, r5
+ 765 0050 2046     		mov	r0, r4
+ 766 0052 B847     		blx	r7
+ 767              	.LVL96:
+ 768              	.L56:
+ 288:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 769              		.loc 1 288 0
+ 770 0054 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 771              	.LVL97:
+ 772              	.L62:
+ 285:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 773              		.loc 1 285 0
+ 774 0058 0020     		movs	r0, #0
+ 775              	.LVL98:
+ 776 005a FBE7     		b	.L56
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 23
+
+
+ 777              		.cfi_endproc
+ 778              	.LFE10:
+ 780              		.section	.text.u8x8_cad_011,"ax",%progbits
+ 781              		.align	1
+ 782              		.global	u8x8_cad_011
+ 783              		.syntax unified
+ 784              		.thumb
+ 785              		.thumb_func
+ 786              		.fpu fpv4-sp-d16
+ 788              	u8x8_cad_011:
+ 789              	.LFB11:
+ 296:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 790              		.loc 1 296 0
+ 791              		.cfi_startproc
+ 792              		@ args = 0, pretend = 0, frame = 0
+ 793              		@ frame_needed = 0, uses_anonymous_args = 0
+ 794              	.LVL99:
+ 795 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 796              	.LCFI14:
+ 797              		.cfi_def_cfa_offset 24
+ 798              		.cfi_offset 4, -24
+ 799              		.cfi_offset 5, -20
+ 800              		.cfi_offset 6, -16
+ 801              		.cfi_offset 7, -12
+ 802              		.cfi_offset 8, -8
+ 803              		.cfi_offset 14, -4
+ 804 0004 0446     		mov	r4, r0
+ 805 0006 0D46     		mov	r5, r1
+ 806 0008 1646     		mov	r6, r2
+ 807 000a 9846     		mov	r8, r3
+ 297:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 808              		.loc 1 297 0
+ 809 000c A1F11403 		sub	r3, r1, #20
+ 810              	.LVL100:
+ 811 0010 052B     		cmp	r3, #5
+ 812 0012 21D8     		bhi	.L71
+ 813 0014 DFE803F0 		tbb	[pc, r3]
+ 814              	.LVL101:
+ 815              	.L67:
+ 816 0018 18       		.byte	(.L66-.L67)/2
+ 817 0019 03       		.byte	(.L68-.L67)/2
+ 818 001a 0C       		.byte	(.L69-.L67)/2
+ 819 001b 15       		.byte	(.L70-.L67)/2
+ 820 001c 18       		.byte	(.L66-.L67)/2
+ 821 001d 18       		.byte	(.L66-.L67)/2
+ 822              		.p2align 1
+ 823              	.L68:
+ 300:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 824              		.loc 1 300 0
+ 825 001e 0021     		movs	r1, #0
+ 826              	.LVL102:
+ 827 0020 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 828              	.LVL103:
+ 301:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 829              		.loc 1 301 0
+ 830 0024 3146     		mov	r1, r6
+ 831 0026 2046     		mov	r0, r4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 24
+
+
+ 832 0028 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 833              	.LVL104:
+ 319:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 834              		.loc 1 319 0
+ 835 002c 0120     		movs	r0, #1
+ 302:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 836              		.loc 1 302 0
+ 837 002e 11E0     		b	.L65
+ 838              	.LVL105:
+ 839              	.L69:
+ 304:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 840              		.loc 1 304 0
+ 841 0030 0121     		movs	r1, #1
+ 842              	.LVL106:
+ 843 0032 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 844              	.LVL107:
+ 305:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 845              		.loc 1 305 0
+ 846 0036 3146     		mov	r1, r6
+ 847 0038 2046     		mov	r0, r4
+ 848 003a FFF7FEFF 		bl	u8x8_byte_SendByte
+ 849              	.LVL108:
+ 319:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 850              		.loc 1 319 0
+ 851 003e 0120     		movs	r0, #1
+ 306:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 852              		.loc 1 306 0
+ 853 0040 08E0     		b	.L65
+ 854              	.LVL109:
+ 855              	.L70:
+ 308:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SendBytes(u8x8, arg_int, arg_ptr);
+ 856              		.loc 1 308 0
+ 857 0042 0121     		movs	r1, #1
+ 858              	.LVL110:
+ 859 0044 FFF7FEFF 		bl	u8x8_byte_SetDC
+ 860              	.LVL111:
+ 861              	.L66:
+ 315:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 862              		.loc 1 315 0
+ 863 0048 2769     		ldr	r7, [r4, #16]
+ 864 004a 4346     		mov	r3, r8
+ 865 004c 3246     		mov	r2, r6
+ 866 004e 2946     		mov	r1, r5
+ 867 0050 2046     		mov	r0, r4
+ 868 0052 B847     		blx	r7
+ 869              	.LVL112:
+ 870              	.L65:
+ 320:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 871              		.loc 1 320 0
+ 872 0054 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 873              	.LVL113:
+ 874              	.L71:
+ 317:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 875              		.loc 1 317 0
+ 876 0058 0020     		movs	r0, #0
+ 877              	.LVL114:
+ 878 005a FBE7     		b	.L65
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 25
+
+
+ 879              		.cfi_endproc
+ 880              	.LFE11:
+ 882              		.section	.text.u8x8_cad_st7920_spi,"ax",%progbits
+ 883              		.align	1
+ 884              		.global	u8x8_cad_st7920_spi
+ 885              		.syntax unified
+ 886              		.thumb
+ 887              		.thumb_func
+ 888              		.fpu fpv4-sp-d16
+ 890              	u8x8_cad_st7920_spi:
+ 891              	.LFB12:
+ 325:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t *data;
+ 892              		.loc 1 325 0
+ 893              		.cfi_startproc
+ 894              		@ args = 0, pretend = 0, frame = 0
+ 895              		@ frame_needed = 0, uses_anonymous_args = 0
+ 896              	.LVL115:
+ 897 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 898              	.LCFI15:
+ 899              		.cfi_def_cfa_offset 24
+ 900              		.cfi_offset 3, -24
+ 901              		.cfi_offset 4, -20
+ 902              		.cfi_offset 5, -16
+ 903              		.cfi_offset 6, -12
+ 904              		.cfi_offset 7, -8
+ 905              		.cfi_offset 14, -4
+ 906 0002 0646     		mov	r6, r0
+ 907 0004 1546     		mov	r5, r2
+ 908 0006 1F46     		mov	r7, r3
+ 332:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 909              		.loc 1 332 0
+ 910 0008 A1F11403 		sub	r3, r1, #20
+ 911              	.LVL116:
+ 912 000c 052B     		cmp	r3, #5
+ 913 000e 74D8     		bhi	.L84
+ 914 0010 DFE803F0 		tbb	[pc, r3]
+ 915              	.LVL117:
+ 916              	.L76:
+ 917 0014 6E       		.byte	(.L75-.L76)/2
+ 918 0015 03       		.byte	(.L77-.L76)/2
+ 919 0016 22       		.byte	(.L78-.L76)/2
+ 920 0017 32       		.byte	(.L79-.L76)/2
+ 921 0018 6E       		.byte	(.L75-.L76)/2
+ 922 0019 6E       		.byte	(.L75-.L76)/2
+ 923              		.p2align 1
+ 924              	.L77:
+ 335:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, 1);
+ 925              		.loc 1 335 0
+ 926 001a F821     		movs	r1, #248
+ 927              	.LVL118:
+ 928 001c FFF7FEFF 		bl	u8x8_byte_SendByte
+ 929              	.LVL119:
+ 336:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int & 0x0f0);
+ 930              		.loc 1 336 0
+ 931 0020 0122     		movs	r2, #1
+ 932 0022 2C21     		movs	r1, #44
+ 933 0024 3046     		mov	r0, r6
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 26
+
+
+ 934 0026 FFF7FEFF 		bl	u8x8_gpio_call
+ 935              	.LVL120:
+ 337:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, 1);
+ 936              		.loc 1 337 0
+ 937 002a 05F0F001 		and	r1, r5, #240
+ 938 002e 3046     		mov	r0, r6
+ 939 0030 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 940              	.LVL121:
+ 338:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int << 4);
+ 941              		.loc 1 338 0
+ 942 0034 0122     		movs	r2, #1
+ 943 0036 2C21     		movs	r1, #44
+ 944 0038 3046     		mov	r0, r6
+ 945 003a FFF7FEFF 		bl	u8x8_gpio_call
+ 946              	.LVL122:
+ 339:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, 1);
+ 947              		.loc 1 339 0
+ 948 003e 2901     		lsls	r1, r5, #4
+ 949 0040 01F0F001 		and	r1, r1, #240
+ 950 0044 3046     		mov	r0, r6
+ 951 0046 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 952              	.LVL123:
+ 340:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 953              		.loc 1 340 0
+ 954 004a 0122     		movs	r2, #1
+ 955 004c 2C21     		movs	r1, #44
+ 956 004e 3046     		mov	r0, r6
+ 957 0050 FFF7FEFF 		bl	u8x8_gpio_call
+ 958              	.LVL124:
+ 391:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 959              		.loc 1 391 0
+ 960 0054 0120     		movs	r0, #1
+ 961              	.LVL125:
+ 962              	.L74:
+ 392:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 963              		.loc 1 392 0
+ 964 0056 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 965              	.LVL126:
+ 966              	.L78:
+ 343:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int & 0x0f0);
+ 967              		.loc 1 343 0
+ 968 0058 F821     		movs	r1, #248
+ 969              	.LVL127:
+ 970 005a FFF7FEFF 		bl	u8x8_byte_SendByte
+ 971              	.LVL128:
+ 344:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int << 4);
+ 972              		.loc 1 344 0
+ 973 005e 05F0F001 		and	r1, r5, #240
+ 974 0062 3046     		mov	r0, r6
+ 975 0064 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 976              	.LVL129:
+ 345:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 977              		.loc 1 345 0
+ 978 0068 2901     		lsls	r1, r5, #4
+ 979 006a 01F0F001 		and	r1, r1, #240
+ 980 006e 3046     		mov	r0, r6
+ 981 0070 FFF7FEFF 		bl	u8x8_byte_SendByte
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 27
+
+
+ 982              	.LVL130:
+ 391:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 983              		.loc 1 391 0
+ 984 0074 0120     		movs	r0, #1
+ 346:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 985              		.loc 1 346 0
+ 986 0076 EEE7     		b	.L74
+ 987              	.LVL131:
+ 988              	.L79:
+ 349:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_NANO, 1);
+ 989              		.loc 1 349 0
+ 990 0078 FA21     		movs	r1, #250
+ 991              	.LVL132:
+ 992 007a FFF7FEFF 		bl	u8x8_byte_SendByte
+ 993              	.LVL133:
+ 350:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 994              		.loc 1 350 0
+ 995 007e 0122     		movs	r2, #1
+ 996 0080 2C21     		movs	r1, #44
+ 997 0082 3046     		mov	r0, r6
+ 998 0084 FFF7FEFF 		bl	u8x8_gpio_call
+ 999              	.LVL134:
+ 357:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 1000              		.loc 1 357 0
+ 1001 0088 17E0     		b	.L80
+ 1002              	.LVL135:
+ 1003              	.L85:
+ 360:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	do
+ 1004              		.loc 1 360 0
+ 1005 008a 1D48     		ldr	r0, .L87
+ 359:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	ptr = buf;
+ 1006              		.loc 1 359 0
+ 1007 008c 0823     		movs	r3, #8
+ 1008              	.L81:
+ 1009              	.LVL136:
+ 363:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  *ptr++= b & 0x0f0;
+ 1010              		.loc 1 363 0 discriminator 1
+ 1011 008e 7C1C     		adds	r4, r7, #1
+ 1012              	.LVL137:
+ 1013 0090 3A78     		ldrb	r2, [r7]	@ zero_extendqisi2
+ 1014              	.LVL138:
+ 364:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  b <<= 4;
+ 1015              		.loc 1 364 0 discriminator 1
+ 1016 0092 02F0F007 		and	r7, r2, #240
+ 1017 0096 0146     		mov	r1, r0
+ 1018 0098 01F8027B 		strb	r7, [r1], #2
+ 365:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  *ptr++= b;
+ 1019              		.loc 1 365 0 discriminator 1
+ 1020 009c 1201     		lsls	r2, r2, #4
+ 1021              	.LVL139:
+ 366:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  i--;
+ 1022              		.loc 1 366 0 discriminator 1
+ 1023 009e 4270     		strb	r2, [r0, #1]
+ 367:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	} while( i > 0 );
+ 1024              		.loc 1 367 0 discriminator 1
+ 1025 00a0 013B     		subs	r3, r3, #1
+ 1026              	.LVL140:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 28
+
+
+ 363:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  *ptr++= b & 0x0f0;
+ 1027              		.loc 1 363 0 discriminator 1
+ 1028 00a2 2746     		mov	r7, r4
+ 366:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  i--;
+ 1029              		.loc 1 366 0 discriminator 1
+ 1030 00a4 0846     		mov	r0, r1
+ 368:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int -= 8;
+ 1031              		.loc 1 368 0 discriminator 1
+ 1032 00a6 13F0FF03 		ands	r3, r3, #255
+ 1033              	.LVL141:
+ 1034 00aa F0D1     		bne	.L81
+ 369:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_SendBytes(u8x8, 16, buf); 
+ 1035              		.loc 1 369 0
+ 1036 00ac 083D     		subs	r5, r5, #8
+ 1037              	.LVL142:
+ 1038 00ae EDB2     		uxtb	r5, r5
+ 1039              	.LVL143:
+ 370:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 1040              		.loc 1 370 0
+ 1041 00b0 134A     		ldr	r2, .L87
+ 1042              	.LVL144:
+ 1043 00b2 1021     		movs	r1, #16
+ 1044              	.LVL145:
+ 1045 00b4 3046     		mov	r0, r6
+ 1046              	.LVL146:
+ 1047 00b6 FFF7FEFF 		bl	u8x8_byte_SendBytes
+ 1048              	.LVL147:
+ 1049              	.L80:
+ 357:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 1050              		.loc 1 357 0
+ 1051 00ba 072D     		cmp	r5, #7
+ 1052 00bc E5D8     		bhi	.L85
+ 1053 00be 0EE0     		b	.L82
+ 1054              	.L83:
+ 376:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_SendByte(u8x8, b & 0x0f0);
+ 1055              		.loc 1 376 0
+ 1056 00c0 17F8014B 		ldrb	r4, [r7], #1	@ zero_extendqisi2
+ 1057              	.LVL148:
+ 377:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_SendByte(u8x8, b << 4);
+ 1058              		.loc 1 377 0
+ 1059 00c4 04F0F001 		and	r1, r4, #240
+ 1060 00c8 3046     		mov	r0, r6
+ 1061 00ca FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1062              	.LVL149:
+ 378:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	data++;
+ 1063              		.loc 1 378 0
+ 1064 00ce 2101     		lsls	r1, r4, #4
+ 1065 00d0 01F0F001 		and	r1, r1, #240
+ 1066 00d4 3046     		mov	r0, r6
+ 1067 00d6 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1068              	.LVL150:
+ 380:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 1069              		.loc 1 380 0
+ 1070 00da 013D     		subs	r5, r5, #1
+ 1071              	.LVL151:
+ 1072 00dc EDB2     		uxtb	r5, r5
+ 1073              	.LVL152:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 29
+
+
+ 1074              	.L82:
+ 374:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 1075              		.loc 1 374 0
+ 1076 00de 002D     		cmp	r5, #0
+ 1077 00e0 EED1     		bne	.L83
+ 382:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1078              		.loc 1 382 0
+ 1079 00e2 0122     		movs	r2, #1
+ 1080 00e4 2C21     		movs	r1, #44
+ 1081 00e6 3046     		mov	r0, r6
+ 1082 00e8 FFF7FEFF 		bl	u8x8_gpio_call
+ 1083              	.LVL153:
+ 391:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1084              		.loc 1 391 0
+ 1085 00ec 0120     		movs	r0, #1
+ 383:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 1086              		.loc 1 383 0
+ 1087 00ee B2E7     		b	.L74
+ 1088              	.LVL154:
+ 1089              	.L75:
+ 387:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 1090              		.loc 1 387 0
+ 1091 00f0 0469     		ldr	r4, [r0, #16]
+ 1092 00f2 3B46     		mov	r3, r7
+ 1093 00f4 2A46     		mov	r2, r5
+ 1094 00f6 A047     		blx	r4
+ 1095              	.LVL155:
+ 1096 00f8 ADE7     		b	.L74
+ 1097              	.LVL156:
+ 1098              	.L84:
+ 389:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 1099              		.loc 1 389 0
+ 1100 00fa 0020     		movs	r0, #0
+ 1101              	.LVL157:
+ 1102 00fc ABE7     		b	.L74
+ 1103              	.L88:
+ 1104 00fe 00BF     		.align	2
+ 1105              	.L87:
+ 1106 0100 00000000 		.word	.LANCHOR0
+ 1107              		.cfi_endproc
+ 1108              	.LFE12:
+ 1110              		.section	.text.u8x8_cad_ssd13xx_i2c,"ax",%progbits
+ 1111              		.align	1
+ 1112              		.global	u8x8_cad_ssd13xx_i2c
+ 1113              		.syntax unified
+ 1114              		.thumb
+ 1115              		.thumb_func
+ 1116              		.fpu fpv4-sp-d16
+ 1118              	u8x8_cad_ssd13xx_i2c:
+ 1119              	.LFB14:
+ 409:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 410:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_ssd13xx_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 411:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 1120              		.loc 1 411 0
+ 1121              		.cfi_startproc
+ 1122              		@ args = 0, pretend = 0, frame = 0
+ 1123              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 30
+
+
+ 1124              	.LVL158:
+ 1125 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1126              	.LCFI16:
+ 1127              		.cfi_def_cfa_offset 24
+ 1128              		.cfi_offset 3, -24
+ 1129              		.cfi_offset 4, -20
+ 1130              		.cfi_offset 5, -16
+ 1131              		.cfi_offset 6, -12
+ 1132              		.cfi_offset 7, -8
+ 1133              		.cfi_offset 14, -4
+ 1134 0002 0646     		mov	r6, r0
+ 1135 0004 1446     		mov	r4, r2
+ 1136 0006 1D46     		mov	r5, r3
+ 412:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t *p;
+ 413:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 1137              		.loc 1 413 0
+ 1138 0008 A1F11403 		sub	r3, r1, #20
+ 1139              	.LVL159:
+ 1140 000c 052B     		cmp	r3, #5
+ 1141 000e 04D8     		bhi	.L90
+ 1142 0010 DFE803F0 		tbb	[pc, r3]
+ 1143              	.LVL160:
+ 1144              	.L92:
+ 1145 0014 25       		.byte	(.L91-.L92)/2
+ 1146 0015 05       		.byte	(.L93-.L92)/2
+ 1147 0016 05       		.byte	(.L93-.L92)/2
+ 1148 0017 1C       		.byte	(.L94-.L92)/2
+ 1149 0018 33       		.byte	(.L98-.L92)/2
+ 1150 0019 33       		.byte	(.L98-.L92)/2
+ 1151              		.p2align 1
+ 1152              	.L90:
+ 414:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 415:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+ 416:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 417:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* 7 Nov 2016: Can this be improved?  */
+ 418:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SetDC(u8x8, 0);
+ 419:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_StartTransfer(u8x8);
+ 420:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SendByte(u8x8, u8x8_GetI2CAddress(u8x8));
+ 421:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, 0x000);
+ 422:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 423:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_EndTransfer(u8x8);      
+ 424:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 425:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 426:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SetDC(u8x8, 1);
+ 427:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     
+ 428:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* the FeatherWing OLED with the 32u4 transfer of long byte */
+ 429:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* streams was not possible. This is broken down to */
+ 430:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* smaller streams, 32 seems to be the limit... */
+ 431:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* I guess this is related to the size of the Wire buffers in Arduino */
+ 432:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* Unfortunately, this can not be handled in the byte level drivers, */
+ 433:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* so this is done here. Even further, only 24 bytes will be sent, */
+ 434:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* because there will be another byte (DC) required during the transfer */
+ 435:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       p = arg_ptr;
+ 436:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****        while( arg_int > 24 )
+ 437:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 438:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_i2c_data_transfer(u8x8, 24, p);
+ 439:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int-=24;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 31
+
+
+ 440:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	p+=24;
+ 441:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 442:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_i2c_data_transfer(u8x8, arg_int, p);
+ 443:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 444:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 445:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* apply default i2c adr if required so that the start transfer msg can use this */
+ 446:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       if ( u8x8->i2c_address == 255 )
+ 447:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8->i2c_address = 0x078;
+ 448:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 449:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 450:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 451:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* cad transfer commands are ignored */
+ 452:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 453:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 454:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return 0;
+ 1153              		.loc 1 454 0
+ 1154 001a 0020     		movs	r0, #0
+ 1155              	.LVL161:
+ 1156 001c 2EE0     		b	.L95
+ 1157              	.LVL162:
+ 1158              	.L93:
+ 419:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SendByte(u8x8, u8x8_GetI2CAddress(u8x8));
+ 1159              		.loc 1 419 0
+ 1160 001e FFF7FEFF 		bl	u8x8_byte_StartTransfer
+ 1161              	.LVL163:
+ 421:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 1162              		.loc 1 421 0
+ 1163 0022 0021     		movs	r1, #0
+ 1164 0024 3046     		mov	r0, r6
+ 1165 0026 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1166              	.LVL164:
+ 422:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_EndTransfer(u8x8);      
+ 1167              		.loc 1 422 0
+ 1168 002a 2146     		mov	r1, r4
+ 1169 002c 3046     		mov	r0, r6
+ 1170 002e FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1171              	.LVL165:
+ 423:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1172              		.loc 1 423 0
+ 1173 0032 3046     		mov	r0, r6
+ 1174 0034 FFF7FEFF 		bl	u8x8_byte_EndTransfer
+ 1175              	.LVL166:
+ 455:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 456:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ 1176              		.loc 1 456 0
+ 1177 0038 0120     		movs	r0, #1
+ 424:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 1178              		.loc 1 424 0
+ 1179 003a 1FE0     		b	.L95
+ 1180              	.LVL167:
+ 1181              	.L96:
+ 438:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int-=24;
+ 1182              		.loc 1 438 0
+ 1183 003c 2A46     		mov	r2, r5
+ 1184 003e 1821     		movs	r1, #24
+ 1185 0040 3046     		mov	r0, r6
+ 1186 0042 FFF7FEFF 		bl	u8x8_i2c_data_transfer
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 32
+
+
+ 1187              	.LVL168:
+ 439:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	p+=24;
+ 1188              		.loc 1 439 0
+ 1189 0046 183C     		subs	r4, r4, #24
+ 1190              	.LVL169:
+ 1191 0048 E4B2     		uxtb	r4, r4
+ 1192              	.LVL170:
+ 440:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 1193              		.loc 1 440 0
+ 1194 004a 1835     		adds	r5, r5, #24
+ 1195              	.LVL171:
+ 1196              	.L94:
+ 436:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 1197              		.loc 1 436 0
+ 1198 004c 182C     		cmp	r4, #24
+ 1199 004e F5D8     		bhi	.L96
+ 442:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1200              		.loc 1 442 0
+ 1201 0050 2A46     		mov	r2, r5
+ 1202 0052 2146     		mov	r1, r4
+ 1203 0054 3046     		mov	r0, r6
+ 1204 0056 FFF7FEFF 		bl	u8x8_i2c_data_transfer
+ 1205              	.LVL172:
+ 1206              		.loc 1 456 0
+ 1207 005a 0120     		movs	r0, #1
+ 443:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 1208              		.loc 1 443 0
+ 1209 005c 0EE0     		b	.L95
+ 1210              	.LVL173:
+ 1211              	.L91:
+ 446:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8->i2c_address = 0x078;
+ 1212              		.loc 1 446 0
+ 1213 005e 90F82030 		ldrb	r3, [r0, #32]	@ zero_extendqisi2
+ 1214 0062 FF2B     		cmp	r3, #255
+ 1215 0064 05D0     		beq	.L100
+ 1216              	.L97:
+ 448:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 1217              		.loc 1 448 0
+ 1218 0066 3769     		ldr	r7, [r6, #16]
+ 1219 0068 2B46     		mov	r3, r5
+ 1220 006a 2246     		mov	r2, r4
+ 1221 006c 3046     		mov	r0, r6
+ 1222              	.LVL174:
+ 1223 006e B847     		blx	r7
+ 1224              	.LVL175:
+ 1225 0070 04E0     		b	.L95
+ 1226              	.LVL176:
+ 1227              	.L100:
+ 447:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 1228              		.loc 1 447 0
+ 1229 0072 7823     		movs	r3, #120
+ 1230 0074 80F82030 		strb	r3, [r0, #32]
+ 1231 0078 F5E7     		b	.L97
+ 1232              	.L98:
+ 1233              		.loc 1 456 0
+ 1234 007a 0120     		movs	r0, #1
+ 1235              	.LVL177:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 33
+
+
+ 1236              	.L95:
+ 457:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1237              		.loc 1 457 0
+ 1238 007c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1239              		.cfi_endproc
+ 1240              	.LFE14:
+ 1242              		.section	.text.u8x8_cad_st75256_i2c,"ax",%progbits
+ 1243              		.align	1
+ 1244              		.global	u8x8_cad_st75256_i2c
+ 1245              		.syntax unified
+ 1246              		.thumb
+ 1247              		.thumb_func
+ 1248              		.fpu fpv4-sp-d16
+ 1250              	u8x8_cad_st75256_i2c:
+ 1251              	.LFB15:
+ 458:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 459:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* the st75256 i2c driver is a copy of the ssd13xx driver, but with arg=1 */
+ 460:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* modified from cad001 (ssd13xx) to cad011 */
+ 461:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_st75256_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 462:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 1252              		.loc 1 462 0
+ 1253              		.cfi_startproc
+ 1254              		@ args = 0, pretend = 0, frame = 0
+ 1255              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1256              	.LVL178:
+ 1257 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1258              	.LCFI17:
+ 1259              		.cfi_def_cfa_offset 24
+ 1260              		.cfi_offset 3, -24
+ 1261              		.cfi_offset 4, -20
+ 1262              		.cfi_offset 5, -16
+ 1263              		.cfi_offset 6, -12
+ 1264              		.cfi_offset 7, -8
+ 1265              		.cfi_offset 14, -4
+ 1266 0002 0646     		mov	r6, r0
+ 1267 0004 1446     		mov	r4, r2
+ 1268 0006 1D46     		mov	r5, r3
+ 463:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t *p;
+ 464:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 1269              		.loc 1 464 0
+ 1270 0008 A1F11403 		sub	r3, r1, #20
+ 1271              	.LVL179:
+ 1272 000c 052B     		cmp	r3, #5
+ 1273 000e 04D8     		bhi	.L102
+ 1274 0010 DFE803F0 		tbb	[pc, r3]
+ 1275              	.LVL180:
+ 1276              	.L104:
+ 1277 0014 34       		.byte	(.L103-.L104)/2
+ 1278 0015 05       		.byte	(.L105-.L104)/2
+ 1279 0016 14       		.byte	(.L106-.L104)/2
+ 1280 0017 2B       		.byte	(.L107-.L104)/2
+ 1281 0018 42       		.byte	(.L111-.L104)/2
+ 1282 0019 42       		.byte	(.L111-.L104)/2
+ 1283              		.p2align 1
+ 1284              	.L102:
+ 465:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 466:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 34
+
+
+ 467:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_StartTransfer(u8x8);
+ 468:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, 0x000);
+ 469:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 470:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_EndTransfer(u8x8);      
+ 471:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 472:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 473:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_StartTransfer(u8x8);
+ 474:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, 0x040);
+ 475:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 476:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_EndTransfer(u8x8);
+ 477:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 478:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 479:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* see ssd13xx driver */
+ 480:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       p = arg_ptr;
+ 481:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****        while( arg_int > 24 )
+ 482:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 483:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_i2c_data_transfer(u8x8, 24, p);
+ 484:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int-=24;
+ 485:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	p+=24;
+ 486:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 487:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_i2c_data_transfer(u8x8, arg_int, p);
+ 488:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 489:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 490:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* apply default i2c adr if required so that the start transfer msg can use this */
+ 491:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       if ( u8x8->i2c_address == 255 )
+ 492:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8->i2c_address = 0x078;	/* ST75256, often this is 0x07e */
+ 493:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 494:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 495:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 496:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* cad transfer commands are ignored */
+ 497:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 498:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 499:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return 0;
+ 1285              		.loc 1 499 0
+ 1286 001a 0020     		movs	r0, #0
+ 1287              	.LVL181:
+ 1288 001c 3DE0     		b	.L108
+ 1289              	.LVL182:
+ 1290              	.L105:
+ 467:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, 0x000);
+ 1291              		.loc 1 467 0
+ 1292 001e FFF7FEFF 		bl	u8x8_byte_StartTransfer
+ 1293              	.LVL183:
+ 468:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 1294              		.loc 1 468 0
+ 1295 0022 0021     		movs	r1, #0
+ 1296 0024 3046     		mov	r0, r6
+ 1297 0026 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1298              	.LVL184:
+ 469:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_EndTransfer(u8x8);      
+ 1299              		.loc 1 469 0
+ 1300 002a 2146     		mov	r1, r4
+ 1301 002c 3046     		mov	r0, r6
+ 1302 002e FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1303              	.LVL185:
+ 470:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1304              		.loc 1 470 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 35
+
+
+ 1305 0032 3046     		mov	r0, r6
+ 1306 0034 FFF7FEFF 		bl	u8x8_byte_EndTransfer
+ 1307              	.LVL186:
+ 500:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 501:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ 1308              		.loc 1 501 0
+ 1309 0038 0120     		movs	r0, #1
+ 471:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 1310              		.loc 1 471 0
+ 1311 003a 2EE0     		b	.L108
+ 1312              	.LVL187:
+ 1313              	.L106:
+ 473:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, 0x040);
+ 1314              		.loc 1 473 0
+ 1315 003c FFF7FEFF 		bl	u8x8_byte_StartTransfer
+ 1316              	.LVL188:
+ 474:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 1317              		.loc 1 474 0
+ 1318 0040 4021     		movs	r1, #64
+ 1319 0042 3046     		mov	r0, r6
+ 1320 0044 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1321              	.LVL189:
+ 475:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_EndTransfer(u8x8);
+ 1322              		.loc 1 475 0
+ 1323 0048 2146     		mov	r1, r4
+ 1324 004a 3046     		mov	r0, r6
+ 1325 004c FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1326              	.LVL190:
+ 476:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1327              		.loc 1 476 0
+ 1328 0050 3046     		mov	r0, r6
+ 1329 0052 FFF7FEFF 		bl	u8x8_byte_EndTransfer
+ 1330              	.LVL191:
+ 1331              		.loc 1 501 0
+ 1332 0056 0120     		movs	r0, #1
+ 477:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 1333              		.loc 1 477 0
+ 1334 0058 1FE0     		b	.L108
+ 1335              	.LVL192:
+ 1336              	.L109:
+ 483:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int-=24;
+ 1337              		.loc 1 483 0
+ 1338 005a 2A46     		mov	r2, r5
+ 1339 005c 1821     		movs	r1, #24
+ 1340 005e 3046     		mov	r0, r6
+ 1341 0060 FFF7FEFF 		bl	u8x8_i2c_data_transfer
+ 1342              	.LVL193:
+ 484:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	p+=24;
+ 1343              		.loc 1 484 0
+ 1344 0064 183C     		subs	r4, r4, #24
+ 1345              	.LVL194:
+ 1346 0066 E4B2     		uxtb	r4, r4
+ 1347              	.LVL195:
+ 485:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 1348              		.loc 1 485 0
+ 1349 0068 1835     		adds	r5, r5, #24
+ 1350              	.LVL196:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 36
+
+
+ 1351              	.L107:
+ 481:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 1352              		.loc 1 481 0
+ 1353 006a 182C     		cmp	r4, #24
+ 1354 006c F5D8     		bhi	.L109
+ 487:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1355              		.loc 1 487 0
+ 1356 006e 2A46     		mov	r2, r5
+ 1357 0070 2146     		mov	r1, r4
+ 1358 0072 3046     		mov	r0, r6
+ 1359 0074 FFF7FEFF 		bl	u8x8_i2c_data_transfer
+ 1360              	.LVL197:
+ 1361              		.loc 1 501 0
+ 1362 0078 0120     		movs	r0, #1
+ 488:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 1363              		.loc 1 488 0
+ 1364 007a 0EE0     		b	.L108
+ 1365              	.LVL198:
+ 1366              	.L103:
+ 491:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8->i2c_address = 0x078;	/* ST75256, often this is 0x07e */
+ 1367              		.loc 1 491 0
+ 1368 007c 90F82030 		ldrb	r3, [r0, #32]	@ zero_extendqisi2
+ 1369 0080 FF2B     		cmp	r3, #255
+ 1370 0082 05D0     		beq	.L113
+ 1371              	.L110:
+ 493:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 1372              		.loc 1 493 0
+ 1373 0084 3769     		ldr	r7, [r6, #16]
+ 1374 0086 2B46     		mov	r3, r5
+ 1375 0088 2246     		mov	r2, r4
+ 1376 008a 3046     		mov	r0, r6
+ 1377              	.LVL199:
+ 1378 008c B847     		blx	r7
+ 1379              	.LVL200:
+ 1380 008e 04E0     		b	.L108
+ 1381              	.LVL201:
+ 1382              	.L113:
+ 492:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 1383              		.loc 1 492 0
+ 1384 0090 7823     		movs	r3, #120
+ 1385 0092 80F82030 		strb	r3, [r0, #32]
+ 1386 0096 F5E7     		b	.L110
+ 1387              	.L111:
+ 1388              		.loc 1 501 0
+ 1389 0098 0120     		movs	r0, #1
+ 1390              	.LVL202:
+ 1391              	.L108:
+ 502:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1392              		.loc 1 502 0
+ 1393 009a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1394              		.cfi_endproc
+ 1395              	.LFE15:
+ 1397              		.section	.text.u8x8_cad_ld7032_i2c,"ax",%progbits
+ 1398              		.align	1
+ 1399              		.global	u8x8_cad_ld7032_i2c
+ 1400              		.syntax unified
+ 1401              		.thumb
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 37
+
+
+ 1402              		.thumb_func
+ 1403              		.fpu fpv4-sp-d16
+ 1405              	u8x8_cad_ld7032_i2c:
+ 1406              	.LFB16:
+ 503:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 504:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* cad i2c procedure for the ld7032 controller */
+ 505:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_ld7032_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 506:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 1407              		.loc 1 506 0
+ 1408              		.cfi_startproc
+ 1409              		@ args = 0, pretend = 0, frame = 0
+ 1410              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1411              	.LVL203:
+ 1412 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1413              	.LCFI18:
+ 1414              		.cfi_def_cfa_offset 24
+ 1415              		.cfi_offset 3, -24
+ 1416              		.cfi_offset 4, -20
+ 1417              		.cfi_offset 5, -16
+ 1418              		.cfi_offset 6, -12
+ 1419              		.cfi_offset 7, -8
+ 1420              		.cfi_offset 14, -4
+ 1421 0002 0446     		mov	r4, r0
+ 1422 0004 1546     		mov	r5, r2
+ 1423 0006 1E46     		mov	r6, r3
+ 507:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   static uint8_t in_transfer = 0;
+ 508:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t *p;
+ 509:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 1424              		.loc 1 509 0
+ 1425 0008 A1F11403 		sub	r3, r1, #20
+ 1426              	.LVL204:
+ 1427 000c 052B     		cmp	r3, #5
+ 1428 000e 53D8     		bhi	.L126
+ 1429 0010 DFE803F0 		tbb	[pc, r3]
+ 1430              	.LVL205:
+ 1431              	.L117:
+ 1432 0014 36       		.byte	(.L116-.L117)/2
+ 1433 0015 03       		.byte	(.L118-.L117)/2
+ 1434 0016 14       		.byte	(.L119-.L117)/2
+ 1435 0017 2C       		.byte	(.L120-.L117)/2
+ 1436 0018 44       		.byte	(.L121-.L117)/2
+ 1437 0019 49       		.byte	(.L122-.L117)/2
+ 1438              		.p2align 1
+ 1439              	.L118:
+ 510:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 511:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+ 512:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       if ( in_transfer != 0 )
+ 1440              		.loc 1 512 0
+ 1441 001a 284B     		ldr	r3, .L132
+ 1442 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1443 001e 53B9     		cbnz	r3, .L129
+ 1444              	.LVL206:
+ 1445              	.L123:
+ 513:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_EndTransfer(u8x8); 
+ 514:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_StartTransfer(u8x8);
+ 1446              		.loc 1 514 0
+ 1447 0020 2046     		mov	r0, r4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 38
+
+
+ 1448 0022 FFF7FEFF 		bl	u8x8_byte_StartTransfer
+ 1449              	.LVL207:
+ 515:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 1450              		.loc 1 515 0
+ 1451 0026 2946     		mov	r1, r5
+ 1452 0028 2046     		mov	r0, r4
+ 1453 002a FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1454              	.LVL208:
+ 516:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       in_transfer = 1;
+ 1455              		.loc 1 516 0
+ 1456 002e 0120     		movs	r0, #1
+ 1457 0030 224B     		ldr	r3, .L132
+ 1458 0032 1870     		strb	r0, [r3]
+ 1459              	.LVL209:
+ 1460              	.L115:
+ 517:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 518:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 519:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 520:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 521:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 522:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       //u8x8_byte_SetDC(u8x8, 1);
+ 523:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     
+ 524:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* the FeatherWing OLED with the 32u4 transfer of long byte */
+ 525:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* streams was not possible. This is broken down to */
+ 526:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* smaller streams, 32 seems to be the limit... */
+ 527:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* I guess this is related to the size of the Wire buffers in Arduino */
+ 528:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* Unfortunately, this can not be handled in the byte level drivers, */
+ 529:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* so this is done here. Even further, only 24 bytes will be sent, */
+ 530:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* because there will be another byte (DC) required during the transfer */
+ 531:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       p = arg_ptr;
+ 532:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****        while( arg_int > 24 )
+ 533:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 534:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8->byte_cb(u8x8, U8X8_MSG_CAD_SEND_DATA, 24, p);
+ 535:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int-=24;
+ 536:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	p+=24;
+ 537:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_EndTransfer(u8x8); 
+ 538:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_StartTransfer(u8x8);
+ 539:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_SendByte(u8x8, 0x08);	/* data write for LD7032 */
+ 540:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 541:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8->byte_cb(u8x8, U8X8_MSG_CAD_SEND_DATA, arg_int, p);
+ 542:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 543:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 544:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* apply default i2c adr if required so that the start transfer msg can use this */
+ 545:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       if ( u8x8->i2c_address == 255 )
+ 546:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8->i2c_address = 0x060;
+ 547:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 548:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 549:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       in_transfer = 0;
+ 550:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 551:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 552:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       if ( in_transfer != 0 )
+ 553:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_EndTransfer(u8x8); 
+ 554:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 555:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 556:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return 0;
+ 557:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 558:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 39
+
+
+ 559:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1461              		.loc 1 559 0
+ 1462 0034 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1463              	.LVL210:
+ 1464              	.L129:
+ 513:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_StartTransfer(u8x8);
+ 1465              		.loc 1 513 0
+ 1466 0036 FFF7FEFF 		bl	u8x8_byte_EndTransfer
+ 1467              	.LVL211:
+ 1468 003a F1E7     		b	.L123
+ 1469              	.LVL212:
+ 1470              	.L119:
+ 519:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1471              		.loc 1 519 0
+ 1472 003c 2946     		mov	r1, r5
+ 1473              	.LVL213:
+ 1474 003e FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1475              	.LVL214:
+ 558:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1476              		.loc 1 558 0
+ 1477 0042 0120     		movs	r0, #1
+ 520:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 1478              		.loc 1 520 0
+ 1479 0044 F6E7     		b	.L115
+ 1480              	.LVL215:
+ 1481              	.L124:
+ 534:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int-=24;
+ 1482              		.loc 1 534 0
+ 1483 0046 2769     		ldr	r7, [r4, #16]
+ 1484 0048 3346     		mov	r3, r6
+ 1485 004a 1822     		movs	r2, #24
+ 1486 004c 1721     		movs	r1, #23
+ 1487 004e 2046     		mov	r0, r4
+ 1488 0050 B847     		blx	r7
+ 1489              	.LVL216:
+ 535:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	p+=24;
+ 1490              		.loc 1 535 0
+ 1491 0052 183D     		subs	r5, r5, #24
+ 1492              	.LVL217:
+ 1493 0054 EDB2     		uxtb	r5, r5
+ 1494              	.LVL218:
+ 536:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_EndTransfer(u8x8); 
+ 1495              		.loc 1 536 0
+ 1496 0056 1836     		adds	r6, r6, #24
+ 1497              	.LVL219:
+ 537:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_StartTransfer(u8x8);
+ 1498              		.loc 1 537 0
+ 1499 0058 2046     		mov	r0, r4
+ 1500 005a FFF7FEFF 		bl	u8x8_byte_EndTransfer
+ 1501              	.LVL220:
+ 538:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_SendByte(u8x8, 0x08);	/* data write for LD7032 */
+ 1502              		.loc 1 538 0
+ 1503 005e 2046     		mov	r0, r4
+ 1504 0060 FFF7FEFF 		bl	u8x8_byte_StartTransfer
+ 1505              	.LVL221:
+ 539:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 1506              		.loc 1 539 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 40
+
+
+ 1507 0064 0821     		movs	r1, #8
+ 1508 0066 2046     		mov	r0, r4
+ 1509 0068 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1510              	.LVL222:
+ 1511              	.L120:
+ 532:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 1512              		.loc 1 532 0
+ 1513 006c 182D     		cmp	r5, #24
+ 1514 006e EAD8     		bhi	.L124
+ 541:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1515              		.loc 1 541 0
+ 1516 0070 2769     		ldr	r7, [r4, #16]
+ 1517 0072 3346     		mov	r3, r6
+ 1518 0074 2A46     		mov	r2, r5
+ 1519 0076 1721     		movs	r1, #23
+ 1520 0078 2046     		mov	r0, r4
+ 1521 007a B847     		blx	r7
+ 1522              	.LVL223:
+ 558:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1523              		.loc 1 558 0
+ 1524 007c 0120     		movs	r0, #1
+ 542:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 1525              		.loc 1 542 0
+ 1526 007e D9E7     		b	.L115
+ 1527              	.LVL224:
+ 1528              	.L116:
+ 545:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8->i2c_address = 0x060;
+ 1529              		.loc 1 545 0
+ 1530 0080 90F82030 		ldrb	r3, [r0, #32]	@ zero_extendqisi2
+ 1531 0084 FF2B     		cmp	r3, #255
+ 1532 0086 05D0     		beq	.L130
+ 1533              	.L125:
+ 547:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 1534              		.loc 1 547 0
+ 1535 0088 2769     		ldr	r7, [r4, #16]
+ 1536 008a 3346     		mov	r3, r6
+ 1537 008c 2A46     		mov	r2, r5
+ 1538 008e 2046     		mov	r0, r4
+ 1539              	.LVL225:
+ 1540 0090 B847     		blx	r7
+ 1541              	.LVL226:
+ 1542 0092 CFE7     		b	.L115
+ 1543              	.LVL227:
+ 1544              	.L130:
+ 546:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 1545              		.loc 1 546 0
+ 1546 0094 6023     		movs	r3, #96
+ 1547 0096 80F82030 		strb	r3, [r0, #32]
+ 1548 009a F5E7     		b	.L125
+ 1549              	.L121:
+ 549:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1550              		.loc 1 549 0
+ 1551 009c 074B     		ldr	r3, .L132
+ 1552 009e 0022     		movs	r2, #0
+ 1553 00a0 1A70     		strb	r2, [r3]
+ 558:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1554              		.loc 1 558 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 41
+
+
+ 1555 00a2 0120     		movs	r0, #1
+ 1556              	.LVL228:
+ 550:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 1557              		.loc 1 550 0
+ 1558 00a4 C6E7     		b	.L115
+ 1559              	.LVL229:
+ 1560              	.L122:
+ 552:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_EndTransfer(u8x8); 
+ 1561              		.loc 1 552 0
+ 1562 00a6 054B     		ldr	r3, .L132
+ 1563 00a8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1564 00aa 0BB9     		cbnz	r3, .L131
+ 558:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1565              		.loc 1 558 0
+ 1566 00ac 0120     		movs	r0, #1
+ 1567              	.LVL230:
+ 1568 00ae C1E7     		b	.L115
+ 1569              	.LVL231:
+ 1570              	.L131:
+ 553:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1571              		.loc 1 553 0
+ 1572 00b0 FFF7FEFF 		bl	u8x8_byte_EndTransfer
+ 1573              	.LVL232:
+ 558:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1574              		.loc 1 558 0
+ 1575 00b4 0120     		movs	r0, #1
+ 1576 00b6 BDE7     		b	.L115
+ 1577              	.LVL233:
+ 1578              	.L126:
+ 556:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 1579              		.loc 1 556 0
+ 1580 00b8 0020     		movs	r0, #0
+ 1581              	.LVL234:
+ 1582 00ba BBE7     		b	.L115
+ 1583              	.L133:
+ 1584              		.align	2
+ 1585              	.L132:
+ 1586 00bc 00000000 		.word	.LANCHOR1
+ 1587              		.cfi_endproc
+ 1588              	.LFE16:
+ 1590              		.section	.text.u8x8_cad_uc16xx_i2c,"ax",%progbits
+ 1591              		.align	1
+ 1592              		.global	u8x8_cad_uc16xx_i2c
+ 1593              		.syntax unified
+ 1594              		.thumb
+ 1595              		.thumb_func
+ 1596              		.fpu fpv4-sp-d16
+ 1598              	u8x8_cad_uc16xx_i2c:
+ 1599              	.LFB17:
+ 560:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 
+ 561:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* cad procedure for the UC16xx family in I2C mode */
+ 562:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* u8x8_byte_SetDC is not used */
+ 563:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** /* DC bit is encoded into the adr byte */
+ 564:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** uint8_t u8x8_cad_uc16xx_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 565:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** {
+ 1600              		.loc 1 565 0
+ 1601              		.cfi_startproc
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 42
+
+
+ 1602              		@ args = 0, pretend = 0, frame = 0
+ 1603              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1604              	.LVL235:
+ 1605 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1606              	.LCFI19:
+ 1607              		.cfi_def_cfa_offset 24
+ 1608              		.cfi_offset 3, -24
+ 1609              		.cfi_offset 4, -20
+ 1610              		.cfi_offset 5, -16
+ 1611              		.cfi_offset 6, -12
+ 1612              		.cfi_offset 7, -8
+ 1613              		.cfi_offset 14, -4
+ 1614 0002 0546     		mov	r5, r0
+ 1615 0004 1446     		mov	r4, r2
+ 1616 0006 1E46     		mov	r6, r3
+ 566:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   static uint8_t in_transfer = 0;	
+ 567:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   static uint8_t is_data = 0;
+ 568:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   uint8_t *p;
+ 569:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   switch(msg)
+ 1617              		.loc 1 569 0
+ 1618 0008 A1F11403 		sub	r3, r1, #20
+ 1619              	.LVL236:
+ 1620 000c 052B     		cmp	r3, #5
+ 1621 000e 6ED8     		bhi	.L149
+ 1622 0010 DFE803F0 		tbb	[pc, r3]
+ 1623              	.LVL237:
+ 1624              	.L137:
+ 1625 0014 4F       		.byte	(.L136-.L137)/2
+ 1626 0015 03       		.byte	(.L138-.L137)/2
+ 1627 0016 03       		.byte	(.L138-.L137)/2
+ 1628 0017 17       		.byte	(.L139-.L137)/2
+ 1629 0018 5D       		.byte	(.L140-.L137)/2
+ 1630 0019 62       		.byte	(.L141-.L137)/2
+ 1631              		.p2align 1
+ 1632              	.L138:
+ 570:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   {
+ 571:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_CMD:
+ 572:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_ARG:
+ 573:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       if ( in_transfer != 0 )
+ 1633              		.loc 1 573 0
+ 1634 001a 364B     		ldr	r3, .L154
+ 1635 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1636 001e 3BB1     		cbz	r3, .L151
+ 1637              	.LVL238:
+ 1638              	.L142:
+ 574:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 575:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	if ( is_data != 0 )
+ 576:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	{
+ 577:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  /* transfer mode is active, but data transfer */
+ 578:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_byte_EndTransfer(u8x8); 
+ 579:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  /* clear the lowest two bits of the adr */
+ 580:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_SetI2CAddress( u8x8, u8x8_GetI2CAddress(u8x8)&0x0fc );
+ 581:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_byte_StartTransfer(u8x8); 
+ 582:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	}
+ 583:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 584:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       else
+ 585:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 43
+
+
+ 586:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	/* clear the lowest two bits of the adr */
+ 587:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_SetI2CAddress( u8x8, u8x8_GetI2CAddress(u8x8)&0x0fc );
+ 588:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_StartTransfer(u8x8);
+ 589:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 590:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8_byte_SendByte(u8x8, arg_int);
+ 1639              		.loc 1 590 0
+ 1640 0020 2146     		mov	r1, r4
+ 1641 0022 2846     		mov	r0, r5
+ 1642 0024 FFF7FEFF 		bl	u8x8_byte_SendByte
+ 1643              	.LVL239:
+ 591:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       in_transfer = 1;
+ 1644              		.loc 1 591 0
+ 1645 0028 0120     		movs	r0, #1
+ 1646 002a 324B     		ldr	r3, .L154
+ 1647 002c 1870     		strb	r0, [r3]
+ 1648              	.LVL240:
+ 1649              	.L135:
+ 592:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 593:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_SEND_DATA:
+ 594:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       if ( in_transfer != 0 )
+ 595:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 596:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	if ( is_data == 0 )
+ 597:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	{
+ 598:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  /* transfer mode is active, but data transfer */
+ 599:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_byte_EndTransfer(u8x8); 
+ 600:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  /* clear the lowest two bits of the adr */
+ 601:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_SetI2CAddress( u8x8, (u8x8_GetI2CAddress(u8x8)&0x0fc)|2 );
+ 602:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_byte_StartTransfer(u8x8); 
+ 603:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	}
+ 604:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 605:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       else
+ 606:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 607:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	/* clear the lowest two bits of the adr */
+ 608:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_SetI2CAddress( u8x8, (u8x8_GetI2CAddress(u8x8)&0x0fc)|2 );
+ 609:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_StartTransfer(u8x8);
+ 610:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 611:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       in_transfer = 1;
+ 612:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       
+ 613:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       p = arg_ptr;
+ 614:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       while( arg_int > 24 )
+ 615:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 616:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8->byte_cb(u8x8, U8X8_MSG_CAD_SEND_DATA, 24, p);
+ 617:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int-=24;
+ 618:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	p+=24;
+ 619:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_EndTransfer(u8x8); 
+ 620:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_StartTransfer(u8x8);
+ 621:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 622:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       u8x8->byte_cb(u8x8, U8X8_MSG_CAD_SEND_DATA, arg_int, p);
+ 623:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       
+ 624:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 625:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 626:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* apply default i2c adr if required so that the start transfer msg can use this */
+ 627:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       if ( u8x8->i2c_address == 255 )
+ 628:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8->i2c_address = 0x070;
+ 629:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 630:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 631:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       in_transfer = 0;    
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 44
+
+
+ 632:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* actual start is delayed, because we do not whether this is data or cmd transfer */
+ 633:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 634:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 635:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       if ( in_transfer != 0 )
+ 636:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_EndTransfer(u8x8);
+ 637:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       in_transfer = 0;
+ 638:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 639:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 640:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return 0;
+ 641:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 642:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   return 1;
+ 643:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1650              		.loc 1 643 0
+ 1651 002e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1652              	.LVL241:
+ 1653              	.L151:
+ 587:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_StartTransfer(u8x8);
+ 1654              		.loc 1 587 0
+ 1655 0030 90F82030 		ldrb	r3, [r0, #32]	@ zero_extendqisi2
+ 1656 0034 03F0FC03 		and	r3, r3, #252
+ 1657 0038 80F82030 		strb	r3, [r0, #32]
+ 588:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 1658              		.loc 1 588 0
+ 1659 003c FFF7FEFF 		bl	u8x8_byte_StartTransfer
+ 1660              	.LVL242:
+ 1661 0040 EEE7     		b	.L142
+ 1662              	.LVL243:
+ 1663              	.L139:
+ 594:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 1664              		.loc 1 594 0
+ 1665 0042 2C4B     		ldr	r3, .L154
+ 1666 0044 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1667 0046 6BB1     		cbz	r3, .L143
+ 599:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  /* clear the lowest two bits of the adr */
+ 1668              		.loc 1 599 0
+ 1669 0048 FFF7FEFF 		bl	u8x8_byte_EndTransfer
+ 1670              	.LVL244:
+ 601:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	  u8x8_byte_StartTransfer(u8x8); 
+ 1671              		.loc 1 601 0
+ 1672 004c 95F92030 		ldrsb	r3, [r5, #32]
+ 1673 0050 23F00303 		bic	r3, r3, #3
+ 1674 0054 43F00203 		orr	r3, r3, #2
+ 1675 0058 85F82030 		strb	r3, [r5, #32]
+ 602:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	}
+ 1676              		.loc 1 602 0
+ 1677 005c 2846     		mov	r0, r5
+ 1678 005e FFF7FEFF 		bl	u8x8_byte_StartTransfer
+ 1679              	.LVL245:
+ 1680 0062 09E0     		b	.L144
+ 1681              	.LVL246:
+ 1682              	.L143:
+ 608:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_StartTransfer(u8x8);
+ 1683              		.loc 1 608 0
+ 1684 0064 90F92030 		ldrsb	r3, [r0, #32]
+ 1685 0068 23F00303 		bic	r3, r3, #3
+ 1686 006c 43F00203 		orr	r3, r3, #2
+ 1687 0070 80F82030 		strb	r3, [r0, #32]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 45
+
+
+ 609:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 1688              		.loc 1 609 0
+ 1689 0074 FFF7FEFF 		bl	u8x8_byte_StartTransfer
+ 1690              	.LVL247:
+ 1691              	.L144:
+ 611:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       
+ 1692              		.loc 1 611 0
+ 1693 0078 1E4B     		ldr	r3, .L154
+ 1694 007a 0122     		movs	r2, #1
+ 1695 007c 1A70     		strb	r2, [r3]
+ 1696              	.LVL248:
+ 614:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 1697              		.loc 1 614 0
+ 1698 007e 0EE0     		b	.L145
+ 1699              	.LVL249:
+ 1700              	.L146:
+ 616:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	arg_int-=24;
+ 1701              		.loc 1 616 0
+ 1702 0080 2F69     		ldr	r7, [r5, #16]
+ 1703 0082 3346     		mov	r3, r6
+ 1704 0084 1822     		movs	r2, #24
+ 1705 0086 1721     		movs	r1, #23
+ 1706 0088 2846     		mov	r0, r5
+ 1707 008a B847     		blx	r7
+ 1708              	.LVL250:
+ 617:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	p+=24;
+ 1709              		.loc 1 617 0
+ 1710 008c 183C     		subs	r4, r4, #24
+ 1711              	.LVL251:
+ 1712 008e E4B2     		uxtb	r4, r4
+ 1713              	.LVL252:
+ 618:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_EndTransfer(u8x8); 
+ 1714              		.loc 1 618 0
+ 1715 0090 1836     		adds	r6, r6, #24
+ 1716              	.LVL253:
+ 619:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_StartTransfer(u8x8);
+ 1717              		.loc 1 619 0
+ 1718 0092 2846     		mov	r0, r5
+ 1719 0094 FFF7FEFF 		bl	u8x8_byte_EndTransfer
+ 1720              	.LVL254:
+ 620:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       }
+ 1721              		.loc 1 620 0
+ 1722 0098 2846     		mov	r0, r5
+ 1723 009a FFF7FEFF 		bl	u8x8_byte_StartTransfer
+ 1724              	.LVL255:
+ 1725              	.L145:
+ 614:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       {
+ 1726              		.loc 1 614 0
+ 1727 009e 182C     		cmp	r4, #24
+ 1728 00a0 EED8     		bhi	.L146
+ 622:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       
+ 1729              		.loc 1 622 0
+ 1730 00a2 2F69     		ldr	r7, [r5, #16]
+ 1731 00a4 3346     		mov	r3, r6
+ 1732 00a6 2246     		mov	r2, r4
+ 1733 00a8 1721     		movs	r1, #23
+ 1734 00aa 2846     		mov	r0, r5
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 46
+
+
+ 1735 00ac B847     		blx	r7
+ 1736              	.LVL256:
+ 642:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1737              		.loc 1 642 0
+ 1738 00ae 0120     		movs	r0, #1
+ 624:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_INIT:
+ 1739              		.loc 1 624 0
+ 1740 00b0 BDE7     		b	.L135
+ 1741              	.LVL257:
+ 1742              	.L136:
+ 627:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8->i2c_address = 0x070;
+ 1743              		.loc 1 627 0
+ 1744 00b2 90F82030 		ldrb	r3, [r0, #32]	@ zero_extendqisi2
+ 1745 00b6 FF2B     		cmp	r3, #255
+ 1746 00b8 05D0     		beq	.L152
+ 1747              	.L147:
+ 629:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_START_TRANSFER:
+ 1748              		.loc 1 629 0
+ 1749 00ba 2F69     		ldr	r7, [r5, #16]
+ 1750 00bc 3346     		mov	r3, r6
+ 1751 00be 2246     		mov	r2, r4
+ 1752 00c0 2846     		mov	r0, r5
+ 1753              	.LVL258:
+ 1754 00c2 B847     		blx	r7
+ 1755              	.LVL259:
+ 1756 00c4 B3E7     		b	.L135
+ 1757              	.LVL260:
+ 1758              	.L152:
+ 628:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       return u8x8->byte_cb(u8x8, msg, arg_int, arg_ptr);
+ 1759              		.loc 1 628 0
+ 1760 00c6 7023     		movs	r3, #112
+ 1761 00c8 80F82030 		strb	r3, [r0, #32]
+ 1762 00cc F5E7     		b	.L147
+ 1763              	.L140:
+ 631:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       /* actual start is delayed, because we do not whether this is data or cmd transfer */
+ 1764              		.loc 1 631 0
+ 1765 00ce 094B     		ldr	r3, .L154
+ 1766 00d0 0022     		movs	r2, #0
+ 1767 00d2 1A70     		strb	r2, [r3]
+ 642:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1768              		.loc 1 642 0
+ 1769 00d4 0120     		movs	r0, #1
+ 1770              	.LVL261:
+ 633:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     case U8X8_MSG_CAD_END_TRANSFER:
+ 1771              		.loc 1 633 0
+ 1772 00d6 AAE7     		b	.L135
+ 1773              	.LVL262:
+ 1774              	.L141:
+ 635:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** 	u8x8_byte_EndTransfer(u8x8);
+ 1775              		.loc 1 635 0
+ 1776 00d8 064B     		ldr	r3, .L154
+ 1777 00da 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1778 00dc 23B9     		cbnz	r3, .L153
+ 1779              	.LVL263:
+ 1780              	.L148:
+ 637:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       break;
+ 1781              		.loc 1 637 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 47
+
+
+ 1782 00de 054B     		ldr	r3, .L154
+ 1783 00e0 0022     		movs	r2, #0
+ 1784 00e2 1A70     		strb	r2, [r3]
+ 642:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c **** }
+ 1785              		.loc 1 642 0
+ 1786 00e4 0120     		movs	r0, #1
+ 638:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****     default:
+ 1787              		.loc 1 638 0
+ 1788 00e6 A2E7     		b	.L135
+ 1789              	.LVL264:
+ 1790              	.L153:
+ 636:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****       in_transfer = 0;
+ 1791              		.loc 1 636 0
+ 1792 00e8 FFF7FEFF 		bl	u8x8_byte_EndTransfer
+ 1793              	.LVL265:
+ 1794 00ec F7E7     		b	.L148
+ 1795              	.LVL266:
+ 1796              	.L149:
+ 640:/Users/imashio/Electronics/ARM/_Library/u8x8_cad.c ****   }
+ 1797              		.loc 1 640 0
+ 1798 00ee 0020     		movs	r0, #0
+ 1799              	.LVL267:
+ 1800 00f0 9DE7     		b	.L135
+ 1801              	.L155:
+ 1802 00f2 00BF     		.align	2
+ 1803              	.L154:
+ 1804 00f4 00000000 		.word	.LANCHOR2
+ 1805              		.cfi_endproc
+ 1806              	.LFE17:
+ 1808              		.section	.bss.buf.6374,"aw",%nobits
+ 1809              		.align	2
+ 1810              		.set	.LANCHOR0,. + 0
+ 1813              	buf.6374:
+ 1814 0000 00000000 		.space	16
+ 1814      00000000 
+ 1814      00000000 
+ 1814      00000000 
+ 1815              		.section	.bss.in_transfer.6443,"aw",%nobits
+ 1816              		.set	.LANCHOR1,. + 0
+ 1819              	in_transfer.6443:
+ 1820 0000 00       		.space	1
+ 1821              		.section	.bss.in_transfer.6462,"aw",%nobits
+ 1822              		.set	.LANCHOR2,. + 0
+ 1825              	in_transfer.6462:
+ 1826 0000 00       		.space	1
+ 1827              		.text
+ 1828              	.Letext0:
+ 1829              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 1830              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 1831              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 48
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_cad.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:18     .text.u8x8_i2c_data_transfer:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:24     .text.u8x8_i2c_data_transfer:0000000000000000 u8x8_i2c_data_transfer
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:70     .text.u8x8_cad_SendCmd:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:77     .text.u8x8_cad_SendCmd:0000000000000000 u8x8_cad_SendCmd
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:103    .text.u8x8_cad_SendArg:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:110    .text.u8x8_cad_SendArg:0000000000000000 u8x8_cad_SendArg
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:136    .text.u8x8_cad_SendMultipleArg:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:143    .text.u8x8_cad_SendMultipleArg:0000000000000000 u8x8_cad_SendMultipleArg
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:190    .text.u8x8_cad_SendData:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:197    .text.u8x8_cad_SendData:0000000000000000 u8x8_cad_SendData
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:224    .text.u8x8_cad_StartTransfer:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:231    .text.u8x8_cad_StartTransfer:0000000000000000 u8x8_cad_StartTransfer
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:256    .text.u8x8_cad_EndTransfer:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:263    .text.u8x8_cad_EndTransfer:0000000000000000 u8x8_cad_EndTransfer
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:288    .text.u8x8_cad_SendSequence:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:295    .text.u8x8_cad_SendSequence:0000000000000000 u8x8_cad_SendSequence
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:404    .text.u8x8_cad_empty:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:411    .text.u8x8_cad_empty:0000000000000000 u8x8_cad_empty
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:429    .text.u8x8_cad_empty:000000000000000e $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:435    .text.u8x8_cad_empty:0000000000000014 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:475    .text.u8x8_cad_110:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:482    .text.u8x8_cad_110:0000000000000000 u8x8_cad_110
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:510    .text.u8x8_cad_110:0000000000000018 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:516    .text.u8x8_cad_110:000000000000001e $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:577    .text.u8x8_cad_100:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:584    .text.u8x8_cad_100:0000000000000000 u8x8_cad_100
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:612    .text.u8x8_cad_100:0000000000000018 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:618    .text.u8x8_cad_100:000000000000001e $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:679    .text.u8x8_cad_001:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:686    .text.u8x8_cad_001:0000000000000000 u8x8_cad_001
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:714    .text.u8x8_cad_001:0000000000000018 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:720    .text.u8x8_cad_001:000000000000001e $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:781    .text.u8x8_cad_011:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:788    .text.u8x8_cad_011:0000000000000000 u8x8_cad_011
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:816    .text.u8x8_cad_011:0000000000000018 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:822    .text.u8x8_cad_011:000000000000001e $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:883    .text.u8x8_cad_st7920_spi:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:890    .text.u8x8_cad_st7920_spi:0000000000000000 u8x8_cad_st7920_spi
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:917    .text.u8x8_cad_st7920_spi:0000000000000014 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:923    .text.u8x8_cad_st7920_spi:000000000000001a $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1106   .text.u8x8_cad_st7920_spi:0000000000000100 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1111   .text.u8x8_cad_ssd13xx_i2c:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1118   .text.u8x8_cad_ssd13xx_i2c:0000000000000000 u8x8_cad_ssd13xx_i2c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1145   .text.u8x8_cad_ssd13xx_i2c:0000000000000014 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1151   .text.u8x8_cad_ssd13xx_i2c:000000000000001a $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1243   .text.u8x8_cad_st75256_i2c:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1250   .text.u8x8_cad_st75256_i2c:0000000000000000 u8x8_cad_st75256_i2c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1277   .text.u8x8_cad_st75256_i2c:0000000000000014 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1283   .text.u8x8_cad_st75256_i2c:000000000000001a $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1398   .text.u8x8_cad_ld7032_i2c:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1405   .text.u8x8_cad_ld7032_i2c:0000000000000000 u8x8_cad_ld7032_i2c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1432   .text.u8x8_cad_ld7032_i2c:0000000000000014 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1438   .text.u8x8_cad_ld7032_i2c:000000000000001a $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1586   .text.u8x8_cad_ld7032_i2c:00000000000000bc $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1591   .text.u8x8_cad_uc16xx_i2c:0000000000000000 $t
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s 			page 49
+
+
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1598   .text.u8x8_cad_uc16xx_i2c:0000000000000000 u8x8_cad_uc16xx_i2c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1625   .text.u8x8_cad_uc16xx_i2c:0000000000000014 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1631   .text.u8x8_cad_uc16xx_i2c:000000000000001a $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1804   .text.u8x8_cad_uc16xx_i2c:00000000000000f4 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1809   .bss.buf.6374:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1813   .bss.buf.6374:0000000000000000 buf.6374
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1819   .bss.in_transfer.6443:0000000000000000 in_transfer.6443
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1820   .bss.in_transfer.6443:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1825   .bss.in_transfer.6462:0000000000000000 in_transfer.6462
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccN9lHda.s:1826   .bss.in_transfer.6462:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+u8x8_byte_StartTransfer
+u8x8_byte_SendByte
+u8x8_byte_EndTransfer
+u8x8_gpio_call
+u8x8_byte_SetDC
+u8x8_byte_SendBytes

@@ -1,0 +1,1650 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_d_il3820_296x128.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_convert_tile_for_il3820,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	u8x8_convert_tile_for_il3820:
+  25              	.LFB0:
+  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_d_il3820_296x128.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   Copyright (c) 2017, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 2
+
+
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   il3820: 200x300x1
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   command 
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     0x22: assign actions
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     0x20: execute actions
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   action for command 0x022 are (more or less guessed)
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     bit 7:	Enable Clock
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     bit 6:	Enable Charge Pump
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     bit 5:	Load Temparture Value (???)
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     bit 4:	Load LUT (???)
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     bit 3:	Initial Display (???)
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     bit 2:	Pattern Display --> Requires about 945ms with the LUT from below
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     bit 1:	Disable Charge Pump
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     bit 0:	Disable Clock
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     Disable Charge Pump and Clock require about 10ms
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     Enable Charge Pump and Clock require about 100 to 300ms
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   Notes:
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     - Introduced a refresh display message, which copies RAM to display
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     - Charge pump is always enabled. Charge pump can be enabled/disabled via power save message
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     - U8x8 will not really work because of the two buffers in the SSD1606, however U8g2 should be o
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   LUT for the 296x128 device (IL3820)
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   LUT (cmd: 0x032 has 30 bytes)
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   section 6.8 of the datasheet mentions 256 bits = 32 bytes for the LUT
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   chapter 7 tells 30 bytes
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   according to section 6.8:
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   20 bytes waveform
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   10 bytes timing
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   1 byte named as VSH/VSL
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   1 empty byte
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   according to the command table, the lut has 240 bits (=30 bytes * 8 bits)
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   LUT / Refresh time
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     total_refresh_time = (refresh_lines + dummy_lines*2)*TGate*TS_Sum/f_OSC
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     f_OSC=1MHz (according to the datasheets)
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     refreh_lines = 296 (for the waveshare display, 0x045 cmd)
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     dummy_lines = 22 (for the upcoming u8g2 code, 0x03a cmd)
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     TGate = 62 (POR default, 0x03b cmd)
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     TS_Sum: Sum of all TS entries of the second part of the LUT
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     f_OSC: 1MHz according to the datasheet.
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     so we have
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     total_refresh_time = 21080*TS_Sum/1000000 = 21ms * TS_Sum
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   This file includes two devices:
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     u8x8_d_il3820_296x128		--> includes LUT which is probably from the WaveShare 2.9 Vendor
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     u8x8_d_il3820_v2_296x128		--> includes LUT which was optimized for faster speed and lesser flic
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 3
+
+
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** */
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* Waveform part of the LUT (20 bytes) */
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* bit 7/6: 1 - 1 transition */
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* bit 5/4: 1 - 0 transition */
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* bit 3/2: 0 - 1 transition */
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* bit 1/0: 0 - 0 transition */
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* 	00 – VSS */
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* 	01 – VSH */
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* 	10 – VSL */
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* 	11 – NA */
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** #include "u8x8.h"
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /*=================================================*/
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* common code for all devices */
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static const uint8_t u8x8_d_il3820_296x128_powersave0_seq[] = {
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x22, 0xc0),			/* enable clock and charge pump */
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_C(0x20),				/* execute sequence */  
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(200),				/* according to my measures it may take up to 150ms */
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(100),				/* but it might take longer */
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END()             			/* end of sequence */
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** };
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static const uint8_t u8x8_d_il3820_296x128_powersave1_seq[] = {
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */  
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* disable clock and charge pump only, deep sleep is not entered, because we will loose RAM conte
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x22, 0x02),			/* only disable charge pump, HW reset seems to be required if the clock is
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_C(0x20),				/* execute sequence */  
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(20),
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END()             			/* end of sequence */
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** };
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static const uint8_t u8x8_d_il3820_296x128_flip0_seq[] = {
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END()             			/* end of sequence */
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** };
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static const uint8_t u8x8_d_il3820_296x128_flip1_seq[] = {
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END()             			/* end of sequence */
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** };
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static const u8x8_display_info_t u8x8_il3820_296x128_display_info =
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** {
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* chip_enable_level = */ 0,
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* chip_disable_level = */ 1,
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 4
+
+
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* post_chip_enable_wait_ns = */ 120,
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* pre_chip_disable_wait_ns = */ 60,
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* reset_pulse_width_ms = */ 100, 	
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* post_reset_wait_ms = */ 100, 
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* sda_setup_time_ns = */ 50,		/* IL3820 */
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* sck_pulse_width_ns = */ 125,	/* IL3820: 125ns, clock cycle = 250ns */
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* sck_clock_hz = */ 4000000UL,	/* since Arduino 1.6.0, the SPI bus speed in Hz. Should be  10000
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* spi_mode = */ 0,		/* active high, rising edge */
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* i2c_bus_clock_100kHz = */ 4,
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* data_setup_time_ns = */ 40,
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* write_pulse_width_ns = */ 150,	
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* tile_width = */ 37,		/* 37*8 = 296 */
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* tile_hight = */ 16,		/* 16*8 = 128 */	
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* default_x_offset = */ 0,
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* flipmode_x_offset = */ 0,
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* pixel_width = */ 296,
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* pixel_height = */ 128
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** };
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static uint8_t *u8x8_convert_tile_for_il3820(uint8_t *t)
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** {
+  27              		.loc 1 168 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   uint8_t i;
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   static uint8_t buf[8];
+ 171:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   uint8_t *pbuf = buf;
+  33              		.loc 1 171 0
+  34 0000 0649     		ldr	r1, .L4
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   for( i = 0; i < 8; i++ )
+  35              		.loc 1 173 0
+  36 0002 0023     		movs	r3, #0
+  37 0004 06E0     		b	.L2
+  38              	.LVL1:
+  39              	.L3:
+ 174:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   {
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     *pbuf++ = ~(*t++);
+  40              		.loc 1 175 0 discriminator 3
+  41 0006 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+  42              	.LVL2:
+  43 0008 D243     		mvns	r2, r2
+  44 000a 0A70     		strb	r2, [r1]
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   {
+  45              		.loc 1 173 0 discriminator 3
+  46 000c 0133     		adds	r3, r3, #1
+  47              	.LVL3:
+  48 000e DBB2     		uxtb	r3, r3
+  49              	.LVL4:
+  50              		.loc 1 175 0 discriminator 3
+  51 0010 0131     		adds	r1, r1, #1
+  52              	.LVL5:
+  53 0012 0130     		adds	r0, r0, #1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 5
+
+
+  54              	.LVL6:
+  55              	.L2:
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   {
+  56              		.loc 1 173 0 discriminator 1
+  57 0014 072B     		cmp	r3, #7
+  58 0016 F6D9     		bls	.L3
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   }
+ 177:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   return buf;
+ 178:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+  59              		.loc 1 178 0
+  60 0018 0048     		ldr	r0, .L4
+  61              	.LVL7:
+  62 001a 7047     		bx	lr
+  63              	.L5:
+  64              		.align	2
+  65              	.L4:
+  66 001c 00000000 		.word	.LANCHOR0
+  67              		.cfi_endproc
+  68              	.LFE0:
+  70              		.section	.text.u8x8_d_il3820_first_init,"ax",%progbits
+  71              		.align	1
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  75              		.fpu fpv4-sp-d16
+  77              	u8x8_d_il3820_first_init:
+  78              	.LFB2:
+ 179:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 180:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static void u8x8_d_il3820_draw_tile(u8x8_t *u8x8, uint8_t arg_int, void *arg_ptr) U8X8_NOINLINE;
+ 181:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static void u8x8_d_il3820_draw_tile(u8x8_t *u8x8, uint8_t arg_int, void *arg_ptr)
+ 182:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** {
+ 183:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   uint16_t x;
+ 184:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   uint8_t c, page;
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   uint8_t *ptr;
+ 186:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_StartTransfer(u8x8);
+ 187:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   page = u8x8->display_info->tile_height;
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   page --;
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   page -= (((u8x8_tile_t *)arg_ptr)->y_pos);
+ 191:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 192:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   x = ((u8x8_tile_t *)arg_ptr)->x_pos;
+ 193:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   x *= 8;
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   x += u8x8->x_offset;
+ 195:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 196:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   //u8x8_cad_SendCmd(u8x8, 0x011 );	/* cursor increment mode */
+ 197:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   //u8x8_cad_SendArg(u8x8, 7);
+ 198:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_SendCmd(u8x8, 0x04f );	/* set cursor column */
+ 200:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_SendArg(u8x8, x&255);
+ 201:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_SendArg(u8x8, x>>8);
+ 202:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 203:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_SendCmd(u8x8, 0x04e );	/* set cursor row */
+ 204:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_SendArg(u8x8, page);
+ 205:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 206:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_SendCmd(u8x8, 0x024 );
+ 207:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 208:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   do
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 6
+
+
+ 209:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   {
+ 210:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     c = ((u8x8_tile_t *)arg_ptr)->cnt;
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
+ 212:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     do
+ 213:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     {
+ 214:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendData(u8x8, 8, u8x8_convert_tile_for_il3820(ptr));
+ 215:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       ptr += 8;
+ 216:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       x += 8;
+ 217:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       c--;
+ 218:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     } while( c > 0 );
+ 219:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     
+ 220:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     arg_int--;
+ 221:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   } while( arg_int > 0 );
+ 222:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 223:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_EndTransfer(u8x8);
+ 224:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 225:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 226:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 227:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 228:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static const uint8_t u8x8_d_il3820_exec_1000dly_seq[] = {
+ 229:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   // assumes, that the start transfer has happend
+ 230:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x22, 0x04),	/* display update seq. option: pattern display */
+ 231:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_C(0x20),	/* execute sequence */
+ 232:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 233:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 234:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 235:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 236:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 237:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END()             			/* end of sequence */
+ 238:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** };
+ 239:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 240:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static void u8x8_d_il3820_first_init(u8x8_t *u8x8)
+ 241:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** {
+  79              		.loc 1 241 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              	.LVL8:
+  84 0000 10B5     		push	{r4, lr}
+  85              	.LCFI0:
+  86              		.cfi_def_cfa_offset 8
+  87              		.cfi_offset 4, -8
+  88              		.cfi_offset 14, -4
+  89 0002 0446     		mov	r4, r0
+ 242:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_ClearDisplay(u8x8);
+  90              		.loc 1 242 0
+  91 0004 FFF7FEFF 		bl	u8x8_ClearDisplay
+  92              	.LVL9:
+ 243:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_StartTransfer(u8x8);
+  93              		.loc 1 244 0
+  94 0008 2046     		mov	r0, r4
+  95 000a FFF7FEFF 		bl	u8x8_cad_StartTransfer
+  96              	.LVL10:
+ 245:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendCmd(u8x8, 0x032);		// program update sequence
+  97              		.loc 1 245 0
+  98 000e 3221     		movs	r1, #50
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 7
+
+
+  99 0010 2046     		mov	r0, r4
+ 100 0012 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 101              	.LVL11:
+ 246:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendMultipleArg(u8x8, 8, 0x055);		// all black
+ 102              		.loc 1 246 0
+ 103 0016 5522     		movs	r2, #85
+ 104 0018 0821     		movs	r1, #8
+ 105 001a 2046     		mov	r0, r4
+ 106 001c FFF7FEFF 		bl	u8x8_cad_SendMultipleArg
+ 107              	.LVL12:
+ 247:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendMultipleArg(u8x8, 12, 0x0aa);		// all white
+ 108              		.loc 1 247 0
+ 109 0020 AA22     		movs	r2, #170
+ 110 0022 0C21     		movs	r1, #12
+ 111 0024 2046     		mov	r0, r4
+ 112 0026 FFF7FEFF 		bl	u8x8_cad_SendMultipleArg
+ 113              	.LVL13:
+ 248:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendMultipleArg(u8x8, 10, 0x022);		// 830ms
+ 114              		.loc 1 248 0
+ 115 002a 2222     		movs	r2, #34
+ 116 002c 0A21     		movs	r1, #10
+ 117 002e 2046     		mov	r0, r4
+ 118 0030 FFF7FEFF 		bl	u8x8_cad_SendMultipleArg
+ 119              	.LVL14:
+ 249:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_exec_1000dly_seq);
+ 120              		.loc 1 249 0
+ 121 0034 0249     		ldr	r1, .L8
+ 122 0036 2046     		mov	r0, r4
+ 123 0038 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 124              	.LVL15:
+ 250:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 251:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 125              		.loc 1 251 0
+ 126 003c 10BD     		pop	{r4, pc}
+ 127              	.LVL16:
+ 128              	.L9:
+ 129 003e 00BF     		.align	2
+ 130              	.L8:
+ 131 0040 00000000 		.word	.LANCHOR1
+ 132              		.cfi_endproc
+ 133              	.LFE2:
+ 135              		.section	.text.u8x8_d_il3820_draw_tile,"ax",%progbits
+ 136              		.align	1
+ 137              		.syntax unified
+ 138              		.thumb
+ 139              		.thumb_func
+ 140              		.fpu fpv4-sp-d16
+ 142              	u8x8_d_il3820_draw_tile:
+ 143              	.LFB1:
+ 182:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   uint16_t x;
+ 144              		.loc 1 182 0
+ 145              		.cfi_startproc
+ 146              		@ args = 0, pretend = 0, frame = 0
+ 147              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148              	.LVL17:
+ 149 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 150              	.LCFI1:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 8
+
+
+ 151              		.cfi_def_cfa_offset 24
+ 152              		.cfi_offset 4, -24
+ 153              		.cfi_offset 5, -20
+ 154              		.cfi_offset 6, -16
+ 155              		.cfi_offset 7, -12
+ 156              		.cfi_offset 8, -8
+ 157              		.cfi_offset 14, -4
+ 158 0004 0646     		mov	r6, r0
+ 159 0006 0F46     		mov	r7, r1
+ 160 0008 9046     		mov	r8, r2
+ 186:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 161              		.loc 1 186 0
+ 162 000a FFF7FEFF 		bl	u8x8_cad_StartTransfer
+ 163              	.LVL18:
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   page --;
+ 164              		.loc 1 188 0
+ 165 000e 3368     		ldr	r3, [r6]
+ 166 0010 5C7C     		ldrb	r4, [r3, #17]	@ zero_extendqisi2
+ 167              	.LVL19:
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   page -= (((u8x8_tile_t *)arg_ptr)->y_pos);
+ 168              		.loc 1 189 0
+ 169 0012 013C     		subs	r4, r4, #1
+ 170              	.LVL20:
+ 171 0014 E4B2     		uxtb	r4, r4
+ 172              	.LVL21:
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 173              		.loc 1 190 0
+ 174 0016 98F80630 		ldrb	r3, [r8, #6]	@ zero_extendqisi2
+ 175 001a E41A     		subs	r4, r4, r3
+ 176              	.LVL22:
+ 177 001c E4B2     		uxtb	r4, r4
+ 178              	.LVL23:
+ 192:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   x *= 8;
+ 179              		.loc 1 192 0
+ 180 001e 98F80530 		ldrb	r3, [r8, #5]	@ zero_extendqisi2
+ 181              	.LVL24:
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 182              		.loc 1 194 0
+ 183 0022 B57F     		ldrb	r5, [r6, #30]	@ zero_extendqisi2
+ 184 0024 05EBC305 		add	r5, r5, r3, lsl #3
+ 185              	.LVL25:
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_SendArg(u8x8, x&255);
+ 186              		.loc 1 199 0
+ 187 0028 4F21     		movs	r1, #79
+ 188 002a 3046     		mov	r0, r6
+ 189 002c FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 190              	.LVL26:
+ 200:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_SendArg(u8x8, x>>8);
+ 191              		.loc 1 200 0
+ 192 0030 E9B2     		uxtb	r1, r5
+ 193 0032 3046     		mov	r0, r6
+ 194 0034 FFF7FEFF 		bl	u8x8_cad_SendArg
+ 195              	.LVL27:
+ 201:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 196              		.loc 1 201 0
+ 197 0038 290A     		lsrs	r1, r5, #8
+ 198 003a 3046     		mov	r0, r6
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 9
+
+
+ 199 003c FFF7FEFF 		bl	u8x8_cad_SendArg
+ 200              	.LVL28:
+ 203:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   u8x8_cad_SendArg(u8x8, page);
+ 201              		.loc 1 203 0
+ 202 0040 4E21     		movs	r1, #78
+ 203 0042 3046     		mov	r0, r6
+ 204 0044 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 205              	.LVL29:
+ 204:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 206              		.loc 1 204 0
+ 207 0048 2146     		mov	r1, r4
+ 208 004a 3046     		mov	r0, r6
+ 209 004c FFF7FEFF 		bl	u8x8_cad_SendArg
+ 210              	.LVL30:
+ 206:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 211              		.loc 1 206 0
+ 212 0050 2421     		movs	r1, #36
+ 213 0052 3046     		mov	r0, r6
+ 214 0054 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 215              	.LVL31:
+ 216              	.L12:
+ 210:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
+ 217              		.loc 1 210 0
+ 218 0058 98F80440 		ldrb	r4, [r8, #4]	@ zero_extendqisi2
+ 219              	.LVL32:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     do
+ 220              		.loc 1 211 0
+ 221 005c D8F80050 		ldr	r5, [r8]
+ 222              	.LVL33:
+ 223              	.L11:
+ 214:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       ptr += 8;
+ 224              		.loc 1 214 0 discriminator 1
+ 225 0060 2846     		mov	r0, r5
+ 226 0062 FFF7FEFF 		bl	u8x8_convert_tile_for_il3820
+ 227              	.LVL34:
+ 228 0066 0246     		mov	r2, r0
+ 229 0068 0821     		movs	r1, #8
+ 230 006a 3046     		mov	r0, r6
+ 231 006c FFF7FEFF 		bl	u8x8_cad_SendData
+ 232              	.LVL35:
+ 215:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       x += 8;
+ 233              		.loc 1 215 0 discriminator 1
+ 234 0070 0835     		adds	r5, r5, #8
+ 235              	.LVL36:
+ 217:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     } while( c > 0 );
+ 236              		.loc 1 217 0 discriminator 1
+ 237 0072 631E     		subs	r3, r4, #1
+ 238              	.LVL37:
+ 218:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     
+ 239              		.loc 1 218 0 discriminator 1
+ 240 0074 13F0FF04 		ands	r4, r3, #255
+ 241 0078 F2D1     		bne	.L11
+ 220:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   } while( arg_int > 0 );
+ 242              		.loc 1 220 0
+ 243 007a 791E     		subs	r1, r7, #1
+ 244              	.LVL38:
+ 221:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 10
+
+
+ 245              		.loc 1 221 0
+ 246 007c 11F0FF07 		ands	r7, r1, #255
+ 247 0080 EAD1     		bne	.L12
+ 223:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 248              		.loc 1 223 0
+ 249 0082 3046     		mov	r0, r6
+ 250 0084 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 251              	.LVL39:
+ 224:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 252              		.loc 1 224 0
+ 253 0088 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 254              		.cfi_endproc
+ 255              	.LFE1:
+ 257              		.section	.text.u8x8_d_il3820_296x128,"ax",%progbits
+ 258              		.align	1
+ 259              		.global	u8x8_d_il3820_296x128
+ 260              		.syntax unified
+ 261              		.thumb
+ 262              		.thumb_func
+ 263              		.fpu fpv4-sp-d16
+ 265              	u8x8_d_il3820_296x128:
+ 266              	.LFB3:
+ 252:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 253:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** #ifdef OBSOLETE
+ 254:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static void u8x8_d_il3820_second_init(u8x8_t *u8x8)
+ 255:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** {
+ 256:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_ClearDisplay(u8x8);
+ 257:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 258:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_StartTransfer(u8x8);
+ 259:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendCmd(u8x8, 0x032);		// program update sequence
+ 260:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendMultipleArg(u8x8, 20, 0x000);		// do nothing
+ 261:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendMultipleArg(u8x8, 10, 0x011);		// 414ms dly
+ 262:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       /* reuse sequence from above, ok some time is wasted here, */
+ 263:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       /* delay could be lesser */
+ 264:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_exec_1000dly_seq);  
+ 265:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 266:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** #endif
+ 267:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 268:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 269:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /*=================================================*/
+ 270:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* first version, LUT from WaveShare */
+ 271:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 272:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 273:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* http://www.waveshare.com/wiki/File:2.9inch_e-Paper_Module_code.7z */
+ 274:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static const uint8_t u8x8_d_il3820_296x128_init_seq[] = {
+ 275:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     
+ 276:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ 277:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 278:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x10, 0x00),	/* Deep Sleep mode Control: Disable */
+ 279:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_C(0x01),
+ 280:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(295 % 256), U8X8_A(295/256), U8X8_A(0),
+ 281:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 282:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 283:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x03, 0x00), 	/* Gate Driving voltage: 15V (lowest value)*/
+ 284:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x04, 0x0a), 	/* Source Driving voltage: 15V (mid value and POR)*/
+ 285:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 286:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   //U8X8_CA(0x22, 0xc0),	/* display update seq. option: enable clk, enable CP, .... todo: this is n
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 11
+
+
+ 287:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 288:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   //U8X8_CA(0x0b, 7),	/* Set Delay of gate and source non overlap period, POR = 7 */
+ 289:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x2c, 0xa8),	/* write vcom value*/
+ 290:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x3a, 0x16),	/* dummy lines POR=22 (0x016) */
+ 291:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x3b, 0x08),	/* gate time POR=0x08*/
+ 292:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x3c, 0x33),	/* select boarder waveform */
+ 293:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   //U8X8_CA(0x22, 0xc4),	/* display update seq. option: clk -> CP -> LUT -> initial display -> patt
+ 294:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 295:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 296:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x11, 0x07),	/* Define data entry mode, x&y inc, x first*/
+ 297:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 298:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CAA(0x44, 0, 29),	/* RAM x start & end, 32*4=128 */
+ 299:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CAAAA(0x45, 0, 0, 295&255, 295>>8),	/* RAM y start & end, 0..295 */
+ 300:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 301:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   //U8X8_CA(0x4e, 0),	/* set x pos, 0..29? */
+ 302:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   //U8X8_CAA(0x4f, 0, 0),	/* set y pos, 0...320??? */
+ 303:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 304:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 305:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 306:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END()             			/* end of sequence */
+ 307:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** };
+ 308:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 309:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 310:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static const uint8_t u8x8_d_il3820_to_display_seq[] = {
+ 311:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ 312:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /*
+ 313:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 0x50, 0xAA, 0x55, 0xAA, 0x11, 	0x00, 0x00, 0x00, 0x00, 0x00, 
+ 314:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 0x00, 0x00, 0x00, 0x00, 0x00, 	0x00, 0x00, 0x00, 0x00, 0x00, 
+ 315:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 0xFF, 0xFF, 0x1F, 0x00, 0x00, 		0x00, 0x00, 0x00, 0x00, 0x00
+ 316:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** measured 1582 ms
+ 317:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** */
+ 318:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_C(0x32),	/* write LUT register*/
+ 319:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* original values */
+ 320:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x50),
+ 321:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0xaa),
+ 322:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x55),
+ 323:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0xaa),  
+ 324:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x11),
+ 325:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 326:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x11),
+ 327:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 328:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 329:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),  
+ 330:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 331:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 332:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 333:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 334:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 335:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 336:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 337:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 338:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 339:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 340:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 341:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 342:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 343:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 12
+
+
+ 344:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* Timing part of the LUT, 20 Phases with 4 bit each: 10 bytes */
+ 345:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0xff),
+ 346:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0xff),
+ 347:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x3f),
+ 348:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 349:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 350:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 351:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 352:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 353:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 354:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 355:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 356:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x22, 0x04),	/* display update seq. option: pattern display, assumes clk and charge pump 
+ 357:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_C(0x20),	/* execute sequence */
+ 358:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 359:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),	/* delay for 1620ms. The current sequence takes 1582ms */
+ 360:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 361:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 362:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 363:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 364:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 365:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 366:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(120),
+ 367:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****    
+ 368:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 369:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END()             			/* end of sequence */
+ 370:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** };
+ 371:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 372:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 373:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** uint8_t u8x8_d_il3820_296x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 374:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** {
+ 267              		.loc 1 374 0
+ 268              		.cfi_startproc
+ 269              		@ args = 0, pretend = 0, frame = 0
+ 270              		@ frame_needed = 0, uses_anonymous_args = 0
+ 271              	.LVL40:
+ 272 0000 10B5     		push	{r4, lr}
+ 273              	.LCFI2:
+ 274              		.cfi_def_cfa_offset 8
+ 275              		.cfi_offset 4, -8
+ 276              		.cfi_offset 14, -4
+ 277 0002 0446     		mov	r4, r0
+ 278 0004 1046     		mov	r0, r2
+ 279              	.LVL41:
+ 375:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   switch(msg)
+ 280              		.loc 1 375 0
+ 281 0006 0939     		subs	r1, r1, #9
+ 282              	.LVL42:
+ 283 0008 0729     		cmp	r1, #7
+ 284 000a 35D8     		bhi	.L23
+ 285 000c DFE801F0 		tbb	[pc, r1]
+ 286              	.LVL43:
+ 287              	.L17:
+ 288 0010 04       		.byte	(.L16-.L17)/2
+ 289 0011 0A       		.byte	(.L18-.L17)/2
+ 290 0012 1A       		.byte	(.L19-.L17)/2
+ 291 0013 34       		.byte	(.L23-.L17)/2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 13
+
+
+ 292 0014 34       		.byte	(.L23-.L17)/2
+ 293 0015 34       		.byte	(.L23-.L17)/2
+ 294 0016 27       		.byte	(.L20-.L17)/2
+ 295 0017 2E       		.byte	(.L21-.L17)/2
+ 296              		.p2align 1
+ 297              	.L16:
+ 376:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   {
+ 377:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+ 378:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_il3820_296x128_display_info);
+ 298              		.loc 1 378 0
+ 299 0018 1849     		ldr	r1, .L25
+ 300 001a 2046     		mov	r0, r4
+ 301 001c FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
+ 302              	.LVL44:
+ 379:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 380:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_INIT:
+ 381:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 382:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_d_helper_display_init(u8x8);
+ 383:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_296x128_init_seq);    
+ 384:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 385:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_296x128_powersave0_seq);
+ 386:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_d_il3820_first_init(u8x8);
+ 387:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 388:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       /* usually the DISPLAY_INIT message leaves the display in power save state */
+ 389:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       /* however this is not done for e-paper devices, see: */
+ 390:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       /* https://github.com/olikraus/u8g2/wiki/internal#powersave-mode */
+ 391:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     
+ 392:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 393:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+ 394:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       if ( arg_int == 0 )
+ 395:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_296x128_powersave0_seq);
+ 396:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       else
+ 397:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_296x128_powersave1_seq);
+ 398:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 399:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_DRAW_TILE:
+ 400:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_d_il3820_draw_tile(u8x8, arg_int, arg_ptr);
+ 401:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 402:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_REFRESH:
+ 403:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_to_display_seq);
+ 404:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 405:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     default:
+ 406:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       return 0;
+ 407:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   }
+ 408:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   return 1;
+ 303              		.loc 1 408 0
+ 304 0020 0120     		movs	r0, #1
+ 305              	.L15:
+ 409:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 306              		.loc 1 409 0
+ 307 0022 10BD     		pop	{r4, pc}
+ 308              	.LVL45:
+ 309              	.L18:
+ 382:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_296x128_init_seq);    
+ 310              		.loc 1 382 0
+ 311 0024 2046     		mov	r0, r4
+ 312 0026 FFF7FEFF 		bl	u8x8_d_helper_display_init
+ 313              	.LVL46:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 14
+
+
+ 383:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 314              		.loc 1 383 0
+ 315 002a 1549     		ldr	r1, .L25+4
+ 316 002c 2046     		mov	r0, r4
+ 317 002e FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 318              	.LVL47:
+ 385:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_d_il3820_first_init(u8x8);
+ 319              		.loc 1 385 0
+ 320 0032 1449     		ldr	r1, .L25+8
+ 321 0034 2046     		mov	r0, r4
+ 322 0036 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 323              	.LVL48:
+ 386:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 324              		.loc 1 386 0
+ 325 003a 2046     		mov	r0, r4
+ 326 003c FFF7FEFF 		bl	u8x8_d_il3820_first_init
+ 327              	.LVL49:
+ 408:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 328              		.loc 1 408 0
+ 329 0040 0120     		movs	r0, #1
+ 392:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+ 330              		.loc 1 392 0
+ 331 0042 EEE7     		b	.L15
+ 332              	.LVL50:
+ 333              	.L19:
+ 394:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_296x128_powersave0_seq);
+ 334              		.loc 1 394 0
+ 335 0044 28B9     		cbnz	r0, .L22
+ 395:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       else
+ 336              		.loc 1 395 0
+ 337 0046 0F49     		ldr	r1, .L25+8
+ 338 0048 2046     		mov	r0, r4
+ 339 004a FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 340              	.LVL51:
+ 408:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 341              		.loc 1 408 0
+ 342 004e 0120     		movs	r0, #1
+ 343 0050 E7E7     		b	.L15
+ 344              	.LVL52:
+ 345              	.L22:
+ 397:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 346              		.loc 1 397 0
+ 347 0052 0D49     		ldr	r1, .L25+12
+ 348 0054 2046     		mov	r0, r4
+ 349 0056 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 350              	.LVL53:
+ 408:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 351              		.loc 1 408 0
+ 352 005a 0120     		movs	r0, #1
+ 353 005c E1E7     		b	.L15
+ 354              	.LVL54:
+ 355              	.L20:
+ 400:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 356              		.loc 1 400 0
+ 357 005e 1A46     		mov	r2, r3
+ 358 0060 0146     		mov	r1, r0
+ 359 0062 2046     		mov	r0, r4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 15
+
+
+ 360 0064 FFF7FEFF 		bl	u8x8_d_il3820_draw_tile
+ 361              	.LVL55:
+ 408:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 362              		.loc 1 408 0
+ 363 0068 0120     		movs	r0, #1
+ 401:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_REFRESH:
+ 364              		.loc 1 401 0
+ 365 006a DAE7     		b	.L15
+ 366              	.LVL56:
+ 367              	.L21:
+ 403:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 368              		.loc 1 403 0
+ 369 006c 0749     		ldr	r1, .L25+16
+ 370 006e 2046     		mov	r0, r4
+ 371 0070 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 372              	.LVL57:
+ 408:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 373              		.loc 1 408 0
+ 374 0074 0120     		movs	r0, #1
+ 404:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     default:
+ 375              		.loc 1 404 0
+ 376 0076 D4E7     		b	.L15
+ 377              	.LVL58:
+ 378              	.L23:
+ 406:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   }
+ 379              		.loc 1 406 0
+ 380 0078 0020     		movs	r0, #0
+ 381 007a D2E7     		b	.L15
+ 382              	.L26:
+ 383              		.align	2
+ 384              	.L25:
+ 385 007c 00000000 		.word	.LANCHOR2
+ 386 0080 00000000 		.word	.LANCHOR3
+ 387 0084 00000000 		.word	.LANCHOR4
+ 388 0088 00000000 		.word	.LANCHOR5
+ 389 008c 00000000 		.word	.LANCHOR6
+ 390              		.cfi_endproc
+ 391              	.LFE3:
+ 393              		.section	.text.u8x8_d_il3820_v2_296x128,"ax",%progbits
+ 394              		.align	1
+ 395              		.global	u8x8_d_il3820_v2_296x128
+ 396              		.syntax unified
+ 397              		.thumb
+ 398              		.thumb_func
+ 399              		.fpu fpv4-sp-d16
+ 401              	u8x8_d_il3820_v2_296x128:
+ 402              	.LFB4:
+ 410:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 411:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /*=================================================*/
+ 412:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* second version for the IL3820 display */
+ 413:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 414:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 415:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /* http://www.waveshare.com/wiki/File:2.9inch_e-Paper_Module_code.7z */
+ 416:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static const uint8_t u8x8_d_il3820_v2_296x128_init_seq[] = {
+ 417:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     
+ 418:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ 419:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 16
+
+
+ 420:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   // U8X8_CA(0x10, 0x00),	/* Deep Sleep mode Control: POR: Normal mode */
+ 421:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_C(0x01),
+ 422:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(295 % 256), U8X8_A(295/256), U8X8_A(0),
+ 423:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 424:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* the driving voltagesmust not be that high, in order to aviod level change after */
+ 425:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* some seconds (which happens with 0xea */
+ 426:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x03, 0x75), 	/* Gate Driving voltage: +/-15V =0x00 POR (+22/-20V) = 0x0ea*/
+ 427:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x04, 0x0a), 	/* Source Driving voltage:  (POR=0x0a=15V), max=0x0e*/
+ 428:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 429:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x0b, 7),	/* Set Delay of gate and source non overlap period, POR = 7 */
+ 430:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x2c, 0xa8),	/* write vcom value*/
+ 431:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x3a, 0x16),	/* dummy lines POR=22 (0x016) */
+ 432:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x3b, 0x08),	/* gate time POR=0x08*/
+ 433:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x3c, 0x33),	/* select boarder waveform */
+ 434:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 435:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x11, 0x07),	/* Define data entry mode, x&y inc, x first*/
+ 436:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CAA(0x44, 0, 29),	/* RAM x start & end, 32*4=128 */
+ 437:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CAAAA(0x45, 0, 0, 295&255, 295>>8),	/* RAM y start & end, 0..295 */
+ 438:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 439:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 440:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END()             			/* end of sequence */
+ 441:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** };
+ 442:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 443:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 444:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** static const uint8_t u8x8_d_il3820_v2_to_display_seq[] = {
+ 445:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ 446:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 447:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** /*
+ 448:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 0xaa, 0x09, 0x09, 0x19, 0x19, 
+ 449:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 0x11, 0x11, 0x11, 0x11, 0x00, 
+ 450:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 0x00, 0x00, 0x00, 0x00, 0x00, 
+ 451:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 0x00, 0x00, 0x00, 0x00, 0x00, 
+ 452:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 453:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 0x75, 0x77, 0x77, 0x77, 0x07, 
+ 454:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 0x00, 0x00, 0x00, 0x00, 0x00
+ 455:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** measured 1240 ms
+ 456:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** */
+ 457:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_C(0x32),	/* write LUT register*/
+ 458:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* https://github.com/olikraus/u8g2/issues/347 */
+ 459:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0xaa),
+ 460:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x09),
+ 461:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x09),
+ 462:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x19),  
+ 463:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x19),
+ 464:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 465:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x11),
+ 466:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x11),
+ 467:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x11),
+ 468:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x11),  
+ 469:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 470:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 471:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 472:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 473:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 474:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 475:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 476:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 17
+
+
+ 477:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 478:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 479:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 480:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 481:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 482:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 483:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   /* Timing part of the LUT, 20 Phases with 4 bit each: 10 bytes */
+ 484:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x75),
+ 485:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x77),
+ 486:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x77),
+ 487:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x77),
+ 488:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x07),
+ 489:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 490:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 491:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 492:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 493:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 494:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_A(0x00),
+ 495:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 496:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_CA(0x22, 0x04),	/* display update seq. option: pattern display */
+ 497:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_C(0x20),	/* execute sequence */
+ 498:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 499:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),	/* delay for 1400ms. The current sequence takes 1240ms, it was reported, that long
+ 500:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 501:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 502:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 503:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   
+ 504:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(250),
+ 505:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_DLY(150),	/* extended, #318 */
+ 506:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****  
+ 507:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 508:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   U8X8_END()             			/* end of sequence */
+ 509:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** };
+ 510:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 511:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** uint8_t u8x8_d_il3820_v2_296x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 512:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** {
+ 403              		.loc 1 512 0
+ 404              		.cfi_startproc
+ 405              		@ args = 0, pretend = 0, frame = 0
+ 406              		@ frame_needed = 0, uses_anonymous_args = 0
+ 407              	.LVL59:
+ 408 0000 10B5     		push	{r4, lr}
+ 409              	.LCFI3:
+ 410              		.cfi_def_cfa_offset 8
+ 411              		.cfi_offset 4, -8
+ 412              		.cfi_offset 14, -4
+ 413 0002 0446     		mov	r4, r0
+ 414 0004 1046     		mov	r0, r2
+ 415              	.LVL60:
+ 513:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   switch(msg)
+ 416              		.loc 1 513 0
+ 417 0006 0939     		subs	r1, r1, #9
+ 418              	.LVL61:
+ 419 0008 0729     		cmp	r1, #7
+ 420 000a 35D8     		bhi	.L36
+ 421 000c DFE801F0 		tbb	[pc, r1]
+ 422              	.LVL62:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 18
+
+
+ 423              	.L30:
+ 424 0010 04       		.byte	(.L29-.L30)/2
+ 425 0011 0A       		.byte	(.L31-.L30)/2
+ 426 0012 1A       		.byte	(.L32-.L30)/2
+ 427 0013 34       		.byte	(.L36-.L30)/2
+ 428 0014 34       		.byte	(.L36-.L30)/2
+ 429 0015 34       		.byte	(.L36-.L30)/2
+ 430 0016 27       		.byte	(.L33-.L30)/2
+ 431 0017 2E       		.byte	(.L34-.L30)/2
+ 432              		.p2align 1
+ 433              	.L29:
+ 514:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   {
+ 515:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+ 516:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_il3820_296x128_display_info);
+ 434              		.loc 1 516 0
+ 435 0018 1849     		ldr	r1, .L38
+ 436 001a 2046     		mov	r0, r4
+ 437 001c FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
+ 438              	.LVL63:
+ 517:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;    
+ 518:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_INIT:
+ 519:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 520:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_d_helper_display_init(u8x8);
+ 521:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     
+ 522:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_v2_296x128_init_seq);    
+ 523:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 524:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_296x128_powersave0_seq);
+ 525:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_d_il3820_first_init(u8x8);
+ 526:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       /* u8x8_d_il3820_second_init(u8x8); */  /* not required, u8g2.begin() will also clear the dis
+ 527:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****           
+ 528:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       /* usually the DISPLAY_INIT message leaves the display in power save state */
+ 529:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       /* however this is not done for e-paper devices, see: */
+ 530:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       /* https://github.com/olikraus/u8g2/wiki/internal#powersave-mode */
+ 531:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     
+ 532:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 533:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+ 534:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       if ( arg_int == 0 )
+ 535:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_296x128_powersave0_seq);
+ 536:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       else
+ 537:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_296x128_powersave1_seq);
+ 538:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 539:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_DRAW_TILE:
+ 540:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_d_il3820_draw_tile(u8x8, arg_int, arg_ptr);
+ 541:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 542:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_REFRESH:
+ 543:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_v2_to_display_seq);
+ 544:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 545:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     default:
+ 546:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       return 0;
+ 547:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   }
+ 548:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   return 1;
+ 439              		.loc 1 548 0
+ 440 0020 0120     		movs	r0, #1
+ 441              	.L28:
+ 549:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 442              		.loc 1 549 0
+ 443 0022 10BD     		pop	{r4, pc}
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 19
+
+
+ 444              	.LVL64:
+ 445              	.L31:
+ 520:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     
+ 446              		.loc 1 520 0
+ 447 0024 2046     		mov	r0, r4
+ 448 0026 FFF7FEFF 		bl	u8x8_d_helper_display_init
+ 449              	.LVL65:
+ 522:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 
+ 450              		.loc 1 522 0
+ 451 002a 1549     		ldr	r1, .L38+4
+ 452 002c 2046     		mov	r0, r4
+ 453 002e FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 454              	.LVL66:
+ 524:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       u8x8_d_il3820_first_init(u8x8);
+ 455              		.loc 1 524 0
+ 456 0032 1449     		ldr	r1, .L38+8
+ 457 0034 2046     		mov	r0, r4
+ 458 0036 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 459              	.LVL67:
+ 525:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       /* u8x8_d_il3820_second_init(u8x8); */  /* not required, u8g2.begin() will also clear the dis
+ 460              		.loc 1 525 0
+ 461 003a 2046     		mov	r0, r4
+ 462 003c FFF7FEFF 		bl	u8x8_d_il3820_first_init
+ 463              	.LVL68:
+ 548:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 464              		.loc 1 548 0
+ 465 0040 0120     		movs	r0, #1
+ 532:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+ 466              		.loc 1 532 0
+ 467 0042 EEE7     		b	.L28
+ 468              	.LVL69:
+ 469              	.L32:
+ 534:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_il3820_296x128_powersave0_seq);
+ 470              		.loc 1 534 0
+ 471 0044 28B9     		cbnz	r0, .L35
+ 535:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       else
+ 472              		.loc 1 535 0
+ 473 0046 0F49     		ldr	r1, .L38+8
+ 474 0048 2046     		mov	r0, r4
+ 475 004a FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 476              	.LVL70:
+ 548:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 477              		.loc 1 548 0
+ 478 004e 0120     		movs	r0, #1
+ 479 0050 E7E7     		b	.L28
+ 480              	.LVL71:
+ 481              	.L35:
+ 537:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 482              		.loc 1 537 0
+ 483 0052 0D49     		ldr	r1, .L38+12
+ 484 0054 2046     		mov	r0, r4
+ 485 0056 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 486              	.LVL72:
+ 548:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 487              		.loc 1 548 0
+ 488 005a 0120     		movs	r0, #1
+ 489 005c E1E7     		b	.L28
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 20
+
+
+ 490              	.LVL73:
+ 491              	.L33:
+ 540:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 492              		.loc 1 540 0
+ 493 005e 1A46     		mov	r2, r3
+ 494 0060 0146     		mov	r1, r0
+ 495 0062 2046     		mov	r0, r4
+ 496 0064 FFF7FEFF 		bl	u8x8_d_il3820_draw_tile
+ 497              	.LVL74:
+ 548:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 498              		.loc 1 548 0
+ 499 0068 0120     		movs	r0, #1
+ 541:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     case U8X8_MSG_DISPLAY_REFRESH:
+ 500              		.loc 1 541 0
+ 501 006a DAE7     		b	.L28
+ 502              	.LVL75:
+ 503              	.L34:
+ 543:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****       break;
+ 504              		.loc 1 543 0
+ 505 006c 0749     		ldr	r1, .L38+16
+ 506 006e 2046     		mov	r0, r4
+ 507 0070 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 508              	.LVL76:
+ 548:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c **** }
+ 509              		.loc 1 548 0
+ 510 0074 0120     		movs	r0, #1
+ 544:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****     default:
+ 511              		.loc 1 544 0
+ 512 0076 D4E7     		b	.L28
+ 513              	.LVL77:
+ 514              	.L36:
+ 546:/Users/imashio/Electronics/ARM/_Library/u8x8_d_il3820_296x128.c ****   }
+ 515              		.loc 1 546 0
+ 516 0078 0020     		movs	r0, #0
+ 517 007a D2E7     		b	.L28
+ 518              	.L39:
+ 519              		.align	2
+ 520              	.L38:
+ 521 007c 00000000 		.word	.LANCHOR2
+ 522 0080 00000000 		.word	.LANCHOR7
+ 523 0084 00000000 		.word	.LANCHOR4
+ 524 0088 00000000 		.word	.LANCHOR5
+ 525 008c 00000000 		.word	.LANCHOR8
+ 526              		.cfi_endproc
+ 527              	.LFE4:
+ 529              		.section	.bss.buf.6262,"aw",%nobits
+ 530              		.align	2
+ 531              		.set	.LANCHOR0,. + 0
+ 534              	buf.6262:
+ 535 0000 00000000 		.space	8
+ 535      00000000 
+ 536              		.section	.rodata.u8x8_d_il3820_296x128_init_seq,"a",%progbits
+ 537              		.align	2
+ 538              		.set	.LANCHOR3,. + 0
+ 541              	u8x8_d_il3820_296x128_init_seq:
+ 542 0000 18       		.byte	24
+ 543 0001 15       		.byte	21
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 21
+
+
+ 544 0002 10       		.byte	16
+ 545 0003 16       		.byte	22
+ 546 0004 00       		.byte	0
+ 547 0005 15       		.byte	21
+ 548 0006 01       		.byte	1
+ 549 0007 16       		.byte	22
+ 550 0008 27       		.byte	39
+ 551 0009 16       		.byte	22
+ 552 000a 01       		.byte	1
+ 553 000b 16       		.byte	22
+ 554 000c 00       		.byte	0
+ 555 000d 15       		.byte	21
+ 556 000e 03       		.byte	3
+ 557 000f 16       		.byte	22
+ 558 0010 00       		.byte	0
+ 559 0011 15       		.byte	21
+ 560 0012 04       		.byte	4
+ 561 0013 16       		.byte	22
+ 562 0014 0A       		.byte	10
+ 563 0015 15       		.byte	21
+ 564 0016 2C       		.byte	44
+ 565 0017 16       		.byte	22
+ 566 0018 A8       		.byte	-88
+ 567 0019 15       		.byte	21
+ 568 001a 3A       		.byte	58
+ 569 001b 16       		.byte	22
+ 570 001c 16       		.byte	22
+ 571 001d 15       		.byte	21
+ 572 001e 3B       		.byte	59
+ 573 001f 16       		.byte	22
+ 574 0020 08       		.byte	8
+ 575 0021 15       		.byte	21
+ 576 0022 3C       		.byte	60
+ 577 0023 16       		.byte	22
+ 578 0024 33       		.byte	51
+ 579 0025 15       		.byte	21
+ 580 0026 11       		.byte	17
+ 581 0027 16       		.byte	22
+ 582 0028 07       		.byte	7
+ 583 0029 15       		.byte	21
+ 584 002a 44       		.byte	68
+ 585 002b 16       		.byte	22
+ 586 002c 00       		.byte	0
+ 587 002d 16       		.byte	22
+ 588 002e 1D       		.byte	29
+ 589 002f 15       		.byte	21
+ 590 0030 45       		.byte	69
+ 591 0031 16       		.byte	22
+ 592 0032 00       		.byte	0
+ 593 0033 16       		.byte	22
+ 594 0034 00       		.byte	0
+ 595 0035 16       		.byte	22
+ 596 0036 27       		.byte	39
+ 597 0037 16       		.byte	22
+ 598 0038 01       		.byte	1
+ 599 0039 19       		.byte	25
+ 600 003a FF       		.byte	-1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 22
+
+
+ 601              		.section	.rodata.u8x8_d_il3820_296x128_powersave0_seq,"a",%progbits
+ 602              		.align	2
+ 603              		.set	.LANCHOR4,. + 0
+ 606              	u8x8_d_il3820_296x128_powersave0_seq:
+ 607 0000 18       		.byte	24
+ 608 0001 15       		.byte	21
+ 609 0002 22       		.byte	34
+ 610 0003 16       		.byte	22
+ 611 0004 C0       		.byte	-64
+ 612 0005 15       		.byte	21
+ 613 0006 20       		.byte	32
+ 614 0007 FE       		.byte	-2
+ 615 0008 C8       		.byte	-56
+ 616 0009 FE       		.byte	-2
+ 617 000a 64       		.byte	100
+ 618 000b 19       		.byte	25
+ 619 000c FF       		.byte	-1
+ 620              		.section	.rodata.u8x8_d_il3820_296x128_powersave1_seq,"a",%progbits
+ 621              		.align	2
+ 622              		.set	.LANCHOR5,. + 0
+ 625              	u8x8_d_il3820_296x128_powersave1_seq:
+ 626 0000 18       		.byte	24
+ 627 0001 15       		.byte	21
+ 628 0002 22       		.byte	34
+ 629 0003 16       		.byte	22
+ 630 0004 02       		.byte	2
+ 631 0005 15       		.byte	21
+ 632 0006 20       		.byte	32
+ 633 0007 FE       		.byte	-2
+ 634 0008 14       		.byte	20
+ 635 0009 19       		.byte	25
+ 636 000a FF       		.byte	-1
+ 637              		.section	.rodata.u8x8_d_il3820_exec_1000dly_seq,"a",%progbits
+ 638              		.align	2
+ 639              		.set	.LANCHOR1,. + 0
+ 642              	u8x8_d_il3820_exec_1000dly_seq:
+ 643 0000 15       		.byte	21
+ 644 0001 22       		.byte	34
+ 645 0002 16       		.byte	22
+ 646 0003 04       		.byte	4
+ 647 0004 15       		.byte	21
+ 648 0005 20       		.byte	32
+ 649 0006 FE       		.byte	-2
+ 650 0007 FA       		.byte	-6
+ 651 0008 FE       		.byte	-2
+ 652 0009 FA       		.byte	-6
+ 653 000a FE       		.byte	-2
+ 654 000b FA       		.byte	-6
+ 655 000c FE       		.byte	-2
+ 656 000d FA       		.byte	-6
+ 657 000e 19       		.byte	25
+ 658 000f FF       		.byte	-1
+ 659              		.section	.rodata.u8x8_d_il3820_to_display_seq,"a",%progbits
+ 660              		.align	2
+ 661              		.set	.LANCHOR6,. + 0
+ 664              	u8x8_d_il3820_to_display_seq:
+ 665 0000 18       		.byte	24
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 23
+
+
+ 666 0001 15       		.byte	21
+ 667 0002 32       		.byte	50
+ 668 0003 16       		.byte	22
+ 669 0004 50       		.byte	80
+ 670 0005 16       		.byte	22
+ 671 0006 AA       		.byte	-86
+ 672 0007 16       		.byte	22
+ 673 0008 55       		.byte	85
+ 674 0009 16       		.byte	22
+ 675 000a AA       		.byte	-86
+ 676 000b 16       		.byte	22
+ 677 000c 11       		.byte	17
+ 678 000d 16       		.byte	22
+ 679 000e 11       		.byte	17
+ 680 000f 16       		.byte	22
+ 681 0010 00       		.byte	0
+ 682 0011 16       		.byte	22
+ 683 0012 00       		.byte	0
+ 684 0013 16       		.byte	22
+ 685 0014 00       		.byte	0
+ 686 0015 16       		.byte	22
+ 687 0016 00       		.byte	0
+ 688 0017 16       		.byte	22
+ 689 0018 00       		.byte	0
+ 690 0019 16       		.byte	22
+ 691 001a 00       		.byte	0
+ 692 001b 16       		.byte	22
+ 693 001c 00       		.byte	0
+ 694 001d 16       		.byte	22
+ 695 001e 00       		.byte	0
+ 696 001f 16       		.byte	22
+ 697 0020 00       		.byte	0
+ 698 0021 16       		.byte	22
+ 699 0022 00       		.byte	0
+ 700 0023 16       		.byte	22
+ 701 0024 00       		.byte	0
+ 702 0025 16       		.byte	22
+ 703 0026 00       		.byte	0
+ 704 0027 16       		.byte	22
+ 705 0028 00       		.byte	0
+ 706 0029 16       		.byte	22
+ 707 002a 00       		.byte	0
+ 708 002b 16       		.byte	22
+ 709 002c FF       		.byte	-1
+ 710 002d 16       		.byte	22
+ 711 002e FF       		.byte	-1
+ 712 002f 16       		.byte	22
+ 713 0030 3F       		.byte	63
+ 714 0031 16       		.byte	22
+ 715 0032 00       		.byte	0
+ 716 0033 16       		.byte	22
+ 717 0034 00       		.byte	0
+ 718 0035 16       		.byte	22
+ 719 0036 00       		.byte	0
+ 720 0037 16       		.byte	22
+ 721 0038 00       		.byte	0
+ 722 0039 16       		.byte	22
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 24
+
+
+ 723 003a 00       		.byte	0
+ 724 003b 16       		.byte	22
+ 725 003c 00       		.byte	0
+ 726 003d 16       		.byte	22
+ 727 003e 00       		.byte	0
+ 728 003f 15       		.byte	21
+ 729 0040 22       		.byte	34
+ 730 0041 16       		.byte	22
+ 731 0042 04       		.byte	4
+ 732 0043 15       		.byte	21
+ 733 0044 20       		.byte	32
+ 734 0045 FE       		.byte	-2
+ 735 0046 FA       		.byte	-6
+ 736 0047 FE       		.byte	-2
+ 737 0048 FA       		.byte	-6
+ 738 0049 FE       		.byte	-2
+ 739 004a FA       		.byte	-6
+ 740 004b FE       		.byte	-2
+ 741 004c FA       		.byte	-6
+ 742 004d FE       		.byte	-2
+ 743 004e FA       		.byte	-6
+ 744 004f FE       		.byte	-2
+ 745 0050 FA       		.byte	-6
+ 746 0051 FE       		.byte	-2
+ 747 0052 78       		.byte	120
+ 748 0053 19       		.byte	25
+ 749 0054 FF       		.byte	-1
+ 750              		.section	.rodata.u8x8_d_il3820_v2_296x128_init_seq,"a",%progbits
+ 751              		.align	2
+ 752              		.set	.LANCHOR7,. + 0
+ 755              	u8x8_d_il3820_v2_296x128_init_seq:
+ 756 0000 18       		.byte	24
+ 757 0001 15       		.byte	21
+ 758 0002 01       		.byte	1
+ 759 0003 16       		.byte	22
+ 760 0004 27       		.byte	39
+ 761 0005 16       		.byte	22
+ 762 0006 01       		.byte	1
+ 763 0007 16       		.byte	22
+ 764 0008 00       		.byte	0
+ 765 0009 15       		.byte	21
+ 766 000a 03       		.byte	3
+ 767 000b 16       		.byte	22
+ 768 000c 75       		.byte	117
+ 769 000d 15       		.byte	21
+ 770 000e 04       		.byte	4
+ 771 000f 16       		.byte	22
+ 772 0010 0A       		.byte	10
+ 773 0011 15       		.byte	21
+ 774 0012 0B       		.byte	11
+ 775 0013 16       		.byte	22
+ 776 0014 07       		.byte	7
+ 777 0015 15       		.byte	21
+ 778 0016 2C       		.byte	44
+ 779 0017 16       		.byte	22
+ 780 0018 A8       		.byte	-88
+ 781 0019 15       		.byte	21
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 25
+
+
+ 782 001a 3A       		.byte	58
+ 783 001b 16       		.byte	22
+ 784 001c 16       		.byte	22
+ 785 001d 15       		.byte	21
+ 786 001e 3B       		.byte	59
+ 787 001f 16       		.byte	22
+ 788 0020 08       		.byte	8
+ 789 0021 15       		.byte	21
+ 790 0022 3C       		.byte	60
+ 791 0023 16       		.byte	22
+ 792 0024 33       		.byte	51
+ 793 0025 15       		.byte	21
+ 794 0026 11       		.byte	17
+ 795 0027 16       		.byte	22
+ 796 0028 07       		.byte	7
+ 797 0029 15       		.byte	21
+ 798 002a 44       		.byte	68
+ 799 002b 16       		.byte	22
+ 800 002c 00       		.byte	0
+ 801 002d 16       		.byte	22
+ 802 002e 1D       		.byte	29
+ 803 002f 15       		.byte	21
+ 804 0030 45       		.byte	69
+ 805 0031 16       		.byte	22
+ 806 0032 00       		.byte	0
+ 807 0033 16       		.byte	22
+ 808 0034 00       		.byte	0
+ 809 0035 16       		.byte	22
+ 810 0036 27       		.byte	39
+ 811 0037 16       		.byte	22
+ 812 0038 01       		.byte	1
+ 813 0039 19       		.byte	25
+ 814 003a FF       		.byte	-1
+ 815              		.section	.rodata.u8x8_d_il3820_v2_to_display_seq,"a",%progbits
+ 816              		.align	2
+ 817              		.set	.LANCHOR8,. + 0
+ 820              	u8x8_d_il3820_v2_to_display_seq:
+ 821 0000 18       		.byte	24
+ 822 0001 15       		.byte	21
+ 823 0002 32       		.byte	50
+ 824 0003 16       		.byte	22
+ 825 0004 AA       		.byte	-86
+ 826 0005 16       		.byte	22
+ 827 0006 09       		.byte	9
+ 828 0007 16       		.byte	22
+ 829 0008 09       		.byte	9
+ 830 0009 16       		.byte	22
+ 831 000a 19       		.byte	25
+ 832 000b 16       		.byte	22
+ 833 000c 19       		.byte	25
+ 834 000d 16       		.byte	22
+ 835 000e 11       		.byte	17
+ 836 000f 16       		.byte	22
+ 837 0010 11       		.byte	17
+ 838 0011 16       		.byte	22
+ 839 0012 11       		.byte	17
+ 840 0013 16       		.byte	22
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 26
+
+
+ 841 0014 11       		.byte	17
+ 842 0015 16       		.byte	22
+ 843 0016 00       		.byte	0
+ 844 0017 16       		.byte	22
+ 845 0018 00       		.byte	0
+ 846 0019 16       		.byte	22
+ 847 001a 00       		.byte	0
+ 848 001b 16       		.byte	22
+ 849 001c 00       		.byte	0
+ 850 001d 16       		.byte	22
+ 851 001e 00       		.byte	0
+ 852 001f 16       		.byte	22
+ 853 0020 00       		.byte	0
+ 854 0021 16       		.byte	22
+ 855 0022 00       		.byte	0
+ 856 0023 16       		.byte	22
+ 857 0024 00       		.byte	0
+ 858 0025 16       		.byte	22
+ 859 0026 00       		.byte	0
+ 860 0027 16       		.byte	22
+ 861 0028 00       		.byte	0
+ 862 0029 16       		.byte	22
+ 863 002a 00       		.byte	0
+ 864 002b 16       		.byte	22
+ 865 002c 75       		.byte	117
+ 866 002d 16       		.byte	22
+ 867 002e 77       		.byte	119
+ 868 002f 16       		.byte	22
+ 869 0030 77       		.byte	119
+ 870 0031 16       		.byte	22
+ 871 0032 77       		.byte	119
+ 872 0033 16       		.byte	22
+ 873 0034 07       		.byte	7
+ 874 0035 16       		.byte	22
+ 875 0036 00       		.byte	0
+ 876 0037 16       		.byte	22
+ 877 0038 00       		.byte	0
+ 878 0039 16       		.byte	22
+ 879 003a 00       		.byte	0
+ 880 003b 16       		.byte	22
+ 881 003c 00       		.byte	0
+ 882 003d 16       		.byte	22
+ 883 003e 00       		.byte	0
+ 884 003f 15       		.byte	21
+ 885 0040 22       		.byte	34
+ 886 0041 16       		.byte	22
+ 887 0042 04       		.byte	4
+ 888 0043 15       		.byte	21
+ 889 0044 20       		.byte	32
+ 890 0045 FE       		.byte	-2
+ 891 0046 FA       		.byte	-6
+ 892 0047 FE       		.byte	-2
+ 893 0048 FA       		.byte	-6
+ 894 0049 FE       		.byte	-2
+ 895 004a FA       		.byte	-6
+ 896 004b FE       		.byte	-2
+ 897 004c FA       		.byte	-6
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 27
+
+
+ 898 004d FE       		.byte	-2
+ 899 004e FA       		.byte	-6
+ 900 004f FE       		.byte	-2
+ 901 0050 96       		.byte	-106
+ 902 0051 19       		.byte	25
+ 903 0052 FF       		.byte	-1
+ 904              		.section	.rodata.u8x8_il3820_296x128_display_info,"a",%progbits
+ 905              		.align	2
+ 906              		.set	.LANCHOR2,. + 0
+ 909              	u8x8_il3820_296x128_display_info:
+ 910 0000 00       		.byte	0
+ 911 0001 01       		.byte	1
+ 912 0002 78       		.byte	120
+ 913 0003 3C       		.byte	60
+ 914 0004 64       		.byte	100
+ 915 0005 64       		.byte	100
+ 916 0006 32       		.byte	50
+ 917 0007 7D       		.byte	125
+ 918 0008 00093D00 		.word	4000000
+ 919 000c 00       		.byte	0
+ 920 000d 04       		.byte	4
+ 921 000e 28       		.byte	40
+ 922 000f 96       		.byte	-106
+ 923 0010 25       		.byte	37
+ 924 0011 10       		.byte	16
+ 925 0012 00       		.byte	0
+ 926 0013 00       		.byte	0
+ 927 0014 2801     		.short	296
+ 928 0016 8000     		.short	128
+ 929              		.text
+ 930              	.Letext0:
+ 931              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 932              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 933              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s 			page 28
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_d_il3820_296x128.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:18     .text.u8x8_convert_tile_for_il3820:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:24     .text.u8x8_convert_tile_for_il3820:0000000000000000 u8x8_convert_tile_for_il3820
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:66     .text.u8x8_convert_tile_for_il3820:000000000000001c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:71     .text.u8x8_d_il3820_first_init:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:77     .text.u8x8_d_il3820_first_init:0000000000000000 u8x8_d_il3820_first_init
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:131    .text.u8x8_d_il3820_first_init:0000000000000040 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:136    .text.u8x8_d_il3820_draw_tile:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:142    .text.u8x8_d_il3820_draw_tile:0000000000000000 u8x8_d_il3820_draw_tile
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:258    .text.u8x8_d_il3820_296x128:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:265    .text.u8x8_d_il3820_296x128:0000000000000000 u8x8_d_il3820_296x128
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:288    .text.u8x8_d_il3820_296x128:0000000000000010 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:296    .text.u8x8_d_il3820_296x128:0000000000000018 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:385    .text.u8x8_d_il3820_296x128:000000000000007c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:394    .text.u8x8_d_il3820_v2_296x128:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:401    .text.u8x8_d_il3820_v2_296x128:0000000000000000 u8x8_d_il3820_v2_296x128
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:424    .text.u8x8_d_il3820_v2_296x128:0000000000000010 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:432    .text.u8x8_d_il3820_v2_296x128:0000000000000018 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:521    .text.u8x8_d_il3820_v2_296x128:000000000000007c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:530    .bss.buf.6262:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:534    .bss.buf.6262:0000000000000000 buf.6262
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:537    .rodata.u8x8_d_il3820_296x128_init_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:541    .rodata.u8x8_d_il3820_296x128_init_seq:0000000000000000 u8x8_d_il3820_296x128_init_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:602    .rodata.u8x8_d_il3820_296x128_powersave0_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:606    .rodata.u8x8_d_il3820_296x128_powersave0_seq:0000000000000000 u8x8_d_il3820_296x128_powersave0_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:621    .rodata.u8x8_d_il3820_296x128_powersave1_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:625    .rodata.u8x8_d_il3820_296x128_powersave1_seq:0000000000000000 u8x8_d_il3820_296x128_powersave1_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:638    .rodata.u8x8_d_il3820_exec_1000dly_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:642    .rodata.u8x8_d_il3820_exec_1000dly_seq:0000000000000000 u8x8_d_il3820_exec_1000dly_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:660    .rodata.u8x8_d_il3820_to_display_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:664    .rodata.u8x8_d_il3820_to_display_seq:0000000000000000 u8x8_d_il3820_to_display_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:751    .rodata.u8x8_d_il3820_v2_296x128_init_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:755    .rodata.u8x8_d_il3820_v2_296x128_init_seq:0000000000000000 u8x8_d_il3820_v2_296x128_init_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:816    .rodata.u8x8_d_il3820_v2_to_display_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:820    .rodata.u8x8_d_il3820_v2_to_display_seq:0000000000000000 u8x8_d_il3820_v2_to_display_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:905    .rodata.u8x8_il3820_296x128_display_info:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccaUTdix.s:909    .rodata.u8x8_il3820_296x128_display_info:0000000000000000 u8x8_il3820_296x128_display_info
+
+UNDEFINED SYMBOLS
+u8x8_ClearDisplay
+u8x8_cad_StartTransfer
+u8x8_cad_SendCmd
+u8x8_cad_SendMultipleArg
+u8x8_cad_SendSequence
+u8x8_cad_SendArg
+u8x8_cad_SendData
+u8x8_cad_EndTransfer
+u8x8_d_helper_display_setup_memory
+u8x8_d_helper_display_init

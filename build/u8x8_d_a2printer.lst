@@ -1,0 +1,660 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_d_a2printer.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.get_delay_in_milliseconds,"ax",%progbits
+  18              		.align	1
+  19              		.global	get_delay_in_milliseconds
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	get_delay_in_milliseconds:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   u8x8_d_a2printer.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 2
+
+
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   Use DC2 bitmap command of the A2 Micro panel termal printer
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   double stroke
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** */
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** #include "u8x8.h"
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** #define LINE_MIN_DELAY_MS 15
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** /* higher values improve quality */
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** /* however if the value is too high (>=5) then form feed does not work any more */
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** #define LINE_EXTRA_8PIXEL_DELAY_MS 3
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** /* this must be a power of two and between 1 and 8 */
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** /* best quality only with 1 */
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** #define NO_OF_LINES_TO_SEND_WITHOUT_DELAY 1
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** /* calculates the delay, based on the number of black pixel */
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** /* actually only "none-zero" bytes are calculated which is, of course not so accurate, but should b
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** uint16_t get_delay_in_milliseconds(uint8_t cnt, uint8_t *data)
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** {
+  28              		.loc 1 55 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   uint8_t i;
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   uint16_t time = LINE_MIN_DELAY_MS;
+  34              		.loc 1 57 0
+  35 0000 0F22     		movs	r2, #15
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   for ( i = 0; i < cnt; i++ )
+  36              		.loc 1 58 0
+  37 0002 0023     		movs	r3, #0
+  38              	.LVL1:
+  39 0004 8342     		cmp	r3, r0
+  40 0006 0FD2     		bcs	.L9
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   uint8_t i;
+  41              		.loc 1 55 0
+  42 0008 10B4     		push	{r4}
+  43              	.LCFI0:
+  44              		.cfi_def_cfa_offset 4
+  45              		.cfi_offset 4, -4
+  46 000a 03E0     		b	.L4
+  47              	.L3:
+  48              		.loc 1 58 0 discriminator 2
+  49 000c 0133     		adds	r3, r3, #1
+  50              	.LVL2:
+  51 000e DBB2     		uxtb	r3, r3
+  52              	.LVL3:
+  53 0010 8342     		cmp	r3, r0
+  54 0012 05D2     		bcs	.L10
+  55              	.L4:
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     if ( data[i] != 0 )
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 3
+
+
+  56              		.loc 1 59 0
+  57 0014 CC5C     		ldrb	r4, [r1, r3]	@ zero_extendqisi2
+  58 0016 002C     		cmp	r4, #0
+  59 0018 F8D0     		beq	.L3
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       time += LINE_EXTRA_8PIXEL_DELAY_MS;
+  60              		.loc 1 60 0
+  61 001a 0332     		adds	r2, r2, #3
+  62              	.LVL4:
+  63 001c 92B2     		uxth	r2, r2
+  64              	.LVL5:
+  65 001e F5E7     		b	.L3
+  66              	.L10:
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   return time;
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** }
+  67              		.loc 1 62 0
+  68 0020 1046     		mov	r0, r2
+  69              	.LVL6:
+  70 0022 5DF8044B 		ldr	r4, [sp], #4
+  71              	.LCFI1:
+  72              		.cfi_restore 4
+  73              		.cfi_def_cfa_offset 0
+  74 0026 7047     		bx	lr
+  75              	.LVL7:
+  76              	.L9:
+  77 0028 1046     		mov	r0, r2
+  78              	.LVL8:
+  79 002a 7047     		bx	lr
+  80              		.cfi_endproc
+  81              	.LFE0:
+  83              		.section	.text.u8x8_d_a2printer_common,"ax",%progbits
+  84              		.align	1
+  85              		.global	u8x8_d_a2printer_common
+  86              		.syntax unified
+  87              		.thumb
+  88              		.thumb_func
+  89              		.fpu fpv4-sp-d16
+  91              	u8x8_d_a2printer_common:
+  92              	.LFB1:
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** uint8_t u8x8_d_a2printer_common(u8x8_t *u8x8, uint8_t msg, U8X8_UNUSED uint8_t arg_int, void *arg_p
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** {
+  93              		.loc 1 65 0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97              	.LVL9:
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   uint8_t c, i, j;
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   uint8_t *ptr;
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   uint16_t delay_in_milliseconds;
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   switch(msg)
+  98              		.loc 1 69 0
+  99 0000 0B29     		cmp	r1, #11
+ 100 0002 7CD0     		beq	.L21
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   uint8_t c, i, j;
+ 101              		.loc 1 65 0
+ 102 0004 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 103              	.LCFI2:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 4
+
+
+ 104              		.cfi_def_cfa_offset 32
+ 105              		.cfi_offset 3, -32
+ 106              		.cfi_offset 4, -28
+ 107              		.cfi_offset 5, -24
+ 108              		.cfi_offset 6, -20
+ 109              		.cfi_offset 7, -16
+ 110              		.cfi_offset 8, -12
+ 111              		.cfi_offset 9, -8
+ 112              		.cfi_offset 14, -4
+ 113 0008 1C46     		mov	r4, r3
+ 114 000a 0546     		mov	r5, r0
+ 115              		.loc 1 69 0
+ 116 000c 0F29     		cmp	r1, #15
+ 117 000e 08D0     		beq	.L14
+ 118 0010 0A29     		cmp	r1, #10
+ 119 0012 02D0     		beq	.L15
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   {
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     /* U8X8_MSG_DISPLAY_SETUP_MEMORY is handled by the calling function */
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     /*
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       break;
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     */
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     case U8X8_MSG_DISPLAY_INIT:
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_d_helper_display_init(u8x8);
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       // no setup required
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       // u8x8_cad_SendSequence(u8x8, u8x8_d_a2printer_init_seq);
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       break;
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       // no powersave 
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       break;
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     case U8X8_MSG_DISPLAY_DRAW_TILE:
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_StartTransfer(u8x8);
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 27);      /* ESC */
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 55 );      /* parameter command */
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       /* increasing the "max printing dots" requires a good power supply, but LINE_EXTRA_8PIXEL_DEL
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 0);      /* Max printing dots,Unit(8dots),Default:7(64 dots) 8*(x+1) .
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 200);      /* 3-255 Heating time,Unit(10us),Default:80(800us) */
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 2);      /* 0-255 Heating interval,Unit(10us),Default:2(20us) ... does
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       //c = ((u8x8_tile_t *)arg_ptr)->cnt;	/* number of tiles */
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       c = u8x8->display_info->tile_width;
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;	/* data ptr to the tiles */
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 18);      /* DC2 */
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 42 );      /* *  */
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 8 ); 	/* height */
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, c ); 	/* c, u8x8->display_info->tile_width */
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       for( j = 0; j < 8 / NO_OF_LINES_TO_SEND_WITHOUT_DELAY; j ++ )
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       {
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	delay_in_milliseconds = 0;
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	for( i = 0; i < NO_OF_LINES_TO_SEND_WITHOUT_DELAY; i++ )
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	{
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	  u8x8_cad_SendData(u8x8, c, ptr);	/* c, note: SendData can not handle more than 255 bytes, send o
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	  delay_in_milliseconds += get_delay_in_milliseconds(c, ptr);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 5
+
+
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	  ptr += c;
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	}
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	while( delay_in_milliseconds > 200 )
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	{
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	  u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_MILLI, 200, NULL);	
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	  delay_in_milliseconds -= 200;
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	}
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_MILLI, delay_in_milliseconds, NULL);	
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       }
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       /* set parameters back to their default values */
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 27);      /* ESC */
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 55 );      /* parameter command */
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 7);      /* Max printing dots,Unit(8dots),Default:7(64 dots) 8*(x+1)*/
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 80);      /* 3-255 Heating time,Unit(10us),Default:80(800us) */
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 2);      /* 0-255 Heating interval,Unit(10us),Default:2(20us)*/
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_EndTransfer(u8x8);
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       break;
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     default:
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       return 0;
+ 120              		.loc 1 133 0
+ 121 0014 0020     		movs	r0, #0
+ 122              	.LVL10:
+ 123              	.L13:
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   }
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   return 1;
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** }
+ 124              		.loc 1 136 0
+ 125 0016 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 126              	.LVL11:
+ 127              	.L15:
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       // no setup required
+ 128              		.loc 1 77 0
+ 129 001a FFF7FEFF 		bl	u8x8_d_helper_display_init
+ 130              	.LVL12:
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** }
+ 131              		.loc 1 135 0
+ 132 001e 0120     		movs	r0, #1
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+ 133              		.loc 1 80 0
+ 134 0020 F9E7     		b	.L13
+ 135              	.LVL13:
+ 136              	.L14:
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       
+ 137              		.loc 1 85 0
+ 138 0022 FFF7FEFF 		bl	u8x8_cad_StartTransfer
+ 139              	.LVL14:
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 55 );      /* parameter command */
+ 140              		.loc 1 87 0
+ 141 0026 1B21     		movs	r1, #27
+ 142 0028 2846     		mov	r0, r5
+ 143 002a FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 144              	.LVL15:
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       /* increasing the "max printing dots" requires a good power supply, but LINE_EXTRA_8PIXEL_DEL
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 6
+
+
+ 145              		.loc 1 88 0
+ 146 002e 3721     		movs	r1, #55
+ 147 0030 2846     		mov	r0, r5
+ 148 0032 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 149              	.LVL16:
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 200);      /* 3-255 Heating time,Unit(10us),Default:80(800us) */
+ 150              		.loc 1 90 0
+ 151 0036 0021     		movs	r1, #0
+ 152 0038 2846     		mov	r0, r5
+ 153 003a FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 154              	.LVL17:
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 2);      /* 0-255 Heating interval,Unit(10us),Default:2(20us) ... does
+ 155              		.loc 1 91 0
+ 156 003e C821     		movs	r1, #200
+ 157 0040 2846     		mov	r0, r5
+ 158 0042 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 159              	.LVL18:
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       
+ 160              		.loc 1 92 0
+ 161 0046 0221     		movs	r1, #2
+ 162 0048 2846     		mov	r0, r5
+ 163 004a FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 164              	.LVL19:
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;	/* data ptr to the tiles */
+ 165              		.loc 1 95 0
+ 166 004e 2B68     		ldr	r3, [r5]
+ 167 0050 93F81090 		ldrb	r9, [r3, #16]	@ zero_extendqisi2
+ 168              	.LVL20:
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     
+ 169              		.loc 1 96 0
+ 170 0054 D4F80080 		ldr	r8, [r4]
+ 171              	.LVL21:
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 42 );      /* *  */
+ 172              		.loc 1 98 0
+ 173 0058 1221     		movs	r1, #18
+ 174 005a 2846     		mov	r0, r5
+ 175 005c FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 176              	.LVL22:
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 8 ); 	/* height */
+ 177              		.loc 1 99 0
+ 178 0060 2A21     		movs	r1, #42
+ 179 0062 2846     		mov	r0, r5
+ 180 0064 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 181              	.LVL23:
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, c ); 	/* c, u8x8->display_info->tile_width */
+ 182              		.loc 1 100 0
+ 183 0068 0821     		movs	r1, #8
+ 184 006a 2846     		mov	r0, r5
+ 185 006c FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 186              	.LVL24:
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       
+ 187              		.loc 1 101 0
+ 188 0070 4946     		mov	r1, r9
+ 189 0072 2846     		mov	r0, r5
+ 190 0074 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 191              	.LVL25:
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 7
+
+
+ 192              		.loc 1 103 0
+ 193 0078 0027     		movs	r7, #0
+ 194 007a 22E0     		b	.L16
+ 195              	.LVL26:
+ 196              	.L17:
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	  delay_in_milliseconds += get_delay_in_milliseconds(c, ptr);
+ 197              		.loc 1 109 0 discriminator 3
+ 198 007c 4246     		mov	r2, r8
+ 199 007e 4946     		mov	r1, r9
+ 200 0080 2846     		mov	r0, r5
+ 201 0082 FFF7FEFF 		bl	u8x8_cad_SendData
+ 202              	.LVL27:
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	  ptr += c;
+ 203              		.loc 1 110 0 discriminator 3
+ 204 0086 4146     		mov	r1, r8
+ 205 0088 4846     		mov	r0, r9
+ 206 008a FFF7FEFF 		bl	get_delay_in_milliseconds
+ 207              	.LVL28:
+ 208 008e 0444     		add	r4, r4, r0
+ 209              	.LVL29:
+ 210 0090 A4B2     		uxth	r4, r4
+ 211              	.LVL30:
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	}
+ 212              		.loc 1 111 0 discriminator 3
+ 213 0092 C844     		add	r8, r8, r9
+ 214              	.LVL31:
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	{
+ 215              		.loc 1 107 0 discriminator 3
+ 216 0094 0136     		adds	r6, r6, #1
+ 217              	.LVL32:
+ 218 0096 F6B2     		uxtb	r6, r6
+ 219              	.LVL33:
+ 220              	.L20:
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	{
+ 221              		.loc 1 107 0 is_stmt 0 discriminator 1
+ 222 0098 002E     		cmp	r6, #0
+ 223 009a EFD0     		beq	.L17
+ 224 009c 07E0     		b	.L18
+ 225              	.LVL34:
+ 226              	.L19:
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	  delay_in_milliseconds -= 200;
+ 227              		.loc 1 116 0 is_stmt 1
+ 228 009e 6E69     		ldr	r6, [r5, #20]
+ 229 00a0 0023     		movs	r3, #0
+ 230 00a2 C822     		movs	r2, #200
+ 231 00a4 2921     		movs	r1, #41
+ 232 00a6 2846     		mov	r0, r5
+ 233 00a8 B047     		blx	r6
+ 234              	.LVL35:
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	}
+ 235              		.loc 1 117 0
+ 236 00aa C83C     		subs	r4, r4, #200
+ 237              	.LVL36:
+ 238 00ac A4B2     		uxth	r4, r4
+ 239              	.LVL37:
+ 240              	.L18:
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	{
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 8
+
+
+ 241              		.loc 1 114 0
+ 242 00ae C82C     		cmp	r4, #200
+ 243 00b0 F5D8     		bhi	.L19
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       }
+ 244              		.loc 1 119 0 discriminator 2
+ 245 00b2 6E69     		ldr	r6, [r5, #20]
+ 246 00b4 0023     		movs	r3, #0
+ 247 00b6 E2B2     		uxtb	r2, r4
+ 248 00b8 2921     		movs	r1, #41
+ 249 00ba 2846     		mov	r0, r5
+ 250 00bc B047     		blx	r6
+ 251              	.LVL38:
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       {
+ 252              		.loc 1 103 0 discriminator 2
+ 253 00be 0137     		adds	r7, r7, #1
+ 254              	.LVL39:
+ 255 00c0 FFB2     		uxtb	r7, r7
+ 256              	.LVL40:
+ 257              	.L16:
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       {
+ 258              		.loc 1 103 0 is_stmt 0 discriminator 1
+ 259 00c2 072F     		cmp	r7, #7
+ 260 00c4 02D8     		bhi	.L27
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	for( i = 0; i < NO_OF_LINES_TO_SEND_WITHOUT_DELAY; i++ )
+ 261              		.loc 1 106 0 is_stmt 1
+ 262 00c6 0024     		movs	r4, #0
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 	{
+ 263              		.loc 1 107 0
+ 264 00c8 2646     		mov	r6, r4
+ 265 00ca E5E7     		b	.L20
+ 266              	.L27:
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 55 );      /* parameter command */
+ 267              		.loc 1 123 0
+ 268 00cc 1B21     		movs	r1, #27
+ 269 00ce 2846     		mov	r0, r5
+ 270 00d0 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 271              	.LVL41:
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 7);      /* Max printing dots,Unit(8dots),Default:7(64 dots) 8*(x+1)*/
+ 272              		.loc 1 124 0
+ 273 00d4 3721     		movs	r1, #55
+ 274 00d6 2846     		mov	r0, r5
+ 275 00d8 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 276              	.LVL42:
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 80);      /* 3-255 Heating time,Unit(10us),Default:80(800us) */
+ 277              		.loc 1 125 0
+ 278 00dc 0721     		movs	r1, #7
+ 279 00de 2846     		mov	r0, r5
+ 280 00e0 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 281              	.LVL43:
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_cad_SendCmd(u8x8, 2);      /* 0-255 Heating interval,Unit(10us),Default:2(20us)*/
+ 282              		.loc 1 126 0
+ 283 00e4 5021     		movs	r1, #80
+ 284 00e6 2846     		mov	r0, r5
+ 285 00e8 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 286              	.LVL44:
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+ 287              		.loc 1 127 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 9
+
+
+ 288 00ec 0221     		movs	r1, #2
+ 289 00ee 2846     		mov	r0, r5
+ 290 00f0 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 291              	.LVL45:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+ 292              		.loc 1 129 0
+ 293 00f4 2846     		mov	r0, r5
+ 294 00f6 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 295              	.LVL46:
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** }
+ 296              		.loc 1 135 0
+ 297 00fa 0120     		movs	r0, #1
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     default:
+ 298              		.loc 1 131 0
+ 299 00fc 8BE7     		b	.L13
+ 300              	.LVL47:
+ 301              	.L21:
+ 302              	.LCFI3:
+ 303              		.cfi_def_cfa_offset 0
+ 304              		.cfi_restore 3
+ 305              		.cfi_restore 4
+ 306              		.cfi_restore 5
+ 307              		.cfi_restore 6
+ 308              		.cfi_restore 7
+ 309              		.cfi_restore 8
+ 310              		.cfi_restore 9
+ 311              		.cfi_restore 14
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** }
+ 312              		.loc 1 135 0
+ 313 00fe 0120     		movs	r0, #1
+ 314              	.LVL48:
+ 315              		.loc 1 136 0
+ 316 0100 7047     		bx	lr
+ 317              		.cfi_endproc
+ 318              	.LFE1:
+ 320              		.section	.text.u8x8_d_a2printer_384x240,"ax",%progbits
+ 321              		.align	1
+ 322              		.global	u8x8_d_a2printer_384x240
+ 323              		.syntax unified
+ 324              		.thumb
+ 325              		.thumb_func
+ 326              		.fpu fpv4-sp-d16
+ 328              	u8x8_d_a2printer_384x240:
+ 329              	.LFB2:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** static const u8x8_display_info_t u8x8_a2printer_384x240_display_info =
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** {
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* most of the settings are not required, because this is a serial RS232 printer */
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* chip_enable_level = */ 1,
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* chip_disable_level = */ 0,
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* post_chip_enable_wait_ns = */ 5,
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* pre_chip_disable_wait_ns = */ 5,
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* reset_pulse_width_ms = */ 1, 
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* post_reset_wait_ms = */ 6, 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 10
+
+
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* sda_setup_time_ns = */ 20,		
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* sck_pulse_width_ns = */  140,	
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* sck_clock_hz = */ 1000000UL,	/* since Arduino 1.6.0, the SPI bus speed in Hz. Should be  10000
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* spi_mode = */ 0,		/* old: sck_takeover_edge, new: active high (bit 1), rising edge (bit 0) */
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* i2c_bus_clock_100kHz = */ 4,
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* data_setup_time_ns = */ 30,
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* write_pulse_width_ns = */ 40,
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* tile_width = */ 48,
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* tile_hight = */ 30,
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* default_x_offset = */ 0,
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* flipmode_x_offset = */ 0,
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* pixel_width = */ 384,
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   /* pixel_height = */ 240
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** };
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** 
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** uint8_t u8x8_d_a2printer_384x240(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** {
+ 330              		.loc 1 166 0
+ 331              		.cfi_startproc
+ 332              		@ args = 0, pretend = 0, frame = 0
+ 333              		@ frame_needed = 0, uses_anonymous_args = 0
+ 334              	.LVL49:
+ 335 0000 08B5     		push	{r3, lr}
+ 336              	.LCFI4:
+ 337              		.cfi_def_cfa_offset 8
+ 338              		.cfi_offset 3, -8
+ 339              		.cfi_offset 14, -4
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   switch(msg)
+ 340              		.loc 1 167 0
+ 341 0002 0929     		cmp	r1, #9
+ 342 0004 02D0     		beq	.L34
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   {
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_a2printer_384x240_display_info);
+ 171:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       break;
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****     default:
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       return u8x8_d_a2printer_common(u8x8, msg, arg_int, arg_ptr);
+ 343              		.loc 1 173 0
+ 344 0006 FFF7FEFF 		bl	u8x8_d_a2printer_common
+ 345              	.LVL50:
+ 346              	.L31:
+ 174:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   }
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****   return 1;
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** }
+ 347              		.loc 1 176 0
+ 348 000a 08BD     		pop	{r3, pc}
+ 349              	.LVL51:
+ 350              	.L34:
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c ****       break;
+ 351              		.loc 1 170 0
+ 352 000c 0249     		ldr	r1, .L35
+ 353              	.LVL52:
+ 354 000e FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
+ 355              	.LVL53:
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_d_a2printer.c **** }
+ 356              		.loc 1 175 0
+ 357 0012 0120     		movs	r0, #1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 11
+
+
+ 358 0014 F9E7     		b	.L31
+ 359              	.L36:
+ 360 0016 00BF     		.align	2
+ 361              	.L35:
+ 362 0018 00000000 		.word	.LANCHOR0
+ 363              		.cfi_endproc
+ 364              	.LFE2:
+ 366              		.section	.rodata.u8x8_a2printer_384x240_display_info,"a",%progbits
+ 367              		.align	2
+ 368              		.set	.LANCHOR0,. + 0
+ 371              	u8x8_a2printer_384x240_display_info:
+ 372 0000 01       		.byte	1
+ 373 0001 00       		.byte	0
+ 374 0002 05       		.byte	5
+ 375 0003 05       		.byte	5
+ 376 0004 01       		.byte	1
+ 377 0005 06       		.byte	6
+ 378 0006 14       		.byte	20
+ 379 0007 8C       		.byte	-116
+ 380 0008 40420F00 		.word	1000000
+ 381 000c 00       		.byte	0
+ 382 000d 04       		.byte	4
+ 383 000e 1E       		.byte	30
+ 384 000f 28       		.byte	40
+ 385 0010 30       		.byte	48
+ 386 0011 1E       		.byte	30
+ 387 0012 00       		.byte	0
+ 388 0013 00       		.byte	0
+ 389 0014 8001     		.short	384
+ 390 0016 F000     		.short	240
+ 391              		.text
+ 392              	.Letext0:
+ 393              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 394              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 395              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_d_a2printer.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s:18     .text.get_delay_in_milliseconds:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s:25     .text.get_delay_in_milliseconds:0000000000000000 get_delay_in_milliseconds
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s:84     .text.u8x8_d_a2printer_common:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s:91     .text.u8x8_d_a2printer_common:0000000000000000 u8x8_d_a2printer_common
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s:321    .text.u8x8_d_a2printer_384x240:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s:328    .text.u8x8_d_a2printer_384x240:0000000000000000 u8x8_d_a2printer_384x240
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s:362    .text.u8x8_d_a2printer_384x240:0000000000000018 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s:367    .rodata.u8x8_a2printer_384x240_display_info:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccq95MFy.s:371    .rodata.u8x8_a2printer_384x240_display_info:0000000000000000 u8x8_a2printer_384x240_display_info
+
+UNDEFINED SYMBOLS
+u8x8_d_helper_display_init
+u8x8_cad_StartTransfer
+u8x8_cad_SendCmd
+u8x8_cad_SendData
+u8x8_cad_EndTransfer
+u8x8_d_helper_display_setup_memory

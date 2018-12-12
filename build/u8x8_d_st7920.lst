@@ -1,0 +1,700 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_d_st7920.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_d_st7920_common,"ax",%progbits
+  18              		.align	1
+  19              		.global	u8x8_d_st7920_common
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	u8x8_d_st7920_common:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   u8x8_d_st7920.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 2
+
+
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   The ST7920 controller does not support hardware graphics flip.
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   Contrast adjustment is done by an external resistor --> no support for contrast adjustment
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** */
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** #include "u8x8.h"
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** static const uint8_t u8x8_d_st7920_init_seq[] = {
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_DLY(100),
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_DLY(10),
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_C(0x038),            			/* 8 Bit interface (DL=1), basic instruction set (RE=0) */
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_C(0x008),		                /* display on, cursor & blink off; 0x08: all off */
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_C(0x006),		                /* Entry mode: Cursor move to right ,DDRAM address counter (AC) p
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_C(0x002),		                /* disable scroll, enable CGRAM adress  */
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_C(0x001),		                /* clear RAM, needs 1.6 ms */
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_DLY(4),					/* delay 2ms */
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_END()             			/* end of sequence */
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** };
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** static const uint8_t u8x8_d_st7920_powersave0_seq[] = {
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_C(0x038),            			/* 8 Bit interface (DL=1), basic instruction set (RE=0) */
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_C(0x00c),		                /* display on, cursor & blink off */
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_END()             			/* end of sequence */
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** };
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** static const uint8_t u8x8_d_st7920_powersave1_seq[] = {
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_C(0x038),            			/* 8 Bit interface (DL=1), basic instruction set (RE=0) */
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_C(0x008),		                /* display off */
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   U8X8_END()             			/* end of sequence */
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** };
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** uint8_t u8x8_d_st7920_common(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** {
+  28              		.loc 1 80 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 32
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 3
+
+
+  36              		.cfi_offset 4, -32
+  37              		.cfi_offset 5, -28
+  38              		.cfi_offset 6, -24
+  39              		.cfi_offset 7, -20
+  40              		.cfi_offset 8, -16
+  41              		.cfi_offset 9, -12
+  42              		.cfi_offset 10, -8
+  43              		.cfi_offset 14, -4
+  44 0004 0546     		mov	r5, r0
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   uint8_t x, y, c, i;
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   uint8_t *ptr;
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   switch(msg)
+  45              		.loc 1 83 0
+  46 0006 0B29     		cmp	r1, #11
+  47 0008 0FD0     		beq	.L3
+  48 000a 9846     		mov	r8, r3
+  49 000c 0F29     		cmp	r1, #15
+  50 000e 17D0     		beq	.L4
+  51 0010 0A29     		cmp	r1, #10
+  52 0012 01D0     		beq	.L13
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   {
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     /* U8X8_MSG_DISPLAY_SETUP_MEMORY is handled by the calling function */
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     /*
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       break;
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     */
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     case U8X8_MSG_DISPLAY_INIT:
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       u8x8_d_helper_display_init(u8x8);
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_st7920_init_seq);
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       break;
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       if ( arg_int == 0 )
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_st7920_powersave0_seq);
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       else
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_st7920_powersave1_seq);
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       break;
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     case U8X8_MSG_DISPLAY_DRAW_TILE:
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       y = (((u8x8_tile_t *)arg_ptr)->y_pos);
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       y*=8;
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       x = ((u8x8_tile_t *)arg_ptr)->x_pos;
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       x /= 2;		/* not sure whether this is a clever idea, problem is, the ST7920 can address only e
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       if ( y >= 32 )	/* this is the adjustment for 128x64 displays */
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       {
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	y-=32;
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	x+=8;
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       }
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       u8x8_cad_StartTransfer(u8x8);
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****         
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       /* 
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	Tile structure is reused here for the ST7920, however u8x8 is not supported 
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	tile_ptr points to data which has cnt*8 bytes (same as SSD1306 tiles)
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	Buffer is expected to have 8 lines of code fitting to the ST7920 internal memory
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	"cnt" includes the number of horizontal bytes. width is equal to cnt*8
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	Also important: Width must be a multiple of 16 (ST7920 requirement), so cnt must be even.
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 4
+
+
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	TODO: Consider arg_int, however arg_int is not used by u8g2
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       */
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       c = ((u8x8_tile_t *)arg_ptr)->cnt;	/* number of tiles */
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;	/* data ptr to the tiles */
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       /* The following byte is sent to allow the ST7920 to sync up with the data */
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       /* it solves some issues with garbage data */
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       u8x8_cad_SendCmd(u8x8, 0x03e );	/* enable extended mode */
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       for( i = 0; i < 8; i++ )
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       {
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	//u8x8_cad_SendCmd(u8x8, 0x03e );	/* enable extended mode */
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	u8x8_cad_SendCmd(u8x8, 0x080 | (y+i) );      /* y pos  */
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	u8x8_cad_SendCmd(u8x8, 0x080 | x );      /* set x pos */
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	c = ((u8x8_tile_t *)arg_ptr)->cnt;	/* number of tiles */
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	//u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, 200, NULL);	/* extra dely required */
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	u8x8_cad_SendData(u8x8, c, ptr);	/* note: SendData can not handle more than 255 bytes, send one li
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	ptr += c;
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	//u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, 200, NULL);	/* extra dely required */
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       }
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       u8x8_cad_EndTransfer(u8x8);
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       break;
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     default:
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       return 0;
+  53              		.loc 1 146 0
+  54 0014 0020     		movs	r0, #0
+  55              	.LVL1:
+  56 0016 06E0     		b	.L2
+  57              	.LVL2:
+  58              	.L13:
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_st7920_init_seq);
+  59              		.loc 1 91 0
+  60 0018 FFF7FEFF 		bl	u8x8_d_helper_display_init
+  61              	.LVL3:
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       break;
+  62              		.loc 1 92 0
+  63 001c 2349     		ldr	r1, .L14
+  64 001e 2846     		mov	r0, r5
+  65 0020 FFF7FEFF 		bl	u8x8_cad_SendSequence
+  66              	.LVL4:
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   }
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   return 1;
+  67              		.loc 1 148 0
+  68 0024 0120     		movs	r0, #1
+  69              	.LVL5:
+  70              	.L2:
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** }
+  71              		.loc 1 149 0
+  72 0026 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+  73              	.LVL6:
+  74              	.L3:
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_st7920_powersave0_seq);
+  75              		.loc 1 95 0
+  76 002a 22B9     		cbnz	r2, .L6
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       else
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 5
+
+
+  77              		.loc 1 96 0
+  78 002c 2049     		ldr	r1, .L14+4
+  79              	.LVL7:
+  80 002e FFF7FEFF 		bl	u8x8_cad_SendSequence
+  81              	.LVL8:
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** }
+  82              		.loc 1 148 0
+  83 0032 0120     		movs	r0, #1
+  84 0034 F7E7     		b	.L2
+  85              	.LVL9:
+  86              	.L6:
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       break;
+  87              		.loc 1 98 0
+  88 0036 1F49     		ldr	r1, .L14+8
+  89              	.LVL10:
+  90 0038 FFF7FEFF 		bl	u8x8_cad_SendSequence
+  91              	.LVL11:
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** }
+  92              		.loc 1 148 0
+  93 003c 0120     		movs	r0, #1
+  94 003e F2E7     		b	.L2
+  95              	.LVL12:
+  96              	.L4:
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       y*=8;
+  97              		.loc 1 101 0
+  98 0040 9F79     		ldrb	r7, [r3, #6]	@ zero_extendqisi2
+  99              	.LVL13:
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       x = ((u8x8_tile_t *)arg_ptr)->x_pos;
+ 100              		.loc 1 102 0
+ 101 0042 FF00     		lsls	r7, r7, #3
+ 102              	.LVL14:
+ 103 0044 FFB2     		uxtb	r7, r7
+ 104              	.LVL15:
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       x /= 2;		/* not sure whether this is a clever idea, problem is, the ST7920 can address only e
+ 105              		.loc 1 103 0
+ 106 0046 93F80590 		ldrb	r9, [r3, #5]	@ zero_extendqisi2
+ 107              	.LVL16:
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     
+ 108              		.loc 1 104 0
+ 109 004a 4FEA5909 		lsr	r9, r9, #1
+ 110              	.LVL17:
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       {
+ 111              		.loc 1 106 0
+ 112 004e 1F2F     		cmp	r7, #31
+ 113 0050 03D9     		bls	.L7
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	x+=8;
+ 114              		.loc 1 108 0
+ 115 0052 203F     		subs	r7, r7, #32
+ 116              	.LVL18:
+ 117 0054 FFB2     		uxtb	r7, r7
+ 118              	.LVL19:
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       }
+ 119              		.loc 1 109 0
+ 120 0056 09F10809 		add	r9, r9, #8
+ 121              	.LVL20:
+ 122              	.L7:
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****         
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 6
+
+
+ 123              		.loc 1 112 0
+ 124 005a 2846     		mov	r0, r5
+ 125              	.LVL21:
+ 126 005c FFF7FEFF 		bl	u8x8_cad_StartTransfer
+ 127              	.LVL22:
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       /* The following byte is sent to allow the ST7920 to sync up with the data */
+ 128              		.loc 1 125 0
+ 129 0060 D8F80060 		ldr	r6, [r8]
+ 130              	.LVL23:
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       for( i = 0; i < 8; i++ )
+ 131              		.loc 1 128 0
+ 132 0064 3E21     		movs	r1, #62
+ 133 0066 2846     		mov	r0, r5
+ 134 0068 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 135              	.LVL24:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       {
+ 136              		.loc 1 129 0
+ 137 006c 0024     		movs	r4, #0
+ 138 006e 16E0     		b	.L8
+ 139              	.LVL25:
+ 140              	.L9:
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	u8x8_cad_SendCmd(u8x8, 0x080 | x );      /* set x pos */
+ 141              		.loc 1 132 0 discriminator 3
+ 142 0070 3919     		adds	r1, r7, r4
+ 143 0072 49B2     		sxtb	r1, r1
+ 144 0074 61F07F01 		orn	r1, r1, #127
+ 145 0078 C9B2     		uxtb	r1, r1
+ 146 007a 2846     		mov	r0, r5
+ 147 007c FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 148              	.LVL26:
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	c = ((u8x8_tile_t *)arg_ptr)->cnt;	/* number of tiles */
+ 149              		.loc 1 133 0 discriminator 3
+ 150 0080 49F08001 		orr	r1, r9, #128
+ 151 0084 2846     		mov	r0, r5
+ 152 0086 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 153              	.LVL27:
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+ 154              		.loc 1 134 0 discriminator 3
+ 155 008a 98F804A0 		ldrb	r10, [r8, #4]	@ zero_extendqisi2
+ 156              	.LVL28:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	ptr += c;
+ 157              		.loc 1 137 0 discriminator 3
+ 158 008e 3246     		mov	r2, r6
+ 159 0090 5146     		mov	r1, r10
+ 160 0092 2846     		mov	r0, r5
+ 161 0094 FFF7FEFF 		bl	u8x8_cad_SendData
+ 162              	.LVL29:
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	//u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, 200, NULL);	/* extra dely required */
+ 163              		.loc 1 138 0 discriminator 3
+ 164 0098 5644     		add	r6, r6, r10
+ 165              	.LVL30:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       {
+ 166              		.loc 1 129 0 discriminator 3
+ 167 009a 0134     		adds	r4, r4, #1
+ 168              	.LVL31:
+ 169 009c E4B2     		uxtb	r4, r4
+ 170              	.LVL32:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 7
+
+
+ 171              	.L8:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       {
+ 172              		.loc 1 129 0 is_stmt 0 discriminator 1
+ 173 009e 072C     		cmp	r4, #7
+ 174 00a0 E6D9     		bls	.L9
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+ 175              		.loc 1 142 0 is_stmt 1
+ 176 00a2 2846     		mov	r0, r5
+ 177 00a4 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 178              	.LVL33:
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** }
+ 179              		.loc 1 148 0
+ 180 00a8 0120     		movs	r0, #1
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     default:
+ 181              		.loc 1 144 0
+ 182 00aa BCE7     		b	.L2
+ 183              	.L15:
+ 184              		.align	2
+ 185              	.L14:
+ 186 00ac 00000000 		.word	.LANCHOR0
+ 187 00b0 00000000 		.word	.LANCHOR1
+ 188 00b4 00000000 		.word	.LANCHOR2
+ 189              		.cfi_endproc
+ 190              	.LFE0:
+ 192              		.section	.text.u8x8_d_st7920_192x32,"ax",%progbits
+ 193              		.align	1
+ 194              		.global	u8x8_d_st7920_192x32
+ 195              		.syntax unified
+ 196              		.thumb
+ 197              		.thumb_func
+ 198              		.fpu fpv4-sp-d16
+ 200              	u8x8_d_st7920_192x32:
+ 201              	.LFB1:
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** static const u8x8_display_info_t u8x8_st7920_192x32_display_info =
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** {
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* chip_enable_level = */ 1,
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* chip_disable_level = */ 0,
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* post_chip_enable_wait_ns = */ 5,
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* pre_chip_disable_wait_ns = */ 5,
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* reset_pulse_width_ms = */ 1, 
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* post_reset_wait_ms = */ 6, 
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* sda_setup_time_ns = */ 20,		
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* sck_pulse_width_ns = */  140,	/* datasheet ST7920 */
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* sck_clock_hz = */ 1000000UL,	/* since Arduino 1.6.0, the SPI bus speed in Hz. Should be  10000
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* spi_mode = */ 3,		/* old: sck_takeover_edge, new: active high (bit 1), rising edge (bit 0), 18
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 	/* Arduino mode 3: aktive low clock, but use rising edge */
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* i2c_bus_clock_100kHz = */ 4,
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* data_setup_time_ns = */ 30,
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* write_pulse_width_ns = */ 40,
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* tile_width = */ 24,
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* tile_hight = */ 4,
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* default_x_offset = */ 0,
+ 171:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* flipmode_x_offset = */ 0,
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* pixel_width = */ 192,
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* pixel_height = */ 32
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 8
+
+
+ 174:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** };
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** static const u8x8_display_info_t u8x8_st7920_128x64_display_info =
+ 177:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** {
+ 178:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* chip_enable_level = */ 1,
+ 179:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* chip_disable_level = */ 0,
+ 180:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   
+ 181:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* post_chip_enable_wait_ns = */ 5,
+ 182:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* pre_chip_disable_wait_ns = */ 5,
+ 183:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* reset_pulse_width_ms = */ 1, 
+ 184:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* post_reset_wait_ms = */ 6, 
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* sda_setup_time_ns = */ 20,		
+ 186:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* sck_pulse_width_ns = */  140,	/* datasheet ST7920 */
+ 187:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* sck_clock_hz = */ 1000000UL,	/* since Arduino 1.6.0, the SPI bus speed in Hz. Should be  10000
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* ST7920+Due work with 1MHz but not with 2MHz, ST7920+Uno works with 2MHz */
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* spi_mode = */ 3,		/* active high, rising edge, 18 Aug 16: changed from 1 to 3 which works for 
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* in theory mode 3 should be correct  */
+ 191:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* i2c_bus_clock_100kHz = */ 4,
+ 192:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* data_setup_time_ns = */ 30,
+ 193:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* write_pulse_width_ns = */ 40,
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* tile_width = */ 16,
+ 195:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* tile_hight = */ 8,
+ 196:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* default_x_offset = */ 0,
+ 197:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* flipmode_x_offset = */ 0,
+ 198:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* pixel_width = */ 128,
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   /* pixel_height = */ 64
+ 200:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** };
+ 201:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+ 202:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** uint8_t u8x8_d_st7920_192x32(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 203:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** {
+ 202              		.loc 1 203 0
+ 203              		.cfi_startproc
+ 204              		@ args = 0, pretend = 0, frame = 0
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206              	.LVL34:
+ 207 0000 08B5     		push	{r3, lr}
+ 208              	.LCFI1:
+ 209              		.cfi_def_cfa_offset 8
+ 210              		.cfi_offset 3, -8
+ 211              		.cfi_offset 14, -4
+ 204:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   switch(msg)
+ 212              		.loc 1 204 0
+ 213 0002 0929     		cmp	r1, #9
+ 214 0004 02D0     		beq	.L22
+ 205:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   {
+ 206:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+ 207:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_st7920_192x32_display_info);
+ 208:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       break;
+ 209:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     default:
+ 210:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       return u8x8_d_st7920_common(u8x8, msg, arg_int, arg_ptr);
+ 215              		.loc 1 210 0
+ 216 0006 FFF7FEFF 		bl	u8x8_d_st7920_common
+ 217              	.LVL35:
+ 218              	.L19:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   }
+ 212:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   return 1;
+ 213:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 9
+
+
+ 219              		.loc 1 213 0
+ 220 000a 08BD     		pop	{r3, pc}
+ 221              	.LVL36:
+ 222              	.L22:
+ 207:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       break;
+ 223              		.loc 1 207 0
+ 224 000c 0249     		ldr	r1, .L23
+ 225              	.LVL37:
+ 226 000e FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
+ 227              	.LVL38:
+ 212:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** }
+ 228              		.loc 1 212 0
+ 229 0012 0120     		movs	r0, #1
+ 230 0014 F9E7     		b	.L19
+ 231              	.L24:
+ 232 0016 00BF     		.align	2
+ 233              	.L23:
+ 234 0018 00000000 		.word	.LANCHOR3
+ 235              		.cfi_endproc
+ 236              	.LFE1:
+ 238              		.section	.text.u8x8_d_st7920_128x64,"ax",%progbits
+ 239              		.align	1
+ 240              		.global	u8x8_d_st7920_128x64
+ 241              		.syntax unified
+ 242              		.thumb
+ 243              		.thumb_func
+ 244              		.fpu fpv4-sp-d16
+ 246              	u8x8_d_st7920_128x64:
+ 247              	.LFB2:
+ 214:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** 
+ 215:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** uint8_t u8x8_d_st7920_128x64(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 216:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** {
+ 248              		.loc 1 216 0
+ 249              		.cfi_startproc
+ 250              		@ args = 0, pretend = 0, frame = 0
+ 251              		@ frame_needed = 0, uses_anonymous_args = 0
+ 252              	.LVL39:
+ 253 0000 08B5     		push	{r3, lr}
+ 254              	.LCFI2:
+ 255              		.cfi_def_cfa_offset 8
+ 256              		.cfi_offset 3, -8
+ 257              		.cfi_offset 14, -4
+ 217:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   switch(msg)
+ 258              		.loc 1 217 0
+ 259 0002 0929     		cmp	r1, #9
+ 260 0004 02D0     		beq	.L31
+ 218:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   {
+ 219:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+ 220:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_st7920_128x64_display_info);
+ 221:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       break;
+ 222:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****     default:
+ 223:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       return u8x8_d_st7920_common(u8x8, msg, arg_int, arg_ptr);
+ 261              		.loc 1 223 0
+ 262 0006 FFF7FEFF 		bl	u8x8_d_st7920_common
+ 263              	.LVL40:
+ 264              	.L28:
+ 224:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 10
+
+
+ 225:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****   return 1;
+ 226:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** }
+ 265              		.loc 1 226 0
+ 266 000a 08BD     		pop	{r3, pc}
+ 267              	.LVL41:
+ 268              	.L31:
+ 220:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c ****       break;
+ 269              		.loc 1 220 0
+ 270 000c 0249     		ldr	r1, .L32
+ 271              	.LVL42:
+ 272 000e FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
+ 273              	.LVL43:
+ 225:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7920.c **** }
+ 274              		.loc 1 225 0
+ 275 0012 0120     		movs	r0, #1
+ 276 0014 F9E7     		b	.L28
+ 277              	.L33:
+ 278 0016 00BF     		.align	2
+ 279              	.L32:
+ 280 0018 00000000 		.word	.LANCHOR4
+ 281              		.cfi_endproc
+ 282              	.LFE2:
+ 284              		.section	.rodata.u8x8_d_st7920_init_seq,"a",%progbits
+ 285              		.align	2
+ 286              		.set	.LANCHOR0,. + 0
+ 289              	u8x8_d_st7920_init_seq:
+ 290 0000 FE       		.byte	-2
+ 291 0001 64       		.byte	100
+ 292 0002 18       		.byte	24
+ 293 0003 FE       		.byte	-2
+ 294 0004 0A       		.byte	10
+ 295 0005 15       		.byte	21
+ 296 0006 38       		.byte	56
+ 297 0007 15       		.byte	21
+ 298 0008 08       		.byte	8
+ 299 0009 15       		.byte	21
+ 300 000a 06       		.byte	6
+ 301 000b 15       		.byte	21
+ 302 000c 02       		.byte	2
+ 303 000d 15       		.byte	21
+ 304 000e 01       		.byte	1
+ 305 000f FE       		.byte	-2
+ 306 0010 04       		.byte	4
+ 307 0011 19       		.byte	25
+ 308 0012 FF       		.byte	-1
+ 309              		.section	.rodata.u8x8_d_st7920_powersave0_seq,"a",%progbits
+ 310              		.align	2
+ 311              		.set	.LANCHOR1,. + 0
+ 314              	u8x8_d_st7920_powersave0_seq:
+ 315 0000 18       		.byte	24
+ 316 0001 15       		.byte	21
+ 317 0002 38       		.byte	56
+ 318 0003 15       		.byte	21
+ 319 0004 0C       		.byte	12
+ 320 0005 19       		.byte	25
+ 321 0006 FF       		.byte	-1
+ 322              		.section	.rodata.u8x8_d_st7920_powersave1_seq,"a",%progbits
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 11
+
+
+ 323              		.align	2
+ 324              		.set	.LANCHOR2,. + 0
+ 327              	u8x8_d_st7920_powersave1_seq:
+ 328 0000 18       		.byte	24
+ 329 0001 15       		.byte	21
+ 330 0002 38       		.byte	56
+ 331 0003 15       		.byte	21
+ 332 0004 08       		.byte	8
+ 333 0005 19       		.byte	25
+ 334 0006 FF       		.byte	-1
+ 335              		.section	.rodata.u8x8_st7920_128x64_display_info,"a",%progbits
+ 336              		.align	2
+ 337              		.set	.LANCHOR4,. + 0
+ 340              	u8x8_st7920_128x64_display_info:
+ 341 0000 01       		.byte	1
+ 342 0001 00       		.byte	0
+ 343 0002 05       		.byte	5
+ 344 0003 05       		.byte	5
+ 345 0004 01       		.byte	1
+ 346 0005 06       		.byte	6
+ 347 0006 14       		.byte	20
+ 348 0007 8C       		.byte	-116
+ 349 0008 40420F00 		.word	1000000
+ 350 000c 03       		.byte	3
+ 351 000d 04       		.byte	4
+ 352 000e 1E       		.byte	30
+ 353 000f 28       		.byte	40
+ 354 0010 10       		.byte	16
+ 355 0011 08       		.byte	8
+ 356 0012 00       		.byte	0
+ 357 0013 00       		.byte	0
+ 358 0014 8000     		.short	128
+ 359 0016 4000     		.short	64
+ 360              		.section	.rodata.u8x8_st7920_192x32_display_info,"a",%progbits
+ 361              		.align	2
+ 362              		.set	.LANCHOR3,. + 0
+ 365              	u8x8_st7920_192x32_display_info:
+ 366 0000 01       		.byte	1
+ 367 0001 00       		.byte	0
+ 368 0002 05       		.byte	5
+ 369 0003 05       		.byte	5
+ 370 0004 01       		.byte	1
+ 371 0005 06       		.byte	6
+ 372 0006 14       		.byte	20
+ 373 0007 8C       		.byte	-116
+ 374 0008 40420F00 		.word	1000000
+ 375 000c 03       		.byte	3
+ 376 000d 04       		.byte	4
+ 377 000e 1E       		.byte	30
+ 378 000f 28       		.byte	40
+ 379 0010 18       		.byte	24
+ 380 0011 04       		.byte	4
+ 381 0012 00       		.byte	0
+ 382 0013 00       		.byte	0
+ 383 0014 C000     		.short	192
+ 384 0016 2000     		.short	32
+ 385              		.text
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 12
+
+
+ 386              	.Letext0:
+ 387              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 388              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 389              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_d_st7920.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:18     .text.u8x8_d_st7920_common:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:25     .text.u8x8_d_st7920_common:0000000000000000 u8x8_d_st7920_common
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:186    .text.u8x8_d_st7920_common:00000000000000ac $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:193    .text.u8x8_d_st7920_192x32:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:200    .text.u8x8_d_st7920_192x32:0000000000000000 u8x8_d_st7920_192x32
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:234    .text.u8x8_d_st7920_192x32:0000000000000018 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:239    .text.u8x8_d_st7920_128x64:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:246    .text.u8x8_d_st7920_128x64:0000000000000000 u8x8_d_st7920_128x64
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:280    .text.u8x8_d_st7920_128x64:0000000000000018 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:285    .rodata.u8x8_d_st7920_init_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:289    .rodata.u8x8_d_st7920_init_seq:0000000000000000 u8x8_d_st7920_init_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:310    .rodata.u8x8_d_st7920_powersave0_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:314    .rodata.u8x8_d_st7920_powersave0_seq:0000000000000000 u8x8_d_st7920_powersave0_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:323    .rodata.u8x8_d_st7920_powersave1_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:327    .rodata.u8x8_d_st7920_powersave1_seq:0000000000000000 u8x8_d_st7920_powersave1_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:336    .rodata.u8x8_st7920_128x64_display_info:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:340    .rodata.u8x8_st7920_128x64_display_info:0000000000000000 u8x8_st7920_128x64_display_info
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:361    .rodata.u8x8_st7920_192x32_display_info:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccJIYOK3.s:365    .rodata.u8x8_st7920_192x32_display_info:0000000000000000 u8x8_st7920_192x32_display_info
+
+UNDEFINED SYMBOLS
+u8x8_d_helper_display_init
+u8x8_cad_SendSequence
+u8x8_cad_StartTransfer
+u8x8_cad_SendCmd
+u8x8_cad_SendData
+u8x8_cad_EndTransfer
+u8x8_d_helper_display_setup_memory

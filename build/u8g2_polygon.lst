@@ -1,0 +1,1491 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8g2_polygon.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.pge_Next,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	pge_Next:
+  25              	.LFB0:
+  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   u8g22_polygon.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+   5:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** */	
+   6:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+   8:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** #include "u8g2.h"
+   9:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  11:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  12:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /*===========================================*/
+  14:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /* local definitions */
+  15:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  16:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** typedef int16_t pg_word_t;
+  17:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  18:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  19:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** struct pg_point_struct
+  20:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+  21:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t x;
+  22:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t y;
+  23:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** };
+  24:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  25:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** typedef struct _pg_struct pg_struct;	/* forward declaration */
+  26:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  27:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** struct pg_edge_struct
+  28:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+  29:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t x_direction;	/* 1, if x2 is greater than x1, -1 otherwise */
+  30:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t height;
+  31:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t current_x_offset;
+  32:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t error_offset;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 2
+
+
+  33:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+  34:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   /* --- line loop --- */
+  35:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t current_y;
+  36:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t max_y;
+  37:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t current_x;
+  38:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t error;
+  39:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  40:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   /* --- outer loop --- */
+  41:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   uint8_t (*next_idx_fn)(pg_struct *pg, uint8_t i);
+  42:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   uint8_t curr_idx;
+  43:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** };
+  44:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  45:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /* maximum number of points in the polygon */
+  46:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /* can be redefined, but highest possible value is 254 */
+  47:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** #define PG_MAX_POINTS 6
+  48:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  49:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /* index numbers for the pge structures below */
+  50:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** #define PG_LEFT 0
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** #define PG_RIGHT 1
+  52:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  53:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  54:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** struct _pg_struct
+  55:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+  56:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   struct pg_point_struct list[PG_MAX_POINTS];
+  57:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   uint8_t cnt;
+  58:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   uint8_t is_min_y_not_flat;
+  59:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t total_scan_line_cnt;
+  60:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   struct pg_edge_struct pge[2];	/* left and right line draw structures */
+  61:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** };
+  62:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  63:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  64:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /*===========================================*/
+  65:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /* procedures, which should not be inlined (save as much flash ROM as possible */
+  66:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  67:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** #define PG_NOINLINE U8G2_NOINLINE
+  68:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  69:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static uint8_t pge_Next(struct pg_edge_struct *pge) PG_NOINLINE;
+  70:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static uint8_t pg_inc(pg_struct *pg, uint8_t i) PG_NOINLINE;
+  71:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static uint8_t pg_dec(pg_struct *pg, uint8_t i) PG_NOINLINE;
+  72:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static void pg_expand_min_y(pg_struct *pg, pg_word_t min_y, uint8_t pge_idx) PG_NOINLINE;
+  73:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static void pg_line_init(pg_struct * const pg, uint8_t pge_index) PG_NOINLINE;
+  74:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  75:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /*===========================================*/
+  76:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /* line draw algorithm */
+  77:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  78:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static uint8_t pge_Next(struct pg_edge_struct *pge)
+  79:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+  27              		.loc 1 79 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+  80:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( pge->current_y >= pge->max_y )
+  33              		.loc 1 80 0
+  34 0000 B0F90810 		ldrsh	r1, [r0, #8]
+  35 0004 B0F90A30 		ldrsh	r3, [r0, #10]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 3
+
+
+  36 0008 9942     		cmp	r1, r3
+  37 000a 19DA     		bge	.L4
+  79:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( pge->current_y >= pge->max_y )
+  38              		.loc 1 79 0
+  39 000c 10B4     		push	{r4}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 4
+  42              		.cfi_offset 4, -4
+  81:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     return 0;
+  82:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+  83:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge->current_x += pge->current_x_offset;
+  43              		.loc 1 83 0
+  44 000e 8288     		ldrh	r2, [r0, #4]
+  45 0010 8389     		ldrh	r3, [r0, #12]
+  46 0012 1A44     		add	r2, r2, r3
+  47 0014 92B2     		uxth	r2, r2
+  48 0016 8281     		strh	r2, [r0, #12]	@ movhi
+  84:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge->error += pge->error_offset;
+  49              		.loc 1 84 0
+  50 0018 C388     		ldrh	r3, [r0, #6]
+  51 001a C489     		ldrh	r4, [r0, #14]
+  52 001c 2344     		add	r3, r3, r4
+  53 001e 9BB2     		uxth	r3, r3
+  54 0020 1CB2     		sxth	r4, r3
+  55 0022 C481     		strh	r4, [r0, #14]	@ movhi
+  85:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( pge->error > 0 )
+  56              		.loc 1 85 0
+  57 0024 002C     		cmp	r4, #0
+  58 0026 05DD     		ble	.L3
+  86:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+  87:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pge->current_x += pge->x_direction;
+  59              		.loc 1 87 0
+  60 0028 0488     		ldrh	r4, [r0]
+  61 002a 2244     		add	r2, r2, r4
+  62 002c 8281     		strh	r2, [r0, #12]	@ movhi
+  88:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pge->error -= pge->height;
+  63              		.loc 1 88 0
+  64 002e 4288     		ldrh	r2, [r0, #2]
+  65 0030 9B1A     		subs	r3, r3, r2
+  66 0032 C381     		strh	r3, [r0, #14]	@ movhi
+  67              	.L3:
+  89:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }  
+  90:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+  91:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge->current_y++;
+  68              		.loc 1 91 0
+  69 0034 0131     		adds	r1, r1, #1
+  70 0036 0181     		strh	r1, [r0, #8]	@ movhi
+  92:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   return 1;
+  71              		.loc 1 92 0
+  72 0038 0120     		movs	r0, #1
+  73              	.LVL1:
+  93:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+  74              		.loc 1 93 0
+  75 003a 5DF8044B 		ldr	r4, [sp], #4
+  76              	.LCFI1:
+  77              		.cfi_restore 4
+  78              		.cfi_def_cfa_offset 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 4
+
+
+  79 003e 7047     		bx	lr
+  80              	.LVL2:
+  81              	.L4:
+  81:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+  82              		.loc 1 81 0
+  83 0040 0020     		movs	r0, #0
+  84              	.LVL3:
+  85              		.loc 1 93 0
+  86 0042 7047     		bx	lr
+  87              		.cfi_endproc
+  88              	.LFE0:
+  90              		.section	.text.pge_Init,"ax",%progbits
+  91              		.align	1
+  92              		.syntax unified
+  93              		.thumb
+  94              		.thumb_func
+  95              		.fpu fpv4-sp-d16
+  97              	pge_Init:
+  98              	.LFB1:
+  94:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+  95:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /* assumes y2 > y1 */
+  96:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static void pge_Init(struct pg_edge_struct *pge, pg_word_t x1, pg_word_t y1, pg_word_t x2, pg_word_
+  97:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+  99              		.loc 1 97 0
+ 100              		.cfi_startproc
+ 101              		@ args = 4, pretend = 0, frame = 0
+ 102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103              		@ link register save eliminated.
+ 104              	.LVL4:
+ 105 0000 70B4     		push	{r4, r5, r6}
+ 106              	.LCFI2:
+ 107              		.cfi_def_cfa_offset 12
+ 108              		.cfi_offset 4, -12
+ 109              		.cfi_offset 5, -8
+ 110              		.cfi_offset 6, -4
+ 111 0002 BDF90C60 		ldrsh	r6, [sp, #12]
+  98:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t dx = x2 - x1;
+ 112              		.loc 1 98 0
+ 113 0006 5B1A     		subs	r3, r3, r1
+ 114              	.LVL5:
+ 115 0008 9BB2     		uxth	r3, r3
+ 116 000a 1CB2     		sxth	r4, r3
+ 117              	.LVL6:
+  99:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t width;
+ 100:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 101:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge->height = y2 - y1;
+ 118              		.loc 1 101 0
+ 119 000c B51A     		subs	r5, r6, r2
+ 120 000e ADB2     		uxth	r5, r5
+ 121 0010 4580     		strh	r5, [r0, #2]	@ movhi
+ 102:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge->max_y = y2;
+ 122              		.loc 1 102 0
+ 123 0012 4681     		strh	r6, [r0, #10]	@ movhi
+ 103:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge->current_y = y1;
+ 124              		.loc 1 103 0
+ 125 0014 0281     		strh	r2, [r0, #8]	@ movhi
+ 104:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge->current_x = x1;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 5
+
+
+ 126              		.loc 1 104 0
+ 127 0016 8181     		strh	r1, [r0, #12]	@ movhi
+ 105:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 106:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( dx >= 0 )
+ 128              		.loc 1 106 0
+ 129 0018 002C     		cmp	r4, #0
+ 130 001a 10DB     		blt	.L10
+ 107:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 108:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pge->x_direction = 1;
+ 131              		.loc 1 108 0
+ 132 001c 0123     		movs	r3, #1
+ 133 001e 0380     		strh	r3, [r0]	@ movhi
+ 134              	.LVL7:
+ 109:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     width = dx;
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pge->error = 0;
+ 135              		.loc 1 110 0
+ 136 0020 0023     		movs	r3, #0
+ 137 0022 C381     		strh	r3, [r0, #14]	@ movhi
+ 109:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     width = dx;
+ 138              		.loc 1 109 0
+ 139 0024 2346     		mov	r3, r4
+ 140              	.LVL8:
+ 141              	.L11:
+ 111:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 112:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   else
+ 113:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 114:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pge->x_direction = -1;
+ 115:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     width = -dx;
+ 116:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pge->error = 1 - pge->height;
+ 117:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 118:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+ 119:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge->current_x_offset = dx / pge->height;
+ 142              		.loc 1 119 0
+ 143 0026 B0F90210 		ldrsh	r1, [r0, #2]
+ 144              	.LVL9:
+ 145 002a 94FBF1F4 		sdiv	r4, r4, r1
+ 146              	.LVL10:
+ 147 002e 8480     		strh	r4, [r0, #4]	@ movhi
+ 120:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge->error_offset = width % pge->height;
+ 148              		.loc 1 120 0
+ 149 0030 93FBF1F2 		sdiv	r2, r3, r1
+ 150 0034 01FB1233 		mls	r3, r1, r2, r3
+ 151              	.LVL11:
+ 152 0038 C380     		strh	r3, [r0, #6]	@ movhi
+ 121:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 153              		.loc 1 121 0
+ 154 003a 70BC     		pop	{r4, r5, r6}
+ 155              	.LCFI3:
+ 156              		.cfi_remember_state
+ 157              		.cfi_restore 6
+ 158              		.cfi_restore 5
+ 159              		.cfi_restore 4
+ 160              		.cfi_def_cfa_offset 0
+ 161              	.LVL12:
+ 162 003c 7047     		bx	lr
+ 163              	.LVL13:
+ 164              	.L10:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 6
+
+
+ 165              	.LCFI4:
+ 166              		.cfi_restore_state
+ 114:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     width = -dx;
+ 167              		.loc 1 114 0
+ 168 003e 4FF6FF72 		movw	r2, #65535
+ 169              	.LVL14:
+ 170 0042 0280     		strh	r2, [r0]	@ movhi
+ 115:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pge->error = 1 - pge->height;
+ 171              		.loc 1 115 0
+ 172 0044 5B42     		negs	r3, r3
+ 173 0046 1BB2     		sxth	r3, r3
+ 174              	.LVL15:
+ 116:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 175              		.loc 1 116 0
+ 176 0048 C5F10105 		rsb	r5, r5, #1
+ 177 004c C581     		strh	r5, [r0, #14]	@ movhi
+ 178 004e EAE7     		b	.L11
+ 179              		.cfi_endproc
+ 180              	.LFE1:
+ 182              		.section	.text.pg_inc,"ax",%progbits
+ 183              		.align	1
+ 184              		.syntax unified
+ 185              		.thumb
+ 186              		.thumb_func
+ 187              		.fpu fpv4-sp-d16
+ 189              	pg_inc:
+ 190              	.LFB2:
+ 122:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 123:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /*===========================================*/
+ 124:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /* convex polygon algorithm */
+ 125:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 126:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static uint8_t pg_inc(pg_struct *pg, uint8_t i)
+ 127:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 191              		.loc 1 127 0
+ 192              		.cfi_startproc
+ 193              		@ args = 0, pretend = 0, frame = 0
+ 194              		@ frame_needed = 0, uses_anonymous_args = 0
+ 195              		@ link register save eliminated.
+ 196              	.LVL16:
+ 128:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     i++;
+ 197              		.loc 1 128 0
+ 198 0000 0131     		adds	r1, r1, #1
+ 199              	.LVL17:
+ 200 0002 C9B2     		uxtb	r1, r1
+ 201              	.LVL18:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( i >= pg->cnt )
+ 202              		.loc 1 129 0
+ 203 0004 037E     		ldrb	r3, [r0, #24]	@ zero_extendqisi2
+ 204 0006 8B42     		cmp	r3, r1
+ 205 0008 00D8     		bhi	.L14
+ 130:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       i = 0;
+ 206              		.loc 1 130 0
+ 207 000a 0021     		movs	r1, #0
+ 208              	.LVL19:
+ 209              	.L14:
+ 131:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     return i;
+ 132:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 7
+
+
+ 210              		.loc 1 132 0
+ 211 000c 0846     		mov	r0, r1
+ 212              	.LVL20:
+ 213 000e 7047     		bx	lr
+ 214              		.cfi_endproc
+ 215              	.LFE2:
+ 217              		.section	.text.pg_dec,"ax",%progbits
+ 218              		.align	1
+ 219              		.syntax unified
+ 220              		.thumb
+ 221              		.thumb_func
+ 222              		.fpu fpv4-sp-d16
+ 224              	pg_dec:
+ 225              	.LFB3:
+ 133:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 134:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static uint8_t pg_dec(pg_struct *pg, uint8_t i)
+ 135:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 226              		.loc 1 135 0
+ 227              		.cfi_startproc
+ 228              		@ args = 0, pretend = 0, frame = 0
+ 229              		@ frame_needed = 0, uses_anonymous_args = 0
+ 230              		@ link register save eliminated.
+ 231              	.LVL21:
+ 136:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     i--;
+ 232              		.loc 1 136 0
+ 233 0000 0139     		subs	r1, r1, #1
+ 234              	.LVL22:
+ 235 0002 C9B2     		uxtb	r1, r1
+ 236              	.LVL23:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( i >= pg->cnt )
+ 237              		.loc 1 137 0
+ 238 0004 037E     		ldrb	r3, [r0, #24]	@ zero_extendqisi2
+ 239 0006 8B42     		cmp	r3, r1
+ 240 0008 01D8     		bhi	.L17
+ 138:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       i = pg->cnt-1;
+ 241              		.loc 1 138 0
+ 242 000a 591E     		subs	r1, r3, #1
+ 243              	.LVL24:
+ 244 000c C9B2     		uxtb	r1, r1
+ 245              	.LVL25:
+ 246              	.L17:
+ 139:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     return i;
+ 140:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 247              		.loc 1 140 0
+ 248 000e 0846     		mov	r0, r1
+ 249              	.LVL26:
+ 250 0010 7047     		bx	lr
+ 251              		.cfi_endproc
+ 252              	.LFE3:
+ 254              		.section	.text.pg_expand_min_y,"ax",%progbits
+ 255              		.align	1
+ 256              		.syntax unified
+ 257              		.thumb
+ 258              		.thumb_func
+ 259              		.fpu fpv4-sp-d16
+ 261              	pg_expand_min_y:
+ 262              	.LFB4:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 8
+
+
+ 141:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 142:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static void pg_expand_min_y(pg_struct *pg, pg_word_t min_y, uint8_t pge_idx)
+ 143:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 263              		.loc 1 143 0
+ 264              		.cfi_startproc
+ 265              		@ args = 0, pretend = 0, frame = 0
+ 266              		@ frame_needed = 0, uses_anonymous_args = 0
+ 267              	.LVL27:
+ 268 0000 70B5     		push	{r4, r5, r6, lr}
+ 269              	.LCFI5:
+ 270              		.cfi_def_cfa_offset 16
+ 271              		.cfi_offset 4, -16
+ 272              		.cfi_offset 5, -12
+ 273              		.cfi_offset 6, -8
+ 274              		.cfi_offset 14, -4
+ 275 0002 0446     		mov	r4, r0
+ 276 0004 0E46     		mov	r6, r1
+ 277 0006 1546     		mov	r5, r2
+ 144:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   uint8_t i = pg->pge[pge_idx].curr_idx;
+ 278              		.loc 1 144 0
+ 279 0008 02EB4202 		add	r2, r2, r2, lsl #1
+ 280              	.LVL28:
+ 281 000c D300     		lsls	r3, r2, #3
+ 282 000e 0344     		add	r3, r3, r0
+ 283 0010 93F83010 		ldrb	r1, [r3, #48]	@ zero_extendqisi2
+ 284              	.LVL29:
+ 285              	.L20:
+ 145:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   for(;;)
+ 146:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 147:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     i = pg->pge[pge_idx].next_idx_fn(pg, i);
+ 286              		.loc 1 147 0
+ 287 0014 05EB4502 		add	r2, r5, r5, lsl #1
+ 288 0018 D300     		lsls	r3, r2, #3
+ 289 001a 2344     		add	r3, r3, r4
+ 290 001c DB6A     		ldr	r3, [r3, #44]
+ 291 001e 2046     		mov	r0, r4
+ 292 0020 9847     		blx	r3
+ 293              	.LVL30:
+ 294 0022 0146     		mov	r1, r0
+ 295              	.LVL31:
+ 148:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( pg->list[i].y != min_y )
+ 296              		.loc 1 148 0
+ 297 0024 04EB8003 		add	r3, r4, r0, lsl #2
+ 298 0028 B3F90230 		ldrsh	r3, [r3, #2]
+ 299 002c B342     		cmp	r3, r6
+ 300 002e 06D1     		bne	.L18
+ 149:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       break;	
+ 150:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pg->pge[pge_idx].curr_idx = i;
+ 301              		.loc 1 150 0
+ 302 0030 05EB4502 		add	r2, r5, r5, lsl #1
+ 303 0034 D300     		lsls	r3, r2, #3
+ 304 0036 2344     		add	r3, r3, r4
+ 305 0038 83F83000 		strb	r0, [r3, #48]
+ 147:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( pg->list[i].y != min_y )
+ 306              		.loc 1 147 0
+ 307 003c EAE7     		b	.L20
+ 308              	.L18:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 9
+
+
+ 151:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 152:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 309              		.loc 1 152 0
+ 310 003e 70BD     		pop	{r4, r5, r6, pc}
+ 311              		.cfi_endproc
+ 312              	.LFE4:
+ 314              		.section	.text.pg_prepare,"ax",%progbits
+ 315              		.align	1
+ 316              		.syntax unified
+ 317              		.thumb
+ 318              		.thumb_func
+ 319              		.fpu fpv4-sp-d16
+ 321              	pg_prepare:
+ 322              	.LFB5:
+ 153:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 154:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static uint8_t pg_prepare(pg_struct *pg)
+ 155:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 323              		.loc 1 155 0
+ 324              		.cfi_startproc
+ 325              		@ args = 0, pretend = 0, frame = 0
+ 326              		@ frame_needed = 0, uses_anonymous_args = 0
+ 327              	.LVL32:
+ 328 0000 38B5     		push	{r3, r4, r5, lr}
+ 329              	.LCFI6:
+ 330              		.cfi_def_cfa_offset 16
+ 331              		.cfi_offset 3, -16
+ 332              		.cfi_offset 4, -12
+ 333              		.cfi_offset 5, -8
+ 334              		.cfi_offset 14, -4
+ 156:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t max_y;
+ 157:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t min_y;
+ 158:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   uint8_t i;
+ 159:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 160:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   /* setup the next index procedures */
+ 161:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg->pge[PG_RIGHT].next_idx_fn = pg_inc;
+ 335              		.loc 1 161 0
+ 336 0002 284B     		ldr	r3, .L35
+ 337 0004 4364     		str	r3, [r0, #68]
+ 162:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg->pge[PG_LEFT].next_idx_fn = pg_dec;
+ 338              		.loc 1 162 0
+ 339 0006 284B     		ldr	r3, .L35+4
+ 340 0008 C362     		str	r3, [r0, #44]
+ 163:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+ 164:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   /* search for highest and lowest point */
+ 165:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   max_y = pg->list[0].y;
+ 341              		.loc 1 165 0
+ 342 000a B0F90210 		ldrsh	r1, [r0, #2]
+ 343              	.LVL33:
+ 166:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   min_y = pg->list[0].y;
+ 167:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg->pge[PG_LEFT].curr_idx = 0;
+ 344              		.loc 1 167 0
+ 345 000e 0023     		movs	r3, #0
+ 346 0010 80F83030 		strb	r3, [r0, #48]
+ 347              	.LVL34:
+ 166:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   min_y = pg->list[0].y;
+ 348              		.loc 1 166 0
+ 349 0014 0C46     		mov	r4, r1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 10
+
+
+ 168:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   for( i = 1; i < pg->cnt; i++ )
+ 350              		.loc 1 168 0
+ 351 0016 0123     		movs	r3, #1
+ 352 0018 01E0     		b	.L23
+ 353              	.LVL35:
+ 354              	.L25:
+ 355              		.loc 1 168 0 is_stmt 0 discriminator 2
+ 356 001a 0133     		adds	r3, r3, #1
+ 357              	.LVL36:
+ 358 001c DBB2     		uxtb	r3, r3
+ 359              	.LVL37:
+ 360              	.L23:
+ 361              		.loc 1 168 0 discriminator 1
+ 362 001e 027E     		ldrb	r2, [r0, #24]	@ zero_extendqisi2
+ 363 0020 9A42     		cmp	r2, r3
+ 364 0022 10D9     		bls	.L32
+ 169:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 170:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( max_y < pg->list[i].y )
+ 365              		.loc 1 170 0 is_stmt 1
+ 366 0024 1D46     		mov	r5, r3
+ 367 0026 00EB8302 		add	r2, r0, r3, lsl #2
+ 368 002a B2F90220 		ldrsh	r2, [r2, #2]
+ 369 002e 8A42     		cmp	r2, r1
+ 370 0030 00DD     		ble	.L24
+ 171:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     {
+ 172:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       max_y = pg->list[i].y;
+ 371              		.loc 1 172 0
+ 372 0032 1146     		mov	r1, r2
+ 373              	.LVL38:
+ 374              	.L24:
+ 173:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     }
+ 174:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( min_y > pg->list[i].y )
+ 375              		.loc 1 174 0
+ 376 0034 A242     		cmp	r2, r4
+ 377 0036 F0DA     		bge	.L25
+ 175:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     {
+ 176:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       pg->pge[PG_LEFT].curr_idx = i;
+ 378              		.loc 1 176 0
+ 379 0038 80F83030 		strb	r3, [r0, #48]
+ 177:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       min_y = pg->list[i].y;
+ 380              		.loc 1 177 0
+ 381 003c 00EB8505 		add	r5, r0, r5, lsl #2
+ 382 0040 B5F90240 		ldrsh	r4, [r5, #2]
+ 383              	.LVL39:
+ 384 0044 E9E7     		b	.L25
+ 385              	.L32:
+ 178:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     }
+ 179:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 180:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 181:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   /* calculate total number of scan lines */
+ 182:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg->total_scan_line_cnt = max_y;
+ 183:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg->total_scan_line_cnt -= min_y;
+ 386              		.loc 1 183 0
+ 387 0046 091B     		subs	r1, r1, r4
+ 388              	.LVL40:
+ 389 0048 09B2     		sxth	r1, r1
+ 390 004a 4183     		strh	r1, [r0, #26]	@ movhi
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 11
+
+
+ 184:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+ 185:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   /* exit if polygon height is zero */
+ 186:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( pg->total_scan_line_cnt == 0 )
+ 391              		.loc 1 186 0
+ 392 004c 09B9     		cbnz	r1, .L33
+ 187:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     return 0;
+ 393              		.loc 1 187 0
+ 394 004e 0020     		movs	r0, #0
+ 395              	.LVL41:
+ 396              	.L27:
+ 188:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+ 189:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   /* if the minimum y side is flat, try to find the lowest and highest x points */
+ 190:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg->pge[PG_RIGHT].curr_idx = pg->pge[PG_LEFT].curr_idx;  
+ 191:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_expand_min_y(pg, min_y, PG_RIGHT);
+ 192:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_expand_min_y(pg, min_y, PG_LEFT);
+ 193:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+ 194:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   /* check if the min side is really flat (depends on the x values) */
+ 195:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg->is_min_y_not_flat = 1;
+ 196:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( pg->list[pg->pge[PG_LEFT].curr_idx].x != pg->list[pg->pge[PG_RIGHT].curr_idx].x )
+ 197:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 198:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pg->is_min_y_not_flat = 0;
+ 199:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 200:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   else
+ 201:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 202:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pg->total_scan_line_cnt--;
+ 203:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( pg->total_scan_line_cnt == 0 )
+ 204:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       return 0;
+ 205:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 206:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 207:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   return 1;
+ 208:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 397              		.loc 1 208 0
+ 398 0050 38BD     		pop	{r3, r4, r5, pc}
+ 399              	.LVL42:
+ 400              	.L33:
+ 401 0052 0546     		mov	r5, r0
+ 190:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_expand_min_y(pg, min_y, PG_RIGHT);
+ 402              		.loc 1 190 0
+ 403 0054 90F83030 		ldrb	r3, [r0, #48]	@ zero_extendqisi2
+ 404              	.LVL43:
+ 405 0058 80F84830 		strb	r3, [r0, #72]
+ 191:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_expand_min_y(pg, min_y, PG_LEFT);
+ 406              		.loc 1 191 0
+ 407 005c 0122     		movs	r2, #1
+ 408 005e 2146     		mov	r1, r4
+ 409 0060 FFF7FEFF 		bl	pg_expand_min_y
+ 410              	.LVL44:
+ 192:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+ 411              		.loc 1 192 0
+ 412 0064 0022     		movs	r2, #0
+ 413 0066 2146     		mov	r1, r4
+ 414 0068 2846     		mov	r0, r5
+ 415 006a FFF7FEFF 		bl	pg_expand_min_y
+ 416              	.LVL45:
+ 195:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( pg->list[pg->pge[PG_LEFT].curr_idx].x != pg->list[pg->pge[PG_RIGHT].curr_idx].x )
+ 417              		.loc 1 195 0
+ 418 006e 0123     		movs	r3, #1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 12
+
+
+ 419 0070 6B76     		strb	r3, [r5, #25]
+ 196:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 420              		.loc 1 196 0
+ 421 0072 95F83030 		ldrb	r3, [r5, #48]	@ zero_extendqisi2
+ 422 0076 35F92320 		ldrsh	r2, [r5, r3, lsl #2]
+ 423 007a 95F84830 		ldrb	r3, [r5, #72]	@ zero_extendqisi2
+ 424 007e 35F92330 		ldrsh	r3, [r5, r3, lsl #2]
+ 425 0082 9A42     		cmp	r2, r3
+ 426 0084 03D0     		beq	.L28
+ 198:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 427              		.loc 1 198 0
+ 428 0086 0023     		movs	r3, #0
+ 429 0088 6B76     		strb	r3, [r5, #25]
+ 207:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 430              		.loc 1 207 0
+ 431 008a 0120     		movs	r0, #1
+ 432 008c E0E7     		b	.L27
+ 433              	.L28:
+ 202:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( pg->total_scan_line_cnt == 0 )
+ 434              		.loc 1 202 0
+ 435 008e B5F91A30 		ldrsh	r3, [r5, #26]
+ 436 0092 013B     		subs	r3, r3, #1
+ 437 0094 1BB2     		sxth	r3, r3
+ 438 0096 6B83     		strh	r3, [r5, #26]	@ movhi
+ 203:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       return 0;
+ 439              		.loc 1 203 0
+ 440 0098 0BB1     		cbz	r3, .L34
+ 207:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 441              		.loc 1 207 0
+ 442 009a 0120     		movs	r0, #1
+ 443 009c D8E7     		b	.L27
+ 444              	.L34:
+ 204:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 445              		.loc 1 204 0
+ 446 009e 0020     		movs	r0, #0
+ 447 00a0 D6E7     		b	.L27
+ 448              	.L36:
+ 449 00a2 00BF     		.align	2
+ 450              	.L35:
+ 451 00a4 00000000 		.word	pg_inc
+ 452 00a8 00000000 		.word	pg_dec
+ 453              		.cfi_endproc
+ 454              	.LFE5:
+ 456              		.section	.text.pg_line_init,"ax",%progbits
+ 457              		.align	1
+ 458              		.syntax unified
+ 459              		.thumb
+ 460              		.thumb_func
+ 461              		.fpu fpv4-sp-d16
+ 463              	pg_line_init:
+ 464              	.LFB7:
+ 209:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 210:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static void pg_hline(pg_struct *pg, u8g2_t *u8g2)
+ 211:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 212:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t x1, x2, y;
+ 213:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   x1 = pg->pge[PG_LEFT].current_x;
+ 214:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   x2 = pg->pge[PG_RIGHT].current_x;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 13
+
+
+ 215:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   y = pg->pge[PG_RIGHT].current_y;
+ 216:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+ 217:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( y < 0 )
+ 218:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     return;
+ 219:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( y >= u8g2_GetDisplayHeight(u8g2) )  // does not work for 256x64 display???
+ 220:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     return;
+ 221:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( x1 < x2 )
+ 222:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 223:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( x2 < 0 )
+ 224:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       return;
+ 225:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( x1 >= u8g2_GetDisplayWidth(u8g2) )
+ 226:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       return;
+ 227:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( x1 < 0 )
+ 228:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       x1 = 0;
+ 229:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( x2 >= u8g2_GetDisplayWidth(u8g2) )
+ 230:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       x2 = u8g2_GetDisplayWidth(u8g2);
+ 231:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     u8g2_DrawHLine(u8g2, x1, y, x2 - x1);
+ 232:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 233:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   else
+ 234:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 235:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( x1 < 0 )
+ 236:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       return;
+ 237:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( x2 >= u8g2_GetDisplayWidth(u8g2) )
+ 238:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       return;
+ 239:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( x2 < 0 )
+ 240:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       x1 = 0;
+ 241:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( x1 >= u8g2_GetDisplayWidth(u8g2) )
+ 242:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       x1 = u8g2_GetDisplayWidth(u8g2);
+ 243:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     u8g2_DrawHLine(u8g2, x2, y, x1 - x2);
+ 244:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 245:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 246:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 247:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static void pg_line_init(pg_struct * const pg, uint8_t pge_index)
+ 248:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 465              		.loc 1 248 0
+ 466              		.cfi_startproc
+ 467              		@ args = 0, pretend = 0, frame = 0
+ 468              		@ frame_needed = 0, uses_anonymous_args = 0
+ 469              	.LVL46:
+ 470 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 471              	.LCFI7:
+ 472              		.cfi_def_cfa_offset 20
+ 473              		.cfi_offset 4, -20
+ 474              		.cfi_offset 5, -16
+ 475              		.cfi_offset 6, -12
+ 476              		.cfi_offset 7, -8
+ 477              		.cfi_offset 14, -4
+ 478 0002 83B0     		sub	sp, sp, #12
+ 479              	.LCFI8:
+ 480              		.cfi_def_cfa_offset 32
+ 481 0004 0546     		mov	r5, r0
+ 249:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   struct pg_edge_struct  *pge = pg->pge+pge_index;
+ 482              		.loc 1 249 0
+ 483 0006 00F11C04 		add	r4, r0, #28
+ 484 000a 01EB4101 		add	r1, r1, r1, lsl #1
+ 485              	.LVL47:
+ 486 000e CB00     		lsls	r3, r1, #3
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 14
+
+
+ 487 0010 1C44     		add	r4, r4, r3
+ 488              	.LVL48:
+ 250:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   uint8_t idx;  
+ 251:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t x1;
+ 252:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t y1;
+ 253:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t x2;
+ 254:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t y2;
+ 255:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 256:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   idx = pge->curr_idx;  
+ 489              		.loc 1 256 0
+ 490 0012 217D     		ldrb	r1, [r4, #20]	@ zero_extendqisi2
+ 491              	.LVL49:
+ 257:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   y1 = pg->list[idx].y;
+ 492              		.loc 1 257 0
+ 493 0014 00EB8103 		add	r3, r0, r1, lsl #2
+ 494 0018 B3F90270 		ldrsh	r7, [r3, #2]
+ 495              	.LVL50:
+ 258:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   x1 = pg->list[idx].x;
+ 496              		.loc 1 258 0
+ 497 001c 30F92160 		ldrsh	r6, [r0, r1, lsl #2]
+ 498              	.LVL51:
+ 259:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   idx = pge->next_idx_fn(pg, idx);
+ 499              		.loc 1 259 0
+ 500 0020 2369     		ldr	r3, [r4, #16]
+ 501 0022 9847     		blx	r3
+ 502              	.LVL52:
+ 260:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   y2 = pg->list[idx].y;
+ 503              		.loc 1 260 0
+ 504 0024 05EB8003 		add	r3, r5, r0, lsl #2
+ 505 0028 B3F90220 		ldrsh	r2, [r3, #2]
+ 506              	.LVL53:
+ 261:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   x2 = pg->list[idx].x; 
+ 507              		.loc 1 261 0
+ 508 002c 35F92030 		ldrsh	r3, [r5, r0, lsl #2]
+ 509              	.LVL54:
+ 262:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge->curr_idx = idx;
+ 510              		.loc 1 262 0
+ 511 0030 2075     		strb	r0, [r4, #20]
+ 263:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+ 264:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pge_Init(pge, x1, y1, x2, y2);
+ 512              		.loc 1 264 0
+ 513 0032 0092     		str	r2, [sp]
+ 514 0034 3A46     		mov	r2, r7
+ 515              	.LVL55:
+ 516 0036 3146     		mov	r1, r6
+ 517 0038 2046     		mov	r0, r4
+ 518              	.LVL56:
+ 519 003a FFF7FEFF 		bl	pge_Init
+ 520              	.LVL57:
+ 265:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 521              		.loc 1 265 0
+ 522 003e 03B0     		add	sp, sp, #12
+ 523              	.LCFI9:
+ 524              		.cfi_def_cfa_offset 20
+ 525              		@ sp needed
+ 526 0040 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 527              		.cfi_endproc
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 15
+
+
+ 528              	.LFE7:
+ 530              		.section	.text.pg_hline,"ax",%progbits
+ 531              		.align	1
+ 532              		.syntax unified
+ 533              		.thumb
+ 534              		.thumb_func
+ 535              		.fpu fpv4-sp-d16
+ 537              	pg_hline:
+ 538              	.LFB6:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t x1, x2, y;
+ 539              		.loc 1 211 0
+ 540              		.cfi_startproc
+ 541              		@ args = 0, pretend = 0, frame = 0
+ 542              		@ frame_needed = 0, uses_anonymous_args = 0
+ 543              	.LVL58:
+ 544 0000 10B5     		push	{r4, lr}
+ 545              	.LCFI10:
+ 546              		.cfi_def_cfa_offset 8
+ 547              		.cfi_offset 4, -8
+ 548              		.cfi_offset 14, -4
+ 213:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   x2 = pg->pge[PG_RIGHT].current_x;
+ 549              		.loc 1 213 0
+ 550 0002 B0F92830 		ldrsh	r3, [r0, #40]
+ 551              	.LVL59:
+ 214:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   y = pg->pge[PG_RIGHT].current_y;
+ 552              		.loc 1 214 0
+ 553 0006 B0F94040 		ldrsh	r4, [r0, #64]
+ 554              	.LVL60:
+ 215:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+ 555              		.loc 1 215 0
+ 556 000a B0F93C20 		ldrsh	r2, [r0, #60]
+ 557              	.LVL61:
+ 217:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     return;
+ 558              		.loc 1 217 0
+ 559 000e 002A     		cmp	r2, #0
+ 560 0010 17DB     		blt	.L39
+ 219:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     return;
+ 561              		.loc 1 219 0
+ 562 0012 91F84000 		ldrb	r0, [r1, #64]	@ zero_extendqisi2
+ 563              	.LVL62:
+ 564 0016 8242     		cmp	r2, r0
+ 565 0018 13DA     		bge	.L39
+ 566 001a 0846     		mov	r0, r1
+ 221:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 567              		.loc 1 221 0
+ 568 001c A342     		cmp	r3, r4
+ 569 001e 13DA     		bge	.L41
+ 223:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       return;
+ 570              		.loc 1 223 0
+ 571 0020 002C     		cmp	r4, #0
+ 572 0022 0EDB     		blt	.L39
+ 225:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       return;
+ 573              		.loc 1 225 0
+ 574 0024 91F83F10 		ldrb	r1, [r1, #63]	@ zero_extendqisi2
+ 575              	.LVL63:
+ 576 0028 8B42     		cmp	r3, r1
+ 577 002a 0ADA     		bge	.L39
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 16
+
+
+ 227:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       x1 = 0;
+ 578              		.loc 1 227 0
+ 579 002c 002B     		cmp	r3, #0
+ 580 002e 09DB     		blt	.L49
+ 581              	.LVL64:
+ 582              	.L42:
+ 229:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       x2 = u8g2_GetDisplayWidth(u8g2);
+ 583              		.loc 1 229 0
+ 584 0030 A142     		cmp	r1, r4
+ 585 0032 00DC     		bgt	.L43
+ 230:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     u8g2_DrawHLine(u8g2, x1, y, x2 - x1);
+ 586              		.loc 1 230 0
+ 587 0034 0CB2     		sxth	r4, r1
+ 588              	.LVL65:
+ 589              	.L43:
+ 231:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 590              		.loc 1 231 0
+ 591 0036 D9B2     		uxtb	r1, r3
+ 592 0038 631A     		subs	r3, r4, r1
+ 593              	.LVL66:
+ 594 003a DBB2     		uxtb	r3, r3
+ 595 003c D2B2     		uxtb	r2, r2
+ 596              	.LVL67:
+ 597 003e FFF7FEFF 		bl	u8g2_DrawHLine
+ 598              	.LVL68:
+ 599              	.L39:
+ 245:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 600              		.loc 1 245 0
+ 601 0042 10BD     		pop	{r4, pc}
+ 602              	.LVL69:
+ 603              	.L49:
+ 228:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( x2 >= u8g2_GetDisplayWidth(u8g2) )
+ 604              		.loc 1 228 0
+ 605 0044 0023     		movs	r3, #0
+ 606              	.LVL70:
+ 607 0046 F3E7     		b	.L42
+ 608              	.LVL71:
+ 609              	.L41:
+ 235:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       return;
+ 610              		.loc 1 235 0
+ 611 0048 002B     		cmp	r3, #0
+ 612 004a FADB     		blt	.L39
+ 237:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       return;
+ 613              		.loc 1 237 0
+ 614 004c 91F83F10 		ldrb	r1, [r1, #63]	@ zero_extendqisi2
+ 615 0050 8C42     		cmp	r4, r1
+ 616 0052 F6DA     		bge	.L39
+ 239:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       x1 = 0;
+ 617              		.loc 1 239 0
+ 618 0054 002C     		cmp	r4, #0
+ 619 0056 09DB     		blt	.L50
+ 620              	.LVL72:
+ 621              	.L44:
+ 241:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       x1 = u8g2_GetDisplayWidth(u8g2);
+ 622              		.loc 1 241 0
+ 623 0058 9942     		cmp	r1, r3
+ 624 005a 00DC     		bgt	.L45
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 17
+
+
+ 242:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     u8g2_DrawHLine(u8g2, x2, y, x1 - x2);
+ 625              		.loc 1 242 0
+ 626 005c 0BB2     		sxth	r3, r1
+ 627              	.LVL73:
+ 628              	.L45:
+ 243:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 629              		.loc 1 243 0
+ 630 005e E1B2     		uxtb	r1, r4
+ 631 0060 5B1A     		subs	r3, r3, r1
+ 632              	.LVL74:
+ 633 0062 DBB2     		uxtb	r3, r3
+ 634 0064 D2B2     		uxtb	r2, r2
+ 635              	.LVL75:
+ 636 0066 FFF7FEFF 		bl	u8g2_DrawHLine
+ 637              	.LVL76:
+ 638 006a EAE7     		b	.L39
+ 639              	.LVL77:
+ 640              	.L50:
+ 240:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     if ( x1 >= u8g2_GetDisplayWidth(u8g2) )
+ 641              		.loc 1 240 0
+ 642 006c 0023     		movs	r3, #0
+ 643              	.LVL78:
+ 644 006e F3E7     		b	.L44
+ 645              		.cfi_endproc
+ 646              	.LFE6:
+ 648              		.section	.text.pg_exec,"ax",%progbits
+ 649              		.align	1
+ 650              		.syntax unified
+ 651              		.thumb
+ 652              		.thumb_func
+ 653              		.fpu fpv4-sp-d16
+ 655              	pg_exec:
+ 656              	.LFB8:
+ 266:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 267:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** static void pg_exec(pg_struct *pg, u8g2_t *u8g2)
+ 268:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 657              		.loc 1 268 0
+ 658              		.cfi_startproc
+ 659              		@ args = 0, pretend = 0, frame = 0
+ 660              		@ frame_needed = 0, uses_anonymous_args = 0
+ 661              	.LVL79:
+ 662 0000 70B5     		push	{r4, r5, r6, lr}
+ 663              	.LCFI11:
+ 664              		.cfi_def_cfa_offset 16
+ 665              		.cfi_offset 4, -16
+ 666              		.cfi_offset 5, -12
+ 667              		.cfi_offset 6, -8
+ 668              		.cfi_offset 14, -4
+ 669 0002 0446     		mov	r4, r0
+ 670 0004 0E46     		mov	r6, r1
+ 269:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_word_t i = pg->total_scan_line_cnt;
+ 671              		.loc 1 269 0
+ 672 0006 B0F91A50 		ldrsh	r5, [r0, #26]
+ 673              	.LVL80:
+ 270:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 271:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   /* first line is skipped if the min y line is not flat */
+ 272:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_line_init(pg, PG_LEFT);		
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 18
+
+
+ 674              		.loc 1 272 0
+ 675 000a 0021     		movs	r1, #0
+ 676              	.LVL81:
+ 677 000c FFF7FEFF 		bl	pg_line_init
+ 678              	.LVL82:
+ 273:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_line_init(pg, PG_RIGHT);
+ 679              		.loc 1 273 0
+ 680 0010 0121     		movs	r1, #1
+ 681 0012 2046     		mov	r0, r4
+ 682 0014 FFF7FEFF 		bl	pg_line_init
+ 683              	.LVL83:
+ 274:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   
+ 275:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( pg->is_min_y_not_flat != 0 )
+ 684              		.loc 1 275 0
+ 685 0018 637E     		ldrb	r3, [r4, #25]	@ zero_extendqisi2
+ 686 001a 0BB3     		cbz	r3, .L57
+ 276:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 277:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pge_Next(&(pg->pge[PG_LEFT])); 
+ 687              		.loc 1 277 0
+ 688 001c 04F11C00 		add	r0, r4, #28
+ 689 0020 FFF7FEFF 		bl	pge_Next
+ 690              	.LVL84:
+ 278:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pge_Next(&(pg->pge[PG_RIGHT]));
+ 691              		.loc 1 278 0
+ 692 0024 04F13400 		add	r0, r4, #52
+ 693 0028 FFF7FEFF 		bl	pge_Next
+ 694              	.LVL85:
+ 695 002c 18E0     		b	.L57
+ 696              	.L54:
+ 279:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 280:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 281:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   do
+ 282:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 283:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pg_hline(pg, u8g2);
+ 284:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     while ( pge_Next(&(pg->pge[PG_LEFT])) == 0 )
+ 285:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     {
+ 286:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       pg_line_init(pg, PG_LEFT);
+ 697              		.loc 1 286 0
+ 698 002e 0021     		movs	r1, #0
+ 699 0030 2046     		mov	r0, r4
+ 700 0032 FFF7FEFF 		bl	pg_line_init
+ 701              	.LVL86:
+ 702              	.L53:
+ 284:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     {
+ 703              		.loc 1 284 0
+ 704 0036 04F11C00 		add	r0, r4, #28
+ 705 003a FFF7FEFF 		bl	pge_Next
+ 706              	.LVL87:
+ 707 003e 0028     		cmp	r0, #0
+ 708 0040 F5D0     		beq	.L54
+ 709 0042 03E0     		b	.L55
+ 710              	.L56:
+ 287:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     }
+ 288:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     while ( pge_Next(&(pg->pge[PG_RIGHT])) == 0 )
+ 289:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     {
+ 290:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****       pg_line_init(pg, PG_RIGHT);
+ 711              		.loc 1 290 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 19
+
+
+ 712 0044 0121     		movs	r1, #1
+ 713 0046 2046     		mov	r0, r4
+ 714 0048 FFF7FEFF 		bl	pg_line_init
+ 715              	.LVL88:
+ 716              	.L55:
+ 288:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     {
+ 717              		.loc 1 288 0
+ 718 004c 04F13400 		add	r0, r4, #52
+ 719 0050 FFF7FEFF 		bl	pge_Next
+ 720              	.LVL89:
+ 721 0054 0028     		cmp	r0, #0
+ 722 0056 F5D0     		beq	.L56
+ 291:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     }
+ 292:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     i--;
+ 723              		.loc 1 292 0
+ 724 0058 013D     		subs	r5, r5, #1
+ 725              	.LVL90:
+ 726 005a 2DB2     		sxth	r5, r5
+ 727              	.LVL91:
+ 293:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   } while( i > 0 );
+ 728              		.loc 1 293 0
+ 729 005c 002D     		cmp	r5, #0
+ 730 005e 04DD     		ble	.L59
+ 731              	.L57:
+ 283:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     while ( pge_Next(&(pg->pge[PG_LEFT])) == 0 )
+ 732              		.loc 1 283 0
+ 733 0060 3146     		mov	r1, r6
+ 734 0062 2046     		mov	r0, r4
+ 735 0064 FFF7FEFF 		bl	pg_hline
+ 736              	.LVL92:
+ 284:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     {
+ 737              		.loc 1 284 0
+ 738 0068 E5E7     		b	.L53
+ 739              	.L59:
+ 294:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 740              		.loc 1 294 0
+ 741 006a 70BD     		pop	{r4, r5, r6, pc}
+ 742              		.cfi_endproc
+ 743              	.LFE8:
+ 745              		.section	.text.pg_ClearPolygonXY,"ax",%progbits
+ 746              		.align	1
+ 747              		.global	pg_ClearPolygonXY
+ 748              		.syntax unified
+ 749              		.thumb
+ 750              		.thumb_func
+ 751              		.fpu fpv4-sp-d16
+ 753              	pg_ClearPolygonXY:
+ 754              	.LFB9:
+ 295:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 296:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /*===========================================*/
+ 297:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** /* API procedures */
+ 298:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 299:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** void pg_ClearPolygonXY(pg_struct *pg)
+ 300:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 755              		.loc 1 300 0
+ 756              		.cfi_startproc
+ 757              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 20
+
+
+ 758              		@ frame_needed = 0, uses_anonymous_args = 0
+ 759              		@ link register save eliminated.
+ 760              	.LVL93:
+ 301:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg->cnt = 0;
+ 761              		.loc 1 301 0
+ 762 0000 0023     		movs	r3, #0
+ 763 0002 0376     		strb	r3, [r0, #24]
+ 302:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 764              		.loc 1 302 0
+ 765 0004 7047     		bx	lr
+ 766              		.cfi_endproc
+ 767              	.LFE9:
+ 769              		.section	.text.pg_AddPolygonXY,"ax",%progbits
+ 770              		.align	1
+ 771              		.global	pg_AddPolygonXY
+ 772              		.syntax unified
+ 773              		.thumb
+ 774              		.thumb_func
+ 775              		.fpu fpv4-sp-d16
+ 777              	pg_AddPolygonXY:
+ 778              	.LFB10:
+ 303:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 304:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** void pg_AddPolygonXY(pg_struct *pg, int16_t x, int16_t y)
+ 305:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 779              		.loc 1 305 0
+ 780              		.cfi_startproc
+ 781              		@ args = 0, pretend = 0, frame = 0
+ 782              		@ frame_needed = 0, uses_anonymous_args = 0
+ 783              		@ link register save eliminated.
+ 784              	.LVL94:
+ 306:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( pg->cnt < PG_MAX_POINTS )
+ 785              		.loc 1 306 0
+ 786 0000 037E     		ldrb	r3, [r0, #24]	@ zero_extendqisi2
+ 787 0002 052B     		cmp	r3, #5
+ 788 0004 06D8     		bhi	.L61
+ 307:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   {
+ 308:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pg->list[pg->cnt].x = x;
+ 789              		.loc 1 308 0
+ 790 0006 20F82310 		strh	r1, [r0, r3, lsl #2]	@ movhi
+ 309:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pg->list[pg->cnt].y = y;
+ 791              		.loc 1 309 0
+ 792 000a 00EB8301 		add	r1, r0, r3, lsl #2
+ 793              	.LVL95:
+ 794 000e 4A80     		strh	r2, [r1, #2]	@ movhi
+ 795              	.LVL96:
+ 310:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     pg->cnt++;
+ 796              		.loc 1 310 0
+ 797 0010 0133     		adds	r3, r3, #1
+ 798 0012 0376     		strb	r3, [r0, #24]
+ 799              	.L61:
+ 311:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   }
+ 312:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 800              		.loc 1 312 0
+ 801 0014 7047     		bx	lr
+ 802              		.cfi_endproc
+ 803              	.LFE10:
+ 805              		.section	.text.pg_DrawPolygon,"ax",%progbits
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 21
+
+
+ 806              		.align	1
+ 807              		.global	pg_DrawPolygon
+ 808              		.syntax unified
+ 809              		.thumb
+ 810              		.thumb_func
+ 811              		.fpu fpv4-sp-d16
+ 813              	pg_DrawPolygon:
+ 814              	.LFB11:
+ 313:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 314:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** void pg_DrawPolygon(pg_struct *pg, u8g2_t *u8g2)
+ 315:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 815              		.loc 1 315 0
+ 816              		.cfi_startproc
+ 817              		@ args = 0, pretend = 0, frame = 0
+ 818              		@ frame_needed = 0, uses_anonymous_args = 0
+ 819              	.LVL97:
+ 820 0000 38B5     		push	{r3, r4, r5, lr}
+ 821              	.LCFI12:
+ 822              		.cfi_def_cfa_offset 16
+ 823              		.cfi_offset 3, -16
+ 824              		.cfi_offset 4, -12
+ 825              		.cfi_offset 5, -8
+ 826              		.cfi_offset 14, -4
+ 827 0002 0446     		mov	r4, r0
+ 828 0004 0D46     		mov	r5, r1
+ 316:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   if ( pg_prepare(pg) == 0 )
+ 829              		.loc 1 316 0
+ 830 0006 FFF7FEFF 		bl	pg_prepare
+ 831              	.LVL98:
+ 832 000a 00B9     		cbnz	r0, .L66
+ 833              	.L63:
+ 317:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****     return;
+ 318:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_exec(pg, u8g2);
+ 319:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 834              		.loc 1 319 0
+ 835 000c 38BD     		pop	{r3, r4, r5, pc}
+ 836              	.LVL99:
+ 837              	.L66:
+ 318:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 838              		.loc 1 318 0
+ 839 000e 2946     		mov	r1, r5
+ 840 0010 2046     		mov	r0, r4
+ 841 0012 FFF7FEFF 		bl	pg_exec
+ 842              	.LVL100:
+ 843 0016 F9E7     		b	.L63
+ 844              		.cfi_endproc
+ 845              	.LFE11:
+ 847              		.section	.text.u8g2_ClearPolygonXY,"ax",%progbits
+ 848              		.align	1
+ 849              		.global	u8g2_ClearPolygonXY
+ 850              		.syntax unified
+ 851              		.thumb
+ 852              		.thumb_func
+ 853              		.fpu fpv4-sp-d16
+ 855              	u8g2_ClearPolygonXY:
+ 856              	.LFB12:
+ 320:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 22
+
+
+ 321:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** pg_struct u8g2_pg;
+ 322:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 323:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** void u8g2_ClearPolygonXY(void)
+ 324:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 857              		.loc 1 324 0
+ 858              		.cfi_startproc
+ 859              		@ args = 0, pretend = 0, frame = 0
+ 860              		@ frame_needed = 0, uses_anonymous_args = 0
+ 861 0000 08B5     		push	{r3, lr}
+ 862              	.LCFI13:
+ 863              		.cfi_def_cfa_offset 8
+ 864              		.cfi_offset 3, -8
+ 865              		.cfi_offset 14, -4
+ 325:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_ClearPolygonXY(&u8g2_pg);
+ 866              		.loc 1 325 0
+ 867 0002 0248     		ldr	r0, .L69
+ 868 0004 FFF7FEFF 		bl	pg_ClearPolygonXY
+ 869              	.LVL101:
+ 326:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 870              		.loc 1 326 0
+ 871 0008 08BD     		pop	{r3, pc}
+ 872              	.L70:
+ 873 000a 00BF     		.align	2
+ 874              	.L69:
+ 875 000c 00000000 		.word	u8g2_pg
+ 876              		.cfi_endproc
+ 877              	.LFE12:
+ 879              		.section	.text.u8g2_AddPolygonXY,"ax",%progbits
+ 880              		.align	1
+ 881              		.global	u8g2_AddPolygonXY
+ 882              		.syntax unified
+ 883              		.thumb
+ 884              		.thumb_func
+ 885              		.fpu fpv4-sp-d16
+ 887              	u8g2_AddPolygonXY:
+ 888              	.LFB13:
+ 327:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 328:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** void u8g2_AddPolygonXY(U8X8_UNUSED u8g2_t *u8g2, int16_t x, int16_t y)
+ 329:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 889              		.loc 1 329 0
+ 890              		.cfi_startproc
+ 891              		@ args = 0, pretend = 0, frame = 0
+ 892              		@ frame_needed = 0, uses_anonymous_args = 0
+ 893              	.LVL102:
+ 894 0000 08B5     		push	{r3, lr}
+ 895              	.LCFI14:
+ 896              		.cfi_def_cfa_offset 8
+ 897              		.cfi_offset 3, -8
+ 898              		.cfi_offset 14, -4
+ 330:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_AddPolygonXY(&u8g2_pg, x, y);
+ 899              		.loc 1 330 0
+ 900 0002 0248     		ldr	r0, .L73
+ 901              	.LVL103:
+ 902 0004 FFF7FEFF 		bl	pg_AddPolygonXY
+ 903              	.LVL104:
+ 331:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 904              		.loc 1 331 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 23
+
+
+ 905 0008 08BD     		pop	{r3, pc}
+ 906              	.L74:
+ 907 000a 00BF     		.align	2
+ 908              	.L73:
+ 909 000c 00000000 		.word	u8g2_pg
+ 910              		.cfi_endproc
+ 911              	.LFE13:
+ 913              		.section	.text.u8g2_DrawPolygon,"ax",%progbits
+ 914              		.align	1
+ 915              		.global	u8g2_DrawPolygon
+ 916              		.syntax unified
+ 917              		.thumb
+ 918              		.thumb_func
+ 919              		.fpu fpv4-sp-d16
+ 921              	u8g2_DrawPolygon:
+ 922              	.LFB14:
+ 332:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 333:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** void u8g2_DrawPolygon(u8g2_t *u8g2)
+ 334:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ 923              		.loc 1 334 0
+ 924              		.cfi_startproc
+ 925              		@ args = 0, pretend = 0, frame = 0
+ 926              		@ frame_needed = 0, uses_anonymous_args = 0
+ 927              	.LVL105:
+ 928 0000 08B5     		push	{r3, lr}
+ 929              	.LCFI15:
+ 930              		.cfi_def_cfa_offset 8
+ 931              		.cfi_offset 3, -8
+ 932              		.cfi_offset 14, -4
+ 335:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   pg_DrawPolygon(&u8g2_pg, u8g2);
+ 933              		.loc 1 335 0
+ 934 0002 0146     		mov	r1, r0
+ 935 0004 0148     		ldr	r0, .L77
+ 936              	.LVL106:
+ 937 0006 FFF7FEFF 		bl	pg_DrawPolygon
+ 938              	.LVL107:
+ 336:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 939              		.loc 1 336 0
+ 940 000a 08BD     		pop	{r3, pc}
+ 941              	.L78:
+ 942              		.align	2
+ 943              	.L77:
+ 944 000c 00000000 		.word	u8g2_pg
+ 945              		.cfi_endproc
+ 946              	.LFE14:
+ 948              		.section	.text.u8g2_DrawTriangle,"ax",%progbits
+ 949              		.align	1
+ 950              		.global	u8g2_DrawTriangle
+ 951              		.syntax unified
+ 952              		.thumb
+ 953              		.thumb_func
+ 954              		.fpu fpv4-sp-d16
+ 956              	u8g2_DrawTriangle:
+ 957              	.LFB15:
+ 337:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** 
+ 338:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** void u8g2_DrawTriangle(u8g2_t *u8g2, int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, in
+ 339:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 24
+
+
+ 958              		.loc 1 339 0
+ 959              		.cfi_startproc
+ 960              		@ args = 12, pretend = 0, frame = 0
+ 961              		@ frame_needed = 0, uses_anonymous_args = 0
+ 962              	.LVL108:
+ 963 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 964              	.LCFI16:
+ 965              		.cfi_def_cfa_offset 24
+ 966              		.cfi_offset 3, -24
+ 967              		.cfi_offset 4, -20
+ 968              		.cfi_offset 5, -16
+ 969              		.cfi_offset 6, -12
+ 970              		.cfi_offset 7, -8
+ 971              		.cfi_offset 14, -4
+ 972 0002 0446     		mov	r4, r0
+ 973 0004 0E46     		mov	r6, r1
+ 974 0006 1746     		mov	r7, r2
+ 975 0008 1D46     		mov	r5, r3
+ 340:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   u8g2_ClearPolygonXY();
+ 976              		.loc 1 340 0
+ 977 000a FFF7FEFF 		bl	u8g2_ClearPolygonXY
+ 978              	.LVL109:
+ 341:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   u8g2_AddPolygonXY(u8g2, x0, y0);
+ 979              		.loc 1 341 0
+ 980 000e 3A46     		mov	r2, r7
+ 981 0010 3146     		mov	r1, r6
+ 982 0012 2046     		mov	r0, r4
+ 983 0014 FFF7FEFF 		bl	u8g2_AddPolygonXY
+ 984              	.LVL110:
+ 342:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   u8g2_AddPolygonXY(u8g2, x1, y1);
+ 985              		.loc 1 342 0
+ 986 0018 BDF91820 		ldrsh	r2, [sp, #24]
+ 987 001c 2946     		mov	r1, r5
+ 988 001e 2046     		mov	r0, r4
+ 989 0020 FFF7FEFF 		bl	u8g2_AddPolygonXY
+ 990              	.LVL111:
+ 343:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   u8g2_AddPolygonXY(u8g2, x2, y2);
+ 991              		.loc 1 343 0
+ 992 0024 BDF92020 		ldrsh	r2, [sp, #32]
+ 993 0028 BDF91C10 		ldrsh	r1, [sp, #28]
+ 994 002c 2046     		mov	r0, r4
+ 995 002e FFF7FEFF 		bl	u8g2_AddPolygonXY
+ 996              	.LVL112:
+ 344:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c ****   u8g2_DrawPolygon(u8g2);
+ 997              		.loc 1 344 0
+ 998 0032 2046     		mov	r0, r4
+ 999 0034 FFF7FEFF 		bl	u8g2_DrawPolygon
+ 1000              	.LVL113:
+ 345:/Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c **** }
+ 1001              		.loc 1 345 0
+ 1002 0038 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1003              		.cfi_endproc
+ 1004              	.LFE15:
+ 1006              		.comm	u8g2_pg,76,4
+ 1007              		.text
+ 1008              	.Letext0:
+ 1009              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 25
+
+
+ 1010              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 1011              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 1012              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s 			page 26
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8g2_polygon.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:18     .text.pge_Next:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:24     .text.pge_Next:0000000000000000 pge_Next
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:91     .text.pge_Init:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:97     .text.pge_Init:0000000000000000 pge_Init
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:183    .text.pg_inc:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:189    .text.pg_inc:0000000000000000 pg_inc
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:218    .text.pg_dec:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:224    .text.pg_dec:0000000000000000 pg_dec
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:255    .text.pg_expand_min_y:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:261    .text.pg_expand_min_y:0000000000000000 pg_expand_min_y
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:315    .text.pg_prepare:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:321    .text.pg_prepare:0000000000000000 pg_prepare
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:451    .text.pg_prepare:00000000000000a4 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:457    .text.pg_line_init:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:463    .text.pg_line_init:0000000000000000 pg_line_init
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:531    .text.pg_hline:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:537    .text.pg_hline:0000000000000000 pg_hline
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:649    .text.pg_exec:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:655    .text.pg_exec:0000000000000000 pg_exec
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:746    .text.pg_ClearPolygonXY:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:753    .text.pg_ClearPolygonXY:0000000000000000 pg_ClearPolygonXY
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:770    .text.pg_AddPolygonXY:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:777    .text.pg_AddPolygonXY:0000000000000000 pg_AddPolygonXY
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:806    .text.pg_DrawPolygon:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:813    .text.pg_DrawPolygon:0000000000000000 pg_DrawPolygon
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:848    .text.u8g2_ClearPolygonXY:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:855    .text.u8g2_ClearPolygonXY:0000000000000000 u8g2_ClearPolygonXY
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:875    .text.u8g2_ClearPolygonXY:000000000000000c $d
+                            *COM*:000000000000004c u8g2_pg
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:880    .text.u8g2_AddPolygonXY:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:887    .text.u8g2_AddPolygonXY:0000000000000000 u8g2_AddPolygonXY
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:909    .text.u8g2_AddPolygonXY:000000000000000c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:914    .text.u8g2_DrawPolygon:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:921    .text.u8g2_DrawPolygon:0000000000000000 u8g2_DrawPolygon
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:944    .text.u8g2_DrawPolygon:000000000000000c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:949    .text.u8g2_DrawTriangle:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccE0W6xn.s:956    .text.u8g2_DrawTriangle:0000000000000000 u8g2_DrawTriangle
+
+UNDEFINED SYMBOLS
+u8g2_DrawHLine

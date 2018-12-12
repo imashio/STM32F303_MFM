@@ -1,0 +1,734 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_d_max7219.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_d_max7219_generic,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	u8x8_d_max7219_generic:
+  25              	.LFB0:
+  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   u8x8_d_max7219.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   Copyright (c) 2017, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 2
+
+
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** */
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** #include "u8x8.h"
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** static const uint8_t u8x8_d_max7219_init_seq[] = {
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */  
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(15, 0),				/* test mode off */
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(15, 0),				/* test mode off */
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(15, 0),				/* test mode off */
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(15, 0),				/* test mode off */
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */  
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 0),				/*  */
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 0),				/*  */
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 0),				/*  */
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 0),				/*  */
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */  
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(9, 0),				/* decode mode: graphics */
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(9, 0),				/* decode mode: graphics */
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(9, 0),				/* decode mode: graphics */
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(9, 0),				/* decode mode: graphics */
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */  
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(10, 10),				/* medium high intensity */
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(10, 10),				/* medium high intensity */
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(10, 10),				/* medium high intensity */
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(10, 10),				/* medium high intensity */
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */  
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(11, 7),				/* scan limit: display all digits (assuming a 8x8 matrix) */
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(11, 7),				/* scan limit: display all digits (assuming a 8x8 matrix) */
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(11, 7),				/* scan limit: display all digits (assuming a 8x8 matrix) */
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(11, 7),				/* scan limit: display all digits (assuming a 8x8 matrix) */
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   //U8X8_CA(12, 0),				/* shutdown */
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   //U8X8_END_TRANSFER(),             	/* disable chip */
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_END()             			/* end of sequence */
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** };
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** static const uint8_t u8x8_d_max7219_powersave0_seq[] = {
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 1),				/* display on */
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 1),				/* display on */
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 1),				/* display on */
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 3
+
+
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 1),				/* display on */
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_END()             			/* end of sequence */
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** };
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** static const uint8_t u8x8_d_max7219_powersave1_seq[] = {
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 0),				/* shutdown */
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 0),				/* shutdown */
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 0),				/* shutdown */
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_CA(12, 0),				/* shutdown */
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   U8X8_END()             			/* end of sequence */
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** };
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** static uint8_t u8x8_d_max7219_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** {
+  27              		.loc 1 107 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 24
+  35              		.cfi_offset 4, -24
+  36              		.cfi_offset 5, -20
+  37              		.cfi_offset 6, -16
+  38              		.cfi_offset 7, -12
+  39              		.cfi_offset 8, -8
+  40              		.cfi_offset 14, -4
+  41 0004 0546     		mov	r5, r0
+  42 0006 1446     		mov	r4, r2
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   uint8_t c, j, i;
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   uint8_t *ptr;
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   switch(msg)
+  43              		.loc 1 110 0
+  44 0008 0A39     		subs	r1, r1, #10
+  45              	.LVL1:
+  46 000a 0529     		cmp	r1, #5
+  47 000c 61D8     		bhi	.L13
+  48 000e DFE801F0 		tbb	[pc, r1]
+  49              	.LVL2:
+  50              	.L4:
+  51 0012 03       		.byte	(.L3-.L4)/2
+  52 0013 0C       		.byte	(.L5-.L4)/2
+  53 0014 60       		.byte	(.L13-.L4)/2
+  54 0015 60       		.byte	(.L13-.L4)/2
+  55 0016 17       		.byte	(.L6-.L4)/2
+  56 0017 3F       		.byte	(.L7-.L4)/2
+  57              		.p2align 1
+  58              	.L3:
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   {
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     /* handled by the calling function
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_pcf8812_96x65_display_info);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 4
+
+
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       break;
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     */
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     case U8X8_MSG_DISPLAY_INIT:
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_d_helper_display_init(u8x8);
+  59              		.loc 1 118 0
+  60 0018 FFF7FEFF 		bl	u8x8_d_helper_display_init
+  61              	.LVL3:
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_max7219_init_seq);    
+  62              		.loc 1 119 0
+  63 001c 2E49     		ldr	r1, .L16
+  64 001e 2846     		mov	r0, r5
+  65 0020 FFF7FEFF 		bl	u8x8_cad_SendSequence
+  66              	.LVL4:
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       break;
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       if ( arg_int == 0 )
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_max7219_powersave0_seq);
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       else
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_max7219_powersave1_seq);
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       break;
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** /*  not supported by MAX7219
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     case U8X8_MSG_DISPLAY_SET_FLIP_MODE:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       break;
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** */
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** #ifdef U8X8_WITH_SET_CONTRAST
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     case U8X8_MSG_DISPLAY_SET_CONTRAST:
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_StartTransfer(u8x8);
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendCmd(u8x8, 10 );    /* brightness */
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendArg(u8x8, (arg_int>>4) );	/* 0..15 for contrast */
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendCmd(u8x8, 10 );    /* brightness */
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendArg(u8x8, (arg_int>>4) );	/* 0..15 for contrast */
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendCmd(u8x8, 10 );    /* brightness */
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendArg(u8x8, (arg_int>>4) );	/* 0..15 for contrast */
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendCmd(u8x8, 10 );    /* brightness */
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendArg(u8x8, (arg_int>>4) );	/* 0..15 for contrast */
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_EndTransfer(u8x8);
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       break;
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** #endif
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     case U8X8_MSG_DISPLAY_DRAW_TILE:
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       /* transfer always has to start at x pos 0 (u8x8 is not supported) */
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       /* also y pos has to be 0 */
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       /* arg_int is ignored */
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       //x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       c = ((u8x8_tile_t *)arg_ptr)->cnt;	/* number of tiles */
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;	/* data ptr to the tiles */
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       for( i = 0; i < 8; i++ )
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       {
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	u8x8_cad_StartTransfer(u8x8);
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	for( j = 0; j < c; j++ )
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	{
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	  u8x8_cad_SendCmd(u8x8, i+1);
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	  u8x8_cad_SendArg(u8x8, *ptr );
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	  ptr++;
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	}
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	u8x8_cad_EndTransfer(u8x8);
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 5
+
+
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       break;
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     default:
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       return 0;
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   }
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   return 1;
+  67              		.loc 1 169 0
+  68 0024 0120     		movs	r0, #1
+  69              	.L2:
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** }
+  70              		.loc 1 170 0
+  71 0026 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+  72              	.LVL5:
+  73              	.L5:
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_max7219_powersave0_seq);
+  74              		.loc 1 122 0
+  75 002a 24B9     		cbnz	r4, .L8
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       else
+  76              		.loc 1 123 0
+  77 002c 2B49     		ldr	r1, .L16+4
+  78 002e FFF7FEFF 		bl	u8x8_cad_SendSequence
+  79              	.LVL6:
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** }
+  80              		.loc 1 169 0
+  81 0032 0120     		movs	r0, #1
+  82 0034 F7E7     		b	.L2
+  83              	.LVL7:
+  84              	.L8:
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       break;
+  85              		.loc 1 125 0
+  86 0036 2A49     		ldr	r1, .L16+8
+  87 0038 FFF7FEFF 		bl	u8x8_cad_SendSequence
+  88              	.LVL8:
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** }
+  89              		.loc 1 169 0
+  90 003c 0120     		movs	r0, #1
+  91 003e F2E7     		b	.L2
+  92              	.LVL9:
+  93              	.L6:
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendCmd(u8x8, 10 );    /* brightness */
+  94              		.loc 1 133 0
+  95 0040 FFF7FEFF 		bl	u8x8_cad_StartTransfer
+  96              	.LVL10:
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendArg(u8x8, (arg_int>>4) );	/* 0..15 for contrast */
+  97              		.loc 1 134 0
+  98 0044 0A21     		movs	r1, #10
+  99 0046 2846     		mov	r0, r5
+ 100 0048 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 101              	.LVL11:
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendCmd(u8x8, 10 );    /* brightness */
+ 102              		.loc 1 135 0
+ 103 004c 2409     		lsrs	r4, r4, #4
+ 104 004e 2146     		mov	r1, r4
+ 105 0050 2846     		mov	r0, r5
+ 106 0052 FFF7FEFF 		bl	u8x8_cad_SendArg
+ 107              	.LVL12:
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendArg(u8x8, (arg_int>>4) );	/* 0..15 for contrast */
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 6
+
+
+ 108              		.loc 1 136 0
+ 109 0056 0A21     		movs	r1, #10
+ 110 0058 2846     		mov	r0, r5
+ 111 005a FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 112              	.LVL13:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendCmd(u8x8, 10 );    /* brightness */
+ 113              		.loc 1 137 0
+ 114 005e 2146     		mov	r1, r4
+ 115 0060 2846     		mov	r0, r5
+ 116 0062 FFF7FEFF 		bl	u8x8_cad_SendArg
+ 117              	.LVL14:
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendArg(u8x8, (arg_int>>4) );	/* 0..15 for contrast */
+ 118              		.loc 1 138 0
+ 119 0066 0A21     		movs	r1, #10
+ 120 0068 2846     		mov	r0, r5
+ 121 006a FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 122              	.LVL15:
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendCmd(u8x8, 10 );    /* brightness */
+ 123              		.loc 1 139 0
+ 124 006e 2146     		mov	r1, r4
+ 125 0070 2846     		mov	r0, r5
+ 126 0072 FFF7FEFF 		bl	u8x8_cad_SendArg
+ 127              	.LVL16:
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_SendArg(u8x8, (arg_int>>4) );	/* 0..15 for contrast */
+ 128              		.loc 1 140 0
+ 129 0076 0A21     		movs	r1, #10
+ 130 0078 2846     		mov	r0, r5
+ 131 007a FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 132              	.LVL17:
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_cad_EndTransfer(u8x8);
+ 133              		.loc 1 141 0
+ 134 007e 2146     		mov	r1, r4
+ 135 0080 2846     		mov	r0, r5
+ 136 0082 FFF7FEFF 		bl	u8x8_cad_SendArg
+ 137              	.LVL18:
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       break;
+ 138              		.loc 1 142 0
+ 139 0086 2846     		mov	r0, r5
+ 140 0088 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 141              	.LVL19:
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** }
+ 142              		.loc 1 169 0
+ 143 008c 0120     		movs	r0, #1
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** #endif
+ 144              		.loc 1 143 0
+ 145 008e CAE7     		b	.L2
+ 146              	.LVL20:
+ 147              	.L7:
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;	/* data ptr to the tiles */
+ 148              		.loc 1 151 0
+ 149 0090 93F80480 		ldrb	r8, [r3, #4]	@ zero_extendqisi2
+ 150              	.LVL21:
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       for( i = 0; i < 8; i++ )
+ 151              		.loc 1 152 0
+ 152 0094 1E68     		ldr	r6, [r3]
+ 153              	.LVL22:
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 7
+
+
+ 154              		.loc 1 153 0
+ 155 0096 0027     		movs	r7, #0
+ 156 0098 12E0     		b	.L9
+ 157              	.LVL23:
+ 158              	.L11:
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	  u8x8_cad_SendArg(u8x8, *ptr );
+ 159              		.loc 1 158 0 discriminator 3
+ 160 009a 791C     		adds	r1, r7, #1
+ 161 009c C9B2     		uxtb	r1, r1
+ 162 009e 2846     		mov	r0, r5
+ 163 00a0 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 164              	.LVL24:
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	  ptr++;
+ 165              		.loc 1 159 0 discriminator 3
+ 166 00a4 16F8011B 		ldrb	r1, [r6], #1	@ zero_extendqisi2
+ 167              	.LVL25:
+ 168 00a8 2846     		mov	r0, r5
+ 169 00aa FFF7FEFF 		bl	u8x8_cad_SendArg
+ 170              	.LVL26:
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	{
+ 171              		.loc 1 156 0 discriminator 3
+ 172 00ae 0134     		adds	r4, r4, #1
+ 173              	.LVL27:
+ 174 00b0 E4B2     		uxtb	r4, r4
+ 175              	.LVL28:
+ 176              	.L10:
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	{
+ 177              		.loc 1 156 0 is_stmt 0 discriminator 1
+ 178 00b2 4445     		cmp	r4, r8
+ 179 00b4 F1D3     		bcc	.L11
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       }
+ 180              		.loc 1 162 0 is_stmt 1 discriminator 2
+ 181 00b6 2846     		mov	r0, r5
+ 182 00b8 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 183              	.LVL29:
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       {
+ 184              		.loc 1 153 0 discriminator 2
+ 185 00bc 0137     		adds	r7, r7, #1
+ 186              	.LVL30:
+ 187 00be FFB2     		uxtb	r7, r7
+ 188              	.LVL31:
+ 189              	.L9:
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       {
+ 190              		.loc 1 153 0 is_stmt 0 discriminator 1
+ 191 00c0 072F     		cmp	r7, #7
+ 192 00c2 04D8     		bhi	.L15
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	for( j = 0; j < c; j++ )
+ 193              		.loc 1 155 0 is_stmt 1
+ 194 00c4 2846     		mov	r0, r5
+ 195 00c6 FFF7FEFF 		bl	u8x8_cad_StartTransfer
+ 196              	.LVL32:
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 	{
+ 197              		.loc 1 156 0
+ 198 00ca 0024     		movs	r4, #0
+ 199 00cc F1E7     		b	.L10
+ 200              	.LVL33:
+ 201              	.L15:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 8
+
+
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** }
+ 202              		.loc 1 169 0
+ 203 00ce 0120     		movs	r0, #1
+ 204 00d0 A9E7     		b	.L2
+ 205              	.LVL34:
+ 206              	.L13:
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   }
+ 207              		.loc 1 167 0
+ 208 00d2 0020     		movs	r0, #0
+ 209              	.LVL35:
+ 210 00d4 A7E7     		b	.L2
+ 211              	.L17:
+ 212 00d6 00BF     		.align	2
+ 213              	.L16:
+ 214 00d8 00000000 		.word	.LANCHOR0
+ 215 00dc 00000000 		.word	.LANCHOR1
+ 216 00e0 00000000 		.word	.LANCHOR2
+ 217              		.cfi_endproc
+ 218              	.LFE0:
+ 220              		.section	.text.u8x8_d_max7219_32x8,"ax",%progbits
+ 221              		.align	1
+ 222              		.global	u8x8_d_max7219_32x8
+ 223              		.syntax unified
+ 224              		.thumb
+ 225              		.thumb_func
+ 226              		.fpu fpv4-sp-d16
+ 228              	u8x8_d_max7219_32x8:
+ 229              	.LFB1:
+ 171:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** static const u8x8_display_info_t u8x8_max7219_32x8_display_info =
+ 174:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** {
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* chip_enable_level = */ 0,
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* chip_disable_level = */ 1,
+ 177:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   
+ 178:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* post_chip_enable_wait_ns = */ 100,
+ 179:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* pre_chip_disable_wait_ns = */ 100,
+ 180:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* reset_pulse_width_ms = */ 100, 
+ 181:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* post_reset_wait_ms = */ 100, 
+ 182:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* sda_setup_time_ns = */ 100,	
+ 183:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* sck_pulse_width_ns = */ 100,	
+ 184:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* sck_clock_hz = */ 4000000UL,	/* since Arduino 1.6.0, the SPI bus speed in Hz. Should be  10000
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* spi_mode = */ 0,		/* active high, rising edge */
+ 186:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* i2c_bus_clock_100kHz = */ 4,
+ 187:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* data_setup_time_ns = */ 40,
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* write_pulse_width_ns = */ 150,	
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* tile_width = */ 4,
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* tile_hight = */ 1,
+ 191:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* default_x_offset = */ 0,
+ 192:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* flipmode_x_offset = */ 0,
+ 193:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* pixel_width = */ 32,
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****   /* pixel_height = */ 16
+ 195:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** };
+ 196:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** 
+ 197:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** uint8_t u8x8_d_max7219_32x8(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 198:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** {
+ 230              		.loc 1 198 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 9
+
+
+ 231              		.cfi_startproc
+ 232              		@ args = 0, pretend = 0, frame = 0
+ 233              		@ frame_needed = 0, uses_anonymous_args = 0
+ 234              	.LVL36:
+ 235 0000 08B5     		push	{r3, lr}
+ 236              	.LCFI1:
+ 237              		.cfi_def_cfa_offset 8
+ 238              		.cfi_offset 3, -8
+ 239              		.cfi_offset 14, -4
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     if ( msg == U8X8_MSG_DISPLAY_SETUP_MEMORY )
+ 240              		.loc 1 199 0
+ 241 0002 0929     		cmp	r1, #9
+ 242 0004 02D0     		beq	.L22
+ 200:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     {
+ 201:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_max7219_32x8_display_info);
+ 202:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       return 1;
+ 203:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     }
+ 204:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     return u8x8_d_max7219_generic(u8x8, msg, arg_int, arg_ptr);
+ 243              		.loc 1 204 0
+ 244 0006 FFF7FEFF 		bl	u8x8_d_max7219_generic
+ 245              	.LVL37:
+ 246              	.L20:
+ 205:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c **** }
+ 247              		.loc 1 205 0
+ 248 000a 08BD     		pop	{r3, pc}
+ 249              	.LVL38:
+ 250              	.L22:
+ 201:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****       return 1;
+ 251              		.loc 1 201 0
+ 252 000c 0249     		ldr	r1, .L23
+ 253              	.LVL39:
+ 254 000e FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
+ 255              	.LVL40:
+ 202:/Users/imashio/Electronics/ARM/_Library/u8x8_d_max7219.c ****     }
+ 256              		.loc 1 202 0
+ 257 0012 0120     		movs	r0, #1
+ 258 0014 F9E7     		b	.L20
+ 259              	.L24:
+ 260 0016 00BF     		.align	2
+ 261              	.L23:
+ 262 0018 00000000 		.word	.LANCHOR3
+ 263              		.cfi_endproc
+ 264              	.LFE1:
+ 266              		.section	.rodata.u8x8_d_max7219_init_seq,"a",%progbits
+ 267              		.align	2
+ 268              		.set	.LANCHOR0,. + 0
+ 271              	u8x8_d_max7219_init_seq:
+ 272 0000 18       		.byte	24
+ 273 0001 15       		.byte	21
+ 274 0002 0F       		.byte	15
+ 275 0003 16       		.byte	22
+ 276 0004 00       		.byte	0
+ 277 0005 15       		.byte	21
+ 278 0006 0F       		.byte	15
+ 279 0007 16       		.byte	22
+ 280 0008 00       		.byte	0
+ 281 0009 15       		.byte	21
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 10
+
+
+ 282 000a 0F       		.byte	15
+ 283 000b 16       		.byte	22
+ 284 000c 00       		.byte	0
+ 285 000d 15       		.byte	21
+ 286 000e 0F       		.byte	15
+ 287 000f 16       		.byte	22
+ 288 0010 00       		.byte	0
+ 289 0011 19       		.byte	25
+ 290 0012 18       		.byte	24
+ 291 0013 15       		.byte	21
+ 292 0014 0C       		.byte	12
+ 293 0015 16       		.byte	22
+ 294 0016 00       		.byte	0
+ 295 0017 15       		.byte	21
+ 296 0018 0C       		.byte	12
+ 297 0019 16       		.byte	22
+ 298 001a 00       		.byte	0
+ 299 001b 15       		.byte	21
+ 300 001c 0C       		.byte	12
+ 301 001d 16       		.byte	22
+ 302 001e 00       		.byte	0
+ 303 001f 15       		.byte	21
+ 304 0020 0C       		.byte	12
+ 305 0021 16       		.byte	22
+ 306 0022 00       		.byte	0
+ 307 0023 19       		.byte	25
+ 308 0024 18       		.byte	24
+ 309 0025 15       		.byte	21
+ 310 0026 09       		.byte	9
+ 311 0027 16       		.byte	22
+ 312 0028 00       		.byte	0
+ 313 0029 15       		.byte	21
+ 314 002a 09       		.byte	9
+ 315 002b 16       		.byte	22
+ 316 002c 00       		.byte	0
+ 317 002d 15       		.byte	21
+ 318 002e 09       		.byte	9
+ 319 002f 16       		.byte	22
+ 320 0030 00       		.byte	0
+ 321 0031 15       		.byte	21
+ 322 0032 09       		.byte	9
+ 323 0033 16       		.byte	22
+ 324 0034 00       		.byte	0
+ 325 0035 19       		.byte	25
+ 326 0036 18       		.byte	24
+ 327 0037 15       		.byte	21
+ 328 0038 0A       		.byte	10
+ 329 0039 16       		.byte	22
+ 330 003a 0A       		.byte	10
+ 331 003b 15       		.byte	21
+ 332 003c 0A       		.byte	10
+ 333 003d 16       		.byte	22
+ 334 003e 0A       		.byte	10
+ 335 003f 15       		.byte	21
+ 336 0040 0A       		.byte	10
+ 337 0041 16       		.byte	22
+ 338 0042 0A       		.byte	10
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 11
+
+
+ 339 0043 15       		.byte	21
+ 340 0044 0A       		.byte	10
+ 341 0045 16       		.byte	22
+ 342 0046 0A       		.byte	10
+ 343 0047 19       		.byte	25
+ 344 0048 18       		.byte	24
+ 345 0049 15       		.byte	21
+ 346 004a 0B       		.byte	11
+ 347 004b 16       		.byte	22
+ 348 004c 07       		.byte	7
+ 349 004d 15       		.byte	21
+ 350 004e 0B       		.byte	11
+ 351 004f 16       		.byte	22
+ 352 0050 07       		.byte	7
+ 353 0051 15       		.byte	21
+ 354 0052 0B       		.byte	11
+ 355 0053 16       		.byte	22
+ 356 0054 07       		.byte	7
+ 357 0055 15       		.byte	21
+ 358 0056 0B       		.byte	11
+ 359 0057 16       		.byte	22
+ 360 0058 07       		.byte	7
+ 361 0059 19       		.byte	25
+ 362 005a FF       		.byte	-1
+ 363              		.section	.rodata.u8x8_d_max7219_powersave0_seq,"a",%progbits
+ 364              		.align	2
+ 365              		.set	.LANCHOR1,. + 0
+ 368              	u8x8_d_max7219_powersave0_seq:
+ 369 0000 18       		.byte	24
+ 370 0001 15       		.byte	21
+ 371 0002 0C       		.byte	12
+ 372 0003 16       		.byte	22
+ 373 0004 01       		.byte	1
+ 374 0005 15       		.byte	21
+ 375 0006 0C       		.byte	12
+ 376 0007 16       		.byte	22
+ 377 0008 01       		.byte	1
+ 378 0009 15       		.byte	21
+ 379 000a 0C       		.byte	12
+ 380 000b 16       		.byte	22
+ 381 000c 01       		.byte	1
+ 382 000d 15       		.byte	21
+ 383 000e 0C       		.byte	12
+ 384 000f 16       		.byte	22
+ 385 0010 01       		.byte	1
+ 386 0011 19       		.byte	25
+ 387 0012 FF       		.byte	-1
+ 388              		.section	.rodata.u8x8_d_max7219_powersave1_seq,"a",%progbits
+ 389              		.align	2
+ 390              		.set	.LANCHOR2,. + 0
+ 393              	u8x8_d_max7219_powersave1_seq:
+ 394 0000 18       		.byte	24
+ 395 0001 15       		.byte	21
+ 396 0002 0C       		.byte	12
+ 397 0003 16       		.byte	22
+ 398 0004 00       		.byte	0
+ 399 0005 15       		.byte	21
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 12
+
+
+ 400 0006 0C       		.byte	12
+ 401 0007 16       		.byte	22
+ 402 0008 00       		.byte	0
+ 403 0009 15       		.byte	21
+ 404 000a 0C       		.byte	12
+ 405 000b 16       		.byte	22
+ 406 000c 00       		.byte	0
+ 407 000d 15       		.byte	21
+ 408 000e 0C       		.byte	12
+ 409 000f 16       		.byte	22
+ 410 0010 00       		.byte	0
+ 411 0011 19       		.byte	25
+ 412 0012 FF       		.byte	-1
+ 413              		.section	.rodata.u8x8_max7219_32x8_display_info,"a",%progbits
+ 414              		.align	2
+ 415              		.set	.LANCHOR3,. + 0
+ 418              	u8x8_max7219_32x8_display_info:
+ 419 0000 00       		.byte	0
+ 420 0001 01       		.byte	1
+ 421 0002 64       		.byte	100
+ 422 0003 64       		.byte	100
+ 423 0004 64       		.byte	100
+ 424 0005 64       		.byte	100
+ 425 0006 64       		.byte	100
+ 426 0007 64       		.byte	100
+ 427 0008 00093D00 		.word	4000000
+ 428 000c 00       		.byte	0
+ 429 000d 04       		.byte	4
+ 430 000e 28       		.byte	40
+ 431 000f 96       		.byte	-106
+ 432 0010 04       		.byte	4
+ 433 0011 01       		.byte	1
+ 434 0012 00       		.byte	0
+ 435 0013 00       		.byte	0
+ 436 0014 2000     		.short	32
+ 437 0016 1000     		.short	16
+ 438              		.text
+ 439              	.Letext0:
+ 440              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 441              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 442              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_d_max7219.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:18     .text.u8x8_d_max7219_generic:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:24     .text.u8x8_d_max7219_generic:0000000000000000 u8x8_d_max7219_generic
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:51     .text.u8x8_d_max7219_generic:0000000000000012 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:57     .text.u8x8_d_max7219_generic:0000000000000018 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:214    .text.u8x8_d_max7219_generic:00000000000000d8 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:221    .text.u8x8_d_max7219_32x8:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:228    .text.u8x8_d_max7219_32x8:0000000000000000 u8x8_d_max7219_32x8
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:262    .text.u8x8_d_max7219_32x8:0000000000000018 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:267    .rodata.u8x8_d_max7219_init_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:271    .rodata.u8x8_d_max7219_init_seq:0000000000000000 u8x8_d_max7219_init_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:364    .rodata.u8x8_d_max7219_powersave0_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:368    .rodata.u8x8_d_max7219_powersave0_seq:0000000000000000 u8x8_d_max7219_powersave0_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:389    .rodata.u8x8_d_max7219_powersave1_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:393    .rodata.u8x8_d_max7219_powersave1_seq:0000000000000000 u8x8_d_max7219_powersave1_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:414    .rodata.u8x8_max7219_32x8_display_info:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8naSbk.s:418    .rodata.u8x8_max7219_32x8_display_info:0000000000000000 u8x8_max7219_32x8_display_info
+
+UNDEFINED SYMBOLS
+u8x8_d_helper_display_init
+u8x8_cad_SendSequence
+u8x8_cad_StartTransfer
+u8x8_cad_SendCmd
+u8x8_cad_SendArg
+u8x8_cad_EndTransfer
+u8x8_d_helper_display_setup_memory

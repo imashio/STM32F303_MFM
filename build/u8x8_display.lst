@@ -1,0 +1,823 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_display.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_d_helper_display_setup_memory,"ax",%progbits
+  18              		.align	1
+  19              		.global	u8x8_d_helper_display_setup_memory
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	u8x8_d_helper_display_setup_memory:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_display.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8_display.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 2
+
+
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   Abstraction layer for the graphics controller.
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   Main goal is the placement of a 8x8 pixel block (tile) on the display.
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** */
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** #include "u8x8.h"
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** /*==========================================*/
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** /* internal library function */
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** /*
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   this is a helper function for the U8X8_MSG_DISPLAY_SETUP_MEMORY function.
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   It can be called within the display callback function to carry out the usual standard tasks.
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** */
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_d_helper_display_setup_memory(u8x8_t *u8x8, const u8x8_display_info_t *display_info)
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+  28              		.loc 1 53 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       /* 1) set display info struct */
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       u8x8->display_info = display_info;
+  34              		.loc 1 55 0
+  35 0000 0160     		str	r1, [r0]
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       u8x8->x_offset = u8x8->display_info->default_x_offset;
+  36              		.loc 1 56 0
+  37 0002 8B7C     		ldrb	r3, [r1, #18]	@ zero_extendqisi2
+  38 0004 8377     		strb	r3, [r0, #30]
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+  39              		.loc 1 57 0
+  40 0006 7047     		bx	lr
+  41              		.cfi_endproc
+  42              	.LFE0:
+  44              		.section	.text.u8x8_d_helper_display_init,"ax",%progbits
+  45              		.align	1
+  46              		.global	u8x8_d_helper_display_init
+  47              		.syntax unified
+  48              		.thumb
+  49              		.thumb_func
+  50              		.fpu fpv4-sp-d16
+  52              	u8x8_d_helper_display_init:
+  53              	.LFB1:
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** /*
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   this is a helper function for the U8X8_MSG_DISPLAY_INIT function.
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   It can be called within the display callback function to carry out the usual standard tasks.
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** */
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_d_helper_display_init(u8x8_t *u8x8)
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 3
+
+
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+  54              		.loc 1 65 0
+  55              		.cfi_startproc
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58              	.LVL1:
+  59 0000 38B5     		push	{r3, r4, r5, lr}
+  60              	.LCFI0:
+  61              		.cfi_def_cfa_offset 16
+  62              		.cfi_offset 3, -16
+  63              		.cfi_offset 4, -12
+  64              		.cfi_offset 5, -8
+  65              		.cfi_offset 14, -4
+  66 0002 0446     		mov	r4, r0
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       /* 2) apply port directions to the GPIO lines and apply default values for the IO lines*/
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       u8x8_gpio_Init(u8x8);
+  67              		.loc 1 67 0
+  68 0004 4569     		ldr	r5, [r0, #20]
+  69 0006 0023     		movs	r3, #0
+  70 0008 1A46     		mov	r2, r3
+  71 000a 2821     		movs	r1, #40
+  72 000c A847     		blx	r5
+  73              	.LVL2:
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       u8x8_cad_Init(u8x8);
+  74              		.loc 1 68 0
+  75 000e E568     		ldr	r5, [r4, #12]
+  76 0010 0023     		movs	r3, #0
+  77 0012 1A46     		mov	r2, r3
+  78 0014 1421     		movs	r1, #20
+  79 0016 2046     		mov	r0, r4
+  80 0018 A847     		blx	r5
+  81              	.LVL3:
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       /* 3) do reset */
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       u8x8_gpio_SetReset(u8x8, 1);
+  82              		.loc 1 71 0
+  83 001a 0122     		movs	r2, #1
+  84 001c 4B21     		movs	r1, #75
+  85 001e 2046     		mov	r0, r4
+  86 0020 FFF7FEFF 		bl	u8x8_gpio_call
+  87              	.LVL4:
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_MILLI, u8x8->display_info->reset_pulse_width_ms);
+  88              		.loc 1 72 0
+  89 0024 2368     		ldr	r3, [r4]
+  90 0026 1A79     		ldrb	r2, [r3, #4]	@ zero_extendqisi2
+  91 0028 2921     		movs	r1, #41
+  92 002a 2046     		mov	r0, r4
+  93 002c FFF7FEFF 		bl	u8x8_gpio_call
+  94              	.LVL5:
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       u8x8_gpio_SetReset(u8x8, 0);
+  95              		.loc 1 73 0
+  96 0030 0022     		movs	r2, #0
+  97 0032 4B21     		movs	r1, #75
+  98 0034 2046     		mov	r0, r4
+  99 0036 FFF7FEFF 		bl	u8x8_gpio_call
+ 100              	.LVL6:
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_MILLI, u8x8->display_info->reset_pulse_width_ms);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 4
+
+
+ 101              		.loc 1 74 0
+ 102 003a 2368     		ldr	r3, [r4]
+ 103 003c 1A79     		ldrb	r2, [r3, #4]	@ zero_extendqisi2
+ 104 003e 2921     		movs	r1, #41
+ 105 0040 2046     		mov	r0, r4
+ 106 0042 FFF7FEFF 		bl	u8x8_gpio_call
+ 107              	.LVL7:
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       u8x8_gpio_SetReset(u8x8, 1);
+ 108              		.loc 1 75 0
+ 109 0046 0122     		movs	r2, #1
+ 110 0048 4B21     		movs	r1, #75
+ 111 004a 2046     		mov	r0, r4
+ 112 004c FFF7FEFF 		bl	u8x8_gpio_call
+ 113              	.LVL8:
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****       u8x8_gpio_Delay(u8x8, U8X8_MSG_DELAY_MILLI, u8x8->display_info->post_reset_wait_ms);
+ 114              		.loc 1 76 0
+ 115 0050 2368     		ldr	r3, [r4]
+ 116 0052 5A79     		ldrb	r2, [r3, #5]	@ zero_extendqisi2
+ 117 0054 2921     		movs	r1, #41
+ 118 0056 2046     		mov	r0, r4
+ 119 0058 FFF7FEFF 		bl	u8x8_gpio_call
+ 120              	.LVL9:
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }    
+ 121              		.loc 1 77 0
+ 122 005c 38BD     		pop	{r3, r4, r5, pc}
+ 123              		.cfi_endproc
+ 124              	.LFE1:
+ 126              		.section	.text.u8x8_DrawTile,"ax",%progbits
+ 127              		.align	1
+ 128              		.global	u8x8_DrawTile
+ 129              		.syntax unified
+ 130              		.thumb
+ 131              		.thumb_func
+ 132              		.fpu fpv4-sp-d16
+ 134              	u8x8_DrawTile:
+ 135              	.LFB2:
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** /*==========================================*/
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** /* official functions */
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** uint8_t u8x8_DrawTile(u8x8_t *u8x8, uint8_t x, uint8_t y, uint8_t cnt, uint8_t *tile_ptr)
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ 136              		.loc 1 83 0
+ 137              		.cfi_startproc
+ 138              		@ args = 4, pretend = 0, frame = 8
+ 139              		@ frame_needed = 0, uses_anonymous_args = 0
+ 140              	.LVL10:
+ 141 0000 10B5     		push	{r4, lr}
+ 142              	.LCFI1:
+ 143              		.cfi_def_cfa_offset 8
+ 144              		.cfi_offset 4, -8
+ 145              		.cfi_offset 14, -4
+ 146 0002 82B0     		sub	sp, sp, #8
+ 147              	.LCFI2:
+ 148              		.cfi_def_cfa_offset 16
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8_tile_t tile;
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   tile.x_pos = x;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 5
+
+
+ 149              		.loc 1 85 0
+ 150 0004 8DF80510 		strb	r1, [sp, #5]
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   tile.y_pos = y;
+ 151              		.loc 1 86 0
+ 152 0008 8DF80620 		strb	r2, [sp, #6]
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   tile.cnt = cnt;
+ 153              		.loc 1 87 0
+ 154 000c 8DF80430 		strb	r3, [sp, #4]
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   tile.tile_ptr = tile_ptr;
+ 155              		.loc 1 88 0
+ 156 0010 02AB     		add	r3, sp, #8
+ 157              	.LVL11:
+ 158 0012 049A     		ldr	r2, [sp, #16]
+ 159              	.LVL12:
+ 160 0014 43F8082D 		str	r2, [r3, #-8]!
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   return u8x8->display_cb(u8x8, U8X8_MSG_DISPLAY_DRAW_TILE, 1, (void *)&tile);
+ 161              		.loc 1 89 0
+ 162 0018 8468     		ldr	r4, [r0, #8]
+ 163 001a 0122     		movs	r2, #1
+ 164 001c 0F21     		movs	r1, #15
+ 165              	.LVL13:
+ 166 001e A047     		blx	r4
+ 167              	.LVL14:
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+ 168              		.loc 1 90 0
+ 169 0020 02B0     		add	sp, sp, #8
+ 170              	.LCFI3:
+ 171              		.cfi_def_cfa_offset 8
+ 172              		@ sp needed
+ 173 0022 10BD     		pop	{r4, pc}
+ 174              		.cfi_endproc
+ 175              	.LFE2:
+ 177              		.section	.text.u8x8_SetupMemory,"ax",%progbits
+ 178              		.align	1
+ 179              		.global	u8x8_SetupMemory
+ 180              		.syntax unified
+ 181              		.thumb
+ 182              		.thumb_func
+ 183              		.fpu fpv4-sp-d16
+ 185              	u8x8_SetupMemory:
+ 186              	.LFB3:
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** /* should be implemented as macro */
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_SetupMemory(u8x8_t *u8x8)
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ 187              		.loc 1 94 0
+ 188              		.cfi_startproc
+ 189              		@ args = 0, pretend = 0, frame = 0
+ 190              		@ frame_needed = 0, uses_anonymous_args = 0
+ 191              	.LVL15:
+ 192 0000 10B5     		push	{r4, lr}
+ 193              	.LCFI4:
+ 194              		.cfi_def_cfa_offset 8
+ 195              		.cfi_offset 4, -8
+ 196              		.cfi_offset 14, -4
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8->display_cb(u8x8, U8X8_MSG_DISPLAY_SETUP_MEMORY, 0, NULL);  
+ 197              		.loc 1 95 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 6
+
+
+ 198 0002 8468     		ldr	r4, [r0, #8]
+ 199 0004 0023     		movs	r3, #0
+ 200 0006 1A46     		mov	r2, r3
+ 201 0008 0921     		movs	r1, #9
+ 202 000a A047     		blx	r4
+ 203              	.LVL16:
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+ 204              		.loc 1 96 0
+ 205 000c 10BD     		pop	{r4, pc}
+ 206              		.cfi_endproc
+ 207              	.LFE3:
+ 209              		.section	.text.u8x8_InitDisplay,"ax",%progbits
+ 210              		.align	1
+ 211              		.global	u8x8_InitDisplay
+ 212              		.syntax unified
+ 213              		.thumb
+ 214              		.thumb_func
+ 215              		.fpu fpv4-sp-d16
+ 217              	u8x8_InitDisplay:
+ 218              	.LFB4:
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_InitDisplay(u8x8_t *u8x8)
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ 219              		.loc 1 99 0
+ 220              		.cfi_startproc
+ 221              		@ args = 0, pretend = 0, frame = 0
+ 222              		@ frame_needed = 0, uses_anonymous_args = 0
+ 223              	.LVL17:
+ 224 0000 10B5     		push	{r4, lr}
+ 225              	.LCFI5:
+ 226              		.cfi_def_cfa_offset 8
+ 227              		.cfi_offset 4, -8
+ 228              		.cfi_offset 14, -4
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8->display_cb(u8x8, U8X8_MSG_DISPLAY_INIT, 0, NULL);  
+ 229              		.loc 1 100 0
+ 230 0002 8468     		ldr	r4, [r0, #8]
+ 231 0004 0023     		movs	r3, #0
+ 232 0006 1A46     		mov	r2, r3
+ 233 0008 0A21     		movs	r1, #10
+ 234 000a A047     		blx	r4
+ 235              	.LVL18:
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+ 236              		.loc 1 101 0
+ 237 000c 10BD     		pop	{r4, pc}
+ 238              		.cfi_endproc
+ 239              	.LFE4:
+ 241              		.section	.text.u8x8_SetPowerSave,"ax",%progbits
+ 242              		.align	1
+ 243              		.global	u8x8_SetPowerSave
+ 244              		.syntax unified
+ 245              		.thumb
+ 246              		.thumb_func
+ 247              		.fpu fpv4-sp-d16
+ 249              	u8x8_SetPowerSave:
+ 250              	.LFB5:
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_SetPowerSave(u8x8_t *u8x8, uint8_t is_enable)
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 7
+
+
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ 251              		.loc 1 104 0
+ 252              		.cfi_startproc
+ 253              		@ args = 0, pretend = 0, frame = 0
+ 254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 255              	.LVL19:
+ 256 0000 10B5     		push	{r4, lr}
+ 257              	.LCFI6:
+ 258              		.cfi_def_cfa_offset 8
+ 259              		.cfi_offset 4, -8
+ 260              		.cfi_offset 14, -4
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8->display_cb(u8x8, U8X8_MSG_DISPLAY_SET_POWER_SAVE, is_enable, NULL);  
+ 261              		.loc 1 105 0
+ 262 0002 8468     		ldr	r4, [r0, #8]
+ 263 0004 0023     		movs	r3, #0
+ 264 0006 0A46     		mov	r2, r1
+ 265 0008 0B21     		movs	r1, #11
+ 266              	.LVL20:
+ 267 000a A047     		blx	r4
+ 268              	.LVL21:
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+ 269              		.loc 1 106 0
+ 270 000c 10BD     		pop	{r4, pc}
+ 271              		.cfi_endproc
+ 272              	.LFE5:
+ 274              		.section	.text.u8x8_SetFlipMode,"ax",%progbits
+ 275              		.align	1
+ 276              		.global	u8x8_SetFlipMode
+ 277              		.syntax unified
+ 278              		.thumb
+ 279              		.thumb_func
+ 280              		.fpu fpv4-sp-d16
+ 282              	u8x8_SetFlipMode:
+ 283              	.LFB6:
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_SetFlipMode(u8x8_t *u8x8, uint8_t mode)
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ 284              		.loc 1 109 0
+ 285              		.cfi_startproc
+ 286              		@ args = 0, pretend = 0, frame = 0
+ 287              		@ frame_needed = 0, uses_anonymous_args = 0
+ 288              	.LVL22:
+ 289 0000 10B5     		push	{r4, lr}
+ 290              	.LCFI7:
+ 291              		.cfi_def_cfa_offset 8
+ 292              		.cfi_offset 4, -8
+ 293              		.cfi_offset 14, -4
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8->display_cb(u8x8, U8X8_MSG_DISPLAY_SET_FLIP_MODE, mode, NULL);  
+ 294              		.loc 1 110 0
+ 295 0002 8468     		ldr	r4, [r0, #8]
+ 296 0004 0023     		movs	r3, #0
+ 297 0006 0A46     		mov	r2, r1
+ 298 0008 0D21     		movs	r1, #13
+ 299              	.LVL23:
+ 300 000a A047     		blx	r4
+ 301              	.LVL24:
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 8
+
+
+ 302              		.loc 1 111 0
+ 303 000c 10BD     		pop	{r4, pc}
+ 304              		.cfi_endproc
+ 305              	.LFE6:
+ 307              		.section	.text.u8x8_SetContrast,"ax",%progbits
+ 308              		.align	1
+ 309              		.global	u8x8_SetContrast
+ 310              		.syntax unified
+ 311              		.thumb
+ 312              		.thumb_func
+ 313              		.fpu fpv4-sp-d16
+ 315              	u8x8_SetContrast:
+ 316              	.LFB7:
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_SetContrast(u8x8_t *u8x8, uint8_t value)
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ 317              		.loc 1 114 0
+ 318              		.cfi_startproc
+ 319              		@ args = 0, pretend = 0, frame = 0
+ 320              		@ frame_needed = 0, uses_anonymous_args = 0
+ 321              	.LVL25:
+ 322 0000 10B5     		push	{r4, lr}
+ 323              	.LCFI8:
+ 324              		.cfi_def_cfa_offset 8
+ 325              		.cfi_offset 4, -8
+ 326              		.cfi_offset 14, -4
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8->display_cb(u8x8, U8X8_MSG_DISPLAY_SET_CONTRAST, value, NULL);  
+ 327              		.loc 1 115 0
+ 328 0002 8468     		ldr	r4, [r0, #8]
+ 329 0004 0023     		movs	r3, #0
+ 330 0006 0A46     		mov	r2, r1
+ 331 0008 0E21     		movs	r1, #14
+ 332              	.LVL26:
+ 333 000a A047     		blx	r4
+ 334              	.LVL27:
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+ 335              		.loc 1 116 0
+ 336 000c 10BD     		pop	{r4, pc}
+ 337              		.cfi_endproc
+ 338              	.LFE7:
+ 340              		.section	.text.u8x8_RefreshDisplay,"ax",%progbits
+ 341              		.align	1
+ 342              		.global	u8x8_RefreshDisplay
+ 343              		.syntax unified
+ 344              		.thumb
+ 345              		.thumb_func
+ 346              		.fpu fpv4-sp-d16
+ 348              	u8x8_RefreshDisplay:
+ 349              	.LFB8:
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_RefreshDisplay(u8x8_t *u8x8)
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ 350              		.loc 1 119 0
+ 351              		.cfi_startproc
+ 352              		@ args = 0, pretend = 0, frame = 0
+ 353              		@ frame_needed = 0, uses_anonymous_args = 0
+ 354              	.LVL28:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 9
+
+
+ 355 0000 10B5     		push	{r4, lr}
+ 356              	.LCFI9:
+ 357              		.cfi_def_cfa_offset 8
+ 358              		.cfi_offset 4, -8
+ 359              		.cfi_offset 14, -4
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8->display_cb(u8x8, U8X8_MSG_DISPLAY_REFRESH, 0, NULL);  
+ 360              		.loc 1 120 0
+ 361 0002 8468     		ldr	r4, [r0, #8]
+ 362 0004 0023     		movs	r3, #0
+ 363 0006 1A46     		mov	r2, r3
+ 364 0008 1021     		movs	r1, #16
+ 365 000a A047     		blx	r4
+ 366              	.LVL29:
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+ 367              		.loc 1 121 0
+ 368 000c 10BD     		pop	{r4, pc}
+ 369              		.cfi_endproc
+ 370              	.LFE8:
+ 372              		.section	.text.u8x8_ClearDisplayWithTile,"ax",%progbits
+ 373              		.align	1
+ 374              		.global	u8x8_ClearDisplayWithTile
+ 375              		.syntax unified
+ 376              		.thumb
+ 377              		.thumb_func
+ 378              		.fpu fpv4-sp-d16
+ 380              	u8x8_ClearDisplayWithTile:
+ 381              	.LFB9:
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_ClearDisplayWithTile(u8x8_t *u8x8, const uint8_t *buf)
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ 382              		.loc 1 124 0
+ 383              		.cfi_startproc
+ 384              		@ args = 0, pretend = 0, frame = 8
+ 385              		@ frame_needed = 0, uses_anonymous_args = 0
+ 386              	.LVL30:
+ 387 0000 70B5     		push	{r4, r5, r6, lr}
+ 388              	.LCFI10:
+ 389              		.cfi_def_cfa_offset 16
+ 390              		.cfi_offset 4, -16
+ 391              		.cfi_offset 5, -12
+ 392              		.cfi_offset 6, -8
+ 393              		.cfi_offset 14, -4
+ 394 0002 82B0     		sub	sp, sp, #8
+ 395              	.LCFI11:
+ 396              		.cfi_def_cfa_offset 24
+ 397 0004 0446     		mov	r4, r0
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8_tile_t tile;
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   uint8_t h;
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   tile.x_pos = 0;
+ 398              		.loc 1 128 0
+ 399 0006 0023     		movs	r3, #0
+ 400 0008 8DF80530 		strb	r3, [sp, #5]
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   tile.cnt = 1;
+ 401              		.loc 1 129 0
+ 402 000c 0122     		movs	r2, #1
+ 403 000e 8DF80420 		strb	r2, [sp, #4]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 10
+
+
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   tile.tile_ptr = (uint8_t *)buf;		/* tile_ptr should be const, but isn't */
+ 404              		.loc 1 130 0
+ 405 0012 0091     		str	r1, [sp]
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   h = u8x8->display_info->tile_height;
+ 406              		.loc 1 132 0
+ 407 0014 0268     		ldr	r2, [r0]
+ 408 0016 567C     		ldrb	r6, [r2, #17]	@ zero_extendqisi2
+ 409              	.LVL31:
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   tile.y_pos = 0;
+ 410              		.loc 1 133 0
+ 411 0018 8DF80630 		strb	r3, [sp, #6]
+ 412              	.LVL32:
+ 413              	.L19:
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   do
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   {
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     u8x8->display_cb(u8x8, U8X8_MSG_DISPLAY_DRAW_TILE, u8x8->display_info->tile_width, (void *)&til
+ 414              		.loc 1 136 0 discriminator 1
+ 415 001c A568     		ldr	r5, [r4, #8]
+ 416 001e 2268     		ldr	r2, [r4]
+ 417 0020 6B46     		mov	r3, sp
+ 418 0022 127C     		ldrb	r2, [r2, #16]	@ zero_extendqisi2
+ 419 0024 0F21     		movs	r1, #15
+ 420 0026 2046     		mov	r0, r4
+ 421 0028 A847     		blx	r5
+ 422              	.LVL33:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     tile.y_pos++;
+ 423              		.loc 1 137 0 discriminator 1
+ 424 002a 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 425 002e 0133     		adds	r3, r3, #1
+ 426 0030 DBB2     		uxtb	r3, r3
+ 427 0032 8DF80630 		strb	r3, [sp, #6]
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   } while( tile.y_pos < h );
+ 428              		.loc 1 138 0 discriminator 1
+ 429 0036 B342     		cmp	r3, r6
+ 430 0038 F0D3     		bcc	.L19
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+ 431              		.loc 1 139 0
+ 432 003a 02B0     		add	sp, sp, #8
+ 433              	.LCFI12:
+ 434              		.cfi_def_cfa_offset 16
+ 435              		@ sp needed
+ 436 003c 70BD     		pop	{r4, r5, r6, pc}
+ 437              		.cfi_endproc
+ 438              	.LFE9:
+ 440              		.section	.text.u8x8_ClearDisplay,"ax",%progbits
+ 441              		.align	1
+ 442              		.global	u8x8_ClearDisplay
+ 443              		.syntax unified
+ 444              		.thumb
+ 445              		.thumb_func
+ 446              		.fpu fpv4-sp-d16
+ 448              	u8x8_ClearDisplay:
+ 449              	.LFB10:
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_ClearDisplay(u8x8_t *u8x8)
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 11
+
+
+ 450              		.loc 1 142 0
+ 451              		.cfi_startproc
+ 452              		@ args = 0, pretend = 0, frame = 8
+ 453              		@ frame_needed = 0, uses_anonymous_args = 0
+ 454              	.LVL34:
+ 455 0000 00B5     		push	{lr}
+ 456              	.LCFI13:
+ 457              		.cfi_def_cfa_offset 4
+ 458              		.cfi_offset 14, -4
+ 459 0002 83B0     		sub	sp, sp, #12
+ 460              	.LCFI14:
+ 461              		.cfi_def_cfa_offset 16
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   uint8_t buf[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+ 462              		.loc 1 143 0
+ 463 0004 0023     		movs	r3, #0
+ 464 0006 0093     		str	r3, [sp]
+ 465 0008 0193     		str	r3, [sp, #4]
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8_ClearDisplayWithTile(u8x8, buf);
+ 466              		.loc 1 144 0
+ 467 000a 6946     		mov	r1, sp
+ 468 000c FFF7FEFF 		bl	u8x8_ClearDisplayWithTile
+ 469              	.LVL35:
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+ 470              		.loc 1 145 0
+ 471 0010 03B0     		add	sp, sp, #12
+ 472              	.LCFI15:
+ 473              		.cfi_def_cfa_offset 4
+ 474              		@ sp needed
+ 475 0012 5DF804FB 		ldr	pc, [sp], #4
+ 476              		.cfi_endproc
+ 477              	.LFE10:
+ 479              		.section	.text.u8x8_FillDisplay,"ax",%progbits
+ 480              		.align	1
+ 481              		.global	u8x8_FillDisplay
+ 482              		.syntax unified
+ 483              		.thumb
+ 484              		.thumb_func
+ 485              		.fpu fpv4-sp-d16
+ 487              	u8x8_FillDisplay:
+ 488              	.LFB11:
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_FillDisplay(u8x8_t *u8x8)
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ 489              		.loc 1 148 0
+ 490              		.cfi_startproc
+ 491              		@ args = 0, pretend = 0, frame = 8
+ 492              		@ frame_needed = 0, uses_anonymous_args = 0
+ 493              	.LVL36:
+ 494 0000 10B5     		push	{r4, lr}
+ 495              	.LCFI16:
+ 496              		.cfi_def_cfa_offset 8
+ 497              		.cfi_offset 4, -8
+ 498              		.cfi_offset 14, -4
+ 499 0002 82B0     		sub	sp, sp, #8
+ 500              	.LCFI17:
+ 501              		.cfi_def_cfa_offset 16
+ 502 0004 0446     		mov	r4, r0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 12
+
+
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   uint8_t buf[8] = { 255, 255, 255, 255, 255, 255, 255, 255 };
+ 503              		.loc 1 149 0
+ 504 0006 064A     		ldr	r2, .L25
+ 505 0008 6B46     		mov	r3, sp
+ 506 000a 92E80300 		ldm	r2, {r0, r1}
+ 507              	.LVL37:
+ 508 000e 83E80300 		stm	r3, {r0, r1}
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8_ClearDisplayWithTile(u8x8, buf);
+ 509              		.loc 1 150 0
+ 510 0012 1946     		mov	r1, r3
+ 511 0014 2046     		mov	r0, r4
+ 512 0016 FFF7FEFF 		bl	u8x8_ClearDisplayWithTile
+ 513              	.LVL38:
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }
+ 514              		.loc 1 151 0
+ 515 001a 02B0     		add	sp, sp, #8
+ 516              	.LCFI18:
+ 517              		.cfi_def_cfa_offset 8
+ 518              		@ sp needed
+ 519 001c 10BD     		pop	{r4, pc}
+ 520              	.LVL39:
+ 521              	.L26:
+ 522 001e 00BF     		.align	2
+ 523              	.L25:
+ 524 0020 00000000 		.word	.LANCHOR0
+ 525              		.cfi_endproc
+ 526              	.LFE11:
+ 528              		.section	.text.u8x8_ClearLine,"ax",%progbits
+ 529              		.align	1
+ 530              		.global	u8x8_ClearLine
+ 531              		.syntax unified
+ 532              		.thumb
+ 533              		.thumb_func
+ 534              		.fpu fpv4-sp-d16
+ 536              	u8x8_ClearLine:
+ 537              	.LFB12:
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** 
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** void u8x8_ClearLine(u8x8_t *u8x8, uint8_t line)
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** {
+ 538              		.loc 1 154 0
+ 539              		.cfi_startproc
+ 540              		@ args = 0, pretend = 0, frame = 16
+ 541              		@ frame_needed = 0, uses_anonymous_args = 0
+ 542              	.LVL40:
+ 543 0000 10B5     		push	{r4, lr}
+ 544              	.LCFI19:
+ 545              		.cfi_def_cfa_offset 8
+ 546              		.cfi_offset 4, -8
+ 547              		.cfi_offset 14, -4
+ 548 0002 84B0     		sub	sp, sp, #16
+ 549              	.LCFI20:
+ 550              		.cfi_def_cfa_offset 24
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   uint8_t buf[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+ 551              		.loc 1 155 0
+ 552 0004 0023     		movs	r3, #0
+ 553 0006 0293     		str	r3, [sp, #8]
+ 554 0008 0393     		str	r3, [sp, #12]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 13
+
+
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   u8x8_tile_t tile;
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   if ( line < u8x8->display_info->tile_height )
+ 555              		.loc 1 157 0
+ 556 000a 0368     		ldr	r3, [r0]
+ 557 000c 5B7C     		ldrb	r3, [r3, #17]	@ zero_extendqisi2
+ 558 000e 8B42     		cmp	r3, r1
+ 559 0010 10D9     		bls	.L27
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   {
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     tile.x_pos = 0;
+ 560              		.loc 1 159 0
+ 561 0012 0023     		movs	r3, #0
+ 562 0014 8DF80530 		strb	r3, [sp, #5]
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     tile.y_pos = line;
+ 563              		.loc 1 160 0
+ 564 0018 8DF80610 		strb	r1, [sp, #6]
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     tile.cnt = 1;
+ 565              		.loc 1 161 0
+ 566 001c 0123     		movs	r3, #1
+ 567 001e 8DF80430 		strb	r3, [sp, #4]
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     tile.tile_ptr = (uint8_t *)buf;		/* tile_ptr should be const, but isn't */
+ 568              		.loc 1 162 0
+ 569 0022 04AB     		add	r3, sp, #16
+ 570 0024 02AA     		add	r2, sp, #8
+ 571 0026 43F8102D 		str	r2, [r3, #-16]!
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****     u8x8->display_cb(u8x8, U8X8_MSG_DISPLAY_DRAW_TILE, u8x8->display_info->tile_width, (void *)&til
+ 572              		.loc 1 163 0
+ 573 002a 8468     		ldr	r4, [r0, #8]
+ 574 002c 0268     		ldr	r2, [r0]
+ 575 002e 127C     		ldrb	r2, [r2, #16]	@ zero_extendqisi2
+ 576 0030 0F21     		movs	r1, #15
+ 577              	.LVL41:
+ 578 0032 A047     		blx	r4
+ 579              	.LVL42:
+ 580              	.L27:
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c ****   }  
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_display.c **** }...
+ 581              		.loc 1 165 0
+ 582 0034 04B0     		add	sp, sp, #16
+ 583              	.LCFI21:
+ 584              		.cfi_def_cfa_offset 8
+ 585              		@ sp needed
+ 586 0036 10BD     		pop	{r4, pc}
+ 587              		.cfi_endproc
+ 588              	.LFE12:
+ 590              		.section	.rodata
+ 591              		.align	2
+ 592              		.set	.LANCHOR0,. + 0
+ 593              	.LC0:
+ 594 0000 FF       		.byte	-1
+ 595 0001 FF       		.byte	-1
+ 596 0002 FF       		.byte	-1
+ 597 0003 FF       		.byte	-1
+ 598 0004 FF       		.byte	-1
+ 599 0005 FF       		.byte	-1
+ 600 0006 FF       		.byte	-1
+ 601 0007 FF       		.byte	-1
+ 602              		.text
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 14
+
+
+ 603              	.Letext0:
+ 604              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 605              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 606              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_display.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:18     .text.u8x8_d_helper_display_setup_memory:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:25     .text.u8x8_d_helper_display_setup_memory:0000000000000000 u8x8_d_helper_display_setup_memory
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:45     .text.u8x8_d_helper_display_init:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:52     .text.u8x8_d_helper_display_init:0000000000000000 u8x8_d_helper_display_init
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:127    .text.u8x8_DrawTile:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:134    .text.u8x8_DrawTile:0000000000000000 u8x8_DrawTile
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:178    .text.u8x8_SetupMemory:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:185    .text.u8x8_SetupMemory:0000000000000000 u8x8_SetupMemory
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:210    .text.u8x8_InitDisplay:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:217    .text.u8x8_InitDisplay:0000000000000000 u8x8_InitDisplay
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:242    .text.u8x8_SetPowerSave:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:249    .text.u8x8_SetPowerSave:0000000000000000 u8x8_SetPowerSave
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:275    .text.u8x8_SetFlipMode:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:282    .text.u8x8_SetFlipMode:0000000000000000 u8x8_SetFlipMode
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:308    .text.u8x8_SetContrast:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:315    .text.u8x8_SetContrast:0000000000000000 u8x8_SetContrast
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:341    .text.u8x8_RefreshDisplay:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:348    .text.u8x8_RefreshDisplay:0000000000000000 u8x8_RefreshDisplay
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:373    .text.u8x8_ClearDisplayWithTile:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:380    .text.u8x8_ClearDisplayWithTile:0000000000000000 u8x8_ClearDisplayWithTile
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:441    .text.u8x8_ClearDisplay:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:448    .text.u8x8_ClearDisplay:0000000000000000 u8x8_ClearDisplay
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:480    .text.u8x8_FillDisplay:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:487    .text.u8x8_FillDisplay:0000000000000000 u8x8_FillDisplay
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:524    .text.u8x8_FillDisplay:0000000000000020 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:529    .text.u8x8_ClearLine:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:536    .text.u8x8_ClearLine:0000000000000000 u8x8_ClearLine
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccADVqzO.s:591    .rodata:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+u8x8_gpio_call

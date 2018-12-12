@@ -1,0 +1,414 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_d_stdio.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.bitmap_place_tile,"ax",%progbits
+  18              		.align	1
+  19              		.global	bitmap_place_tile
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	bitmap_place_tile:
+  26              	.LFB3:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   u8x8_d_stdio.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s 			page 2
+
+
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** */
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** #include "u8x8.h"
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** #include <stdio.h>
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** #define W 8
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** #define H 2
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** uint8_t bitmap[W*H*8];
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** void bitmap_place_tile(uint8_t x, uint8_t y, uint8_t *tile)
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** {
+  28              		.loc 1 46 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   uint8_t i;
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   for(i = 0; i < 8; i++ )
+  34              		.loc 1 48 0
+  35 0000 0023     		movs	r3, #0
+  36              	.LVL1:
+  37 0002 072B     		cmp	r3, #7
+  38 0004 0DD8     		bhi	.L7
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   uint8_t i;
+  39              		.loc 1 46 0
+  40 0006 70B4     		push	{r4, r5, r6}
+  41              	.LCFI0:
+  42              		.cfi_def_cfa_offset 12
+  43              		.cfi_offset 4, -12
+  44              		.cfi_offset 5, -8
+  45              		.cfi_offset 6, -4
+  46              	.L3:
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     bitmap[x*8+y*W*8+i] = tile[i];
+  47              		.loc 1 49 0 discriminator 3
+  48 0008 00EBC104 		add	r4, r0, r1, lsl #3
+  49 000c 03EBC404 		add	r4, r3, r4, lsl #3
+  50 0010 D65C     		ldrb	r6, [r2, r3]	@ zero_extendqisi2
+  51 0012 044D     		ldr	r5, .L8
+  52 0014 2E55     		strb	r6, [r5, r4]
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     bitmap[x*8+y*W*8+i] = tile[i];
+  53              		.loc 1 48 0 discriminator 3
+  54 0016 0133     		adds	r3, r3, #1
+  55              	.LVL2:
+  56 0018 DBB2     		uxtb	r3, r3
+  57              	.LVL3:
+  58 001a 072B     		cmp	r3, #7
+  59 001c F4D9     		bls	.L3
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** }
+  60              		.loc 1 50 0
+  61 001e 70BC     		pop	{r4, r5, r6}
+  62              	.LCFI1:
+  63              		.cfi_restore 6
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s 			page 3
+
+
+  64              		.cfi_restore 5
+  65              		.cfi_restore 4
+  66              		.cfi_def_cfa_offset 0
+  67 0020 7047     		bx	lr
+  68              	.L7:
+  69 0022 7047     		bx	lr
+  70              	.L9:
+  71              		.align	2
+  72              	.L8:
+  73 0024 00000000 		.word	bitmap
+  74              		.cfi_endproc
+  75              	.LFE3:
+  77              		.section	.text.bitmap_show,"ax",%progbits
+  78              		.align	1
+  79              		.global	bitmap_show
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  83              		.fpu fpv4-sp-d16
+  85              	bitmap_show:
+  86              	.LFB4:
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** void bitmap_show(void)
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** {
+  87              		.loc 1 53 0
+  88              		.cfi_startproc
+  89              		@ args = 0, pretend = 0, frame = 0
+  90              		@ frame_needed = 0, uses_anonymous_args = 0
+  91 0000 38B5     		push	{r3, r4, r5, lr}
+  92              	.LCFI2:
+  93              		.cfi_def_cfa_offset 16
+  94              		.cfi_offset 3, -16
+  95              		.cfi_offset 4, -12
+  96              		.cfi_offset 5, -8
+  97              		.cfi_offset 14, -4
+  98              	.LVL4:
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   int x, y;
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   for( y = 0; y < H*8; y++ )
+  99              		.loc 1 55 0
+ 100 0002 0025     		movs	r5, #0
+ 101 0004 1DE0     		b	.L11
+ 102              	.LVL5:
+ 103              	.L20:
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   {
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     for( x = 0; x < W*8; x++ )
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     {
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       if ( (bitmap[x+(y/8)*W*8] & (1<<((y&7)))) != 0 )
+ 104              		.loc 1 59 0
+ 105 0006 EB1D     		adds	r3, r5, #7
+ 106              	.LVL6:
+ 107 0008 08E0     		b	.L12
+ 108              	.L13:
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       {
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 	printf("*");
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       }
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       else
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s 			page 4
+
+
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 	printf(".");
+ 109              		.loc 1 65 0
+ 110 000a 2E20     		movs	r0, #46
+ 111 000c FFF7FEFF 		bl	putchar
+ 112              	.LVL7:
+ 113              	.L14:
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     {
+ 114              		.loc 1 57 0 discriminator 2
+ 115 0010 0134     		adds	r4, r4, #1
+ 116              	.LVL8:
+ 117              	.L16:
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     {
+ 118              		.loc 1 57 0 is_stmt 0 discriminator 1
+ 119 0012 3F2C     		cmp	r4, #63
+ 120 0014 11DC     		bgt	.L19
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       {
+ 121              		.loc 1 59 0 is_stmt 1
+ 122 0016 2B46     		mov	r3, r5
+ 123 0018 002D     		cmp	r5, #0
+ 124 001a F4DB     		blt	.L20
+ 125              	.L12:
+ 126 001c DB10     		asrs	r3, r3, #3
+ 127 001e 04EB8313 		add	r3, r4, r3, lsl #6
+ 128 0022 0A4A     		ldr	r2, .L22
+ 129 0024 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 130 0026 05F00702 		and	r2, r5, #7
+ 131 002a 1341     		asrs	r3, r3, r2
+ 132 002c 13F0010F 		tst	r3, #1
+ 133 0030 EBD0     		beq	.L13
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       }
+ 134              		.loc 1 61 0
+ 135 0032 2A20     		movs	r0, #42
+ 136 0034 FFF7FEFF 		bl	putchar
+ 137              	.LVL9:
+ 138 0038 EAE7     		b	.L14
+ 139              	.L19:
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       }
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     }
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     printf("\n");
+ 140              		.loc 1 68 0 discriminator 2
+ 141 003a 0A20     		movs	r0, #10
+ 142 003c FFF7FEFF 		bl	putchar
+ 143              	.LVL10:
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   {
+ 144              		.loc 1 55 0 discriminator 2
+ 145 0040 0135     		adds	r5, r5, #1
+ 146              	.LVL11:
+ 147              	.L11:
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   {
+ 148              		.loc 1 55 0 is_stmt 0 discriminator 1
+ 149 0042 0F2D     		cmp	r5, #15
+ 150 0044 01DC     		bgt	.L21
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     {
+ 151              		.loc 1 57 0 is_stmt 1
+ 152 0046 0024     		movs	r4, #0
+ 153 0048 E3E7     		b	.L16
+ 154              	.L21:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s 			page 5
+
+
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   }
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** }
+ 155              		.loc 1 70 0
+ 156 004a 38BD     		pop	{r3, r4, r5, pc}
+ 157              	.LVL12:
+ 158              	.L23:
+ 159              		.align	2
+ 160              	.L22:
+ 161 004c 00000000 		.word	bitmap
+ 162              		.cfi_endproc
+ 163              	.LFE4:
+ 165              		.section	.text.u8x8_d_stdio,"ax",%progbits
+ 166              		.align	1
+ 167              		.global	u8x8_d_stdio
+ 168              		.syntax unified
+ 169              		.thumb
+ 170              		.thumb_func
+ 171              		.fpu fpv4-sp-d16
+ 173              	u8x8_d_stdio:
+ 174              	.LFB5:
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** uint8_t u8x8_d_stdio(U8X8_UNUSED u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** {
+ 175              		.loc 1 74 0
+ 176              		.cfi_startproc
+ 177              		@ args = 0, pretend = 0, frame = 0
+ 178              		@ frame_needed = 0, uses_anonymous_args = 0
+ 179              	.LVL13:
+ 180 0000 08B5     		push	{r3, lr}
+ 181              	.LCFI3:
+ 182              		.cfi_def_cfa_offset 8
+ 183              		.cfi_offset 3, -8
+ 184              		.cfi_offset 14, -4
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   switch(msg)
+ 185              		.loc 1 75 0
+ 186 0002 0B29     		cmp	r1, #11
+ 187 0004 03D0     		beq	.L26
+ 188 0006 0F29     		cmp	r1, #15
+ 189 0008 06D0     		beq	.L27
+ 190              	.LVL14:
+ 191              	.L25:
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   {
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     case U8X8_MSG_DISPLAY_INIT:
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       break;
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       if ( arg_int == 0 )
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 	bitmap_show();
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       break;
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     case U8X8_MSG_DISPLAY_SET_CONTRAST:
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       break;
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     case U8X8_MSG_DISPLAY_DRAW_TILE:      
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       bitmap_place_tile(((u8x8_tile_t *)arg_ptr)->x_pos, ((u8x8_tile_t *)arg_ptr)->y_pos, ((u8x8_ti
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       break;
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     default:
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       break;
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s 			page 6
+
+
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   return 1;
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** }
+ 192              		.loc 1 92 0
+ 193 000a 0120     		movs	r0, #1
+ 194 000c 08BD     		pop	{r3, pc}
+ 195              	.LVL15:
+ 196              	.L26:
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 	bitmap_show();
+ 197              		.loc 1 80 0
+ 198 000e 002A     		cmp	r2, #0
+ 199 0010 FBD1     		bne	.L25
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       break;
+ 200              		.loc 1 81 0
+ 201 0012 FFF7FEFF 		bl	bitmap_show
+ 202              	.LVL16:
+ 203 0016 F8E7     		b	.L25
+ 204              	.LVL17:
+ 205              	.L27:
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****       break;
+ 206              		.loc 1 86 0
+ 207 0018 1A68     		ldr	r2, [r3]
+ 208              	.LVL18:
+ 209 001a 9979     		ldrb	r1, [r3, #6]	@ zero_extendqisi2
+ 210              	.LVL19:
+ 211 001c 5879     		ldrb	r0, [r3, #5]	@ zero_extendqisi2
+ 212              	.LVL20:
+ 213 001e FFF7FEFF 		bl	bitmap_place_tile
+ 214              	.LVL21:
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****     default:
+ 215              		.loc 1 87 0
+ 216 0022 F2E7     		b	.L25
+ 217              		.cfi_endproc
+ 218              	.LFE5:
+ 220              		.section	.text.u8x8_SetupStdio,"ax",%progbits
+ 221              		.align	1
+ 222              		.global	u8x8_SetupStdio
+ 223              		.syntax unified
+ 224              		.thumb
+ 225              		.thumb_func
+ 226              		.fpu fpv4-sp-d16
+ 228              	u8x8_SetupStdio:
+ 229              	.LFB6:
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** 
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** void u8x8_SetupStdio(u8x8_t *u8x8)
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** {
+ 230              		.loc 1 97 0
+ 231              		.cfi_startproc
+ 232              		@ args = 0, pretend = 0, frame = 0
+ 233              		@ frame_needed = 0, uses_anonymous_args = 0
+ 234              	.LVL22:
+ 235 0000 10B5     		push	{r4, lr}
+ 236              	.LCFI4:
+ 237              		.cfi_def_cfa_offset 8
+ 238              		.cfi_offset 4, -8
+ 239              		.cfi_offset 14, -4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s 			page 7
+
+
+ 240 0002 0446     		mov	r4, r0
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   u8x8_SetupDefaults(u8x8);
+ 241              		.loc 1 98 0
+ 242 0004 FFF7FEFF 		bl	u8x8_SetupDefaults
+ 243              	.LVL23:
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c ****   u8x8->display_cb = u8x8_d_stdio;
+ 244              		.loc 1 99 0
+ 245 0008 014B     		ldr	r3, .L31
+ 246 000a A360     		str	r3, [r4, #8]
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_d_stdio.c **** }
+ 247              		.loc 1 100 0
+ 248 000c 10BD     		pop	{r4, pc}
+ 249              	.LVL24:
+ 250              	.L32:
+ 251 000e 00BF     		.align	2
+ 252              	.L31:
+ 253 0010 00000000 		.word	u8x8_d_stdio
+ 254              		.cfi_endproc
+ 255              	.LFE6:
+ 257              		.comm	bitmap,128,4
+ 258              		.text
+ 259              	.Letext0:
+ 260              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 261              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 262              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 263              		.file 5 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
+ 264              		.file 6 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
+ 265              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
+ 266              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
+ 267              		.file 9 "<built-in>"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_d_stdio.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:18     .text.bitmap_place_tile:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:25     .text.bitmap_place_tile:0000000000000000 bitmap_place_tile
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:73     .text.bitmap_place_tile:0000000000000024 $d
+                            *COM*:0000000000000080 bitmap
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:78     .text.bitmap_show:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:85     .text.bitmap_show:0000000000000000 bitmap_show
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:161    .text.bitmap_show:000000000000004c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:166    .text.u8x8_d_stdio:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:173    .text.u8x8_d_stdio:0000000000000000 u8x8_d_stdio
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:221    .text.u8x8_SetupStdio:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:228    .text.u8x8_SetupStdio:0000000000000000 u8x8_SetupStdio
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFHcKbt.s:253    .text.u8x8_SetupStdio:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+putchar
+u8x8_SetupDefaults

@@ -1,0 +1,735 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_selection_list.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_sl_string_line_cb,"ax",%progbits
+  18              		.align	1
+  19              		.global	u8x8_sl_string_line_cb
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	u8x8_sl_string_line_cb:
+  26              	.LFB3:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8x8_selection_list.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   selection list with scroll option
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   Copyright (c) 2016, olikraus@gmail.com
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   All rights reserved.
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   are permitted provided that the following conditions are met:
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     of conditions and the following disclaimer.
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     materials provided with the distribution.
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 2
+
+
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** */
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** #include "u8x8.h"
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** /*
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   increase the cursor position
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** */
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** void u8sl_Next(u8sl_t *u8sl)
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** {
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8sl->current_pos++;
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   if ( u8sl->current_pos >= u8sl->total )
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8sl->current_pos = 0;
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8sl->first_pos = 0;
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   else
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     if ( u8sl->first_pos + u8sl->visible <= u8sl->current_pos + 1 )
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     {
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8sl->first_pos = u8sl->current_pos - u8sl->visible + 1;
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     }
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** }
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** void u8sl_Prev(u8sl_t *u8sl)
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** {
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   if ( u8sl->current_pos == 0 )
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8sl->current_pos = u8sl->total - 1;
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8sl->first_pos = 0;
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     if ( u8sl->total > u8sl->visible )
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8sl->first_pos = u8sl->total - u8sl->visible;
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   else
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8sl->current_pos--;
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     if ( u8sl->first_pos > u8sl->current_pos )
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8sl->first_pos = u8sl->current_pos;
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** }
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** void u8x8_DrawSelectionList(u8x8_t *u8x8, u8sl_t *u8sl, u8x8_sl_cb sl_cb, const void *aux)
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** {
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   uint8_t i;
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   for( i = 0; i < u8sl->visible; i++ )
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     sl_cb(u8x8, u8sl, i+u8sl->first_pos, aux);
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** }
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** /* selection list with string line */
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** void u8x8_sl_string_line_cb(u8x8_t *u8x8, u8sl_t *u8sl, uint8_t idx, const void *aux)
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 3
+
+
+  28              		.loc 1 88 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 4, -16
+  37              		.cfi_offset 5, -12
+  38              		.cfi_offset 6, -8
+  39              		.cfi_offset 14, -4
+  40 0002 82B0     		sub	sp, sp, #8
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_offset 24
+  43 0004 0546     		mov	r5, r0
+  44 0006 0E46     		mov	r6, r1
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   const char *s;
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   uint8_t row;
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   /* calculate offset from display upper border */
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   row = u8sl->y;
+  45              		.loc 1 92 0
+  46 0008 4C79     		ldrb	r4, [r1, #5]	@ zero_extendqisi2
+  47              	.LVL1:
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   /* calculate target pos */
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   row += idx;
+  48              		.loc 1 95 0
+  49 000a 1444     		add	r4, r4, r2
+  50              	.LVL2:
+  51 000c E4B2     		uxtb	r4, r4
+  52              	.LVL3:
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   row -= u8sl->first_pos;
+  53              		.loc 1 96 0
+  54 000e 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+  55              	.LVL4:
+  56 0010 641A     		subs	r4, r4, r1
+  57              	.LVL5:
+  58 0012 E4B2     		uxtb	r4, r4
+  59              	.LVL6:
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   /* check whether this is the current cursor line */
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   if ( idx == u8sl->current_pos )
+  60              		.loc 1 99 0
+  61 0014 F178     		ldrb	r1, [r6, #3]	@ zero_extendqisi2
+  62 0016 9142     		cmp	r1, r2
+  63 0018 13D0     		beq	.L7
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8x8_SetInverseFont(u8x8, 1);
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   else
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8x8_SetInverseFont(u8x8, 0);
+  64              		.loc 1 102 0
+  65 001a 0021     		movs	r1, #0
+  66 001c C177     		strb	r1, [r0, #31]
+  67              	.L3:
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   /* get the line from the array */
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   s = u8x8_GetStringLineStart(idx, (const char *)aux);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 4
+
+
+  68              		.loc 1 105 0
+  69 001e 1946     		mov	r1, r3
+  70 0020 1046     		mov	r0, r2
+  71              	.LVL7:
+  72 0022 FFF7FEFF 		bl	u8x8_GetStringLineStart
+  73              	.LVL8:
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   /* draw the line */
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   if ( s == NULL )
+  74              		.loc 1 108 0
+  75 0026 0246     		mov	r2, r0
+  76 0028 70B1     		cbz	r0, .L8
+  77              	.L4:
+  78              	.LVL9:
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     s = "";
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8x8_DrawUTF8Line(u8x8, u8sl->x, row, u8x8_GetCols(u8x8), s);  
+  79              		.loc 1 110 0
+  80 002a 2B68     		ldr	r3, [r5]
+  81 002c 1B7C     		ldrb	r3, [r3, #16]	@ zero_extendqisi2
+  82 002e 3179     		ldrb	r1, [r6, #4]	@ zero_extendqisi2
+  83 0030 0092     		str	r2, [sp]
+  84 0032 2246     		mov	r2, r4
+  85              	.LVL10:
+  86 0034 2846     		mov	r0, r5
+  87 0036 FFF7FEFF 		bl	u8x8_DrawUTF8Line
+  88              	.LVL11:
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8x8_SetInverseFont(u8x8, 0);
+  89              		.loc 1 111 0
+  90 003a 0023     		movs	r3, #0
+  91 003c EB77     		strb	r3, [r5, #31]
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** }
+  92              		.loc 1 112 0
+  93 003e 02B0     		add	sp, sp, #8
+  94              	.LCFI2:
+  95              		.cfi_remember_state
+  96              		.cfi_def_cfa_offset 16
+  97              		@ sp needed
+  98 0040 70BD     		pop	{r4, r5, r6, pc}
+  99              	.LVL12:
+ 100              	.L7:
+ 101              	.LCFI3:
+ 102              		.cfi_restore_state
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   else
+ 103              		.loc 1 100 0
+ 104 0042 0121     		movs	r1, #1
+ 105 0044 C177     		strb	r1, [r0, #31]
+ 106 0046 EAE7     		b	.L3
+ 107              	.LVL13:
+ 108              	.L8:
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8x8_DrawUTF8Line(u8x8, u8sl->x, row, u8x8_GetCols(u8x8), s);  
+ 109              		.loc 1 109 0
+ 110 0048 004A     		ldr	r2, .L9
+ 111 004a EEE7     		b	.L4
+ 112              	.L10:
+ 113              		.align	2
+ 114              	.L9:
+ 115 004c 00000000 		.word	.LC0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 5
+
+
+ 116              		.cfi_endproc
+ 117              	.LFE3:
+ 119              		.section	.text.u8sl_Next,"ax",%progbits
+ 120              		.align	1
+ 121              		.global	u8sl_Next
+ 122              		.syntax unified
+ 123              		.thumb
+ 124              		.thumb_func
+ 125              		.fpu fpv4-sp-d16
+ 127              	u8sl_Next:
+ 128              	.LFB0:
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8sl->current_pos++;
+ 129              		.loc 1 44 0
+ 130              		.cfi_startproc
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133              		@ link register save eliminated.
+ 134              	.LVL14:
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   if ( u8sl->current_pos >= u8sl->total )
+ 135              		.loc 1 45 0
+ 136 0000 C378     		ldrb	r3, [r0, #3]	@ zero_extendqisi2
+ 137 0002 0133     		adds	r3, r3, #1
+ 138 0004 DBB2     		uxtb	r3, r3
+ 139 0006 C370     		strb	r3, [r0, #3]
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+ 140              		.loc 1 46 0
+ 141 0008 4278     		ldrb	r2, [r0, #1]	@ zero_extendqisi2
+ 142 000a 9342     		cmp	r3, r2
+ 143 000c 0DD2     		bcs	.L17
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8sl->current_pos++;
+ 144              		.loc 1 44 0
+ 145 000e 10B4     		push	{r4}
+ 146              	.LCFI4:
+ 147              		.cfi_def_cfa_offset 4
+ 148              		.cfi_offset 4, -4
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     {
+ 149              		.loc 1 53 0
+ 150 0010 8278     		ldrb	r2, [r0, #2]	@ zero_extendqisi2
+ 151 0012 0178     		ldrb	r1, [r0]	@ zero_extendqisi2
+ 152 0014 0A44     		add	r2, r2, r1
+ 153 0016 5C1C     		adds	r4, r3, #1
+ 154 0018 A242     		cmp	r2, r4
+ 155 001a 03DC     		bgt	.L11
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     }
+ 156              		.loc 1 55 0
+ 157 001c 5B1A     		subs	r3, r3, r1
+ 158 001e DBB2     		uxtb	r3, r3
+ 159 0020 0133     		adds	r3, r3, #1
+ 160 0022 8370     		strb	r3, [r0, #2]
+ 161              	.L11:
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+ 162              		.loc 1 58 0
+ 163 0024 5DF8044B 		ldr	r4, [sp], #4
+ 164              	.LCFI5:
+ 165              		.cfi_restore 4
+ 166              		.cfi_def_cfa_offset 0
+ 167 0028 7047     		bx	lr
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 6
+
+
+ 168              	.L17:
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8sl->first_pos = 0;
+ 169              		.loc 1 48 0
+ 170 002a 0023     		movs	r3, #0
+ 171 002c C370     		strb	r3, [r0, #3]
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+ 172              		.loc 1 49 0
+ 173 002e 8370     		strb	r3, [r0, #2]
+ 174 0030 7047     		bx	lr
+ 175              		.cfi_endproc
+ 176              	.LFE0:
+ 178              		.section	.text.u8sl_Prev,"ax",%progbits
+ 179              		.align	1
+ 180              		.global	u8sl_Prev
+ 181              		.syntax unified
+ 182              		.thumb
+ 183              		.thumb_func
+ 184              		.fpu fpv4-sp-d16
+ 186              	u8sl_Prev:
+ 187              	.LFB1:
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   if ( u8sl->current_pos == 0 )
+ 188              		.loc 1 61 0
+ 189              		.cfi_startproc
+ 190              		@ args = 0, pretend = 0, frame = 0
+ 191              		@ frame_needed = 0, uses_anonymous_args = 0
+ 192              		@ link register save eliminated.
+ 193              	.LVL15:
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+ 194              		.loc 1 62 0
+ 195 0000 C378     		ldrb	r3, [r0, #3]	@ zero_extendqisi2
+ 196 0002 53B9     		cbnz	r3, .L19
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8sl->first_pos = 0;
+ 197              		.loc 1 64 0
+ 198 0004 4378     		ldrb	r3, [r0, #1]	@ zero_extendqisi2
+ 199 0006 5A1E     		subs	r2, r3, #1
+ 200 0008 C270     		strb	r2, [r0, #3]
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     if ( u8sl->total > u8sl->visible )
+ 201              		.loc 1 65 0
+ 202 000a 0022     		movs	r2, #0
+ 203 000c 8270     		strb	r2, [r0, #2]
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8sl->first_pos = u8sl->total - u8sl->visible;
+ 204              		.loc 1 66 0
+ 205 000e 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+ 206 0010 9342     		cmp	r3, r2
+ 207 0012 09D9     		bls	.L18
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+ 208              		.loc 1 67 0
+ 209 0014 9B1A     		subs	r3, r3, r2
+ 210 0016 8370     		strb	r3, [r0, #2]
+ 211 0018 7047     		bx	lr
+ 212              	.L19:
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     if ( u8sl->first_pos > u8sl->current_pos )
+ 213              		.loc 1 71 0
+ 214 001a 013B     		subs	r3, r3, #1
+ 215 001c DBB2     		uxtb	r3, r3
+ 216 001e C370     		strb	r3, [r0, #3]
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8sl->first_pos = u8sl->current_pos;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 7
+
+
+ 217              		.loc 1 72 0
+ 218 0020 8278     		ldrb	r2, [r0, #2]	@ zero_extendqisi2
+ 219 0022 9342     		cmp	r3, r2
+ 220 0024 00D2     		bcs	.L18
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+ 221              		.loc 1 73 0
+ 222 0026 8370     		strb	r3, [r0, #2]
+ 223              	.L18:
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+ 224              		.loc 1 75 0
+ 225 0028 7047     		bx	lr
+ 226              		.cfi_endproc
+ 227              	.LFE1:
+ 229              		.section	.text.u8x8_DrawSelectionList,"ax",%progbits
+ 230              		.align	1
+ 231              		.global	u8x8_DrawSelectionList
+ 232              		.syntax unified
+ 233              		.thumb
+ 234              		.thumb_func
+ 235              		.fpu fpv4-sp-d16
+ 237              	u8x8_DrawSelectionList:
+ 238              	.LFB2:
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   uint8_t i;
+ 239              		.loc 1 78 0
+ 240              		.cfi_startproc
+ 241              		@ args = 0, pretend = 0, frame = 0
+ 242              		@ frame_needed = 0, uses_anonymous_args = 0
+ 243              	.LVL16:
+ 244 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 245              	.LCFI6:
+ 246              		.cfi_def_cfa_offset 24
+ 247              		.cfi_offset 4, -24
+ 248              		.cfi_offset 5, -20
+ 249              		.cfi_offset 6, -16
+ 250              		.cfi_offset 7, -12
+ 251              		.cfi_offset 8, -8
+ 252              		.cfi_offset 14, -4
+ 253 0004 8046     		mov	r8, r0
+ 254 0006 0D46     		mov	r5, r1
+ 255 0008 1746     		mov	r7, r2
+ 256 000a 1E46     		mov	r6, r3
+ 257              	.LVL17:
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+ 258              		.loc 1 80 0
+ 259 000c 0024     		movs	r4, #0
+ 260 000e 08E0     		b	.L22
+ 261              	.LVL18:
+ 262              	.L23:
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+ 263              		.loc 1 82 0 discriminator 3
+ 264 0010 AA78     		ldrb	r2, [r5, #2]	@ zero_extendqisi2
+ 265 0012 2244     		add	r2, r2, r4
+ 266 0014 3346     		mov	r3, r6
+ 267 0016 D2B2     		uxtb	r2, r2
+ 268 0018 2946     		mov	r1, r5
+ 269 001a 4046     		mov	r0, r8
+ 270 001c B847     		blx	r7
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 8
+
+
+ 271              	.LVL19:
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+ 272              		.loc 1 80 0 discriminator 3
+ 273 001e 0134     		adds	r4, r4, #1
+ 274              	.LVL20:
+ 275 0020 E4B2     		uxtb	r4, r4
+ 276              	.LVL21:
+ 277              	.L22:
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+ 278              		.loc 1 80 0 is_stmt 0 discriminator 1
+ 279 0022 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 280 0024 A342     		cmp	r3, r4
+ 281 0026 F3D8     		bhi	.L23
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+ 282              		.loc 1 84 0 is_stmt 1
+ 283 0028 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 284              		.cfi_endproc
+ 285              	.LFE2:
+ 287              		.section	.text.u8x8_UserInterfaceSelectionList,"ax",%progbits
+ 288              		.align	1
+ 289              		.global	u8x8_UserInterfaceSelectionList
+ 290              		.syntax unified
+ 291              		.thumb
+ 292              		.thumb_func
+ 293              		.fpu fpv4-sp-d16
+ 295              	u8x8_UserInterfaceSelectionList:
+ 296              	.LFB4:
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** /*
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   title: 		NULL for no title, valid str for title line. Can contain mutliple lines, separated by '\
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   start_pos: 	default position for the cursor (starts with 1)
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   sl:			string list (list of strings separated by \n)
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   returns 0 if user has pressed the home key
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   returns the selected line+1 if user has pressed the select key (e.g. 1 for the first line)
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** */
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** uint8_t u8x8_UserInterfaceSelectionList(u8x8_t *u8x8, const char *title, uint8_t start_pos, const c
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** {
+ 297              		.loc 1 122 0
+ 298              		.cfi_startproc
+ 299              		@ args = 0, pretend = 0, frame = 8
+ 300              		@ frame_needed = 0, uses_anonymous_args = 0
+ 301              	.LVL22:
+ 302 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 303              	.LCFI7:
+ 304              		.cfi_def_cfa_offset 20
+ 305              		.cfi_offset 4, -20
+ 306              		.cfi_offset 5, -16
+ 307              		.cfi_offset 6, -12
+ 308              		.cfi_offset 7, -8
+ 309              		.cfi_offset 14, -4
+ 310 0002 85B0     		sub	sp, sp, #20
+ 311              	.LCFI8:
+ 312              		.cfi_def_cfa_offset 40
+ 313 0004 0446     		mov	r4, r0
+ 314 0006 0F46     		mov	r7, r1
+ 315 0008 1D46     		mov	r5, r3
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8sl_t u8sl;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 9
+
+
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   uint8_t event;
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   uint8_t title_lines;
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   if ( start_pos > 0 )
+ 316              		.loc 1 127 0
+ 317 000a 1646     		mov	r6, r2
+ 318 000c 0AB1     		cbz	r2, .L26
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     start_pos--;
+ 319              		.loc 1 128 0
+ 320 000e 561E     		subs	r6, r2, #1
+ 321 0010 F6B2     		uxtb	r6, r6
+ 322              	.LVL23:
+ 323              	.L26:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8sl.visible = u8x8_GetRows(u8x8);
+ 324              		.loc 1 130 0
+ 325 0012 2368     		ldr	r3, [r4]
+ 326              	.LVL24:
+ 327 0014 5B7C     		ldrb	r3, [r3, #17]	@ zero_extendqisi2
+ 328 0016 8DF80830 		strb	r3, [sp, #8]
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8sl.total = u8x8_GetStringLineCnt(sl);
+ 329              		.loc 1 131 0
+ 330 001a 2846     		mov	r0, r5
+ 331              	.LVL25:
+ 332 001c FFF7FEFF 		bl	u8x8_GetStringLineCnt
+ 333              	.LVL26:
+ 334 0020 8DF80900 		strb	r0, [sp, #9]
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8sl.first_pos = 0;
+ 335              		.loc 1 132 0
+ 336 0024 0023     		movs	r3, #0
+ 337 0026 8DF80A30 		strb	r3, [sp, #10]
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8sl.current_pos = start_pos;
+ 338              		.loc 1 133 0
+ 339 002a 8DF80B60 		strb	r6, [sp, #11]
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8sl.x = 0;
+ 340              		.loc 1 134 0
+ 341 002e 8DF80C30 		strb	r3, [sp, #12]
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8sl.y = 0;
+ 342              		.loc 1 135 0
+ 343 0032 8DF80D30 		strb	r3, [sp, #13]
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   //u8x8_ClearDisplay(u8x8);   /* not required because all is 100% filled */
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8x8_SetInverseFont(u8x8, 0);
+ 344              		.loc 1 139 0
+ 345 0036 E377     		strb	r3, [r4, #31]
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   if ( title != NULL )
+ 346              		.loc 1 141 0
+ 347 0038 8FB1     		cbz	r7, .L27
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     title_lines = u8x8_DrawUTF8Lines(u8x8, u8sl.x, u8sl.y, u8x8_GetCols(u8x8), title);
+ 348              		.loc 1 143 0
+ 349 003a 2368     		ldr	r3, [r4]
+ 350 003c 1B7C     		ldrb	r3, [r3, #16]	@ zero_extendqisi2
+ 351 003e 0097     		str	r7, [sp]
+ 352 0040 0022     		movs	r2, #0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 10
+
+
+ 353 0042 1146     		mov	r1, r2
+ 354 0044 2046     		mov	r0, r4
+ 355 0046 FFF7FEFF 		bl	u8x8_DrawUTF8Lines
+ 356              	.LVL27:
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8sl.y+=title_lines;
+ 357              		.loc 1 144 0
+ 358 004a 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
+ 359 004e 0344     		add	r3, r3, r0
+ 360 0050 8DF80D30 		strb	r3, [sp, #13]
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8sl.visible-=title_lines;
+ 361              		.loc 1 145 0
+ 362 0054 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
+ 363 0058 181A     		subs	r0, r3, r0
+ 364              	.LVL28:
+ 365 005a 8DF80800 		strb	r0, [sp, #8]
+ 366              	.L27:
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   if ( u8sl.current_pos >= u8sl.total )
+ 367              		.loc 1 148 0
+ 368 005e 9DF80B20 		ldrb	r2, [sp, #11]	@ zero_extendqisi2
+ 369 0062 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 370 0066 9A42     		cmp	r2, r3
+ 371 0068 02D3     		bcc	.L28
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     u8sl.current_pos = u8sl.total-1;
+ 372              		.loc 1 149 0
+ 373 006a 013B     		subs	r3, r3, #1
+ 374 006c 8DF80B30 		strb	r3, [sp, #11]
+ 375              	.L28:
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   u8x8_DrawSelectionList(u8x8, &u8sl, u8x8_sl_string_line_cb, sl);
+ 376              		.loc 1 152 0
+ 377 0070 2B46     		mov	r3, r5
+ 378 0072 184A     		ldr	r2, .L39
+ 379 0074 02A9     		add	r1, sp, #8
+ 380 0076 2046     		mov	r0, r4
+ 381 0078 FFF7FEFF 		bl	u8x8_DrawSelectionList
+ 382              	.LVL29:
+ 383 007c 0EE0     		b	.L29
+ 384              	.LVL30:
+ 385              	.L38:
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** 
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   for(;;)
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   {
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     event = u8x8_GetMenuEvent(u8x8);
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     if ( event == U8X8_MSG_GPIO_MENU_SELECT )
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       return u8sl.current_pos+1;
+ 386              		.loc 1 158 0
+ 387 007e 9DF80B00 		ldrb	r0, [sp, #11]	@ zero_extendqisi2
+ 388              	.LVL31:
+ 389 0082 0130     		adds	r0, r0, #1
+ 390 0084 C0B2     		uxtb	r0, r0
+ 391              	.L31:
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     else if ( event == U8X8_MSG_GPIO_MENU_HOME )
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       return 0;
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     else if ( event == U8X8_MSG_GPIO_MENU_NEXT || event == U8X8_MSG_GPIO_MENU_DOWN )
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 11
+
+
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     {
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8sl_Next(&u8sl);
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8x8_DrawSelectionList(u8x8, &u8sl, u8x8_sl_string_line_cb, sl);      
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     }
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     else if ( event == U8X8_MSG_GPIO_MENU_PREV || event == U8X8_MSG_GPIO_MENU_UP  )
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     {
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8sl_Prev(&u8sl);
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8x8_DrawSelectionList(u8x8, &u8sl, u8x8_sl_string_line_cb, sl);      
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     }
+ 171:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****   }
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c **** }
+ 392              		.loc 1 172 0
+ 393 0086 05B0     		add	sp, sp, #20
+ 394              	.LCFI9:
+ 395              		.cfi_remember_state
+ 396              		.cfi_def_cfa_offset 20
+ 397              		@ sp needed
+ 398 0088 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 399              	.LVL32:
+ 400              	.L32:
+ 401              	.LCFI10:
+ 402              		.cfi_restore_state
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8x8_DrawSelectionList(u8x8, &u8sl, u8x8_sl_string_line_cb, sl);      
+ 403              		.loc 1 163 0
+ 404 008a 02A8     		add	r0, sp, #8
+ 405              	.LVL33:
+ 406 008c FFF7FEFF 		bl	u8sl_Next
+ 407              	.LVL34:
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     }
+ 408              		.loc 1 164 0
+ 409 0090 2B46     		mov	r3, r5
+ 410 0092 104A     		ldr	r2, .L39
+ 411 0094 02A9     		add	r1, sp, #8
+ 412 0096 2046     		mov	r0, r4
+ 413 0098 FFF7FEFF 		bl	u8x8_DrawSelectionList
+ 414              	.LVL35:
+ 415              	.L29:
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     if ( event == U8X8_MSG_GPIO_MENU_SELECT )
+ 416              		.loc 1 156 0
+ 417 009c 2046     		mov	r0, r4
+ 418 009e FFF7FEFF 		bl	u8x8_GetMenuEvent
+ 419              	.LVL36:
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       return u8sl.current_pos+1;
+ 420              		.loc 1 157 0
+ 421 00a2 5028     		cmp	r0, #80
+ 422 00a4 EBD0     		beq	.L38
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       return 0;
+ 423              		.loc 1 159 0
+ 424 00a6 5328     		cmp	r0, #83
+ 425 00a8 11D0     		beq	.L36
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     {
+ 426              		.loc 1 161 0
+ 427 00aa 5128     		cmp	r0, #81
+ 428 00ac EDD0     		beq	.L32
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     {
+ 429              		.loc 1 161 0 is_stmt 0 discriminator 1
+ 430 00ae 5528     		cmp	r0, #85
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 12
+
+
+ 431 00b0 EBD0     		beq	.L32
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     {
+ 432              		.loc 1 166 0 is_stmt 1
+ 433 00b2 5228     		cmp	r0, #82
+ 434 00b4 01D0     		beq	.L35
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     {
+ 435              		.loc 1 166 0 is_stmt 0 discriminator 1
+ 436 00b6 5428     		cmp	r0, #84
+ 437 00b8 F0D1     		bne	.L29
+ 438              	.L35:
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****       u8x8_DrawSelectionList(u8x8, &u8sl, u8x8_sl_string_line_cb, sl);      
+ 439              		.loc 1 168 0 is_stmt 1
+ 440 00ba 02A8     		add	r0, sp, #8
+ 441              	.LVL37:
+ 442 00bc FFF7FEFF 		bl	u8sl_Prev
+ 443              	.LVL38:
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     }
+ 444              		.loc 1 169 0
+ 445 00c0 2B46     		mov	r3, r5
+ 446 00c2 044A     		ldr	r2, .L39
+ 447 00c4 02A9     		add	r1, sp, #8
+ 448 00c6 2046     		mov	r0, r4
+ 449 00c8 FFF7FEFF 		bl	u8x8_DrawSelectionList
+ 450              	.LVL39:
+ 451 00cc E6E7     		b	.L29
+ 452              	.LVL40:
+ 453              	.L36:
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_selection_list.c ****     else if ( event == U8X8_MSG_GPIO_MENU_NEXT || event == U8X8_MSG_GPIO_MENU_DOWN )
+ 454              		.loc 1 160 0
+ 455 00ce 0020     		movs	r0, #0
+ 456              	.LVL41:
+ 457 00d0 D9E7     		b	.L31
+ 458              	.L40:
+ 459 00d2 00BF     		.align	2
+ 460              	.L39:
+ 461 00d4 00000000 		.word	u8x8_sl_string_line_cb
+ 462              		.cfi_endproc
+ 463              	.LFE4:
+ 465              		.section	.rodata.u8x8_sl_string_line_cb.str1.4,"aMS",%progbits,1
+ 466              		.align	2
+ 467              	.LC0:
+ 468 0000 00       		.ascii	"\000"
+ 469              		.text
+ 470              	.Letext0:
+ 471              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 472              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 473              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_selection_list.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:18     .text.u8x8_sl_string_line_cb:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:25     .text.u8x8_sl_string_line_cb:0000000000000000 u8x8_sl_string_line_cb
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:115    .text.u8x8_sl_string_line_cb:000000000000004c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:120    .text.u8sl_Next:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:127    .text.u8sl_Next:0000000000000000 u8sl_Next
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:179    .text.u8sl_Prev:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:186    .text.u8sl_Prev:0000000000000000 u8sl_Prev
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:230    .text.u8x8_DrawSelectionList:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:237    .text.u8x8_DrawSelectionList:0000000000000000 u8x8_DrawSelectionList
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:288    .text.u8x8_UserInterfaceSelectionList:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:295    .text.u8x8_UserInterfaceSelectionList:0000000000000000 u8x8_UserInterfaceSelectionList
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:461    .text.u8x8_UserInterfaceSelectionList:00000000000000d4 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWrE2SY.s:466    .rodata.u8x8_sl_string_line_cb.str1.4:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+u8x8_GetStringLineStart
+u8x8_DrawUTF8Line
+u8x8_GetStringLineCnt
+u8x8_DrawUTF8Lines
+u8x8_GetMenuEvent

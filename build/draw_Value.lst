@@ -1,0 +1,1636 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"draw_Value.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.draw_MeasLabelUnit,"ax",%progbits
+  18              		.align	1
+  19              		.global	draw_MeasLabelUnit
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	draw_MeasLabelUnit:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/draw_Value.c"
+   1:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/draw_Value.c ****  * drawStr.c
+   3:/Users/imashio/Electronics/ARM/_Library/draw_Value.c ****  *
+   4:/Users/imashio/Electronics/ARM/_Library/draw_Value.c ****  *  Created on: Jan 29, 2018
+   5:/Users/imashio/Electronics/ARM/_Library/draw_Value.c ****  *      Author: imashio
+   6:/Users/imashio/Electronics/ARM/_Library/draw_Value.c ****  */
+   7:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+   8:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** #include "u8g2.h"		// graphic display library
+   9:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  11:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** #define	meas_label_font		u8g2_font_5x8_tf
+  12:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** #define	meas_unit_font		u8g2_font_4x6_tf
+  13:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** #define	meas_value_font		u8g2_font_7x14B_tf
+  14:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** #define	meas_value_font_s	u8g2_font_6x10_tf
+  15:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** #define	meas_value_font_xs	u8g2_font_5x8_tf
+  16:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  17:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** #define font_width			7
+  18:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** #define font_width_s		6
+  19:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** #define font_width_xs		5
+  20:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  21:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** void draw_MeasLabelUnit(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, const ch
+  28              		.loc 1 21 0
+  29              		.cfi_startproc
+  30              		@ args = 12, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 24
+  36              		.cfi_offset 3, -24
+  37              		.cfi_offset 4, -20
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 2
+
+
+  38              		.cfi_offset 5, -16
+  39              		.cfi_offset 6, -12
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 0646     		mov	r6, r0
+  43 0004 0F46     		mov	r7, r1
+  44 0006 1446     		mov	r4, r2
+  45 0008 1D46     		mov	r5, r3
+  22:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t	str_offset;
+  23:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetFont(u8g2, meas_label_font);
+  46              		.loc 1 23 0
+  47 000a 1149     		ldr	r1, .L3
+  48              	.LVL1:
+  49 000c FFF7FEFF 		bl	u8g2_SetFont
+  50              	.LVL2:
+  24:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_DrawStr(u8g2, x, y+height-2, name );
+  51              		.loc 1 24 0
+  52 0010 9DF81830 		ldrb	r3, [sp, #24]	@ zero_extendqisi2
+  53 0014 1C44     		add	r4, r4, r3
+  54 0016 E4B2     		uxtb	r4, r4
+  55 0018 023C     		subs	r4, r4, #2
+  56 001a E4B2     		uxtb	r4, r4
+  57 001c 079B     		ldr	r3, [sp, #28]
+  58 001e 2246     		mov	r2, r4
+  59 0020 3946     		mov	r1, r7
+  60 0022 3046     		mov	r0, r6
+  61 0024 FFF7FEFF 		bl	u8g2_DrawStr
+  62              	.LVL3:
+  25:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetFont(u8g2, meas_unit_font);
+  63              		.loc 1 25 0
+  64 0028 0A49     		ldr	r1, .L3+4
+  65 002a 3046     		mov	r0, r6
+  66 002c FFF7FEFF 		bl	u8g2_SetFont
+  67              	.LVL4:
+  26:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	str_offset = (width-1) - (StrLength(unit)*4);
+  68              		.loc 1 26 0
+  69 0030 0898     		ldr	r0, [sp, #32]
+  70 0032 FFF7FEFF 		bl	StrLength
+  71              	.LVL5:
+  72 0036 A5EB8001 		sub	r1, r5, r0, lsl #2
+  73 003a C9B2     		uxtb	r1, r1
+  74 003c 0139     		subs	r1, r1, #1
+  75              	.LVL6:
+  27:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_DrawStr(u8g2, x+str_offset, y+height-2, unit );
+  76              		.loc 1 27 0
+  77 003e 57FA81F1 		uxtab	r1, r7, r1
+  78              	.LVL7:
+  79 0042 089B     		ldr	r3, [sp, #32]
+  80 0044 2246     		mov	r2, r4
+  81 0046 C9B2     		uxtb	r1, r1
+  82 0048 3046     		mov	r0, r6
+  83              	.LVL8:
+  84 004a FFF7FEFF 		bl	u8g2_DrawStr
+  85              	.LVL9:
+  28:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** }
+  86              		.loc 1 28 0
+  87 004e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 3
+
+
+  88              	.LVL10:
+  89              	.L4:
+  90              		.align	2
+  91              	.L3:
+  92 0050 00000000 		.word	u8g2_font_5x8_tf
+  93 0054 00000000 		.word	u8g2_font_4x6_tf
+  94              		.cfi_endproc
+  95              	.LFE0:
+  97              		.section	.text.draw_MeasLabel,"ax",%progbits
+  98              		.align	1
+  99              		.global	draw_MeasLabel
+ 100              		.syntax unified
+ 101              		.thumb
+ 102              		.thumb_func
+ 103              		.fpu fpv4-sp-d16
+ 105              	draw_MeasLabel:
+ 106              	.LFB1:
+  29:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  30:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** void draw_MeasLabel(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, const char *
+ 107              		.loc 1 30 0
+ 108              		.cfi_startproc
+ 109              		@ args = 8, pretend = 0, frame = 0
+ 110              		@ frame_needed = 0, uses_anonymous_args = 0
+ 111              	.LVL11:
+ 112 0000 70B5     		push	{r4, r5, r6, lr}
+ 113              	.LCFI1:
+ 114              		.cfi_def_cfa_offset 16
+ 115              		.cfi_offset 4, -16
+ 116              		.cfi_offset 5, -12
+ 117              		.cfi_offset 6, -8
+ 118              		.cfi_offset 14, -4
+ 119 0002 0546     		mov	r5, r0
+ 120 0004 0E46     		mov	r6, r1
+ 121 0006 1446     		mov	r4, r2
+  31:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetFont(u8g2, meas_label_font);
+ 122              		.loc 1 31 0
+ 123 0008 0749     		ldr	r1, .L7
+ 124              	.LVL12:
+ 125 000a FFF7FEFF 		bl	u8g2_SetFont
+ 126              	.LVL13:
+  32:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_DrawStr(u8g2, x, y+height-2, name );
+ 127              		.loc 1 32 0
+ 128 000e 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 129 0012 2244     		add	r2, r2, r4
+ 130 0014 D2B2     		uxtb	r2, r2
+ 131 0016 023A     		subs	r2, r2, #2
+ 132 0018 059B     		ldr	r3, [sp, #20]
+ 133 001a D2B2     		uxtb	r2, r2
+ 134 001c 3146     		mov	r1, r6
+ 135 001e 2846     		mov	r0, r5
+ 136 0020 FFF7FEFF 		bl	u8g2_DrawStr
+ 137              	.LVL14:
+  33:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** }
+ 138              		.loc 1 33 0
+ 139 0024 70BD     		pop	{r4, r5, r6, pc}
+ 140              	.LVL15:
+ 141              	.L8:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 4
+
+
+ 142 0026 00BF     		.align	2
+ 143              	.L7:
+ 144 0028 00000000 		.word	u8g2_font_5x8_tf
+ 145              		.cfi_endproc
+ 146              	.LFE1:
+ 148              		.section	.text.draw_MeasUnit,"ax",%progbits
+ 149              		.align	1
+ 150              		.global	draw_MeasUnit
+ 151              		.syntax unified
+ 152              		.thumb
+ 153              		.thumb_func
+ 154              		.fpu fpv4-sp-d16
+ 156              	draw_MeasUnit:
+ 157              	.LFB2:
+  34:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  35:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** void draw_MeasUnit(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, const char *u
+ 158              		.loc 1 35 0
+ 159              		.cfi_startproc
+ 160              		@ args = 8, pretend = 0, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162              	.LVL16:
+ 163 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 164              	.LCFI2:
+ 165              		.cfi_def_cfa_offset 24
+ 166              		.cfi_offset 3, -24
+ 167              		.cfi_offset 4, -20
+ 168              		.cfi_offset 5, -16
+ 169              		.cfi_offset 6, -12
+ 170              		.cfi_offset 7, -8
+ 171              		.cfi_offset 14, -4
+ 172 0002 0646     		mov	r6, r0
+ 173 0004 0F46     		mov	r7, r1
+ 174 0006 1546     		mov	r5, r2
+ 175 0008 1C46     		mov	r4, r3
+  36:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t	str_offset;
+  37:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetFont(u8g2, meas_unit_font);
+ 176              		.loc 1 37 0
+ 177 000a 0C49     		ldr	r1, .L11
+ 178              	.LVL17:
+ 179 000c FFF7FEFF 		bl	u8g2_SetFont
+ 180              	.LVL18:
+  38:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	str_offset = (width-1) - (StrLength(unit)*4);
+ 181              		.loc 1 38 0
+ 182 0010 0798     		ldr	r0, [sp, #28]
+ 183 0012 FFF7FEFF 		bl	StrLength
+ 184              	.LVL19:
+ 185 0016 A4EB8001 		sub	r1, r4, r0, lsl #2
+ 186 001a C9B2     		uxtb	r1, r1
+ 187 001c 0139     		subs	r1, r1, #1
+ 188              	.LVL20:
+  39:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_DrawStr(u8g2, x+str_offset, y+height-2, unit );
+ 189              		.loc 1 39 0
+ 190 001e 9DF81820 		ldrb	r2, [sp, #24]	@ zero_extendqisi2
+ 191 0022 2A44     		add	r2, r2, r5
+ 192 0024 D2B2     		uxtb	r2, r2
+ 193 0026 023A     		subs	r2, r2, #2
+ 194 0028 57FA81F1 		uxtab	r1, r7, r1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 5
+
+
+ 195              	.LVL21:
+ 196 002c 079B     		ldr	r3, [sp, #28]
+ 197 002e D2B2     		uxtb	r2, r2
+ 198 0030 C9B2     		uxtb	r1, r1
+ 199 0032 3046     		mov	r0, r6
+ 200              	.LVL22:
+ 201 0034 FFF7FEFF 		bl	u8g2_DrawStr
+ 202              	.LVL23:
+  40:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** }
+ 203              		.loc 1 40 0
+ 204 0038 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 205              	.LVL24:
+ 206              	.L12:
+ 207 003a 00BF     		.align	2
+ 208              	.L11:
+ 209 003c 00000000 		.word	u8g2_font_4x6_tf
+ 210              		.cfi_endproc
+ 211              	.LFE2:
+ 213              		.global	__aeabi_i2d
+ 214              		.global	__aeabi_dcmpge
+ 215              		.global	__aeabi_ui2d
+ 216              		.global	__aeabi_d2uiz
+ 217              		.section	.text.draw_Value,"ax",%progbits
+ 218              		.align	1
+ 219              		.global	draw_Value
+ 220              		.syntax unified
+ 221              		.thumb
+ 222              		.thumb_func
+ 223              		.fpu fpv4-sp-d16
+ 225              	draw_Value:
+ 226              	.LFB3:
+  41:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  42:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** void draw_Value(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, int16_t value, u
+ 227              		.loc 1 42 0
+ 228              		.cfi_startproc
+ 229              		@ args = 24, pretend = 0, frame = 16
+ 230              		@ frame_needed = 0, uses_anonymous_args = 0
+ 231              	.LVL25:
+ 232 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 233              	.LCFI3:
+ 234              		.cfi_def_cfa_offset 36
+ 235              		.cfi_offset 4, -36
+ 236              		.cfi_offset 5, -32
+ 237              		.cfi_offset 6, -28
+ 238              		.cfi_offset 7, -24
+ 239              		.cfi_offset 8, -20
+ 240              		.cfi_offset 9, -16
+ 241              		.cfi_offset 10, -12
+ 242              		.cfi_offset 11, -8
+ 243              		.cfi_offset 14, -4
+ 244 0004 87B0     		sub	sp, sp, #28
+ 245              	.LCFI4:
+ 246              		.cfi_def_cfa_offset 64
+ 247 0006 0490     		str	r0, [sp, #16]
+ 248 0008 8B46     		mov	fp, r1
+ 249 000a 9146     		mov	r9, r2
+ 250 000c 1D46     		mov	r5, r3
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 6
+
+
+ 251 000e 9DF840A0 		ldrb	r10, [sp, #64]	@ zero_extendqisi2
+ 252 0012 BDF94430 		ldrsh	r3, [sp, #68]
+ 253              	.LVL26:
+ 254 0016 0593     		str	r3, [sp, #20]
+ 255 0018 9DF84860 		ldrb	r6, [sp, #72]	@ zero_extendqisi2
+ 256 001c 9DF84C70 		ldrb	r7, [sp, #76]	@ zero_extendqisi2
+ 257 0020 9DF85080 		ldrb	r8, [sp, #80]	@ zero_extendqisi2
+ 258              	.LVL27:
+  43:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	int16_t int_value;
+  44:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	int16_t sub_value;
+  45:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint16_t pow10 = 1;
+  46:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t valid_digit = digit;
+  47:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t int_digit = digit-frac;
+ 259              		.loc 1 47 0
+ 260 0024 F41B     		subs	r4, r6, r7
+ 261 0026 E4B2     		uxtb	r4, r4
+ 262              	.LVL28:
+  48:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t	str_offset;
+  49:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  50:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetFont(u8g2, meas_value_font);
+ 263              		.loc 1 50 0
+ 264 0028 7949     		ldr	r1, .L27+8
+ 265              	.LVL29:
+ 266 002a FFF7FEFF 		bl	u8g2_SetFont
+ 267              	.LVL30:
+  51:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  52:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	str_offset = (width-1) - ( StrLength(unit)*4 + ((sign!=0)+digit)*font_width + ((frac!=0)*font_widt
+ 268              		.loc 1 52 0
+ 269 002e 1598     		ldr	r0, [sp, #84]
+ 270 0030 FFF7FEFF 		bl	StrLength
+ 271              	.LVL31:
+ 272 0034 B8F1000F 		cmp	r8, #0
+ 273 0038 0CBF     		ite	eq
+ 274 003a 3346     		moveq	r3, r6
+ 275 003c 731C     		addne	r3, r6, #1
+ 276 003e C3EBC303 		rsb	r3, r3, r3, lsl #3
+ 277 0042 03EB8003 		add	r3, r3, r0, lsl #2
+ 278 0046 DBB2     		uxtb	r3, r3
+ 279 0048 002F     		cmp	r7, #0
+ 280 004a 33D0     		beq	.L22
+ 281 004c 0320     		movs	r0, #3
+ 282              	.L14:
+ 283              		.loc 1 52 0 is_stmt 0 discriminator 4
+ 284 004e 0344     		add	r3, r3, r0
+ 285 0050 DBB2     		uxtb	r3, r3
+ 286 0052 ED1A     		subs	r5, r5, r3
+ 287 0054 EDB2     		uxtb	r5, r5
+ 288 0056 023D     		subs	r5, r5, #2
+ 289 0058 EDB2     		uxtb	r5, r5
+ 290              	.LVL32:
+  53:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  54:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	// erase blank space
+  55:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetDrawColor(u8g2, 0); // erase color
+ 291              		.loc 1 55 0 is_stmt 1 discriminator 4
+ 292 005a 0021     		movs	r1, #0
+ 293 005c 0498     		ldr	r0, [sp, #16]
+ 294 005e FFF7FEFF 		bl	u8g2_SetDrawColor
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 7
+
+
+ 295              	.LVL33:
+ 296              	.LBB2:
+  56:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	for( uint8_t n=int_digit-1; n>0; n-- ){
+ 297              		.loc 1 56 0 discriminator 4
+ 298 0062 013C     		subs	r4, r4, #1
+ 299              	.LVL34:
+ 300 0064 E4B2     		uxtb	r4, r4
+ 301              	.LVL35:
+ 302              	.L15:
+ 303              		.loc 1 56 0 is_stmt 0 discriminator 1
+ 304 0066 3CB3     		cbz	r4, .L16
+ 305              	.LBB3:
+  57:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		if( value >= pow(10, n+frac) ){
+ 306              		.loc 1 57 0 is_stmt 1
+ 307 0068 0598     		ldr	r0, [sp, #20]
+ 308 006a FFF7FEFF 		bl	__aeabi_i2d
+ 309              	.LVL36:
+ 310 006e CDE90201 		strd	r0, [sp, #8]
+ 311 0072 E019     		adds	r0, r4, r7
+ 312 0074 FFF7FEFF 		bl	__aeabi_i2d
+ 313              	.LVL37:
+ 314 0078 41EC110B 		vmov	d1, r0, r1
+ 315 007c 9FED620B 		vldr.64	d0, .L27
+ 316 0080 FFF7FEFF 		bl	pow
+ 317              	.LVL38:
+ 318 0084 53EC102B 		vmov	r2, r3, d0
+ 319 0088 DDE90201 		ldrd	r0, [sp, #8]
+ 320 008c FFF7FEFF 		bl	__aeabi_dcmpge
+ 321              	.LVL39:
+ 322 0090 90B9     		cbnz	r0, .L16
+  58:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			break;
+  59:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}else{
+  60:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawBox(u8g2, x+str_offset, y, font_width, height );
+ 323              		.loc 1 60 0 discriminator 2
+ 324 0092 05EB0B01 		add	r1, r5, fp
+ 325 0096 CDF800A0 		str	r10, [sp]
+ 326 009a 0723     		movs	r3, #7
+ 327 009c 4A46     		mov	r2, r9
+ 328 009e C9B2     		uxtb	r1, r1
+ 329 00a0 0498     		ldr	r0, [sp, #16]
+ 330 00a2 FFF7FEFF 		bl	u8g2_DrawBox
+ 331              	.LVL40:
+  61:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width;
+ 332              		.loc 1 61 0 discriminator 2
+ 333 00a6 0735     		adds	r5, r5, #7
+ 334              	.LVL41:
+ 335 00a8 EDB2     		uxtb	r5, r5
+ 336              	.LVL42:
+  62:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			valid_digit--;
+ 337              		.loc 1 62 0 discriminator 2
+ 338 00aa 013E     		subs	r6, r6, #1
+ 339              	.LVL43:
+ 340 00ac F6B2     		uxtb	r6, r6
+ 341              	.LVL44:
+ 342              	.LBE3:
+  56:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		if( value >= pow(10, n+frac) ){
+ 343              		.loc 1 56 0 discriminator 2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 8
+
+
+ 344 00ae 013C     		subs	r4, r4, #1
+ 345              	.LVL45:
+ 346 00b0 E4B2     		uxtb	r4, r4
+ 347              	.LVL46:
+ 348 00b2 D8E7     		b	.L15
+ 349              	.LVL47:
+ 350              	.L22:
+ 351              	.LBE2:
+  52:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 352              		.loc 1 52 0
+ 353 00b4 3846     		mov	r0, r7
+ 354 00b6 CAE7     		b	.L14
+ 355              	.LVL48:
+ 356              	.L16:
+  63:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}
+  64:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}
+  65:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetDrawColor(u8g2, 1); // default color
+ 357              		.loc 1 65 0
+ 358 00b8 0121     		movs	r1, #1
+ 359 00ba 0498     		ldr	r0, [sp, #16]
+ 360 00bc FFF7FEFF 		bl	u8g2_SetDrawColor
+ 361              	.LVL49:
+  66:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  67:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	// sign
+  68:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	if( sign!=0 ){
+ 362              		.loc 1 68 0
+ 363 00c0 B8F1000F 		cmp	r8, #0
+ 364 00c4 56D1     		bne	.L24
+ 365              	.LVL50:
+ 366              	.L18:
+  69:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		// erase previous sign
+  70:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_SetDrawColor(u8g2, 0); // erase color
+  71:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawBox(u8g2, x+str_offset, y, font_width, height );
+  72:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_SetDrawColor(u8g2, 1); // default color
+  73:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  74:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		if(	value < 0 ){
+  75:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawStr(u8g2, x+str_offset, y+height-2, "-");
+  76:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			value = -value;
+  77:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width;
+  78:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}else if( value >= 0 ){
+  79:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawStr(u8g2, x+str_offset, y+height-2, "+");
+  80:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width;
+  81:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}
+  82:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}
+  83:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  84:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	//int
+  85:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	if( frac==0 ){
+ 367              		.loc 1 85 0
+ 368 00c6 002F     		cmp	r7, #0
+ 369 00c8 00F08A80 		beq	.L25
+ 370              	.LBB4:
+  86:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset, y+height-2, u8g2_u16toa(value, valid_digit) );
+  87:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}else{
+  88:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		pow10 = pow(10, frac);
+ 371              		.loc 1 88 0
+ 372 00cc 3846     		mov	r0, r7
+ 373 00ce FFF7FEFF 		bl	__aeabi_ui2d
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 9
+
+
+ 374              	.LVL51:
+ 375 00d2 41EC110B 		vmov	d1, r0, r1
+ 376 00d6 9FED4C0B 		vldr.64	d0, .L27
+ 377 00da FFF7FEFF 		bl	pow
+ 378              	.LVL52:
+ 379 00de 51EC100B 		vmov	r0, r1, d0
+ 380 00e2 FFF7FEFF 		bl	__aeabi_d2uiz
+ 381              	.LVL53:
+ 382 00e6 1FFA80F8 		uxth	r8, r0
+ 383              	.LVL54:
+  89:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		int_value = value / pow10;
+ 384              		.loc 1 89 0
+ 385 00ea 059B     		ldr	r3, [sp, #20]
+ 386 00ec 93FBF8F3 		sdiv	r3, r3, r8
+ 387              	.LVL55:
+  90:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset, y+height-2, u8g2_u16toa(int_value, valid_digit-frac) );
+ 388              		.loc 1 90 0
+ 389 00f0 05EB0B04 		add	r4, r5, fp
+ 390 00f4 E4B2     		uxtb	r4, r4
+ 391 00f6 CA44     		add	r10, r10, r9
+ 392 00f8 5FFA8AFA 		uxtb	r10, r10
+ 393 00fc AAF1020A 		sub	r10, r10, #2
+ 394 0100 5FFA8AFA 		uxtb	r10, r10
+ 395 0104 1FFA83F9 		uxth	r9, r3
+ 396 0108 F61B     		subs	r6, r6, r7
+ 397              	.LVL56:
+ 398 010a F6B2     		uxtb	r6, r6
+ 399 010c 3146     		mov	r1, r6
+ 400 010e 4846     		mov	r0, r9
+ 401 0110 FFF7FEFF 		bl	u8x8_u16toa
+ 402              	.LVL57:
+ 403 0114 0346     		mov	r3, r0
+ 404 0116 5246     		mov	r2, r10
+ 405 0118 2146     		mov	r1, r4
+ 406 011a 049C     		ldr	r4, [sp, #16]
+ 407 011c 2046     		mov	r0, r4
+ 408 011e FFF7FEFF 		bl	u8g2_DrawStr
+ 409              	.LVL58:
+  91:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		str_offset = str_offset + (valid_digit-frac)*font_width;
+ 410              		.loc 1 91 0
+ 411 0122 C6EBC606 		rsb	r6, r6, r6, lsl #3
+ 412 0126 55FA86F5 		uxtab	r5, r5, r6
+ 413              	.LVL59:
+ 414 012a EDB2     		uxtb	r5, r5
+ 415              	.LVL60:
+  92:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  93:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset - ( (font_width>>1)-(font_width>>2) ), y+height-2, ".");
+ 416              		.loc 1 93 0
+ 417 012c 0BEB0501 		add	r1, fp, r5
+ 418 0130 C9B2     		uxtb	r1, r1
+ 419 0132 0239     		subs	r1, r1, #2
+ 420 0134 374B     		ldr	r3, .L27+12
+ 421 0136 5246     		mov	r2, r10
+ 422 0138 C9B2     		uxtb	r1, r1
+ 423 013a 2046     		mov	r0, r4
+ 424 013c FFF7FEFF 		bl	u8g2_DrawStr
+ 425              	.LVL61:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 10
+
+
+  94:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		str_offset = str_offset + (font_width>>1);
+ 426              		.loc 1 94 0
+ 427 0140 0335     		adds	r5, r5, #3
+ 428              	.LVL62:
+  95:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  96:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		sub_value = int_value * pow10;
+ 429              		.loc 1 96 0
+ 430 0142 19FB08F8 		smulbb	r8, r9, r8
+ 431              	.LVL63:
+  97:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		uint8_t frac_value = value - sub_value;
+ 432              		.loc 1 97 0
+ 433 0146 9DF81400 		ldrb	r0, [sp, #20]	@ zero_extendqisi2
+ 434 014a 5FFA88F8 		uxtb	r8, r8
+ 435              	.LVL64:
+ 436 014e A0EB0800 		sub	r0, r0, r8
+ 437              	.LVL65:
+  98:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+  99:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset, y+height-2, u8g2_u16toa(frac_value, frac) );
+ 438              		.loc 1 99 0
+ 439 0152 5BFA85FB 		uxtab	fp, fp, r5
+ 440 0156 5FFA8BFB 		uxtb	fp, fp
+ 441 015a 3946     		mov	r1, r7
+ 442 015c C0B2     		uxtb	r0, r0
+ 443 015e FFF7FEFF 		bl	u8x8_u16toa
+ 444              	.LVL66:
+ 445 0162 0346     		mov	r3, r0
+ 446 0164 5246     		mov	r2, r10
+ 447 0166 5946     		mov	r1, fp
+ 448 0168 2046     		mov	r0, r4
+ 449 016a FFF7FEFF 		bl	u8g2_DrawStr
+ 450              	.LVL67:
+ 451              	.L13:
+ 452              	.LBE4:
+ 100:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}
+ 101:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** }
+ 453              		.loc 1 101 0
+ 454 016e 07B0     		add	sp, sp, #28
+ 455              	.LCFI5:
+ 456              		.cfi_remember_state
+ 457              		.cfi_def_cfa_offset 36
+ 458              		@ sp needed
+ 459 0170 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 460              	.LVL68:
+ 461              	.L24:
+ 462              	.LCFI6:
+ 463              		.cfi_restore_state
+  70:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawBox(u8g2, x+str_offset, y, font_width, height );
+ 464              		.loc 1 70 0
+ 465 0174 0021     		movs	r1, #0
+ 466 0176 DDF81080 		ldr	r8, [sp, #16]
+ 467 017a 4046     		mov	r0, r8
+ 468 017c FFF7FEFF 		bl	u8g2_SetDrawColor
+ 469              	.LVL69:
+  71:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_SetDrawColor(u8g2, 1); // default color
+ 470              		.loc 1 71 0
+ 471 0180 05EB0B04 		add	r4, r5, fp
+ 472              	.LVL70:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 11
+
+
+ 473 0184 E4B2     		uxtb	r4, r4
+ 474 0186 CDF800A0 		str	r10, [sp]
+ 475 018a 0723     		movs	r3, #7
+ 476 018c 4A46     		mov	r2, r9
+ 477 018e 2146     		mov	r1, r4
+ 478 0190 4046     		mov	r0, r8
+ 479 0192 FFF7FEFF 		bl	u8g2_DrawBox
+ 480              	.LVL71:
+  72:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 481              		.loc 1 72 0
+ 482 0196 0121     		movs	r1, #1
+ 483 0198 4046     		mov	r0, r8
+ 484 019a FFF7FEFF 		bl	u8g2_SetDrawColor
+ 485              	.LVL72:
+  74:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawStr(u8g2, x+str_offset, y+height-2, "-");
+ 486              		.loc 1 74 0
+ 487 019e 059B     		ldr	r3, [sp, #20]
+ 488 01a0 002B     		cmp	r3, #0
+ 489 01a2 0CDB     		blt	.L26
+  79:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width;
+ 490              		.loc 1 79 0
+ 491 01a4 09EB0A02 		add	r2, r9, r10
+ 492 01a8 D2B2     		uxtb	r2, r2
+ 493 01aa 023A     		subs	r2, r2, #2
+ 494 01ac 1A4B     		ldr	r3, .L27+16
+ 495 01ae D2B2     		uxtb	r2, r2
+ 496 01b0 2146     		mov	r1, r4
+ 497 01b2 0498     		ldr	r0, [sp, #16]
+ 498 01b4 FFF7FEFF 		bl	u8g2_DrawStr
+ 499              	.LVL73:
+  80:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}
+ 500              		.loc 1 80 0
+ 501 01b8 0735     		adds	r5, r5, #7
+ 502              	.LVL74:
+ 503 01ba EDB2     		uxtb	r5, r5
+ 504              	.LVL75:
+ 505 01bc 83E7     		b	.L18
+ 506              	.L26:
+  75:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			value = -value;
+ 507              		.loc 1 75 0
+ 508 01be 09EB0A02 		add	r2, r9, r10
+ 509 01c2 D2B2     		uxtb	r2, r2
+ 510 01c4 023A     		subs	r2, r2, #2
+ 511 01c6 154B     		ldr	r3, .L27+20
+ 512 01c8 D2B2     		uxtb	r2, r2
+ 513 01ca 2146     		mov	r1, r4
+ 514 01cc 0498     		ldr	r0, [sp, #16]
+ 515 01ce FFF7FEFF 		bl	u8g2_DrawStr
+ 516              	.LVL76:
+  76:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width;
+ 517              		.loc 1 76 0
+ 518 01d2 059B     		ldr	r3, [sp, #20]
+ 519 01d4 5B42     		negs	r3, r3
+ 520 01d6 1BB2     		sxth	r3, r3
+ 521 01d8 0593     		str	r3, [sp, #20]
+ 522              	.LVL77:
+  77:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}else if( value >= 0 ){
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 12
+
+
+ 523              		.loc 1 77 0
+ 524 01da 0735     		adds	r5, r5, #7
+ 525              	.LVL78:
+ 526 01dc EDB2     		uxtb	r5, r5
+ 527              	.LVL79:
+ 528 01de 72E7     		b	.L18
+ 529              	.L25:
+  86:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}else{
+ 530              		.loc 1 86 0
+ 531 01e0 5D44     		add	r5, r5, fp
+ 532              	.LVL80:
+ 533 01e2 EDB2     		uxtb	r5, r5
+ 534 01e4 CA44     		add	r10, r10, r9
+ 535 01e6 5FFA8AFA 		uxtb	r10, r10
+ 536 01ea 3146     		mov	r1, r6
+ 537 01ec BDF81400 		ldrh	r0, [sp, #20]
+ 538 01f0 FFF7FEFF 		bl	u8x8_u16toa
+ 539              	.LVL81:
+ 540 01f4 AAF1020A 		sub	r10, r10, #2
+ 541 01f8 0346     		mov	r3, r0
+ 542 01fa 5FFA8AF2 		uxtb	r2, r10
+ 543 01fe 2946     		mov	r1, r5
+ 544 0200 0498     		ldr	r0, [sp, #16]
+ 545 0202 FFF7FEFF 		bl	u8g2_DrawStr
+ 546              	.LVL82:
+ 547 0206 B2E7     		b	.L13
+ 548              	.L28:
+ 549              		.align	3
+ 550              	.L27:
+ 551 0208 00000000 		.word	0
+ 552 020c 00002440 		.word	1076101120
+ 553 0210 00000000 		.word	u8g2_font_7x14B_tf
+ 554 0214 08000000 		.word	.LC2
+ 555 0218 04000000 		.word	.LC1
+ 556 021c 00000000 		.word	.LC0
+ 557              		.cfi_endproc
+ 558              	.LFE3:
+ 560              		.section	.text.draw_Value_s,"ax",%progbits
+ 561              		.align	1
+ 562              		.global	draw_Value_s
+ 563              		.syntax unified
+ 564              		.thumb
+ 565              		.thumb_func
+ 566              		.fpu fpv4-sp-d16
+ 568              	draw_Value_s:
+ 569              	.LFB4:
+ 102:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 103:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 104:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** void draw_Value_s(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, int16_t value,
+ 570              		.loc 1 104 0
+ 571              		.cfi_startproc
+ 572              		@ args = 24, pretend = 0, frame = 16
+ 573              		@ frame_needed = 0, uses_anonymous_args = 0
+ 574              	.LVL83:
+ 575 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 576              	.LCFI7:
+ 577              		.cfi_def_cfa_offset 36
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 13
+
+
+ 578              		.cfi_offset 4, -36
+ 579              		.cfi_offset 5, -32
+ 580              		.cfi_offset 6, -28
+ 581              		.cfi_offset 7, -24
+ 582              		.cfi_offset 8, -20
+ 583              		.cfi_offset 9, -16
+ 584              		.cfi_offset 10, -12
+ 585              		.cfi_offset 11, -8
+ 586              		.cfi_offset 14, -4
+ 587 0004 87B0     		sub	sp, sp, #28
+ 588              	.LCFI8:
+ 589              		.cfi_def_cfa_offset 64
+ 590 0006 0490     		str	r0, [sp, #16]
+ 591 0008 8B46     		mov	fp, r1
+ 592 000a 9146     		mov	r9, r2
+ 593 000c 1D46     		mov	r5, r3
+ 594 000e 9DF840A0 		ldrb	r10, [sp, #64]	@ zero_extendqisi2
+ 595 0012 BDF94430 		ldrsh	r3, [sp, #68]
+ 596              	.LVL84:
+ 597 0016 0593     		str	r3, [sp, #20]
+ 598 0018 9DF84860 		ldrb	r6, [sp, #72]	@ zero_extendqisi2
+ 599 001c 9DF84C70 		ldrb	r7, [sp, #76]	@ zero_extendqisi2
+ 600 0020 9DF85080 		ldrb	r8, [sp, #80]	@ zero_extendqisi2
+ 601              	.LVL85:
+ 105:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	int16_t int_value;
+ 106:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	int16_t sub_value;
+ 107:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint16_t pow10 = 1;
+ 108:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t valid_digit = digit;
+ 109:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t int_digit = digit-frac;
+ 602              		.loc 1 109 0
+ 603 0024 F41B     		subs	r4, r6, r7
+ 604 0026 E4B2     		uxtb	r4, r4
+ 605              	.LVL86:
+ 110:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t	str_offset;
+ 111:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 112:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetFont(u8g2, meas_value_font_s);
+ 606              		.loc 1 112 0
+ 607 0028 7B49     		ldr	r1, .L43+8
+ 608              	.LVL87:
+ 609 002a FFF7FEFF 		bl	u8g2_SetFont
+ 610              	.LVL88:
+ 113:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 114:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	str_offset = (width-1) - ( StrLength(unit)*4 + ((sign!=0)+digit)*font_width_s + ((frac!=0)*font_wi
+ 611              		.loc 1 114 0
+ 612 002e 1598     		ldr	r0, [sp, #84]
+ 613 0030 FFF7FEFF 		bl	StrLength
+ 614              	.LVL89:
+ 615 0034 B8F1000F 		cmp	r8, #0
+ 616 0038 0CBF     		ite	eq
+ 617 003a 3246     		moveq	r2, r6
+ 618 003c 721C     		addne	r2, r6, #1
+ 619 003e 02EB4202 		add	r2, r2, r2, lsl #1
+ 620 0042 5300     		lsls	r3, r2, #1
+ 621 0044 03EB8003 		add	r3, r3, r0, lsl #2
+ 622 0048 DBB2     		uxtb	r3, r3
+ 623 004a 002F     		cmp	r7, #0
+ 624 004c 33D0     		beq	.L38
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 14
+
+
+ 625 004e 0320     		movs	r0, #3
+ 626              	.L30:
+ 627              		.loc 1 114 0 is_stmt 0 discriminator 4
+ 628 0050 0344     		add	r3, r3, r0
+ 629 0052 DBB2     		uxtb	r3, r3
+ 630 0054 ED1A     		subs	r5, r5, r3
+ 631 0056 EDB2     		uxtb	r5, r5
+ 632 0058 023D     		subs	r5, r5, #2
+ 633 005a EDB2     		uxtb	r5, r5
+ 634              	.LVL90:
+ 115:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 116:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	// erase blank space
+ 117:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetDrawColor(u8g2, 0); // erase color
+ 635              		.loc 1 117 0 is_stmt 1 discriminator 4
+ 636 005c 0021     		movs	r1, #0
+ 637 005e 0498     		ldr	r0, [sp, #16]
+ 638 0060 FFF7FEFF 		bl	u8g2_SetDrawColor
+ 639              	.LVL91:
+ 640              	.LBB5:
+ 118:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	for( uint8_t n=int_digit-1; n>0; n-- ){
+ 641              		.loc 1 118 0 discriminator 4
+ 642 0064 013C     		subs	r4, r4, #1
+ 643              	.LVL92:
+ 644 0066 E4B2     		uxtb	r4, r4
+ 645              	.LVL93:
+ 646              	.L31:
+ 647              		.loc 1 118 0 is_stmt 0 discriminator 1
+ 648 0068 3CB3     		cbz	r4, .L32
+ 649              	.LBB6:
+ 119:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		if( value >= pow(10, n+frac) ){
+ 650              		.loc 1 119 0 is_stmt 1
+ 651 006a 0598     		ldr	r0, [sp, #20]
+ 652 006c FFF7FEFF 		bl	__aeabi_i2d
+ 653              	.LVL94:
+ 654 0070 CDE90201 		strd	r0, [sp, #8]
+ 655 0074 E019     		adds	r0, r4, r7
+ 656 0076 FFF7FEFF 		bl	__aeabi_i2d
+ 657              	.LVL95:
+ 658 007a 41EC110B 		vmov	d1, r0, r1
+ 659 007e 9FED640B 		vldr.64	d0, .L43
+ 660 0082 FFF7FEFF 		bl	pow
+ 661              	.LVL96:
+ 662 0086 53EC102B 		vmov	r2, r3, d0
+ 663 008a DDE90201 		ldrd	r0, [sp, #8]
+ 664 008e FFF7FEFF 		bl	__aeabi_dcmpge
+ 665              	.LVL97:
+ 666 0092 90B9     		cbnz	r0, .L32
+ 120:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			break;
+ 121:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}else{
+ 122:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawBox(u8g2, x+str_offset, y, font_width_s, height );
+ 667              		.loc 1 122 0 discriminator 2
+ 668 0094 05EB0B01 		add	r1, r5, fp
+ 669 0098 CDF800A0 		str	r10, [sp]
+ 670 009c 0623     		movs	r3, #6
+ 671 009e 4A46     		mov	r2, r9
+ 672 00a0 C9B2     		uxtb	r1, r1
+ 673 00a2 0498     		ldr	r0, [sp, #16]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 15
+
+
+ 674 00a4 FFF7FEFF 		bl	u8g2_DrawBox
+ 675              	.LVL98:
+ 123:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width_s;
+ 676              		.loc 1 123 0 discriminator 2
+ 677 00a8 0635     		adds	r5, r5, #6
+ 678              	.LVL99:
+ 679 00aa EDB2     		uxtb	r5, r5
+ 680              	.LVL100:
+ 124:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			valid_digit--;
+ 681              		.loc 1 124 0 discriminator 2
+ 682 00ac 013E     		subs	r6, r6, #1
+ 683              	.LVL101:
+ 684 00ae F6B2     		uxtb	r6, r6
+ 685              	.LVL102:
+ 686              	.LBE6:
+ 118:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		if( value >= pow(10, n+frac) ){
+ 687              		.loc 1 118 0 discriminator 2
+ 688 00b0 013C     		subs	r4, r4, #1
+ 689              	.LVL103:
+ 690 00b2 E4B2     		uxtb	r4, r4
+ 691              	.LVL104:
+ 692 00b4 D8E7     		b	.L31
+ 693              	.LVL105:
+ 694              	.L38:
+ 695              	.LBE5:
+ 114:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 696              		.loc 1 114 0
+ 697 00b6 3846     		mov	r0, r7
+ 698 00b8 CAE7     		b	.L30
+ 699              	.LVL106:
+ 700              	.L32:
+ 125:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}
+ 126:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}
+ 127:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetDrawColor(u8g2, 1); // default color
+ 701              		.loc 1 127 0
+ 702 00ba 0121     		movs	r1, #1
+ 703 00bc 0498     		ldr	r0, [sp, #16]
+ 704 00be FFF7FEFF 		bl	u8g2_SetDrawColor
+ 705              	.LVL107:
+ 128:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 129:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	// sign
+ 130:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	if( sign!=0 ){
+ 706              		.loc 1 130 0
+ 707 00c2 B8F1000F 		cmp	r8, #0
+ 708 00c6 57D1     		bne	.L40
+ 709              	.LVL108:
+ 710              	.L34:
+ 131:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		// erase previous sign
+ 132:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_SetDrawColor(u8g2, 0); // erase color
+ 133:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawBox(u8g2, x+str_offset, y, font_width_s, height );
+ 134:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_SetDrawColor(u8g2, 1); // default color
+ 135:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 136:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		if(	value < 0 ){
+ 137:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawStr(u8g2, x+str_offset, y+height-2, "-");
+ 138:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			value = -value;
+ 139:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width_s;
+ 140:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}else if( value >= 0 ){
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 16
+
+
+ 141:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawStr(u8g2, x+str_offset, y+height-2, "+");
+ 142:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width_s;
+ 143:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}
+ 144:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}
+ 145:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 146:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	//int
+ 147:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	if( frac==0 ){
+ 711              		.loc 1 147 0
+ 712 00c8 002F     		cmp	r7, #0
+ 713 00ca 00F08B80 		beq	.L41
+ 714              	.LBB7:
+ 148:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset, y+height-2, u8g2_u16toa(value, valid_digit) );
+ 149:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}else{
+ 150:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		pow10 = pow(10, frac);
+ 715              		.loc 1 150 0
+ 716 00ce 3846     		mov	r0, r7
+ 717 00d0 FFF7FEFF 		bl	__aeabi_ui2d
+ 718              	.LVL109:
+ 719 00d4 41EC110B 		vmov	d1, r0, r1
+ 720 00d8 9FED4D0B 		vldr.64	d0, .L43
+ 721 00dc FFF7FEFF 		bl	pow
+ 722              	.LVL110:
+ 723 00e0 51EC100B 		vmov	r0, r1, d0
+ 724 00e4 FFF7FEFF 		bl	__aeabi_d2uiz
+ 725              	.LVL111:
+ 726 00e8 1FFA80F8 		uxth	r8, r0
+ 727              	.LVL112:
+ 151:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		int_value = value / pow10;
+ 728              		.loc 1 151 0
+ 729 00ec 059B     		ldr	r3, [sp, #20]
+ 730 00ee 93FBF8F3 		sdiv	r3, r3, r8
+ 731              	.LVL113:
+ 152:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset, y+height-2, u8g2_u16toa(int_value, valid_digit-frac) );
+ 732              		.loc 1 152 0
+ 733 00f2 05EB0B04 		add	r4, r5, fp
+ 734 00f6 E4B2     		uxtb	r4, r4
+ 735 00f8 CA44     		add	r10, r10, r9
+ 736 00fa 5FFA8AFA 		uxtb	r10, r10
+ 737 00fe AAF1020A 		sub	r10, r10, #2
+ 738 0102 5FFA8AFA 		uxtb	r10, r10
+ 739 0106 1FFA83F9 		uxth	r9, r3
+ 740 010a F61B     		subs	r6, r6, r7
+ 741              	.LVL114:
+ 742 010c F6B2     		uxtb	r6, r6
+ 743 010e 3146     		mov	r1, r6
+ 744 0110 4846     		mov	r0, r9
+ 745 0112 FFF7FEFF 		bl	u8x8_u16toa
+ 746              	.LVL115:
+ 747 0116 0346     		mov	r3, r0
+ 748 0118 5246     		mov	r2, r10
+ 749 011a 2146     		mov	r1, r4
+ 750 011c 049C     		ldr	r4, [sp, #16]
+ 751 011e 2046     		mov	r0, r4
+ 752 0120 FFF7FEFF 		bl	u8g2_DrawStr
+ 753              	.LVL116:
+ 153:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		str_offset = str_offset + (valid_digit-frac)*font_width_s;
+ 754              		.loc 1 153 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 17
+
+
+ 755 0124 06EB4606 		add	r6, r6, r6, lsl #1
+ 756 0128 7300     		lsls	r3, r6, #1
+ 757 012a DBB2     		uxtb	r3, r3
+ 758 012c 1D44     		add	r5, r5, r3
+ 759              	.LVL117:
+ 760 012e EDB2     		uxtb	r5, r5
+ 761              	.LVL118:
+ 154:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 155:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset - ( (font_width_s>>1)-(font_width_s>>2) ), y+height-2, ".");
+ 762              		.loc 1 155 0
+ 763 0130 0BEB0501 		add	r1, fp, r5
+ 764 0134 C9B2     		uxtb	r1, r1
+ 765 0136 0239     		subs	r1, r1, #2
+ 766 0138 384B     		ldr	r3, .L43+12
+ 767 013a 5246     		mov	r2, r10
+ 768 013c C9B2     		uxtb	r1, r1
+ 769 013e 2046     		mov	r0, r4
+ 770 0140 FFF7FEFF 		bl	u8g2_DrawStr
+ 771              	.LVL119:
+ 156:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		str_offset = str_offset + (font_width_s>>1);
+ 772              		.loc 1 156 0
+ 773 0144 0335     		adds	r5, r5, #3
+ 774              	.LVL120:
+ 157:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 158:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		sub_value = int_value * pow10;
+ 775              		.loc 1 158 0
+ 776 0146 19FB08F8 		smulbb	r8, r9, r8
+ 777              	.LVL121:
+ 159:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		uint8_t frac_value = value - sub_value;
+ 778              		.loc 1 159 0
+ 779 014a 9DF81400 		ldrb	r0, [sp, #20]	@ zero_extendqisi2
+ 780 014e 5FFA88F8 		uxtb	r8, r8
+ 781              	.LVL122:
+ 782 0152 A0EB0800 		sub	r0, r0, r8
+ 783              	.LVL123:
+ 160:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 161:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset, y+height-2, u8g2_u16toa(frac_value, frac) );
+ 784              		.loc 1 161 0
+ 785 0156 5BFA85FB 		uxtab	fp, fp, r5
+ 786 015a 5FFA8BFB 		uxtb	fp, fp
+ 787 015e 3946     		mov	r1, r7
+ 788 0160 C0B2     		uxtb	r0, r0
+ 789 0162 FFF7FEFF 		bl	u8x8_u16toa
+ 790              	.LVL124:
+ 791 0166 0346     		mov	r3, r0
+ 792 0168 5246     		mov	r2, r10
+ 793 016a 5946     		mov	r1, fp
+ 794 016c 2046     		mov	r0, r4
+ 795 016e FFF7FEFF 		bl	u8g2_DrawStr
+ 796              	.LVL125:
+ 797              	.L29:
+ 798              	.LBE7:
+ 162:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}
+ 163:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** }
+ 799              		.loc 1 163 0
+ 800 0172 07B0     		add	sp, sp, #28
+ 801              	.LCFI9:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 18
+
+
+ 802              		.cfi_remember_state
+ 803              		.cfi_def_cfa_offset 36
+ 804              		@ sp needed
+ 805 0174 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 806              	.LVL126:
+ 807              	.L40:
+ 808              	.LCFI10:
+ 809              		.cfi_restore_state
+ 132:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawBox(u8g2, x+str_offset, y, font_width_s, height );
+ 810              		.loc 1 132 0
+ 811 0178 0021     		movs	r1, #0
+ 812 017a DDF81080 		ldr	r8, [sp, #16]
+ 813 017e 4046     		mov	r0, r8
+ 814 0180 FFF7FEFF 		bl	u8g2_SetDrawColor
+ 815              	.LVL127:
+ 133:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_SetDrawColor(u8g2, 1); // default color
+ 816              		.loc 1 133 0
+ 817 0184 05EB0B04 		add	r4, r5, fp
+ 818              	.LVL128:
+ 819 0188 E4B2     		uxtb	r4, r4
+ 820 018a CDF800A0 		str	r10, [sp]
+ 821 018e 0623     		movs	r3, #6
+ 822 0190 4A46     		mov	r2, r9
+ 823 0192 2146     		mov	r1, r4
+ 824 0194 4046     		mov	r0, r8
+ 825 0196 FFF7FEFF 		bl	u8g2_DrawBox
+ 826              	.LVL129:
+ 134:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 827              		.loc 1 134 0
+ 828 019a 0121     		movs	r1, #1
+ 829 019c 4046     		mov	r0, r8
+ 830 019e FFF7FEFF 		bl	u8g2_SetDrawColor
+ 831              	.LVL130:
+ 136:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawStr(u8g2, x+str_offset, y+height-2, "-");
+ 832              		.loc 1 136 0
+ 833 01a2 059B     		ldr	r3, [sp, #20]
+ 834 01a4 002B     		cmp	r3, #0
+ 835 01a6 0CDB     		blt	.L42
+ 141:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width_s;
+ 836              		.loc 1 141 0
+ 837 01a8 09EB0A02 		add	r2, r9, r10
+ 838 01ac D2B2     		uxtb	r2, r2
+ 839 01ae 023A     		subs	r2, r2, #2
+ 840 01b0 1B4B     		ldr	r3, .L43+16
+ 841 01b2 D2B2     		uxtb	r2, r2
+ 842 01b4 2146     		mov	r1, r4
+ 843 01b6 0498     		ldr	r0, [sp, #16]
+ 844 01b8 FFF7FEFF 		bl	u8g2_DrawStr
+ 845              	.LVL131:
+ 142:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}
+ 846              		.loc 1 142 0
+ 847 01bc 0635     		adds	r5, r5, #6
+ 848              	.LVL132:
+ 849 01be EDB2     		uxtb	r5, r5
+ 850              	.LVL133:
+ 851 01c0 82E7     		b	.L34
+ 852              	.L42:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 19
+
+
+ 137:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			value = -value;
+ 853              		.loc 1 137 0
+ 854 01c2 09EB0A02 		add	r2, r9, r10
+ 855 01c6 D2B2     		uxtb	r2, r2
+ 856 01c8 023A     		subs	r2, r2, #2
+ 857 01ca 164B     		ldr	r3, .L43+20
+ 858 01cc D2B2     		uxtb	r2, r2
+ 859 01ce 2146     		mov	r1, r4
+ 860 01d0 0498     		ldr	r0, [sp, #16]
+ 861 01d2 FFF7FEFF 		bl	u8g2_DrawStr
+ 862              	.LVL134:
+ 138:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width_s;
+ 863              		.loc 1 138 0
+ 864 01d6 059B     		ldr	r3, [sp, #20]
+ 865 01d8 5B42     		negs	r3, r3
+ 866 01da 1BB2     		sxth	r3, r3
+ 867 01dc 0593     		str	r3, [sp, #20]
+ 868              	.LVL135:
+ 139:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}else if( value >= 0 ){
+ 869              		.loc 1 139 0
+ 870 01de 0635     		adds	r5, r5, #6
+ 871              	.LVL136:
+ 872 01e0 EDB2     		uxtb	r5, r5
+ 873              	.LVL137:
+ 874 01e2 71E7     		b	.L34
+ 875              	.L41:
+ 148:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}else{
+ 876              		.loc 1 148 0
+ 877 01e4 5D44     		add	r5, r5, fp
+ 878              	.LVL138:
+ 879 01e6 EDB2     		uxtb	r5, r5
+ 880 01e8 CA44     		add	r10, r10, r9
+ 881 01ea 5FFA8AFA 		uxtb	r10, r10
+ 882 01ee 3146     		mov	r1, r6
+ 883 01f0 BDF81400 		ldrh	r0, [sp, #20]
+ 884 01f4 FFF7FEFF 		bl	u8x8_u16toa
+ 885              	.LVL139:
+ 886 01f8 AAF1020A 		sub	r10, r10, #2
+ 887 01fc 0346     		mov	r3, r0
+ 888 01fe 5FFA8AF2 		uxtb	r2, r10
+ 889 0202 2946     		mov	r1, r5
+ 890 0204 0498     		ldr	r0, [sp, #16]
+ 891 0206 FFF7FEFF 		bl	u8g2_DrawStr
+ 892              	.LVL140:
+ 893 020a B2E7     		b	.L29
+ 894              	.L44:
+ 895 020c AFF30080 		.align	3
+ 896              	.L43:
+ 897 0210 00000000 		.word	0
+ 898 0214 00002440 		.word	1076101120
+ 899 0218 00000000 		.word	u8g2_font_6x10_tf
+ 900 021c 08000000 		.word	.LC2
+ 901 0220 04000000 		.word	.LC1
+ 902 0224 00000000 		.word	.LC0
+ 903              		.cfi_endproc
+ 904              	.LFE4:
+ 906              		.section	.text.draw_Value_xs,"ax",%progbits
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 20
+
+
+ 907              		.align	1
+ 908              		.global	draw_Value_xs
+ 909              		.syntax unified
+ 910              		.thumb
+ 911              		.thumb_func
+ 912              		.fpu fpv4-sp-d16
+ 914              	draw_Value_xs:
+ 915              	.LFB5:
+ 164:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 165:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 166:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** void draw_Value_xs(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, int16_t value
+ 916              		.loc 1 166 0
+ 917              		.cfi_startproc
+ 918              		@ args = 24, pretend = 0, frame = 16
+ 919              		@ frame_needed = 0, uses_anonymous_args = 0
+ 920              	.LVL141:
+ 921 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 922              	.LCFI11:
+ 923              		.cfi_def_cfa_offset 36
+ 924              		.cfi_offset 4, -36
+ 925              		.cfi_offset 5, -32
+ 926              		.cfi_offset 6, -28
+ 927              		.cfi_offset 7, -24
+ 928              		.cfi_offset 8, -20
+ 929              		.cfi_offset 9, -16
+ 930              		.cfi_offset 10, -12
+ 931              		.cfi_offset 11, -8
+ 932              		.cfi_offset 14, -4
+ 933 0004 87B0     		sub	sp, sp, #28
+ 934              	.LCFI12:
+ 935              		.cfi_def_cfa_offset 64
+ 936 0006 0490     		str	r0, [sp, #16]
+ 937 0008 8B46     		mov	fp, r1
+ 938 000a 9146     		mov	r9, r2
+ 939 000c 1D46     		mov	r5, r3
+ 940 000e 9DF840A0 		ldrb	r10, [sp, #64]	@ zero_extendqisi2
+ 941 0012 BDF94430 		ldrsh	r3, [sp, #68]
+ 942              	.LVL142:
+ 943 0016 0593     		str	r3, [sp, #20]
+ 944 0018 9DF84860 		ldrb	r6, [sp, #72]	@ zero_extendqisi2
+ 945 001c 9DF84C70 		ldrb	r7, [sp, #76]	@ zero_extendqisi2
+ 946 0020 9DF85080 		ldrb	r8, [sp, #80]	@ zero_extendqisi2
+ 947              	.LVL143:
+ 167:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	int16_t int_value;
+ 168:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	int16_t sub_value;
+ 169:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint16_t pow10 = 1;
+ 170:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t valid_digit = digit;
+ 171:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t int_digit = digit-frac;
+ 948              		.loc 1 171 0
+ 949 0024 F41B     		subs	r4, r6, r7
+ 950 0026 E4B2     		uxtb	r4, r4
+ 951              	.LVL144:
+ 172:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	uint8_t	str_offset;
+ 173:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 174:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetFont(u8g2, meas_value_font_xs);
+ 952              		.loc 1 174 0
+ 953 0028 7949     		ldr	r1, .L59+8
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 21
+
+
+ 954              	.LVL145:
+ 955 002a FFF7FEFF 		bl	u8g2_SetFont
+ 956              	.LVL146:
+ 175:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 176:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	str_offset = (width-1) - ( StrLength(unit)*4 + ((sign!=0)+digit)*font_width_xs + ((frac!=0)*font_w
+ 957              		.loc 1 176 0
+ 958 002e 1598     		ldr	r0, [sp, #84]
+ 959 0030 FFF7FEFF 		bl	StrLength
+ 960              	.LVL147:
+ 961 0034 B8F1000F 		cmp	r8, #0
+ 962 0038 0CBF     		ite	eq
+ 963 003a 3346     		moveq	r3, r6
+ 964 003c 731C     		addne	r3, r6, #1
+ 965 003e 03EB8303 		add	r3, r3, r3, lsl #2
+ 966 0042 03EB8003 		add	r3, r3, r0, lsl #2
+ 967 0046 DBB2     		uxtb	r3, r3
+ 968 0048 002F     		cmp	r7, #0
+ 969 004a 33D0     		beq	.L54
+ 970 004c 0220     		movs	r0, #2
+ 971              	.L46:
+ 972              		.loc 1 176 0 is_stmt 0 discriminator 4
+ 973 004e 0344     		add	r3, r3, r0
+ 974 0050 DBB2     		uxtb	r3, r3
+ 975 0052 ED1A     		subs	r5, r5, r3
+ 976 0054 EDB2     		uxtb	r5, r5
+ 977 0056 023D     		subs	r5, r5, #2
+ 978 0058 EDB2     		uxtb	r5, r5
+ 979              	.LVL148:
+ 177:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 178:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	// erase blank space
+ 179:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetDrawColor(u8g2, 0); // erase color
+ 980              		.loc 1 179 0 is_stmt 1 discriminator 4
+ 981 005a 0021     		movs	r1, #0
+ 982 005c 0498     		ldr	r0, [sp, #16]
+ 983 005e FFF7FEFF 		bl	u8g2_SetDrawColor
+ 984              	.LVL149:
+ 985              	.LBB8:
+ 180:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	for( uint8_t n=int_digit-1; n>0; n-- ){
+ 986              		.loc 1 180 0 discriminator 4
+ 987 0062 013C     		subs	r4, r4, #1
+ 988              	.LVL150:
+ 989 0064 E4B2     		uxtb	r4, r4
+ 990              	.LVL151:
+ 991              	.L47:
+ 992              		.loc 1 180 0 is_stmt 0 discriminator 1
+ 993 0066 3CB3     		cbz	r4, .L48
+ 994              	.LBB9:
+ 181:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		if( value >= pow(10, n+frac) ){
+ 995              		.loc 1 181 0 is_stmt 1
+ 996 0068 0598     		ldr	r0, [sp, #20]
+ 997 006a FFF7FEFF 		bl	__aeabi_i2d
+ 998              	.LVL152:
+ 999 006e CDE90201 		strd	r0, [sp, #8]
+ 1000 0072 E019     		adds	r0, r4, r7
+ 1001 0074 FFF7FEFF 		bl	__aeabi_i2d
+ 1002              	.LVL153:
+ 1003 0078 41EC110B 		vmov	d1, r0, r1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 22
+
+
+ 1004 007c 9FED620B 		vldr.64	d0, .L59
+ 1005 0080 FFF7FEFF 		bl	pow
+ 1006              	.LVL154:
+ 1007 0084 53EC102B 		vmov	r2, r3, d0
+ 1008 0088 DDE90201 		ldrd	r0, [sp, #8]
+ 1009 008c FFF7FEFF 		bl	__aeabi_dcmpge
+ 1010              	.LVL155:
+ 1011 0090 90B9     		cbnz	r0, .L48
+ 182:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			break;
+ 183:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}else{
+ 184:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawBox(u8g2, x+str_offset, y, font_width_xs, height );
+ 1012              		.loc 1 184 0 discriminator 2
+ 1013 0092 05EB0B01 		add	r1, r5, fp
+ 1014 0096 CDF800A0 		str	r10, [sp]
+ 1015 009a 0523     		movs	r3, #5
+ 1016 009c 4A46     		mov	r2, r9
+ 1017 009e C9B2     		uxtb	r1, r1
+ 1018 00a0 0498     		ldr	r0, [sp, #16]
+ 1019 00a2 FFF7FEFF 		bl	u8g2_DrawBox
+ 1020              	.LVL156:
+ 185:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width_xs;
+ 1021              		.loc 1 185 0 discriminator 2
+ 1022 00a6 0535     		adds	r5, r5, #5
+ 1023              	.LVL157:
+ 1024 00a8 EDB2     		uxtb	r5, r5
+ 1025              	.LVL158:
+ 186:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			valid_digit--;
+ 1026              		.loc 1 186 0 discriminator 2
+ 1027 00aa 013E     		subs	r6, r6, #1
+ 1028              	.LVL159:
+ 1029 00ac F6B2     		uxtb	r6, r6
+ 1030              	.LVL160:
+ 1031              	.LBE9:
+ 180:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		if( value >= pow(10, n+frac) ){
+ 1032              		.loc 1 180 0 discriminator 2
+ 1033 00ae 013C     		subs	r4, r4, #1
+ 1034              	.LVL161:
+ 1035 00b0 E4B2     		uxtb	r4, r4
+ 1036              	.LVL162:
+ 1037 00b2 D8E7     		b	.L47
+ 1038              	.LVL163:
+ 1039              	.L54:
+ 1040              	.LBE8:
+ 176:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 1041              		.loc 1 176 0
+ 1042 00b4 3846     		mov	r0, r7
+ 1043 00b6 CAE7     		b	.L46
+ 1044              	.LVL164:
+ 1045              	.L48:
+ 187:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}
+ 188:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}
+ 189:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	u8g2_SetDrawColor(u8g2, 1); // default color
+ 1046              		.loc 1 189 0
+ 1047 00b8 0121     		movs	r1, #1
+ 1048 00ba 0498     		ldr	r0, [sp, #16]
+ 1049 00bc FFF7FEFF 		bl	u8g2_SetDrawColor
+ 1050              	.LVL165:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 23
+
+
+ 190:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 191:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	// sign
+ 192:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	if( sign!=0 ){
+ 1051              		.loc 1 192 0
+ 1052 00c0 B8F1000F 		cmp	r8, #0
+ 1053 00c4 56D1     		bne	.L56
+ 1054              	.LVL166:
+ 1055              	.L50:
+ 193:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		// erase previous sign
+ 194:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_SetDrawColor(u8g2, 0); // erase color
+ 195:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawBox(u8g2, x+str_offset, y, font_width_xs, height );
+ 196:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_SetDrawColor(u8g2, 1); // default color
+ 197:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 198:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		if(	value < 0 ){
+ 199:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawStr(u8g2, x+str_offset, y+height-2, "-");
+ 200:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			value = -value;
+ 201:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width_xs;
+ 202:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}else if( value >= 0 ){
+ 203:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawStr(u8g2, x+str_offset, y+height-2, "+");
+ 204:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width_xs;
+ 205:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}
+ 206:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}
+ 207:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 208:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	//int
+ 209:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	if( frac==0 ){
+ 1056              		.loc 1 209 0
+ 1057 00c6 002F     		cmp	r7, #0
+ 1058 00c8 00F08A80 		beq	.L57
+ 1059              	.LBB10:
+ 210:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset, y+height-2, u8g2_u16toa(value, valid_digit) );
+ 211:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}else{
+ 212:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		pow10 = pow(10, frac);
+ 1060              		.loc 1 212 0
+ 1061 00cc 3846     		mov	r0, r7
+ 1062 00ce FFF7FEFF 		bl	__aeabi_ui2d
+ 1063              	.LVL167:
+ 1064 00d2 41EC110B 		vmov	d1, r0, r1
+ 1065 00d6 9FED4C0B 		vldr.64	d0, .L59
+ 1066 00da FFF7FEFF 		bl	pow
+ 1067              	.LVL168:
+ 1068 00de 51EC100B 		vmov	r0, r1, d0
+ 1069 00e2 FFF7FEFF 		bl	__aeabi_d2uiz
+ 1070              	.LVL169:
+ 1071 00e6 1FFA80F8 		uxth	r8, r0
+ 1072              	.LVL170:
+ 213:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		int_value = value / pow10;
+ 1073              		.loc 1 213 0
+ 1074 00ea 059B     		ldr	r3, [sp, #20]
+ 1075 00ec 93FBF8F3 		sdiv	r3, r3, r8
+ 1076              	.LVL171:
+ 214:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset, y+height-2, u8g2_u16toa(int_value, valid_digit-frac) );
+ 1077              		.loc 1 214 0
+ 1078 00f0 05EB0B04 		add	r4, r5, fp
+ 1079 00f4 E4B2     		uxtb	r4, r4
+ 1080 00f6 CA44     		add	r10, r10, r9
+ 1081 00f8 5FFA8AFA 		uxtb	r10, r10
+ 1082 00fc AAF1020A 		sub	r10, r10, #2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 24
+
+
+ 1083 0100 5FFA8AFA 		uxtb	r10, r10
+ 1084 0104 1FFA83F9 		uxth	r9, r3
+ 1085 0108 F61B     		subs	r6, r6, r7
+ 1086              	.LVL172:
+ 1087 010a F6B2     		uxtb	r6, r6
+ 1088 010c 3146     		mov	r1, r6
+ 1089 010e 4846     		mov	r0, r9
+ 1090 0110 FFF7FEFF 		bl	u8x8_u16toa
+ 1091              	.LVL173:
+ 1092 0114 0346     		mov	r3, r0
+ 1093 0116 5246     		mov	r2, r10
+ 1094 0118 2146     		mov	r1, r4
+ 1095 011a 049C     		ldr	r4, [sp, #16]
+ 1096 011c 2046     		mov	r0, r4
+ 1097 011e FFF7FEFF 		bl	u8g2_DrawStr
+ 1098              	.LVL174:
+ 215:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		str_offset = str_offset + (valid_digit-frac)*font_width_xs;
+ 1099              		.loc 1 215 0
+ 1100 0122 06EB8606 		add	r6, r6, r6, lsl #2
+ 1101 0126 55FA86F5 		uxtab	r5, r5, r6
+ 1102              	.LVL175:
+ 1103 012a EDB2     		uxtb	r5, r5
+ 1104              	.LVL176:
+ 216:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 217:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset - ( (font_width_xs>>1)-(font_width_xs>>2) ), y+height-2, ".");
+ 1105              		.loc 1 217 0
+ 1106 012c 0BEB0501 		add	r1, fp, r5
+ 1107 0130 C9B2     		uxtb	r1, r1
+ 1108 0132 0139     		subs	r1, r1, #1
+ 1109 0134 374B     		ldr	r3, .L59+12
+ 1110 0136 5246     		mov	r2, r10
+ 1111 0138 C9B2     		uxtb	r1, r1
+ 1112 013a 2046     		mov	r0, r4
+ 1113 013c FFF7FEFF 		bl	u8g2_DrawStr
+ 1114              	.LVL177:
+ 218:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		str_offset = str_offset + (font_width_xs>>1);
+ 1115              		.loc 1 218 0
+ 1116 0140 0235     		adds	r5, r5, #2
+ 1117              	.LVL178:
+ 219:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 220:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		sub_value = int_value * pow10;
+ 1118              		.loc 1 220 0
+ 1119 0142 19FB08F8 		smulbb	r8, r9, r8
+ 1120              	.LVL179:
+ 221:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		uint8_t frac_value = value - sub_value;
+ 1121              		.loc 1 221 0
+ 1122 0146 9DF81400 		ldrb	r0, [sp, #20]	@ zero_extendqisi2
+ 1123 014a 5FFA88F8 		uxtb	r8, r8
+ 1124              	.LVL180:
+ 1125 014e A0EB0800 		sub	r0, r0, r8
+ 1126              	.LVL181:
+ 222:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 223:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawStr(u8g2, x+str_offset, y+height-2, u8g2_u16toa(frac_value, frac) );
+ 1127              		.loc 1 223 0
+ 1128 0152 5BFA85FB 		uxtab	fp, fp, r5
+ 1129 0156 5FFA8BFB 		uxtb	fp, fp
+ 1130 015a 3946     		mov	r1, r7
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 25
+
+
+ 1131 015c C0B2     		uxtb	r0, r0
+ 1132 015e FFF7FEFF 		bl	u8x8_u16toa
+ 1133              	.LVL182:
+ 1134 0162 0346     		mov	r3, r0
+ 1135 0164 5246     		mov	r2, r10
+ 1136 0166 5946     		mov	r1, fp
+ 1137 0168 2046     		mov	r0, r4
+ 1138 016a FFF7FEFF 		bl	u8g2_DrawStr
+ 1139              	.LVL183:
+ 1140              	.L45:
+ 1141              	.LBE10:
+ 224:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}
+ 225:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** }
+ 1142              		.loc 1 225 0
+ 1143 016e 07B0     		add	sp, sp, #28
+ 1144              	.LCFI13:
+ 1145              		.cfi_remember_state
+ 1146              		.cfi_def_cfa_offset 36
+ 1147              		@ sp needed
+ 1148 0170 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1149              	.LVL184:
+ 1150              	.L56:
+ 1151              	.LCFI14:
+ 1152              		.cfi_restore_state
+ 194:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_DrawBox(u8g2, x+str_offset, y, font_width_xs, height );
+ 1153              		.loc 1 194 0
+ 1154 0174 0021     		movs	r1, #0
+ 1155 0176 DDF81080 		ldr	r8, [sp, #16]
+ 1156 017a 4046     		mov	r0, r8
+ 1157 017c FFF7FEFF 		bl	u8g2_SetDrawColor
+ 1158              	.LVL185:
+ 195:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		u8g2_SetDrawColor(u8g2, 1); // default color
+ 1159              		.loc 1 195 0
+ 1160 0180 05EB0B04 		add	r4, r5, fp
+ 1161              	.LVL186:
+ 1162 0184 E4B2     		uxtb	r4, r4
+ 1163 0186 CDF800A0 		str	r10, [sp]
+ 1164 018a 0523     		movs	r3, #5
+ 1165 018c 4A46     		mov	r2, r9
+ 1166 018e 2146     		mov	r1, r4
+ 1167 0190 4046     		mov	r0, r8
+ 1168 0192 FFF7FEFF 		bl	u8g2_DrawBox
+ 1169              	.LVL187:
+ 196:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 
+ 1170              		.loc 1 196 0
+ 1171 0196 0121     		movs	r1, #1
+ 1172 0198 4046     		mov	r0, r8
+ 1173 019a FFF7FEFF 		bl	u8g2_SetDrawColor
+ 1174              	.LVL188:
+ 198:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			u8g2_DrawStr(u8g2, x+str_offset, y+height-2, "-");
+ 1175              		.loc 1 198 0
+ 1176 019e 059B     		ldr	r3, [sp, #20]
+ 1177 01a0 002B     		cmp	r3, #0
+ 1178 01a2 0CDB     		blt	.L58
+ 203:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width_xs;
+ 1179              		.loc 1 203 0
+ 1180 01a4 09EB0A02 		add	r2, r9, r10
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 26
+
+
+ 1181 01a8 D2B2     		uxtb	r2, r2
+ 1182 01aa 023A     		subs	r2, r2, #2
+ 1183 01ac 1A4B     		ldr	r3, .L59+16
+ 1184 01ae D2B2     		uxtb	r2, r2
+ 1185 01b0 2146     		mov	r1, r4
+ 1186 01b2 0498     		ldr	r0, [sp, #16]
+ 1187 01b4 FFF7FEFF 		bl	u8g2_DrawStr
+ 1188              	.LVL189:
+ 204:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}
+ 1189              		.loc 1 204 0
+ 1190 01b8 0535     		adds	r5, r5, #5
+ 1191              	.LVL190:
+ 1192 01ba EDB2     		uxtb	r5, r5
+ 1193              	.LVL191:
+ 1194 01bc 83E7     		b	.L50
+ 1195              	.L58:
+ 199:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			value = -value;
+ 1196              		.loc 1 199 0
+ 1197 01be 09EB0A02 		add	r2, r9, r10
+ 1198 01c2 D2B2     		uxtb	r2, r2
+ 1199 01c4 023A     		subs	r2, r2, #2
+ 1200 01c6 154B     		ldr	r3, .L59+20
+ 1201 01c8 D2B2     		uxtb	r2, r2
+ 1202 01ca 2146     		mov	r1, r4
+ 1203 01cc 0498     		ldr	r0, [sp, #16]
+ 1204 01ce FFF7FEFF 		bl	u8g2_DrawStr
+ 1205              	.LVL192:
+ 200:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 			str_offset = str_offset + font_width_xs;
+ 1206              		.loc 1 200 0
+ 1207 01d2 059B     		ldr	r3, [sp, #20]
+ 1208 01d4 5B42     		negs	r3, r3
+ 1209 01d6 1BB2     		sxth	r3, r3
+ 1210 01d8 0593     		str	r3, [sp, #20]
+ 1211              	.LVL193:
+ 201:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 		}else if( value >= 0 ){
+ 1212              		.loc 1 201 0
+ 1213 01da 0535     		adds	r5, r5, #5
+ 1214              	.LVL194:
+ 1215 01dc EDB2     		uxtb	r5, r5
+ 1216              	.LVL195:
+ 1217 01de 72E7     		b	.L50
+ 1218              	.L57:
+ 210:/Users/imashio/Electronics/ARM/_Library/draw_Value.c **** 	}else{
+ 1219              		.loc 1 210 0
+ 1220 01e0 5D44     		add	r5, r5, fp
+ 1221              	.LVL196:
+ 1222 01e2 EDB2     		uxtb	r5, r5
+ 1223 01e4 CA44     		add	r10, r10, r9
+ 1224 01e6 5FFA8AFA 		uxtb	r10, r10
+ 1225 01ea 3146     		mov	r1, r6
+ 1226 01ec BDF81400 		ldrh	r0, [sp, #20]
+ 1227 01f0 FFF7FEFF 		bl	u8x8_u16toa
+ 1228              	.LVL197:
+ 1229 01f4 AAF1020A 		sub	r10, r10, #2
+ 1230 01f8 0346     		mov	r3, r0
+ 1231 01fa 5FFA8AF2 		uxtb	r2, r10
+ 1232 01fe 2946     		mov	r1, r5
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 27
+
+
+ 1233 0200 0498     		ldr	r0, [sp, #16]
+ 1234 0202 FFF7FEFF 		bl	u8g2_DrawStr
+ 1235              	.LVL198:
+ 1236 0206 B2E7     		b	.L45
+ 1237              	.L60:
+ 1238              		.align	3
+ 1239              	.L59:
+ 1240 0208 00000000 		.word	0
+ 1241 020c 00002440 		.word	1076101120
+ 1242 0210 00000000 		.word	u8g2_font_5x8_tf
+ 1243 0214 08000000 		.word	.LC2
+ 1244 0218 04000000 		.word	.LC1
+ 1245 021c 00000000 		.word	.LC0
+ 1246              		.cfi_endproc
+ 1247              	.LFE5:
+ 1249              		.section	.rodata.draw_Value.str1.4,"aMS",%progbits,1
+ 1250              		.align	2
+ 1251              	.LC0:
+ 1252 0000 2D00     		.ascii	"-\000"
+ 1253 0002 0000     		.space	2
+ 1254              	.LC1:
+ 1255 0004 2B00     		.ascii	"+\000"
+ 1256 0006 0000     		.space	2
+ 1257              	.LC2:
+ 1258 0008 2E00     		.ascii	".\000"
+ 1259              		.text
+ 1260              	.Letext0:
+ 1261              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 1262              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 1263              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 1264              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ 1265              		.file 6 "<built-in>"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s 			page 28
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 draw_Value.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:18     .text.draw_MeasLabelUnit:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:25     .text.draw_MeasLabelUnit:0000000000000000 draw_MeasLabelUnit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:92     .text.draw_MeasLabelUnit:0000000000000050 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:98     .text.draw_MeasLabel:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:105    .text.draw_MeasLabel:0000000000000000 draw_MeasLabel
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:144    .text.draw_MeasLabel:0000000000000028 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:149    .text.draw_MeasUnit:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:156    .text.draw_MeasUnit:0000000000000000 draw_MeasUnit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:209    .text.draw_MeasUnit:000000000000003c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:218    .text.draw_Value:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:225    .text.draw_Value:0000000000000000 draw_Value
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:551    .text.draw_Value:0000000000000208 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:561    .text.draw_Value_s:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:568    .text.draw_Value_s:0000000000000000 draw_Value_s
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:897    .text.draw_Value_s:0000000000000210 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:907    .text.draw_Value_xs:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:914    .text.draw_Value_xs:0000000000000000 draw_Value_xs
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:1240   .text.draw_Value_xs:0000000000000208 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgOXH9z.s:1250   .rodata.draw_Value.str1.4:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+u8g2_SetFont
+u8g2_DrawStr
+StrLength
+u8g2_font_5x8_tf
+u8g2_font_4x6_tf
+__aeabi_i2d
+__aeabi_dcmpge
+__aeabi_ui2d
+__aeabi_d2uiz
+u8g2_SetDrawColor
+pow
+u8g2_DrawBox
+u8x8_u16toa
+u8g2_font_7x14B_tf
+u8g2_font_6x10_tf

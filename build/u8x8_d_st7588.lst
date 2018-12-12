@@ -1,0 +1,804 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_d_st7588.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_d_st7588_128x64_generic,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	u8x8_d_st7588_128x64_generic:
+  25              	.LFB0:
+  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   u8x8_d_st7588.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   Copyright (c) 2017, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 2
+
+
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   ST7588
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     - has 4 different I2C addresses 
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     - I2C protocol is identical to SSD13xx
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** */
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** #include "u8x8.h"
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** /* function set, bit 2: power down, bit 3: MY, bit 4: MX, bit 5: must be 1 */
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** #define FS (0x020)
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** /* not a real power down for the ST7588... just a display off */
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** static const uint8_t u8x8_d_st7588_128x64_powersave0_seq[] = {
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( FS | 0x00 ),			/* select 00 commands */
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   //U8X8_C( 0x08 ),				/* display off */
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( 0x0c ),				/* display on */
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_END()             			/* end of sequence */
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** };
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** static const uint8_t u8x8_d_st7588_128x64_powersave1_seq[] = {
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( FS | 0x00 ),			/* select 00 commands */
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( 0x08 ),				/* display off */
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   //U8X8_C( 0x0c ),				/* display on */
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_END()             			/* end of sequence */
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** };
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** static uint8_t u8x8_d_st7588_128x64_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_p
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** {
+  27              		.loc 1 69 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 24
+  35              		.cfi_offset 3, -24
+  36              		.cfi_offset 4, -20
+  37              		.cfi_offset 5, -16
+  38              		.cfi_offset 6, -12
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 0546     		mov	r5, r0
+  42 0004 1446     		mov	r4, r2
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   uint8_t x, c;
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   uint8_t *ptr;
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   switch(msg)
+  43              		.loc 1 72 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 3
+
+
+  44 0006 0E29     		cmp	r1, #14
+  45 0008 1CD0     		beq	.L3
+  46 000a 1E46     		mov	r6, r3
+  47 000c 0F29     		cmp	r1, #15
+  48 000e 3ED0     		beq	.L4
+  49 0010 0B29     		cmp	r1, #11
+  50 0012 01D0     		beq	.L17
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   {
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     /* handled by the calling function
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_st7588_128x64_display_info);
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       break;
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     */
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     /* handled by the calling function
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     case U8X8_MSG_DISPLAY_INIT:
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_d_helper_display_init(u8x8);
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_st7588_128x64_init_seq);    
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       break;
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     */
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       if ( arg_int == 0 )
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_st7588_128x64_powersave0_seq);
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       else
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_st7588_128x64_powersave1_seq);
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       /* restore orientation */
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       if ( u8x8->x_offset == 0 )
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendCmd(u8x8, FS );	/* select 00 commands */
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       else
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendCmd(u8x8, FS ^ 0x018 );	/* select 00 commands */
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       break;
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** #ifdef U8X8_WITH_SET_CONTRAST
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     case U8X8_MSG_DISPLAY_SET_CONTRAST:
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_StartTransfer(u8x8);
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendCmd(u8x8, FS );
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendArg(u8x8, 4 | (arg_int>>7) );
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendCmd(u8x8, FS | 1);
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendArg(u8x8, 0x080 | arg_int );
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       /* restore orientation */
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       if ( u8x8->x_offset == 0 )
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendCmd(u8x8, FS );	/* select 00 commands */
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       else
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendCmd(u8x8, FS ^ 0x018 );	/* select 00 commands */
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_EndTransfer(u8x8);
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       break;
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** #endif
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     case U8X8_MSG_DISPLAY_DRAW_TILE:
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_StartTransfer(u8x8);
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       x *= 8;
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       x += u8x8->x_offset;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 4
+
+
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       if ( u8x8->x_offset == 0 )
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendCmd(u8x8, FS );	/* select 00 commands */
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       else
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendCmd(u8x8, FS ^ 0x018 );	/* select 00 commands */
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendCmd(u8x8, 0x040 | (((u8x8_tile_t *)arg_ptr)->y_pos));
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendCmd(u8x8, 0x0e0 | ((x&15)));
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendCmd(u8x8, 0x0f0 | (x>>4) );
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       do
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       {
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	c = ((u8x8_tile_t *)arg_ptr)->cnt;
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendData(u8x8, c*8, ptr); 	/* note: SendData can not handle more than 255 bytes */
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	arg_int--;
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       } while( arg_int > 0 );
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_EndTransfer(u8x8);
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       break;
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     default:
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       return 0;
+  51              		.loc 1 145 0
+  52 0014 0020     		movs	r0, #0
+  53              	.LVL1:
+  54 0016 34E0     		b	.L2
+  55              	.LVL2:
+  56              	.L17:
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_st7588_128x64_powersave0_seq);
+  57              		.loc 1 86 0
+  58 0018 52B9     		cbnz	r2, .L6
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       else
+  59              		.loc 1 87 0
+  60 001a 3849     		ldr	r1, .L18
+  61              	.LVL3:
+  62 001c FFF7FEFF 		bl	u8x8_cad_SendSequence
+  63              	.LVL4:
+  64              	.L7:
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendCmd(u8x8, FS );	/* select 00 commands */
+  65              		.loc 1 92 0
+  66 0020 AB7F     		ldrb	r3, [r5, #30]	@ zero_extendqisi2
+  67 0022 4BB9     		cbnz	r3, .L8
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       else
+  68              		.loc 1 93 0
+  69 0024 2021     		movs	r1, #32
+  70 0026 2846     		mov	r0, r5
+  71 0028 FFF7FEFF 		bl	u8x8_cad_SendCmd
+  72              	.LVL5:
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   }
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   return 1;
+  73              		.loc 1 147 0
+  74 002c 0120     		movs	r0, #1
+  75 002e 28E0     		b	.L2
+  76              	.LVL6:
+  77              	.L6:
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 5
+
+
+  78              		.loc 1 89 0
+  79 0030 3349     		ldr	r1, .L18+4
+  80              	.LVL7:
+  81 0032 FFF7FEFF 		bl	u8x8_cad_SendSequence
+  82              	.LVL8:
+  83 0036 F3E7     		b	.L7
+  84              	.L8:
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+  85              		.loc 1 95 0
+  86 0038 3821     		movs	r1, #56
+  87 003a 2846     		mov	r0, r5
+  88 003c FFF7FEFF 		bl	u8x8_cad_SendCmd
+  89              	.LVL9:
+  90              		.loc 1 147 0
+  91 0040 0120     		movs	r0, #1
+  92 0042 1EE0     		b	.L2
+  93              	.LVL10:
+  94              	.L3:
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+  95              		.loc 1 101 0
+  96 0044 FFF7FEFF 		bl	u8x8_cad_StartTransfer
+  97              	.LVL11:
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendArg(u8x8, 4 | (arg_int>>7) );
+  98              		.loc 1 103 0
+  99 0048 2021     		movs	r1, #32
+ 100 004a 2846     		mov	r0, r5
+ 101 004c FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 102              	.LVL12:
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendCmd(u8x8, FS | 1);
+ 103              		.loc 1 104 0
+ 104 0050 E109     		lsrs	r1, r4, #7
+ 105 0052 41F00401 		orr	r1, r1, #4
+ 106 0056 2846     		mov	r0, r5
+ 107 0058 FFF7FEFF 		bl	u8x8_cad_SendArg
+ 108              	.LVL13:
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendArg(u8x8, 0x080 | arg_int );
+ 109              		.loc 1 105 0
+ 110 005c 2121     		movs	r1, #33
+ 111 005e 2846     		mov	r0, r5
+ 112 0060 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 113              	.LVL14:
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+ 114              		.loc 1 106 0
+ 115 0064 44F08001 		orr	r1, r4, #128
+ 116 0068 2846     		mov	r0, r5
+ 117 006a FFF7FEFF 		bl	u8x8_cad_SendArg
+ 118              	.LVL15:
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendCmd(u8x8, FS );	/* select 00 commands */
+ 119              		.loc 1 109 0
+ 120 006e AB7F     		ldrb	r3, [r5, #30]	@ zero_extendqisi2
+ 121 0070 43B9     		cbnz	r3, .L9
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       else
+ 122              		.loc 1 110 0
+ 123 0072 2021     		movs	r1, #32
+ 124 0074 2846     		mov	r0, r5
+ 125 0076 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 126              	.LVL16:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 6
+
+
+ 127              	.L10:
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       break;
+ 128              		.loc 1 113 0
+ 129 007a 2846     		mov	r0, r5
+ 130 007c FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 131              	.LVL17:
+ 132              		.loc 1 147 0
+ 133 0080 0120     		movs	r0, #1
+ 134              	.LVL18:
+ 135              	.L2:
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** }
+ 136              		.loc 1 148 0
+ 137 0082 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 138              	.LVL19:
+ 139              	.L9:
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_EndTransfer(u8x8);
+ 140              		.loc 1 112 0
+ 141 0084 3821     		movs	r1, #56
+ 142 0086 2846     		mov	r0, r5
+ 143 0088 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 144              	.LVL20:
+ 145 008c F5E7     		b	.L10
+ 146              	.LVL21:
+ 147              	.L4:
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+ 148              		.loc 1 118 0
+ 149 008e FFF7FEFF 		bl	u8x8_cad_StartTransfer
+ 150              	.LVL22:
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       x *= 8;
+ 151              		.loc 1 119 0
+ 152 0092 7779     		ldrb	r7, [r6, #5]	@ zero_extendqisi2
+ 153              	.LVL23:
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+ 154              		.loc 1 120 0
+ 155 0094 FF00     		lsls	r7, r7, #3
+ 156              	.LVL24:
+ 157 0096 FFB2     		uxtb	r7, r7
+ 158              	.LVL25:
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     
+ 159              		.loc 1 122 0
+ 160 0098 AB7F     		ldrb	r3, [r5, #30]	@ zero_extendqisi2
+ 161 009a 1F44     		add	r7, r7, r3
+ 162              	.LVL26:
+ 163 009c FFB2     		uxtb	r7, r7
+ 164              	.LVL27:
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	u8x8_cad_SendCmd(u8x8, FS );	/* select 00 commands */
+ 165              		.loc 1 124 0
+ 166 009e 3BBB     		cbnz	r3, .L11
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       else
+ 167              		.loc 1 125 0
+ 168 00a0 2021     		movs	r1, #32
+ 169 00a2 2846     		mov	r0, r5
+ 170 00a4 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 171              	.LVL28:
+ 172              	.L12:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendCmd(u8x8, 0x0e0 | ((x&15)));
+ 173              		.loc 1 129 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 7
+
+
+ 174 00a8 B179     		ldrb	r1, [r6, #6]	@ zero_extendqisi2
+ 175 00aa 41F04001 		orr	r1, r1, #64
+ 176 00ae 2846     		mov	r0, r5
+ 177 00b0 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 178              	.LVL29:
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendCmd(u8x8, 0x0f0 | (x>>4) );
+ 179              		.loc 1 130 0
+ 180 00b4 07F00F01 		and	r1, r7, #15
+ 181 00b8 41F0E001 		orr	r1, r1, #224
+ 182 00bc 2846     		mov	r0, r5
+ 183 00be FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 184              	.LVL30:
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     
+ 185              		.loc 1 131 0
+ 186 00c2 3909     		lsrs	r1, r7, #4
+ 187 00c4 41F0F001 		orr	r1, r1, #240
+ 188 00c8 2846     		mov	r0, r5
+ 189 00ca FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 190              	.LVL31:
+ 191              	.L13:
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
+ 192              		.loc 1 136 0 discriminator 1
+ 193 00ce 3179     		ldrb	r1, [r6, #4]	@ zero_extendqisi2
+ 194              	.LVL32:
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	arg_int--;
+ 195              		.loc 1 138 0 discriminator 1
+ 196 00d0 C900     		lsls	r1, r1, #3
+ 197              	.LVL33:
+ 198 00d2 3268     		ldr	r2, [r6]
+ 199 00d4 01F0F801 		and	r1, r1, #248
+ 200 00d8 2846     		mov	r0, r5
+ 201 00da FFF7FEFF 		bl	u8x8_cad_SendData
+ 202              	.LVL34:
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       } while( arg_int > 0 );
+ 203              		.loc 1 139 0 discriminator 1
+ 204 00de 013C     		subs	r4, r4, #1
+ 205              	.LVL35:
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       
+ 206              		.loc 1 140 0 discriminator 1
+ 207 00e0 14F0FF04 		ands	r4, r4, #255
+ 208              	.LVL36:
+ 209 00e4 F3D1     		bne	.L13
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       break;
+ 210              		.loc 1 142 0
+ 211 00e6 2846     		mov	r0, r5
+ 212 00e8 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 213              	.LVL37:
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** }
+ 214              		.loc 1 147 0
+ 215 00ec 0120     		movs	r0, #1
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     default:
+ 216              		.loc 1 143 0
+ 217 00ee C8E7     		b	.L2
+ 218              	.LVL38:
+ 219              	.L11:
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 	
+ 220              		.loc 1 127 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 8
+
+
+ 221 00f0 3821     		movs	r1, #56
+ 222 00f2 2846     		mov	r0, r5
+ 223 00f4 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 224              	.LVL39:
+ 225 00f8 D6E7     		b	.L12
+ 226              	.L19:
+ 227 00fa 00BF     		.align	2
+ 228              	.L18:
+ 229 00fc 00000000 		.word	.LANCHOR0
+ 230 0100 00000000 		.word	.LANCHOR1
+ 231              		.cfi_endproc
+ 232              	.LFE0:
+ 234              		.section	.text.u8x8_d_st7588_jlx12864,"ax",%progbits
+ 235              		.align	1
+ 236              		.global	u8x8_d_st7588_jlx12864
+ 237              		.syntax unified
+ 238              		.thumb
+ 239              		.thumb_func
+ 240              		.fpu fpv4-sp-d16
+ 242              	u8x8_d_st7588_jlx12864:
+ 243              	.LFB1:
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** /*=============================================*/
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** static const u8x8_display_info_t u8x8_st7588_128x64_display_info =
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** {
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* chip_enable_level = */ 0,
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* chip_disable_level = */ 1,
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* post_chip_enable_wait_ns = */ 150,
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* pre_chip_disable_wait_ns = */ 30,
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* reset_pulse_width_ms = */ 5, 	
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* post_reset_wait_ms = */ 5, 		/**/
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* sda_setup_time_ns = */ 60,		/* */
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* sck_pulse_width_ns = */ 60,	/*  */
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* sck_clock_hz = */ 4000000UL,	/* since Arduino 1.6.0, the SPI bus speed in Hz. Should be  10000
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* spi_mode = */ 0,		/* active high, rising edge */
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* i2c_bus_clock_100kHz = */ 4,	/* 400KHz */
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* data_setup_time_ns = */ 80,
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* write_pulse_width_ns = */ 50,	
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* tile_width = */ 16,
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* tile_hight = */ 8,
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* default_x_offset = */ 0,	/* must be 0, because this is checked also for normal mode */
+ 171:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* flipmode_x_offset = */ 4,		
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* pixel_width = */ 128,
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   /* pixel_height = */ 64
+ 174:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** };
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 177:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 178:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** static const uint8_t u8x8_d_st7588_128x64_init_seq[] = {
+ 179:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     
+ 180:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ 181:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 182:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( FS | 0x03 ),			/* select 11 commands */
+ 183:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( 0x03 ),				/* software reset */
+ 184:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 9
+
+
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( FS | 0x00 ),			/* select 00 commands */
+ 186:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( 0x08 ),				/* display off */
+ 187:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   //U8X8_C( 0x0c ),				/* display on */
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( FS | 0x01 ),			/* select 01 commands */
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( 0x08 ),				/* display confguration */
+ 191:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( 0x12 ),				/* bias 1/9 */
+ 192:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( 0x8f ),				/* Vop, lower 7 bits */
+ 193:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( FS | 0x00 ),			/* select 00 commands */
+ 195:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( 0x05),				/* Bit 0 contains high/low range for Vop */
+ 196:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   
+ 197:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   
+ 198:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( FS | 0x03 ),			/* select 11 commands */
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( 0x0b),				/* Frame Rate: 73 Hz */
+ 200:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   
+ 201:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   
+ 202:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     
+ 203:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 204:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_END()             			/* end of sequence */
+ 205:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** };
+ 206:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 207:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 208:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** static const uint8_t u8x8_d_st7588_jlx12864_flip0_seq[] = {
+ 209:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ 210:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( FS ),					/* normal mode */
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 212:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_END()             			/* end of sequence */
+ 213:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** };
+ 214:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 215:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** static const uint8_t u8x8_d_st7588_jlx12864_flip1_seq[] = {
+ 216:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ 217:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_C( FS ^ 0x018 ),					/* normal mode */
+ 218:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 219:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   U8X8_END()             			/* end of sequence */
+ 220:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** };
+ 221:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 222:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** 
+ 223:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** uint8_t u8x8_d_st7588_jlx12864(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 224:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** {
+ 244              		.loc 1 224 0
+ 245              		.cfi_startproc
+ 246              		@ args = 0, pretend = 0, frame = 0
+ 247              		@ frame_needed = 0, uses_anonymous_args = 0
+ 248              	.LVL40:
+ 249 0000 70B5     		push	{r4, r5, r6, lr}
+ 250              	.LCFI1:
+ 251              		.cfi_def_cfa_offset 16
+ 252              		.cfi_offset 4, -16
+ 253              		.cfi_offset 5, -12
+ 254              		.cfi_offset 6, -8
+ 255              		.cfi_offset 14, -4
+ 256 0002 0546     		mov	r5, r0
+ 257 0004 0C46     		mov	r4, r1
+ 258 0006 1646     		mov	r6, r2
+ 225:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   if ( u8x8_d_st7588_128x64_generic(u8x8, msg, arg_int, arg_ptr) != 0 )
+ 259              		.loc 1 225 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 10
+
+
+ 260 0008 FFF7FEFF 		bl	u8x8_d_st7588_128x64_generic
+ 261              	.LVL41:
+ 262 000c 58BB     		cbnz	r0, .L25
+ 263 000e 0346     		mov	r3, r0
+ 226:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     return 1;
+ 227:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   if ( msg == U8X8_MSG_DISPLAY_SETUP_MEMORY )
+ 264              		.loc 1 227 0
+ 265 0010 092C     		cmp	r4, #9
+ 266 0012 0DD0     		beq	.L27
+ 228:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   {
+ 229:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     u8x8_SetI2CAddress(u8x8, 0x07e);		/* the JLX12864 has 0x07e as a default address for I2C */
+ 230:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     u8x8_d_helper_display_setup_memory(u8x8, &u8x8_st7588_128x64_display_info);
+ 231:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     return 1;
+ 232:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   }
+ 233:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   else if ( msg == U8X8_MSG_DISPLAY_INIT )
+ 267              		.loc 1 233 0
+ 268 0014 0A2C     		cmp	r4, #10
+ 269 0016 14D0     		beq	.L28
+ 234:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   {
+ 235:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     u8x8_d_helper_display_init(u8x8);
+ 236:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     u8x8_cad_SendSequence(u8x8, u8x8_d_st7588_128x64_init_seq);    
+ 237:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     return 1;
+ 238:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   }
+ 239:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   else if  ( msg == U8X8_MSG_DISPLAY_SET_FLIP_MODE )
+ 270              		.loc 1 239 0
+ 271 0018 0D2C     		cmp	r4, #13
+ 272 001a 25D1     		bne	.L21
+ 240:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   {
+ 241:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     if ( arg_int == 0 )
+ 273              		.loc 1 241 0
+ 274 001c D6B1     		cbz	r6, .L29
+ 242:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     {
+ 243:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_st7588_jlx12864_flip0_seq);
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8->x_offset = u8x8->display_info->default_x_offset;
+ 245:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     }
+ 246:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     else
+ 247:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     {
+ 248:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_st7588_jlx12864_flip1_seq);
+ 275              		.loc 1 248 0
+ 276 001e 1349     		ldr	r1, .L30
+ 277 0020 2846     		mov	r0, r5
+ 278 0022 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 279              	.LVL42:
+ 249:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
+ 280              		.loc 1 249 0
+ 281 0026 2B68     		ldr	r3, [r5]
+ 282 0028 DB7C     		ldrb	r3, [r3, #19]	@ zero_extendqisi2
+ 283 002a AB77     		strb	r3, [r5, #30]
+ 250:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     }
+ 251:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     return 1;
+ 284              		.loc 1 251 0
+ 285 002c 0123     		movs	r3, #1
+ 286 002e 1BE0     		b	.L21
+ 287              	.L27:
+ 229:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     u8x8_d_helper_display_setup_memory(u8x8, &u8x8_st7588_128x64_display_info);
+ 288              		.loc 1 229 0
+ 289 0030 7E23     		movs	r3, #126
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 11
+
+
+ 290 0032 85F82030 		strb	r3, [r5, #32]
+ 230:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     return 1;
+ 291              		.loc 1 230 0
+ 292 0036 0E49     		ldr	r1, .L30+4
+ 293 0038 2846     		mov	r0, r5
+ 294 003a FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
+ 295              	.LVL43:
+ 231:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   }
+ 296              		.loc 1 231 0
+ 297 003e 0123     		movs	r3, #1
+ 298 0040 12E0     		b	.L21
+ 299              	.L28:
+ 235:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     u8x8_cad_SendSequence(u8x8, u8x8_d_st7588_128x64_init_seq);    
+ 300              		.loc 1 235 0
+ 301 0042 2846     		mov	r0, r5
+ 302 0044 FFF7FEFF 		bl	u8x8_d_helper_display_init
+ 303              	.LVL44:
+ 236:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     return 1;
+ 304              		.loc 1 236 0
+ 305 0048 0A49     		ldr	r1, .L30+8
+ 306 004a 2846     		mov	r0, r5
+ 307 004c FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 308              	.LVL45:
+ 237:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   }
+ 309              		.loc 1 237 0
+ 310 0050 0123     		movs	r3, #1
+ 311 0052 09E0     		b	.L21
+ 312              	.L29:
+ 243:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****       u8x8->x_offset = u8x8->display_info->default_x_offset;
+ 313              		.loc 1 243 0
+ 314 0054 0849     		ldr	r1, .L30+12
+ 315 0056 2846     		mov	r0, r5
+ 316 0058 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 317              	.LVL46:
+ 244:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****     }
+ 318              		.loc 1 244 0
+ 319 005c 2B68     		ldr	r3, [r5]
+ 320 005e 9B7C     		ldrb	r3, [r3, #18]	@ zero_extendqisi2
+ 321 0060 AB77     		strb	r3, [r5, #30]
+ 322              		.loc 1 251 0
+ 323 0062 0123     		movs	r3, #1
+ 324 0064 00E0     		b	.L21
+ 325              	.L25:
+ 226:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   if ( msg == U8X8_MSG_DISPLAY_SETUP_MEMORY )
+ 326              		.loc 1 226 0
+ 327 0066 0123     		movs	r3, #1
+ 328              	.L21:
+ 252:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   }
+ 253:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c ****   return 0;
+ 254:/Users/imashio/Electronics/ARM/_Library/u8x8_d_st7588.c **** }
+ 329              		.loc 1 254 0
+ 330 0068 1846     		mov	r0, r3
+ 331 006a 70BD     		pop	{r4, r5, r6, pc}
+ 332              	.LVL47:
+ 333              	.L31:
+ 334              		.align	2
+ 335              	.L30:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 12
+
+
+ 336 006c 00000000 		.word	.LANCHOR5
+ 337 0070 00000000 		.word	.LANCHOR2
+ 338 0074 00000000 		.word	.LANCHOR3
+ 339 0078 00000000 		.word	.LANCHOR4
+ 340              		.cfi_endproc
+ 341              	.LFE1:
+ 343              		.section	.rodata.u8x8_d_st7588_128x64_init_seq,"a",%progbits
+ 344              		.align	2
+ 345              		.set	.LANCHOR3,. + 0
+ 348              	u8x8_d_st7588_128x64_init_seq:
+ 349 0000 18       		.byte	24
+ 350 0001 15       		.byte	21
+ 351 0002 23       		.byte	35
+ 352 0003 15       		.byte	21
+ 353 0004 03       		.byte	3
+ 354 0005 15       		.byte	21
+ 355 0006 20       		.byte	32
+ 356 0007 15       		.byte	21
+ 357 0008 08       		.byte	8
+ 358 0009 15       		.byte	21
+ 359 000a 21       		.byte	33
+ 360 000b 15       		.byte	21
+ 361 000c 08       		.byte	8
+ 362 000d 15       		.byte	21
+ 363 000e 12       		.byte	18
+ 364 000f 15       		.byte	21
+ 365 0010 8F       		.byte	-113
+ 366 0011 15       		.byte	21
+ 367 0012 20       		.byte	32
+ 368 0013 15       		.byte	21
+ 369 0014 05       		.byte	5
+ 370 0015 15       		.byte	21
+ 371 0016 23       		.byte	35
+ 372 0017 15       		.byte	21
+ 373 0018 0B       		.byte	11
+ 374 0019 19       		.byte	25
+ 375 001a FF       		.byte	-1
+ 376              		.section	.rodata.u8x8_d_st7588_128x64_powersave0_seq,"a",%progbits
+ 377              		.align	2
+ 378              		.set	.LANCHOR0,. + 0
+ 381              	u8x8_d_st7588_128x64_powersave0_seq:
+ 382 0000 18       		.byte	24
+ 383 0001 15       		.byte	21
+ 384 0002 20       		.byte	32
+ 385 0003 15       		.byte	21
+ 386 0004 0C       		.byte	12
+ 387 0005 19       		.byte	25
+ 388 0006 FF       		.byte	-1
+ 389              		.section	.rodata.u8x8_d_st7588_128x64_powersave1_seq,"a",%progbits
+ 390              		.align	2
+ 391              		.set	.LANCHOR1,. + 0
+ 394              	u8x8_d_st7588_128x64_powersave1_seq:
+ 395 0000 18       		.byte	24
+ 396 0001 15       		.byte	21
+ 397 0002 20       		.byte	32
+ 398 0003 15       		.byte	21
+ 399 0004 08       		.byte	8
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 13
+
+
+ 400 0005 19       		.byte	25
+ 401 0006 FF       		.byte	-1
+ 402              		.section	.rodata.u8x8_d_st7588_jlx12864_flip0_seq,"a",%progbits
+ 403              		.align	2
+ 404              		.set	.LANCHOR4,. + 0
+ 407              	u8x8_d_st7588_jlx12864_flip0_seq:
+ 408 0000 18       		.byte	24
+ 409 0001 15       		.byte	21
+ 410 0002 20       		.byte	32
+ 411 0003 19       		.byte	25
+ 412 0004 FF       		.byte	-1
+ 413              		.section	.rodata.u8x8_d_st7588_jlx12864_flip1_seq,"a",%progbits
+ 414              		.align	2
+ 415              		.set	.LANCHOR5,. + 0
+ 418              	u8x8_d_st7588_jlx12864_flip1_seq:
+ 419 0000 18       		.byte	24
+ 420 0001 15       		.byte	21
+ 421 0002 38       		.byte	56
+ 422 0003 19       		.byte	25
+ 423 0004 FF       		.byte	-1
+ 424              		.section	.rodata.u8x8_st7588_128x64_display_info,"a",%progbits
+ 425              		.align	2
+ 426              		.set	.LANCHOR2,. + 0
+ 429              	u8x8_st7588_128x64_display_info:
+ 430 0000 00       		.byte	0
+ 431 0001 01       		.byte	1
+ 432 0002 96       		.byte	-106
+ 433 0003 1E       		.byte	30
+ 434 0004 05       		.byte	5
+ 435 0005 05       		.byte	5
+ 436 0006 3C       		.byte	60
+ 437 0007 3C       		.byte	60
+ 438 0008 00093D00 		.word	4000000
+ 439 000c 00       		.byte	0
+ 440 000d 04       		.byte	4
+ 441 000e 50       		.byte	80
+ 442 000f 32       		.byte	50
+ 443 0010 10       		.byte	16
+ 444 0011 08       		.byte	8
+ 445 0012 00       		.byte	0
+ 446 0013 04       		.byte	4
+ 447 0014 8000     		.short	128
+ 448 0016 4000     		.short	64
+ 449              		.text
+ 450              	.Letext0:
+ 451              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 452              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 453              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_d_st7588.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:18     .text.u8x8_d_st7588_128x64_generic:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:24     .text.u8x8_d_st7588_128x64_generic:0000000000000000 u8x8_d_st7588_128x64_generic
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:229    .text.u8x8_d_st7588_128x64_generic:00000000000000fc $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:235    .text.u8x8_d_st7588_jlx12864:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:242    .text.u8x8_d_st7588_jlx12864:0000000000000000 u8x8_d_st7588_jlx12864
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:336    .text.u8x8_d_st7588_jlx12864:000000000000006c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:344    .rodata.u8x8_d_st7588_128x64_init_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:348    .rodata.u8x8_d_st7588_128x64_init_seq:0000000000000000 u8x8_d_st7588_128x64_init_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:377    .rodata.u8x8_d_st7588_128x64_powersave0_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:381    .rodata.u8x8_d_st7588_128x64_powersave0_seq:0000000000000000 u8x8_d_st7588_128x64_powersave0_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:390    .rodata.u8x8_d_st7588_128x64_powersave1_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:394    .rodata.u8x8_d_st7588_128x64_powersave1_seq:0000000000000000 u8x8_d_st7588_128x64_powersave1_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:403    .rodata.u8x8_d_st7588_jlx12864_flip0_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:407    .rodata.u8x8_d_st7588_jlx12864_flip0_seq:0000000000000000 u8x8_d_st7588_jlx12864_flip0_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:414    .rodata.u8x8_d_st7588_jlx12864_flip1_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:418    .rodata.u8x8_d_st7588_jlx12864_flip1_seq:0000000000000000 u8x8_d_st7588_jlx12864_flip1_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:425    .rodata.u8x8_st7588_128x64_display_info:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKn7VQm.s:429    .rodata.u8x8_st7588_128x64_display_info:0000000000000000 u8x8_st7588_128x64_display_info
+
+UNDEFINED SYMBOLS
+u8x8_cad_SendSequence
+u8x8_cad_SendCmd
+u8x8_cad_StartTransfer
+u8x8_cad_SendArg
+u8x8_cad_EndTransfer
+u8x8_cad_SendData
+u8x8_d_helper_display_setup_memory
+u8x8_d_helper_display_init

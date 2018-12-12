@@ -1,0 +1,548 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8g2_buffer.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8g2_send_tile_row,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	u8g2_send_tile_row:
+  25              	.LFB1:
+  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** /* 
+   2:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   u8g2_buffer.c 
+   4:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+   5:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  32:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s 			page 2
+
+
+  33:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  34:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** */
+  35:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  36:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** #include "u8g2.h"
+  37:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** #include <string.h>
+  38:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  39:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** /*============================================*/
+  40:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** void u8g2_ClearBuffer(u8g2_t *u8g2)
+  41:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** {
+  42:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   size_t cnt;
+  43:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   cnt = u8g2_GetU8x8(u8g2)->display_info->tile_width;
+  44:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   cnt *= u8g2->tile_buf_height;
+  45:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   cnt *= 8;
+  46:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   memset(u8g2->tile_buf_ptr, 0, cnt);
+  47:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** }
+  48:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  49:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** /*============================================*/
+  50:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** static void u8g2_send_tile_row(u8g2_t *u8g2, uint8_t src_tile_row, uint8_t dest_tile_row)
+  52:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** {
+  27              		.loc 1 52 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 10B5     		push	{r4, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 4, -8
+  36              		.cfi_offset 14, -4
+  37 0002 82B0     		sub	sp, sp, #8
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 16
+  53:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   uint8_t *ptr;
+  54:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   uint16_t offset;
+  55:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   uint8_t w;
+  56:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   
+  57:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   w = u8g2_GetU8x8(u8g2)->display_info->tile_width;
+  40              		.loc 1 57 0
+  41 0004 0368     		ldr	r3, [r0]
+  42 0006 1B7C     		ldrb	r3, [r3, #16]	@ zero_extendqisi2
+  43              	.LVL1:
+  58:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   offset = src_tile_row;
+  59:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   ptr = u8g2->tile_buf_ptr;
+  44              		.loc 1 59 0
+  45 0008 446B     		ldr	r4, [r0, #52]
+  46              	.LVL2:
+  60:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   offset *= w;
+  47              		.loc 1 60 0
+  48 000a 03FB01F1 		mul	r1, r3, r1
+  49              	.LVL3:
+  61:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   offset *= 8;
+  50              		.loc 1 61 0
+  51 000e C900     		lsls	r1, r1, #3
+  52              	.LVL4:
+  53 0010 89B2     		uxth	r1, r1
+  54              	.LVL5:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s 			page 3
+
+
+  62:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   ptr += offset;
+  55              		.loc 1 62 0
+  56 0012 2144     		add	r1, r1, r4
+  57              	.LVL6:
+  63:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   u8x8_DrawTile(u8g2_GetU8x8(u8g2), 0, dest_tile_row, w, ptr);
+  58              		.loc 1 63 0
+  59 0014 0091     		str	r1, [sp]
+  60 0016 0021     		movs	r1, #0
+  61              	.LVL7:
+  62 0018 FFF7FEFF 		bl	u8x8_DrawTile
+  63              	.LVL8:
+  64:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** }
+  64              		.loc 1 64 0
+  65 001c 02B0     		add	sp, sp, #8
+  66              	.LCFI2:
+  67              		.cfi_def_cfa_offset 8
+  68              		@ sp needed
+  69 001e 10BD     		pop	{r4, pc}
+  70              		.cfi_endproc
+  71              	.LFE1:
+  73              		.section	.text.u8g2_send_buffer,"ax",%progbits
+  74              		.align	1
+  75              		.syntax unified
+  76              		.thumb
+  77              		.thumb_func
+  78              		.fpu fpv4-sp-d16
+  80              	u8g2_send_buffer:
+  81              	.LFB2:
+  65:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  66:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** /* 
+  67:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   write the buffer to the display RAM. 
+  68:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   For most displays, this will make the content visible to the user.
+  69:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   Some displays (like the SSD1606) require a u8x8_RefreshDisplay()
+  70:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** */
+  71:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** static void u8g2_send_buffer(u8g2_t *u8g2) U8X8_NOINLINE;
+  72:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** static void u8g2_send_buffer(u8g2_t *u8g2)
+  73:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** {
+  82              		.loc 1 73 0
+  83              		.cfi_startproc
+  84              		@ args = 0, pretend = 0, frame = 0
+  85              		@ frame_needed = 0, uses_anonymous_args = 0
+  86              	.LVL9:
+  87 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  88              	.LCFI3:
+  89              		.cfi_def_cfa_offset 24
+  90              		.cfi_offset 4, -24
+  91              		.cfi_offset 5, -20
+  92              		.cfi_offset 6, -16
+  93              		.cfi_offset 7, -12
+  94              		.cfi_offset 8, -8
+  95              		.cfi_offset 14, -4
+  96 0004 0646     		mov	r6, r0
+  97              	.LVL10:
+  74:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   uint8_t src_row;
+  75:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   uint8_t src_max;
+  76:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   uint8_t dest_row;
+  77:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   uint8_t dest_max;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s 			page 4
+
+
+  78:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  79:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   src_row = 0;
+  80:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   src_max = u8g2->tile_buf_height;
+  98              		.loc 1 80 0
+  99 0006 90F83870 		ldrb	r7, [r0, #56]	@ zero_extendqisi2
+ 100              	.LVL11:
+  81:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   dest_row = u8g2->tile_curr_row;
+ 101              		.loc 1 81 0
+ 102 000a 90F83950 		ldrb	r5, [r0, #57]	@ zero_extendqisi2
+ 103              	.LVL12:
+  82:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   dest_max = u8g2_GetU8x8(u8g2)->display_info->tile_height;
+ 104              		.loc 1 82 0
+ 105 000e 0368     		ldr	r3, [r0]
+ 106 0010 93F81180 		ldrb	r8, [r3, #17]	@ zero_extendqisi2
+ 107              	.LVL13:
+  79:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   src_max = u8g2->tile_buf_height;
+ 108              		.loc 1 79 0
+ 109 0014 0024     		movs	r4, #0
+ 110              	.LVL14:
+ 111              	.L5:
+  83:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   
+  84:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   do
+  85:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   {
+  86:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     u8g2_send_tile_row(u8g2, src_row, dest_row);
+ 112              		.loc 1 86 0 discriminator 2
+ 113 0016 2A46     		mov	r2, r5
+ 114 0018 2146     		mov	r1, r4
+ 115 001a 3046     		mov	r0, r6
+ 116 001c FFF7FEFF 		bl	u8g2_send_tile_row
+ 117              	.LVL15:
+  87:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     src_row++;
+ 118              		.loc 1 87 0 discriminator 2
+ 119 0020 0134     		adds	r4, r4, #1
+ 120              	.LVL16:
+ 121 0022 E4B2     		uxtb	r4, r4
+ 122              	.LVL17:
+  88:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     dest_row++;
+ 123              		.loc 1 88 0 discriminator 2
+ 124 0024 0135     		adds	r5, r5, #1
+ 125              	.LVL18:
+ 126 0026 EDB2     		uxtb	r5, r5
+ 127              	.LVL19:
+  89:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   } while( src_row < src_max && dest_row < dest_max );
+ 128              		.loc 1 89 0 discriminator 2
+ 129 0028 A742     		cmp	r7, r4
+ 130 002a 01D9     		bls	.L3
+ 131              		.loc 1 89 0 is_stmt 0 discriminator 1
+ 132 002c A845     		cmp	r8, r5
+ 133 002e F2D8     		bhi	.L5
+ 134              	.L3:
+  90:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** }
+ 135              		.loc 1 90 0 is_stmt 1
+ 136 0030 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 137              		.cfi_endproc
+ 138              	.LFE2:
+ 140              		.section	.text.u8g2_ClearBuffer,"ax",%progbits
+ 141              		.align	1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s 			page 5
+
+
+ 142              		.global	u8g2_ClearBuffer
+ 143              		.syntax unified
+ 144              		.thumb
+ 145              		.thumb_func
+ 146              		.fpu fpv4-sp-d16
+ 148              	u8g2_ClearBuffer:
+ 149              	.LFB0:
+  41:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   size_t cnt;
+ 150              		.loc 1 41 0
+ 151              		.cfi_startproc
+ 152              		@ args = 0, pretend = 0, frame = 0
+ 153              		@ frame_needed = 0, uses_anonymous_args = 0
+ 154              	.LVL20:
+ 155 0000 08B5     		push	{r3, lr}
+ 156              	.LCFI4:
+ 157              		.cfi_def_cfa_offset 8
+ 158              		.cfi_offset 3, -8
+ 159              		.cfi_offset 14, -4
+  43:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   cnt *= u8g2->tile_buf_height;
+ 160              		.loc 1 43 0
+ 161 0002 0368     		ldr	r3, [r0]
+ 162 0004 1A7C     		ldrb	r2, [r3, #16]	@ zero_extendqisi2
+ 163              	.LVL21:
+  44:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   cnt *= 8;
+ 164              		.loc 1 44 0
+ 165 0006 90F83830 		ldrb	r3, [r0, #56]	@ zero_extendqisi2
+ 166 000a 02FB03F2 		mul	r2, r2, r3
+ 167              	.LVL22:
+  46:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** }
+ 168              		.loc 1 46 0
+ 169 000e D200     		lsls	r2, r2, #3
+ 170              	.LVL23:
+ 171 0010 0021     		movs	r1, #0
+ 172 0012 406B     		ldr	r0, [r0, #52]
+ 173              	.LVL24:
+ 174 0014 FFF7FEFF 		bl	memset
+ 175              	.LVL25:
+  47:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+ 176              		.loc 1 47 0
+ 177 0018 08BD     		pop	{r3, pc}
+ 178              		.cfi_endproc
+ 179              	.LFE0:
+ 181              		.section	.text.u8g2_SendBuffer,"ax",%progbits
+ 182              		.align	1
+ 183              		.global	u8g2_SendBuffer
+ 184              		.syntax unified
+ 185              		.thumb
+ 186              		.thumb_func
+ 187              		.fpu fpv4-sp-d16
+ 189              	u8g2_SendBuffer:
+ 190              	.LFB3:
+  91:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  92:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** /* same as u8g2_send_buffer but also send the DISPLAY_REFRESH message (used by SSD1606) */
+  93:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** void u8g2_SendBuffer(u8g2_t *u8g2)
+  94:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** {
+ 191              		.loc 1 94 0
+ 192              		.cfi_startproc
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s 			page 6
+
+
+ 193              		@ args = 0, pretend = 0, frame = 0
+ 194              		@ frame_needed = 0, uses_anonymous_args = 0
+ 195              	.LVL26:
+ 196 0000 10B5     		push	{r4, lr}
+ 197              	.LCFI5:
+ 198              		.cfi_def_cfa_offset 8
+ 199              		.cfi_offset 4, -8
+ 200              		.cfi_offset 14, -4
+ 201 0002 0446     		mov	r4, r0
+  95:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   u8g2_send_buffer(u8g2);
+ 202              		.loc 1 95 0
+ 203 0004 FFF7FEFF 		bl	u8g2_send_buffer
+ 204              	.LVL27:
+  96:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   u8x8_RefreshDisplay( u8g2_GetU8x8(u8g2) );  
+ 205              		.loc 1 96 0
+ 206 0008 2046     		mov	r0, r4
+ 207 000a FFF7FEFF 		bl	u8x8_RefreshDisplay
+ 208              	.LVL28:
+  97:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** }
+ 209              		.loc 1 97 0
+ 210 000e 10BD     		pop	{r4, pc}
+ 211              		.cfi_endproc
+ 212              	.LFE3:
+ 214              		.section	.text.u8g2_SetBufferCurrTileRow,"ax",%progbits
+ 215              		.align	1
+ 216              		.global	u8g2_SetBufferCurrTileRow
+ 217              		.syntax unified
+ 218              		.thumb
+ 219              		.thumb_func
+ 220              		.fpu fpv4-sp-d16
+ 222              	u8g2_SetBufferCurrTileRow:
+ 223              	.LFB4:
+  98:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+  99:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** /*============================================*/
+ 100:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** void u8g2_SetBufferCurrTileRow(u8g2_t *u8g2, uint8_t row)
+ 101:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** {
+ 224              		.loc 1 101 0
+ 225              		.cfi_startproc
+ 226              		@ args = 0, pretend = 0, frame = 0
+ 227              		@ frame_needed = 0, uses_anonymous_args = 0
+ 228              	.LVL29:
+ 229 0000 08B5     		push	{r3, lr}
+ 230              	.LCFI6:
+ 231              		.cfi_def_cfa_offset 8
+ 232              		.cfi_offset 3, -8
+ 233              		.cfi_offset 14, -4
+ 102:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   u8g2->tile_curr_row = row;
+ 234              		.loc 1 102 0
+ 235 0002 80F83910 		strb	r1, [r0, #57]
+ 103:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   u8g2->cb->update(u8g2);
+ 236              		.loc 1 103 0
+ 237 0006 036B     		ldr	r3, [r0, #48]
+ 238 0008 1B68     		ldr	r3, [r3]
+ 239 000a 9847     		blx	r3
+ 240              	.LVL30:
+ 104:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** }
+ 241              		.loc 1 104 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s 			page 7
+
+
+ 242 000c 08BD     		pop	{r3, pc}
+ 243              		.cfi_endproc
+ 244              	.LFE4:
+ 246              		.section	.text.u8g2_FirstPage,"ax",%progbits
+ 247              		.align	1
+ 248              		.global	u8g2_FirstPage
+ 249              		.syntax unified
+ 250              		.thumb
+ 251              		.thumb_func
+ 252              		.fpu fpv4-sp-d16
+ 254              	u8g2_FirstPage:
+ 255              	.LFB5:
+ 105:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+ 106:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** void u8g2_FirstPage(u8g2_t *u8g2)
+ 107:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** {
+ 256              		.loc 1 107 0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260              	.LVL31:
+ 261 0000 10B5     		push	{r4, lr}
+ 262              	.LCFI7:
+ 263              		.cfi_def_cfa_offset 8
+ 264              		.cfi_offset 4, -8
+ 265              		.cfi_offset 14, -4
+ 266 0002 0446     		mov	r4, r0
+ 108:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   if ( u8g2->is_auto_page_clear )
+ 267              		.loc 1 108 0
+ 268 0004 90F87E30 		ldrb	r3, [r0, #126]	@ zero_extendqisi2
+ 269 0008 23B9     		cbnz	r3, .L16
+ 270              	.LVL32:
+ 271              	.L14:
+ 109:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   {
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     u8g2_ClearBuffer(u8g2);
+ 111:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   }
+ 112:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   u8g2_SetBufferCurrTileRow(u8g2, 0);
+ 272              		.loc 1 112 0
+ 273 000a 0021     		movs	r1, #0
+ 274 000c 2046     		mov	r0, r4
+ 275 000e FFF7FEFF 		bl	u8g2_SetBufferCurrTileRow
+ 276              	.LVL33:
+ 113:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** }
+ 277              		.loc 1 113 0
+ 278 0012 10BD     		pop	{r4, pc}
+ 279              	.LVL34:
+ 280              	.L16:
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   }
+ 281              		.loc 1 110 0
+ 282 0014 FFF7FEFF 		bl	u8g2_ClearBuffer
+ 283              	.LVL35:
+ 284 0018 F7E7     		b	.L14
+ 285              		.cfi_endproc
+ 286              	.LFE5:
+ 288              		.section	.text.u8g2_NextPage,"ax",%progbits
+ 289              		.align	1
+ 290              		.global	u8g2_NextPage
+ 291              		.syntax unified
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s 			page 8
+
+
+ 292              		.thumb
+ 293              		.thumb_func
+ 294              		.fpu fpv4-sp-d16
+ 296              	u8g2_NextPage:
+ 297              	.LFB6:
+ 114:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** 
+ 115:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** uint8_t u8g2_NextPage(u8g2_t *u8g2)
+ 116:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** {
+ 298              		.loc 1 116 0
+ 299              		.cfi_startproc
+ 300              		@ args = 0, pretend = 0, frame = 0
+ 301              		@ frame_needed = 0, uses_anonymous_args = 0
+ 302              	.LVL36:
+ 303 0000 38B5     		push	{r3, r4, r5, lr}
+ 304              	.LCFI8:
+ 305              		.cfi_def_cfa_offset 16
+ 306              		.cfi_offset 3, -16
+ 307              		.cfi_offset 4, -12
+ 308              		.cfi_offset 5, -8
+ 309              		.cfi_offset 14, -4
+ 310 0002 0546     		mov	r5, r0
+ 117:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   uint8_t row;
+ 118:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   u8g2_send_buffer(u8g2);
+ 311              		.loc 1 118 0
+ 312 0004 FFF7FEFF 		bl	u8g2_send_buffer
+ 313              	.LVL37:
+ 119:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   row = u8g2->tile_curr_row;
+ 314              		.loc 1 119 0
+ 315 0008 95F83930 		ldrb	r3, [r5, #57]	@ zero_extendqisi2
+ 316              	.LVL38:
+ 120:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   row += u8g2->tile_buf_height;
+ 317              		.loc 1 120 0
+ 318 000c 95F83840 		ldrb	r4, [r5, #56]	@ zero_extendqisi2
+ 319 0010 1C44     		add	r4, r4, r3
+ 320 0012 E4B2     		uxtb	r4, r4
+ 321              	.LVL39:
+ 121:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   if ( row >= u8g2_GetU8x8(u8g2)->display_info->tile_height )
+ 322              		.loc 1 121 0
+ 323 0014 2B68     		ldr	r3, [r5]
+ 324 0016 5B7C     		ldrb	r3, [r3, #17]	@ zero_extendqisi2
+ 325 0018 A342     		cmp	r3, r4
+ 326 001a 08D9     		bls	.L22
+ 122:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   {
+ 123:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     u8x8_RefreshDisplay( u8g2_GetU8x8(u8g2) );
+ 124:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     return 0;
+ 125:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   }
+ 126:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   if ( u8g2->is_auto_page_clear )
+ 327              		.loc 1 126 0
+ 328 001c 95F87E30 		ldrb	r3, [r5, #126]	@ zero_extendqisi2
+ 329 0020 53B9     		cbnz	r3, .L23
+ 330              	.L20:
+ 127:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   {
+ 128:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     u8g2_ClearBuffer(u8g2);
+ 129:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   }
+ 130:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   u8g2_SetBufferCurrTileRow(u8g2, row);
+ 331              		.loc 1 130 0
+ 332 0022 2146     		mov	r1, r4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s 			page 9
+
+
+ 333 0024 2846     		mov	r0, r5
+ 334 0026 FFF7FEFF 		bl	u8g2_SetBufferCurrTileRow
+ 335              	.LVL40:
+ 131:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   return 1;
+ 336              		.loc 1 131 0
+ 337 002a 0120     		movs	r0, #1
+ 338              	.L19:
+ 132:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c **** }
+ 339              		.loc 1 132 0
+ 340 002c 38BD     		pop	{r3, r4, r5, pc}
+ 341              	.LVL41:
+ 342              	.L22:
+ 123:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****     return 0;
+ 343              		.loc 1 123 0
+ 344 002e 2846     		mov	r0, r5
+ 345 0030 FFF7FEFF 		bl	u8x8_RefreshDisplay
+ 346              	.LVL42:
+ 124:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   }
+ 347              		.loc 1 124 0
+ 348 0034 0020     		movs	r0, #0
+ 349 0036 F9E7     		b	.L19
+ 350              	.L23:
+ 128:/Users/imashio/Electronics/ARM/_Library/u8g2_buffer.c ****   }
+ 351              		.loc 1 128 0
+ 352 0038 2846     		mov	r0, r5
+ 353 003a FFF7FEFF 		bl	u8g2_ClearBuffer
+ 354              	.LVL43:
+ 355 003e F0E7     		b	.L20
+ 356              		.cfi_endproc
+ 357              	.LFE6:
+ 359              		.text
+ 360              	.Letext0:
+ 361              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 362              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 363              		.file 4 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
+ 364              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 365              		.file 6 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ 366              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
+ 367              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
+ 368              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
+ 369              		.file 10 "<built-in>"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8g2_buffer.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:18     .text.u8g2_send_tile_row:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:24     .text.u8g2_send_tile_row:0000000000000000 u8g2_send_tile_row
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:74     .text.u8g2_send_buffer:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:80     .text.u8g2_send_buffer:0000000000000000 u8g2_send_buffer
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:141    .text.u8g2_ClearBuffer:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:148    .text.u8g2_ClearBuffer:0000000000000000 u8g2_ClearBuffer
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:182    .text.u8g2_SendBuffer:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:189    .text.u8g2_SendBuffer:0000000000000000 u8g2_SendBuffer
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:215    .text.u8g2_SetBufferCurrTileRow:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:222    .text.u8g2_SetBufferCurrTileRow:0000000000000000 u8g2_SetBufferCurrTileRow
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:247    .text.u8g2_FirstPage:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:254    .text.u8g2_FirstPage:0000000000000000 u8g2_FirstPage
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:289    .text.u8g2_NextPage:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccgx1S3d.s:296    .text.u8g2_NextPage:0000000000000000 u8g2_NextPage
+
+UNDEFINED SYMBOLS
+u8x8_DrawTile
+memset
+u8x8_RefreshDisplay

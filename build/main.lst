@@ -1,0 +1,2127 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text._Error_Handler,"ax",%progbits
+  18              		.align	1
+  19              		.global	_Error_Handler
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	_Error_Handler:
+  26              	.LFB128:
+  27              		.file 1 "Src/main.c"
+   1:Src/main.c    **** /**
+   2:Src/main.c    ****   ******************************************************************************
+   3:Src/main.c    ****   * File Name          : main.c
+   4:Src/main.c    ****   * Description        : Main program body
+   5:Src/main.c    ****   ******************************************************************************
+   6:Src/main.c    ****   ** This notice applies to any and all portions of this file
+   7:Src/main.c    ****   * that are not between comment pairs USER CODE BEGIN and
+   8:Src/main.c    ****   * USER CODE END. Other portions of this file, whether 
+   9:Src/main.c    ****   * inserted by the user or by software development tools
+  10:Src/main.c    ****   * are owned by their respective copyright owners.
+  11:Src/main.c    ****   *
+  12:Src/main.c    ****   * COPYRIGHT(c) 2018 STMicroelectronics
+  13:Src/main.c    ****   *
+  14:Src/main.c    ****   * Redistribution and use in source and binary forms, with or without modification,
+  15:Src/main.c    ****   * are permitted provided that the following conditions are met:
+  16:Src/main.c    ****   *   1. Redistributions of source code must retain the above copyright notice,
+  17:Src/main.c    ****   *      this list of conditions and the following disclaimer.
+  18:Src/main.c    ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  19:Src/main.c    ****   *      this list of conditions and the following disclaimer in the documentation
+  20:Src/main.c    ****   *      and/or other materials provided with the distribution.
+  21:Src/main.c    ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  22:Src/main.c    ****   *      may be used to endorse or promote products derived from this software
+  23:Src/main.c    ****   *      without specific prior written permission.
+  24:Src/main.c    ****   *
+  25:Src/main.c    ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  26:Src/main.c    ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  27:Src/main.c    ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  28:Src/main.c    ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  29:Src/main.c    ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  30:Src/main.c    ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  31:Src/main.c    ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 2
+
+
+  32:Src/main.c    ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  33:Src/main.c    ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  34:Src/main.c    ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  35:Src/main.c    ****   *
+  36:Src/main.c    ****   ******************************************************************************
+  37:Src/main.c    ****   */
+  38:Src/main.c    **** /* Includes ------------------------------------------------------------------*/
+  39:Src/main.c    **** #include "main.h"
+  40:Src/main.c    **** #include "stm32f3xx_hal.h"
+  41:Src/main.c    **** #include "adc.h"
+  42:Src/main.c    **** #include "dma.h"
+  43:Src/main.c    **** #include "spi.h"
+  44:Src/main.c    **** #include "tim.h"
+  45:Src/main.c    **** #include "usart.h"
+  46:Src/main.c    **** #include "gpio.h"
+  47:Src/main.c    **** 
+  48:Src/main.c    **** /* USER CODE BEGIN Includes */
+  49:Src/main.c    **** #include <stdio.h>
+  50:Src/main.c    **** #include <math.h>
+  51:Src/main.c    **** 
+  52:Src/main.c    **** #include "basic.h"		// original library
+  53:Src/main.c    **** #include "u8g2.h"		// graphic display library
+  54:Src/main.c    **** #include "u8x8_gpio_STM32F303.h"
+  55:Src/main.c    **** #include "u8x8_byte_4wire_hw_spi.h"
+  56:Src/main.c    **** 
+  57:Src/main.c    **** 
+  58:Src/main.c    **** /* USER CODE END Includes */
+  59:Src/main.c    **** 
+  60:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
+  61:Src/main.c    **** 
+  62:Src/main.c    **** /* USER CODE BEGIN PV */
+  63:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
+  64:Src/main.c    **** u8g2_t u8g2; // a structure which will contain all the data for one display
+  65:Src/main.c    **** 
+  66:Src/main.c    **** // RPM bar graph parameter definition
+  67:Src/main.c    **** #define	rpmbar_x		0
+  68:Src/main.c    **** #define	rpmbar_y		0
+  69:Src/main.c    **** #define	rpmbar_width	128
+  70:Src/main.c    **** #define	rpmbar_height	14
+  71:Src/main.c    **** #define	rpm_min			0
+  72:Src/main.c    **** #define	rpm_max			9000
+  73:Src/main.c    **** 
+  74:Src/main.c    **** // measurements display parameter definition
+  75:Src/main.c    **** #define	N_meas			6
+  76:Src/main.c    **** #define	meas_x			0
+  77:Src/main.c    **** #define	meas_y			16
+  78:Src/main.c    **** #define	meas_x_offset	2
+  79:Src/main.c    **** #define	meas_width1		70
+  80:Src/main.c    **** #define	meas_width2		56
+  81:Src/main.c    **** #define	meas_height		13
+  82:Src/main.c    **** 
+  83:Src/main.c    **** // indicators parameter definition
+  84:Src/main.c    **** #define	N_idct			2
+  85:Src/main.c    **** #define	idct_x			72
+  86:Src/main.c    **** #define	idct_y			55
+  87:Src/main.c    **** #define	idct_width		27
+  88:Src/main.c    **** #define	idct_height		9
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 3
+
+
+  89:Src/main.c    **** 
+  90:Src/main.c    **** //  Fuel Pump Voltage dosplay parameter definition
+  91:Src/main.c    **** #define	FP_x			0
+  92:Src/main.c    **** #define	FP_y			52
+  93:Src/main.c    **** #define	FP_height		14
+  94:Src/main.c    **** #define	FP_volt_width	45
+  95:Src/main.c    **** #define	FP_duty_width	25
+  96:Src/main.c    **** 
+  97:Src/main.c    **** // logo parameter definition
+  98:Src/main.c    **** #define logo_width 48
+  99:Src/main.c    **** #define logo_height 48
+ 100:Src/main.c    **** 
+ 101:Src/main.c    **** const unsigned char logo_bits[] = {
+ 102:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 103:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 104:Src/main.c    ****   0x00, 0x00, 0xF0, 0x0F, 0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF, 0x3F, 0x00,
+ 105:Src/main.c    ****   0x80, 0xFF, 0xFF, 0xFF, 0xFF, 0x01, 0xE0, 0x1F, 0x00, 0x80, 0xFF, 0x07,
+ 106:Src/main.c    ****   0xE0, 0x01, 0x00, 0x80, 0x81, 0x07, 0xE0, 0x01, 0x00, 0x80, 0x81, 0x07,
+ 107:Src/main.c    ****   0xC0, 0xE1, 0x07, 0xC0, 0x80, 0x03, 0x00, 0xFC, 0x1F, 0xE0, 0x80, 0x03,
+ 108:Src/main.c    ****   0x00, 0xFE, 0x7F, 0x70, 0xC0, 0x01, 0x00, 0x0F, 0xFE, 0x39, 0xE0, 0x00,
+ 109:Src/main.c    ****   0x00, 0x07, 0xF8, 0x1F, 0xF0, 0x00, 0x00, 0x0E, 0xE0, 0x1F, 0x78, 0x00,
+ 110:Src/main.c    ****   0x00, 0x0C, 0xC0, 0xFF, 0x3F, 0x00, 0x00, 0x18, 0x00, 0xFF, 0x1F, 0x00,
+ 111:Src/main.c    ****   0x00, 0x38, 0xC0, 0xFF, 0x0F, 0x00, 0x00, 0x70, 0xE0, 0xF1, 0x03, 0x00,
+ 112:Src/main.c    ****   0x00, 0xE0, 0x78, 0x00, 0x00, 0x00, 0x00, 0xC0, 0x3F, 0xE0, 0x01, 0x00,
+ 113:Src/main.c    ****   0x00, 0x80, 0x1F, 0xF0, 0x01, 0x00, 0x00, 0x00, 0x07, 0xF8, 0x00, 0x00,
+ 114:Src/main.c    ****   0x00, 0x00, 0x1E, 0x7C, 0x00, 0x00, 0x00, 0x00, 0xF8, 0x1F, 0x00, 0x00,
+ 115:Src/main.c    ****   0x00, 0x00, 0xF0, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x80, 0x01, 0x00, 0x00,
+ 116:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 117:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 118:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4C, 0x1C, 0x00, 0x00, 0x00,
+ 119:Src/main.c    ****   0x00, 0x32, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC6, 0x00, 0x18, 0x00,
+ 120:Src/main.c    ****   0x00, 0x7C, 0xEF, 0xFC, 0x39, 0x00, 0x00, 0x4E, 0xC6, 0xB8, 0x31, 0x00,
+ 121:Src/main.c    ****   0x00, 0x3E, 0xC6, 0x98, 0x31, 0x00, 0x00, 0x3C, 0xC6, 0x98, 0x31, 0x00,
+ 122:Src/main.c    ****   0x00, 0x0E, 0xC6, 0x98, 0x31, 0x00, 0x00, 0x4E, 0xCE, 0x99, 0x31, 0x00,
+ 123:Src/main.c    ****   0x00, 0x7C, 0xEF, 0xFD, 0x7B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 124:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 125:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 126:Src/main.c    ****   };
+ 127:Src/main.c    **** 
+ 128:Src/main.c    **** /*
+ 129:Src/main.c    **** #define logo_width 54
+ 130:Src/main.c    **** #define logo_height 48
+ 131:Src/main.c    **** 
+ 132:Src/main.c    **** static unsigned char logo_bits[] = {
+ 133:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF8, 0xFF, 0x0F,
+ 134:Src/main.c    ****   0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF, 0xFF, 0x1F, 0x00, 0xE0, 0xFF, 0xFF,
+ 135:Src/main.c    ****   0xFF, 0xFF, 0xFF, 0x01, 0xF8, 0x3F, 0x00, 0x00, 0xF0, 0xFF, 0x07, 0xF8,
+ 136:Src/main.c    ****   0x01, 0x00, 0x00, 0x70, 0xE0, 0x0F, 0x7C, 0x00, 0x00, 0x00, 0x70, 0x80,
+ 137:Src/main.c    ****   0x0F, 0x7C, 0x00, 0x00, 0x00, 0x70, 0x00, 0x07, 0xF8, 0x00, 0x00, 0x00,
+ 138:Src/main.c    ****   0x38, 0x80, 0x07, 0x00, 0xF8, 0x3F, 0x00, 0x38, 0x80, 0x07, 0x00, 0xFE,
+ 139:Src/main.c    ****   0xFF, 0x00, 0x1C, 0xC0, 0x03, 0x80, 0xFF, 0xFF, 0x01, 0x0E, 0xC0, 0x01,
+ 140:Src/main.c    ****   0xC0, 0x07, 0xFC, 0x07, 0x07, 0xE0, 0x01, 0x80, 0x03, 0xF0, 0x9F, 0x03,
+ 141:Src/main.c    ****   0xF0, 0x00, 0x80, 0x03, 0xC0, 0xFF, 0x03, 0x78, 0x00, 0x00, 0x07, 0x80,
+ 142:Src/main.c    ****   0xFF, 0x01, 0x3C, 0x00, 0x00, 0x06, 0x00, 0xFE, 0x87, 0x3F, 0x00, 0x00,
+ 143:Src/main.c    ****   0x0E, 0x00, 0xF8, 0xFF, 0x1F, 0x00, 0x00, 0x1C, 0x00, 0xF8, 0xFF, 0x07,
+ 144:Src/main.c    ****   0x00, 0x00, 0x38, 0x00, 0xDE, 0xFF, 0x03, 0x00, 0x00, 0x70, 0x00, 0x0F,
+ 145:Src/main.c    ****   0x7E, 0x00, 0x00, 0x00, 0xE0, 0xC0, 0x07, 0x00, 0x00, 0x00, 0x00, 0xC0,
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 4
+
+
+ 146:Src/main.c    ****   0xF1, 0x01, 0x00, 0x00, 0x00, 0x00, 0x80, 0xFF, 0x00, 0x7C, 0x00, 0x00,
+ 147:Src/main.c    ****   0x00, 0x00, 0x3F, 0x00, 0x3E, 0x00, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x1F,
+ 148:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x3C, 0x80, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x78,
+ 149:Src/main.c    ****   0xE0, 0x07, 0x00, 0x00, 0x00, 0x00, 0xE0, 0xFF, 0x03, 0x00, 0x00, 0x00,
+ 150:Src/main.c    ****   0x00, 0xC0, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0x00, 0x00,
+ 151:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x30, 0x00,
+ 152:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x4E, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x39,
+ 153:Src/main.c    ****   0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00,
+ 154:Src/main.c    ****   0x00, 0x7E, 0x3E, 0xC7, 0x3D, 0x1C, 0x00, 0x00, 0x6F, 0x3E, 0xC7, 0x7F,
+ 155:Src/main.c    ****   0x1C, 0x00, 0x00, 0x03, 0x1C, 0x86, 0x73, 0x18, 0x00, 0x00, 0x07, 0x1C,
+ 156:Src/main.c    ****   0x86, 0x71, 0x18, 0x00, 0x00, 0x3E, 0x1C, 0x86, 0x71, 0x18, 0x00, 0x00,
+ 157:Src/main.c    ****   0x1F, 0x1C, 0x86, 0x71, 0x18, 0x00, 0x00, 0x03, 0x1C, 0x86, 0x71, 0x18,
+ 158:Src/main.c    ****   0x00, 0x00, 0x47, 0x1C, 0x86, 0x71, 0x18, 0x00, 0x00, 0x7F, 0x3E, 0xCF,
+ 159:Src/main.c    ****   0xFB, 0x3C, 0x00, 0x00, 0x3C, 0x3E, 0xCF, 0xFB, 0x3C, 0x00, 0x00, 0x00,
+ 160:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 161:Src/main.c    ****   };
+ 162:Src/main.c    **** */
+ 163:Src/main.c    **** 
+ 164:Src/main.c    **** uint16_t	rpm = 0;
+ 165:Src/main.c    **** uint16_t	speed = 240;
+ 166:Src/main.c    **** uint8_t		gear = 0;
+ 167:Src/main.c    **** double		MT[5] = {3.483, 2.015, 1.391, 1.000, 0.806};
+ 168:Src/main.c    **** 
+ 169:Src/main.c    **** /*
+ 170:Src/main.c    **** typedef struct {
+ 171:Src/main.c    **** 	unsigned char	name;
+ 172:Src/main.c    **** 	uint8_t			status;
+ 173:Src/main.c    **** } idct;
+ 174:Src/main.c    **** */
+ 175:Src/main.c    **** 
+ 176:Src/main.c    **** // variables for indicators
+ 177:Src/main.c    **** const unsigned char idct_name[N_idct][5] = { // length must be (text length + 1)
+ 178:Src/main.c    **** 		"CAN"	,
+ 179:Src/main.c    **** 		"O2FB"
+ 180:Src/main.c    **** };
+ 181:Src/main.c    **** 
+ 182:Src/main.c    **** const uint8_t	idct_status[N_idct] = {
+ 183:Src/main.c    **** 		1	,
+ 184:Src/main.c    **** 		0
+ 185:Src/main.c    **** };
+ 186:Src/main.c    **** 
+ 187:Src/main.c    **** 
+ 188:Src/main.c    **** // variables for measurement
+ 189:Src/main.c    **** const unsigned char meas_name[N_meas][7] = { // length must be (text length + 1)
+ 190:Src/main.c    **** 		"MAP"	,
+ 191:Src/main.c    **** 		"OILP"	,
+ 192:Src/main.c    **** 		"FPVOLT"	,
+ 193:Src/main.c    **** 		"ECT"	,
+ 194:Src/main.c    **** 		"OILT"	,
+ 195:Src/main.c    **** 		"O2"
+ 196:Src/main.c    **** };
+ 197:Src/main.c    **** 
+ 198:Src/main.c    **** const unsigned char meas_unit[N_meas][5] = {
+ 199:Src/main.c    **** 		"kpa"			,	// MAP
+ 200:Src/main.c    **** 		"kpa"			,	// OILP
+ 201:Src/main.c    **** 		"V  "     ,	// FuelPump Voltage
+ 202:Src/main.c    **** 		{176, 67, 0}	,	// ECT  degC...{176, 67, 0}
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 5
+
+
+ 203:Src/main.c    **** 		{176, 67, 0}	,	// OILT  degC...{176, 67, 0}
+ 204:Src/main.c    **** 		"V"					// O2
+ 205:Src/main.c    **** };
+ 206:Src/main.c    **** 
+ 207:Src/main.c    **** const uint8_t	meas_digit[N_meas] = {
+ 208:Src/main.c    **** 		3	,	// MAP
+ 209:Src/main.c    **** 		3	,	// OILP
+ 210:Src/main.c    **** 		3	,	// FuelPump Voltage
+ 211:Src/main.c    **** 		3	,	// ECT
+ 212:Src/main.c    **** 		3	,	// OILT
+ 213:Src/main.c    **** 		3		// O2
+ 214:Src/main.c    **** };
+ 215:Src/main.c    **** 
+ 216:Src/main.c    **** const uint8_t	meas_frac[N_meas] = {
+ 217:Src/main.c    **** 		2	,	// MAP
+ 218:Src/main.c    **** 		2	,	// OILP
+ 219:Src/main.c    **** 		1	,	// FuelPump Voltage
+ 220:Src/main.c    **** 		0	,	// ECT
+ 221:Src/main.c    **** 		0	,	// OILT
+ 222:Src/main.c    **** 		2		// O2
+ 223:Src/main.c    **** };
+ 224:Src/main.c    **** 
+ 225:Src/main.c    **** const uint8_t	meas_sign[N_meas] = {
+ 226:Src/main.c    **** 		1	,	// MAP
+ 227:Src/main.c    **** 		0	,	// OILP
+ 228:Src/main.c    **** 		0	,	// FuelPump Voltage
+ 229:Src/main.c    **** 		0	,	// ECT
+ 230:Src/main.c    **** 		0	,	// OILT
+ 231:Src/main.c    **** 		0		// O2
+ 232:Src/main.c    **** };
+ 233:Src/main.c    **** 
+ 234:Src/main.c    **** int16_t	meas_value[N_meas] = {
+ 235:Src/main.c    **** 		645	,	// FuelPump Voltage
+ 236:Src/main.c    **** 		105	,	// MAP
+ 237:Src/main.c    **** 		235	,	// OILP
+ 238:Src/main.c    **** 		89	,	// ECT
+ 239:Src/main.c    **** 		73	,	// OILT
+ 240:Src/main.c    **** 		143		// O2
+ 241:Src/main.c    **** };
+ 242:Src/main.c    **** 
+ 243:Src/main.c    **** // Fuel Pump Voltage
+ 244:Src/main.c    **** int16_t FP_volt = 330;
+ 245:Src/main.c    **** 
+ 246:Src/main.c    **** /* USER CODE END PV */
+ 247:Src/main.c    **** 
+ 248:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
+ 249:Src/main.c    **** void SystemClock_Config(void);
+ 250:Src/main.c    **** 
+ 251:Src/main.c    **** /* USER CODE BEGIN PFP */
+ 252:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
+ 253:Src/main.c    **** 
+ 254:Src/main.c    **** /* USER CODE END PFP */
+ 255:Src/main.c    **** 
+ 256:Src/main.c    **** /* USER CODE BEGIN 0 */
+ 257:Src/main.c    **** 
+ 258:Src/main.c    **** /* USER CODE END 0 */
+ 259:Src/main.c    **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 6
+
+
+ 260:Src/main.c    **** int main(void)
+ 261:Src/main.c    **** {
+ 262:Src/main.c    **** 
+ 263:Src/main.c    ****   /* USER CODE BEGIN 1 */
+ 264:Src/main.c    **** 
+ 265:Src/main.c    ****   /* USER CODE END 1 */
+ 266:Src/main.c    **** 
+ 267:Src/main.c    ****   /* MCU Configuration----------------------------------------------------------*/
+ 268:Src/main.c    **** 
+ 269:Src/main.c    ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+ 270:Src/main.c    ****   HAL_Init();
+ 271:Src/main.c    **** 
+ 272:Src/main.c    ****   /* USER CODE BEGIN Init */
+ 273:Src/main.c    ****   uint8_t n;
+ 274:Src/main.c    ****   uint8_t x, y;
+ 275:Src/main.c    **** 
+ 276:Src/main.c    ****   uint16_t a = 0;
+ 277:Src/main.c    ****   uint16_t b = 0;
+ 278:Src/main.c    **** 
+ 279:Src/main.c    **** 
+ 280:Src/main.c    ****   /* USER CODE END Init */
+ 281:Src/main.c    **** 
+ 282:Src/main.c    ****   /* Configure the system clock */
+ 283:Src/main.c    ****   SystemClock_Config();
+ 284:Src/main.c    **** 
+ 285:Src/main.c    ****   /* USER CODE BEGIN SysInit */
+ 286:Src/main.c    **** 
+ 287:Src/main.c    ****   /* USER CODE END SysInit */
+ 288:Src/main.c    **** 
+ 289:Src/main.c    ****   /* Initialize all configured peripherals */
+ 290:Src/main.c    ****   MX_GPIO_Init();
+ 291:Src/main.c    ****   MX_DMA_Init();
+ 292:Src/main.c    ****   MX_USART2_UART_Init();
+ 293:Src/main.c    ****   MX_TIM1_Init();
+ 294:Src/main.c    ****   MX_USART1_UART_Init();
+ 295:Src/main.c    ****   MX_SPI1_Init();
+ 296:Src/main.c    ****   MX_ADC1_Init();
+ 297:Src/main.c    **** 
+ 298:Src/main.c    ****   /* USER CODE BEGIN 2 */
+ 299:Src/main.c    **** 
+ 300:Src/main.c    ****   // ADC buffer definition
+ 301:Src/main.c    ****   enum{ ADC_BUFFER_LENGTH = 1024 };
+ 302:Src/main.c    ****   uint16_t g_ADCBuffer[ADC_BUFFER_LENGTH];
+ 303:Src/main.c    ****   memset(g_ADCBuffer, 0, sizeof(g_ADCBuffer));
+ 304:Src/main.c    ****   HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
+ 305:Src/main.c    **** 
+ 306:Src/main.c    ****   // OLED diaplay initialization
+ 307:Src/main.c    ****   u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_hw_spi, u8x8_gpio_and_delay_S
+ 308:Src/main.c    **** // //  u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_sw_spi, u8x8_gpio_and_de
+ 309:Src/main.c    ****   HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 1); // Set RES=H (OLED activate)
+ 310:Src/main.c    ****   u8g2_InitDisplay(&u8g2); // send init sequence to the display, display is in sleep mode after thi
+ 311:Src/main.c    ****   u8g2_SetPowerSave(&u8g2, 0); // wake up display
+ 312:Src/main.c    ****   u8g2_SetContrast(&u8g2, 128); // set contrast
+ 313:Src/main.c    ****   u8g2_ClearDisplay(&u8g2);
+ 314:Src/main.c    **** 
+ 315:Src/main.c    ****   u8g2_ClearBuffer(&u8g2);
+ 316:Src/main.c    **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 7
+
+
+ 317:Src/main.c    **** 
+ 318:Src/main.c    ****   // draw opening
+ 319:Src/main.c    ****   u8g2_DrawXBMP(&u8g2, 40, 0, logo_width, logo_height, logo_bits );
+ 320:Src/main.c    **** 
+ 321:Src/main.c    ****   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
+ 322:Src/main.c    ****   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
+ 323:Src/main.c    ****   u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
+ 324:Src/main.c    **** 
+ 325:Src/main.c    ****   u8g2_SendBuffer(&u8g2);
+ 326:Src/main.c    **** 
+ 327:Src/main.c    ****   HAL_Delay(2000);
+ 328:Src/main.c    **** 
+ 329:Src/main.c    ****   /* USER CODE END 2 */
+ 330:Src/main.c    **** 
+ 331:Src/main.c    ****   /* Infinite loop */
+ 332:Src/main.c    ****   /* USER CODE BEGIN WHILE */
+ 333:Src/main.c    **** 
+ 334:Src/main.c    ****   u8g2_ClearBuffer(&u8g2);
+ 335:Src/main.c    **** 
+ 336:Src/main.c    **** 
+ 337:Src/main.c    ****   // draw measurements label & unit
+ 338:Src/main.c    ****   for( n=0; n<3; n++ ){
+ 339:Src/main.c    **** 	  x = meas_x;
+ 340:Src/main.c    **** 	  y = (n % 3) * meas_height	+ meas_y;
+ 341:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width1, meas_height, meas_name[n], meas_unit[n]);
+ 342:Src/main.c    ****   }
+ 343:Src/main.c    ****   for( n=3; n<N_meas; n++ ){
+ 344:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
+ 345:Src/main.c    **** 	  y = (n % 3) * meas_height	+ meas_y;
+ 346:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width2, meas_height, meas_name[n], meas_unit[n]);
+ 347:Src/main.c    ****   }
+ 348:Src/main.c    **** 
+ 349:Src/main.c    **** 
+ 350:Src/main.c    ****   // draw indicators
+ 351:Src/main.c    ****   for( n=0; n<N_idct; n++ ){
+ 352:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
+ 353:Src/main.c    ****   }
+ 354:Src/main.c    ****   u8g2_SendBuffer(&u8g2);
+ 355:Src/main.c    **** 
+ 356:Src/main.c    ****   // Fuel Pump voltage & duty
+ 357:Src/main.c    ****   /*
+ 358:Src/main.c    ****   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
+ 359:Src/main.c    ****   u8g2_DrawStr(&u8g2, FP_x, FP_y+12, "FPV");
+ 360:Src/main.c    ****   u8g2_SetFont(&u8g2, u8g2_font_4x6_tf);
+ 361:Src/main.c    ****   draw_MeasUnit(&u8g2, FP_x, FP_y, FP_volt_width, FP_height, "V");
+ 362:Src/main.c    ****   draw_Value_s(&u8g2, FP_x+FP_volt_width+2, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%"); // 
+ 363:Src/main.c    ****   draw_MeasUnit(&u8g2, FP_x+FP_volt_width+2, FP_y, FP_duty_width, FP_height, "%");
+ 364:Src/main.c    ****   */
+ 365:Src/main.c    ****   // update display
+ 366:Src/main.c    ****   u8g2_SendBuffer(&u8g2);
+ 367:Src/main.c    **** 
+ 368:Src/main.c    **** 
+ 369:Src/main.c    ****   while (1)
+ 370:Src/main.c    ****   {
+ 371:Src/main.c    ****   /* USER CODE END WHILE */
+ 372:Src/main.c    **** 
+ 373:Src/main.c    ****   /* USER CODE BEGIN 3 */
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 8
+
+
+ 374:Src/main.c    **** 
+ 375:Src/main.c    **** 	  	// start of create dummy data for debug
+ 376:Src/main.c    **** 		if( rpm <= 8200 ){
+ 377:Src/main.c    **** 			  rpm = rpm + (int)(10*MT[gear]);
+ 378:Src/main.c    **** //			  rpm=rpm+10;
+ 379:Src/main.c    **** 		}else{
+ 380:Src/main.c    **** 			if( gear < 4 ){
+ 381:Src/main.c    **** 				gear++;
+ 382:Src/main.c    **** 				rpm = (double)speed / (0.002*60.0) * (MT[gear]*4.1);
+ 383:Src/main.c    **** 			}else{
+ 384:Src/main.c    **** 				gear = 0;
+ 385:Src/main.c    **** 				rpm = 1000;
+ 386:Src/main.c    **** 			}
+ 387:Src/main.c    **** 		}
+ 388:Src/main.c    **** 		speed = (double)rpm*0.002*60.0/MT[gear]/4.1;
+ 389:Src/main.c    **** 		meas_value[0] = speed; // speed
+ 390:Src/main.c    **** 
+ 391:Src/main.c    **** 		if( a >= 150){
+ 392:Src/main.c    **** 			a = 0;
+ 393:Src/main.c    **** 		}else{
+ 394:Src/main.c    **** 			a++;
+ 395:Src/main.c    **** 		}
+ 396:Src/main.c    **** 		for( n=1; n<=5; n++){
+ 397:Src/main.c    **** 			if( n==1 ){
+ 398:Src/main.c    **** 				meas_value[n] = a - 75;
+ 399:Src/main.c    **** 			}else{
+ 400:Src/main.c    **** 				meas_value[n] = a;
+ 401:Src/main.c    **** 			}
+ 402:Src/main.c    **** 		}
+ 403:Src/main.c    **** 
+ 404:Src/main.c    **** 	  	// end of create dummy data for debug
+ 405:Src/main.c    **** 
+ 406:Src/main.c    **** 
+ 407:Src/main.c    **** 		// read O2 sensor ADC output
+ 408:Src/main.c    **** 		meas_value[5] = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
+ 409:Src/main.c    **** 
+ 410:Src/main.c    **** 		// read Fuel Pump Voltage ADC output
+ 411:Src/main.c    **** 		FP_volt = (int16_t)(330*(float)g_ADCBuffer[0]/255);
+ 412:Src/main.c    **** 
+ 413:Src/main.c    **** 		// update Fuel Pump Voltage
+ 414:Src/main.c    **** //		draw_Value_s(&u8g2, FP_x, FP_y, FP_volt_width, FP_height, FP_volt, 3, 1, 0, "V");
+ 415:Src/main.c    **** 
+ 416:Src/main.c    **** 		// draw bar graph
+ 417:Src/main.c    **** 		draw_BarGraph(&u8g2, rpmbar_x, rpmbar_y, rpmbar_width, rpmbar_height, rpm, rpm_min, rpm_max);
+ 418:Src/main.c    **** 
+ 419:Src/main.c    **** 		// draw measurement data
+ 420:Src/main.c    **** 		for( n=0; n<3; n++ ){
+ 421:Src/main.c    **** 			x = meas_x;
+ 422:Src/main.c    **** 			y = (n % 3) * meas_height	+ meas_y;
+ 423:Src/main.c    **** 			draw_Value(&u8g2, x, y, meas_width1, meas_height, meas_value[n], meas_digit[n], meas_frac[n], me
+ 424:Src/main.c    **** 		}
+ 425:Src/main.c    **** 		for( n=3; n<N_meas; n++ ){
+ 426:Src/main.c    **** 			x = meas_width1 + meas_x + meas_x_offset;
+ 427:Src/main.c    **** 			y = (n % 3) * meas_height	+ meas_y;
+ 428:Src/main.c    **** 			draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n], me
+ 429:Src/main.c    **** 		}
+ 430:Src/main.c    **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 9
+
+
+ 431:Src/main.c    **** 
+ 432:Src/main.c    **** 		// send buffer
+ 433:Src/main.c    **** 	    u8g2_SendBuffer(&u8g2);
+ 434:Src/main.c    **** 
+ 435:Src/main.c    ****   }
+ 436:Src/main.c    ****   /* USER CODE END 3 */
+ 437:Src/main.c    **** 
+ 438:Src/main.c    **** }
+ 439:Src/main.c    **** 
+ 440:Src/main.c    **** /** System Clock Configuration
+ 441:Src/main.c    **** */
+ 442:Src/main.c    **** void SystemClock_Config(void)
+ 443:Src/main.c    **** {
+ 444:Src/main.c    **** 
+ 445:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct;
+ 446:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
+ 447:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit;
+ 448:Src/main.c    **** 
+ 449:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
+ 450:Src/main.c    ****     */
+ 451:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+ 452:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+ 453:Src/main.c    ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+ 454:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 455:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 456:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 457:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+ 458:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 459:Src/main.c    ****   {
+ 460:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 461:Src/main.c    ****   }
+ 462:Src/main.c    **** 
+ 463:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
+ 464:Src/main.c    ****     */
+ 465:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 466:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 467:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 468:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 469:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 470:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 471:Src/main.c    **** 
+ 472:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+ 473:Src/main.c    ****   {
+ 474:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 475:Src/main.c    ****   }
+ 476:Src/main.c    **** 
+ 477:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_TIM1;
+ 478:Src/main.c    ****   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
+ 479:Src/main.c    ****   PeriphClkInit.Tim1ClockSelection = RCC_TIM1CLK_HCLK;
+ 480:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 481:Src/main.c    ****   {
+ 482:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 483:Src/main.c    ****   }
+ 484:Src/main.c    **** 
+ 485:Src/main.c    ****     /**Configure the Systick interrupt time 
+ 486:Src/main.c    ****     */
+ 487:Src/main.c    ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 10
+
+
+ 488:Src/main.c    **** 
+ 489:Src/main.c    ****     /**Configure the Systick 
+ 490:Src/main.c    ****     */
+ 491:Src/main.c    ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+ 492:Src/main.c    **** 
+ 493:Src/main.c    ****   /* SysTick_IRQn interrupt configuration */
+ 494:Src/main.c    ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+ 495:Src/main.c    **** }
+ 496:Src/main.c    **** 
+ 497:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 498:Src/main.c    **** 
+ 499:Src/main.c    **** /* USER CODE END 4 */
+ 500:Src/main.c    **** 
+ 501:Src/main.c    **** /**
+ 502:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 503:Src/main.c    ****   * @param  None
+ 504:Src/main.c    ****   * @retval None
+ 505:Src/main.c    ****   */
+ 506:Src/main.c    **** void _Error_Handler(char * file, int line)
+ 507:Src/main.c    **** {
+  28              		.loc 1 507 0
+  29              		.cfi_startproc
+  30              		@ Volatile: function does not return.
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              	.LVL0:
+  35              	.L2:
+  36 0000 FEE7     		b	.L2
+  37              		.cfi_endproc
+  38              	.LFE128:
+  40              		.section	.text.SystemClock_Config,"ax",%progbits
+  41              		.align	1
+  42              		.global	SystemClock_Config
+  43              		.syntax unified
+  44              		.thumb
+  45              		.thumb_func
+  46              		.fpu fpv4-sp-d16
+  48              	SystemClock_Config:
+  49              	.LFB127:
+ 443:Src/main.c    **** 
+  50              		.loc 1 443 0
+  51              		.cfi_startproc
+  52              		@ args = 0, pretend = 0, frame = 88
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+ 443:Src/main.c    **** 
+  54              		.loc 1 443 0
+  55 0000 00B5     		push	{lr}
+  56              	.LCFI0:
+  57              		.cfi_def_cfa_offset 4
+  58              		.cfi_offset 14, -4
+  59 0002 97B0     		sub	sp, sp, #92
+  60              	.LCFI1:
+  61              		.cfi_def_cfa_offset 96
+ 451:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  62              		.loc 1 451 0
+  63 0004 0123     		movs	r3, #1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 11
+
+
+  64 0006 0C93     		str	r3, [sp, #48]
+ 452:Src/main.c    ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  65              		.loc 1 452 0
+  66 0008 4FF4A022 		mov	r2, #327680
+  67 000c 0D92     		str	r2, [sp, #52]
+ 453:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  68              		.loc 1 453 0
+  69 000e 0022     		movs	r2, #0
+  70 0010 0E92     		str	r2, [sp, #56]
+ 454:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  71              		.loc 1 454 0
+  72 0012 1093     		str	r3, [sp, #64]
+ 455:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  73              		.loc 1 455 0
+  74 0014 0223     		movs	r3, #2
+  75 0016 1393     		str	r3, [sp, #76]
+ 456:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  76              		.loc 1 456 0
+  77 0018 4FF48033 		mov	r3, #65536
+  78 001c 1493     		str	r3, [sp, #80]
+ 457:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  79              		.loc 1 457 0
+  80 001e 4FF4E013 		mov	r3, #1835008
+  81 0022 1593     		str	r3, [sp, #84]
+ 458:Src/main.c    ****   {
+  82              		.loc 1 458 0
+  83 0024 0CA8     		add	r0, sp, #48
+  84 0026 FFF7FEFF 		bl	HAL_RCC_OscConfig
+  85              	.LVL1:
+  86 002a 58BB     		cbnz	r0, .L8
+ 465:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  87              		.loc 1 465 0
+  88 002c 0F23     		movs	r3, #15
+  89 002e 0793     		str	r3, [sp, #28]
+ 467:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  90              		.loc 1 467 0
+  91 0030 0221     		movs	r1, #2
+  92 0032 0891     		str	r1, [sp, #32]
+ 468:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  93              		.loc 1 468 0
+  94 0034 0023     		movs	r3, #0
+  95 0036 0993     		str	r3, [sp, #36]
+ 469:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  96              		.loc 1 469 0
+  97 0038 4FF48062 		mov	r2, #1024
+  98 003c 0A92     		str	r2, [sp, #40]
+ 470:Src/main.c    **** 
+  99              		.loc 1 470 0
+ 100 003e 0B93     		str	r3, [sp, #44]
+ 472:Src/main.c    ****   {
+ 101              		.loc 1 472 0
+ 102 0040 07A8     		add	r0, sp, #28
+ 103 0042 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 104              	.LVL2:
+ 105 0046 10BB     		cbnz	r0, .L9
+ 477:Src/main.c    ****   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
+ 106              		.loc 1 477 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 12
+
+
+ 107 0048 41F20103 		movw	r3, #4097
+ 108 004c 0193     		str	r3, [sp, #4]
+ 478:Src/main.c    ****   PeriphClkInit.Tim1ClockSelection = RCC_TIM1CLK_HCLK;
+ 109              		.loc 1 478 0
+ 110 004e 0023     		movs	r3, #0
+ 111 0050 0393     		str	r3, [sp, #12]
+ 479:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 112              		.loc 1 479 0
+ 113 0052 0693     		str	r3, [sp, #24]
+ 480:Src/main.c    ****   {
+ 114              		.loc 1 480 0
+ 115 0054 01A8     		add	r0, sp, #4
+ 116 0056 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 117              	.LVL3:
+ 118 005a E8B9     		cbnz	r0, .L10
+ 487:Src/main.c    **** 
+ 119              		.loc 1 487 0
+ 120 005c FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ 121              	.LVL4:
+ 122 0060 104B     		ldr	r3, .L11
+ 123 0062 A3FB0030 		umull	r3, r0, r3, r0
+ 124 0066 8009     		lsrs	r0, r0, #6
+ 125 0068 FFF7FEFF 		bl	HAL_SYSTICK_Config
+ 126              	.LVL5:
+ 491:Src/main.c    **** 
+ 127              		.loc 1 491 0
+ 128 006c 0420     		movs	r0, #4
+ 129 006e FFF7FEFF 		bl	HAL_SYSTICK_CLKSourceConfig
+ 130              	.LVL6:
+ 494:Src/main.c    **** }
+ 131              		.loc 1 494 0
+ 132 0072 0022     		movs	r2, #0
+ 133 0074 1146     		mov	r1, r2
+ 134 0076 4FF0FF30 		mov	r0, #-1
+ 135 007a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 136              	.LVL7:
+ 495:Src/main.c    **** 
+ 137              		.loc 1 495 0
+ 138 007e 17B0     		add	sp, sp, #92
+ 139              	.LCFI2:
+ 140              		.cfi_remember_state
+ 141              		.cfi_def_cfa_offset 4
+ 142              		@ sp needed
+ 143 0080 5DF804FB 		ldr	pc, [sp], #4
+ 144              	.L8:
+ 145              	.LCFI3:
+ 146              		.cfi_restore_state
+ 460:Src/main.c    ****   }
+ 147              		.loc 1 460 0
+ 148 0084 4FF4E671 		mov	r1, #460
+ 149 0088 0748     		ldr	r0, .L11+4
+ 150 008a FFF7FEFF 		bl	_Error_Handler
+ 151              	.LVL8:
+ 152              	.L9:
+ 474:Src/main.c    ****   }
+ 153              		.loc 1 474 0
+ 154 008e 4FF4ED71 		mov	r1, #474
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 13
+
+
+ 155 0092 0548     		ldr	r0, .L11+4
+ 156 0094 FFF7FEFF 		bl	_Error_Handler
+ 157              	.LVL9:
+ 158              	.L10:
+ 482:Src/main.c    ****   }
+ 159              		.loc 1 482 0
+ 160 0098 4FF4F171 		mov	r1, #482
+ 161 009c 0248     		ldr	r0, .L11+4
+ 162 009e FFF7FEFF 		bl	_Error_Handler
+ 163              	.LVL10:
+ 164              	.L12:
+ 165 00a2 00BF     		.align	2
+ 166              	.L11:
+ 167 00a4 D34D6210 		.word	274877907
+ 168 00a8 00000000 		.word	.LC0
+ 169              		.cfi_endproc
+ 170              	.LFE127:
+ 172              		.global	__aeabi_dmul
+ 173              		.global	__aeabi_d2iz
+ 174              		.global	__aeabi_ui2d
+ 175              		.global	__aeabi_ddiv
+ 176              		.global	__aeabi_d2uiz
+ 177              		.section	.text.main,"ax",%progbits
+ 178              		.align	1
+ 179              		.global	main
+ 180              		.syntax unified
+ 181              		.thumb
+ 182              		.thumb_func
+ 183              		.fpu fpv4-sp-d16
+ 185              	main:
+ 186              	.LFB126:
+ 261:Src/main.c    **** 
+ 187              		.loc 1 261 0
+ 188              		.cfi_startproc
+ 189              		@ args = 0, pretend = 0, frame = 2048
+ 190              		@ frame_needed = 0, uses_anonymous_args = 0
+ 191 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 192              	.LCFI4:
+ 193              		.cfi_def_cfa_offset 20
+ 194              		.cfi_offset 4, -20
+ 195              		.cfi_offset 5, -16
+ 196              		.cfi_offset 6, -12
+ 197              		.cfi_offset 7, -8
+ 198              		.cfi_offset 14, -4
+ 199 0002 ADF61C0D 		subw	sp, sp, #2076
+ 200              	.LCFI5:
+ 201              		.cfi_def_cfa_offset 2096
+ 270:Src/main.c    **** 
+ 202              		.loc 1 270 0
+ 203 0006 FFF7FEFF 		bl	HAL_Init
+ 204              	.LVL11:
+ 283:Src/main.c    **** 
+ 205              		.loc 1 283 0
+ 206 000a FFF7FEFF 		bl	SystemClock_Config
+ 207              	.LVL12:
+ 290:Src/main.c    ****   MX_DMA_Init();
+ 208              		.loc 1 290 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 14
+
+
+ 209 000e FFF7FEFF 		bl	MX_GPIO_Init
+ 210              	.LVL13:
+ 291:Src/main.c    ****   MX_USART2_UART_Init();
+ 211              		.loc 1 291 0
+ 212 0012 FFF7FEFF 		bl	MX_DMA_Init
+ 213              	.LVL14:
+ 292:Src/main.c    ****   MX_TIM1_Init();
+ 214              		.loc 1 292 0
+ 215 0016 FFF7FEFF 		bl	MX_USART2_UART_Init
+ 216              	.LVL15:
+ 293:Src/main.c    ****   MX_USART1_UART_Init();
+ 217              		.loc 1 293 0
+ 218 001a FFF7FEFF 		bl	MX_TIM1_Init
+ 219              	.LVL16:
+ 294:Src/main.c    ****   MX_SPI1_Init();
+ 220              		.loc 1 294 0
+ 221 001e FFF7FEFF 		bl	MX_USART1_UART_Init
+ 222              	.LVL17:
+ 295:Src/main.c    ****   MX_ADC1_Init();
+ 223              		.loc 1 295 0
+ 224 0022 FFF7FEFF 		bl	MX_SPI1_Init
+ 225              	.LVL18:
+ 296:Src/main.c    **** 
+ 226              		.loc 1 296 0
+ 227 0026 FFF7FEFF 		bl	MX_ADC1_Init
+ 228              	.LVL19:
+ 303:Src/main.c    ****   HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
+ 229              		.loc 1 303 0
+ 230 002a 4FF40062 		mov	r2, #2048
+ 231 002e 0021     		movs	r1, #0
+ 232 0030 06A8     		add	r0, sp, #24
+ 233 0032 FFF7FEFF 		bl	memset
+ 234              	.LVL20:
+ 304:Src/main.c    **** 
+ 235              		.loc 1 304 0
+ 236 0036 4FF48062 		mov	r2, #1024
+ 237 003a 06A9     		add	r1, sp, #24
+ 238 003c A648     		ldr	r0, .L38+16
+ 239 003e FFF7FEFF 		bl	HAL_ADC_Start_DMA
+ 240              	.LVL21:
+ 307:Src/main.c    **** // //  u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_sw_spi, u8x8_gpio_and_de
+ 241              		.loc 1 307 0
+ 242 0042 A64C     		ldr	r4, .L38+20
+ 243 0044 A64B     		ldr	r3, .L38+24
+ 244 0046 A74A     		ldr	r2, .L38+28
+ 245 0048 A749     		ldr	r1, .L38+32
+ 246 004a 2046     		mov	r0, r4
+ 247 004c FFF7FEFF 		bl	u8g2_Setup_ssd1309_128x64_noname2_f
+ 248              	.LVL22:
+ 309:Src/main.c    ****   u8g2_InitDisplay(&u8g2); // send init sequence to the display, display is in sleep mode after thi
+ 249              		.loc 1 309 0
+ 250 0050 0122     		movs	r2, #1
+ 251 0052 0821     		movs	r1, #8
+ 252 0054 A548     		ldr	r0, .L38+36
+ 253 0056 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 254              	.LVL23:
+ 310:Src/main.c    ****   u8g2_SetPowerSave(&u8g2, 0); // wake up display
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 15
+
+
+ 255              		.loc 1 310 0
+ 256 005a 2046     		mov	r0, r4
+ 257 005c FFF7FEFF 		bl	u8x8_InitDisplay
+ 258              	.LVL24:
+ 311:Src/main.c    ****   u8g2_SetContrast(&u8g2, 128); // set contrast
+ 259              		.loc 1 311 0
+ 260 0060 0021     		movs	r1, #0
+ 261 0062 2046     		mov	r0, r4
+ 262 0064 FFF7FEFF 		bl	u8x8_SetPowerSave
+ 263              	.LVL25:
+ 312:Src/main.c    ****   u8g2_ClearDisplay(&u8g2);
+ 264              		.loc 1 312 0
+ 265 0068 8021     		movs	r1, #128
+ 266 006a 2046     		mov	r0, r4
+ 267 006c FFF7FEFF 		bl	u8x8_SetContrast
+ 268              	.LVL26:
+ 313:Src/main.c    **** 
+ 269              		.loc 1 313 0
+ 270 0070 2046     		mov	r0, r4
+ 271 0072 FFF7FEFF 		bl	u8g2_ClearDisplay
+ 272              	.LVL27:
+ 315:Src/main.c    **** 
+ 273              		.loc 1 315 0
+ 274 0076 2046     		mov	r0, r4
+ 275 0078 FFF7FEFF 		bl	u8g2_ClearBuffer
+ 276              	.LVL28:
+ 319:Src/main.c    **** 
+ 277              		.loc 1 319 0
+ 278 007c 9C4B     		ldr	r3, .L38+40
+ 279 007e 0193     		str	r3, [sp, #4]
+ 280 0080 3023     		movs	r3, #48
+ 281 0082 0093     		str	r3, [sp]
+ 282 0084 0022     		movs	r2, #0
+ 283 0086 2821     		movs	r1, #40
+ 284 0088 2046     		mov	r0, r4
+ 285 008a FFF7FEFF 		bl	u8g2_DrawXBMP
+ 286              	.LVL29:
+ 321:Src/main.c    ****   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
+ 287              		.loc 1 321 0
+ 288 008e 9949     		ldr	r1, .L38+44
+ 289 0090 2046     		mov	r0, r4
+ 290 0092 FFF7FEFF 		bl	u8g2_SetFont
+ 291              	.LVL30:
+ 322:Src/main.c    ****   u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
+ 292              		.loc 1 322 0
+ 293 0096 984B     		ldr	r3, .L38+48
+ 294 0098 3722     		movs	r2, #55
+ 295 009a 1021     		movs	r1, #16
+ 296 009c 2046     		mov	r0, r4
+ 297 009e FFF7FEFF 		bl	u8g2_DrawStr
+ 298              	.LVL31:
+ 323:Src/main.c    **** 
+ 299              		.loc 1 323 0
+ 300 00a2 964B     		ldr	r3, .L38+52
+ 301 00a4 4022     		movs	r2, #64
+ 302 00a6 2821     		movs	r1, #40
+ 303 00a8 2046     		mov	r0, r4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 16
+
+
+ 304 00aa FFF7FEFF 		bl	u8g2_DrawStr
+ 305              	.LVL32:
+ 325:Src/main.c    **** 
+ 306              		.loc 1 325 0
+ 307 00ae 2046     		mov	r0, r4
+ 308 00b0 FFF7FEFF 		bl	u8g2_SendBuffer
+ 309              	.LVL33:
+ 327:Src/main.c    **** 
+ 310              		.loc 1 327 0
+ 311 00b4 4FF4FA60 		mov	r0, #2000
+ 312 00b8 FFF7FEFF 		bl	HAL_Delay
+ 313              	.LVL34:
+ 334:Src/main.c    **** 
+ 314              		.loc 1 334 0
+ 315 00bc 2046     		mov	r0, r4
+ 316 00be FFF7FEFF 		bl	u8g2_ClearBuffer
+ 317              	.LVL35:
+ 338:Src/main.c    **** 	  x = meas_x;
+ 318              		.loc 1 338 0
+ 319 00c2 0024     		movs	r4, #0
+ 320 00c4 20E0     		b	.L14
+ 321              	.LVL36:
+ 322              	.L15:
+ 323              	.LBB2:
+ 340:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width1, meas_height, meas_name[n], meas_unit[n]);
+ 324              		.loc 1 340 0 discriminator 3
+ 325 00c6 8E4B     		ldr	r3, .L38+56
+ 326 00c8 A3FB0423 		umull	r2, r3, r3, r4
+ 327 00cc 5B08     		lsrs	r3, r3, #1
+ 328 00ce 03EB4303 		add	r3, r3, r3, lsl #1
+ 329 00d2 E31A     		subs	r3, r4, r3
+ 330 00d4 03EB4302 		add	r2, r3, r3, lsl #1
+ 331 00d8 03EB8202 		add	r2, r3, r2, lsl #2
+ 332 00dc D2B2     		uxtb	r2, r2
+ 333 00de 1032     		adds	r2, r2, #16
+ 334              	.LVL37:
+ 341:Src/main.c    ****   }
+ 335              		.loc 1 341 0 discriminator 3
+ 336 00e0 C4EBC401 		rsb	r1, r4, r4, lsl #3
+ 337 00e4 874B     		ldr	r3, .L38+60
+ 338 00e6 0B44     		add	r3, r3, r1
+ 339 00e8 04EB8400 		add	r0, r4, r4, lsl #2
+ 340 00ec 8649     		ldr	r1, .L38+64
+ 341 00ee 0144     		add	r1, r1, r0
+ 342 00f0 0291     		str	r1, [sp, #8]
+ 343 00f2 0193     		str	r3, [sp, #4]
+ 344 00f4 0D23     		movs	r3, #13
+ 345 00f6 0093     		str	r3, [sp]
+ 346 00f8 4623     		movs	r3, #70
+ 347 00fa D2B2     		uxtb	r2, r2
+ 348 00fc 0021     		movs	r1, #0
+ 349 00fe 7748     		ldr	r0, .L38+20
+ 350 0100 FFF7FEFF 		bl	draw_MeasLabelUnit
+ 351              	.LVL38:
+ 352              	.LBE2:
+ 338:Src/main.c    **** 	  x = meas_x;
+ 353              		.loc 1 338 0 discriminator 3
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 17
+
+
+ 354 0104 0134     		adds	r4, r4, #1
+ 355              	.LVL39:
+ 356 0106 E4B2     		uxtb	r4, r4
+ 357              	.LVL40:
+ 358              	.L14:
+ 338:Src/main.c    **** 	  x = meas_x;
+ 359              		.loc 1 338 0 is_stmt 0 discriminator 1
+ 360 0108 022C     		cmp	r4, #2
+ 361 010a DCD9     		bls	.L15
+ 343:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
+ 362              		.loc 1 343 0 is_stmt 1
+ 363 010c 0324     		movs	r4, #3
+ 364              	.LVL41:
+ 365 010e 20E0     		b	.L16
+ 366              	.LVL42:
+ 367              	.L17:
+ 368              	.LBB3:
+ 345:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width2, meas_height, meas_name[n], meas_unit[n]);
+ 369              		.loc 1 345 0 discriminator 3
+ 370 0110 7B4B     		ldr	r3, .L38+56
+ 371 0112 A3FB0423 		umull	r2, r3, r3, r4
+ 372 0116 5B08     		lsrs	r3, r3, #1
+ 373 0118 03EB4303 		add	r3, r3, r3, lsl #1
+ 374 011c E31A     		subs	r3, r4, r3
+ 375 011e 03EB4302 		add	r2, r3, r3, lsl #1
+ 376 0122 03EB8202 		add	r2, r3, r2, lsl #2
+ 377 0126 D2B2     		uxtb	r2, r2
+ 378 0128 1032     		adds	r2, r2, #16
+ 379              	.LVL43:
+ 346:Src/main.c    ****   }
+ 380              		.loc 1 346 0 discriminator 3
+ 381 012a C4EBC401 		rsb	r1, r4, r4, lsl #3
+ 382 012e 754B     		ldr	r3, .L38+60
+ 383 0130 0B44     		add	r3, r3, r1
+ 384 0132 04EB8400 		add	r0, r4, r4, lsl #2
+ 385 0136 7449     		ldr	r1, .L38+64
+ 386 0138 0144     		add	r1, r1, r0
+ 387 013a 0291     		str	r1, [sp, #8]
+ 388 013c 0193     		str	r3, [sp, #4]
+ 389 013e 0D23     		movs	r3, #13
+ 390 0140 0093     		str	r3, [sp]
+ 391 0142 3823     		movs	r3, #56
+ 392 0144 D2B2     		uxtb	r2, r2
+ 393 0146 4821     		movs	r1, #72
+ 394 0148 6448     		ldr	r0, .L38+20
+ 395 014a FFF7FEFF 		bl	draw_MeasLabelUnit
+ 396              	.LVL44:
+ 397              	.LBE3:
+ 343:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
+ 398              		.loc 1 343 0 discriminator 3
+ 399 014e 0134     		adds	r4, r4, #1
+ 400              	.LVL45:
+ 401 0150 E4B2     		uxtb	r4, r4
+ 402              	.LVL46:
+ 403              	.L16:
+ 343:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
+ 404              		.loc 1 343 0 is_stmt 0 discriminator 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 18
+
+
+ 405 0152 052C     		cmp	r4, #5
+ 406 0154 DCD9     		bls	.L17
+ 351:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
+ 407              		.loc 1 351 0 is_stmt 1
+ 408 0156 0024     		movs	r4, #0
+ 409              	.LVL47:
+ 410              	.L18:
+ 351:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
+ 411              		.loc 1 351 0 is_stmt 0 discriminator 1
+ 412 0158 012C     		cmp	r4, #1
+ 413 015a 16D8     		bhi	.L35
+ 414              	.LBB4:
+ 352:Src/main.c    ****   }
+ 415              		.loc 1 352 0 is_stmt 1 discriminator 3
+ 416 015c C4EBC401 		rsb	r1, r4, r4, lsl #3
+ 417 0160 04EB8101 		add	r1, r4, r1, lsl #2
+ 418 0164 694B     		ldr	r3, .L38+68
+ 419 0166 1A5D     		ldrb	r2, [r3, r4]	@ zero_extendqisi2
+ 420 0168 04EB8400 		add	r0, r4, r4, lsl #2
+ 421 016c 684B     		ldr	r3, .L38+72
+ 422 016e 0344     		add	r3, r3, r0
+ 423 0170 0293     		str	r3, [sp, #8]
+ 424 0172 0192     		str	r2, [sp, #4]
+ 425 0174 0923     		movs	r3, #9
+ 426 0176 0093     		str	r3, [sp]
+ 427 0178 1B23     		movs	r3, #27
+ 428 017a 3722     		movs	r2, #55
+ 429 017c 4831     		adds	r1, r1, #72
+ 430 017e 5748     		ldr	r0, .L38+20
+ 431 0180 FFF7FEFF 		bl	draw_IndicatorBox
+ 432              	.LVL48:
+ 433              	.LBE4:
+ 351:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
+ 434              		.loc 1 351 0 discriminator 3
+ 435 0184 0134     		adds	r4, r4, #1
+ 436              	.LVL49:
+ 437 0186 E4B2     		uxtb	r4, r4
+ 438              	.LVL50:
+ 439 0188 E6E7     		b	.L18
+ 440              	.L35:
+ 354:Src/main.c    **** 
+ 441              		.loc 1 354 0
+ 442 018a 544C     		ldr	r4, .L38+20
+ 443              	.LVL51:
+ 444 018c 2046     		mov	r0, r4
+ 445 018e FFF7FEFF 		bl	u8g2_SendBuffer
+ 446              	.LVL52:
+ 366:Src/main.c    **** 
+ 447              		.loc 1 366 0
+ 448 0192 2046     		mov	r0, r4
+ 449 0194 FFF7FEFF 		bl	u8g2_SendBuffer
+ 450              	.LVL53:
+ 276:Src/main.c    ****   uint16_t b = 0;
+ 451              		.loc 1 276 0
+ 452 0198 0025     		movs	r5, #0
+ 453 019a FFE0     		b	.L32
+ 454              	.LVL54:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 19
+
+
+ 455              	.L20:
+ 456              	.LBB5:
+ 380:Src/main.c    **** 				gear++;
+ 457              		.loc 1 380 0
+ 458 019c 5D4B     		ldr	r3, .L38+76
+ 459 019e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 460 01a0 032B     		cmp	r3, #3
+ 461 01a2 23D8     		bhi	.L22
+ 381:Src/main.c    **** 				rpm = (double)speed / (0.002*60.0) * (MT[gear]*4.1);
+ 462              		.loc 1 381 0
+ 463 01a4 0133     		adds	r3, r3, #1
+ 464 01a6 DCB2     		uxtb	r4, r3
+ 465 01a8 5A4B     		ldr	r3, .L38+76
+ 466 01aa 1C70     		strb	r4, [r3]
+ 382:Src/main.c    **** 			}else{
+ 467              		.loc 1 382 0
+ 468 01ac 5A4B     		ldr	r3, .L38+80
+ 469 01ae 1888     		ldrh	r0, [r3]
+ 470 01b0 FFF7FEFF 		bl	__aeabi_ui2d
+ 471              	.LVL55:
+ 472 01b4 44A3     		adr	r3, .L38
+ 473 01b6 D3E90023 		ldrd	r2, [r3]
+ 474 01ba FFF7FEFF 		bl	__aeabi_ddiv
+ 475              	.LVL56:
+ 476 01be 0646     		mov	r6, r0
+ 477 01c0 0F46     		mov	r7, r1
+ 478 01c2 564B     		ldr	r3, .L38+84
+ 479 01c4 03EBC404 		add	r4, r3, r4, lsl #3
+ 480 01c8 41A3     		adr	r3, .L38+8
+ 481 01ca D3E90023 		ldrd	r2, [r3]
+ 482 01ce D4E90001 		ldrd	r0, [r4]
+ 483 01d2 FFF7FEFF 		bl	__aeabi_dmul
+ 484              	.LVL57:
+ 485 01d6 0246     		mov	r2, r0
+ 486 01d8 0B46     		mov	r3, r1
+ 487 01da 3046     		mov	r0, r6
+ 488 01dc 3946     		mov	r1, r7
+ 489 01de FFF7FEFF 		bl	__aeabi_dmul
+ 490              	.LVL58:
+ 491 01e2 FFF7FEFF 		bl	__aeabi_d2uiz
+ 492              	.LVL59:
+ 493 01e6 4E4B     		ldr	r3, .L38+88
+ 494 01e8 1880     		strh	r0, [r3]	@ movhi
+ 495 01ea EEE0     		b	.L21
+ 496              	.L22:
+ 384:Src/main.c    **** 				rpm = 1000;
+ 497              		.loc 1 384 0
+ 498 01ec 494B     		ldr	r3, .L38+76
+ 499 01ee 0022     		movs	r2, #0
+ 500 01f0 1A70     		strb	r2, [r3]
+ 385:Src/main.c    **** 			}
+ 501              		.loc 1 385 0
+ 502 01f2 4B4B     		ldr	r3, .L38+88
+ 503 01f4 4FF47A72 		mov	r2, #1000
+ 504 01f8 1A80     		strh	r2, [r3]	@ movhi
+ 505 01fa E6E0     		b	.L21
+ 506              	.L33:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 20
+
+
+ 392:Src/main.c    **** 		}else{
+ 507              		.loc 1 392 0
+ 508 01fc 0025     		movs	r5, #0
+ 509              	.LVL60:
+ 510 01fe 0CE1     		b	.L23
+ 511              	.LVL61:
+ 512              	.L37:
+ 398:Src/main.c    **** 			}else{
+ 513              		.loc 1 398 0
+ 514 0200 A5F14B02 		sub	r2, r5, #75
+ 515 0204 4749     		ldr	r1, .L38+92
+ 516 0206 21F81320 		strh	r2, [r1, r3, lsl #1]	@ movhi
+ 517              	.L26:
+ 396:Src/main.c    **** 			if( n==1 ){
+ 518              		.loc 1 396 0 discriminator 2
+ 519 020a 0133     		adds	r3, r3, #1
+ 520              	.LVL62:
+ 521 020c DBB2     		uxtb	r3, r3
+ 522              	.LVL63:
+ 523              	.L24:
+ 396:Src/main.c    **** 			if( n==1 ){
+ 524              		.loc 1 396 0 is_stmt 0 discriminator 1
+ 525 020e 052B     		cmp	r3, #5
+ 526 0210 05D8     		bhi	.L36
+ 397:Src/main.c    **** 				meas_value[n] = a - 75;
+ 527              		.loc 1 397 0 is_stmt 1
+ 528 0212 012B     		cmp	r3, #1
+ 529 0214 F4D0     		beq	.L37
+ 400:Src/main.c    **** 			}
+ 530              		.loc 1 400 0
+ 531 0216 434A     		ldr	r2, .L38+92
+ 532 0218 22F81350 		strh	r5, [r2, r3, lsl #1]	@ movhi
+ 533 021c F5E7     		b	.L26
+ 534              	.L36:
+ 408:Src/main.c    **** 
+ 535              		.loc 1 408 0
+ 536 021e BDF81830 		ldrh	r3, [sp, #24]
+ 537              	.LVL64:
+ 538 0222 07EE103A 		vmov	s14, r3	@ int
+ 539 0226 B8EE477A 		vcvt.f32.u32	s14, s14
+ 540 022a DFED3F7A 		vldr.32	s15, .L38+96
+ 541 022e 27EE277A 		vmul.f32	s14, s14, s15
+ 542 0232 DFED3E6A 		vldr.32	s13, .L38+100
+ 543 0236 C7EE267A 		vdiv.f32	s15, s14, s13
+ 544 023a FDEEE77A 		vcvt.s32.f32	s15, s15
+ 545 023e 17EE903A 		vmov	r3, s15	@ int
+ 546 0242 1BB2     		sxth	r3, r3
+ 547 0244 374A     		ldr	r2, .L38+92
+ 548 0246 5381     		strh	r3, [r2, #10]	@ movhi
+ 411:Src/main.c    **** 
+ 549              		.loc 1 411 0
+ 550 0248 394A     		ldr	r2, .L38+104
+ 551 024a 1380     		strh	r3, [r2]	@ movhi
+ 417:Src/main.c    **** 
+ 552              		.loc 1 417 0
+ 553 024c 42F22833 		movw	r3, #9000
+ 554 0250 0393     		str	r3, [sp, #12]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 21
+
+
+ 555 0252 0024     		movs	r4, #0
+ 556 0254 0294     		str	r4, [sp, #8]
+ 557 0256 0196     		str	r6, [sp, #4]
+ 558 0258 0E23     		movs	r3, #14
+ 559 025a 0093     		str	r3, [sp]
+ 560 025c 8023     		movs	r3, #128
+ 561 025e 2246     		mov	r2, r4
+ 562 0260 2146     		mov	r1, r4
+ 563 0262 1E48     		ldr	r0, .L38+20
+ 564 0264 FFF7FEFF 		bl	draw_BarGraph
+ 565              	.LVL65:
+ 420:Src/main.c    **** 			x = meas_x;
+ 566              		.loc 1 420 0
+ 567 0268 28E0     		b	.L28
+ 568              	.LVL66:
+ 569              	.L29:
+ 570              	.LBB6:
+ 422:Src/main.c    **** 			draw_Value(&u8g2, x, y, meas_width1, meas_height, meas_value[n], meas_digit[n], meas_frac[n], me
+ 571              		.loc 1 422 0 discriminator 3
+ 572 026a 254B     		ldr	r3, .L38+56
+ 573 026c A3FB0423 		umull	r2, r3, r3, r4
+ 574 0270 5B08     		lsrs	r3, r3, #1
+ 575 0272 03EB4303 		add	r3, r3, r3, lsl #1
+ 576 0276 E31A     		subs	r3, r4, r3
+ 577 0278 03EB4302 		add	r2, r3, r3, lsl #1
+ 578 027c 03EB8202 		add	r2, r3, r2, lsl #2
+ 579 0280 D2B2     		uxtb	r2, r2
+ 580 0282 1032     		adds	r2, r2, #16
+ 581              	.LVL67:
+ 423:Src/main.c    **** 		}
+ 582              		.loc 1 423 0 discriminator 3
+ 583 0284 274B     		ldr	r3, .L38+92
+ 584 0286 33F91410 		ldrsh	r1, [r3, r4, lsl #1]
+ 585 028a 2A4B     		ldr	r3, .L38+108
+ 586 028c 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+ 587 028e 2A4B     		ldr	r3, .L38+112
+ 588 0290 1E5D     		ldrb	r6, [r3, r4]	@ zero_extendqisi2
+ 589 0292 2A4B     		ldr	r3, .L38+116
+ 590 0294 1F5D     		ldrb	r7, [r3, r4]	@ zero_extendqisi2
+ 591 0296 04EB840C 		add	ip, r4, r4, lsl #2
+ 592 029a 1B4B     		ldr	r3, .L38+64
+ 593 029c 6344     		add	r3, r3, ip
+ 594 029e 0593     		str	r3, [sp, #20]
+ 595 02a0 0497     		str	r7, [sp, #16]
+ 596 02a2 0396     		str	r6, [sp, #12]
+ 597 02a4 0290     		str	r0, [sp, #8]
+ 598 02a6 0191     		str	r1, [sp, #4]
+ 599 02a8 0D23     		movs	r3, #13
+ 600 02aa 0093     		str	r3, [sp]
+ 601 02ac 4623     		movs	r3, #70
+ 602 02ae D2B2     		uxtb	r2, r2
+ 603 02b0 0021     		movs	r1, #0
+ 604 02b2 0A48     		ldr	r0, .L38+20
+ 605 02b4 FFF7FEFF 		bl	draw_Value
+ 606              	.LVL68:
+ 607              	.LBE6:
+ 420:Src/main.c    **** 			x = meas_x;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 22
+
+
+ 608              		.loc 1 420 0 discriminator 3
+ 609 02b8 0134     		adds	r4, r4, #1
+ 610              	.LVL69:
+ 611 02ba E4B2     		uxtb	r4, r4
+ 612              	.LVL70:
+ 613              	.L28:
+ 420:Src/main.c    **** 			x = meas_x;
+ 614              		.loc 1 420 0 is_stmt 0 discriminator 1
+ 615 02bc 022C     		cmp	r4, #2
+ 616 02be D4D9     		bls	.L29
+ 425:Src/main.c    **** 			x = meas_width1 + meas_x + meas_x_offset;
+ 617              		.loc 1 425 0 is_stmt 1
+ 618 02c0 0324     		movs	r4, #3
+ 619              	.LVL71:
+ 620 02c2 66E0     		b	.L30
+ 621              	.L39:
+ 622 02c4 AFF30080 		.align	3
+ 623              	.L38:
+ 624 02c8 B81E85EB 		.word	3951369912
+ 625 02cc 51B8BE3F 		.word	1069463633
+ 626 02d0 66666666 		.word	1717986918
+ 627 02d4 66661040 		.word	1074816614
+ 628 02d8 00000000 		.word	hadc1
+ 629 02dc 00000000 		.word	u8g2
+ 630 02e0 00000000 		.word	u8x8_gpio_and_delay_STM32F303
+ 631 02e4 00000000 		.word	u8x8_byte_4wire_hw_spi
+ 632 02e8 00000000 		.word	u8g2_cb_r0
+ 633 02ec 00040048 		.word	1207960576
+ 634 02f0 00000000 		.word	.LANCHOR0
+ 635 02f4 00000000 		.word	u8g2_font_5x7_tf
+ 636 02f8 00000000 		.word	.LC1
+ 637 02fc 18000000 		.word	.LC2
+ 638 0300 ABAAAAAA 		.word	-1431655765
+ 639 0304 00000000 		.word	.LANCHOR1
+ 640 0308 00000000 		.word	.LANCHOR2
+ 641 030c 00000000 		.word	.LANCHOR3
+ 642 0310 00000000 		.word	.LANCHOR4
+ 643 0314 00000000 		.word	.LANCHOR7
+ 644 0318 00000000 		.word	.LANCHOR8
+ 645 031c 00000000 		.word	.LANCHOR6
+ 646 0320 00000000 		.word	.LANCHOR5
+ 647 0324 00000000 		.word	.LANCHOR9
+ 648 0328 0000A543 		.word	1134886912
+ 649 032c 00007F43 		.word	1132396544
+ 650 0330 00000000 		.word	.LANCHOR10
+ 651 0334 00000000 		.word	.LANCHOR11
+ 652 0338 00000000 		.word	.LANCHOR12
+ 653 033c 00000000 		.word	.LANCHOR13
+ 654              	.LVL72:
+ 655              	.L31:
+ 656              	.LBB7:
+ 427:Src/main.c    **** 			draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n], me
+ 657              		.loc 1 427 0 discriminator 3
+ 658 0340 3B4A     		ldr	r2, .L40+16
+ 659 0342 A2FB0432 		umull	r3, r2, r2, r4
+ 660 0346 5208     		lsrs	r2, r2, #1
+ 661 0348 02EB4202 		add	r2, r2, r2, lsl #1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 23
+
+
+ 662 034c A21A     		subs	r2, r4, r2
+ 663 034e 02EB4203 		add	r3, r2, r2, lsl #1
+ 664 0352 02EB8302 		add	r2, r2, r3, lsl #2
+ 665 0356 D2B2     		uxtb	r2, r2
+ 666 0358 1032     		adds	r2, r2, #16
+ 667              	.LVL73:
+ 428:Src/main.c    **** 		}
+ 668              		.loc 1 428 0 discriminator 3
+ 669 035a 364B     		ldr	r3, .L40+20
+ 670 035c 33F91410 		ldrsh	r1, [r3, r4, lsl #1]
+ 671 0360 354B     		ldr	r3, .L40+24
+ 672 0362 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+ 673 0364 354B     		ldr	r3, .L40+28
+ 674 0366 1E5D     		ldrb	r6, [r3, r4]	@ zero_extendqisi2
+ 675 0368 354B     		ldr	r3, .L40+32
+ 676 036a 1F5D     		ldrb	r7, [r3, r4]	@ zero_extendqisi2
+ 677 036c 04EB840C 		add	ip, r4, r4, lsl #2
+ 678 0370 344B     		ldr	r3, .L40+36
+ 679 0372 6344     		add	r3, r3, ip
+ 680 0374 0593     		str	r3, [sp, #20]
+ 681 0376 0497     		str	r7, [sp, #16]
+ 682 0378 0396     		str	r6, [sp, #12]
+ 683 037a 0290     		str	r0, [sp, #8]
+ 684 037c 0191     		str	r1, [sp, #4]
+ 685 037e 0D23     		movs	r3, #13
+ 686 0380 0093     		str	r3, [sp]
+ 687 0382 3823     		movs	r3, #56
+ 688 0384 D2B2     		uxtb	r2, r2
+ 689 0386 4821     		movs	r1, #72
+ 690 0388 2F48     		ldr	r0, .L40+40
+ 691 038a FFF7FEFF 		bl	draw_Value
+ 692              	.LVL74:
+ 693              	.LBE7:
+ 425:Src/main.c    **** 			x = meas_width1 + meas_x + meas_x_offset;
+ 694              		.loc 1 425 0 discriminator 3
+ 695 038e 0134     		adds	r4, r4, #1
+ 696              	.LVL75:
+ 697 0390 E4B2     		uxtb	r4, r4
+ 698              	.LVL76:
+ 699              	.L30:
+ 425:Src/main.c    **** 			x = meas_width1 + meas_x + meas_x_offset;
+ 700              		.loc 1 425 0 is_stmt 0 discriminator 1
+ 701 0392 052C     		cmp	r4, #5
+ 702 0394 D4D9     		bls	.L31
+ 433:Src/main.c    **** 
+ 703              		.loc 1 433 0 is_stmt 1
+ 704 0396 2C48     		ldr	r0, .L40+40
+ 705 0398 FFF7FEFF 		bl	u8g2_SendBuffer
+ 706              	.LVL77:
+ 707              	.L32:
+ 376:Src/main.c    **** 			  rpm = rpm + (int)(10*MT[gear]);
+ 708              		.loc 1 376 0
+ 709 039c 2B4B     		ldr	r3, .L40+44
+ 710 039e 1C88     		ldrh	r4, [r3]
+ 711 03a0 42F20803 		movw	r3, #8200
+ 712 03a4 9C42     		cmp	r4, r3
+ 713 03a6 3FF6F9AE 		bhi	.L20
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 24
+
+
+ 377:Src/main.c    **** //			  rpm=rpm+10;
+ 714              		.loc 1 377 0
+ 715 03aa 294B     		ldr	r3, .L40+48
+ 716 03ac 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 717 03ae 2949     		ldr	r1, .L40+52
+ 718 03b0 01EBC301 		add	r1, r1, r3, lsl #3
+ 719 03b4 0022     		movs	r2, #0
+ 720 03b6 284B     		ldr	r3, .L40+56
+ 721 03b8 D1E90001 		ldrd	r0, [r1]
+ 722 03bc FFF7FEFF 		bl	__aeabi_dmul
+ 723              	.LVL78:
+ 724 03c0 FFF7FEFF 		bl	__aeabi_d2iz
+ 725              	.LVL79:
+ 726 03c4 2044     		add	r0, r0, r4
+ 727 03c6 214B     		ldr	r3, .L40+44
+ 728 03c8 1880     		strh	r0, [r3]	@ movhi
+ 729              	.L21:
+ 388:Src/main.c    **** 		meas_value[0] = speed; // speed
+ 730              		.loc 1 388 0
+ 731 03ca 204B     		ldr	r3, .L40+44
+ 732 03cc 1E88     		ldrh	r6, [r3]
+ 733 03ce 3046     		mov	r0, r6
+ 734 03d0 FFF7FEFF 		bl	__aeabi_ui2d
+ 735              	.LVL80:
+ 736 03d4 12A3     		adr	r3, .L40
+ 737 03d6 D3E90023 		ldrd	r2, [r3]
+ 738 03da FFF7FEFF 		bl	__aeabi_dmul
+ 739              	.LVL81:
+ 740 03de 0022     		movs	r2, #0
+ 741 03e0 1E4B     		ldr	r3, .L40+60
+ 742 03e2 FFF7FEFF 		bl	__aeabi_dmul
+ 743              	.LVL82:
+ 744 03e6 1A4B     		ldr	r3, .L40+48
+ 745 03e8 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 746 03ea 1A4B     		ldr	r3, .L40+52
+ 747 03ec 03EBC203 		add	r3, r3, r2, lsl #3
+ 748 03f0 D3E90023 		ldrd	r2, [r3]
+ 749 03f4 FFF7FEFF 		bl	__aeabi_ddiv
+ 750              	.LVL83:
+ 751 03f8 0BA3     		adr	r3, .L40+8
+ 752 03fa D3E90023 		ldrd	r2, [r3]
+ 753 03fe FFF7FEFF 		bl	__aeabi_ddiv
+ 754              	.LVL84:
+ 755 0402 FFF7FEFF 		bl	__aeabi_d2uiz
+ 756              	.LVL85:
+ 757 0406 80B2     		uxth	r0, r0
+ 758 0408 154B     		ldr	r3, .L40+64
+ 759 040a 1880     		strh	r0, [r3]	@ movhi
+ 389:Src/main.c    **** 
+ 760              		.loc 1 389 0
+ 761 040c 094B     		ldr	r3, .L40+20
+ 762 040e 1880     		strh	r0, [r3]	@ movhi
+ 391:Src/main.c    **** 			a = 0;
+ 763              		.loc 1 391 0
+ 764 0410 952D     		cmp	r5, #149
+ 765 0412 3FF6F3AE 		bhi	.L33
+ 394:Src/main.c    **** 		}
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 25
+
+
+ 766              		.loc 1 394 0
+ 767 0416 0135     		adds	r5, r5, #1
+ 768              	.LVL86:
+ 769 0418 ADB2     		uxth	r5, r5
+ 770              	.LVL87:
+ 771              	.L23:
+ 396:Src/main.c    **** 			if( n==1 ){
+ 772              		.loc 1 396 0
+ 773 041a 0123     		movs	r3, #1
+ 774 041c F7E6     		b	.L24
+ 775              	.L41:
+ 776 041e 00BF     		.align	3
+ 777              	.L40:
+ 778 0420 FCA9F1D2 		.word	3539053052
+ 779 0424 4D62603F 		.word	1063281229
+ 780 0428 66666666 		.word	1717986918
+ 781 042c 66661040 		.word	1074816614
+ 782 0430 ABAAAAAA 		.word	-1431655765
+ 783 0434 00000000 		.word	.LANCHOR9
+ 784 0438 00000000 		.word	.LANCHOR11
+ 785 043c 00000000 		.word	.LANCHOR12
+ 786 0440 00000000 		.word	.LANCHOR13
+ 787 0444 00000000 		.word	.LANCHOR2
+ 788 0448 00000000 		.word	u8g2
+ 789 044c 00000000 		.word	.LANCHOR5
+ 790 0450 00000000 		.word	.LANCHOR7
+ 791 0454 00000000 		.word	.LANCHOR6
+ 792 0458 00002440 		.word	1076101120
+ 793 045c 00004E40 		.word	1078853632
+ 794 0460 00000000 		.word	.LANCHOR8
+ 795              	.LBE5:
+ 796              		.cfi_endproc
+ 797              	.LFE126:
+ 799              		.section	.text.assert_failed,"ax",%progbits
+ 800              		.align	1
+ 801              		.global	assert_failed
+ 802              		.syntax unified
+ 803              		.thumb
+ 804              		.thumb_func
+ 805              		.fpu fpv4-sp-d16
+ 807              	assert_failed:
+ 808              	.LFB129:
+ 508:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 509:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
+ 510:Src/main.c    ****   while(1) 
+ 511:Src/main.c    ****   {
+ 512:Src/main.c    ****   }
+ 513:Src/main.c    ****   /* USER CODE END Error_Handler_Debug */ 
+ 514:Src/main.c    **** }
+ 515:Src/main.c    **** 
+ 516:Src/main.c    **** #ifdef USE_FULL_ASSERT
+ 517:Src/main.c    **** 
+ 518:Src/main.c    **** /**
+ 519:Src/main.c    ****    * @brief Reports the name of the source file and the source line number
+ 520:Src/main.c    ****    * where the assert_param error has occurred.
+ 521:Src/main.c    ****    * @param file: pointer to the source file name
+ 522:Src/main.c    ****    * @param line: assert_param error line source number
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 26
+
+
+ 523:Src/main.c    ****    * @retval None
+ 524:Src/main.c    ****    */
+ 525:Src/main.c    **** void assert_failed(uint8_t* file, uint32_t line)
+ 526:Src/main.c    **** {
+ 809              		.loc 1 526 0
+ 810              		.cfi_startproc
+ 811              		@ args = 0, pretend = 0, frame = 0
+ 812              		@ frame_needed = 0, uses_anonymous_args = 0
+ 813              		@ link register save eliminated.
+ 814              	.LVL88:
+ 527:Src/main.c    ****   /* USER CODE BEGIN 6 */
+ 528:Src/main.c    ****   /* User can add his own implementation to report the file name and line number,
+ 529:Src/main.c    ****     ex: printf("Wrong parameters value: file %s on line %d¥r¥n", file, line) */
+ 530:Src/main.c    ****   /* USER CODE END 6 */
+ 531:Src/main.c    **** 
+ 532:Src/main.c    **** }
+ 815              		.loc 1 532 0
+ 816 0000 7047     		bx	lr
+ 817              		.cfi_endproc
+ 818              	.LFE129:
+ 820              		.global	FP_volt
+ 821              		.global	meas_value
+ 822              		.global	meas_sign
+ 823              		.global	meas_frac
+ 824              		.global	meas_digit
+ 825              		.global	meas_unit
+ 826              		.global	meas_name
+ 827              		.global	idct_status
+ 828              		.global	idct_name
+ 829              		.global	MT
+ 830              		.global	gear
+ 831              		.global	speed
+ 832              		.global	rpm
+ 833              		.global	logo_bits
+ 834              		.comm	u8g2,128,4
+ 835              		.section	.bss.gear,"aw",%nobits
+ 836              		.set	.LANCHOR7,. + 0
+ 839              	gear:
+ 840 0000 00       		.space	1
+ 841              		.section	.bss.rpm,"aw",%nobits
+ 842              		.align	1
+ 843              		.set	.LANCHOR5,. + 0
+ 846              	rpm:
+ 847 0000 0000     		.space	2
+ 848              		.section	.data.FP_volt,"aw",%progbits
+ 849              		.align	1
+ 850              		.set	.LANCHOR10,. + 0
+ 853              	FP_volt:
+ 854 0000 4A01     		.short	330
+ 855              		.section	.data.MT,"aw",%progbits
+ 856              		.align	3
+ 857              		.set	.LANCHOR6,. + 0
+ 860              	MT:
+ 861 0000 77BE9F1A 		.word	446676599
+ 862 0004 2FDD0B40 		.word	1074519343
+ 863 0008 1F85EB51 		.word	1374389535
+ 864 000c B81E0040 		.word	1073749688
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 27
+
+
+ 865 0010 A8C64B37 		.word	927712936
+ 866 0014 8941F63F 		.word	1073103241
+ 867 0018 00000000 		.word	0
+ 868 001c 0000F03F 		.word	1072693248
+ 869 0020 986E1283 		.word	2199023256
+ 870 0024 C0CAE93F 		.word	1072286400
+ 871              		.section	.data.meas_value,"aw",%progbits
+ 872              		.align	2
+ 873              		.set	.LANCHOR9,. + 0
+ 876              	meas_value:
+ 877 0000 8502     		.short	645
+ 878 0002 6900     		.short	105
+ 879 0004 EB00     		.short	235
+ 880 0006 5900     		.short	89
+ 881 0008 4900     		.short	73
+ 882 000a 8F00     		.short	143
+ 883              		.section	.data.speed,"aw",%progbits
+ 884              		.align	1
+ 885              		.set	.LANCHOR8,. + 0
+ 888              	speed:
+ 889 0000 F000     		.short	240
+ 890              		.section	.rodata.SystemClock_Config.str1.4,"aMS",%progbits,1
+ 891              		.align	2
+ 892              	.LC0:
+ 893 0000 5372632F 		.ascii	"Src/main.c\000"
+ 893      6D61696E 
+ 893      2E6300
+ 894              		.section	.rodata.idct_name,"a",%progbits
+ 895              		.align	2
+ 896              		.set	.LANCHOR4,. + 0
+ 899              	idct_name:
+ 900 0000 43414E00 		.ascii	"CAN\000"
+ 901 0004 00       		.space	1
+ 902 0005 4F324642 		.ascii	"O2FB\000"
+ 902      00
+ 903              		.section	.rodata.idct_status,"a",%progbits
+ 904              		.align	2
+ 905              		.set	.LANCHOR3,. + 0
+ 908              	idct_status:
+ 909 0000 01       		.byte	1
+ 910 0001 00       		.byte	0
+ 911              		.section	.rodata.logo_bits,"a",%progbits
+ 912              		.align	2
+ 913              		.set	.LANCHOR0,. + 0
+ 916              	logo_bits:
+ 917 0000 00       		.byte	0
+ 918 0001 00       		.byte	0
+ 919 0002 00       		.byte	0
+ 920 0003 00       		.byte	0
+ 921 0004 00       		.byte	0
+ 922 0005 00       		.byte	0
+ 923 0006 00       		.byte	0
+ 924 0007 00       		.byte	0
+ 925 0008 00       		.byte	0
+ 926 0009 00       		.byte	0
+ 927 000a 00       		.byte	0
+ 928 000b 00       		.byte	0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 28
+
+
+ 929 000c 00       		.byte	0
+ 930 000d 00       		.byte	0
+ 931 000e 00       		.byte	0
+ 932 000f 00       		.byte	0
+ 933 0010 00       		.byte	0
+ 934 0011 00       		.byte	0
+ 935 0012 00       		.byte	0
+ 936 0013 00       		.byte	0
+ 937 0014 00       		.byte	0
+ 938 0015 00       		.byte	0
+ 939 0016 00       		.byte	0
+ 940 0017 00       		.byte	0
+ 941 0018 00       		.byte	0
+ 942 0019 00       		.byte	0
+ 943 001a F0       		.byte	-16
+ 944 001b 0F       		.byte	15
+ 945 001c 00       		.byte	0
+ 946 001d 00       		.byte	0
+ 947 001e 00       		.byte	0
+ 948 001f FC       		.byte	-4
+ 949 0020 FF       		.byte	-1
+ 950 0021 FF       		.byte	-1
+ 951 0022 3F       		.byte	63
+ 952 0023 00       		.byte	0
+ 953 0024 80       		.byte	-128
+ 954 0025 FF       		.byte	-1
+ 955 0026 FF       		.byte	-1
+ 956 0027 FF       		.byte	-1
+ 957 0028 FF       		.byte	-1
+ 958 0029 01       		.byte	1
+ 959 002a E0       		.byte	-32
+ 960 002b 1F       		.byte	31
+ 961 002c 00       		.byte	0
+ 962 002d 80       		.byte	-128
+ 963 002e FF       		.byte	-1
+ 964 002f 07       		.byte	7
+ 965 0030 E0       		.byte	-32
+ 966 0031 01       		.byte	1
+ 967 0032 00       		.byte	0
+ 968 0033 80       		.byte	-128
+ 969 0034 81       		.byte	-127
+ 970 0035 07       		.byte	7
+ 971 0036 E0       		.byte	-32
+ 972 0037 01       		.byte	1
+ 973 0038 00       		.byte	0
+ 974 0039 80       		.byte	-128
+ 975 003a 81       		.byte	-127
+ 976 003b 07       		.byte	7
+ 977 003c C0       		.byte	-64
+ 978 003d E1       		.byte	-31
+ 979 003e 07       		.byte	7
+ 980 003f C0       		.byte	-64
+ 981 0040 80       		.byte	-128
+ 982 0041 03       		.byte	3
+ 983 0042 00       		.byte	0
+ 984 0043 FC       		.byte	-4
+ 985 0044 1F       		.byte	31
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 29
+
+
+ 986 0045 E0       		.byte	-32
+ 987 0046 80       		.byte	-128
+ 988 0047 03       		.byte	3
+ 989 0048 00       		.byte	0
+ 990 0049 FE       		.byte	-2
+ 991 004a 7F       		.byte	127
+ 992 004b 70       		.byte	112
+ 993 004c C0       		.byte	-64
+ 994 004d 01       		.byte	1
+ 995 004e 00       		.byte	0
+ 996 004f 0F       		.byte	15
+ 997 0050 FE       		.byte	-2
+ 998 0051 39       		.byte	57
+ 999 0052 E0       		.byte	-32
+ 1000 0053 00       		.byte	0
+ 1001 0054 00       		.byte	0
+ 1002 0055 07       		.byte	7
+ 1003 0056 F8       		.byte	-8
+ 1004 0057 1F       		.byte	31
+ 1005 0058 F0       		.byte	-16
+ 1006 0059 00       		.byte	0
+ 1007 005a 00       		.byte	0
+ 1008 005b 0E       		.byte	14
+ 1009 005c E0       		.byte	-32
+ 1010 005d 1F       		.byte	31
+ 1011 005e 78       		.byte	120
+ 1012 005f 00       		.byte	0
+ 1013 0060 00       		.byte	0
+ 1014 0061 0C       		.byte	12
+ 1015 0062 C0       		.byte	-64
+ 1016 0063 FF       		.byte	-1
+ 1017 0064 3F       		.byte	63
+ 1018 0065 00       		.byte	0
+ 1019 0066 00       		.byte	0
+ 1020 0067 18       		.byte	24
+ 1021 0068 00       		.byte	0
+ 1022 0069 FF       		.byte	-1
+ 1023 006a 1F       		.byte	31
+ 1024 006b 00       		.byte	0
+ 1025 006c 00       		.byte	0
+ 1026 006d 38       		.byte	56
+ 1027 006e C0       		.byte	-64
+ 1028 006f FF       		.byte	-1
+ 1029 0070 0F       		.byte	15
+ 1030 0071 00       		.byte	0
+ 1031 0072 00       		.byte	0
+ 1032 0073 70       		.byte	112
+ 1033 0074 E0       		.byte	-32
+ 1034 0075 F1       		.byte	-15
+ 1035 0076 03       		.byte	3
+ 1036 0077 00       		.byte	0
+ 1037 0078 00       		.byte	0
+ 1038 0079 E0       		.byte	-32
+ 1039 007a 78       		.byte	120
+ 1040 007b 00       		.byte	0
+ 1041 007c 00       		.byte	0
+ 1042 007d 00       		.byte	0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 30
+
+
+ 1043 007e 00       		.byte	0
+ 1044 007f C0       		.byte	-64
+ 1045 0080 3F       		.byte	63
+ 1046 0081 E0       		.byte	-32
+ 1047 0082 01       		.byte	1
+ 1048 0083 00       		.byte	0
+ 1049 0084 00       		.byte	0
+ 1050 0085 80       		.byte	-128
+ 1051 0086 1F       		.byte	31
+ 1052 0087 F0       		.byte	-16
+ 1053 0088 01       		.byte	1
+ 1054 0089 00       		.byte	0
+ 1055 008a 00       		.byte	0
+ 1056 008b 00       		.byte	0
+ 1057 008c 07       		.byte	7
+ 1058 008d F8       		.byte	-8
+ 1059 008e 00       		.byte	0
+ 1060 008f 00       		.byte	0
+ 1061 0090 00       		.byte	0
+ 1062 0091 00       		.byte	0
+ 1063 0092 1E       		.byte	30
+ 1064 0093 7C       		.byte	124
+ 1065 0094 00       		.byte	0
+ 1066 0095 00       		.byte	0
+ 1067 0096 00       		.byte	0
+ 1068 0097 00       		.byte	0
+ 1069 0098 F8       		.byte	-8
+ 1070 0099 1F       		.byte	31
+ 1071 009a 00       		.byte	0
+ 1072 009b 00       		.byte	0
+ 1073 009c 00       		.byte	0
+ 1074 009d 00       		.byte	0
+ 1075 009e F0       		.byte	-16
+ 1076 009f 0F       		.byte	15
+ 1077 00a0 00       		.byte	0
+ 1078 00a1 00       		.byte	0
+ 1079 00a2 00       		.byte	0
+ 1080 00a3 00       		.byte	0
+ 1081 00a4 80       		.byte	-128
+ 1082 00a5 01       		.byte	1
+ 1083 00a6 00       		.byte	0
+ 1084 00a7 00       		.byte	0
+ 1085 00a8 00       		.byte	0
+ 1086 00a9 00       		.byte	0
+ 1087 00aa 00       		.byte	0
+ 1088 00ab 00       		.byte	0
+ 1089 00ac 00       		.byte	0
+ 1090 00ad 00       		.byte	0
+ 1091 00ae 00       		.byte	0
+ 1092 00af 00       		.byte	0
+ 1093 00b0 00       		.byte	0
+ 1094 00b1 00       		.byte	0
+ 1095 00b2 00       		.byte	0
+ 1096 00b3 00       		.byte	0
+ 1097 00b4 00       		.byte	0
+ 1098 00b5 00       		.byte	0
+ 1099 00b6 00       		.byte	0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 31
+
+
+ 1100 00b7 00       		.byte	0
+ 1101 00b8 00       		.byte	0
+ 1102 00b9 00       		.byte	0
+ 1103 00ba 00       		.byte	0
+ 1104 00bb 00       		.byte	0
+ 1105 00bc 00       		.byte	0
+ 1106 00bd 00       		.byte	0
+ 1107 00be 00       		.byte	0
+ 1108 00bf 00       		.byte	0
+ 1109 00c0 00       		.byte	0
+ 1110 00c1 00       		.byte	0
+ 1111 00c2 00       		.byte	0
+ 1112 00c3 00       		.byte	0
+ 1113 00c4 00       		.byte	0
+ 1114 00c5 00       		.byte	0
+ 1115 00c6 00       		.byte	0
+ 1116 00c7 4C       		.byte	76
+ 1117 00c8 1C       		.byte	28
+ 1118 00c9 00       		.byte	0
+ 1119 00ca 00       		.byte	0
+ 1120 00cb 00       		.byte	0
+ 1121 00cc 00       		.byte	0
+ 1122 00cd 32       		.byte	50
+ 1123 00ce 0E       		.byte	14
+ 1124 00cf 00       		.byte	0
+ 1125 00d0 00       		.byte	0
+ 1126 00d1 00       		.byte	0
+ 1127 00d2 00       		.byte	0
+ 1128 00d3 00       		.byte	0
+ 1129 00d4 C6       		.byte	-58
+ 1130 00d5 00       		.byte	0
+ 1131 00d6 18       		.byte	24
+ 1132 00d7 00       		.byte	0
+ 1133 00d8 00       		.byte	0
+ 1134 00d9 7C       		.byte	124
+ 1135 00da EF       		.byte	-17
+ 1136 00db FC       		.byte	-4
+ 1137 00dc 39       		.byte	57
+ 1138 00dd 00       		.byte	0
+ 1139 00de 00       		.byte	0
+ 1140 00df 4E       		.byte	78
+ 1141 00e0 C6       		.byte	-58
+ 1142 00e1 B8       		.byte	-72
+ 1143 00e2 31       		.byte	49
+ 1144 00e3 00       		.byte	0
+ 1145 00e4 00       		.byte	0
+ 1146 00e5 3E       		.byte	62
+ 1147 00e6 C6       		.byte	-58
+ 1148 00e7 98       		.byte	-104
+ 1149 00e8 31       		.byte	49
+ 1150 00e9 00       		.byte	0
+ 1151 00ea 00       		.byte	0
+ 1152 00eb 3C       		.byte	60
+ 1153 00ec C6       		.byte	-58
+ 1154 00ed 98       		.byte	-104
+ 1155 00ee 31       		.byte	49
+ 1156 00ef 00       		.byte	0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 32
+
+
+ 1157 00f0 00       		.byte	0
+ 1158 00f1 0E       		.byte	14
+ 1159 00f2 C6       		.byte	-58
+ 1160 00f3 98       		.byte	-104
+ 1161 00f4 31       		.byte	49
+ 1162 00f5 00       		.byte	0
+ 1163 00f6 00       		.byte	0
+ 1164 00f7 4E       		.byte	78
+ 1165 00f8 CE       		.byte	-50
+ 1166 00f9 99       		.byte	-103
+ 1167 00fa 31       		.byte	49
+ 1168 00fb 00       		.byte	0
+ 1169 00fc 00       		.byte	0
+ 1170 00fd 7C       		.byte	124
+ 1171 00fe EF       		.byte	-17
+ 1172 00ff FD       		.byte	-3
+ 1173 0100 7B       		.byte	123
+ 1174 0101 00       		.byte	0
+ 1175 0102 00       		.byte	0
+ 1176 0103 00       		.byte	0
+ 1177 0104 00       		.byte	0
+ 1178 0105 00       		.byte	0
+ 1179 0106 00       		.byte	0
+ 1180 0107 00       		.byte	0
+ 1181 0108 00       		.byte	0
+ 1182 0109 00       		.byte	0
+ 1183 010a 00       		.byte	0
+ 1184 010b 00       		.byte	0
+ 1185 010c 00       		.byte	0
+ 1186 010d 00       		.byte	0
+ 1187 010e 00       		.byte	0
+ 1188 010f 00       		.byte	0
+ 1189 0110 00       		.byte	0
+ 1190 0111 00       		.byte	0
+ 1191 0112 00       		.byte	0
+ 1192 0113 00       		.byte	0
+ 1193 0114 00       		.byte	0
+ 1194 0115 00       		.byte	0
+ 1195 0116 00       		.byte	0
+ 1196 0117 00       		.byte	0
+ 1197 0118 00       		.byte	0
+ 1198 0119 00       		.byte	0
+ 1199 011a 00       		.byte	0
+ 1200 011b 00       		.byte	0
+ 1201 011c 00       		.byte	0
+ 1202 011d 00       		.byte	0
+ 1203 011e 00       		.byte	0
+ 1204 011f 00       		.byte	0
+ 1205              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 1206              		.align	2
+ 1207              	.LC1:
+ 1208 0000 4D756C74 		.ascii	"Multi Function Meter\000"
+ 1208      69204675 
+ 1208      6E637469 
+ 1208      6F6E204D 
+ 1208      65746572 
+ 1209 0015 000000   		.space	3
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 33
+
+
+ 1210              	.LC2:
+ 1211 0018 5265762E 		.ascii	"Rev. 0.1a\000"
+ 1211      20302E31 
+ 1211      6100
+ 1212              		.section	.rodata.meas_digit,"a",%progbits
+ 1213              		.align	2
+ 1214              		.set	.LANCHOR11,. + 0
+ 1217              	meas_digit:
+ 1218 0000 03       		.byte	3
+ 1219 0001 03       		.byte	3
+ 1220 0002 03       		.byte	3
+ 1221 0003 03       		.byte	3
+ 1222 0004 03       		.byte	3
+ 1223 0005 03       		.byte	3
+ 1224              		.section	.rodata.meas_frac,"a",%progbits
+ 1225              		.align	2
+ 1226              		.set	.LANCHOR12,. + 0
+ 1229              	meas_frac:
+ 1230 0000 02       		.byte	2
+ 1231 0001 02       		.byte	2
+ 1232 0002 01       		.byte	1
+ 1233 0003 00       		.byte	0
+ 1234 0004 00       		.byte	0
+ 1235 0005 02       		.byte	2
+ 1236              		.section	.rodata.meas_name,"a",%progbits
+ 1237              		.align	2
+ 1238              		.set	.LANCHOR1,. + 0
+ 1241              	meas_name:
+ 1242 0000 4D415000 		.ascii	"MAP\000"
+ 1243 0004 000000   		.space	3
+ 1244 0007 4F494C50 		.ascii	"OILP\000"
+ 1244      00
+ 1245 000c 0000     		.space	2
+ 1246 000e 4650564F 		.ascii	"FPVOLT\000"
+ 1246      4C5400
+ 1247 0015 45435400 		.ascii	"ECT\000"
+ 1248 0019 000000   		.space	3
+ 1249 001c 4F494C54 		.ascii	"OILT\000"
+ 1249      00
+ 1250 0021 0000     		.space	2
+ 1251 0023 4F3200   		.ascii	"O2\000"
+ 1252 0026 00000000 		.space	4
+ 1253              		.section	.rodata.meas_sign,"a",%progbits
+ 1254              		.align	2
+ 1255              		.set	.LANCHOR13,. + 0
+ 1258              	meas_sign:
+ 1259 0000 01       		.byte	1
+ 1260 0001 00       		.byte	0
+ 1261 0002 00       		.byte	0
+ 1262 0003 00       		.byte	0
+ 1263 0004 00       		.byte	0
+ 1264 0005 00       		.byte	0
+ 1265              		.section	.rodata.meas_unit,"a",%progbits
+ 1266              		.align	2
+ 1267              		.set	.LANCHOR2,. + 0
+ 1270              	meas_unit:
+ 1271 0000 6B706100 		.ascii	"kpa\000"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 34
+
+
+ 1272 0004 00       		.space	1
+ 1273 0005 6B706100 		.ascii	"kpa\000"
+ 1274 0009 00       		.space	1
+ 1275 000a 56202000 		.ascii	"V  \000"
+ 1276 000e 00       		.space	1
+ 1277 000f B0       		.byte	-80
+ 1278 0010 43       		.byte	67
+ 1279 0011 00       		.byte	0
+ 1280 0012 0000     		.space	2
+ 1281 0014 B0       		.byte	-80
+ 1282 0015 43       		.byte	67
+ 1283 0016 00       		.byte	0
+ 1284 0017 0000     		.space	2
+ 1285 0019 5600     		.ascii	"V\000"
+ 1286 001b 000000   		.space	3
+ 1287              		.text
+ 1288              	.Letext0:
+ 1289              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 1290              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 1291              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 1292              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
+ 1293              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+ 1294              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
+ 1295              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
+ 1296              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
+ 1297              		.file 10 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
+ 1298              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ 1299              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h"
+ 1300              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc_ex.h"
+ 1301              		.file 14 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+ 1302              		.file 15 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h"
+ 1303              		.file 16 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h"
+ 1304              		.file 17 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h"
+ 1305              		.file 18 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
+ 1306              		.file 19 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h"
+ 1307              		.file 20 "Inc/adc.h"
+ 1308              		.file 21 "Inc/spi.h"
+ 1309              		.file 22 "Inc/tim.h"
+ 1310              		.file 23 "Inc/usart.h"
+ 1311              		.file 24 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/math.h"
+ 1312              		.file 25 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 1313              		.file 26 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ 1314              		.file 27 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h"
+ 1315              		.file 28 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
+ 1316              		.file 29 "Inc/gpio.h"
+ 1317              		.file 30 "Inc/dma.h"
+ 1318              		.file 31 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
+ 1319              		.file 32 "<built-in>"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 35
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:18     .text._Error_Handler:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:25     .text._Error_Handler:0000000000000000 _Error_Handler
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:41     .text.SystemClock_Config:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:48     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:167    .text.SystemClock_Config:00000000000000a4 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:178    .text.main:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:185    .text.main:0000000000000000 main
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:624    .text.main:00000000000002c8 $d
+                            *COM*:0000000000000080 u8g2
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:658    .text.main:0000000000000340 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:778    .text.main:0000000000000420 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:800    .text.assert_failed:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:807    .text.assert_failed:0000000000000000 assert_failed
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:853    .data.FP_volt:0000000000000000 FP_volt
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:876    .data.meas_value:0000000000000000 meas_value
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1258   .rodata.meas_sign:0000000000000000 meas_sign
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1229   .rodata.meas_frac:0000000000000000 meas_frac
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1217   .rodata.meas_digit:0000000000000000 meas_digit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1270   .rodata.meas_unit:0000000000000000 meas_unit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1241   .rodata.meas_name:0000000000000000 meas_name
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:908    .rodata.idct_status:0000000000000000 idct_status
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:899    .rodata.idct_name:0000000000000000 idct_name
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:860    .data.MT:0000000000000000 MT
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:839    .bss.gear:0000000000000000 gear
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:888    .data.speed:0000000000000000 speed
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:846    .bss.rpm:0000000000000000 rpm
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:916    .rodata.logo_bits:0000000000000000 logo_bits
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:840    .bss.gear:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:842    .bss.rpm:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:849    .data.FP_volt:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:856    .data.MT:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:872    .data.meas_value:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:884    .data.speed:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:891    .rodata.SystemClock_Config.str1.4:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:895    .rodata.idct_name:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:904    .rodata.idct_status:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:912    .rodata.logo_bits:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1206   .rodata.main.str1.4:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1213   .rodata.meas_digit:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1225   .rodata.meas_frac:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1237   .rodata.meas_name:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1254   .rodata.meas_sign:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s:1266   .rodata.meas_unit:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
+HAL_RCCEx_PeriphCLKConfig
+HAL_RCC_GetHCLKFreq
+HAL_SYSTICK_Config
+HAL_SYSTICK_CLKSourceConfig
+HAL_NVIC_SetPriority
+__aeabi_dmul
+__aeabi_d2iz
+__aeabi_ui2d
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccRISXeM.s 			page 36
+
+
+__aeabi_ddiv
+__aeabi_d2uiz
+HAL_Init
+MX_GPIO_Init
+MX_DMA_Init
+MX_USART2_UART_Init
+MX_TIM1_Init
+MX_USART1_UART_Init
+MX_SPI1_Init
+MX_ADC1_Init
+memset
+HAL_ADC_Start_DMA
+u8g2_Setup_ssd1309_128x64_noname2_f
+HAL_GPIO_WritePin
+u8x8_InitDisplay
+u8x8_SetPowerSave
+u8x8_SetContrast
+u8g2_ClearDisplay
+u8g2_ClearBuffer
+u8g2_DrawXBMP
+u8g2_SetFont
+u8g2_DrawStr
+u8g2_SendBuffer
+HAL_Delay
+draw_MeasLabelUnit
+draw_IndicatorBox
+draw_BarGraph
+draw_Value
+hadc1
+u8x8_gpio_and_delay_STM32F303
+u8x8_byte_4wire_hw_spi
+u8g2_cb_r0
+u8g2_font_5x7_tf

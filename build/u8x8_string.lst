@@ -1,0 +1,665 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_string.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_GetStringLineCnt,"ax",%progbits
+  18              		.align	1
+  19              		.global	u8x8_GetStringLineCnt
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	u8x8_GetStringLineCnt:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_string.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   u8x8_string.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   string line procedures
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   Copyright (c) 2016, olikraus@gmail.com
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   All rights reserved.
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   are permitted provided that the following conditions are met:
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     of conditions and the following disclaimer.
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     materials provided with the distribution.
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 2
+
+
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.    
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** */
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** #include "u8x8.h"
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** uint8_t u8x8_GetStringLineCnt(const char *str)
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** {
+  28              		.loc 1 41 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   char e;
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   uint8_t line_cnt = 1;
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   if ( str == NULL )
+  34              		.loc 1 44 0
+  35 0000 0346     		mov	r3, r0
+  36 0002 40B1     		cbz	r0, .L5
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   if ( str == NULL )
+  37              		.loc 1 43 0
+  38 0004 0120     		movs	r0, #1
+  39              	.LVL1:
+  40              	.L3:
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     return 0;
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   for(;;)
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   {
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     e = *str;
+  41              		.loc 1 48 0
+  42 0006 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  43              	.LVL2:
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     if ( e == '\0' )
+  44              		.loc 1 49 0
+  45 0008 32B1     		cbz	r2, .L2
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       break;
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     str++;
+  46              		.loc 1 51 0
+  47 000a 0133     		adds	r3, r3, #1
+  48              	.LVL3:
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     if ( e == '\n' )
+  49              		.loc 1 52 0
+  50 000c 0A2A     		cmp	r2, #10
+  51 000e FAD1     		bne	.L3
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       line_cnt++;
+  52              		.loc 1 53 0
+  53 0010 0130     		adds	r0, r0, #1
+  54              	.LVL4:
+  55 0012 C0B2     		uxtb	r0, r0
+  56              	.LVL5:
+  57 0014 F7E7     		b	.L3
+  58              	.LVL6:
+  59              	.L5:
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   for(;;)
+  60              		.loc 1 45 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 3
+
+
+  61 0016 0020     		movs	r0, #0
+  62              	.LVL7:
+  63              	.L2:
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   }
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   return line_cnt;
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** }
+  64              		.loc 1 56 0
+  65 0018 7047     		bx	lr
+  66              		.cfi_endproc
+  67              	.LFE0:
+  69              		.section	.text.u8x8_GetStringLineStart,"ax",%progbits
+  70              		.align	1
+  71              		.global	u8x8_GetStringLineStart
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  75              		.fpu fpv4-sp-d16
+  77              	u8x8_GetStringLineStart:
+  78              	.LFB1:
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** /*
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     Assumes strings, separated by '\n' in "str".
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     Returns the string at index "line_idx". First strng has line_idx = 0
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     Example:
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       Returns "xyz" for line_idx = 1 with str = "abc\nxyz"
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     Support both UTF8 and normal strings.
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** */
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** const char *u8x8_GetStringLineStart(uint8_t line_idx, const char *str )
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** {
+  79              		.loc 1 67 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              		@ link register save eliminated.
+  84              	.LVL8:
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   char e;
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   uint8_t line_cnt = 1;
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   if ( line_idx == 0 )
+  85              		.loc 1 71 0
+  86 0000 60B1     		cbz	r0, .L10
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   char e;
+  87              		.loc 1 67 0
+  88 0002 10B4     		push	{r4}
+  89              	.LCFI0:
+  90              		.cfi_def_cfa_offset 4
+  91              		.cfi_offset 4, -4
+  92 0004 0446     		mov	r4, r0
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   
+  93              		.loc 1 69 0
+  94 0006 0122     		movs	r2, #1
+  95              	.LVL9:
+  96              	.L8:
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     return str;
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   for(;;)
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 4
+
+
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   {
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     e = *str;
+  97              		.loc 1 76 0
+  98 0008 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+  99              	.LVL10:
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     if ( e == '\0' )
+ 100              		.loc 1 77 0
+ 101 000a 4BB1     		cbz	r3, .L11
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       break;
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     str++;
+ 102              		.loc 1 79 0
+ 103 000c 0131     		adds	r1, r1, #1
+ 104              	.LVL11:
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     if ( e == '\n' )
+ 105              		.loc 1 80 0
+ 106 000e 0A2B     		cmp	r3, #10
+ 107 0010 FAD1     		bne	.L8
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     {
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       if ( line_cnt == line_idx )
+ 108              		.loc 1 82 0
+ 109 0012 A242     		cmp	r2, r4
+ 110 0014 08D0     		beq	.L12
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 	return str;
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       line_cnt++;
+ 111              		.loc 1 84 0
+ 112 0016 0132     		adds	r2, r2, #1
+ 113              	.LVL12:
+ 114 0018 D2B2     		uxtb	r2, r2
+ 115              	.LVL13:
+ 116 001a F5E7     		b	.L8
+ 117              	.LVL14:
+ 118              	.L10:
+ 119              	.LCFI1:
+ 120              		.cfi_def_cfa_offset 0
+ 121              		.cfi_restore 4
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+ 122              		.loc 1 72 0
+ 123 001c 0846     		mov	r0, r1
+ 124              	.LVL15:
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     }
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   }
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   return NULL;	/* line not found */
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** }
+ 125              		.loc 1 88 0
+ 126 001e 7047     		bx	lr
+ 127              	.LVL16:
+ 128              	.L11:
+ 129              	.LCFI2:
+ 130              		.cfi_def_cfa_offset 4
+ 131              		.cfi_offset 4, -4
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** }
+ 132              		.loc 1 87 0
+ 133 0020 0020     		movs	r0, #0
+ 134              	.LVL17:
+ 135              	.L6:
+ 136              		.loc 1 88 0
+ 137 0022 5DF8044B 		ldr	r4, [sp], #4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 5
+
+
+ 138              	.LCFI3:
+ 139              		.cfi_remember_state
+ 140              		.cfi_restore 4
+ 141              		.cfi_def_cfa_offset 0
+ 142 0026 7047     		bx	lr
+ 143              	.LVL18:
+ 144              	.L12:
+ 145              	.LCFI4:
+ 146              		.cfi_restore_state
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       line_cnt++;
+ 147              		.loc 1 83 0
+ 148 0028 0846     		mov	r0, r1
+ 149              	.LVL19:
+ 150 002a FAE7     		b	.L6
+ 151              		.cfi_endproc
+ 152              	.LFE1:
+ 154              		.section	.text.u8x8_CopyStringLine,"ax",%progbits
+ 155              		.align	1
+ 156              		.global	u8x8_CopyStringLine
+ 157              		.syntax unified
+ 158              		.thumb
+ 159              		.thumb_func
+ 160              		.fpu fpv4-sp-d16
+ 162              	u8x8_CopyStringLine:
+ 163              	.LFB2:
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** /* copy until first '\n' or '\0' in str */
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** /* Important: There is no string overflow check, ensure */
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** /* that the destination buffer is large enough */
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** void u8x8_CopyStringLine(char *dest, uint8_t line_idx, const char *str)
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** {
+ 164              		.loc 1 94 0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168              	.LVL20:
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   if ( dest == NULL )
+ 169              		.loc 1 95 0
+ 170 0000 98B1     		cbz	r0, .L22
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   if ( dest == NULL )
+ 171              		.loc 1 94 0
+ 172 0002 10B5     		push	{r4, lr}
+ 173              	.LCFI5:
+ 174              		.cfi_def_cfa_offset 8
+ 175              		.cfi_offset 4, -8
+ 176              		.cfi_offset 14, -4
+ 177 0004 0B46     		mov	r3, r1
+ 178 0006 0446     		mov	r4, r0
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     return;
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   str = u8x8_GetStringLineStart( line_idx, str );
+ 179              		.loc 1 97 0
+ 180 0008 1146     		mov	r1, r2
+ 181              	.LVL21:
+ 182 000a 1846     		mov	r0, r3
+ 183              	.LVL22:
+ 184 000c FFF7FEFF 		bl	u8x8_GetStringLineStart
+ 185              	.LVL23:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 6
+
+
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   if ( str != NULL )
+ 186              		.loc 1 98 0
+ 187 0010 0246     		mov	r2, r0
+ 188 0012 38B1     		cbz	r0, .L19
+ 189              	.LVL24:
+ 190              	.L20:
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   {
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     for(;;)
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     {
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       if ( *str == '\n' || *str == '\0' )
+ 191              		.loc 1 102 0
+ 192 0014 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 193 0016 0A2B     		cmp	r3, #10
+ 194 0018 04D0     		beq	.L19
+ 195              		.loc 1 102 0 is_stmt 0 discriminator 1
+ 196 001a 1BB1     		cbz	r3, .L19
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 	break;
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       *dest = *str;
+ 197              		.loc 1 104 0 is_stmt 1
+ 198 001c 04F8013B 		strb	r3, [r4], #1
+ 199              	.LVL25:
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       dest++;
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****       str++;
+ 200              		.loc 1 106 0
+ 201 0020 0132     		adds	r2, r2, #1
+ 202              	.LVL26:
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 	break;
+ 203              		.loc 1 102 0
+ 204 0022 F7E7     		b	.L20
+ 205              	.L19:
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     }
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   }
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   *dest = '\0';
+ 206              		.loc 1 109 0
+ 207 0024 0023     		movs	r3, #0
+ 208 0026 2370     		strb	r3, [r4]
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** }
+ 209              		.loc 1 110 0
+ 210 0028 10BD     		pop	{r4, pc}
+ 211              	.LVL27:
+ 212              	.L22:
+ 213              	.LCFI6:
+ 214              		.cfi_def_cfa_offset 0
+ 215              		.cfi_restore 4
+ 216              		.cfi_restore 14
+ 217 002a 7047     		bx	lr
+ 218              		.cfi_endproc
+ 219              	.LFE2:
+ 221              		.section	.text.u8x8_DrawUTF8Line,"ax",%progbits
+ 222              		.align	1
+ 223              		.global	u8x8_DrawUTF8Line
+ 224              		.syntax unified
+ 225              		.thumb
+ 226              		.thumb_func
+ 227              		.fpu fpv4-sp-d16
+ 229              	u8x8_DrawUTF8Line:
+ 230              	.LFB3:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 7
+
+
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** /*
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   Draw a string
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   Extend the string to size "w"
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   Center the string within "w"
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   return the size of the string
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** */
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** uint8_t u8x8_DrawUTF8Line(u8x8_t *u8x8, uint8_t x, uint8_t y, uint8_t w, const char *s)
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** {
+ 231              		.loc 1 120 0
+ 232              		.cfi_startproc
+ 233              		@ args = 4, pretend = 0, frame = 0
+ 234              		@ frame_needed = 0, uses_anonymous_args = 0
+ 235              	.LVL28:
+ 236 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 237              	.LCFI7:
+ 238              		.cfi_def_cfa_offset 32
+ 239              		.cfi_offset 3, -32
+ 240              		.cfi_offset 4, -28
+ 241              		.cfi_offset 5, -24
+ 242              		.cfi_offset 6, -20
+ 243              		.cfi_offset 7, -16
+ 244              		.cfi_offset 8, -12
+ 245              		.cfi_offset 9, -8
+ 246              		.cfi_offset 14, -4
+ 247 0004 0546     		mov	r5, r0
+ 248 0006 0F46     		mov	r7, r1
+ 249 0008 1646     		mov	r6, r2
+ 250 000a 9846     		mov	r8, r3
+ 251              	.LVL29:
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   uint8_t d, lw;
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   uint8_t cx, dx;
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   d = 0;
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   lw = u8x8_GetUTF8Len(u8x8, s);
+ 252              		.loc 1 126 0
+ 253 000c 0899     		ldr	r1, [sp, #32]
+ 254              	.LVL30:
+ 255 000e FFF7FEFF 		bl	u8x8_GetUTF8Len
+ 256              	.LVL31:
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   if ( lw < w )
+ 257              		.loc 1 127 0
+ 258 0012 4045     		cmp	r0, r8
+ 259 0014 08D2     		bcs	.L31
+ 260              	.LVL32:
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   {
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     d = w;
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     d -=lw;
+ 261              		.loc 1 130 0
+ 262 0016 A8EB0009 		sub	r9, r8, r0
+ 263              	.LVL33:
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     d /= 2;
+ 264              		.loc 1 131 0
+ 265 001a C9F34609 		ubfx	r9, r9, #1, #7
+ 266              	.LVL34:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 8
+
+
+ 267              	.L26:
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   }
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   cx = x;
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   dx = cx + d;
+ 268              		.loc 1 135 0
+ 269 001e B944     		add	r9, r9, r7
+ 270              	.LVL35:
+ 271 0020 5FFA89F9 		uxtb	r9, r9
+ 272              	.LVL36:
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   dx = cx + d;
+ 273              		.loc 1 134 0
+ 274 0024 3C46     		mov	r4, r7
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   while( cx < dx )
+ 275              		.loc 1 136 0
+ 276 0026 0AE0     		b	.L27
+ 277              	.LVL37:
+ 278              	.L31:
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   
+ 279              		.loc 1 124 0
+ 280 0028 4FF00009 		mov	r9, #0
+ 281 002c F7E7     		b	.L26
+ 282              	.LVL38:
+ 283              	.L28:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   {
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     u8x8_DrawUTF8(u8x8, cx, y, " ");
+ 284              		.loc 1 138 0
+ 285 002e 124B     		ldr	r3, .L33
+ 286 0030 3246     		mov	r2, r6
+ 287 0032 2146     		mov	r1, r4
+ 288 0034 2846     		mov	r0, r5
+ 289 0036 FFF7FEFF 		bl	u8x8_DrawUTF8
+ 290              	.LVL39:
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     cx++;
+ 291              		.loc 1 139 0
+ 292 003a 0134     		adds	r4, r4, #1
+ 293              	.LVL40:
+ 294 003c E4B2     		uxtb	r4, r4
+ 295              	.LVL41:
+ 296              	.L27:
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   {
+ 297              		.loc 1 136 0
+ 298 003e 4C45     		cmp	r4, r9
+ 299 0040 F5D3     		bcc	.L28
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   }
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   cx += u8x8_DrawUTF8(u8x8, cx, y, s);
+ 300              		.loc 1 141 0
+ 301 0042 089B     		ldr	r3, [sp, #32]
+ 302 0044 3246     		mov	r2, r6
+ 303 0046 2146     		mov	r1, r4
+ 304 0048 2846     		mov	r0, r5
+ 305 004a FFF7FEFF 		bl	u8x8_DrawUTF8
+ 306              	.LVL42:
+ 307 004e 0444     		add	r4, r4, r0
+ 308              	.LVL43:
+ 309 0050 E4B2     		uxtb	r4, r4
+ 310              	.LVL44:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 9
+
+
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   dx = x + w;
+ 311              		.loc 1 142 0
+ 312 0052 B844     		add	r8, r8, r7
+ 313 0054 5FFA88F8 		uxtb	r8, r8
+ 314              	.LVL45:
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   while( cx < dx )
+ 315              		.loc 1 143 0
+ 316 0058 07E0     		b	.L29
+ 317              	.L30:
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   {
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     u8x8_DrawUTF8(u8x8, cx, y, " ");
+ 318              		.loc 1 145 0
+ 319 005a 074B     		ldr	r3, .L33
+ 320 005c 3246     		mov	r2, r6
+ 321 005e 2146     		mov	r1, r4
+ 322 0060 2846     		mov	r0, r5
+ 323 0062 FFF7FEFF 		bl	u8x8_DrawUTF8
+ 324              	.LVL46:
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     cx++;
+ 325              		.loc 1 146 0
+ 326 0066 0134     		adds	r4, r4, #1
+ 327              	.LVL47:
+ 328 0068 E4B2     		uxtb	r4, r4
+ 329              	.LVL48:
+ 330              	.L29:
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   while( cx < dx )
+ 331              		.loc 1 143 0
+ 332 006a 4445     		cmp	r4, r8
+ 333 006c F5D3     		bcc	.L30
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   }
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   cx -= x;
+ 334              		.loc 1 148 0
+ 335 006e E01B     		subs	r0, r4, r7
+ 336              	.LVL49:
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   return cx;
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** }
+ 337              		.loc 1 150 0
+ 338 0070 C0B2     		uxtb	r0, r0
+ 339 0072 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 340              	.LVL50:
+ 341              	.L34:
+ 342 0076 00BF     		.align	2
+ 343              	.L33:
+ 344 0078 00000000 		.word	.LC0
+ 345              		.cfi_endproc
+ 346              	.LFE3:
+ 348              		.section	.text.u8x8_DrawUTF8Lines,"ax",%progbits
+ 349              		.align	1
+ 350              		.global	u8x8_DrawUTF8Lines
+ 351              		.syntax unified
+ 352              		.thumb
+ 353              		.thumb_func
+ 354              		.fpu fpv4-sp-d16
+ 356              	u8x8_DrawUTF8Lines:
+ 357              	.LFB4:
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** 
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** /*
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 10
+
+
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   draw several lines at position x,y.
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   lines are stored in s and must be separated with '\n'.
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   lines can be centered with respect to "w" 
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   if s == NULL nothing is drawn and 0 is returned
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   returns the number of lines in s
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** */
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** uint8_t u8x8_DrawUTF8Lines(u8x8_t *u8x8, uint8_t x, uint8_t y, uint8_t w, const char *s)
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** {
+ 358              		.loc 1 160 0
+ 359              		.cfi_startproc
+ 360              		@ args = 4, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 362              	.LVL51:
+ 363 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 364              	.LCFI8:
+ 365              		.cfi_def_cfa_offset 28
+ 366              		.cfi_offset 4, -28
+ 367              		.cfi_offset 5, -24
+ 368              		.cfi_offset 6, -20
+ 369              		.cfi_offset 7, -16
+ 370              		.cfi_offset 8, -12
+ 371              		.cfi_offset 9, -8
+ 372              		.cfi_offset 14, -4
+ 373 0004 83B0     		sub	sp, sp, #12
+ 374              	.LCFI9:
+ 375              		.cfi_def_cfa_offset 40
+ 376 0006 8146     		mov	r9, r0
+ 377 0008 8846     		mov	r8, r1
+ 378 000a 1546     		mov	r5, r2
+ 379 000c 1F46     		mov	r7, r3
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   uint8_t i;
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   uint8_t cnt;
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   cnt = u8x8_GetStringLineCnt(s);
+ 380              		.loc 1 163 0
+ 381 000e 0A98     		ldr	r0, [sp, #40]
+ 382              	.LVL52:
+ 383 0010 FFF7FEFF 		bl	u8x8_GetStringLineCnt
+ 384              	.LVL53:
+ 385 0014 0646     		mov	r6, r0
+ 386              	.LVL54:
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   for( i = 0; i < cnt; i++ )
+ 387              		.loc 1 164 0
+ 388 0016 0024     		movs	r4, #0
+ 389 0018 0EE0     		b	.L36
+ 390              	.LVL55:
+ 391              	.L37:
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   {
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     u8x8_DrawUTF8Line(u8x8, x, y, w, u8x8_GetStringLineStart(i, s));
+ 392              		.loc 1 166 0 discriminator 3
+ 393 001a 0A99     		ldr	r1, [sp, #40]
+ 394 001c 2046     		mov	r0, r4
+ 395 001e FFF7FEFF 		bl	u8x8_GetStringLineStart
+ 396              	.LVL56:
+ 397 0022 0090     		str	r0, [sp]
+ 398 0024 3B46     		mov	r3, r7
+ 399 0026 2A46     		mov	r2, r5
+ 400 0028 4146     		mov	r1, r8
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 11
+
+
+ 401 002a 4846     		mov	r0, r9
+ 402 002c FFF7FEFF 		bl	u8x8_DrawUTF8Line
+ 403              	.LVL57:
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****     y++;
+ 404              		.loc 1 167 0 discriminator 3
+ 405 0030 0135     		adds	r5, r5, #1
+ 406              	.LVL58:
+ 407 0032 EDB2     		uxtb	r5, r5
+ 408              	.LVL59:
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   for( i = 0; i < cnt; i++ )
+ 409              		.loc 1 164 0 discriminator 3
+ 410 0034 0134     		adds	r4, r4, #1
+ 411              	.LVL60:
+ 412 0036 E4B2     		uxtb	r4, r4
+ 413              	.LVL61:
+ 414              	.L36:
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   for( i = 0; i < cnt; i++ )
+ 415              		.loc 1 164 0 is_stmt 0 discriminator 1
+ 416 0038 B442     		cmp	r4, r6
+ 417 003a EED3     		bcc	.L37
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   }
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c ****   return cnt;
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_string.c **** }
+ 418              		.loc 1 170 0 is_stmt 1
+ 419 003c 3046     		mov	r0, r6
+ 420 003e 03B0     		add	sp, sp, #12
+ 421              	.LCFI10:
+ 422              		.cfi_def_cfa_offset 28
+ 423              		@ sp needed
+ 424 0040 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 425              		.cfi_endproc
+ 426              	.LFE4:
+ 428              		.section	.rodata.u8x8_DrawUTF8Line.str1.4,"aMS",%progbits,1
+ 429              		.align	2
+ 430              	.LC0:
+ 431 0000 2000     		.ascii	" \000"
+ 432              		.text
+ 433              	.Letext0:
+ 434              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 435              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 436              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_string.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:18     .text.u8x8_GetStringLineCnt:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:25     .text.u8x8_GetStringLineCnt:0000000000000000 u8x8_GetStringLineCnt
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:70     .text.u8x8_GetStringLineStart:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:77     .text.u8x8_GetStringLineStart:0000000000000000 u8x8_GetStringLineStart
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:155    .text.u8x8_CopyStringLine:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:162    .text.u8x8_CopyStringLine:0000000000000000 u8x8_CopyStringLine
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:222    .text.u8x8_DrawUTF8Line:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:229    .text.u8x8_DrawUTF8Line:0000000000000000 u8x8_DrawUTF8Line
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:344    .text.u8x8_DrawUTF8Line:0000000000000078 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:349    .text.u8x8_DrawUTF8Lines:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:356    .text.u8x8_DrawUTF8Lines:0000000000000000 u8x8_DrawUTF8Lines
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccWHiTr4.s:429    .rodata.u8x8_DrawUTF8Line.str1.4:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+u8x8_GetUTF8Len
+u8x8_DrawUTF8

@@ -1,0 +1,393 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"tim.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.MX_TIM1_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	MX_TIM1_Init
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	MX_TIM1_Init:
+  26              	.LFB126:
+  27              		.file 1 "Src/tim.c"
+   1:Src/tim.c     **** /**
+   2:Src/tim.c     ****   ******************************************************************************
+   3:Src/tim.c     ****   * File Name          : TIM.c
+   4:Src/tim.c     ****   * Description        : This file provides code for the configuration
+   5:Src/tim.c     ****   *                      of the TIM instances.
+   6:Src/tim.c     ****   ******************************************************************************
+   7:Src/tim.c     ****   ** This notice applies to any and all portions of this file
+   8:Src/tim.c     ****   * that are not between comment pairs USER CODE BEGIN and
+   9:Src/tim.c     ****   * USER CODE END. Other portions of this file, whether 
+  10:Src/tim.c     ****   * inserted by the user or by software development tools
+  11:Src/tim.c     ****   * are owned by their respective copyright owners.
+  12:Src/tim.c     ****   *
+  13:Src/tim.c     ****   * COPYRIGHT(c) 2018 STMicroelectronics
+  14:Src/tim.c     ****   *
+  15:Src/tim.c     ****   * Redistribution and use in source and binary forms, with or without modification,
+  16:Src/tim.c     ****   * are permitted provided that the following conditions are met:
+  17:Src/tim.c     ****   *   1. Redistributions of source code must retain the above copyright notice,
+  18:Src/tim.c     ****   *      this list of conditions and the following disclaimer.
+  19:Src/tim.c     ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  20:Src/tim.c     ****   *      this list of conditions and the following disclaimer in the documentation
+  21:Src/tim.c     ****   *      and/or other materials provided with the distribution.
+  22:Src/tim.c     ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  23:Src/tim.c     ****   *      may be used to endorse or promote products derived from this software
+  24:Src/tim.c     ****   *      without specific prior written permission.
+  25:Src/tim.c     ****   *
+  26:Src/tim.c     ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  27:Src/tim.c     ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  28:Src/tim.c     ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  29:Src/tim.c     ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  30:Src/tim.c     ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  31:Src/tim.c     ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s 			page 2
+
+
+  32:Src/tim.c     ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  33:Src/tim.c     ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  34:Src/tim.c     ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  35:Src/tim.c     ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  36:Src/tim.c     ****   *
+  37:Src/tim.c     ****   ******************************************************************************
+  38:Src/tim.c     ****   */
+  39:Src/tim.c     **** 
+  40:Src/tim.c     **** /* Includes ------------------------------------------------------------------*/
+  41:Src/tim.c     **** #include "tim.h"
+  42:Src/tim.c     **** 
+  43:Src/tim.c     **** /* USER CODE BEGIN 0 */
+  44:Src/tim.c     **** 
+  45:Src/tim.c     **** /* USER CODE END 0 */
+  46:Src/tim.c     **** 
+  47:Src/tim.c     **** TIM_HandleTypeDef htim1;
+  48:Src/tim.c     **** 
+  49:Src/tim.c     **** /* TIM1 init function */
+  50:Src/tim.c     **** void MX_TIM1_Init(void)
+  51:Src/tim.c     **** {
+  28              		.loc 1 51 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 32
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 00B5     		push	{lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 4
+  35              		.cfi_offset 14, -4
+  36 0002 89B0     		sub	sp, sp, #36
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_offset 40
+  52:Src/tim.c     ****   TIM_ClockConfigTypeDef sClockSourceConfig;
+  53:Src/tim.c     ****   TIM_MasterConfigTypeDef sMasterConfig;
+  54:Src/tim.c     **** 
+  55:Src/tim.c     ****   htim1.Instance = TIM1;
+  39              		.loc 1 55 0
+  40 0004 1848     		ldr	r0, .L9
+  41 0006 194B     		ldr	r3, .L9+4
+  42 0008 0360     		str	r3, [r0]
+  56:Src/tim.c     ****   htim1.Init.Prescaler = 0;
+  43              		.loc 1 56 0
+  44 000a 0023     		movs	r3, #0
+  45 000c 4360     		str	r3, [r0, #4]
+  57:Src/tim.c     ****   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  46              		.loc 1 57 0
+  47 000e 8360     		str	r3, [r0, #8]
+  58:Src/tim.c     ****   htim1.Init.Period = 0;
+  48              		.loc 1 58 0
+  49 0010 C360     		str	r3, [r0, #12]
+  59:Src/tim.c     ****   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  50              		.loc 1 59 0
+  51 0012 0361     		str	r3, [r0, #16]
+  60:Src/tim.c     ****   htim1.Init.RepetitionCounter = 0;
+  52              		.loc 1 60 0
+  53 0014 4361     		str	r3, [r0, #20]
+  61:Src/tim.c     ****   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  54              		.loc 1 61 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s 			page 3
+
+
+  55 0016 8361     		str	r3, [r0, #24]
+  62:Src/tim.c     ****   if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  56              		.loc 1 62 0
+  57 0018 FFF7FEFF 		bl	HAL_TIM_Base_Init
+  58              	.LVL0:
+  59 001c A0B9     		cbnz	r0, .L6
+  60              	.L2:
+  63:Src/tim.c     ****   {
+  64:Src/tim.c     ****     _Error_Handler(__FILE__, __LINE__);
+  65:Src/tim.c     ****   }
+  66:Src/tim.c     **** 
+  67:Src/tim.c     ****   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  61              		.loc 1 67 0
+  62 001e 08A9     		add	r1, sp, #32
+  63 0020 4FF48053 		mov	r3, #4096
+  64 0024 41F8103D 		str	r3, [r1, #-16]!
+  68:Src/tim.c     ****   if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  65              		.loc 1 68 0
+  66 0028 0F48     		ldr	r0, .L9
+  67 002a FFF7FEFF 		bl	HAL_TIM_ConfigClockSource
+  68              	.LVL1:
+  69 002e 80B9     		cbnz	r0, .L7
+  70              	.L3:
+  69:Src/tim.c     ****   {
+  70:Src/tim.c     ****     _Error_Handler(__FILE__, __LINE__);
+  71:Src/tim.c     ****   }
+  72:Src/tim.c     **** 
+  73:Src/tim.c     ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  71              		.loc 1 73 0
+  72 0030 0023     		movs	r3, #0
+  73 0032 0193     		str	r3, [sp, #4]
+  74:Src/tim.c     ****   sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
+  74              		.loc 1 74 0
+  75 0034 0293     		str	r3, [sp, #8]
+  75:Src/tim.c     ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  76              		.loc 1 75 0
+  77 0036 0393     		str	r3, [sp, #12]
+  76:Src/tim.c     ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  78              		.loc 1 76 0
+  79 0038 01A9     		add	r1, sp, #4
+  80 003a 0B48     		ldr	r0, .L9
+  81 003c FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
+  82              	.LVL2:
+  83 0040 60B9     		cbnz	r0, .L8
+  84              	.L1:
+  77:Src/tim.c     ****   {
+  78:Src/tim.c     ****     _Error_Handler(__FILE__, __LINE__);
+  79:Src/tim.c     ****   }
+  80:Src/tim.c     **** 
+  81:Src/tim.c     **** }
+  85              		.loc 1 81 0
+  86 0042 09B0     		add	sp, sp, #36
+  87              	.LCFI2:
+  88              		.cfi_remember_state
+  89              		.cfi_def_cfa_offset 4
+  90              		@ sp needed
+  91 0044 5DF804FB 		ldr	pc, [sp], #4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s 			page 4
+
+
+  92              	.L6:
+  93              	.LCFI3:
+  94              		.cfi_restore_state
+  64:Src/tim.c     ****   }
+  95              		.loc 1 64 0
+  96 0048 4021     		movs	r1, #64
+  97 004a 0948     		ldr	r0, .L9+8
+  98 004c FFF7FEFF 		bl	_Error_Handler
+  99              	.LVL3:
+ 100 0050 E5E7     		b	.L2
+ 101              	.L7:
+  70:Src/tim.c     ****   }
+ 102              		.loc 1 70 0
+ 103 0052 4621     		movs	r1, #70
+ 104 0054 0648     		ldr	r0, .L9+8
+ 105 0056 FFF7FEFF 		bl	_Error_Handler
+ 106              	.LVL4:
+ 107 005a E9E7     		b	.L3
+ 108              	.L8:
+  78:Src/tim.c     ****   }
+ 109              		.loc 1 78 0
+ 110 005c 4E21     		movs	r1, #78
+ 111 005e 0448     		ldr	r0, .L9+8
+ 112 0060 FFF7FEFF 		bl	_Error_Handler
+ 113              	.LVL5:
+ 114              		.loc 1 81 0
+ 115 0064 EDE7     		b	.L1
+ 116              	.L10:
+ 117 0066 00BF     		.align	2
+ 118              	.L9:
+ 119 0068 00000000 		.word	htim1
+ 120 006c 002C0140 		.word	1073818624
+ 121 0070 00000000 		.word	.LC0
+ 122              		.cfi_endproc
+ 123              	.LFE126:
+ 125              		.section	.text.HAL_TIM_Base_MspInit,"ax",%progbits
+ 126              		.align	1
+ 127              		.global	HAL_TIM_Base_MspInit
+ 128              		.syntax unified
+ 129              		.thumb
+ 130              		.thumb_func
+ 131              		.fpu fpv4-sp-d16
+ 133              	HAL_TIM_Base_MspInit:
+ 134              	.LFB127:
+  82:Src/tim.c     **** 
+  83:Src/tim.c     **** void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
+  84:Src/tim.c     **** {
+ 135              		.loc 1 84 0
+ 136              		.cfi_startproc
+ 137              		@ args = 0, pretend = 0, frame = 8
+ 138              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139              		@ link register save eliminated.
+ 140              	.LVL6:
+  85:Src/tim.c     **** 
+  86:Src/tim.c     ****   if(tim_baseHandle->Instance==TIM1)
+ 141              		.loc 1 86 0
+ 142 0000 0268     		ldr	r2, [r0]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s 			page 5
+
+
+ 143 0002 094B     		ldr	r3, .L18
+ 144 0004 9A42     		cmp	r2, r3
+ 145 0006 00D0     		beq	.L17
+ 146 0008 7047     		bx	lr
+ 147              	.L17:
+  84:Src/tim.c     **** 
+ 148              		.loc 1 84 0
+ 149 000a 82B0     		sub	sp, sp, #8
+ 150              	.LCFI4:
+ 151              		.cfi_def_cfa_offset 8
+ 152              	.LBB2:
+  87:Src/tim.c     ****   {
+  88:Src/tim.c     ****   /* USER CODE BEGIN TIM1_MspInit 0 */
+  89:Src/tim.c     **** 
+  90:Src/tim.c     ****   /* USER CODE END TIM1_MspInit 0 */
+  91:Src/tim.c     ****     /* TIM1 clock enable */
+  92:Src/tim.c     ****     __HAL_RCC_TIM1_CLK_ENABLE();
+ 153              		.loc 1 92 0
+ 154 000c 03F56443 		add	r3, r3, #58368
+ 155 0010 9A69     		ldr	r2, [r3, #24]
+ 156 0012 42F40062 		orr	r2, r2, #2048
+ 157 0016 9A61     		str	r2, [r3, #24]
+ 158 0018 9B69     		ldr	r3, [r3, #24]
+ 159 001a 03F40063 		and	r3, r3, #2048
+ 160 001e 0193     		str	r3, [sp, #4]
+ 161 0020 019B     		ldr	r3, [sp, #4]
+ 162              	.LBE2:
+  93:Src/tim.c     ****   /* USER CODE BEGIN TIM1_MspInit 1 */
+  94:Src/tim.c     **** 
+  95:Src/tim.c     ****   /* USER CODE END TIM1_MspInit 1 */
+  96:Src/tim.c     ****   }
+  97:Src/tim.c     **** }
+ 163              		.loc 1 97 0
+ 164 0022 02B0     		add	sp, sp, #8
+ 165              	.LCFI5:
+ 166              		.cfi_def_cfa_offset 0
+ 167              		@ sp needed
+ 168 0024 7047     		bx	lr
+ 169              	.L19:
+ 170 0026 00BF     		.align	2
+ 171              	.L18:
+ 172 0028 002C0140 		.word	1073818624
+ 173              		.cfi_endproc
+ 174              	.LFE127:
+ 176              		.section	.text.HAL_TIM_Base_MspDeInit,"ax",%progbits
+ 177              		.align	1
+ 178              		.global	HAL_TIM_Base_MspDeInit
+ 179              		.syntax unified
+ 180              		.thumb
+ 181              		.thumb_func
+ 182              		.fpu fpv4-sp-d16
+ 184              	HAL_TIM_Base_MspDeInit:
+ 185              	.LFB128:
+  98:Src/tim.c     **** 
+  99:Src/tim.c     **** void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
+ 100:Src/tim.c     **** {
+ 186              		.loc 1 100 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s 			page 6
+
+
+ 187              		.cfi_startproc
+ 188              		@ args = 0, pretend = 0, frame = 0
+ 189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 190              		@ link register save eliminated.
+ 191              	.LVL7:
+ 101:Src/tim.c     **** 
+ 102:Src/tim.c     ****   if(tim_baseHandle->Instance==TIM1)
+ 192              		.loc 1 102 0
+ 193 0000 0268     		ldr	r2, [r0]
+ 194 0002 054B     		ldr	r3, .L23
+ 195 0004 9A42     		cmp	r2, r3
+ 196 0006 00D0     		beq	.L22
+ 197              	.L20:
+ 103:Src/tim.c     ****   {
+ 104:Src/tim.c     ****   /* USER CODE BEGIN TIM1_MspDeInit 0 */
+ 105:Src/tim.c     **** 
+ 106:Src/tim.c     ****   /* USER CODE END TIM1_MspDeInit 0 */
+ 107:Src/tim.c     ****     /* Peripheral clock disable */
+ 108:Src/tim.c     ****     __HAL_RCC_TIM1_CLK_DISABLE();
+ 109:Src/tim.c     ****   /* USER CODE BEGIN TIM1_MspDeInit 1 */
+ 110:Src/tim.c     **** 
+ 111:Src/tim.c     ****   /* USER CODE END TIM1_MspDeInit 1 */
+ 112:Src/tim.c     ****   }
+ 113:Src/tim.c     **** } 
+ 198              		.loc 1 113 0
+ 199 0008 7047     		bx	lr
+ 200              	.L22:
+ 108:Src/tim.c     ****   /* USER CODE BEGIN TIM1_MspDeInit 1 */
+ 201              		.loc 1 108 0
+ 202 000a 044A     		ldr	r2, .L23+4
+ 203 000c 9369     		ldr	r3, [r2, #24]
+ 204 000e 23F40063 		bic	r3, r3, #2048
+ 205 0012 9361     		str	r3, [r2, #24]
+ 206              		.loc 1 113 0
+ 207 0014 F8E7     		b	.L20
+ 208              	.L24:
+ 209 0016 00BF     		.align	2
+ 210              	.L23:
+ 211 0018 002C0140 		.word	1073818624
+ 212 001c 00100240 		.word	1073876992
+ 213              		.cfi_endproc
+ 214              	.LFE128:
+ 216              		.comm	htim1,64,4
+ 217              		.section	.rodata.MX_TIM1_Init.str1.4,"aMS",%progbits,1
+ 218              		.align	2
+ 219              	.LC0:
+ 220 0000 5372632F 		.ascii	"Src/tim.c\000"
+ 220      74696D2E 
+ 220      6300
+ 221              		.text
+ 222              	.Letext0:
+ 223              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 224              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 225              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 226              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
+ 227              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+ 228              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s 			page 7
+
+
+ 229              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
+ 230              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
+ 231              		.file 10 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
+ 232              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ 233              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+ 234              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
+ 235              		.file 14 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h"
+ 236              		.file 15 "Inc/tim.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 tim.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s:18     .text.MX_TIM1_Init:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s:25     .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s:119    .text.MX_TIM1_Init:0000000000000068 $d
+                            *COM*:0000000000000040 htim1
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s:126    .text.HAL_TIM_Base_MspInit:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s:133    .text.HAL_TIM_Base_MspInit:0000000000000000 HAL_TIM_Base_MspInit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s:172    .text.HAL_TIM_Base_MspInit:0000000000000028 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s:177    .text.HAL_TIM_Base_MspDeInit:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s:184    .text.HAL_TIM_Base_MspDeInit:0000000000000000 HAL_TIM_Base_MspDeInit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s:211    .text.HAL_TIM_Base_MspDeInit:0000000000000018 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc832X4N.s:218    .rodata.MX_TIM1_Init.str1.4:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_TIM_Base_Init
+HAL_TIM_ConfigClockSource
+HAL_TIMEx_MasterConfigSynchronization
+_Error_Handler

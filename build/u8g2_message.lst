@@ -1,0 +1,722 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8g2_message.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8g2_draw_button_line,"ax",%progbits
+  18              		.align	1
+  19              		.global	u8g2_draw_button_line
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	u8g2_draw_button_line:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_message.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   u8g2_message.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   
+   5:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 2
+
+
+  32:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  33:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   
+  34:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** */
+  35:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+  36:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** #include "u8g2.h"
+  37:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+  38:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** #define SPACE_BETWEEN_BUTTONS_IN_PIXEL 6
+  39:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** #define SPACE_BETWEEN_TEXT_AND_BUTTONS_IN_PIXEL 3
+  40:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+  41:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** uint8_t u8g2_draw_button_line(u8g2_t *u8g2, u8g2_uint_t y, u8g2_uint_t w, uint8_t cursor, const cha
+  42:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** {
+  28              		.loc 1 42 0
+  29              		.cfi_startproc
+  30              		@ args = 4, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 36
+  36              		.cfi_offset 4, -36
+  37              		.cfi_offset 5, -32
+  38              		.cfi_offset 6, -28
+  39              		.cfi_offset 7, -24
+  40              		.cfi_offset 8, -20
+  41              		.cfi_offset 9, -16
+  42              		.cfi_offset 10, -12
+  43              		.cfi_offset 11, -8
+  44              		.cfi_offset 14, -4
+  45 0004 85B0     		sub	sp, sp, #20
+  46              	.LCFI1:
+  47              		.cfi_def_cfa_offset 56
+  48 0006 0746     		mov	r7, r0
+  49 0008 8946     		mov	r9, r1
+  50 000a 1446     		mov	r4, r2
+  51 000c 9A46     		mov	r10, r3
+  43:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   u8g2_uint_t button_line_width;
+  44:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	
+  45:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   uint8_t i;
+  46:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   uint8_t cnt;
+  47:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   uint8_t is_invert;
+  48:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	
+  49:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   u8g2_uint_t d;
+  50:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   u8g2_uint_t x;
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	
+  52:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   cnt = u8x8_GetStringLineCnt(s);
+  52              		.loc 1 52 0
+  53 000e 0E98     		ldr	r0, [sp, #56]
+  54              	.LVL1:
+  55 0010 FFF7FEFF 		bl	u8x8_GetStringLineCnt
+  56              	.LVL2:
+  57 0014 8046     		mov	r8, r0
+  58              	.LVL3:
+  53:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   
+  54:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	
+  55:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* calculate the width of the button line */
+  56:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   button_line_width = 0;
+  57:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   for( i = 0; i < cnt; i++ )
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 3
+
+
+  59              		.loc 1 57 0
+  60 0016 0025     		movs	r5, #0
+  56:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   for( i = 0; i < cnt; i++ )
+  61              		.loc 1 56 0
+  62 0018 AB46     		mov	fp, r5
+  63              		.loc 1 57 0
+  64 001a 0CE0     		b	.L2
+  65              	.LVL4:
+  66              	.L3:
+  58:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   {
+  59:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     button_line_width += u8g2_GetUTF8Width(u8g2, u8x8_GetStringLineStart(i, s));
+  67              		.loc 1 59 0 discriminator 3
+  68 001c 0E99     		ldr	r1, [sp, #56]
+  69 001e 2846     		mov	r0, r5
+  70 0020 FFF7FEFF 		bl	u8x8_GetStringLineStart
+  71              	.LVL5:
+  72 0024 0146     		mov	r1, r0
+  73 0026 3846     		mov	r0, r7
+  74 0028 FFF7FEFF 		bl	u8g2_GetUTF8Width
+  75              	.LVL6:
+  76 002c 8344     		add	fp, fp, r0
+  77              	.LVL7:
+  78 002e 5FFA8BFB 		uxtb	fp, fp
+  79              	.LVL8:
+  57:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   {
+  80              		.loc 1 57 0 discriminator 3
+  81 0032 0135     		adds	r5, r5, #1
+  82              	.LVL9:
+  83 0034 EDB2     		uxtb	r5, r5
+  84              	.LVL10:
+  85              	.L2:
+  57:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   {
+  86              		.loc 1 57 0 is_stmt 0 discriminator 1
+  87 0036 4545     		cmp	r5, r8
+  88 0038 F0D3     		bcc	.L3
+  60:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   }
+  61:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   button_line_width += (cnt-1)*SPACE_BETWEEN_BUTTONS_IN_PIXEL;	/* add some space between the button
+  89              		.loc 1 61 0 is_stmt 1
+  90 003a 08EB4803 		add	r3, r8, r8, lsl #1
+  91 003e 5800     		lsls	r0, r3, #1
+  92 0040 5844     		add	r0, r0, fp
+  93 0042 C0B2     		uxtb	r0, r0
+  94 0044 0638     		subs	r0, r0, #6
+  95 0046 C0B2     		uxtb	r0, r0
+  96              	.LVL11:
+  62:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   
+  63:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* calculate the left offset */
+  64:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   d = 0;
+  65:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   if ( button_line_width < w )
+  97              		.loc 1 65 0
+  98 0048 A042     		cmp	r0, r4
+  99 004a 04D2     		bcs	.L8
+ 100              	.LVL12:
+  66:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   {
+  67:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     d = w;
+  68:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     d -= button_line_width;
+ 101              		.loc 1 68 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 4
+
+
+ 102 004c 241A     		subs	r4, r4, r0
+ 103              	.LVL13:
+  69:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     d /= 2;
+ 104              		.loc 1 69 0
+ 105 004e C4F34604 		ubfx	r4, r4, #1, #7
+ 106              	.LVL14:
+ 107              	.L4:
+  70:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   }
+  71:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   
+  72:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* draw the buttons */
+  73:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   x = d;
+  74:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   for( i = 0; i < cnt; i++ )
+  75:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   {
+  76:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     is_invert = 0;
+  77:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     if ( i == cursor )
+  78:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****       is_invert = 1;
+ 108              		.loc 1 78 0 discriminator 1
+ 109 0052 0025     		movs	r5, #0
+ 110              	.LVL15:
+ 111 0054 1EE0     		b	.L5
+ 112              	.LVL16:
+ 113              	.L8:
+  64:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   if ( button_line_width < w )
+ 114              		.loc 1 64 0
+ 115 0056 0024     		movs	r4, #0
+ 116 0058 FBE7     		b	.L4
+ 117              	.LVL17:
+ 118              	.L9:
+ 119              		.loc 1 78 0
+ 120 005a 0126     		movs	r6, #1
+ 121              	.L6:
+ 122              	.LVL18:
+  79:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+  80:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     u8g2_DrawUTF8Line(u8g2, x, y, 0, u8x8_GetStringLineStart(i, s), 1, is_invert);
+ 123              		.loc 1 80 0 discriminator 2
+ 124 005c 0E99     		ldr	r1, [sp, #56]
+ 125 005e 2846     		mov	r0, r5
+ 126 0060 FFF7FEFF 		bl	u8x8_GetStringLineStart
+ 127              	.LVL19:
+ 128 0064 0296     		str	r6, [sp, #8]
+ 129 0066 0123     		movs	r3, #1
+ 130 0068 0193     		str	r3, [sp, #4]
+ 131 006a 0090     		str	r0, [sp]
+ 132 006c 0023     		movs	r3, #0
+ 133 006e 4A46     		mov	r2, r9
+ 134 0070 2146     		mov	r1, r4
+ 135 0072 3846     		mov	r0, r7
+ 136 0074 FFF7FEFF 		bl	u8g2_DrawUTF8Line
+ 137              	.LVL20:
+  81:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     x += u8g2_GetUTF8Width(u8g2, u8x8_GetStringLineStart(i, s));
+ 138              		.loc 1 81 0 discriminator 2
+ 139 0078 0E99     		ldr	r1, [sp, #56]
+ 140 007a 2846     		mov	r0, r5
+ 141 007c FFF7FEFF 		bl	u8x8_GetStringLineStart
+ 142              	.LVL21:
+ 143 0080 0146     		mov	r1, r0
+ 144 0082 3846     		mov	r0, r7
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 5
+
+
+ 145 0084 FFF7FEFF 		bl	u8g2_GetUTF8Width
+ 146              	.LVL22:
+ 147 0088 0444     		add	r4, r4, r0
+ 148              	.LVL23:
+ 149 008a E4B2     		uxtb	r4, r4
+ 150              	.LVL24:
+  82:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     x += SPACE_BETWEEN_BUTTONS_IN_PIXEL;
+ 151              		.loc 1 82 0 discriminator 2
+ 152 008c 0634     		adds	r4, r4, #6
+ 153              	.LVL25:
+ 154 008e E4B2     		uxtb	r4, r4
+ 155              	.LVL26:
+  74:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   {
+ 156              		.loc 1 74 0 discriminator 2
+ 157 0090 0135     		adds	r5, r5, #1
+ 158              	.LVL27:
+ 159 0092 EDB2     		uxtb	r5, r5
+ 160              	.LVL28:
+ 161              	.L5:
+  74:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   {
+ 162              		.loc 1 74 0 is_stmt 0 discriminator 1
+ 163 0094 4545     		cmp	r5, r8
+ 164 0096 03D2     		bcs	.L11
+ 165              	.LVL29:
+  77:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****       is_invert = 1;
+ 166              		.loc 1 77 0 is_stmt 1
+ 167 0098 5545     		cmp	r5, r10
+ 168 009a DED0     		beq	.L9
+  76:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     if ( i == cursor )
+ 169              		.loc 1 76 0
+ 170 009c 0026     		movs	r6, #0
+ 171 009e DDE7     		b	.L6
+ 172              	.LVL30:
+ 173              	.L11:
+  83:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   }
+  84:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   
+  85:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* return the number of buttons */
+  86:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   return cnt;
+  87:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** }
+ 174              		.loc 1 87 0
+ 175 00a0 4046     		mov	r0, r8
+ 176 00a2 05B0     		add	sp, sp, #20
+ 177              	.LCFI2:
+ 178              		.cfi_def_cfa_offset 36
+ 179              		@ sp needed
+ 180 00a4 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 181              		.cfi_endproc
+ 182              	.LFE0:
+ 184              		.section	.text.u8g2_UserInterfaceMessage,"ax",%progbits
+ 185              		.align	1
+ 186              		.global	u8g2_UserInterfaceMessage
+ 187              		.syntax unified
+ 188              		.thumb
+ 189              		.thumb_func
+ 190              		.fpu fpv4-sp-d16
+ 192              	u8g2_UserInterfaceMessage:
+ 193              	.LFB1:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 6
+
+
+  88:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+  89:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** /*
+  90:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   title1:	Multiple lines,separated by '\n'
+  91:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   title2:	A single line/string which is terminated by '\0' or '\n' . "title2" accepts the return va
+  92:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   title3:	Multiple lines,separated by '\n'
+  93:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   buttons:	one more more buttons separated by '\n' and terminated with '\0'
+  94:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   side effects:
+  95:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     u8g2_SetFontDirection(u8g2, 0);
+  96:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     u8g2_SetFontPosBaseline(u8g2);
+  97:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** */
+  98:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+  99:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** uint8_t u8g2_UserInterfaceMessage(u8g2_t *u8g2, const char *title1, const char *title2, const char 
+ 100:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** {
+ 194              		.loc 1 100 0
+ 195              		.cfi_startproc
+ 196              		@ args = 4, pretend = 0, frame = 8
+ 197              		@ frame_needed = 0, uses_anonymous_args = 0
+ 198              	.LVL31:
+ 199 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 200              	.LCFI3:
+ 201              		.cfi_def_cfa_offset 36
+ 202              		.cfi_offset 4, -36
+ 203              		.cfi_offset 5, -32
+ 204              		.cfi_offset 6, -28
+ 205              		.cfi_offset 7, -24
+ 206              		.cfi_offset 8, -20
+ 207              		.cfi_offset 9, -16
+ 208              		.cfi_offset 10, -12
+ 209              		.cfi_offset 11, -8
+ 210              		.cfi_offset 14, -4
+ 211 0004 87B0     		sub	sp, sp, #28
+ 212              	.LCFI4:
+ 213              		.cfi_def_cfa_offset 64
+ 214 0006 0446     		mov	r4, r0
+ 215 0008 8946     		mov	r9, r1
+ 216 000a 1746     		mov	r7, r2
+ 217 000c 9A46     		mov	r10, r3
+ 218 000e DDF840B0 		ldr	fp, [sp, #64]
+ 219              	.LVL32:
+ 101:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   uint8_t height;
+ 102:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   uint8_t line_height;
+ 103:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   u8g2_uint_t pixel_height;
+ 104:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   u8g2_uint_t y, yy;
+ 105:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	
+ 106:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   uint8_t cursor = 0;
+ 107:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   uint8_t button_cnt;
+ 108:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   uint8_t event;
+ 109:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* only horizontal strings are supported, so force this here */
+ 111:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   u8g2_SetFontDirection(u8g2, 0);
+ 220              		.loc 1 111 0
+ 221 0012 0021     		movs	r1, #0
+ 222              	.LVL33:
+ 223 0014 FFF7FEFF 		bl	u8g2_SetFontDirection
+ 224              	.LVL34:
+ 112:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+ 113:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* force baseline position */
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 7
+
+
+ 114:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   u8g2_SetFontPosBaseline(u8g2);
+ 225              		.loc 1 114 0
+ 226 0018 2046     		mov	r0, r4
+ 227 001a FFF7FEFF 		bl	u8g2_SetFontPosBaseline
+ 228              	.LVL35:
+ 115:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	
+ 116:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	
+ 117:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* calculate line height */
+ 118:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   line_height = u8g2_GetAscent(u8g2);
+ 229              		.loc 1 118 0
+ 230 001e 94F97950 		ldrsb	r5, [r4, #121]
+ 231 0022 EDB2     		uxtb	r5, r5
+ 232              	.LVL36:
+ 119:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   line_height -= u8g2_GetDescent(u8g2);
+ 233              		.loc 1 119 0
+ 234 0024 94F87A30 		ldrb	r3, [r4, #122]	@ zero_extendqisi2
+ 235 0028 ED1A     		subs	r5, r5, r3
+ 236              	.LVL37:
+ 237 002a EDB2     		uxtb	r5, r5
+ 238              	.LVL38:
+ 120:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+ 121:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* calculate overall height of the message box in lines*/
+ 122:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   height = 1;	/* button line */
+ 123:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   height += u8x8_GetStringLineCnt(title1);
+ 239              		.loc 1 123 0
+ 240 002c 4846     		mov	r0, r9
+ 241 002e FFF7FEFF 		bl	u8x8_GetStringLineCnt
+ 242              	.LVL39:
+ 243 0032 461C     		adds	r6, r0, #1
+ 244 0034 F6B2     		uxtb	r6, r6
+ 245              	.LVL40:
+ 124:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   if ( title2 != NULL )
+ 246              		.loc 1 124 0
+ 247 0036 0FB1     		cbz	r7, .L13
+ 125:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     height++;
+ 248              		.loc 1 125 0
+ 249 0038 0230     		adds	r0, r0, #2
+ 250 003a C6B2     		uxtb	r6, r0
+ 251              	.LVL41:
+ 252              	.L13:
+ 126:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   height += u8x8_GetStringLineCnt(title3);
+ 253              		.loc 1 126 0
+ 254 003c 5046     		mov	r0, r10
+ 255 003e FFF7FEFF 		bl	u8x8_GetStringLineCnt
+ 256              	.LVL42:
+ 257 0042 3318     		adds	r3, r6, r0
+ 258 0044 DBB2     		uxtb	r3, r3
+ 259              	.LVL43:
+ 127:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   
+ 128:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* calculate the height in pixel */
+ 129:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   pixel_height = height;
+ 130:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   pixel_height *= line_height;
+ 260              		.loc 1 130 0
+ 261 0046 15FB03F3 		smulbb	r3, r5, r3
+ 262              	.LVL44:
+ 263 004a DBB2     		uxtb	r3, r3
+ 264              	.LVL45:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 8
+
+
+ 131:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   
+ 132:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* ... and add the space between the text and the buttons */
+ 133:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   pixel_height +=SPACE_BETWEEN_TEXT_AND_BUTTONS_IN_PIXEL;
+ 265              		.loc 1 133 0
+ 266 004c 0333     		adds	r3, r3, #3
+ 267              	.LVL46:
+ 268 004e DBB2     		uxtb	r3, r3
+ 269              	.LVL47:
+ 134:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   
+ 135:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* calculate offset from top */
+ 136:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   y = 0;
+ 137:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   if ( pixel_height < u8g2_GetDisplayHeight(u8g2)   )
+ 270              		.loc 1 137 0
+ 271 0050 94F84020 		ldrb	r2, [r4, #64]	@ zero_extendqisi2
+ 272 0054 9A42     		cmp	r2, r3
+ 273 0056 0CD9     		bls	.L27
+ 274              	.LVL48:
+ 138:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   {
+ 139:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     y = u8g2_GetDisplayHeight(u8g2);
+ 140:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     y -= pixel_height;
+ 275              		.loc 1 140 0
+ 276 0058 D31A     		subs	r3, r2, r3
+ 277              	.LVL49:
+ 141:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****     y /= 2;
+ 278              		.loc 1 141 0
+ 279 005a C3F34603 		ubfx	r3, r3, #1, #7
+ 280              	.LVL50:
+ 281              	.L14:
+ 142:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   }
+ 143:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   y += u8g2_GetAscent(u8g2);
+ 282              		.loc 1 143 0
+ 283 005e 94F87960 		ldrb	r6, [r4, #121]	@ zero_extendqisi2
+ 284              	.LVL51:
+ 285 0062 3344     		add	r3, r3, r6
+ 286              	.LVL52:
+ 287 0064 DEB2     		uxtb	r6, r3
+ 288              	.LVL53:
+ 106:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   uint8_t button_cnt;
+ 289              		.loc 1 106 0
+ 290 0066 0023     		movs	r3, #0
+ 291 0068 0493     		str	r3, [sp, #16]
+ 292              	.LVL54:
+ 293              	.L15:
+ 144:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+ 145:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   
+ 146:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   for(;;)
+ 147:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   {
+ 148:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****       u8g2_FirstPage(u8g2);
+ 294              		.loc 1 148 0
+ 295 006a 2046     		mov	r0, r4
+ 296 006c FFF7FEFF 		bl	u8g2_FirstPage
+ 297              	.LVL55:
+ 298 0070 1EE0     		b	.L17
+ 299              	.LVL56:
+ 300              	.L27:
+ 136:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   if ( pixel_height < u8g2_GetDisplayHeight(u8g2)   )
+ 301              		.loc 1 136 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 9
+
+
+ 302 0072 0023     		movs	r3, #0
+ 303              	.LVL57:
+ 304 0074 F3E7     		b	.L14
+ 305              	.LVL58:
+ 306              	.L16:
+ 149:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****       do
+ 150:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****       {
+ 151:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  yy = y;
+ 152:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  /* draw message box */
+ 153:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  
+ 154:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  yy += u8g2_DrawUTF8Lines(u8g2, 0, yy, u8g2_GetDisplayWidth(u8g2), line_height, title1);
+ 155:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  if ( title2 != NULL )
+ 156:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  {
+ 157:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    u8g2_DrawUTF8Line(u8g2, 0, yy, u8g2_GetDisplayWidth(u8g2), title2, 0, 0);
+ 158:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    yy+=line_height;
+ 159:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  }
+ 160:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  yy += u8g2_DrawUTF8Lines(u8g2, 0, yy, u8g2_GetDisplayWidth(u8g2), line_height, title3);
+ 307              		.loc 1 160 0
+ 308 0076 94F83F30 		ldrb	r3, [r4, #63]	@ zero_extendqisi2
+ 309 007a CDF804A0 		str	r10, [sp, #4]
+ 310 007e 0095     		str	r5, [sp]
+ 311 0080 4246     		mov	r2, r8
+ 312 0082 0021     		movs	r1, #0
+ 313 0084 2046     		mov	r0, r4
+ 314 0086 FFF7FEFF 		bl	u8g2_DrawUTF8Lines
+ 315              	.LVL59:
+ 316 008a 08EB0001 		add	r1, r8, r0
+ 317 008e C9B2     		uxtb	r1, r1
+ 318              	.LVL60:
+ 161:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  yy += SPACE_BETWEEN_TEXT_AND_BUTTONS_IN_PIXEL;
+ 319              		.loc 1 161 0
+ 320 0090 0331     		adds	r1, r1, #3
+ 321              	.LVL61:
+ 162:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+ 163:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  button_cnt = u8g2_draw_button_line(u8g2, yy, u8g2_GetDisplayWidth(u8g2), cursor, buttons);
+ 322              		.loc 1 163 0
+ 323 0092 94F83F20 		ldrb	r2, [r4, #63]	@ zero_extendqisi2
+ 324 0096 CDF800B0 		str	fp, [sp]
+ 325 009a 049B     		ldr	r3, [sp, #16]
+ 326 009c C9B2     		uxtb	r1, r1
+ 327 009e 2046     		mov	r0, r4
+ 328 00a0 FFF7FEFF 		bl	u8g2_draw_button_line
+ 329              	.LVL62:
+ 330 00a4 8046     		mov	r8, r0
+ 331              	.LVL63:
+ 164:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  
+ 165:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****       } while( u8g2_NextPage(u8g2) );
+ 332              		.loc 1 165 0
+ 333 00a6 2046     		mov	r0, r4
+ 334 00a8 FFF7FEFF 		bl	u8g2_NextPage
+ 335              	.LVL64:
+ 336 00ac 0590     		str	r0, [sp, #20]
+ 337 00ae E0B1     		cbz	r0, .L25
+ 338              	.LVL65:
+ 339              	.L17:
+ 154:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  if ( title2 != NULL )
+ 340              		.loc 1 154 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 10
+
+
+ 341 00b0 94F83F30 		ldrb	r3, [r4, #63]	@ zero_extendqisi2
+ 342 00b4 CDF80490 		str	r9, [sp, #4]
+ 343 00b8 0095     		str	r5, [sp]
+ 344 00ba 3246     		mov	r2, r6
+ 345 00bc 0021     		movs	r1, #0
+ 346 00be 2046     		mov	r0, r4
+ 347 00c0 FFF7FEFF 		bl	u8g2_DrawUTF8Lines
+ 348              	.LVL66:
+ 349 00c4 3044     		add	r0, r0, r6
+ 350 00c6 5FFA80F8 		uxtb	r8, r0
+ 351              	.LVL67:
+ 155:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  {
+ 352              		.loc 1 155 0
+ 353 00ca 002F     		cmp	r7, #0
+ 354 00cc D3D0     		beq	.L16
+ 157:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    yy+=line_height;
+ 355              		.loc 1 157 0
+ 356 00ce 94F83F30 		ldrb	r3, [r4, #63]	@ zero_extendqisi2
+ 357 00d2 0021     		movs	r1, #0
+ 358 00d4 0291     		str	r1, [sp, #8]
+ 359 00d6 0191     		str	r1, [sp, #4]
+ 360 00d8 0097     		str	r7, [sp]
+ 361 00da 4246     		mov	r2, r8
+ 362 00dc 2046     		mov	r0, r4
+ 363 00de FFF7FEFF 		bl	u8g2_DrawUTF8Line
+ 364              	.LVL68:
+ 158:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  }
+ 365              		.loc 1 158 0
+ 366 00e2 A844     		add	r8, r8, r5
+ 367              	.LVL69:
+ 368 00e4 5FFA88F8 		uxtb	r8, r8
+ 369              	.LVL70:
+ 370 00e8 C5E7     		b	.L16
+ 371              	.LVL71:
+ 372              	.L25:
+ 166:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 
+ 167:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** #ifdef U8G2_REF_MAN_PIC
+ 168:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****       return 0;
+ 169:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** #endif
+ 170:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	  
+ 171:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****       for(;;)
+ 172:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****       {
+ 173:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    event = u8x8_GetMenuEvent(u8g2_GetU8x8(u8g2));
+ 373              		.loc 1 173 0
+ 374 00ea 2046     		mov	r0, r4
+ 375 00ec FFF7FEFF 		bl	u8x8_GetMenuEvent
+ 376              	.LVL72:
+ 174:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    if ( event == U8X8_MSG_GPIO_MENU_SELECT )
+ 377              		.loc 1 174 0
+ 378 00f0 5028     		cmp	r0, #80
+ 379 00f2 12D0     		beq	.L30
+ 175:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	      return cursor+1;
+ 176:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    else if ( event == U8X8_MSG_GPIO_MENU_HOME )
+ 380              		.loc 1 176 0
+ 381 00f4 5328     		cmp	r0, #83
+ 382 00f6 16D0     		beq	.L19
+ 177:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	      return 0;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 11
+
+
+ 178:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    else if ( event == U8X8_MSG_GPIO_MENU_NEXT || event == U8X8_MSG_GPIO_MENU_DOWN )
+ 383              		.loc 1 178 0
+ 384 00f8 5128     		cmp	r0, #81
+ 385 00fa 18D0     		beq	.L20
+ 386              		.loc 1 178 0 is_stmt 0 discriminator 1
+ 387 00fc 5528     		cmp	r0, #85
+ 388 00fe 16D0     		beq	.L20
+ 179:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    {
+ 180:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	      cursor++;
+ 181:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	      if ( cursor >= button_cnt )
+ 182:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 		cursor = 0;
+ 183:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	      break;
+ 184:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    }
+ 185:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    else if ( event == U8X8_MSG_GPIO_MENU_PREV || event == U8X8_MSG_GPIO_MENU_UP )
+ 389              		.loc 1 185 0 is_stmt 1
+ 390 0100 5228     		cmp	r0, #82
+ 391 0102 01D0     		beq	.L24
+ 392              		.loc 1 185 0 is_stmt 0 discriminator 1
+ 393 0104 5428     		cmp	r0, #84
+ 394 0106 F0D1     		bne	.L25
+ 395              	.L24:
+ 186:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    {
+ 187:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	      if ( cursor == 0 )
+ 396              		.loc 1 187 0 is_stmt 1
+ 397 0108 049B     		ldr	r3, [sp, #16]
+ 398 010a 03B1     		cbz	r3, .L26
+ 399 010c 9846     		mov	r8, r3
+ 400              	.LVL73:
+ 401              	.L26:
+ 188:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 		cursor = button_cnt;
+ 189:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	      cursor--;
+ 402              		.loc 1 189 0
+ 403 010e 08F1FF38 		add	r8, r8, #-1
+ 404              	.LVL74:
+ 405 0112 5FFA88F3 		uxtb	r3, r8
+ 406 0116 0493     		str	r3, [sp, #16]
+ 407              	.LVL75:
+ 190:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	      break;
+ 408              		.loc 1 190 0
+ 409 0118 A7E7     		b	.L15
+ 410              	.LVL76:
+ 411              	.L30:
+ 175:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    else if ( event == U8X8_MSG_GPIO_MENU_HOME )
+ 412              		.loc 1 175 0
+ 413 011a 049B     		ldr	r3, [sp, #16]
+ 414 011c 03F10108 		add	r8, r3, #1
+ 415              	.LVL77:
+ 416 0120 5FFA88F3 		uxtb	r3, r8
+ 417 0124 0593     		str	r3, [sp, #20]
+ 418              	.L19:
+ 191:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	    }    
+ 192:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****       }
+ 193:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   }
+ 194:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   /* never reached */
+ 195:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c ****   //return 0;
+ 196:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** }
+ 419              		.loc 1 196 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 12
+
+
+ 420 0126 0598     		ldr	r0, [sp, #20]
+ 421              	.LVL78:
+ 422 0128 07B0     		add	sp, sp, #28
+ 423              	.LCFI5:
+ 424              		.cfi_remember_state
+ 425              		.cfi_def_cfa_offset 36
+ 426              		@ sp needed
+ 427 012a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 428              	.LVL79:
+ 429              	.L20:
+ 430              	.LCFI6:
+ 431              		.cfi_restore_state
+ 180:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	      if ( cursor >= button_cnt )
+ 432              		.loc 1 180 0
+ 433 012e 049B     		ldr	r3, [sp, #16]
+ 434 0130 0133     		adds	r3, r3, #1
+ 435 0132 DBB2     		uxtb	r3, r3
+ 436 0134 0493     		str	r3, [sp, #16]
+ 437              	.LVL80:
+ 181:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 		cursor = 0;
+ 438              		.loc 1 181 0
+ 439 0136 9845     		cmp	r8, r3
+ 440 0138 97D8     		bhi	.L15
+ 182:/Users/imashio/Electronics/ARM/_Library/u8g2_message.c **** 	      break;
+ 441              		.loc 1 182 0
+ 442 013a 059B     		ldr	r3, [sp, #20]
+ 443              	.LVL81:
+ 444 013c 0493     		str	r3, [sp, #16]
+ 445              	.LVL82:
+ 446 013e 94E7     		b	.L15
+ 447              		.cfi_endproc
+ 448              	.LFE1:
+ 450              		.text
+ 451              	.Letext0:
+ 452              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 453              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 454              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 455              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8g2_message.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s:18     .text.u8g2_draw_button_line:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s:25     .text.u8g2_draw_button_line:0000000000000000 u8g2_draw_button_line
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s:185    .text.u8g2_UserInterfaceMessage:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccherLwB.s:192    .text.u8g2_UserInterfaceMessage:0000000000000000 u8g2_UserInterfaceMessage
+
+UNDEFINED SYMBOLS
+u8x8_GetStringLineCnt
+u8x8_GetStringLineStart
+u8g2_GetUTF8Width
+u8g2_DrawUTF8Line
+u8g2_SetFontDirection
+u8g2_SetFontPosBaseline
+u8g2_FirstPage
+u8g2_DrawUTF8Lines
+u8g2_NextPage
+u8x8_GetMenuEvent

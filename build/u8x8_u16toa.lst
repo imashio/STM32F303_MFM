@@ -1,0 +1,245 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_u16toa.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_u16toap,"ax",%progbits
+  18              		.align	1
+  19              		.global	u8x8_u16toap
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	u8x8_u16toap:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   u8x8_u16toa.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s 			page 2
+
+
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** */
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** #include "u8x8.h"
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** const char *u8x8_u16toap(char * dest, uint16_t v)
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** {
+  28              		.loc 1 41 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  34 0000 10B4     		push	{r4}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 4, -4
+  38              	.LVL1:
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   uint8_t pos;
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   uint8_t d;
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   uint16_t c;
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   c = 10000;
+  39              		.loc 1 45 0
+  40 0002 42F21072 		movw	r2, #10000
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   for( pos = 0; pos < 5; pos++ )
+  41              		.loc 1 46 0
+  42 0006 0024     		movs	r4, #0
+  43 0008 0CE0     		b	.L2
+  44              	.LVL2:
+  45              	.L3:
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   {
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****       d = '0';
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****       while( v >= c )
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****       {
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 	v -= c;
+  46              		.loc 1 51 0
+  47 000a 891A     		subs	r1, r1, r2
+  48              	.LVL3:
+  49 000c 89B2     		uxth	r1, r1
+  50              	.LVL4:
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 	d++;
+  51              		.loc 1 52 0
+  52 000e 0133     		adds	r3, r3, #1
+  53              	.LVL5:
+  54 0010 DBB2     		uxtb	r3, r3
+  55              	.LVL6:
+  56              	.L4:
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****       {
+  57              		.loc 1 49 0
+  58 0012 9142     		cmp	r1, r2
+  59 0014 F9D2     		bcs	.L3
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****       }
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****       dest[pos] = d;
+  60              		.loc 1 54 0 discriminator 2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s 			page 3
+
+
+  61 0016 0355     		strb	r3, [r0, r4]
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****       c /= 10;
+  62              		.loc 1 55 0 discriminator 2
+  63 0018 074B     		ldr	r3, .L8
+  64              	.LVL7:
+  65 001a A3FB0232 		umull	r3, r2, r3, r2
+  66              	.LVL8:
+  67 001e D208     		lsrs	r2, r2, #3
+  68              	.LVL9:
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   {
+  69              		.loc 1 46 0 discriminator 2
+  70 0020 0134     		adds	r4, r4, #1
+  71              	.LVL10:
+  72 0022 E4B2     		uxtb	r4, r4
+  73              	.LVL11:
+  74              	.L2:
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   {
+  75              		.loc 1 46 0 is_stmt 0 discriminator 1
+  76 0024 042C     		cmp	r4, #4
+  77 0026 01D8     		bhi	.L7
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****       while( v >= c )
+  78              		.loc 1 48 0 is_stmt 1
+  79 0028 3023     		movs	r3, #48
+  80 002a F2E7     		b	.L4
+  81              	.L7:
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   }  
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   dest[5] = '\0';
+  82              		.loc 1 57 0
+  83 002c 0023     		movs	r3, #0
+  84 002e 4371     		strb	r3, [r0, #5]
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   return dest;
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** }
+  85              		.loc 1 59 0
+  86 0030 5DF8044B 		ldr	r4, [sp], #4
+  87              	.LCFI1:
+  88              		.cfi_restore 4
+  89              		.cfi_def_cfa_offset 0
+  90              	.LVL12:
+  91 0034 7047     		bx	lr
+  92              	.L9:
+  93 0036 00BF     		.align	2
+  94              	.L8:
+  95 0038 CDCCCCCC 		.word	-858993459
+  96              		.cfi_endproc
+  97              	.LFE0:
+  99              		.section	.text.u8x8_u16toa,"ax",%progbits
+ 100              		.align	1
+ 101              		.global	u8x8_u16toa
+ 102              		.syntax unified
+ 103              		.thumb
+ 104              		.thumb_func
+ 105              		.fpu fpv4-sp-d16
+ 107              	u8x8_u16toa:
+ 108              	.LFB1:
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** 
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** /* v = value, d = number of digits */
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** const char *u8x8_u16toa(uint16_t v, uint8_t d)
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s 			page 4
+
+
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** {
+ 109              		.loc 1 63 0
+ 110              		.cfi_startproc
+ 111              		@ args = 0, pretend = 0, frame = 0
+ 112              		@ frame_needed = 0, uses_anonymous_args = 0
+ 113              	.LVL13:
+ 114 0000 10B5     		push	{r4, lr}
+ 115              	.LCFI2:
+ 116              		.cfi_def_cfa_offset 8
+ 117              		.cfi_offset 4, -8
+ 118              		.cfi_offset 14, -4
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   static char buf[6];
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   d = 5-d;
+ 119              		.loc 1 65 0
+ 120 0002 C1F10501 		rsb	r1, r1, #5
+ 121              	.LVL14:
+ 122 0006 CCB2     		uxtb	r4, r1
+ 123              	.LVL15:
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c ****   return u8x8_u16toap(buf, v) + d;
+ 124              		.loc 1 66 0
+ 125 0008 0146     		mov	r1, r0
+ 126 000a 0248     		ldr	r0, .L12
+ 127              	.LVL16:
+ 128 000c FFF7FEFF 		bl	u8x8_u16toap
+ 129              	.LVL17:
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_u16toa.c **** }
+ 130              		.loc 1 67 0
+ 131 0010 2044     		add	r0, r0, r4
+ 132 0012 10BD     		pop	{r4, pc}
+ 133              	.LVL18:
+ 134              	.L13:
+ 135              		.align	2
+ 136              	.L12:
+ 137 0014 00000000 		.word	.LANCHOR0
+ 138              		.cfi_endproc
+ 139              	.LFE1:
+ 141              		.section	.bss.buf.6270,"aw",%nobits
+ 142              		.align	2
+ 143              		.set	.LANCHOR0,. + 0
+ 146              	buf.6270:
+ 147 0000 00000000 		.space	6
+ 147      0000
+ 148              		.text
+ 149              	.Letext0:
+ 150              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 151              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 152              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_u16toa.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s:18     .text.u8x8_u16toap:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s:25     .text.u8x8_u16toap:0000000000000000 u8x8_u16toap
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s:95     .text.u8x8_u16toap:0000000000000038 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s:100    .text.u8x8_u16toa:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s:107    .text.u8x8_u16toa:0000000000000000 u8x8_u16toa
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s:137    .text.u8x8_u16toa:0000000000000014 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s:142    .bss.buf.6270:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccn8ecgb.s:146    .bss.buf.6270:0000000000000000 buf.6270
+
+NO UNDEFINED SYMBOLS

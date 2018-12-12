@@ -1,0 +1,705 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_d_ssd1306_64x48.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_d_ssd1306_64x48_generic,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	u8x8_d_ssd1306_64x48_generic:
+  25              	.LFB0:
+  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   u8x8_d_ssd1306_64x48.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 2
+
+
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** */
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** #include "u8x8.h"
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** /* EastRising 0.66 OLED */
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** static const uint8_t u8x8_d_ssd1306_64x48_er_init_seq[] = {
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0ae),		                /* display off */
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_CA(0x0d5, 0x080),		/* clock divide ratio (0x00=1) and oscillator frequency (0x8) */
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_CA(0x0a8, 0x02f),		/* multiplex ratio, 0.66 OLED: changed from 0x1f to 0x2f */
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_CA(0x0d3, 0x000),		/* display offset, 0.66 OLED  */
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x040),		                /* set display start line to 0, 0.66 OLED */
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_CA(0x08d, 0x014),		/* [2] charge pump setting (p62): 0x014 enable, 0x010 disable, 0.66 OLED 
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_CA(0x020, 0x000),		/* page addressing mode */
+  54:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0a1),				/* segment remap a0/a1, 0.66 OLED  */
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0c8),				/* c0: scan dir normal, c8: reverse, 0.66 OLED  */
+  57:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   // Flipmode
+  58:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   // U8X8_C(0x0a0),				/* segment remap a0/a1*/
+  59:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   // U8X8_C(0x0c0),				/* c0: scan dir normal, c8: reverse */
+  60:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   
+  61:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_CA(0x0da, 0x012),		/* com pin HW config, sequential com pin config (bit 4), disable left/rig
+  62:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_CA(0x081, 0x0cf),		/* [2] set contrast control, 0.66 OLED datasheet: 0xcf */
+  63:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_CA(0x0d9, 0x022),		/* [2] pre-charge period 0x022/f1, 0.66 OLED datasheet: 0x22 */
+  64:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_CA(0x0db, 0x000),		/* vcomh deselect level, 0.66 OLED datasheet: 0x00 */
+  65:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   
+  66:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x02e),				/* Deactivate scroll */ 
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0a4),				/* output ram to display */
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0a6),				/* none inverted normal display mode */
+  69:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     
+  70:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_END()             			/* end of sequence */
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** };
+  73:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** static const uint8_t u8x8_d_ssd1306_64x48_powersave0_seq[] = {
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  76:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0af),		                /* display on */
+  77:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  78:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_END()             			/* end of sequence */
+  79:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** };
+  80:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  81:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** static const uint8_t u8x8_d_ssd1306_64x48_powersave1_seq[] = {
+  82:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  83:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0ae),		                /* display off */
+  84:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  85:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_END()             			/* end of sequence */
+  86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** };
+  87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  88:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** static const uint8_t u8x8_d_ssd1306_64x48_flip0_seq[] = {
+  89:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 3
+
+
+  90:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0a1),				/* segment remap a0/a1*/
+  91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0c8),				/* c0: scan dir normal, c8: reverse */
+  92:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+  93:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_END()             			/* end of sequence */
+  94:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** };
+  95:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+  96:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** static const uint8_t u8x8_d_ssd1306_64x48_flip1_seq[] = {
+  97:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
+  98:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0a0),				/* segment remap a0/a1*/
+  99:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_C(0x0c0),				/* c0: scan dir normal, c8: reverse */
+ 100:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_END_TRANSFER(),             	/* disable chip */
+ 101:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   U8X8_END()             			/* end of sequence */
+ 102:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** };
+ 103:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+ 104:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+ 105:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** static uint8_t u8x8_d_ssd1306_64x48_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_p
+ 106:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** {
+  27              		.loc 1 106 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 24
+  35              		.cfi_offset 3, -24
+  36              		.cfi_offset 4, -20
+  37              		.cfi_offset 5, -16
+  38              		.cfi_offset 6, -12
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 0546     		mov	r5, r0
+  42 0004 1446     		mov	r4, r2
+  43 0006 1E46     		mov	r6, r3
+ 107:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   uint8_t x, c;
+ 108:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   uint8_t *ptr;
+ 109:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   switch(msg)
+  44              		.loc 1 109 0
+  45 0008 0B39     		subs	r1, r1, #11
+  46              	.LVL1:
+  47 000a 0429     		cmp	r1, #4
+  48 000c 59D8     		bhi	.L11
+  49 000e DFE801F0 		tbb	[pc, r1]
+  50              	.LVL2:
+  51              	.L4:
+  52 0012 03       		.byte	(.L3-.L4)/2
+  53 0013 58       		.byte	(.L11-.L4)/2
+  54 0014 0E       		.byte	(.L5-.L4)/2
+  55 0015 1F       		.byte	(.L6-.L4)/2
+  56 0016 2E       		.byte	(.L7-.L4)/2
+  57 0017 00       		.p2align 1
+  58              	.L3:
+ 110:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   {
+ 111:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     /* handled by the calling function
+ 112:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+ 113:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_ssd1306_64x48_display_info);
+ 114:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       break;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 4
+
+
+ 115:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     case U8X8_MSG_DISPLAY_INIT:
+ 116:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_d_helper_display_init(u8x8);
+ 117:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1306_64x48_er_init_seq);    
+ 118:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       break;
+ 119:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     */
+ 120:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+ 121:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       if ( arg_int == 0 )
+  59              		.loc 1 121 0
+  60 0018 22B9     		cbnz	r2, .L8
+ 122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1306_64x48_powersave0_seq);
+  61              		.loc 1 122 0
+  62 001a 2B49     		ldr	r1, .L13
+  63 001c FFF7FEFF 		bl	u8x8_cad_SendSequence
+  64              	.LVL3:
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       else
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1306_64x48_powersave1_seq);
+ 125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       break;
+ 126:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     case U8X8_MSG_DISPLAY_SET_FLIP_MODE:
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       if ( arg_int == 0 )
+ 128:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       {
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1306_64x48_flip0_seq);
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	u8x8->x_offset = u8x8->display_info->default_x_offset;
+ 131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       }
+ 132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       else
+ 133:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       {
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1306_64x48_flip1_seq);
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       }
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       break;
+ 138:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** #ifdef U8X8_WITH_SET_CONTRAST
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     case U8X8_MSG_DISPLAY_SET_CONTRAST:
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_StartTransfer(u8x8);
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendCmd(u8x8, 0x081 );
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendArg(u8x8, arg_int );	/* ssd1306 has range from 0 to 255 */
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_EndTransfer(u8x8);
+ 144:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       break;
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** #endif
+ 146:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     case U8X8_MSG_DISPLAY_DRAW_TILE:
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_StartTransfer(u8x8);
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       x *= 8;
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       x += u8x8->x_offset;
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendCmd(u8x8, 0x010 | (x>>4) );
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendCmd(u8x8, 0x000 | ((x&15)));
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendCmd(u8x8, 0x0b0 | (((u8x8_tile_t *)arg_ptr)->y_pos));
+ 154:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       
+ 155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       do
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       {
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	c = ((u8x8_tile_t *)arg_ptr)->cnt;
+ 158:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	u8x8_cad_SendData(u8x8, c*8, ptr); 	/* note: SendData can not handle more than 255 bytes */
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	arg_int--;
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       } while( arg_int > 0 );
+ 162:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_EndTransfer(u8x8);
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       break;
+ 165:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     default:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 5
+
+
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       return 0;
+ 167:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   }
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   return 1;
+  65              		.loc 1 168 0
+  66 0020 0120     		movs	r0, #1
+  67 0022 23E0     		b	.L2
+  68              	.LVL4:
+  69              	.L8:
+ 124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       break;
+  70              		.loc 1 124 0
+  71 0024 2949     		ldr	r1, .L13+4
+  72 0026 FFF7FEFF 		bl	u8x8_cad_SendSequence
+  73              	.LVL5:
+  74              		.loc 1 168 0
+  75 002a 0120     		movs	r0, #1
+  76 002c 1EE0     		b	.L2
+  77              	.LVL6:
+  78              	.L5:
+ 127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       {
+  79              		.loc 1 127 0
+  80 002e 3AB9     		cbnz	r2, .L9
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	u8x8->x_offset = u8x8->display_info->default_x_offset;
+  81              		.loc 1 129 0
+  82 0030 2749     		ldr	r1, .L13+8
+  83 0032 FFF7FEFF 		bl	u8x8_cad_SendSequence
+  84              	.LVL7:
+ 130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       }
+  85              		.loc 1 130 0
+  86 0036 2B68     		ldr	r3, [r5]
+  87 0038 9B7C     		ldrb	r3, [r3, #18]	@ zero_extendqisi2
+  88 003a AB77     		strb	r3, [r5, #30]
+  89              		.loc 1 168 0
+  90 003c 0120     		movs	r0, #1
+  91 003e 15E0     		b	.L2
+  92              	.LVL8:
+  93              	.L9:
+ 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
+  94              		.loc 1 134 0
+  95 0040 2449     		ldr	r1, .L13+12
+  96 0042 FFF7FEFF 		bl	u8x8_cad_SendSequence
+  97              	.LVL9:
+ 135:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       }
+  98              		.loc 1 135 0
+  99 0046 2B68     		ldr	r3, [r5]
+ 100 0048 DB7C     		ldrb	r3, [r3, #19]	@ zero_extendqisi2
+ 101 004a AB77     		strb	r3, [r5, #30]
+ 102              		.loc 1 168 0
+ 103 004c 0120     		movs	r0, #1
+ 104 004e 0DE0     		b	.L2
+ 105              	.LVL10:
+ 106              	.L6:
+ 140:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendCmd(u8x8, 0x081 );
+ 107              		.loc 1 140 0
+ 108 0050 FFF7FEFF 		bl	u8x8_cad_StartTransfer
+ 109              	.LVL11:
+ 141:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendArg(u8x8, arg_int );	/* ssd1306 has range from 0 to 255 */
+ 110              		.loc 1 141 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 6
+
+
+ 111 0054 8121     		movs	r1, #129
+ 112 0056 2846     		mov	r0, r5
+ 113 0058 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 114              	.LVL12:
+ 142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_EndTransfer(u8x8);
+ 115              		.loc 1 142 0
+ 116 005c 2146     		mov	r1, r4
+ 117 005e 2846     		mov	r0, r5
+ 118 0060 FFF7FEFF 		bl	u8x8_cad_SendArg
+ 119              	.LVL13:
+ 143:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       break;
+ 120              		.loc 1 143 0
+ 121 0064 2846     		mov	r0, r5
+ 122 0066 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 123              	.LVL14:
+ 124              		.loc 1 168 0
+ 125 006a 0120     		movs	r0, #1
+ 126              	.LVL15:
+ 127              	.L2:
+ 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** }
+ 128              		.loc 1 169 0
+ 129 006c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 130              	.LVL16:
+ 131              	.L7:
+ 147:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+ 132              		.loc 1 147 0
+ 133 006e FFF7FEFF 		bl	u8x8_cad_StartTransfer
+ 134              	.LVL17:
+ 148:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       x *= 8;
+ 135              		.loc 1 148 0
+ 136 0072 7779     		ldrb	r7, [r6, #5]	@ zero_extendqisi2
+ 137              	.LVL18:
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       x += u8x8->x_offset;
+ 138              		.loc 1 149 0
+ 139 0074 FF00     		lsls	r7, r7, #3
+ 140              	.LVL19:
+ 141 0076 FBB2     		uxtb	r3, r7
+ 142              	.LVL20:
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendCmd(u8x8, 0x010 | (x>>4) );
+ 143              		.loc 1 150 0
+ 144 0078 AF7F     		ldrb	r7, [r5, #30]	@ zero_extendqisi2
+ 145 007a 1F44     		add	r7, r7, r3
+ 146 007c FFB2     		uxtb	r7, r7
+ 147              	.LVL21:
+ 151:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendCmd(u8x8, 0x000 | ((x&15)));
+ 148              		.loc 1 151 0
+ 149 007e 3909     		lsrs	r1, r7, #4
+ 150 0080 41F01001 		orr	r1, r1, #16
+ 151 0084 2846     		mov	r0, r5
+ 152 0086 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 153              	.LVL22:
+ 152:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendCmd(u8x8, 0x0b0 | (((u8x8_tile_t *)arg_ptr)->y_pos));
+ 154              		.loc 1 152 0
+ 155 008a 07F00F01 		and	r1, r7, #15
+ 156 008e 2846     		mov	r0, r5
+ 157 0090 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 158              	.LVL23:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 7
+
+
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       
+ 159              		.loc 1 153 0
+ 160 0094 B179     		ldrb	r1, [r6, #6]	@ zero_extendqisi2
+ 161 0096 41F0B001 		orr	r1, r1, #176
+ 162 009a 2846     		mov	r0, r5
+ 163 009c FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 164              	.LVL24:
+ 165              	.L10:
+ 157:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
+ 166              		.loc 1 157 0 discriminator 1
+ 167 00a0 3179     		ldrb	r1, [r6, #4]	@ zero_extendqisi2
+ 168              	.LVL25:
+ 159:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 	arg_int--;
+ 169              		.loc 1 159 0 discriminator 1
+ 170 00a2 C900     		lsls	r1, r1, #3
+ 171              	.LVL26:
+ 172 00a4 3268     		ldr	r2, [r6]
+ 173 00a6 01F0F801 		and	r1, r1, #248
+ 174 00aa 2846     		mov	r0, r5
+ 175 00ac FFF7FEFF 		bl	u8x8_cad_SendData
+ 176              	.LVL27:
+ 160:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       } while( arg_int > 0 );
+ 177              		.loc 1 160 0 discriminator 1
+ 178 00b0 013C     		subs	r4, r4, #1
+ 179              	.LVL28:
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       
+ 180              		.loc 1 161 0 discriminator 1
+ 181 00b2 14F0FF04 		ands	r4, r4, #255
+ 182              	.LVL29:
+ 183 00b6 F3D1     		bne	.L10
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       break;
+ 184              		.loc 1 163 0
+ 185 00b8 2846     		mov	r0, r5
+ 186 00ba FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 187              	.LVL30:
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** }
+ 188              		.loc 1 168 0
+ 189 00be 0120     		movs	r0, #1
+ 164:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     default:
+ 190              		.loc 1 164 0
+ 191 00c0 D4E7     		b	.L2
+ 192              	.LVL31:
+ 193              	.L11:
+ 166:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   }
+ 194              		.loc 1 166 0
+ 195 00c2 0020     		movs	r0, #0
+ 196              	.LVL32:
+ 197 00c4 D2E7     		b	.L2
+ 198              	.L14:
+ 199 00c6 00BF     		.align	2
+ 200              	.L13:
+ 201 00c8 00000000 		.word	.LANCHOR0
+ 202 00cc 00000000 		.word	.LANCHOR1
+ 203 00d0 00000000 		.word	.LANCHOR2
+ 204 00d4 00000000 		.word	.LANCHOR3
+ 205              		.cfi_endproc
+ 206              	.LFE0:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 8
+
+
+ 208              		.section	.text.u8x8_d_ssd1306_64x48_er,"ax",%progbits
+ 209              		.align	1
+ 210              		.global	u8x8_d_ssd1306_64x48_er
+ 211              		.syntax unified
+ 212              		.thumb
+ 213              		.thumb_func
+ 214              		.fpu fpv4-sp-d16
+ 216              	u8x8_d_ssd1306_64x48_er:
+ 217              	.LFB1:
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+ 171:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** static const u8x8_display_info_t u8x8_ssd1306_64x48_display_info =
+ 173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** {
+ 174:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* chip_enable_level = */ 0,
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* chip_disable_level = */ 1,
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   
+ 177:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* post_chip_enable_wait_ns = */ 20,
+ 178:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* pre_chip_disable_wait_ns = */ 10,
+ 179:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* reset_pulse_width_ms = */ 100, 	/* SSD1306: 3 us */
+ 180:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* post_reset_wait_ms = */ 100, /* far east OLEDs need much longer setup time */
+ 181:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* sda_setup_time_ns = */ 50,		/* SSD1306: 15ns, but cycle time is 100ns, so use 100/2 */
+ 182:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* sck_pulse_width_ns = */ 50,	/* SSD1306: 20ns, but cycle time is 100ns, so use 100/2, AVR: belo
+ 183:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* sck_clock_hz = */ 8000000UL,	/* since Arduino 1.6.0, the SPI bus speed in Hz. Should be  10000
+ 184:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* spi_mode = */ 0,		/* active high, rising edge */
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* i2c_bus_clock_100kHz = */ 4,
+ 186:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* data_setup_time_ns = */ 40,
+ 187:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* write_pulse_width_ns = */ 150,	/* SSD1306: cycle time is 300ns, so use 300/2 = 150 */
+ 188:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* tile_width = */ 8,
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* tile_hight = */ 6,
+ 190:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* default_x_offset = */ 32,
+ 191:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* flipmode_x_offset = */ 32,
+ 192:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* pixel_width = */ 64,
+ 193:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****   /* pixel_height = */ 48
+ 194:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** };
+ 195:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** 
+ 196:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** /* East Rising 0.66" OLED */
+ 197:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** uint8_t u8x8_d_ssd1306_64x48_er(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+ 198:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** {
+ 218              		.loc 1 198 0
+ 219              		.cfi_startproc
+ 220              		@ args = 0, pretend = 0, frame = 0
+ 221              		@ frame_needed = 0, uses_anonymous_args = 0
+ 222              	.LVL33:
+ 223 0000 10B5     		push	{r4, lr}
+ 224              	.LCFI1:
+ 225              		.cfi_def_cfa_offset 8
+ 226              		.cfi_offset 4, -8
+ 227              		.cfi_offset 14, -4
+ 228 0002 0446     		mov	r4, r0
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     if ( msg == U8X8_MSG_DISPLAY_SETUP_MEMORY )
+ 229              		.loc 1 199 0
+ 230 0004 0929     		cmp	r1, #9
+ 231 0006 04D0     		beq	.L20
+ 200:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     {
+ 201:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_ssd1306_64x48_display_info);
+ 202:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       return 1;
+ 203:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 9
+
+
+ 204:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     else if ( msg == U8X8_MSG_DISPLAY_INIT )
+ 232              		.loc 1 204 0
+ 233 0008 0A29     		cmp	r1, #10
+ 234 000a 07D0     		beq	.L21
+ 205:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     {
+ 206:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_d_helper_display_init(u8x8);
+ 207:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1306_64x48_er_init_seq);    
+ 208:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       return 1;
+ 209:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     }
+ 210:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     return u8x8_d_ssd1306_64x48_generic(u8x8, msg, arg_int, arg_ptr);
+ 235              		.loc 1 210 0
+ 236 000c FFF7FEFF 		bl	u8x8_d_ssd1306_64x48_generic
+ 237              	.LVL34:
+ 238              	.L17:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c **** }
+ 239              		.loc 1 211 0
+ 240 0010 10BD     		pop	{r4, pc}
+ 241              	.LVL35:
+ 242              	.L20:
+ 201:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       return 1;
+ 243              		.loc 1 201 0
+ 244 0012 0649     		ldr	r1, .L22
+ 245              	.LVL36:
+ 246 0014 FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
+ 247              	.LVL37:
+ 202:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     }
+ 248              		.loc 1 202 0
+ 249 0018 0120     		movs	r0, #1
+ 250 001a F9E7     		b	.L17
+ 251              	.LVL38:
+ 252              	.L21:
+ 206:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1306_64x48_er_init_seq);    
+ 253              		.loc 1 206 0
+ 254 001c FFF7FEFF 		bl	u8x8_d_helper_display_init
+ 255              	.LVL39:
+ 207:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****       return 1;
+ 256              		.loc 1 207 0
+ 257 0020 0349     		ldr	r1, .L22+4
+ 258 0022 2046     		mov	r0, r4
+ 259 0024 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 260              	.LVL40:
+ 208:/Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1306_64x48.c ****     }
+ 261              		.loc 1 208 0
+ 262 0028 0120     		movs	r0, #1
+ 263 002a F1E7     		b	.L17
+ 264              	.L23:
+ 265              		.align	2
+ 266              	.L22:
+ 267 002c 00000000 		.word	.LANCHOR4
+ 268 0030 00000000 		.word	.LANCHOR5
+ 269              		.cfi_endproc
+ 270              	.LFE1:
+ 272              		.section	.rodata.u8x8_d_ssd1306_64x48_er_init_seq,"a",%progbits
+ 273              		.align	2
+ 274              		.set	.LANCHOR5,. + 0
+ 277              	u8x8_d_ssd1306_64x48_er_init_seq:
+ 278 0000 18       		.byte	24
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 10
+
+
+ 279 0001 15       		.byte	21
+ 280 0002 AE       		.byte	-82
+ 281 0003 15       		.byte	21
+ 282 0004 D5       		.byte	-43
+ 283 0005 16       		.byte	22
+ 284 0006 80       		.byte	-128
+ 285 0007 15       		.byte	21
+ 286 0008 A8       		.byte	-88
+ 287 0009 16       		.byte	22
+ 288 000a 2F       		.byte	47
+ 289 000b 15       		.byte	21
+ 290 000c D3       		.byte	-45
+ 291 000d 16       		.byte	22
+ 292 000e 00       		.byte	0
+ 293 000f 15       		.byte	21
+ 294 0010 40       		.byte	64
+ 295 0011 15       		.byte	21
+ 296 0012 8D       		.byte	-115
+ 297 0013 16       		.byte	22
+ 298 0014 14       		.byte	20
+ 299 0015 15       		.byte	21
+ 300 0016 20       		.byte	32
+ 301 0017 16       		.byte	22
+ 302 0018 00       		.byte	0
+ 303 0019 15       		.byte	21
+ 304 001a A1       		.byte	-95
+ 305 001b 15       		.byte	21
+ 306 001c C8       		.byte	-56
+ 307 001d 15       		.byte	21
+ 308 001e DA       		.byte	-38
+ 309 001f 16       		.byte	22
+ 310 0020 12       		.byte	18
+ 311 0021 15       		.byte	21
+ 312 0022 81       		.byte	-127
+ 313 0023 16       		.byte	22
+ 314 0024 CF       		.byte	-49
+ 315 0025 15       		.byte	21
+ 316 0026 D9       		.byte	-39
+ 317 0027 16       		.byte	22
+ 318 0028 22       		.byte	34
+ 319 0029 15       		.byte	21
+ 320 002a DB       		.byte	-37
+ 321 002b 16       		.byte	22
+ 322 002c 00       		.byte	0
+ 323 002d 15       		.byte	21
+ 324 002e 2E       		.byte	46
+ 325 002f 15       		.byte	21
+ 326 0030 A4       		.byte	-92
+ 327 0031 15       		.byte	21
+ 328 0032 A6       		.byte	-90
+ 329 0033 19       		.byte	25
+ 330 0034 FF       		.byte	-1
+ 331              		.section	.rodata.u8x8_d_ssd1306_64x48_flip0_seq,"a",%progbits
+ 332              		.align	2
+ 333              		.set	.LANCHOR2,. + 0
+ 336              	u8x8_d_ssd1306_64x48_flip0_seq:
+ 337 0000 18       		.byte	24
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 11
+
+
+ 338 0001 15       		.byte	21
+ 339 0002 A1       		.byte	-95
+ 340 0003 15       		.byte	21
+ 341 0004 C8       		.byte	-56
+ 342 0005 19       		.byte	25
+ 343 0006 FF       		.byte	-1
+ 344              		.section	.rodata.u8x8_d_ssd1306_64x48_flip1_seq,"a",%progbits
+ 345              		.align	2
+ 346              		.set	.LANCHOR3,. + 0
+ 349              	u8x8_d_ssd1306_64x48_flip1_seq:
+ 350 0000 18       		.byte	24
+ 351 0001 15       		.byte	21
+ 352 0002 A0       		.byte	-96
+ 353 0003 15       		.byte	21
+ 354 0004 C0       		.byte	-64
+ 355 0005 19       		.byte	25
+ 356 0006 FF       		.byte	-1
+ 357              		.section	.rodata.u8x8_d_ssd1306_64x48_powersave0_seq,"a",%progbits
+ 358              		.align	2
+ 359              		.set	.LANCHOR0,. + 0
+ 362              	u8x8_d_ssd1306_64x48_powersave0_seq:
+ 363 0000 18       		.byte	24
+ 364 0001 15       		.byte	21
+ 365 0002 AF       		.byte	-81
+ 366 0003 19       		.byte	25
+ 367 0004 FF       		.byte	-1
+ 368              		.section	.rodata.u8x8_d_ssd1306_64x48_powersave1_seq,"a",%progbits
+ 369              		.align	2
+ 370              		.set	.LANCHOR1,. + 0
+ 373              	u8x8_d_ssd1306_64x48_powersave1_seq:
+ 374 0000 18       		.byte	24
+ 375 0001 15       		.byte	21
+ 376 0002 AE       		.byte	-82
+ 377 0003 19       		.byte	25
+ 378 0004 FF       		.byte	-1
+ 379              		.section	.rodata.u8x8_ssd1306_64x48_display_info,"a",%progbits
+ 380              		.align	2
+ 381              		.set	.LANCHOR4,. + 0
+ 384              	u8x8_ssd1306_64x48_display_info:
+ 385 0000 00       		.byte	0
+ 386 0001 01       		.byte	1
+ 387 0002 14       		.byte	20
+ 388 0003 0A       		.byte	10
+ 389 0004 64       		.byte	100
+ 390 0005 64       		.byte	100
+ 391 0006 32       		.byte	50
+ 392 0007 32       		.byte	50
+ 393 0008 00127A00 		.word	8000000
+ 394 000c 00       		.byte	0
+ 395 000d 04       		.byte	4
+ 396 000e 28       		.byte	40
+ 397 000f 96       		.byte	-106
+ 398 0010 08       		.byte	8
+ 399 0011 06       		.byte	6
+ 400 0012 20       		.byte	32
+ 401 0013 20       		.byte	32
+ 402 0014 4000     		.short	64
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 12
+
+
+ 403 0016 3000     		.short	48
+ 404              		.text
+ 405              	.Letext0:
+ 406              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 407              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 408              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_d_ssd1306_64x48.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:18     .text.u8x8_d_ssd1306_64x48_generic:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:24     .text.u8x8_d_ssd1306_64x48_generic:0000000000000000 u8x8_d_ssd1306_64x48_generic
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:52     .text.u8x8_d_ssd1306_64x48_generic:0000000000000012 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:201    .text.u8x8_d_ssd1306_64x48_generic:00000000000000c8 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:209    .text.u8x8_d_ssd1306_64x48_er:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:216    .text.u8x8_d_ssd1306_64x48_er:0000000000000000 u8x8_d_ssd1306_64x48_er
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:267    .text.u8x8_d_ssd1306_64x48_er:000000000000002c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:273    .rodata.u8x8_d_ssd1306_64x48_er_init_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:277    .rodata.u8x8_d_ssd1306_64x48_er_init_seq:0000000000000000 u8x8_d_ssd1306_64x48_er_init_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:332    .rodata.u8x8_d_ssd1306_64x48_flip0_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:336    .rodata.u8x8_d_ssd1306_64x48_flip0_seq:0000000000000000 u8x8_d_ssd1306_64x48_flip0_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:345    .rodata.u8x8_d_ssd1306_64x48_flip1_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:349    .rodata.u8x8_d_ssd1306_64x48_flip1_seq:0000000000000000 u8x8_d_ssd1306_64x48_flip1_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:358    .rodata.u8x8_d_ssd1306_64x48_powersave0_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:362    .rodata.u8x8_d_ssd1306_64x48_powersave0_seq:0000000000000000 u8x8_d_ssd1306_64x48_powersave0_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:369    .rodata.u8x8_d_ssd1306_64x48_powersave1_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:373    .rodata.u8x8_d_ssd1306_64x48_powersave1_seq:0000000000000000 u8x8_d_ssd1306_64x48_powersave1_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:380    .rodata.u8x8_ssd1306_64x48_display_info:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:384    .rodata.u8x8_ssd1306_64x48_display_info:0000000000000000 u8x8_ssd1306_64x48_display_info
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:57     .text.u8x8_d_ssd1306_64x48_generic:0000000000000017 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDAOAzW.s:57     .text.u8x8_d_ssd1306_64x48_generic:0000000000000018 $t
+
+UNDEFINED SYMBOLS
+u8x8_cad_SendSequence
+u8x8_cad_StartTransfer
+u8x8_cad_SendCmd
+u8x8_cad_SendArg
+u8x8_cad_EndTransfer
+u8x8_cad_SendData
+u8x8_d_helper_display_setup_memory
+u8x8_d_helper_display_init

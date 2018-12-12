@@ -1,0 +1,278 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8x8_byte_4wire_hw_spi.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8x8_byte_4wire_hw_spi,"ax",%progbits
+  18              		.align	1
+  19              		.global	u8x8_byte_4wire_hw_spi
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	u8x8_byte_4wire_hw_spi:
+  26              	.LFB126:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c ****  * u8x8_byte_4wire_hw_spi.c
+   3:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c ****  *
+   4:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c ****  *  Created on: Feb 5, 2018
+   5:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c ****  *      Author: imashio
+   6:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c ****  */
+   7:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+   8:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** #include "stm32f3xx_hal.h"
+   9:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** #include "spi.h"
+  10:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** #include "u8g2.h"		// graphic display library
+  11:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** uint8_t u8x8_byte_4wire_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+  14:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** {
+  28              		.loc 1 14 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 30B5     		push	{r4, r5, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 12
+  36              		.cfi_offset 4, -12
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 14, -4
+  39 0002 83B0     		sub	sp, sp, #12
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 24
+  42 0004 1446     		mov	r4, r2
+  43 0006 1D46     		mov	r5, r3
+  15:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 	uint8_t byte;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s 			page 2
+
+
+  16:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 	uint8_t *data;
+  17:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+  18:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 	switch(msg){
+  44              		.loc 1 18 0
+  45 0008 1739     		subs	r1, r1, #23
+  46              	.LVL1:
+  47 000a 0929     		cmp	r1, #9
+  48 000c 34D8     		bhi	.L10
+  49 000e DFE801F0 		tbb	[pc, r1]
+  50              	.LVL2:
+  51              	.L4:
+  52 0012 11       		.byte	(.L3-.L4)/2
+  53 0013 16       		.byte	(.L5-.L4)/2
+  54 0014 1D       		.byte	(.L6-.L4)/2
+  55 0015 33       		.byte	(.L10-.L4)/2
+  56 0016 33       		.byte	(.L10-.L4)/2
+  57 0017 33       		.byte	(.L10-.L4)/2
+  58 0018 33       		.byte	(.L10-.L4)/2
+  59 0019 33       		.byte	(.L10-.L4)/2
+  60 001a 33       		.byte	(.L10-.L4)/2
+  61 001b 24       		.byte	(.L7-.L4)/2
+  62              		.p2align 1
+  63              	.L8:
+  19:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 		case U8X8_MSG_BYTE_SEND:
+  21:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			data = (uint8_t *)arg_ptr;
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			while( arg_int > 0 ){
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 				byte = *data;
+  64              		.loc 1 23 0
+  65 001c 15F8013B 		ldrb	r3, [r5], #1	@ zero_extendqisi2
+  66              	.LVL3:
+  67 0020 02A9     		add	r1, sp, #8
+  68 0022 01F8013D 		strb	r3, [r1, #-1]!
+  69              	.LVL4:
+  24:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 				data++;
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 				arg_int--;
+  70              		.loc 1 25 0
+  71 0026 013C     		subs	r4, r4, #1
+  72              	.LVL5:
+  73 0028 E4B2     		uxtb	r4, r4
+  74              	.LVL6:
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 				HAL_SPI_Transmit(&hspi1, &byte, 1, 100);
+  75              		.loc 1 26 0
+  76 002a 6423     		movs	r3, #100
+  77 002c 0122     		movs	r2, #1
+  78 002e 1348     		ldr	r0, .L13
+  79 0030 FFF7FEFF 		bl	HAL_SPI_Transmit
+  80              	.LVL7:
+  81              	.L3:
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 				byte = *data;
+  82              		.loc 1 22 0
+  83 0034 002C     		cmp	r4, #0
+  84 0036 F1D1     		bne	.L8
+  27:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			}
+  28:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			break;
+  29:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+  30:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 		case U8X8_MSG_BYTE_START_TRANSFER:	 // set CS to 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s 			page 3
+
+
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, 0);
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			break;
+  33:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+  34:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 		case U8X8_MSG_BYTE_END_TRANSFER:	 // set CS to 1
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, 1);
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			break;
+  37:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+  38:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 		case U8X8_MSG_BYTE_SET_DC: // DC
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			if (arg_int){
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1);
+  41:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			}else{
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 0);
+  43:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			}
+  44:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** //			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, arg_int);
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			break;
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+  47:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 		default:
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			return 0;
+  49:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+  50:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 	}
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 	return 1;
+  85              		.loc 1 51 0
+  86 0038 0120     		movs	r0, #1
+  87              	.LVL8:
+  88              	.L2:
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** }
+  89              		.loc 1 52 0
+  90 003a 03B0     		add	sp, sp, #12
+  91              	.LCFI2:
+  92              		.cfi_remember_state
+  93              		.cfi_def_cfa_offset 12
+  94              		@ sp needed
+  95 003c 30BD     		pop	{r4, r5, pc}
+  96              	.LVL9:
+  97              	.L5:
+  98              	.LCFI3:
+  99              		.cfi_restore_state
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			break;
+ 100              		.loc 1 31 0
+ 101 003e 0022     		movs	r2, #0
+ 102              	.LVL10:
+ 103 0040 0121     		movs	r1, #1
+ 104 0042 0F48     		ldr	r0, .L13+4
+ 105              	.LVL11:
+ 106 0044 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 107              	.LVL12:
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** }
+ 108              		.loc 1 51 0
+ 109 0048 0120     		movs	r0, #1
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+ 110              		.loc 1 32 0
+ 111 004a F6E7     		b	.L2
+ 112              	.LVL13:
+ 113              	.L6:
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			break;
+ 114              		.loc 1 35 0
+ 115 004c 0122     		movs	r2, #1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s 			page 4
+
+
+ 116              	.LVL14:
+ 117 004e 1146     		mov	r1, r2
+ 118 0050 0B48     		ldr	r0, .L13+4
+ 119              	.LVL15:
+ 120 0052 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 121              	.LVL16:
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** }
+ 122              		.loc 1 51 0
+ 123 0056 0120     		movs	r0, #1
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+ 124              		.loc 1 36 0
+ 125 0058 EFE7     		b	.L2
+ 126              	.LVL17:
+ 127              	.L7:
+  39:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1);
+ 128              		.loc 1 39 0
+ 129 005a 32B9     		cbnz	r2, .L12
+  42:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			}
+ 130              		.loc 1 42 0
+ 131 005c 0022     		movs	r2, #0
+ 132              	.LVL18:
+ 133 005e 0221     		movs	r1, #2
+ 134 0060 0748     		ldr	r0, .L13+4
+ 135              	.LVL19:
+ 136 0062 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 137              	.LVL20:
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** }
+ 138              		.loc 1 51 0
+ 139 0066 0120     		movs	r0, #1
+ 140 0068 E7E7     		b	.L2
+ 141              	.LVL21:
+ 142              	.L12:
+  40:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 			}else{
+ 143              		.loc 1 40 0
+ 144 006a 0122     		movs	r2, #1
+ 145              	.LVL22:
+ 146 006c 0221     		movs	r1, #2
+ 147 006e 0448     		ldr	r0, .L13+4
+ 148              	.LVL23:
+ 149 0070 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 150              	.LVL24:
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** }
+ 151              		.loc 1 51 0
+ 152 0074 0120     		movs	r0, #1
+ 153 0076 E0E7     		b	.L2
+ 154              	.LVL25:
+ 155              	.L10:
+  48:/Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.c **** 
+ 156              		.loc 1 48 0
+ 157 0078 0020     		movs	r0, #0
+ 158              	.LVL26:
+ 159 007a DEE7     		b	.L2
+ 160              	.L14:
+ 161              		.align	2
+ 162              	.L13:
+ 163 007c 00000000 		.word	hspi1
+ 164 0080 00040048 		.word	1207960576
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s 			page 5
+
+
+ 165              		.cfi_endproc
+ 166              	.LFE126:
+ 168              		.text
+ 169              	.Letext0:
+ 170              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 171              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 172              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 173              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
+ 174              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+ 175              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
+ 176              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
+ 177              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
+ 178              		.file 10 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
+ 179              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ 180              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+ 181              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h"
+ 182              		.file 14 "Inc/spi.h"
+ 183              		.file 15 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 184              		.file 16 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ 185              		.file 17 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8x8_byte_4wire_hw_spi.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s:18     .text.u8x8_byte_4wire_hw_spi:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s:25     .text.u8x8_byte_4wire_hw_spi:0000000000000000 u8x8_byte_4wire_hw_spi
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s:52     .text.u8x8_byte_4wire_hw_spi:0000000000000012 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s:62     .text.u8x8_byte_4wire_hw_spi:000000000000001c $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFS9N2u.s:163    .text.u8x8_byte_4wire_hw_spi:000000000000007c $d
+
+UNDEFINED SYMBOLS
+HAL_SPI_Transmit
+HAL_GPIO_WritePin
+hspi1

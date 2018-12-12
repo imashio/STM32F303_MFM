@@ -1,0 +1,1088 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8g2_setup.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8g2_update_dimension_common,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	u8g2_update_dimension_common:
+  25              	.LFB2:
+  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_setup.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+   5:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  32:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 2
+
+
+  33:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  34:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** */
+  35:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  36:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** #include "u8g2.h"
+  37:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** #include <string.h>
+  38:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  39:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** /*============================================*/
+  40:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** /*
+  41:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   This procedure is called after setting up the display (u8x8 structure).
+  42:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   --> This is the central init procedure for u8g2 object
+  43:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** */
+  44:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_SetupBuffer(u8g2_t *u8g2, uint8_t *buf, uint8_t tile_buf_height, u8g2_draw_ll_hvline_cb l
+  45:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+  46:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->font = NULL;
+  47:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   //u8g2->kerning = NULL;
+  48:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   //u8g2->get_kerning_cb = u8g2_GetNullKerning;
+  49:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+  50:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   //u8g2->ll_hvline = u8g2_ll_hvline_vertical_top_lsb;
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->ll_hvline = ll_hvline_cb;
+  52:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+  53:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->tile_buf_ptr = buf;
+  54:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->tile_buf_height = tile_buf_height;
+  55:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+  56:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->tile_curr_row = 0;
+  57:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+  58:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->font_decode.is_transparent = 0; /* issue 443 */
+  59:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->bitmap_transparency = 0;
+  60:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+  61:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->draw_color = 1;
+  62:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->is_auto_page_clear = 1;
+  63:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+  64:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->cb = u8g2_cb;
+  65:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->cb->update(u8g2);
+  66:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  67:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_SetFontPosBaseline(u8g2);  /* issue 195 */
+  68:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+  69:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** #ifdef U8G2_WITH_FONT_ROTATION  
+  70:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->font_decode.dir = 0;
+  71:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** #endif
+  72:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+  73:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  74:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** /*
+  75:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   Usually the display rotation is set initially, but it could be done later also
+  76:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_cb can be U8G2_R0..U8G2_R3
+  77:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** */
+  78:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_SetDisplayRotation(u8g2_t *u8g2, const u8g2_cb_t *u8g2_cb)
+  79:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+  80:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->cb = u8g2_cb;
+  81:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->cb->update(u8g2);
+  82:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+  83:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  84:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  85:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** /*============================================*/
+  86:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** /* 
+  87:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   update dimension: 
+  88:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   calculate the following variables:
+  89:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     u8g2_uint_t buf_x0;	left corner of the buffer
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 3
+
+
+  90:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     u8g2_uint_t buf_x1;	right corner of the buffer (excluded)
+  91:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     u8g2_uint_t buf_y0;
+  92:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     u8g2_uint_t buf_y1; 	
+  93:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** */
+  94:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+  95:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** static void u8g2_update_dimension_common(u8g2_t *u8g2)
+  96:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+  27              		.loc 1 96 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+  33 0000 70B4     		push	{r4, r5, r6}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 12
+  36              		.cfi_offset 4, -12
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 6, -4
+  97:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_uint_t t;
+  98:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+  99:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   t = u8g2->tile_buf_height;
+  39              		.loc 1 99 0
+  40 0002 90F83830 		ldrb	r3, [r0, #56]	@ zero_extendqisi2
+  41              	.LVL1:
+ 100:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   t *= 8;
+  42              		.loc 1 100 0
+  43 0006 DA00     		lsls	r2, r3, #3
+  44              	.LVL2:
+ 101:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->pixel_buf_height = t;
+  45              		.loc 1 101 0
+  46 0008 80F83B20 		strb	r2, [r0, #59]
+ 102:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 103:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   t = u8g2_GetU8x8(u8g2)->display_info->tile_width;
+  47              		.loc 1 103 0
+  48 000c 0168     		ldr	r1, [r0]
+  49 000e 0A7C     		ldrb	r2, [r1, #16]	@ zero_extendqisi2
+  50              	.LVL3:
+ 104:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** #ifndef U8G2_16BIT
+ 105:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   if ( t >= 32 )
+  51              		.loc 1 105 0
+  52 0010 1F2A     		cmp	r2, #31
+  53 0012 00D9     		bls	.L2
+ 106:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     t = 31;
+  54              		.loc 1 106 0
+  55 0014 1F22     		movs	r2, #31
+  56              	.LVL4:
+  57              	.L2:
+ 107:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** #endif
+ 108:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   t *= 8;
+  58              		.loc 1 108 0
+  59 0016 D200     		lsls	r2, r2, #3
+  60              	.LVL5:
+ 109:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->pixel_buf_width = t;
+  61              		.loc 1 109 0
+  62 0018 80F83A20 		strb	r2, [r0, #58]
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 4
+
+
+ 111:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   t = u8g2->tile_curr_row;
+  63              		.loc 1 111 0
+  64 001c 90F83950 		ldrb	r5, [r0, #57]	@ zero_extendqisi2
+  65              	.LVL6:
+ 112:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   t *= 8;
+  66              		.loc 1 112 0
+  67 0020 EA00     		lsls	r2, r5, #3
+  68 0022 D2B2     		uxtb	r2, r2
+  69              	.LVL7:
+ 113:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->pixel_curr_row = t;
+  70              		.loc 1 113 0
+  71 0024 80F83C20 		strb	r2, [r0, #60]
+  72              	.LVL8:
+ 114:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 115:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   t = u8g2->tile_buf_height;
+ 116:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   /* handle the case, where the buffer is larger than the (remaining) part of the display */
+ 117:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   if ( t + u8g2->tile_curr_row > u8g2_GetU8x8(u8g2)->display_info->tile_height )
+  73              		.loc 1 117 0
+  74 0028 5E19     		adds	r6, r3, r5
+  75 002a 4C7C     		ldrb	r4, [r1, #17]	@ zero_extendqisi2
+  76 002c A642     		cmp	r6, r4
+  77 002e 01DD     		ble	.L3
+ 118:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     t = u8g2_GetU8x8(u8g2)->display_info->tile_height - u8g2->tile_curr_row;
+  78              		.loc 1 118 0
+  79 0030 631B     		subs	r3, r4, r5
+  80              	.LVL9:
+  81 0032 DBB2     		uxtb	r3, r3
+  82              	.LVL10:
+  83              	.L3:
+ 119:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   t *= 8;
+  84              		.loc 1 119 0
+  85 0034 DB00     		lsls	r3, r3, #3
+  86              	.LVL11:
+  87 0036 DBB2     		uxtb	r3, r3
+  88              	.LVL12:
+ 120:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 121:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->buf_y0 = u8g2->pixel_curr_row;   
+  89              		.loc 1 121 0
+  90 0038 80F83D20 		strb	r2, [r0, #61]
+ 122:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->buf_y1 = u8g2->buf_y0;
+ 123:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->buf_y1 += t;
+  91              		.loc 1 123 0
+  92 003c 1344     		add	r3, r3, r2
+  93              	.LVL13:
+  94 003e 80F83E30 		strb	r3, [r0, #62]
+ 124:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 125:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 126:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** #ifdef U8G2_16BIT
+ 127:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->width = u8g2_GetU8x8(u8g2)->display_info->pixel_width;
+ 128:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->height = u8g2_GetU8x8(u8g2)->display_info->pixel_height;
+ 129:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** #else
+ 130:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->width = 240;
+  95              		.loc 1 130 0
+  96 0042 F023     		movs	r3, #240
+  97 0044 80F83F30 		strb	r3, [r0, #63]
+ 131:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   if ( u8g2_GetU8x8(u8g2)->display_info->pixel_width <= 240 )
+  98              		.loc 1 131 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 5
+
+
+  99 0048 8B8A     		ldrh	r3, [r1, #20]
+ 100 004a F02B     		cmp	r3, #240
+ 101 004c 01D8     		bhi	.L4
+ 132:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     u8g2->width = u8g2_GetU8x8(u8g2)->display_info->pixel_width;
+ 102              		.loc 1 132 0
+ 103 004e 80F83F30 		strb	r3, [r0, #63]
+ 104              	.L4:
+ 133:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->height = u8g2_GetU8x8(u8g2)->display_info->pixel_height;
+ 105              		.loc 1 133 0
+ 106 0052 CB8A     		ldrh	r3, [r1, #22]
+ 107 0054 80F84030 		strb	r3, [r0, #64]
+ 134:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** #endif
+ 135:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 136:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 108              		.loc 1 136 0
+ 109 0058 70BC     		pop	{r4, r5, r6}
+ 110              	.LCFI1:
+ 111              		.cfi_restore 6
+ 112              		.cfi_restore 5
+ 113              		.cfi_restore 4
+ 114              		.cfi_def_cfa_offset 0
+ 115 005a 7047     		bx	lr
+ 116              		.cfi_endproc
+ 117              	.LFE2:
+ 119              		.section	.text.u8g2_update_dimension_r0,"ax",%progbits
+ 120              		.align	1
+ 121              		.global	u8g2_update_dimension_r0
+ 122              		.syntax unified
+ 123              		.thumb
+ 124              		.thumb_func
+ 125              		.fpu fpv4-sp-d16
+ 127              	u8g2_update_dimension_r0:
+ 128              	.LFB3:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 138:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_update_dimension_r0(u8g2_t *u8g2)
+ 139:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+ 129              		.loc 1 139 0
+ 130              		.cfi_startproc
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133              	.LVL14:
+ 134 0000 10B5     		push	{r4, lr}
+ 135              	.LCFI2:
+ 136              		.cfi_def_cfa_offset 8
+ 137              		.cfi_offset 4, -8
+ 138              		.cfi_offset 14, -4
+ 139 0002 0446     		mov	r4, r0
+ 140:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_update_dimension_common(u8g2);
+ 140              		.loc 1 140 0
+ 141 0004 FFF7FEFF 		bl	u8g2_update_dimension_common
+ 142              	.LVL15:
+ 141:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 142:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_x0 = 0;
+ 143              		.loc 1 142 0
+ 144 0008 0023     		movs	r3, #0
+ 145 000a 84F84130 		strb	r3, [r4, #65]
+ 143:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_x1 = u8g2->pixel_buf_width;	/* pixel_buf_width replaced with width */
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 6
+
+
+ 146              		.loc 1 143 0
+ 147 000e 94F83A30 		ldrb	r3, [r4, #58]	@ zero_extendqisi2
+ 148 0012 84F84230 		strb	r3, [r4, #66]
+ 144:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 145:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_y0 = u8g2->buf_y0;
+ 149              		.loc 1 145 0
+ 150 0016 94F83D30 		ldrb	r3, [r4, #61]	@ zero_extendqisi2
+ 151 001a 84F84330 		strb	r3, [r4, #67]
+ 146:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_y1 = u8g2->buf_y1;
+ 152              		.loc 1 146 0
+ 153 001e 94F83E30 		ldrb	r3, [r4, #62]	@ zero_extendqisi2
+ 154 0022 84F84430 		strb	r3, [r4, #68]
+ 147:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 148:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** //  printf("x0=%d x1=%d y0=%d y1=%d\n", 
+ 149:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** //      u8g2->user_x0, u8g2->user_x1, u8g2->user_y0, u8g2->user_y1);
+ 150:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 155              		.loc 1 150 0
+ 156 0026 10BD     		pop	{r4, pc}
+ 157              		.cfi_endproc
+ 158              	.LFE3:
+ 160              		.section	.text.u8g2_update_dimension_r1,"ax",%progbits
+ 161              		.align	1
+ 162              		.global	u8g2_update_dimension_r1
+ 163              		.syntax unified
+ 164              		.thumb
+ 165              		.thumb_func
+ 166              		.fpu fpv4-sp-d16
+ 168              	u8g2_update_dimension_r1:
+ 169              	.LFB4:
+ 151:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 152:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_update_dimension_r1(u8g2_t *u8g2)
+ 153:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+ 170              		.loc 1 153 0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              	.LVL16:
+ 175 0000 10B5     		push	{r4, lr}
+ 176              	.LCFI3:
+ 177              		.cfi_def_cfa_offset 8
+ 178              		.cfi_offset 4, -8
+ 179              		.cfi_offset 14, -4
+ 180 0002 0446     		mov	r4, r0
+ 154:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_update_dimension_common(u8g2);
+ 181              		.loc 1 154 0
+ 182 0004 FFF7FEFF 		bl	u8g2_update_dimension_common
+ 183              	.LVL17:
+ 155:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 156:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->height = u8g2_GetU8x8(u8g2)->display_info->pixel_width;
+ 184              		.loc 1 156 0
+ 185 0008 2268     		ldr	r2, [r4]
+ 186 000a 137D     		ldrb	r3, [r2, #20]	@ zero_extendqisi2
+ 187 000c 84F84030 		strb	r3, [r4, #64]
+ 157:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->width = u8g2_GetU8x8(u8g2)->display_info->pixel_height;
+ 188              		.loc 1 157 0
+ 189 0010 D28A     		ldrh	r2, [r2, #22]
+ 190 0012 84F83F20 		strb	r2, [r4, #63]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 7
+
+
+ 158:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 159:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_x0 = u8g2->buf_y0;
+ 191              		.loc 1 159 0
+ 192 0016 94F83D20 		ldrb	r2, [r4, #61]	@ zero_extendqisi2
+ 193 001a 84F84120 		strb	r2, [r4, #65]
+ 160:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_x1 = u8g2->buf_y1;
+ 194              		.loc 1 160 0
+ 195 001e 94F83E20 		ldrb	r2, [r4, #62]	@ zero_extendqisi2
+ 196 0022 84F84220 		strb	r2, [r4, #66]
+ 161:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 162:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_y0 = 0;
+ 197              		.loc 1 162 0
+ 198 0026 0022     		movs	r2, #0
+ 199 0028 84F84320 		strb	r2, [r4, #67]
+ 163:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_y1 = u8g2->height;	/* pixel_buf_width replaced with height (which is the real pixel wi
+ 200              		.loc 1 163 0
+ 201 002c 84F84430 		strb	r3, [r4, #68]
+ 164:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 165:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   //printf("x0=%d x1=%d y0=%d y1=%d\n", 
+ 166:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****    //   u8g2->user_x0, u8g2->user_x1, u8g2->user_y0, u8g2->user_y1);
+ 167:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 202              		.loc 1 167 0
+ 203 0030 10BD     		pop	{r4, pc}
+ 204              		.cfi_endproc
+ 205              	.LFE4:
+ 207              		.section	.text.u8g2_update_dimension_r2,"ax",%progbits
+ 208              		.align	1
+ 209              		.global	u8g2_update_dimension_r2
+ 210              		.syntax unified
+ 211              		.thumb
+ 212              		.thumb_func
+ 213              		.fpu fpv4-sp-d16
+ 215              	u8g2_update_dimension_r2:
+ 216              	.LFB5:
+ 168:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 169:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_update_dimension_r2(u8g2_t *u8g2)
+ 170:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+ 217              		.loc 1 170 0
+ 218              		.cfi_startproc
+ 219              		@ args = 0, pretend = 0, frame = 0
+ 220              		@ frame_needed = 0, uses_anonymous_args = 0
+ 221              	.LVL18:
+ 222 0000 10B5     		push	{r4, lr}
+ 223              	.LCFI4:
+ 224              		.cfi_def_cfa_offset 8
+ 225              		.cfi_offset 4, -8
+ 226              		.cfi_offset 14, -4
+ 227 0002 0446     		mov	r4, r0
+ 171:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_update_dimension_common(u8g2);
+ 228              		.loc 1 171 0
+ 229 0004 FFF7FEFF 		bl	u8g2_update_dimension_common
+ 230              	.LVL19:
+ 172:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 173:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_x0 = 0;
+ 231              		.loc 1 173 0
+ 232 0008 0023     		movs	r3, #0
+ 233 000a 84F84130 		strb	r3, [r4, #65]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 8
+
+
+ 174:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_x1 = u8g2->width;	/* pixel_buf_width replaced with width */
+ 234              		.loc 1 174 0
+ 235 000e 94F83F30 		ldrb	r3, [r4, #63]	@ zero_extendqisi2
+ 236 0012 84F84230 		strb	r3, [r4, #66]
+ 175:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 176:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_y0 = u8g2->height - u8g2->buf_y1;
+ 237              		.loc 1 176 0
+ 238 0016 94F84030 		ldrb	r3, [r4, #64]	@ zero_extendqisi2
+ 239 001a 94F83E20 		ldrb	r2, [r4, #62]	@ zero_extendqisi2
+ 240 001e 9A1A     		subs	r2, r3, r2
+ 241 0020 84F84320 		strb	r2, [r4, #67]
+ 177:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_y1 = u8g2->height - u8g2->buf_y0;
+ 242              		.loc 1 177 0
+ 243 0024 94F83D20 		ldrb	r2, [r4, #61]	@ zero_extendqisi2
+ 244 0028 9B1A     		subs	r3, r3, r2
+ 245 002a 84F84430 		strb	r3, [r4, #68]
+ 178:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 179:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** //  printf("x0=%d x1=%d y0=%d y1=%d\n", 
+ 180:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** //      u8g2->user_x0, u8g2->user_x1, u8g2->user_y0, u8g2->user_y1);
+ 181:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 246              		.loc 1 181 0
+ 247 002e 10BD     		pop	{r4, pc}
+ 248              		.cfi_endproc
+ 249              	.LFE5:
+ 251              		.section	.text.u8g2_update_dimension_r3,"ax",%progbits
+ 252              		.align	1
+ 253              		.global	u8g2_update_dimension_r3
+ 254              		.syntax unified
+ 255              		.thumb
+ 256              		.thumb_func
+ 257              		.fpu fpv4-sp-d16
+ 259              	u8g2_update_dimension_r3:
+ 260              	.LFB6:
+ 182:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 183:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_update_dimension_r3(u8g2_t *u8g2)
+ 184:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+ 261              		.loc 1 184 0
+ 262              		.cfi_startproc
+ 263              		@ args = 0, pretend = 0, frame = 0
+ 264              		@ frame_needed = 0, uses_anonymous_args = 0
+ 265              	.LVL20:
+ 266 0000 10B5     		push	{r4, lr}
+ 267              	.LCFI5:
+ 268              		.cfi_def_cfa_offset 8
+ 269              		.cfi_offset 4, -8
+ 270              		.cfi_offset 14, -4
+ 271 0002 0446     		mov	r4, r0
+ 185:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_update_dimension_common(u8g2);
+ 272              		.loc 1 185 0
+ 273 0004 FFF7FEFF 		bl	u8g2_update_dimension_common
+ 274              	.LVL21:
+ 186:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 187:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->height = u8g2_GetU8x8(u8g2)->display_info->pixel_width;
+ 275              		.loc 1 187 0
+ 276 0008 2368     		ldr	r3, [r4]
+ 277 000a 197D     		ldrb	r1, [r3, #20]	@ zero_extendqisi2
+ 278 000c 84F84010 		strb	r1, [r4, #64]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 9
+
+
+ 188:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->width = u8g2_GetU8x8(u8g2)->display_info->pixel_height;
+ 279              		.loc 1 188 0
+ 280 0010 9B7D     		ldrb	r3, [r3, #22]	@ zero_extendqisi2
+ 281 0012 84F83F30 		strb	r3, [r4, #63]
+ 189:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 190:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_x0 = u8g2->width - u8g2->buf_y1;
+ 282              		.loc 1 190 0
+ 283 0016 94F83E20 		ldrb	r2, [r4, #62]	@ zero_extendqisi2
+ 284 001a 9A1A     		subs	r2, r3, r2
+ 285 001c 84F84120 		strb	r2, [r4, #65]
+ 191:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_x1 = u8g2->width - u8g2->buf_y0;
+ 286              		.loc 1 191 0
+ 287 0020 94F83D20 		ldrb	r2, [r4, #61]	@ zero_extendqisi2
+ 288 0024 9B1A     		subs	r3, r3, r2
+ 289 0026 84F84230 		strb	r3, [r4, #66]
+ 192:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 193:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_y0 = 0;
+ 290              		.loc 1 193 0
+ 291 002a 0023     		movs	r3, #0
+ 292 002c 84F84330 		strb	r3, [r4, #67]
+ 194:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->user_y1 = u8g2->height;	/* pixel_buf_width replaced with height (pixel_width) */
+ 293              		.loc 1 194 0
+ 294 0030 84F84410 		strb	r1, [r4, #68]
+ 195:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 196:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** //  printf("x0=%d x1=%d y0=%d y1=%d\n", 
+ 197:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** //      u8g2->user_x0, u8g2->user_x1, u8g2->user_y0, u8g2->user_y1);
+ 198:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 295              		.loc 1 198 0
+ 296 0034 10BD     		pop	{r4, pc}
+ 297              		.cfi_endproc
+ 298              	.LFE6:
+ 300              		.section	.text.u8g2_draw_l90_r0,"ax",%progbits
+ 301              		.align	1
+ 302              		.global	u8g2_draw_l90_r0
+ 303              		.syntax unified
+ 304              		.thumb
+ 305              		.thumb_func
+ 306              		.fpu fpv4-sp-d16
+ 308              	u8g2_draw_l90_r0:
+ 309              	.LFB7:
+ 199:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 200:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** /*============================================*/
+ 201:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** extern void u8g2_draw_hv_line_4dir(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, uin
+ 202:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 203:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 204:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_draw_l90_r0(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, uint8_t dir)
+ 205:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+ 310              		.loc 1 205 0
+ 311              		.cfi_startproc
+ 312              		@ args = 4, pretend = 0, frame = 0
+ 313              		@ frame_needed = 0, uses_anonymous_args = 0
+ 314              	.LVL22:
+ 315 0000 10B5     		push	{r4, lr}
+ 316              	.LCFI6:
+ 317              		.cfi_def_cfa_offset 8
+ 318              		.cfi_offset 4, -8
+ 319              		.cfi_offset 14, -4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 10
+
+
+ 320 0002 82B0     		sub	sp, sp, #8
+ 321              	.LCFI7:
+ 322              		.cfi_def_cfa_offset 16
+ 206:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_draw_hv_line_4dir(u8g2, x, y, len, dir);
+ 323              		.loc 1 206 0
+ 324 0004 9DF81040 		ldrb	r4, [sp, #16]	@ zero_extendqisi2
+ 325 0008 0094     		str	r4, [sp]
+ 326 000a FFF7FEFF 		bl	u8g2_draw_hv_line_4dir
+ 327              	.LVL23:
+ 207:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 328              		.loc 1 207 0
+ 329 000e 02B0     		add	sp, sp, #8
+ 330              	.LCFI8:
+ 331              		.cfi_def_cfa_offset 8
+ 332              		@ sp needed
+ 333 0010 10BD     		pop	{r4, pc}
+ 334              		.cfi_endproc
+ 335              	.LFE7:
+ 337              		.section	.text.u8g2_draw_l90_mirrorr_r0,"ax",%progbits
+ 338              		.align	1
+ 339              		.global	u8g2_draw_l90_mirrorr_r0
+ 340              		.syntax unified
+ 341              		.thumb
+ 342              		.thumb_func
+ 343              		.fpu fpv4-sp-d16
+ 345              	u8g2_draw_l90_mirrorr_r0:
+ 346              	.LFB8:
+ 208:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 209:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_draw_l90_mirrorr_r0(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, uint8_t 
+ 210:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+ 347              		.loc 1 210 0
+ 348              		.cfi_startproc
+ 349              		@ args = 4, pretend = 0, frame = 0
+ 350              		@ frame_needed = 0, uses_anonymous_args = 0
+ 351              	.LVL24:
+ 352 0000 30B5     		push	{r4, r5, lr}
+ 353              	.LCFI9:
+ 354              		.cfi_def_cfa_offset 12
+ 355              		.cfi_offset 4, -12
+ 356              		.cfi_offset 5, -8
+ 357              		.cfi_offset 14, -4
+ 358 0002 83B0     		sub	sp, sp, #12
+ 359              	.LCFI10:
+ 360              		.cfi_def_cfa_offset 24
+ 361 0004 9DF81850 		ldrb	r5, [sp, #24]	@ zero_extendqisi2
+ 211:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_uint_t xx;
+ 212:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   xx = u8g2->width;
+ 362              		.loc 1 212 0
+ 363 0008 90F83F40 		ldrb	r4, [r0, #63]	@ zero_extendqisi2
+ 364              	.LVL25:
+ 213:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   xx -= x;
+ 365              		.loc 1 213 0
+ 366 000c 611A     		subs	r1, r4, r1
+ 367              	.LVL26:
+ 368 000e C9B2     		uxtb	r1, r1
+ 369              	.LVL27:
+ 214:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   if ( (dir & 1) == 0 )
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 11
+
+
+ 370              		.loc 1 214 0
+ 371 0010 15F0010F 		tst	r5, #1
+ 372 0014 06D0     		beq	.L21
+ 215:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   {
+ 216:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     xx -= len;
+ 217:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   }
+ 218:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   else
+ 219:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   {
+ 220:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****     xx--;
+ 373              		.loc 1 220 0
+ 374 0016 0139     		subs	r1, r1, #1
+ 375              	.LVL28:
+ 376 0018 C9B2     		uxtb	r1, r1
+ 377              	.LVL29:
+ 378              	.L19:
+ 221:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   }
+ 222:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_draw_hv_line_4dir(u8g2, xx, y, len, dir);
+ 379              		.loc 1 222 0
+ 380 001a 0095     		str	r5, [sp]
+ 381 001c FFF7FEFF 		bl	u8g2_draw_hv_line_4dir
+ 382              	.LVL30:
+ 223:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 383              		.loc 1 223 0
+ 384 0020 03B0     		add	sp, sp, #12
+ 385              	.LCFI11:
+ 386              		.cfi_remember_state
+ 387              		.cfi_def_cfa_offset 12
+ 388              		@ sp needed
+ 389 0022 30BD     		pop	{r4, r5, pc}
+ 390              	.LVL31:
+ 391              	.L21:
+ 392              	.LCFI12:
+ 393              		.cfi_restore_state
+ 216:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   }
+ 394              		.loc 1 216 0
+ 395 0024 C91A     		subs	r1, r1, r3
+ 396              	.LVL32:
+ 397 0026 C9B2     		uxtb	r1, r1
+ 398              	.LVL33:
+ 399 0028 F7E7     		b	.L19
+ 400              		.cfi_endproc
+ 401              	.LFE8:
+ 403              		.section	.text.u8g2_draw_l90_r1,"ax",%progbits
+ 404              		.align	1
+ 405              		.global	u8g2_draw_l90_r1
+ 406              		.syntax unified
+ 407              		.thumb
+ 408              		.thumb_func
+ 409              		.fpu fpv4-sp-d16
+ 411              	u8g2_draw_l90_r1:
+ 412              	.LFB9:
+ 224:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 225:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 226:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 227:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_draw_l90_r1(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, uint8_t dir)
+ 228:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+ 413              		.loc 1 228 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 12
+
+
+ 414              		.cfi_startproc
+ 415              		@ args = 4, pretend = 0, frame = 0
+ 416              		@ frame_needed = 0, uses_anonymous_args = 0
+ 417              	.LVL34:
+ 418 0000 10B5     		push	{r4, lr}
+ 419              	.LCFI13:
+ 420              		.cfi_def_cfa_offset 8
+ 421              		.cfi_offset 4, -8
+ 422              		.cfi_offset 14, -4
+ 423 0002 82B0     		sub	sp, sp, #8
+ 424              	.LCFI14:
+ 425              		.cfi_def_cfa_offset 16
+ 426              	.LVL35:
+ 229:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_uint_t xx, yy;
+ 230:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 231:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   yy = x;
+ 232:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 233:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   xx = u8g2->height;
+ 427              		.loc 1 233 0
+ 428 0004 90F84040 		ldrb	r4, [r0, #64]	@ zero_extendqisi2
+ 429              	.LVL36:
+ 234:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   xx -= y;
+ 430              		.loc 1 234 0
+ 431 0008 A41A     		subs	r4, r4, r2
+ 432              	.LVL37:
+ 433 000a E4B2     		uxtb	r4, r4
+ 434              	.LVL38:
+ 235:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   xx--;
+ 435              		.loc 1 235 0
+ 436 000c 013C     		subs	r4, r4, #1
+ 437              	.LVL39:
+ 236:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 237:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   dir ++;
+ 438              		.loc 1 237 0
+ 439 000e 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 440              	.LVL40:
+ 441 0012 0132     		adds	r2, r2, #1
+ 442              	.LVL41:
+ 238:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   dir &= 3;
+ 443              		.loc 1 238 0
+ 444 0014 02F00302 		and	r2, r2, #3
+ 445              	.LVL42:
+ 239:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_draw_hv_line_4dir(u8g2, xx, yy, len, dir);
+ 446              		.loc 1 239 0
+ 447 0018 0092     		str	r2, [sp]
+ 448 001a 0A46     		mov	r2, r1
+ 449              	.LVL43:
+ 450 001c E1B2     		uxtb	r1, r4
+ 451              	.LVL44:
+ 452 001e FFF7FEFF 		bl	u8g2_draw_hv_line_4dir
+ 453              	.LVL45:
+ 240:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 454              		.loc 1 240 0
+ 455 0022 02B0     		add	sp, sp, #8
+ 456              	.LCFI15:
+ 457              		.cfi_def_cfa_offset 8
+ 458              		@ sp needed
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 13
+
+
+ 459 0024 10BD     		pop	{r4, pc}
+ 460              		.cfi_endproc
+ 461              	.LFE9:
+ 463              		.section	.text.u8g2_draw_l90_r2,"ax",%progbits
+ 464              		.align	1
+ 465              		.global	u8g2_draw_l90_r2
+ 466              		.syntax unified
+ 467              		.thumb
+ 468              		.thumb_func
+ 469              		.fpu fpv4-sp-d16
+ 471              	u8g2_draw_l90_r2:
+ 472              	.LFB10:
+ 241:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 242:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_draw_l90_r2(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, uint8_t dir)
+ 243:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+ 473              		.loc 1 243 0
+ 474              		.cfi_startproc
+ 475              		@ args = 4, pretend = 0, frame = 0
+ 476              		@ frame_needed = 0, uses_anonymous_args = 0
+ 477              	.LVL46:
+ 478 0000 30B5     		push	{r4, r5, lr}
+ 479              	.LCFI16:
+ 480              		.cfi_def_cfa_offset 12
+ 481              		.cfi_offset 4, -12
+ 482              		.cfi_offset 5, -8
+ 483              		.cfi_offset 14, -4
+ 484 0002 83B0     		sub	sp, sp, #12
+ 485              	.LCFI17:
+ 486              		.cfi_def_cfa_offset 24
+ 244:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_uint_t xx, yy;
+ 245:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 246:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   yy = u8g2->height;
+ 487              		.loc 1 246 0
+ 488 0004 90F84040 		ldrb	r4, [r0, #64]	@ zero_extendqisi2
+ 489              	.LVL47:
+ 247:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   yy -= y;
+ 490              		.loc 1 247 0
+ 491 0008 A21A     		subs	r2, r4, r2
+ 492              	.LVL48:
+ 493 000a D2B2     		uxtb	r2, r2
+ 494              	.LVL49:
+ 248:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   yy--;
+ 495              		.loc 1 248 0
+ 496 000c 013A     		subs	r2, r2, #1
+ 497              	.LVL50:
+ 249:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 250:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   xx = u8g2->width;
+ 498              		.loc 1 250 0
+ 499 000e 90F83F40 		ldrb	r4, [r0, #63]	@ zero_extendqisi2
+ 500              	.LVL51:
+ 251:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   xx -= x;
+ 501              		.loc 1 251 0
+ 502 0012 611A     		subs	r1, r4, r1
+ 503              	.LVL52:
+ 504 0014 C9B2     		uxtb	r1, r1
+ 505              	.LVL53:
+ 252:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   xx--;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 14
+
+
+ 506              		.loc 1 252 0
+ 507 0016 0139     		subs	r1, r1, #1
+ 508              	.LVL54:
+ 253:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 254:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   dir +=2;
+ 509              		.loc 1 254 0
+ 510 0018 9DF81840 		ldrb	r4, [sp, #24]	@ zero_extendqisi2
+ 511 001c 0234     		adds	r4, r4, #2
+ 512              	.LVL55:
+ 255:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   dir &= 3;
+ 513              		.loc 1 255 0
+ 514 001e 04F00304 		and	r4, r4, #3
+ 515              	.LVL56:
+ 256:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_draw_hv_line_4dir(u8g2, xx, yy, len, dir);
+ 516              		.loc 1 256 0
+ 517 0022 0094     		str	r4, [sp]
+ 518 0024 D2B2     		uxtb	r2, r2
+ 519 0026 C9B2     		uxtb	r1, r1
+ 520 0028 FFF7FEFF 		bl	u8g2_draw_hv_line_4dir
+ 521              	.LVL57:
+ 257:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 522              		.loc 1 257 0
+ 523 002c 03B0     		add	sp, sp, #12
+ 524              	.LCFI18:
+ 525              		.cfi_def_cfa_offset 12
+ 526              		@ sp needed
+ 527 002e 30BD     		pop	{r4, r5, pc}
+ 528              		.cfi_endproc
+ 529              	.LFE10:
+ 531              		.section	.text.u8g2_draw_l90_r3,"ax",%progbits
+ 532              		.align	1
+ 533              		.global	u8g2_draw_l90_r3
+ 534              		.syntax unified
+ 535              		.thumb
+ 536              		.thumb_func
+ 537              		.fpu fpv4-sp-d16
+ 539              	u8g2_draw_l90_r3:
+ 540              	.LFB11:
+ 258:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 259:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** void u8g2_draw_l90_r3(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, uint8_t dir)
+ 260:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** {
+ 541              		.loc 1 260 0
+ 542              		.cfi_startproc
+ 543              		@ args = 4, pretend = 0, frame = 0
+ 544              		@ frame_needed = 0, uses_anonymous_args = 0
+ 545              	.LVL58:
+ 546 0000 10B5     		push	{r4, lr}
+ 547              	.LCFI19:
+ 548              		.cfi_def_cfa_offset 8
+ 549              		.cfi_offset 4, -8
+ 550              		.cfi_offset 14, -4
+ 551 0002 82B0     		sub	sp, sp, #8
+ 552              	.LCFI20:
+ 553              		.cfi_def_cfa_offset 16
+ 554 0004 1446     		mov	r4, r2
+ 555              	.LVL59:
+ 261:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_uint_t xx, yy;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 15
+
+
+ 262:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 263:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   xx = y;
+ 264:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 265:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   yy = u8g2->width;
+ 556              		.loc 1 265 0
+ 557 0006 90F83F20 		ldrb	r2, [r0, #63]	@ zero_extendqisi2
+ 558              	.LVL60:
+ 266:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   yy -= x;
+ 559              		.loc 1 266 0
+ 560 000a 521A     		subs	r2, r2, r1
+ 561              	.LVL61:
+ 562 000c D2B2     		uxtb	r2, r2
+ 563              	.LVL62:
+ 267:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   yy--;
+ 564              		.loc 1 267 0
+ 565 000e 013A     		subs	r2, r2, #1
+ 566              	.LVL63:
+ 268:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 269:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   dir +=3;
+ 567              		.loc 1 269 0
+ 568 0010 9DF81010 		ldrb	r1, [sp, #16]	@ zero_extendqisi2
+ 569              	.LVL64:
+ 570 0014 0331     		adds	r1, r1, #3
+ 571              	.LVL65:
+ 270:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   dir &= 3;
+ 572              		.loc 1 270 0
+ 573 0016 01F00301 		and	r1, r1, #3
+ 574              	.LVL66:
+ 271:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2_draw_hv_line_4dir(u8g2, xx, yy, len, dir);
+ 575              		.loc 1 271 0
+ 576 001a 0091     		str	r1, [sp]
+ 577 001c D2B2     		uxtb	r2, r2
+ 578 001e 2146     		mov	r1, r4
+ 579              	.LVL67:
+ 580 0020 FFF7FEFF 		bl	u8g2_draw_hv_line_4dir
+ 581              	.LVL68:
+ 272:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 582              		.loc 1 272 0
+ 583 0024 02B0     		add	sp, sp, #8
+ 584              	.LCFI21:
+ 585              		.cfi_def_cfa_offset 8
+ 586              		@ sp needed
+ 587 0026 10BD     		pop	{r4, pc}
+ 588              		.cfi_endproc
+ 589              	.LFE11:
+ 591              		.section	.text.u8g2_SetupBuffer,"ax",%progbits
+ 592              		.align	1
+ 593              		.global	u8g2_SetupBuffer
+ 594              		.syntax unified
+ 595              		.thumb
+ 596              		.thumb_func
+ 597              		.fpu fpv4-sp-d16
+ 599              	u8g2_SetupBuffer:
+ 600              	.LFB0:
+  45:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->font = NULL;
+ 601              		.loc 1 45 0
+ 602              		.cfi_startproc
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 16
+
+
+ 603              		@ args = 4, pretend = 0, frame = 0
+ 604              		@ frame_needed = 0, uses_anonymous_args = 0
+ 605              	.LVL69:
+ 606 0000 70B5     		push	{r4, r5, r6, lr}
+ 607              	.LCFI22:
+ 608              		.cfi_def_cfa_offset 16
+ 609              		.cfi_offset 4, -16
+ 610              		.cfi_offset 5, -12
+ 611              		.cfi_offset 6, -8
+ 612              		.cfi_offset 14, -4
+ 613 0002 0446     		mov	r4, r0
+ 614 0004 049E     		ldr	r6, [sp, #16]
+  46:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   //u8g2->kerning = NULL;
+ 615              		.loc 1 46 0
+ 616 0006 0025     		movs	r5, #0
+ 617 0008 8564     		str	r5, [r0, #72]
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 618              		.loc 1 51 0
+ 619 000a C362     		str	r3, [r0, #44]
+  53:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->tile_buf_height = tile_buf_height;
+ 620              		.loc 1 53 0
+ 621 000c 4163     		str	r1, [r0, #52]
+  54:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 622              		.loc 1 54 0
+ 623 000e 80F83820 		strb	r2, [r0, #56]
+  56:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 624              		.loc 1 56 0
+ 625 0012 80F83950 		strb	r5, [r0, #57]
+  58:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->bitmap_transparency = 0;
+ 626              		.loc 1 58 0
+ 627 0016 80F85B50 		strb	r5, [r0, #91]
+  59:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 628              		.loc 1 59 0
+ 629 001a 80F87C50 		strb	r5, [r0, #124]
+  61:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->is_auto_page_clear = 1;
+ 630              		.loc 1 61 0
+ 631 001e 0123     		movs	r3, #1
+ 632              	.LVL70:
+ 633 0020 80F87D30 		strb	r3, [r0, #125]
+  62:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 634              		.loc 1 62 0
+ 635 0024 80F87E30 		strb	r3, [r0, #126]
+  64:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->cb->update(u8g2);
+ 636              		.loc 1 64 0
+ 637 0028 0663     		str	r6, [r0, #48]
+  65:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 638              		.loc 1 65 0
+ 639 002a 3368     		ldr	r3, [r6]
+ 640 002c 9847     		blx	r3
+ 641              	.LVL71:
+  67:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   
+ 642              		.loc 1 67 0
+ 643 002e 2046     		mov	r0, r4
+ 644 0030 FFF7FEFF 		bl	u8g2_SetFontPosBaseline
+ 645              	.LVL72:
+  70:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** #endif
+ 646              		.loc 1 70 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 17
+
+
+ 647 0034 84F85E50 		strb	r5, [r4, #94]
+  72:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 648              		.loc 1 72 0
+ 649 0038 70BD     		pop	{r4, r5, r6, pc}
+ 650              		.cfi_endproc
+ 651              	.LFE0:
+ 653              		.section	.text.u8g2_SetDisplayRotation,"ax",%progbits
+ 654              		.align	1
+ 655              		.global	u8g2_SetDisplayRotation
+ 656              		.syntax unified
+ 657              		.thumb
+ 658              		.thumb_func
+ 659              		.fpu fpv4-sp-d16
+ 661              	u8g2_SetDisplayRotation:
+ 662              	.LFB1:
+  79:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->cb = u8g2_cb;
+ 663              		.loc 1 79 0
+ 664              		.cfi_startproc
+ 665              		@ args = 0, pretend = 0, frame = 0
+ 666              		@ frame_needed = 0, uses_anonymous_args = 0
+ 667              	.LVL73:
+ 668 0000 08B5     		push	{r3, lr}
+ 669              	.LCFI23:
+ 670              		.cfi_def_cfa_offset 8
+ 671              		.cfi_offset 3, -8
+ 672              		.cfi_offset 14, -4
+  80:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c ****   u8g2->cb->update(u8g2);
+ 673              		.loc 1 80 0
+ 674 0002 0163     		str	r1, [r0, #48]
+  81:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** }
+ 675              		.loc 1 81 0
+ 676 0004 0B68     		ldr	r3, [r1]
+ 677 0006 9847     		blx	r3
+ 678              	.LVL74:
+  82:/Users/imashio/Electronics/ARM/_Library/u8g2_setup.c **** 
+ 679              		.loc 1 82 0
+ 680 0008 08BD     		pop	{r3, pc}
+ 681              		.cfi_endproc
+ 682              	.LFE1:
+ 684              		.global	u8g2_cb_mirror
+ 685              		.global	u8g2_cb_r3
+ 686              		.global	u8g2_cb_r2
+ 687              		.global	u8g2_cb_r1
+ 688              		.global	u8g2_cb_r0
+ 689              		.section	.rodata.u8g2_cb_mirror,"a",%progbits
+ 690              		.align	2
+ 693              	u8g2_cb_mirror:
+ 694 0000 00000000 		.word	u8g2_update_dimension_r0
+ 695 0004 00000000 		.word	u8g2_draw_l90_mirrorr_r0
+ 696              		.section	.rodata.u8g2_cb_r0,"a",%progbits
+ 697              		.align	2
+ 700              	u8g2_cb_r0:
+ 701 0000 00000000 		.word	u8g2_update_dimension_r0
+ 702 0004 00000000 		.word	u8g2_draw_l90_r0
+ 703              		.section	.rodata.u8g2_cb_r1,"a",%progbits
+ 704              		.align	2
+ 707              	u8g2_cb_r1:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 18
+
+
+ 708 0000 00000000 		.word	u8g2_update_dimension_r1
+ 709 0004 00000000 		.word	u8g2_draw_l90_r1
+ 710              		.section	.rodata.u8g2_cb_r2,"a",%progbits
+ 711              		.align	2
+ 714              	u8g2_cb_r2:
+ 715 0000 00000000 		.word	u8g2_update_dimension_r2
+ 716 0004 00000000 		.word	u8g2_draw_l90_r2
+ 717              		.section	.rodata.u8g2_cb_r3,"a",%progbits
+ 718              		.align	2
+ 721              	u8g2_cb_r3:
+ 722 0000 00000000 		.word	u8g2_update_dimension_r3
+ 723 0004 00000000 		.word	u8g2_draw_l90_r3
+ 724              		.text
+ 725              	.Letext0:
+ 726              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 727              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 728              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 729              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ 730              		.file 6 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
+ 731              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
+ 732              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
+ 733              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s 			page 19
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8g2_setup.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:18     .text.u8g2_update_dimension_common:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:24     .text.u8g2_update_dimension_common:0000000000000000 u8g2_update_dimension_common
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:120    .text.u8g2_update_dimension_r0:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:127    .text.u8g2_update_dimension_r0:0000000000000000 u8g2_update_dimension_r0
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:161    .text.u8g2_update_dimension_r1:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:168    .text.u8g2_update_dimension_r1:0000000000000000 u8g2_update_dimension_r1
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:208    .text.u8g2_update_dimension_r2:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:215    .text.u8g2_update_dimension_r2:0000000000000000 u8g2_update_dimension_r2
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:252    .text.u8g2_update_dimension_r3:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:259    .text.u8g2_update_dimension_r3:0000000000000000 u8g2_update_dimension_r3
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:301    .text.u8g2_draw_l90_r0:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:308    .text.u8g2_draw_l90_r0:0000000000000000 u8g2_draw_l90_r0
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:338    .text.u8g2_draw_l90_mirrorr_r0:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:345    .text.u8g2_draw_l90_mirrorr_r0:0000000000000000 u8g2_draw_l90_mirrorr_r0
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:404    .text.u8g2_draw_l90_r1:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:411    .text.u8g2_draw_l90_r1:0000000000000000 u8g2_draw_l90_r1
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:464    .text.u8g2_draw_l90_r2:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:471    .text.u8g2_draw_l90_r2:0000000000000000 u8g2_draw_l90_r2
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:532    .text.u8g2_draw_l90_r3:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:539    .text.u8g2_draw_l90_r3:0000000000000000 u8g2_draw_l90_r3
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:592    .text.u8g2_SetupBuffer:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:599    .text.u8g2_SetupBuffer:0000000000000000 u8g2_SetupBuffer
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:654    .text.u8g2_SetDisplayRotation:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:661    .text.u8g2_SetDisplayRotation:0000000000000000 u8g2_SetDisplayRotation
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:693    .rodata.u8g2_cb_mirror:0000000000000000 u8g2_cb_mirror
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:721    .rodata.u8g2_cb_r3:0000000000000000 u8g2_cb_r3
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:714    .rodata.u8g2_cb_r2:0000000000000000 u8g2_cb_r2
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:707    .rodata.u8g2_cb_r1:0000000000000000 u8g2_cb_r1
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:700    .rodata.u8g2_cb_r0:0000000000000000 u8g2_cb_r0
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:690    .rodata.u8g2_cb_mirror:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:697    .rodata.u8g2_cb_r0:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:704    .rodata.u8g2_cb_r1:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:711    .rodata.u8g2_cb_r2:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccDlRN7l.s:718    .rodata.u8g2_cb_r3:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+u8g2_draw_hv_line_4dir
+u8g2_SetFontPosBaseline

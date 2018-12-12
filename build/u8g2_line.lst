@@ -1,0 +1,335 @@
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc0uro4o.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"u8g2_line.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.u8g2_DrawLine,"ax",%progbits
+  18              		.align	1
+  19              		.global	u8g2_DrawLine
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	u8g2_DrawLine:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_line.c"
+   1:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** /*
+   2:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+   3:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   u8g2_box.c
+   4:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+   5:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
+   6:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+   7:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   Copyright (c) 2016, olikraus@gmail.com
+   8:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   All rights reserved.
+   9:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  10:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   are permitted provided that the following conditions are met:
+  12:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  13:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     of conditions and the following disclaimer.
+  15:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     
+  16:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     materials provided with the distribution.
+  19:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  20:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc0uro4o.s 			page 2
+
+
+  32:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  33:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  34:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** */
+  35:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  36:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** #include "u8g2.h"
+  37:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  38:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  39:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** void u8g2_DrawLine(u8g2_t *u8g2, u8g2_uint_t x1, u8g2_uint_t y1, u8g2_uint_t x2, u8g2_uint_t y2)
+  40:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** {
+  28              		.loc 1 40 0
+  29              		.cfi_startproc
+  30              		@ args = 4, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 36
+  36              		.cfi_offset 4, -36
+  37              		.cfi_offset 5, -32
+  38              		.cfi_offset 6, -28
+  39              		.cfi_offset 7, -24
+  40              		.cfi_offset 8, -20
+  41              		.cfi_offset 9, -16
+  42              		.cfi_offset 10, -12
+  43              		.cfi_offset 11, -8
+  44              		.cfi_offset 14, -4
+  45 0004 83B0     		sub	sp, sp, #12
+  46              	.LCFI1:
+  47              		.cfi_def_cfa_offset 48
+  48 0006 0190     		str	r0, [sp, #4]
+  49 0008 1746     		mov	r7, r2
+  50 000a 1E46     		mov	r6, r3
+  51 000c 9DF83040 		ldrb	r4, [sp, #48]	@ zero_extendqisi2
+  52              	.LVL1:
+  41:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   u8g2_uint_t tmp;
+  42:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   u8g2_uint_t x,y;
+  43:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   u8g2_uint_t dx, dy;
+  44:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   u8g2_int_t err;
+  45:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   u8g2_int_t ystep;
+  46:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  47:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   uint8_t swapxy = 0;
+  48:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   
+  49:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   /* no intersection check at the moment, should be added... */
+  50:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   if ( x1 > x2 ) dx = x1-x2; else dx = x2-x1;
+  53              		.loc 1 51 0
+  54 0010 9942     		cmp	r1, r3
+  55 0012 29D9     		bls	.L2
+  56              		.loc 1 51 0 is_stmt 0 discriminator 1
+  57 0014 A1EB0308 		sub	r8, r1, r3
+  58 0018 5FFA88F8 		uxtb	r8, r8
+  59              	.LVL2:
+  60              	.L3:
+  52:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   if ( y1 > y2 ) dy = y1-y2; else dy = y2-y1;
+  61              		.loc 1 52 0 is_stmt 1
+  62 001c A742     		cmp	r7, r4
+  63 001e 28D9     		bls	.L4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc0uro4o.s 			page 3
+
+
+  64              		.loc 1 52 0 is_stmt 0 discriminator 1
+  65 0020 A7EB0409 		sub	r9, r7, r4
+  66 0024 5FFA89F9 		uxtb	r9, r9
+  67              	.LVL3:
+  68              	.L5:
+  53:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  54:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   if ( dy > dx ) 
+  69              		.loc 1 54 0 is_stmt 1
+  70 0028 C845     		cmp	r8, r9
+  71 002a 27D3     		bcc	.L15
+  72 002c 4B46     		mov	r3, r9
+  73              	.LVL4:
+  74 002e C146     		mov	r9, r8
+  75              	.LVL5:
+  76 0030 9846     		mov	r8, r3
+  77              	.LVL6:
+  78 0032 2346     		mov	r3, r4
+  79 0034 3446     		mov	r4, r6
+  80 0036 1E46     		mov	r6, r3
+  81 0038 3B46     		mov	r3, r7
+  82 003a 0F46     		mov	r7, r1
+  83 003c 1946     		mov	r1, r3
+  84              	.LVL7:
+  47:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   
+  85              		.loc 1 47 0
+  86 003e 4FF0000A 		mov	r10, #0
+  87              	.L6:
+  88              	.LVL8:
+  55:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   {
+  56:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     swapxy = 1;
+  57:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     tmp = dx; dx =dy; dy = tmp;
+  58:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     tmp = x1; x1 =y1; y1 = tmp;
+  59:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     tmp = x2; x2 =y2; y2 = tmp;
+  60:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   }
+  61:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   if ( x1 > x2 ) 
+  89              		.loc 1 61 0
+  90 0042 A742     		cmp	r7, r4
+  91 0044 05D8     		bhi	.L7
+  92 0046 3346     		mov	r3, r6
+  93 0048 0E46     		mov	r6, r1
+  94              	.LVL9:
+  95 004a 1946     		mov	r1, r3
+  96              	.LVL10:
+  97 004c 2346     		mov	r3, r4
+  98 004e 3C46     		mov	r4, r7
+  99              	.LVL11:
+ 100 0050 1F46     		mov	r7, r3
+ 101              	.LVL12:
+ 102              	.L7:
+  62:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   {
+  63:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     tmp = x1; x1 =x2; x2 = tmp;
+  64:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     tmp = y1; y1 =y2; y2 = tmp;
+  65:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   }
+  66:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   err = dx >> 1;
+ 103              		.loc 1 66 0
+ 104 0052 49F34705 		sbfx	r5, r9, #1, #8
+ 105              	.LVL13:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc0uro4o.s 			page 4
+
+
+  67:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   if ( y2 > y1 ) ystep = 1; else ystep = -1;
+ 106              		.loc 1 67 0
+ 107 0056 8E42     		cmp	r6, r1
+ 108 0058 13D2     		bcs	.L16
+ 109 005a 4FF0010B 		mov	fp, #1
+ 110              	.L8:
+ 111              	.LVL14:
+  68:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   y = y1;
+  69:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  70:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** #ifndef  U8G2_16BIT
+  71:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   if ( x2 == 255 )
+ 112              		.loc 1 71 0
+ 113 005e FF2F     		cmp	r7, #255
+ 114 0060 1FD1     		bne	.L10
+  72:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     x2--;
+ 115              		.loc 1 72 0
+ 116 0062 013F     		subs	r7, r7, #1
+ 117              	.LVL15:
+ 118 0064 FFB2     		uxtb	r7, r7
+ 119              	.LVL16:
+  73:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** #else
+  74:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   if ( x2 == 0xffff )
+  75:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     x2--;
+  76:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** #endif
+  77:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+  78:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   for( x = x1; x <= x2; x++ )
+ 120              		.loc 1 78 0
+ 121 0066 1CE0     		b	.L10
+ 122              	.LVL17:
+ 123              	.L2:
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   if ( y1 > y2 ) dy = y1-y2; else dy = y2-y1;
+ 124              		.loc 1 51 0 discriminator 2
+ 125 0068 A3EB0108 		sub	r8, r3, r1
+ 126 006c 5FFA88F8 		uxtb	r8, r8
+ 127              	.LVL18:
+ 128 0070 D4E7     		b	.L3
+ 129              	.L4:
+  52:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** 
+ 130              		.loc 1 52 0 discriminator 2
+ 131 0072 A4EB0709 		sub	r9, r4, r7
+ 132 0076 5FFA89F9 		uxtb	r9, r9
+ 133              	.LVL19:
+ 134 007a D5E7     		b	.L5
+ 135              	.L15:
+  56:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     tmp = dx; dx =dy; dy = tmp;
+ 136              		.loc 1 56 0
+ 137 007c 4FF0010A 		mov	r10, #1
+ 138 0080 DFE7     		b	.L6
+ 139              	.LVL20:
+ 140              	.L16:
+  67:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   y = y1;
+ 141              		.loc 1 67 0
+ 142 0082 4FF0FF3B 		mov	fp, #-1
+ 143 0086 EAE7     		b	.L8
+ 144              	.LVL21:
+ 145              	.L11:
+  79:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc0uro4o.s 			page 5
+
+
+  80:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     if ( swapxy == 0 ) 
+  81:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****       u8g2_DrawPixel(u8g2, x, y); 
+  82:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     else 
+  83:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****       u8g2_DrawPixel(u8g2, y, x); 
+ 146              		.loc 1 83 0
+ 147 0088 2246     		mov	r2, r4
+ 148 008a 3146     		mov	r1, r6
+ 149 008c 0198     		ldr	r0, [sp, #4]
+ 150 008e FFF7FEFF 		bl	u8g2_DrawPixel
+ 151              	.LVL22:
+ 152              	.L12:
+  84:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     err -= (uint8_t)dy;
+ 153              		.loc 1 84 0
+ 154 0092 A5EB0805 		sub	r5, r5, r8
+ 155              	.LVL23:
+ 156 0096 EBB2     		uxtb	r3, r5
+ 157 0098 5DB2     		sxtb	r5, r3
+ 158              	.LVL24:
+  85:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     if ( err < 0 ) 
+ 159              		.loc 1 85 0
+ 160 009a 002D     		cmp	r5, #0
+ 161 009c 0CDB     		blt	.L18
+ 162              	.L13:
+  78:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   {
+ 163              		.loc 1 78 0 discriminator 2
+ 164 009e 0134     		adds	r4, r4, #1
+ 165              	.LVL25:
+ 166 00a0 E4B2     		uxtb	r4, r4
+ 167              	.LVL26:
+ 168              	.L10:
+  78:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   {
+ 169              		.loc 1 78 0 is_stmt 0 discriminator 1
+ 170 00a2 A742     		cmp	r7, r4
+ 171 00a4 0FD3     		bcc	.L19
+  80:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****       u8g2_DrawPixel(u8g2, x, y); 
+ 172              		.loc 1 80 0 is_stmt 1
+ 173 00a6 BAF1000F 		cmp	r10, #0
+ 174 00aa EDD1     		bne	.L11
+  81:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     else 
+ 175              		.loc 1 81 0
+ 176 00ac 3246     		mov	r2, r6
+ 177 00ae 2146     		mov	r1, r4
+ 178 00b0 0198     		ldr	r0, [sp, #4]
+ 179 00b2 FFF7FEFF 		bl	u8g2_DrawPixel
+ 180              	.LVL27:
+ 181 00b6 ECE7     		b	.L12
+ 182              	.L18:
+  86:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     {
+  87:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****       y += (u8g2_uint_t)ystep;
+ 183              		.loc 1 87 0
+ 184 00b8 56FA8BF6 		uxtab	r6, r6, fp
+ 185              	.LVL28:
+ 186 00bc F6B2     		uxtb	r6, r6
+ 187              	.LVL29:
+  88:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****       err += (u8g2_uint_t)dx;
+ 188              		.loc 1 88 0
+ 189 00be 03EB0905 		add	r5, r3, r9
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc0uro4o.s 			page 6
+
+
+ 190              	.LVL30:
+ 191 00c2 6DB2     		sxtb	r5, r5
+ 192              	.LVL31:
+ 193 00c4 EBE7     		b	.L13
+ 194              	.L19:
+  89:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****     }
+  90:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c ****   }
+  91:/Users/imashio/Electronics/ARM/_Library/u8g2_line.c **** }
+ 195              		.loc 1 91 0
+ 196 00c6 03B0     		add	sp, sp, #12
+ 197              	.LCFI2:
+ 198              		.cfi_def_cfa_offset 36
+ 199              		@ sp needed
+ 200 00c8 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 201              		.cfi_endproc
+ 202              	.LFE0:
+ 204              		.text
+ 205              	.Letext0:
+ 206              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 207              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 208              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 209              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc0uro4o.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 u8g2_line.c
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc0uro4o.s:18     .text.u8g2_DrawLine:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc0uro4o.s:25     .text.u8g2_DrawLine:0000000000000000 u8g2_DrawLine
+
+UNDEFINED SYMBOLS
+u8g2_DrawPixel
