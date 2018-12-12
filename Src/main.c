@@ -78,19 +78,19 @@ u8g2_t u8g2; // a structure which will contain all the data for one display
 #define	meas_x_offset	2
 #define	meas_width1		70
 #define	meas_width2		56
-#define	meas_height		13
+#define	meas_height		12
 
 // indicators parameter definition
 #define	N_idct			2
 #define	idct_x			72
-#define	idct_y			55
+#define	idct_y			53
 #define	idct_width		27
 #define	idct_height		9
 
 //  Fuel Pump Voltage dosplay parameter definition
 #define	FP_x			0
 #define	FP_y			52
-#define	FP_height		14
+#define	FP_height		12
 #define	FP_volt_width	45
 #define	FP_duty_width	70
 
@@ -354,9 +354,8 @@ int main(void)
 
   // Fuel Pump voltage & duty
   
-  u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
-  u8g2_DrawStr(&u8g2, FP_x, FP_y+12, "DUTY");
-  draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%");
+  draw_MeasLabelUnit(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, "DUTY", "%  ");
+  draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%  ");
 
   // update display
   u8g2_SendBuffer(&u8g2);
