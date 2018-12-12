@@ -242,6 +242,7 @@ int16_t	meas_value[N_meas] = {
 
 // Fuel Pump Voltage
 int16_t FP_volt = 330;
+int16_t FP_duty = 100;
 
 /* USER CODE END PV */
 
@@ -400,14 +401,15 @@ int main(void)
 
 
 		// read O2 sensor ADC output
-		meas_value[2] = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
 		meas_value[5] = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
 
 		// read Fuel Pump Voltage ADC output
 		FP_volt = (int16_t)(330*(float)g_ADCBuffer[0]/255);
+    FP_duty = (int16_t)(FP_volt/(14.4)*10);
+		meas_value[2] = FP_volt;
 
 		// update Fuel Pump Voltage
-//    draw_Value_xs(&u8g2, FP_x+FP_volt_width+2, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%"); // debug
+    draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, FP_duty, 3, 0, 0, "%  ");
 
 		// draw bar graph
 		draw_BarGraph(&u8g2, rpmbar_x, rpmbar_y, rpmbar_width, rpmbar_height, rpm, rpm_min, rpm_max);
