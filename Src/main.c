@@ -53,7 +53,9 @@
 #include "u8g2.h"		// graphic display library
 #include "u8x8_gpio_STM32F303.h"
 #include "u8x8_byte_4wire_hw_spi.h"
-
+#include "draw_Value.h"
+#include "draw_BarGraph.h"
+#include "draw_IndicatorBox.h"
 
 /* USER CODE END Includes */
 
@@ -64,39 +66,39 @@
 u8g2_t u8g2; // a structure which will contain all the data for one display
 
 // RPM bar graph parameter definition
-#define	rpmbar_x		0
-#define	rpmbar_y		0
+#define	rpmbar_x		  0
+#define	rpmbar_y		  0
 #define	rpmbar_width	128
 #define	rpmbar_height	14
-#define	rpm_min			0
-#define	rpm_max			9000
+#define	rpm_min			  0
+#define	rpm_max			  9000
 
 // measurements display parameter definition
-#define	N_meas			6
-#define	meas_x			0
-#define	meas_y			16
+#define	N_meas			  6
+#define	meas_x			  0
+#define	meas_y			  16
 #define	meas_x_offset	2
 #define	meas_width1		70
 #define	meas_width2		56
 #define	meas_height		12
 
 // indicators parameter definition
-#define	N_idct			2
-#define	idct_x			72
-#define	idct_y			53
+#define	N_idct			  2
+#define	idct_x			  72
+#define	idct_y			  53
 #define	idct_width		27
 #define	idct_height		9
 
 //  Fuel Pump Voltage dosplay parameter definition
-#define	FP_x			0
-#define	FP_y			52
-#define	FP_height		12
+#define	FP_x		    	0
+#define	FP_y          52
+#define	FP_height	    12
 #define	FP_volt_width	45
 #define	FP_duty_width	70
 
-// logo parameter definition
-#define logo_width 48
-#define logo_height 48
+// logo parameter definition (small 'enfini' logo)
+#define logo_width    48
+#define logo_height   48
 
 const unsigned char logo_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -126,6 +128,7 @@ const unsigned char logo_bits[] = {
   };
 
 /*
+// logo parameter definition (meidium 'enfini' logo)
 #define logo_width 54
 #define logo_height 48
 
@@ -183,7 +186,6 @@ const uint8_t	idct_status[N_idct] = {
 		1	,
 		0
 };
-
 
 // variables for measurement
 const unsigned char meas_name[N_meas][7] = { // length must be (text length + 1)
@@ -368,10 +370,10 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 
-	  	// start of create dummy data for debug
+	  // start of create dummy data for debug
 		if( rpm <= 8200 ){
 			  rpm = rpm + (int)(10*MT[gear]);
-//			  rpm=rpm+10;
+			  //rpm=rpm+10;
 		}else{
 			if( gear < 4 ){
 				gear++;
@@ -396,9 +398,7 @@ int main(void)
 				meas_value[n] = a;
 			}
 		}
-
-	  	// end of create dummy data for debug
-
+	  // end of create dummy data for debug
 
 		// read O2 sensor ADC output
 		meas_value[5] = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
@@ -425,7 +425,6 @@ int main(void)
 			y = (n % 3) * meas_height	+ meas_y;
 			draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
 		}
-
 
 		// send buffer
 	    u8g2_SendBuffer(&u8g2);
