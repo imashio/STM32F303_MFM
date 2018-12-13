@@ -158,6 +158,27 @@ Discarded input sections
                 0x0000000000000000      0x228 build/draw_Value.o
  .text.draw_Value_xs
                 0x0000000000000000      0x220 build/draw_Value.o
+ .text          0x0000000000000000        0x0 build/draw_Wave.o
+ .data          0x0000000000000000        0x0 build/draw_Wave.o
+ .bss           0x0000000000000000        0x0 build/draw_Wave.o
+ .text.draw_Wave_axis
+                0x0000000000000000       0xc0 build/draw_Wave.o
+ .text.draw_Wave
+                0x0000000000000000      0x14a build/draw_Wave.o
+ .rodata.draw_Wave_axis.str1.4
+                0x0000000000000000        0x1 build/draw_Wave.o
+ .debug_info    0x0000000000000000     0x4939 build/draw_Wave.o
+ .debug_abbrev  0x0000000000000000      0x1f1 build/draw_Wave.o
+ .debug_loc     0x0000000000000000      0x2ff build/draw_Wave.o
+ .debug_aranges
+                0x0000000000000000       0x28 build/draw_Wave.o
+ .debug_ranges  0x0000000000000000       0x18 build/draw_Wave.o
+ .debug_line    0x0000000000000000      0x177 build/draw_Wave.o
+ .debug_str     0x0000000000000000     0x68b1 build/draw_Wave.o
+ .comment       0x0000000000000000       0x80 build/draw_Wave.o
+ .debug_frame   0x0000000000000000       0xac build/draw_Wave.o
+ .ARM.attributes
+                0x0000000000000000       0x39 build/draw_Wave.o
  .text          0x0000000000000000        0x0 build/u8g2_bitmap.o
  .data          0x0000000000000000        0x0 build/u8g2_bitmap.o
  .bss           0x0000000000000000        0x0 build/u8g2_bitmap.o
@@ -6981,6 +7002,7 @@ LOAD build/basic.o
 LOAD build/draw_BarGraph.o
 LOAD build/draw_IndicatorBox.o
 LOAD build/draw_Value.o
+LOAD build/draw_Wave.o
 LOAD build/u8g2_bitmap.o
 LOAD build/u8g2_box.o
 LOAD build/u8g2_buffer.o
@@ -8204,7 +8226,7 @@ LOAD /usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/
                 0x0000000000000fa5       0x22 /usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
 OUTPUT(build/STM32F303_MFM.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000    0xa272a
+.debug_info     0x0000000000000000    0xa2694
  .debug_info    0x0000000000000000      0xb5e build/basic.o
  .debug_info    0x0000000000000b5e     0x4824 build/draw_BarGraph.o
  .debug_info    0x0000000000005382     0x47e3 build/draw_IndicatorBox.o
@@ -8236,28 +8258,28 @@ OUTPUT(build/STM32F303_MFM.elf elf32-littlearm)
  .debug_info    0x0000000000079493     0x157e build/adc.o
  .debug_info    0x000000000007aa11      0xcc6 build/dma.o
  .debug_info    0x000000000007b6d7      0xd1a build/gpio.o
- .debug_info    0x000000000007c3f1     0x6eba build/main.o
- .debug_info    0x00000000000832ab     0x1298 build/spi.o
- .debug_info    0x0000000000084543      0xd7b build/stm32f3xx_hal_msp.o
- .debug_info    0x00000000000852be      0xce7 build/stm32f3xx_it.o
- .debug_info    0x0000000000085fa5      0xd62 build/system_stm32f3xx.o
- .debug_info    0x0000000000086d07     0x1267 build/tim.o
- .debug_info    0x0000000000087f6e     0x13f1 build/usart.o
- .debug_info    0x000000000008935f     0x10c0 build/stm32f3xx_hal.o
- .debug_info    0x000000000008a41f     0x15b0 build/stm32f3xx_hal_adc.o
- .debug_info    0x000000000008b9cf     0x2fc6 build/stm32f3xx_hal_adc_ex.o
- .debug_info    0x000000000008e995     0x16e3 build/stm32f3xx_hal_cortex.o
- .debug_info    0x0000000000090078     0x131b build/stm32f3xx_hal_dma.o
- .debug_info    0x0000000000091393     0x12f3 build/stm32f3xx_hal_gpio.o
- .debug_info    0x0000000000092686     0x2010 build/stm32f3xx_hal_rcc.o
- .debug_info    0x0000000000094696     0x105a build/stm32f3xx_hal_rcc_ex.o
- .debug_info    0x00000000000956f0     0x2aa1 build/stm32f3xx_hal_spi.o
- .debug_info    0x0000000000098191     0x525e build/stm32f3xx_hal_tim.o
- .debug_info    0x000000000009d3ef     0x2b3d build/stm32f3xx_hal_tim_ex.o
- .debug_info    0x000000000009ff2c     0x27dc build/stm32f3xx_hal_uart.o
- .debug_info    0x00000000000a2708       0x22 build/startup_stm32f303x8.o
+ .debug_info    0x000000000007c3f1     0x6e24 build/main.o
+ .debug_info    0x0000000000083215     0x1298 build/spi.o
+ .debug_info    0x00000000000844ad      0xd7b build/stm32f3xx_hal_msp.o
+ .debug_info    0x0000000000085228      0xce7 build/stm32f3xx_it.o
+ .debug_info    0x0000000000085f0f      0xd62 build/system_stm32f3xx.o
+ .debug_info    0x0000000000086c71     0x1267 build/tim.o
+ .debug_info    0x0000000000087ed8     0x13f1 build/usart.o
+ .debug_info    0x00000000000892c9     0x10c0 build/stm32f3xx_hal.o
+ .debug_info    0x000000000008a389     0x15b0 build/stm32f3xx_hal_adc.o
+ .debug_info    0x000000000008b939     0x2fc6 build/stm32f3xx_hal_adc_ex.o
+ .debug_info    0x000000000008e8ff     0x16e3 build/stm32f3xx_hal_cortex.o
+ .debug_info    0x000000000008ffe2     0x131b build/stm32f3xx_hal_dma.o
+ .debug_info    0x00000000000912fd     0x12f3 build/stm32f3xx_hal_gpio.o
+ .debug_info    0x00000000000925f0     0x2010 build/stm32f3xx_hal_rcc.o
+ .debug_info    0x0000000000094600     0x105a build/stm32f3xx_hal_rcc_ex.o
+ .debug_info    0x000000000009565a     0x2aa1 build/stm32f3xx_hal_spi.o
+ .debug_info    0x00000000000980fb     0x525e build/stm32f3xx_hal_tim.o
+ .debug_info    0x000000000009d359     0x2b3d build/stm32f3xx_hal_tim_ex.o
+ .debug_info    0x000000000009fe96     0x27dc build/stm32f3xx_hal_uart.o
+ .debug_info    0x00000000000a2672       0x22 build/startup_stm32f303x8.o
 
-.debug_abbrev   0x0000000000000000     0x6da9
+.debug_abbrev   0x0000000000000000     0x6d86
  .debug_abbrev  0x0000000000000000      0x21a build/basic.o
  .debug_abbrev  0x000000000000021a      0x188 build/draw_BarGraph.o
  .debug_abbrev  0x00000000000003a2      0x198 build/draw_IndicatorBox.o
@@ -8289,26 +8311,26 @@ OUTPUT(build/STM32F303_MFM.elf elf32-littlearm)
  .debug_abbrev  0x00000000000032f1      0x257 build/adc.o
  .debug_abbrev  0x0000000000003548      0x216 build/dma.o
  .debug_abbrev  0x000000000000375e      0x20d build/gpio.o
- .debug_abbrev  0x000000000000396b      0x335 build/main.o
- .debug_abbrev  0x0000000000003ca0      0x23b build/spi.o
- .debug_abbrev  0x0000000000003edb      0x216 build/stm32f3xx_hal_msp.o
- .debug_abbrev  0x00000000000040f1      0x1da build/stm32f3xx_it.o
- .debug_abbrev  0x00000000000042cb      0x1e6 build/system_stm32f3xx.o
- .debug_abbrev  0x00000000000044b1      0x264 build/tim.o
- .debug_abbrev  0x0000000000004715      0x23b build/usart.o
- .debug_abbrev  0x0000000000004950      0x2ba build/stm32f3xx_hal.o
- .debug_abbrev  0x0000000000004c0a      0x23c build/stm32f3xx_hal_adc.o
- .debug_abbrev  0x0000000000004e46      0x32f build/stm32f3xx_hal_adc_ex.o
- .debug_abbrev  0x0000000000005175      0x399 build/stm32f3xx_hal_cortex.o
- .debug_abbrev  0x000000000000550e      0x2f9 build/stm32f3xx_hal_dma.o
- .debug_abbrev  0x0000000000005807      0x2da build/stm32f3xx_hal_gpio.o
- .debug_abbrev  0x0000000000005ae1      0x35b build/stm32f3xx_hal_rcc.o
- .debug_abbrev  0x0000000000005e3c      0x33e build/stm32f3xx_hal_rcc_ex.o
- .debug_abbrev  0x000000000000617a      0x2f9 build/stm32f3xx_hal_spi.o
- .debug_abbrev  0x0000000000006473      0x310 build/stm32f3xx_hal_tim.o
- .debug_abbrev  0x0000000000006783      0x2f8 build/stm32f3xx_hal_tim_ex.o
- .debug_abbrev  0x0000000000006a7b      0x31c build/stm32f3xx_hal_uart.o
- .debug_abbrev  0x0000000000006d97       0x12 build/startup_stm32f303x8.o
+ .debug_abbrev  0x000000000000396b      0x312 build/main.o
+ .debug_abbrev  0x0000000000003c7d      0x23b build/spi.o
+ .debug_abbrev  0x0000000000003eb8      0x216 build/stm32f3xx_hal_msp.o
+ .debug_abbrev  0x00000000000040ce      0x1da build/stm32f3xx_it.o
+ .debug_abbrev  0x00000000000042a8      0x1e6 build/system_stm32f3xx.o
+ .debug_abbrev  0x000000000000448e      0x264 build/tim.o
+ .debug_abbrev  0x00000000000046f2      0x23b build/usart.o
+ .debug_abbrev  0x000000000000492d      0x2ba build/stm32f3xx_hal.o
+ .debug_abbrev  0x0000000000004be7      0x23c build/stm32f3xx_hal_adc.o
+ .debug_abbrev  0x0000000000004e23      0x32f build/stm32f3xx_hal_adc_ex.o
+ .debug_abbrev  0x0000000000005152      0x399 build/stm32f3xx_hal_cortex.o
+ .debug_abbrev  0x00000000000054eb      0x2f9 build/stm32f3xx_hal_dma.o
+ .debug_abbrev  0x00000000000057e4      0x2da build/stm32f3xx_hal_gpio.o
+ .debug_abbrev  0x0000000000005abe      0x35b build/stm32f3xx_hal_rcc.o
+ .debug_abbrev  0x0000000000005e19      0x33e build/stm32f3xx_hal_rcc_ex.o
+ .debug_abbrev  0x0000000000006157      0x2f9 build/stm32f3xx_hal_spi.o
+ .debug_abbrev  0x0000000000006450      0x310 build/stm32f3xx_hal_tim.o
+ .debug_abbrev  0x0000000000006760      0x2f8 build/stm32f3xx_hal_tim_ex.o
+ .debug_abbrev  0x0000000000006a58      0x31c build/stm32f3xx_hal_uart.o
+ .debug_abbrev  0x0000000000006d74       0x12 build/startup_stm32f303x8.o
 
 .debug_loc      0x0000000000000000    0x2f30a
  .debug_loc     0x0000000000000000      0x12b build/basic.o
@@ -8517,7 +8539,7 @@ OUTPUT(build/STM32F303_MFM.elf elf32-littlearm)
  .debug_ranges  0x0000000000002220      0x1e0 build/stm32f3xx_hal_uart.o
  .debug_ranges  0x0000000000002400       0x20 build/startup_stm32f303x8.o
 
-.debug_line     0x0000000000000000    0x11103
+.debug_line     0x0000000000000000    0x1113d
  .debug_line    0x0000000000000000      0x28f build/basic.o
  .debug_line    0x000000000000028f      0x156 build/draw_BarGraph.o
  .debug_line    0x00000000000003e5      0x142 build/draw_IndicatorBox.o
@@ -8549,26 +8571,26 @@ OUTPUT(build/STM32F303_MFM.elf elf32-littlearm)
  .debug_line    0x0000000000005f99      0x2fd build/adc.o
  .debug_line    0x0000000000006296      0x221 build/dma.o
  .debug_line    0x00000000000064b7      0x226 build/gpio.o
- .debug_line    0x00000000000066dd      0x508 build/main.o
- .debug_line    0x0000000000006be5      0x2b4 build/spi.o
- .debug_line    0x0000000000006e99      0x235 build/stm32f3xx_hal_msp.o
- .debug_line    0x00000000000070ce      0x27c build/stm32f3xx_it.o
- .debug_line    0x000000000000734a      0x226 build/system_stm32f3xx.o
- .debug_line    0x0000000000007570      0x2ae build/tim.o
- .debug_line    0x000000000000781e      0x2e7 build/usart.o
- .debug_line    0x0000000000007b05      0x3e4 build/stm32f3xx_hal.o
- .debug_line    0x0000000000007ee9      0x436 build/stm32f3xx_hal_adc.o
- .debug_line    0x000000000000831f     0x14fd build/stm32f3xx_hal_adc_ex.o
- .debug_line    0x000000000000981c      0x42a build/stm32f3xx_hal_cortex.o
- .debug_line    0x0000000000009c46      0x5af build/stm32f3xx_hal_dma.o
- .debug_line    0x000000000000a1f5      0x4d2 build/stm32f3xx_hal_gpio.o
- .debug_line    0x000000000000a6c7      0x905 build/stm32f3xx_hal_rcc.o
- .debug_line    0x000000000000afcc      0x4d2 build/stm32f3xx_hal_rcc_ex.o
- .debug_line    0x000000000000b49e      0xef3 build/stm32f3xx_hal_spi.o
- .debug_line    0x000000000000c391     0x2c82 build/stm32f3xx_hal_tim.o
- .debug_line    0x000000000000f013     0x11e4 build/stm32f3xx_hal_tim_ex.o
- .debug_line    0x00000000000101f7      0xe98 build/stm32f3xx_hal_uart.o
- .debug_line    0x000000000001108f       0x74 build/startup_stm32f303x8.o
+ .debug_line    0x00000000000066dd      0x542 build/main.o
+ .debug_line    0x0000000000006c1f      0x2b4 build/spi.o
+ .debug_line    0x0000000000006ed3      0x235 build/stm32f3xx_hal_msp.o
+ .debug_line    0x0000000000007108      0x27c build/stm32f3xx_it.o
+ .debug_line    0x0000000000007384      0x226 build/system_stm32f3xx.o
+ .debug_line    0x00000000000075aa      0x2ae build/tim.o
+ .debug_line    0x0000000000007858      0x2e7 build/usart.o
+ .debug_line    0x0000000000007b3f      0x3e4 build/stm32f3xx_hal.o
+ .debug_line    0x0000000000007f23      0x436 build/stm32f3xx_hal_adc.o
+ .debug_line    0x0000000000008359     0x14fd build/stm32f3xx_hal_adc_ex.o
+ .debug_line    0x0000000000009856      0x42a build/stm32f3xx_hal_cortex.o
+ .debug_line    0x0000000000009c80      0x5af build/stm32f3xx_hal_dma.o
+ .debug_line    0x000000000000a22f      0x4d2 build/stm32f3xx_hal_gpio.o
+ .debug_line    0x000000000000a701      0x905 build/stm32f3xx_hal_rcc.o
+ .debug_line    0x000000000000b006      0x4d2 build/stm32f3xx_hal_rcc_ex.o
+ .debug_line    0x000000000000b4d8      0xef3 build/stm32f3xx_hal_spi.o
+ .debug_line    0x000000000000c3cb     0x2c82 build/stm32f3xx_hal_tim.o
+ .debug_line    0x000000000000f04d     0x11e4 build/stm32f3xx_hal_tim_ex.o
+ .debug_line    0x0000000000010231      0xe98 build/stm32f3xx_hal_uart.o
+ .debug_line    0x00000000000110c9       0x74 build/startup_stm32f303x8.o
 
 .debug_str      0x0000000000000000     0xfa1e
  .debug_str     0x0000000000000000      0x5d9 build/basic.o
@@ -9724,6 +9746,9 @@ draw_Value                                        build/draw_Value.o
                                                   build/main.o
 draw_Value_s                                      build/draw_Value.o
 draw_Value_xs                                     build/draw_Value.o
+                                                  build/draw_Wave.o
+draw_Wave                                         build/draw_Wave.o
+draw_Wave_axis                                    build/draw_Wave.o
 end                                               /usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libnosys.a(sbrk.o)
 errno                                             /usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
                                                   /usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libnosys.a(write.o)
@@ -9807,6 +9832,7 @@ u8g2_ClearPolygonXY                               build/u8g2_polygon.o
 u8g2_DrawBitmap                                   build/u8g2_bitmap.o
 u8g2_DrawBox                                      build/u8g2_box.o
                                                   build/u8g2_selection_list.o
+                                                  build/draw_Wave.o
                                                   build/draw_Value.o
                                                   build/draw_BarGraph.o
 u8g2_DrawCircle                                   build/u8g2_circle.o
@@ -9832,10 +9858,12 @@ u8g2_DrawHXBM                                     build/u8g2_bitmap.o
 u8g2_DrawHXBMP                                    build/u8g2_bitmap.o
 u8g2_DrawHorizontalBitmap                         build/u8g2_bitmap.o
 u8g2_DrawLine                                     build/u8g2_line.o
+                                                  build/draw_Wave.o
                                                   build/draw_BarGraph.o
 u8g2_DrawPixel                                    build/u8g2_hvline.o
                                                   build/u8g2_line.o
                                                   build/u8g2_circle.o
+                                                  build/draw_Wave.o
 u8g2_DrawPolygon                                  build/u8g2_polygon.o
 u8g2_DrawRBox                                     build/u8g2_box.o
                                                   build/draw_IndicatorBox.o
@@ -9905,6 +9933,7 @@ u8g2_SetBufferCurrTileRow                         build/u8g2_buffer.o
 u8g2_SetDisplayRotation                           build/u8g2_setup.o
 u8g2_SetDrawColor                                 build/u8g2_hvline.o
                                                   build/u8g2_selection_list.o
+                                                  build/draw_Wave.o
                                                   build/draw_Value.o
                                                   build/draw_IndicatorBox.o
                                                   build/draw_BarGraph.o

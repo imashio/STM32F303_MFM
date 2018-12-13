@@ -34,7 +34,11 @@ build/main.d: Src/main.c Inc/main.h \
  /Users/imashio/Electronics/ARM/_Library/u8g2.h \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h \
  /Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.h \
- /Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.h
+ /Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.h \
+ /Users/imashio/Electronics/ARM/_Library/draw_Value.h \
+ /Users/imashio/Electronics/ARM/_Library/u8g2.h \
+ /Users/imashio/Electronics/ARM/_Library/draw_BarGraph.h \
+ /Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h
 
 Inc/main.h:
 
@@ -125,3 +129,11 @@ Inc/gpio.h:
 /Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.h:
 
 /Users/imashio/Electronics/ARM/_Library/u8x8_byte_4wire_hw_spi.h:
+
+/Users/imashio/Electronics/ARM/_Library/draw_Value.h:
+
+/Users/imashio/Electronics/ARM/_Library/u8g2.h:
+
+/Users/imashio/Electronics/ARM/_Library/draw_BarGraph.h:
+
+/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h:
