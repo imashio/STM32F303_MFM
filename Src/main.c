@@ -372,7 +372,7 @@ int main(void)
 
 	  // start of create dummy data for debug
 		if( rpm <= 8200 ){
-			  rpm = rpm + (int)(10*MT[gear]);
+			  rpm = rpm + (int)(5*MT[gear]);
 			  //rpm=rpm+10;
 		}else{
 			if( gear < 4 ){
