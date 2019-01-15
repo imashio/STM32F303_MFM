@@ -9,7 +9,7 @@
   * inserted by the user or by software development tools
   * are owned by their respective copyright owners.
   *
-  * COPYRIGHT(c) 2018 STMicroelectronics
+  * COPYRIGHT(c) 2019 STMicroelectronics
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -49,7 +49,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "basic.h"		// original library
+#include "basic.h"  // original library
 #include "u8g2.h"		// graphic display library
 #include "u8x8_gpio_STM32F303.h"
 #include "u8x8_byte_4wire_hw_spi.h"
@@ -99,6 +99,8 @@ u8g2_t u8g2; // a structure which will contain all the data for one display
 // logo parameter definition (small 'enfini' logo)
 #define logo_width    48
 #define logo_height   48
+
+uint8_t   update_display=0;
 
 const unsigned char logo_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -184,7 +186,7 @@ const unsigned char idct_name[N_idct][5] = { // length must be (text length + 1)
 
 const uint8_t	idct_status[N_idct] = {
 		1	,
-		0
+		1
 };
 
 // variables for measurement
@@ -300,6 +302,14 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
 
+  // Timer start
+
+  if (HAL_TIM_Base_Start_IT(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+
   // ADC buffer definition
   enum{ ADC_BUFFER_LENGTH = 1024 };
   uint16_t g_ADCBuffer[ADC_BUFFER_LENGTH];
@@ -372,7 +382,7 @@ int main(void)
 
 	  // start of create dummy data for debug
 		if( rpm <= 8200 ){
-			  rpm = rpm + (int)(5*MT[gear]);
+			  rpm = rpm + (int)(10*MT[gear]);
 			  //rpm=rpm+10;
 		}else{
 			if( gear < 4 ){
@@ -408,26 +418,30 @@ int main(void)
     FP_duty = (int16_t)(FP_volt/(14.4)*10);
 		meas_value[2] = FP_volt;
 
-		// update Fuel Pump Voltage
-    draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, FP_duty, 3, 0, 0, "%  ");
+//    if( read_flag() == 1 ){
+    if( 1 ){
+      // update Fuel Pump Voltage
+      draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, FP_duty, 3, 0, 0, "%  ");
 
-		// draw bar graph
-		draw_BarGraph(&u8g2, rpmbar_x, rpmbar_y, rpmbar_width, rpmbar_height, rpm, rpm_min, rpm_max);
+      // draw bar graph
+      draw_BarGraph(&u8g2, rpmbar_x, rpmbar_y, rpmbar_width, rpmbar_height, rpm, rpm_min, rpm_max);
 
-		// draw measurement data
-		for( n=0; n<3; n++ ){
-			x = meas_x;
-			y = (n % 3) * meas_height	+ meas_y;
-			draw_Value(&u8g2, x, y, meas_width1, meas_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
-		}
-		for( n=3; n<N_meas; n++ ){
-			x = meas_width1 + meas_x + meas_x_offset;
-			y = (n % 3) * meas_height	+ meas_y;
-			draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
-		}
+      // draw measurement data
+      for( n=0; n<3; n++ ){
+        x = meas_x;
+        y = (n % 3) * meas_height	+ meas_y;
+        draw_Value(&u8g2, x, y, meas_width1, meas_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
+      }
+      for( n=3; n<N_meas; n++ ){
+        x = meas_width1 + meas_x + meas_x_offset;
+        y = (n % 3) * meas_height	+ meas_y;
+        draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
+      }
 
-		// send buffer
-	    u8g2_SendBuffer(&u8g2);
+      // send buffer
+      u8g2_SendBuffer(&u8g2);
+    }
+
 
   }
   /* USER CODE END 3 */

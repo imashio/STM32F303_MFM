@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -38,7 +38,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
    9:Src/main.c    ****   * inserted by the user or by software development tools
   10:Src/main.c    ****   * are owned by their respective copyright owners.
   11:Src/main.c    ****   *
-  12:Src/main.c    ****   * COPYRIGHT(c) 2018 STMicroelectronics
+  12:Src/main.c    ****   * COPYRIGHT(c) 2019 STMicroelectronics
   13:Src/main.c    ****   *
   14:Src/main.c    ****   * Redistribution and use in source and binary forms, with or without modification,
   15:Src/main.c    ****   * are permitted provided that the following conditions are met:
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
   29:Src/main.c    ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   30:Src/main.c    ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   31:Src/main.c    ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 2
 
 
   32:Src/main.c    ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
@@ -81,7 +81,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
   49:Src/main.c    **** #include <stdio.h>
   50:Src/main.c    **** #include <math.h>
   51:Src/main.c    **** 
-  52:Src/main.c    **** #include "basic.h"		// original library
+  52:Src/main.c    **** #include "basic.h"  // original library
   53:Src/main.c    **** #include "u8g2.h"		// graphic display library
   54:Src/main.c    **** #include "u8x8_gpio_STM32F303.h"
   55:Src/main.c    **** #include "u8x8_byte_4wire_hw_spi.h"
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
   86:Src/main.c    **** #define	N_idct			  2
   87:Src/main.c    **** #define	idct_x			  72
   88:Src/main.c    **** #define	idct_y			  53
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 3
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 3
 
 
   89:Src/main.c    **** #define	idct_width		27
@@ -135,430 +135,446 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
  100:Src/main.c    **** #define logo_width    48
  101:Src/main.c    **** #define logo_height   48
  102:Src/main.c    **** 
- 103:Src/main.c    **** const unsigned char logo_bits[] = {
- 104:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
- 105:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
- 106:Src/main.c    ****   0x00, 0x00, 0xF0, 0x0F, 0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF, 0x3F, 0x00,
- 107:Src/main.c    ****   0x80, 0xFF, 0xFF, 0xFF, 0xFF, 0x01, 0xE0, 0x1F, 0x00, 0x80, 0xFF, 0x07,
- 108:Src/main.c    ****   0xE0, 0x01, 0x00, 0x80, 0x81, 0x07, 0xE0, 0x01, 0x00, 0x80, 0x81, 0x07,
- 109:Src/main.c    ****   0xC0, 0xE1, 0x07, 0xC0, 0x80, 0x03, 0x00, 0xFC, 0x1F, 0xE0, 0x80, 0x03,
- 110:Src/main.c    ****   0x00, 0xFE, 0x7F, 0x70, 0xC0, 0x01, 0x00, 0x0F, 0xFE, 0x39, 0xE0, 0x00,
- 111:Src/main.c    ****   0x00, 0x07, 0xF8, 0x1F, 0xF0, 0x00, 0x00, 0x0E, 0xE0, 0x1F, 0x78, 0x00,
- 112:Src/main.c    ****   0x00, 0x0C, 0xC0, 0xFF, 0x3F, 0x00, 0x00, 0x18, 0x00, 0xFF, 0x1F, 0x00,
- 113:Src/main.c    ****   0x00, 0x38, 0xC0, 0xFF, 0x0F, 0x00, 0x00, 0x70, 0xE0, 0xF1, 0x03, 0x00,
- 114:Src/main.c    ****   0x00, 0xE0, 0x78, 0x00, 0x00, 0x00, 0x00, 0xC0, 0x3F, 0xE0, 0x01, 0x00,
- 115:Src/main.c    ****   0x00, 0x80, 0x1F, 0xF0, 0x01, 0x00, 0x00, 0x00, 0x07, 0xF8, 0x00, 0x00,
- 116:Src/main.c    ****   0x00, 0x00, 0x1E, 0x7C, 0x00, 0x00, 0x00, 0x00, 0xF8, 0x1F, 0x00, 0x00,
- 117:Src/main.c    ****   0x00, 0x00, 0xF0, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x80, 0x01, 0x00, 0x00,
- 118:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
- 119:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
- 120:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4C, 0x1C, 0x00, 0x00, 0x00,
- 121:Src/main.c    ****   0x00, 0x32, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC6, 0x00, 0x18, 0x00,
- 122:Src/main.c    ****   0x00, 0x7C, 0xEF, 0xFC, 0x39, 0x00, 0x00, 0x4E, 0xC6, 0xB8, 0x31, 0x00,
- 123:Src/main.c    ****   0x00, 0x3E, 0xC6, 0x98, 0x31, 0x00, 0x00, 0x3C, 0xC6, 0x98, 0x31, 0x00,
- 124:Src/main.c    ****   0x00, 0x0E, 0xC6, 0x98, 0x31, 0x00, 0x00, 0x4E, 0xCE, 0x99, 0x31, 0x00,
- 125:Src/main.c    ****   0x00, 0x7C, 0xEF, 0xFD, 0x7B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
- 126:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
- 127:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
- 128:Src/main.c    ****   };
- 129:Src/main.c    **** 
- 130:Src/main.c    **** /*
- 131:Src/main.c    **** // logo parameter definition (meidium 'enfini' logo)
- 132:Src/main.c    **** #define logo_width 54
- 133:Src/main.c    **** #define logo_height 48
- 134:Src/main.c    **** 
- 135:Src/main.c    **** static unsigned char logo_bits[] = {
- 136:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF8, 0xFF, 0x0F,
- 137:Src/main.c    ****   0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF, 0xFF, 0x1F, 0x00, 0xE0, 0xFF, 0xFF,
- 138:Src/main.c    ****   0xFF, 0xFF, 0xFF, 0x01, 0xF8, 0x3F, 0x00, 0x00, 0xF0, 0xFF, 0x07, 0xF8,
- 139:Src/main.c    ****   0x01, 0x00, 0x00, 0x70, 0xE0, 0x0F, 0x7C, 0x00, 0x00, 0x00, 0x70, 0x80,
- 140:Src/main.c    ****   0x0F, 0x7C, 0x00, 0x00, 0x00, 0x70, 0x00, 0x07, 0xF8, 0x00, 0x00, 0x00,
- 141:Src/main.c    ****   0x38, 0x80, 0x07, 0x00, 0xF8, 0x3F, 0x00, 0x38, 0x80, 0x07, 0x00, 0xFE,
- 142:Src/main.c    ****   0xFF, 0x00, 0x1C, 0xC0, 0x03, 0x80, 0xFF, 0xFF, 0x01, 0x0E, 0xC0, 0x01,
- 143:Src/main.c    ****   0xC0, 0x07, 0xFC, 0x07, 0x07, 0xE0, 0x01, 0x80, 0x03, 0xF0, 0x9F, 0x03,
- 144:Src/main.c    ****   0xF0, 0x00, 0x80, 0x03, 0xC0, 0xFF, 0x03, 0x78, 0x00, 0x00, 0x07, 0x80,
- 145:Src/main.c    ****   0xFF, 0x01, 0x3C, 0x00, 0x00, 0x06, 0x00, 0xFE, 0x87, 0x3F, 0x00, 0x00,
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 4
+ 103:Src/main.c    **** uint8_t   update_display=0;
+ 104:Src/main.c    **** 
+ 105:Src/main.c    **** const unsigned char logo_bits[] = {
+ 106:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 107:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 108:Src/main.c    ****   0x00, 0x00, 0xF0, 0x0F, 0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF, 0x3F, 0x00,
+ 109:Src/main.c    ****   0x80, 0xFF, 0xFF, 0xFF, 0xFF, 0x01, 0xE0, 0x1F, 0x00, 0x80, 0xFF, 0x07,
+ 110:Src/main.c    ****   0xE0, 0x01, 0x00, 0x80, 0x81, 0x07, 0xE0, 0x01, 0x00, 0x80, 0x81, 0x07,
+ 111:Src/main.c    ****   0xC0, 0xE1, 0x07, 0xC0, 0x80, 0x03, 0x00, 0xFC, 0x1F, 0xE0, 0x80, 0x03,
+ 112:Src/main.c    ****   0x00, 0xFE, 0x7F, 0x70, 0xC0, 0x01, 0x00, 0x0F, 0xFE, 0x39, 0xE0, 0x00,
+ 113:Src/main.c    ****   0x00, 0x07, 0xF8, 0x1F, 0xF0, 0x00, 0x00, 0x0E, 0xE0, 0x1F, 0x78, 0x00,
+ 114:Src/main.c    ****   0x00, 0x0C, 0xC0, 0xFF, 0x3F, 0x00, 0x00, 0x18, 0x00, 0xFF, 0x1F, 0x00,
+ 115:Src/main.c    ****   0x00, 0x38, 0xC0, 0xFF, 0x0F, 0x00, 0x00, 0x70, 0xE0, 0xF1, 0x03, 0x00,
+ 116:Src/main.c    ****   0x00, 0xE0, 0x78, 0x00, 0x00, 0x00, 0x00, 0xC0, 0x3F, 0xE0, 0x01, 0x00,
+ 117:Src/main.c    ****   0x00, 0x80, 0x1F, 0xF0, 0x01, 0x00, 0x00, 0x00, 0x07, 0xF8, 0x00, 0x00,
+ 118:Src/main.c    ****   0x00, 0x00, 0x1E, 0x7C, 0x00, 0x00, 0x00, 0x00, 0xF8, 0x1F, 0x00, 0x00,
+ 119:Src/main.c    ****   0x00, 0x00, 0xF0, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x80, 0x01, 0x00, 0x00,
+ 120:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 121:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 122:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4C, 0x1C, 0x00, 0x00, 0x00,
+ 123:Src/main.c    ****   0x00, 0x32, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC6, 0x00, 0x18, 0x00,
+ 124:Src/main.c    ****   0x00, 0x7C, 0xEF, 0xFC, 0x39, 0x00, 0x00, 0x4E, 0xC6, 0xB8, 0x31, 0x00,
+ 125:Src/main.c    ****   0x00, 0x3E, 0xC6, 0x98, 0x31, 0x00, 0x00, 0x3C, 0xC6, 0x98, 0x31, 0x00,
+ 126:Src/main.c    ****   0x00, 0x0E, 0xC6, 0x98, 0x31, 0x00, 0x00, 0x4E, 0xCE, 0x99, 0x31, 0x00,
+ 127:Src/main.c    ****   0x00, 0x7C, 0xEF, 0xFD, 0x7B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 128:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 129:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 130:Src/main.c    ****   };
+ 131:Src/main.c    **** 
+ 132:Src/main.c    **** /*
+ 133:Src/main.c    **** // logo parameter definition (meidium 'enfini' logo)
+ 134:Src/main.c    **** #define logo_width 54
+ 135:Src/main.c    **** #define logo_height 48
+ 136:Src/main.c    **** 
+ 137:Src/main.c    **** static unsigned char logo_bits[] = {
+ 138:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF8, 0xFF, 0x0F,
+ 139:Src/main.c    ****   0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF, 0xFF, 0x1F, 0x00, 0xE0, 0xFF, 0xFF,
+ 140:Src/main.c    ****   0xFF, 0xFF, 0xFF, 0x01, 0xF8, 0x3F, 0x00, 0x00, 0xF0, 0xFF, 0x07, 0xF8,
+ 141:Src/main.c    ****   0x01, 0x00, 0x00, 0x70, 0xE0, 0x0F, 0x7C, 0x00, 0x00, 0x00, 0x70, 0x80,
+ 142:Src/main.c    ****   0x0F, 0x7C, 0x00, 0x00, 0x00, 0x70, 0x00, 0x07, 0xF8, 0x00, 0x00, 0x00,
+ 143:Src/main.c    ****   0x38, 0x80, 0x07, 0x00, 0xF8, 0x3F, 0x00, 0x38, 0x80, 0x07, 0x00, 0xFE,
+ 144:Src/main.c    ****   0xFF, 0x00, 0x1C, 0xC0, 0x03, 0x80, 0xFF, 0xFF, 0x01, 0x0E, 0xC0, 0x01,
+ 145:Src/main.c    ****   0xC0, 0x07, 0xFC, 0x07, 0x07, 0xE0, 0x01, 0x80, 0x03, 0xF0, 0x9F, 0x03,
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 4
 
 
- 146:Src/main.c    ****   0x0E, 0x00, 0xF8, 0xFF, 0x1F, 0x00, 0x00, 0x1C, 0x00, 0xF8, 0xFF, 0x07,
- 147:Src/main.c    ****   0x00, 0x00, 0x38, 0x00, 0xDE, 0xFF, 0x03, 0x00, 0x00, 0x70, 0x00, 0x0F,
- 148:Src/main.c    ****   0x7E, 0x00, 0x00, 0x00, 0xE0, 0xC0, 0x07, 0x00, 0x00, 0x00, 0x00, 0xC0,
- 149:Src/main.c    ****   0xF1, 0x01, 0x00, 0x00, 0x00, 0x00, 0x80, 0xFF, 0x00, 0x7C, 0x00, 0x00,
- 150:Src/main.c    ****   0x00, 0x00, 0x3F, 0x00, 0x3E, 0x00, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x1F,
- 151:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x3C, 0x80, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x78,
- 152:Src/main.c    ****   0xE0, 0x07, 0x00, 0x00, 0x00, 0x00, 0xE0, 0xFF, 0x03, 0x00, 0x00, 0x00,
- 153:Src/main.c    ****   0x00, 0xC0, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0x00, 0x00,
- 154:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x30, 0x00,
- 155:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x4E, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x39,
- 156:Src/main.c    ****   0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00,
- 157:Src/main.c    ****   0x00, 0x7E, 0x3E, 0xC7, 0x3D, 0x1C, 0x00, 0x00, 0x6F, 0x3E, 0xC7, 0x7F,
- 158:Src/main.c    ****   0x1C, 0x00, 0x00, 0x03, 0x1C, 0x86, 0x73, 0x18, 0x00, 0x00, 0x07, 0x1C,
- 159:Src/main.c    ****   0x86, 0x71, 0x18, 0x00, 0x00, 0x3E, 0x1C, 0x86, 0x71, 0x18, 0x00, 0x00,
- 160:Src/main.c    ****   0x1F, 0x1C, 0x86, 0x71, 0x18, 0x00, 0x00, 0x03, 0x1C, 0x86, 0x71, 0x18,
- 161:Src/main.c    ****   0x00, 0x00, 0x47, 0x1C, 0x86, 0x71, 0x18, 0x00, 0x00, 0x7F, 0x3E, 0xCF,
- 162:Src/main.c    ****   0xFB, 0x3C, 0x00, 0x00, 0x3C, 0x3E, 0xCF, 0xFB, 0x3C, 0x00, 0x00, 0x00,
- 163:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
- 164:Src/main.c    ****   };
- 165:Src/main.c    **** */
- 166:Src/main.c    **** 
- 167:Src/main.c    **** uint16_t	rpm = 0;
- 168:Src/main.c    **** uint16_t	speed = 240;
- 169:Src/main.c    **** uint8_t		gear = 0;
- 170:Src/main.c    **** double		MT[5] = {3.483, 2.015, 1.391, 1.000, 0.806};
- 171:Src/main.c    **** 
- 172:Src/main.c    **** /*
- 173:Src/main.c    **** typedef struct {
- 174:Src/main.c    **** 	unsigned char	name;
- 175:Src/main.c    **** 	uint8_t			status;
- 176:Src/main.c    **** } idct;
- 177:Src/main.c    **** */
- 178:Src/main.c    **** 
- 179:Src/main.c    **** // variables for indicators
- 180:Src/main.c    **** const unsigned char idct_name[N_idct][5] = { // length must be (text length + 1)
- 181:Src/main.c    **** 		"CAN"	,
- 182:Src/main.c    **** 		"O2FB"
- 183:Src/main.c    **** };
- 184:Src/main.c    **** 
- 185:Src/main.c    **** const uint8_t	idct_status[N_idct] = {
- 186:Src/main.c    **** 		1	,
- 187:Src/main.c    **** 		0
- 188:Src/main.c    **** };
- 189:Src/main.c    **** 
- 190:Src/main.c    **** // variables for measurement
- 191:Src/main.c    **** const unsigned char meas_name[N_meas][7] = { // length must be (text length + 1)
- 192:Src/main.c    **** 		"MAP"	,
- 193:Src/main.c    **** 		"OILP"	,
- 194:Src/main.c    **** 		"FPVOLT"	,
- 195:Src/main.c    **** 		"ECT"	,
- 196:Src/main.c    **** 		"OILT"	,
- 197:Src/main.c    **** 		"O2"
- 198:Src/main.c    **** };
- 199:Src/main.c    **** 
- 200:Src/main.c    **** const unsigned char meas_unit[N_meas][5] = {
- 201:Src/main.c    **** 		"kpa"			,	// MAP
- 202:Src/main.c    **** 		"kpa"			,	// OILP
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 5
+ 146:Src/main.c    ****   0xF0, 0x00, 0x80, 0x03, 0xC0, 0xFF, 0x03, 0x78, 0x00, 0x00, 0x07, 0x80,
+ 147:Src/main.c    ****   0xFF, 0x01, 0x3C, 0x00, 0x00, 0x06, 0x00, 0xFE, 0x87, 0x3F, 0x00, 0x00,
+ 148:Src/main.c    ****   0x0E, 0x00, 0xF8, 0xFF, 0x1F, 0x00, 0x00, 0x1C, 0x00, 0xF8, 0xFF, 0x07,
+ 149:Src/main.c    ****   0x00, 0x00, 0x38, 0x00, 0xDE, 0xFF, 0x03, 0x00, 0x00, 0x70, 0x00, 0x0F,
+ 150:Src/main.c    ****   0x7E, 0x00, 0x00, 0x00, 0xE0, 0xC0, 0x07, 0x00, 0x00, 0x00, 0x00, 0xC0,
+ 151:Src/main.c    ****   0xF1, 0x01, 0x00, 0x00, 0x00, 0x00, 0x80, 0xFF, 0x00, 0x7C, 0x00, 0x00,
+ 152:Src/main.c    ****   0x00, 0x00, 0x3F, 0x00, 0x3E, 0x00, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x1F,
+ 153:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x3C, 0x80, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x78,
+ 154:Src/main.c    ****   0xE0, 0x07, 0x00, 0x00, 0x00, 0x00, 0xE0, 0xFF, 0x03, 0x00, 0x00, 0x00,
+ 155:Src/main.c    ****   0x00, 0xC0, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0x00, 0x00,
+ 156:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x30, 0x00,
+ 157:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x4E, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x39,
+ 158:Src/main.c    ****   0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00,
+ 159:Src/main.c    ****   0x00, 0x7E, 0x3E, 0xC7, 0x3D, 0x1C, 0x00, 0x00, 0x6F, 0x3E, 0xC7, 0x7F,
+ 160:Src/main.c    ****   0x1C, 0x00, 0x00, 0x03, 0x1C, 0x86, 0x73, 0x18, 0x00, 0x00, 0x07, 0x1C,
+ 161:Src/main.c    ****   0x86, 0x71, 0x18, 0x00, 0x00, 0x3E, 0x1C, 0x86, 0x71, 0x18, 0x00, 0x00,
+ 162:Src/main.c    ****   0x1F, 0x1C, 0x86, 0x71, 0x18, 0x00, 0x00, 0x03, 0x1C, 0x86, 0x71, 0x18,
+ 163:Src/main.c    ****   0x00, 0x00, 0x47, 0x1C, 0x86, 0x71, 0x18, 0x00, 0x00, 0x7F, 0x3E, 0xCF,
+ 164:Src/main.c    ****   0xFB, 0x3C, 0x00, 0x00, 0x3C, 0x3E, 0xCF, 0xFB, 0x3C, 0x00, 0x00, 0x00,
+ 165:Src/main.c    ****   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+ 166:Src/main.c    ****   };
+ 167:Src/main.c    **** */
+ 168:Src/main.c    **** 
+ 169:Src/main.c    **** uint16_t	rpm = 0;
+ 170:Src/main.c    **** uint16_t	speed = 240;
+ 171:Src/main.c    **** uint8_t		gear = 0;
+ 172:Src/main.c    **** double		MT[5] = {3.483, 2.015, 1.391, 1.000, 0.806};
+ 173:Src/main.c    **** 
+ 174:Src/main.c    **** /*
+ 175:Src/main.c    **** typedef struct {
+ 176:Src/main.c    **** 	unsigned char	name;
+ 177:Src/main.c    **** 	uint8_t			status;
+ 178:Src/main.c    **** } idct;
+ 179:Src/main.c    **** */
+ 180:Src/main.c    **** 
+ 181:Src/main.c    **** // variables for indicators
+ 182:Src/main.c    **** const unsigned char idct_name[N_idct][5] = { // length must be (text length + 1)
+ 183:Src/main.c    **** 		"CAN"	,
+ 184:Src/main.c    **** 		"O2FB"
+ 185:Src/main.c    **** };
+ 186:Src/main.c    **** 
+ 187:Src/main.c    **** const uint8_t	idct_status[N_idct] = {
+ 188:Src/main.c    **** 		1	,
+ 189:Src/main.c    **** 		1
+ 190:Src/main.c    **** };
+ 191:Src/main.c    **** 
+ 192:Src/main.c    **** // variables for measurement
+ 193:Src/main.c    **** const unsigned char meas_name[N_meas][7] = { // length must be (text length + 1)
+ 194:Src/main.c    **** 		"MAP"	,
+ 195:Src/main.c    **** 		"OILP"	,
+ 196:Src/main.c    **** 		"FPVOLT"	,
+ 197:Src/main.c    **** 		"ECT"	,
+ 198:Src/main.c    **** 		"OILT"	,
+ 199:Src/main.c    **** 		"O2"
+ 200:Src/main.c    **** };
+ 201:Src/main.c    **** 
+ 202:Src/main.c    **** const unsigned char meas_unit[N_meas][5] = {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 5
 
 
- 203:Src/main.c    **** 		"V  "     ,	// FuelPump Voltage
- 204:Src/main.c    **** 		{176, 67, 0}	,	// ECT  degC...{176, 67, 0}
- 205:Src/main.c    **** 		{176, 67, 0}	,	// OILT  degC...{176, 67, 0}
- 206:Src/main.c    **** 		"V"					// O2
- 207:Src/main.c    **** };
- 208:Src/main.c    **** 
- 209:Src/main.c    **** const uint8_t	meas_digit[N_meas] = {
- 210:Src/main.c    **** 		3	,	// MAP
- 211:Src/main.c    **** 		3	,	// OILP
- 212:Src/main.c    **** 		3	,	// FuelPump Voltage
- 213:Src/main.c    **** 		3	,	// ECT
- 214:Src/main.c    **** 		3	,	// OILT
- 215:Src/main.c    **** 		3		// O2
- 216:Src/main.c    **** };
- 217:Src/main.c    **** 
- 218:Src/main.c    **** const uint8_t	meas_frac[N_meas] = {
- 219:Src/main.c    **** 		2	,	// MAP
- 220:Src/main.c    **** 		2	,	// OILP
- 221:Src/main.c    **** 		1	,	// FuelPump Voltage
- 222:Src/main.c    **** 		0	,	// ECT
- 223:Src/main.c    **** 		0	,	// OILT
- 224:Src/main.c    **** 		2		// O2
- 225:Src/main.c    **** };
- 226:Src/main.c    **** 
- 227:Src/main.c    **** const uint8_t	meas_sign[N_meas] = {
- 228:Src/main.c    **** 		1	,	// MAP
- 229:Src/main.c    **** 		0	,	// OILP
- 230:Src/main.c    **** 		0	,	// FuelPump Voltage
- 231:Src/main.c    **** 		0	,	// ECT
- 232:Src/main.c    **** 		0	,	// OILT
- 233:Src/main.c    **** 		0		// O2
- 234:Src/main.c    **** };
- 235:Src/main.c    **** 
- 236:Src/main.c    **** int16_t	meas_value[N_meas] = {
- 237:Src/main.c    **** 		645	,	// FuelPump Voltage
- 238:Src/main.c    **** 		105	,	// MAP
- 239:Src/main.c    **** 		235	,	// OILP
- 240:Src/main.c    **** 		89	,	// ECT
- 241:Src/main.c    **** 		73	,	// OILT
- 242:Src/main.c    **** 		143		// O2
- 243:Src/main.c    **** };
- 244:Src/main.c    **** 
- 245:Src/main.c    **** // Fuel Pump Voltage
- 246:Src/main.c    **** int16_t FP_volt = 330;
- 247:Src/main.c    **** int16_t FP_duty = 100;
- 248:Src/main.c    **** 
- 249:Src/main.c    **** /* USER CODE END PV */
+ 203:Src/main.c    **** 		"kpa"			,	// MAP
+ 204:Src/main.c    **** 		"kpa"			,	// OILP
+ 205:Src/main.c    **** 		"V  "     ,	// FuelPump Voltage
+ 206:Src/main.c    **** 		{176, 67, 0}	,	// ECT  degC...{176, 67, 0}
+ 207:Src/main.c    **** 		{176, 67, 0}	,	// OILT  degC...{176, 67, 0}
+ 208:Src/main.c    **** 		"V"					// O2
+ 209:Src/main.c    **** };
+ 210:Src/main.c    **** 
+ 211:Src/main.c    **** const uint8_t	meas_digit[N_meas] = {
+ 212:Src/main.c    **** 		3	,	// MAP
+ 213:Src/main.c    **** 		3	,	// OILP
+ 214:Src/main.c    **** 		3	,	// FuelPump Voltage
+ 215:Src/main.c    **** 		3	,	// ECT
+ 216:Src/main.c    **** 		3	,	// OILT
+ 217:Src/main.c    **** 		3		// O2
+ 218:Src/main.c    **** };
+ 219:Src/main.c    **** 
+ 220:Src/main.c    **** const uint8_t	meas_frac[N_meas] = {
+ 221:Src/main.c    **** 		2	,	// MAP
+ 222:Src/main.c    **** 		2	,	// OILP
+ 223:Src/main.c    **** 		1	,	// FuelPump Voltage
+ 224:Src/main.c    **** 		0	,	// ECT
+ 225:Src/main.c    **** 		0	,	// OILT
+ 226:Src/main.c    **** 		2		// O2
+ 227:Src/main.c    **** };
+ 228:Src/main.c    **** 
+ 229:Src/main.c    **** const uint8_t	meas_sign[N_meas] = {
+ 230:Src/main.c    **** 		1	,	// MAP
+ 231:Src/main.c    **** 		0	,	// OILP
+ 232:Src/main.c    **** 		0	,	// FuelPump Voltage
+ 233:Src/main.c    **** 		0	,	// ECT
+ 234:Src/main.c    **** 		0	,	// OILT
+ 235:Src/main.c    **** 		0		// O2
+ 236:Src/main.c    **** };
+ 237:Src/main.c    **** 
+ 238:Src/main.c    **** int16_t	meas_value[N_meas] = {
+ 239:Src/main.c    **** 		645	,	// FuelPump Voltage
+ 240:Src/main.c    **** 		105	,	// MAP
+ 241:Src/main.c    **** 		235	,	// OILP
+ 242:Src/main.c    **** 		89	,	// ECT
+ 243:Src/main.c    **** 		73	,	// OILT
+ 244:Src/main.c    **** 		143		// O2
+ 245:Src/main.c    **** };
+ 246:Src/main.c    **** 
+ 247:Src/main.c    **** // Fuel Pump Voltage
+ 248:Src/main.c    **** int16_t FP_volt = 330;
+ 249:Src/main.c    **** int16_t FP_duty = 100;
  250:Src/main.c    **** 
- 251:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
- 252:Src/main.c    **** void SystemClock_Config(void);
- 253:Src/main.c    **** 
- 254:Src/main.c    **** /* USER CODE BEGIN PFP */
- 255:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
- 256:Src/main.c    **** 
- 257:Src/main.c    **** /* USER CODE END PFP */
+ 251:Src/main.c    **** /* USER CODE END PV */
+ 252:Src/main.c    **** 
+ 253:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
+ 254:Src/main.c    **** void SystemClock_Config(void);
+ 255:Src/main.c    **** 
+ 256:Src/main.c    **** /* USER CODE BEGIN PFP */
+ 257:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
  258:Src/main.c    **** 
- 259:Src/main.c    **** /* USER CODE BEGIN 0 */
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 6
+ 259:Src/main.c    **** /* USER CODE END PFP */
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 6
 
 
  260:Src/main.c    **** 
- 261:Src/main.c    **** /* USER CODE END 0 */
+ 261:Src/main.c    **** /* USER CODE BEGIN 0 */
  262:Src/main.c    **** 
- 263:Src/main.c    **** int main(void)
- 264:Src/main.c    **** {
- 265:Src/main.c    **** 
- 266:Src/main.c    ****   /* USER CODE BEGIN 1 */
+ 263:Src/main.c    **** /* USER CODE END 0 */
+ 264:Src/main.c    **** 
+ 265:Src/main.c    **** int main(void)
+ 266:Src/main.c    **** {
  267:Src/main.c    **** 
- 268:Src/main.c    ****   /* USER CODE END 1 */
+ 268:Src/main.c    ****   /* USER CODE BEGIN 1 */
  269:Src/main.c    **** 
- 270:Src/main.c    ****   /* MCU Configuration----------------------------------------------------------*/
+ 270:Src/main.c    ****   /* USER CODE END 1 */
  271:Src/main.c    **** 
- 272:Src/main.c    ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
- 273:Src/main.c    ****   HAL_Init();
- 274:Src/main.c    **** 
- 275:Src/main.c    ****   /* USER CODE BEGIN Init */
- 276:Src/main.c    ****   uint8_t n;
- 277:Src/main.c    ****   uint8_t x, y;
- 278:Src/main.c    **** 
- 279:Src/main.c    ****   uint16_t a = 0;
- 280:Src/main.c    ****   uint16_t b = 0;
- 281:Src/main.c    **** 
- 282:Src/main.c    **** 
- 283:Src/main.c    ****   /* USER CODE END Init */
+ 272:Src/main.c    ****   /* MCU Configuration----------------------------------------------------------*/
+ 273:Src/main.c    **** 
+ 274:Src/main.c    ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+ 275:Src/main.c    ****   HAL_Init();
+ 276:Src/main.c    **** 
+ 277:Src/main.c    ****   /* USER CODE BEGIN Init */
+ 278:Src/main.c    ****   uint8_t n;
+ 279:Src/main.c    ****   uint8_t x, y;
+ 280:Src/main.c    **** 
+ 281:Src/main.c    ****   uint16_t a = 0;
+ 282:Src/main.c    ****   uint16_t b = 0;
+ 283:Src/main.c    **** 
  284:Src/main.c    **** 
- 285:Src/main.c    ****   /* Configure the system clock */
- 286:Src/main.c    ****   SystemClock_Config();
- 287:Src/main.c    **** 
- 288:Src/main.c    ****   /* USER CODE BEGIN SysInit */
+ 285:Src/main.c    ****   /* USER CODE END Init */
+ 286:Src/main.c    **** 
+ 287:Src/main.c    ****   /* Configure the system clock */
+ 288:Src/main.c    ****   SystemClock_Config();
  289:Src/main.c    **** 
- 290:Src/main.c    ****   /* USER CODE END SysInit */
+ 290:Src/main.c    ****   /* USER CODE BEGIN SysInit */
  291:Src/main.c    **** 
- 292:Src/main.c    ****   /* Initialize all configured peripherals */
- 293:Src/main.c    ****   MX_GPIO_Init();
- 294:Src/main.c    ****   MX_DMA_Init();
- 295:Src/main.c    ****   MX_USART2_UART_Init();
- 296:Src/main.c    ****   MX_TIM1_Init();
- 297:Src/main.c    ****   MX_USART1_UART_Init();
- 298:Src/main.c    ****   MX_SPI1_Init();
- 299:Src/main.c    ****   MX_ADC1_Init();
- 300:Src/main.c    **** 
- 301:Src/main.c    ****   /* USER CODE BEGIN 2 */
+ 292:Src/main.c    ****   /* USER CODE END SysInit */
+ 293:Src/main.c    **** 
+ 294:Src/main.c    ****   /* Initialize all configured peripherals */
+ 295:Src/main.c    ****   MX_GPIO_Init();
+ 296:Src/main.c    ****   MX_DMA_Init();
+ 297:Src/main.c    ****   MX_USART2_UART_Init();
+ 298:Src/main.c    ****   MX_TIM1_Init();
+ 299:Src/main.c    ****   MX_USART1_UART_Init();
+ 300:Src/main.c    ****   MX_SPI1_Init();
+ 301:Src/main.c    ****   MX_ADC1_Init();
  302:Src/main.c    **** 
- 303:Src/main.c    ****   // ADC buffer definition
- 304:Src/main.c    ****   enum{ ADC_BUFFER_LENGTH = 1024 };
- 305:Src/main.c    ****   uint16_t g_ADCBuffer[ADC_BUFFER_LENGTH];
- 306:Src/main.c    ****   memset(g_ADCBuffer, 0, sizeof(g_ADCBuffer));
- 307:Src/main.c    ****   HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
- 308:Src/main.c    **** 
- 309:Src/main.c    ****   // OLED diaplay initialization
- 310:Src/main.c    ****   u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_hw_spi, u8x8_gpio_and_delay_S
- 311:Src/main.c    ****   HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 1); // Set RES=H (OLED activate)
- 312:Src/main.c    ****   u8g2_InitDisplay(&u8g2); // send init sequence to the display, display is in sleep mode after thi
- 313:Src/main.c    ****   u8g2_SetPowerSave(&u8g2, 0); // wake up display
- 314:Src/main.c    ****   u8g2_SetContrast(&u8g2, 128); // set contrast
- 315:Src/main.c    ****   u8g2_ClearDisplay(&u8g2);
- 316:Src/main.c    **** 
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 7
+ 303:Src/main.c    ****   /* USER CODE BEGIN 2 */
+ 304:Src/main.c    **** 
+ 305:Src/main.c    ****   // Timer start
+ 306:Src/main.c    **** 
+ 307:Src/main.c    ****   if (HAL_TIM_Base_Start_IT(&htim1) != HAL_OK)
+ 308:Src/main.c    ****   {
+ 309:Src/main.c    ****     Error_Handler();
+ 310:Src/main.c    ****   }
+ 311:Src/main.c    **** 
+ 312:Src/main.c    **** 
+ 313:Src/main.c    ****   // ADC buffer definition
+ 314:Src/main.c    ****   enum{ ADC_BUFFER_LENGTH = 1024 };
+ 315:Src/main.c    ****   uint16_t g_ADCBuffer[ADC_BUFFER_LENGTH];
+ 316:Src/main.c    ****   memset(g_ADCBuffer, 0, sizeof(g_ADCBuffer));
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 7
 
 
- 317:Src/main.c    ****   u8g2_ClearBuffer(&u8g2);
+ 317:Src/main.c    ****   HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
  318:Src/main.c    **** 
- 319:Src/main.c    **** 
- 320:Src/main.c    ****   // draw opening
- 321:Src/main.c    ****   u8g2_DrawXBMP(&u8g2, 40, 0, logo_width, logo_height, logo_bits );
- 322:Src/main.c    **** 
- 323:Src/main.c    ****   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
- 324:Src/main.c    ****   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
- 325:Src/main.c    ****   u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
+ 319:Src/main.c    ****   // OLED diaplay initialization
+ 320:Src/main.c    ****   u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_hw_spi, u8x8_gpio_and_delay_S
+ 321:Src/main.c    ****   HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 1); // Set RES=H (OLED activate)
+ 322:Src/main.c    ****   u8g2_InitDisplay(&u8g2); // send init sequence to the display, display is in sleep mode after thi
+ 323:Src/main.c    ****   u8g2_SetPowerSave(&u8g2, 0); // wake up display
+ 324:Src/main.c    ****   u8g2_SetContrast(&u8g2, 128); // set contrast
+ 325:Src/main.c    ****   u8g2_ClearDisplay(&u8g2);
  326:Src/main.c    **** 
- 327:Src/main.c    ****   u8g2_SendBuffer(&u8g2);
+ 327:Src/main.c    ****   u8g2_ClearBuffer(&u8g2);
  328:Src/main.c    **** 
- 329:Src/main.c    ****   HAL_Delay(2000);
- 330:Src/main.c    **** 
- 331:Src/main.c    ****   /* USER CODE END 2 */
+ 329:Src/main.c    **** 
+ 330:Src/main.c    ****   // draw opening
+ 331:Src/main.c    ****   u8g2_DrawXBMP(&u8g2, 40, 0, logo_width, logo_height, logo_bits );
  332:Src/main.c    **** 
- 333:Src/main.c    ****   /* Infinite loop */
- 334:Src/main.c    ****   /* USER CODE BEGIN WHILE */
- 335:Src/main.c    **** 
- 336:Src/main.c    ****   u8g2_ClearBuffer(&u8g2);
- 337:Src/main.c    **** 
+ 333:Src/main.c    ****   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
+ 334:Src/main.c    ****   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
+ 335:Src/main.c    ****   u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
+ 336:Src/main.c    **** 
+ 337:Src/main.c    ****   u8g2_SendBuffer(&u8g2);
  338:Src/main.c    **** 
- 339:Src/main.c    ****   // draw measurements label & unit
- 340:Src/main.c    ****   for( n=0; n<3; n++ ){
- 341:Src/main.c    **** 	  x = meas_x;
- 342:Src/main.c    **** 	  y = (n % 3) * meas_height	+ meas_y;
- 343:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width1, meas_height, meas_name[n], meas_unit[n]);
- 344:Src/main.c    ****   }
- 345:Src/main.c    ****   for( n=3; n<N_meas; n++ ){
- 346:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
- 347:Src/main.c    **** 	  y = (n % 3) * meas_height	+ meas_y;
- 348:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width2, meas_height, meas_name[n], meas_unit[n]);
- 349:Src/main.c    ****   }
- 350:Src/main.c    **** 
- 351:Src/main.c    **** 
- 352:Src/main.c    ****   // draw indicators
- 353:Src/main.c    ****   for( n=0; n<N_idct; n++ ){
- 354:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
- 355:Src/main.c    ****   }
- 356:Src/main.c    ****   u8g2_SendBuffer(&u8g2);
- 357:Src/main.c    **** 
- 358:Src/main.c    ****   // Fuel Pump voltage & duty
- 359:Src/main.c    ****   
- 360:Src/main.c    ****   draw_MeasLabelUnit(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, "DUTY", "%  ");
- 361:Src/main.c    ****   draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%  ");
- 362:Src/main.c    **** 
- 363:Src/main.c    ****   // update display
- 364:Src/main.c    ****   u8g2_SendBuffer(&u8g2);
- 365:Src/main.c    **** 
- 366:Src/main.c    **** 
- 367:Src/main.c    ****   while (1)
- 368:Src/main.c    ****   {
- 369:Src/main.c    ****   /* USER CODE END WHILE */
- 370:Src/main.c    **** 
- 371:Src/main.c    ****   /* USER CODE BEGIN 3 */
+ 339:Src/main.c    ****   HAL_Delay(2000);
+ 340:Src/main.c    **** 
+ 341:Src/main.c    ****   /* USER CODE END 2 */
+ 342:Src/main.c    **** 
+ 343:Src/main.c    ****   /* Infinite loop */
+ 344:Src/main.c    ****   /* USER CODE BEGIN WHILE */
+ 345:Src/main.c    **** 
+ 346:Src/main.c    ****   u8g2_ClearBuffer(&u8g2);
+ 347:Src/main.c    **** 
+ 348:Src/main.c    **** 
+ 349:Src/main.c    ****   // draw measurements label & unit
+ 350:Src/main.c    ****   for( n=0; n<3; n++ ){
+ 351:Src/main.c    **** 	  x = meas_x;
+ 352:Src/main.c    **** 	  y = (n % 3) * meas_height	+ meas_y;
+ 353:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width1, meas_height, meas_name[n], meas_unit[n]);
+ 354:Src/main.c    ****   }
+ 355:Src/main.c    ****   for( n=3; n<N_meas; n++ ){
+ 356:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
+ 357:Src/main.c    **** 	  y = (n % 3) * meas_height	+ meas_y;
+ 358:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width2, meas_height, meas_name[n], meas_unit[n]);
+ 359:Src/main.c    ****   }
+ 360:Src/main.c    **** 
+ 361:Src/main.c    **** 
+ 362:Src/main.c    ****   // draw indicators
+ 363:Src/main.c    ****   for( n=0; n<N_idct; n++ ){
+ 364:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
+ 365:Src/main.c    ****   }
+ 366:Src/main.c    ****   u8g2_SendBuffer(&u8g2);
+ 367:Src/main.c    **** 
+ 368:Src/main.c    ****   // Fuel Pump voltage & duty
+ 369:Src/main.c    ****   
+ 370:Src/main.c    ****   draw_MeasLabelUnit(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, "DUTY", "%  ");
+ 371:Src/main.c    ****   draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%  ");
  372:Src/main.c    **** 
- 373:Src/main.c    **** 	  // start of create dummy data for debug
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 8
+ 373:Src/main.c    ****   // update display
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 8
 
 
- 374:Src/main.c    **** 		if( rpm <= 8200 ){
- 375:Src/main.c    **** 			  rpm = rpm + (int)(5*MT[gear]);
- 376:Src/main.c    **** 			  //rpm=rpm+10;
- 377:Src/main.c    **** 		}else{
- 378:Src/main.c    **** 			if( gear < 4 ){
- 379:Src/main.c    **** 				gear++;
- 380:Src/main.c    **** 				rpm = (double)speed / (0.002*60.0) * (MT[gear]*4.1);
- 381:Src/main.c    **** 			}else{
- 382:Src/main.c    **** 				gear = 0;
- 383:Src/main.c    **** 				rpm = 1000;
- 384:Src/main.c    **** 			}
- 385:Src/main.c    **** 		}
- 386:Src/main.c    **** 		speed = (double)rpm*0.002*60.0/MT[gear]/4.1;
- 387:Src/main.c    **** 		meas_value[0] = speed; // speed
- 388:Src/main.c    **** 
- 389:Src/main.c    **** 		if( a >= 150){
- 390:Src/main.c    **** 			a = 0;
- 391:Src/main.c    **** 		}else{
- 392:Src/main.c    **** 			a++;
- 393:Src/main.c    **** 		}
- 394:Src/main.c    **** 		for( n=1; n<=5; n++){
- 395:Src/main.c    **** 			if( n==1 ){
- 396:Src/main.c    **** 				meas_value[n] = a - 75;
- 397:Src/main.c    **** 			}else{
- 398:Src/main.c    **** 				meas_value[n] = a;
- 399:Src/main.c    **** 			}
- 400:Src/main.c    **** 		}
- 401:Src/main.c    **** 	  // end of create dummy data for debug
- 402:Src/main.c    **** 
- 403:Src/main.c    **** 		// read O2 sensor ADC output
- 404:Src/main.c    **** 		meas_value[5] = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
- 405:Src/main.c    **** 
- 406:Src/main.c    **** 		// read Fuel Pump Voltage ADC output
- 407:Src/main.c    **** 		FP_volt = (int16_t)(330*(float)g_ADCBuffer[0]/255);
- 408:Src/main.c    ****     FP_duty = (int16_t)(FP_volt/(14.4)*10);
- 409:Src/main.c    **** 		meas_value[2] = FP_volt;
- 410:Src/main.c    **** 
- 411:Src/main.c    **** 		// update Fuel Pump Voltage
- 412:Src/main.c    ****     draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, FP_duty, 3, 0, 0, "%  ");
- 413:Src/main.c    **** 
- 414:Src/main.c    **** 		// draw bar graph
- 415:Src/main.c    **** 		draw_BarGraph(&u8g2, rpmbar_x, rpmbar_y, rpmbar_width, rpmbar_height, rpm, rpm_min, rpm_max);
- 416:Src/main.c    **** 
- 417:Src/main.c    **** 		// draw measurement data
- 418:Src/main.c    **** 		for( n=0; n<3; n++ ){
- 419:Src/main.c    **** 			x = meas_x;
- 420:Src/main.c    **** 			y = (n % 3) * meas_height	+ meas_y;
- 421:Src/main.c    **** 			draw_Value(&u8g2, x, y, meas_width1, meas_height, meas_value[n], meas_digit[n], meas_frac[n], me
- 422:Src/main.c    **** 		}
- 423:Src/main.c    **** 		for( n=3; n<N_meas; n++ ){
- 424:Src/main.c    **** 			x = meas_width1 + meas_x + meas_x_offset;
- 425:Src/main.c    **** 			y = (n % 3) * meas_height	+ meas_y;
- 426:Src/main.c    **** 			draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n], me
- 427:Src/main.c    **** 		}
+ 374:Src/main.c    ****   u8g2_SendBuffer(&u8g2);
+ 375:Src/main.c    **** 
+ 376:Src/main.c    **** 
+ 377:Src/main.c    ****   while (1)
+ 378:Src/main.c    ****   {
+ 379:Src/main.c    ****   /* USER CODE END WHILE */
+ 380:Src/main.c    **** 
+ 381:Src/main.c    ****   /* USER CODE BEGIN 3 */
+ 382:Src/main.c    **** 
+ 383:Src/main.c    **** 	  // start of create dummy data for debug
+ 384:Src/main.c    **** 		if( rpm <= 8200 ){
+ 385:Src/main.c    **** 			  rpm = rpm + (int)(10*MT[gear]);
+ 386:Src/main.c    **** 			  //rpm=rpm+10;
+ 387:Src/main.c    **** 		}else{
+ 388:Src/main.c    **** 			if( gear < 4 ){
+ 389:Src/main.c    **** 				gear++;
+ 390:Src/main.c    **** 				rpm = (double)speed / (0.002*60.0) * (MT[gear]*4.1);
+ 391:Src/main.c    **** 			}else{
+ 392:Src/main.c    **** 				gear = 0;
+ 393:Src/main.c    **** 				rpm = 1000;
+ 394:Src/main.c    **** 			}
+ 395:Src/main.c    **** 		}
+ 396:Src/main.c    **** 		speed = (double)rpm*0.002*60.0/MT[gear]/4.1;
+ 397:Src/main.c    **** 		meas_value[0] = speed; // speed
+ 398:Src/main.c    **** 
+ 399:Src/main.c    **** 		if( a >= 150){
+ 400:Src/main.c    **** 			a = 0;
+ 401:Src/main.c    **** 		}else{
+ 402:Src/main.c    **** 			a++;
+ 403:Src/main.c    **** 		}
+ 404:Src/main.c    **** 		for( n=1; n<=5; n++){
+ 405:Src/main.c    **** 			if( n==1 ){
+ 406:Src/main.c    **** 				meas_value[n] = a - 75;
+ 407:Src/main.c    **** 			}else{
+ 408:Src/main.c    **** 				meas_value[n] = a;
+ 409:Src/main.c    **** 			}
+ 410:Src/main.c    **** 		}
+ 411:Src/main.c    **** 	  // end of create dummy data for debug
+ 412:Src/main.c    **** 
+ 413:Src/main.c    **** 		// read O2 sensor ADC output
+ 414:Src/main.c    **** 		meas_value[5] = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
+ 415:Src/main.c    **** 
+ 416:Src/main.c    **** 		// read Fuel Pump Voltage ADC output
+ 417:Src/main.c    **** 		FP_volt = (int16_t)(330*(float)g_ADCBuffer[0]/255);
+ 418:Src/main.c    ****     FP_duty = (int16_t)(FP_volt/(14.4)*10);
+ 419:Src/main.c    **** 		meas_value[2] = FP_volt;
+ 420:Src/main.c    **** 
+ 421:Src/main.c    **** //    if( read_flag() == 1 ){
+ 422:Src/main.c    ****     if( 1 ){
+ 423:Src/main.c    ****       // update Fuel Pump Voltage
+ 424:Src/main.c    ****       draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, FP_duty, 3, 0, 0, "%  ");
+ 425:Src/main.c    **** 
+ 426:Src/main.c    ****       // draw bar graph
+ 427:Src/main.c    ****       draw_BarGraph(&u8g2, rpmbar_x, rpmbar_y, rpmbar_width, rpmbar_height, rpm, rpm_min, rpm_max);
  428:Src/main.c    **** 
- 429:Src/main.c    **** 		// send buffer
- 430:Src/main.c    **** 	    u8g2_SendBuffer(&u8g2);
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 9
+ 429:Src/main.c    ****       // draw measurement data
+ 430:Src/main.c    ****       for( n=0; n<3; n++ ){
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 9
 
 
- 431:Src/main.c    **** 
- 432:Src/main.c    ****   }
- 433:Src/main.c    ****   /* USER CODE END 3 */
- 434:Src/main.c    **** 
- 435:Src/main.c    **** }
- 436:Src/main.c    **** 
- 437:Src/main.c    **** /** System Clock Configuration
- 438:Src/main.c    **** */
- 439:Src/main.c    **** void SystemClock_Config(void)
- 440:Src/main.c    **** {
- 441:Src/main.c    **** 
- 442:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct;
- 443:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
- 444:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit;
- 445:Src/main.c    **** 
- 446:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
- 447:Src/main.c    ****     */
- 448:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
- 449:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
- 450:Src/main.c    ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
- 451:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 452:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 453:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 454:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
- 455:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 456:Src/main.c    ****   {
- 457:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 458:Src/main.c    ****   }
- 459:Src/main.c    **** 
- 460:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
- 461:Src/main.c    ****     */
- 462:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 463:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 464:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 465:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 466:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
- 467:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 468:Src/main.c    **** 
- 469:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
- 470:Src/main.c    ****   {
- 471:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 472:Src/main.c    ****   }
- 473:Src/main.c    **** 
- 474:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_TIM1;
- 475:Src/main.c    ****   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
- 476:Src/main.c    ****   PeriphClkInit.Tim1ClockSelection = RCC_TIM1CLK_HCLK;
- 477:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 478:Src/main.c    ****   {
- 479:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 480:Src/main.c    ****   }
- 481:Src/main.c    **** 
- 482:Src/main.c    ****     /**Configure the Systick interrupt time 
- 483:Src/main.c    ****     */
- 484:Src/main.c    ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
- 485:Src/main.c    **** 
- 486:Src/main.c    ****     /**Configure the Systick 
- 487:Src/main.c    ****     */
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 10
+ 431:Src/main.c    ****         x = meas_x;
+ 432:Src/main.c    ****         y = (n % 3) * meas_height	+ meas_y;
+ 433:Src/main.c    ****         draw_Value(&u8g2, x, y, meas_width1, meas_height, meas_value[n], meas_digit[n], meas_frac[n
+ 434:Src/main.c    ****       }
+ 435:Src/main.c    ****       for( n=3; n<N_meas; n++ ){
+ 436:Src/main.c    ****         x = meas_width1 + meas_x + meas_x_offset;
+ 437:Src/main.c    ****         y = (n % 3) * meas_height	+ meas_y;
+ 438:Src/main.c    ****         draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n
+ 439:Src/main.c    ****       }
+ 440:Src/main.c    **** 
+ 441:Src/main.c    ****       // send buffer
+ 442:Src/main.c    ****       u8g2_SendBuffer(&u8g2);
+ 443:Src/main.c    ****     }
+ 444:Src/main.c    **** 
+ 445:Src/main.c    **** //    HAL_UART_Transmit_printf( &huart2, "%d rpm, %d \n", rpm, TIM1->CNT);
+ 446:Src/main.c    **** 
+ 447:Src/main.c    **** 
+ 448:Src/main.c    ****   }
+ 449:Src/main.c    ****   /* USER CODE END 3 */
+ 450:Src/main.c    **** 
+ 451:Src/main.c    **** }
+ 452:Src/main.c    **** 
+ 453:Src/main.c    **** /** System Clock Configuration
+ 454:Src/main.c    **** */
+ 455:Src/main.c    **** void SystemClock_Config(void)
+ 456:Src/main.c    **** {
+ 457:Src/main.c    **** 
+ 458:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct;
+ 459:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
+ 460:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit;
+ 461:Src/main.c    **** 
+ 462:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
+ 463:Src/main.c    ****     */
+ 464:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+ 465:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+ 466:Src/main.c    ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+ 467:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 468:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 469:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 470:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+ 471:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 472:Src/main.c    ****   {
+ 473:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 474:Src/main.c    ****   }
+ 475:Src/main.c    **** 
+ 476:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
+ 477:Src/main.c    ****     */
+ 478:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 479:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 480:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 481:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 482:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 483:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 484:Src/main.c    **** 
+ 485:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+ 486:Src/main.c    ****   {
+ 487:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 10
 
 
- 488:Src/main.c    ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+ 488:Src/main.c    ****   }
  489:Src/main.c    **** 
- 490:Src/main.c    ****   /* SysTick_IRQn interrupt configuration */
- 491:Src/main.c    ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
- 492:Src/main.c    **** }
- 493:Src/main.c    **** 
- 494:Src/main.c    **** /* USER CODE BEGIN 4 */
- 495:Src/main.c    **** 
- 496:Src/main.c    **** /* USER CODE END 4 */
+ 490:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_TIM1;
+ 491:Src/main.c    ****   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
+ 492:Src/main.c    ****   PeriphClkInit.Tim1ClockSelection = RCC_TIM1CLK_HCLK;
+ 493:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 494:Src/main.c    ****   {
+ 495:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 496:Src/main.c    ****   }
  497:Src/main.c    **** 
- 498:Src/main.c    **** /**
- 499:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
- 500:Src/main.c    ****   * @param  None
- 501:Src/main.c    ****   * @retval None
- 502:Src/main.c    ****   */
- 503:Src/main.c    **** void _Error_Handler(char * file, int line)
- 504:Src/main.c    **** {
-  28              		.loc 1 504 0
+ 498:Src/main.c    ****     /**Configure the Systick interrupt time 
+ 499:Src/main.c    ****     */
+ 500:Src/main.c    ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+ 501:Src/main.c    **** 
+ 502:Src/main.c    ****     /**Configure the Systick 
+ 503:Src/main.c    ****     */
+ 504:Src/main.c    ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+ 505:Src/main.c    **** 
+ 506:Src/main.c    ****   /* SysTick_IRQn interrupt configuration */
+ 507:Src/main.c    ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+ 508:Src/main.c    **** }
+ 509:Src/main.c    **** 
+ 510:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 511:Src/main.c    **** 
+ 512:Src/main.c    **** /* USER CODE END 4 */
+ 513:Src/main.c    **** 
+ 514:Src/main.c    **** /**
+ 515:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 516:Src/main.c    ****   * @param  None
+ 517:Src/main.c    ****   * @retval None
+ 518:Src/main.c    ****   */
+ 519:Src/main.c    **** void _Error_Handler(char * file, int line)
+ 520:Src/main.c    **** {
+  28              		.loc 1 520 0
   29              		.cfi_startproc
   30              		@ Volatile: function does not return.
   31              		@ args = 0, pretend = 0, frame = 0
@@ -578,13 +594,16 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
   46              		.fpu fpv4-sp-d16
   48              	SystemClock_Config:
   49              	.LFB127:
- 440:Src/main.c    **** 
-  50              		.loc 1 440 0
+ 456:Src/main.c    **** 
+  50              		.loc 1 456 0
   51              		.cfi_startproc
   52              		@ args = 0, pretend = 0, frame = 88
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 11
+
+
   53              		@ frame_needed = 0, uses_anonymous_args = 0
- 440:Src/main.c    **** 
-  54              		.loc 1 440 0
+ 456:Src/main.c    **** 
+  54              		.loc 1 456 0
   55 0000 00B5     		push	{lr}
   56              	.LCFI0:
   57              		.cfi_def_cfa_offset 4
@@ -592,89 +611,86 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
   59 0002 97B0     		sub	sp, sp, #92
   60              	.LCFI1:
   61              		.cfi_def_cfa_offset 96
- 448:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
-  62              		.loc 1 448 0
+ 464:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  62              		.loc 1 464 0
   63 0004 0123     		movs	r3, #1
   64 0006 0C93     		str	r3, [sp, #48]
- 449:Src/main.c    ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
-  65              		.loc 1 449 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 11
-
-
+ 465:Src/main.c    ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  65              		.loc 1 465 0
   66 0008 4FF4A022 		mov	r2, #327680
   67 000c 0D92     		str	r2, [sp, #52]
- 450:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  68              		.loc 1 450 0
+ 466:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  68              		.loc 1 466 0
   69 000e 0022     		movs	r2, #0
   70 0010 0E92     		str	r2, [sp, #56]
- 451:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  71              		.loc 1 451 0
+ 467:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  71              		.loc 1 467 0
   72 0012 1093     		str	r3, [sp, #64]
- 452:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  73              		.loc 1 452 0
+ 468:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  73              		.loc 1 468 0
   74 0014 0223     		movs	r3, #2
   75 0016 1393     		str	r3, [sp, #76]
- 453:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
-  76              		.loc 1 453 0
+ 469:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  76              		.loc 1 469 0
   77 0018 4FF48033 		mov	r3, #65536
   78 001c 1493     		str	r3, [sp, #80]
- 454:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  79              		.loc 1 454 0
+ 470:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  79              		.loc 1 470 0
   80 001e 4FF4E013 		mov	r3, #1835008
   81 0022 1593     		str	r3, [sp, #84]
- 455:Src/main.c    ****   {
-  82              		.loc 1 455 0
+ 471:Src/main.c    ****   {
+  82              		.loc 1 471 0
   83 0024 0CA8     		add	r0, sp, #48
   84 0026 FFF7FEFF 		bl	HAL_RCC_OscConfig
   85              	.LVL1:
   86 002a 58BB     		cbnz	r0, .L8
- 462:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  87              		.loc 1 462 0
+ 478:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  87              		.loc 1 478 0
   88 002c 0F23     		movs	r3, #15
   89 002e 0793     		str	r3, [sp, #28]
- 464:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  90              		.loc 1 464 0
+ 480:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  90              		.loc 1 480 0
   91 0030 0221     		movs	r1, #2
   92 0032 0891     		str	r1, [sp, #32]
- 465:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  93              		.loc 1 465 0
+ 481:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  93              		.loc 1 481 0
   94 0034 0023     		movs	r3, #0
   95 0036 0993     		str	r3, [sp, #36]
- 466:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-  96              		.loc 1 466 0
+ 482:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  96              		.loc 1 482 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 12
+
+
   97 0038 4FF48062 		mov	r2, #1024
   98 003c 0A92     		str	r2, [sp, #40]
- 467:Src/main.c    **** 
-  99              		.loc 1 467 0
+ 483:Src/main.c    **** 
+  99              		.loc 1 483 0
  100 003e 0B93     		str	r3, [sp, #44]
- 469:Src/main.c    ****   {
- 101              		.loc 1 469 0
+ 485:Src/main.c    ****   {
+ 101              		.loc 1 485 0
  102 0040 07A8     		add	r0, sp, #28
  103 0042 FFF7FEFF 		bl	HAL_RCC_ClockConfig
  104              	.LVL2:
  105 0046 10BB     		cbnz	r0, .L9
- 474:Src/main.c    ****   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
- 106              		.loc 1 474 0
+ 490:Src/main.c    ****   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
+ 106              		.loc 1 490 0
  107 0048 41F20103 		movw	r3, #4097
  108 004c 0193     		str	r3, [sp, #4]
- 475:Src/main.c    ****   PeriphClkInit.Tim1ClockSelection = RCC_TIM1CLK_HCLK;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 12
-
-
- 109              		.loc 1 475 0
+ 491:Src/main.c    ****   PeriphClkInit.Tim1ClockSelection = RCC_TIM1CLK_HCLK;
+ 109              		.loc 1 491 0
  110 004e 0023     		movs	r3, #0
  111 0050 0393     		str	r3, [sp, #12]
- 476:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 112              		.loc 1 476 0
+ 492:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 112              		.loc 1 492 0
  113 0052 0693     		str	r3, [sp, #24]
- 477:Src/main.c    ****   {
- 114              		.loc 1 477 0
+ 493:Src/main.c    ****   {
+ 114              		.loc 1 493 0
  115 0054 01A8     		add	r0, sp, #4
  116 0056 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
  117              	.LVL3:
  118 005a E8B9     		cbnz	r0, .L10
- 484:Src/main.c    **** 
- 119              		.loc 1 484 0
+ 500:Src/main.c    **** 
+ 119              		.loc 1 500 0
  120 005c FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
  121              	.LVL4:
  122 0060 104B     		ldr	r3, .L11
@@ -682,49 +698,49 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
  124 0066 8009     		lsrs	r0, r0, #6
  125 0068 FFF7FEFF 		bl	HAL_SYSTICK_Config
  126              	.LVL5:
- 488:Src/main.c    **** 
- 127              		.loc 1 488 0
+ 504:Src/main.c    **** 
+ 127              		.loc 1 504 0
  128 006c 0420     		movs	r0, #4
  129 006e FFF7FEFF 		bl	HAL_SYSTICK_CLKSourceConfig
  130              	.LVL6:
- 491:Src/main.c    **** }
- 131              		.loc 1 491 0
+ 507:Src/main.c    **** }
+ 131              		.loc 1 507 0
  132 0072 0022     		movs	r2, #0
  133 0074 1146     		mov	r1, r2
  134 0076 4FF0FF30 		mov	r0, #-1
  135 007a FFF7FEFF 		bl	HAL_NVIC_SetPriority
  136              	.LVL7:
- 492:Src/main.c    **** 
- 137              		.loc 1 492 0
+ 508:Src/main.c    **** 
+ 137              		.loc 1 508 0
  138 007e 17B0     		add	sp, sp, #92
  139              	.LCFI2:
  140              		.cfi_remember_state
  141              		.cfi_def_cfa_offset 4
  142              		@ sp needed
  143 0080 5DF804FB 		ldr	pc, [sp], #4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 13
+
+
  144              	.L8:
  145              	.LCFI3:
  146              		.cfi_restore_state
- 457:Src/main.c    ****   }
- 147              		.loc 1 457 0
- 148 0084 40F2C911 		movw	r1, #457
+ 473:Src/main.c    ****   }
+ 147              		.loc 1 473 0
+ 148 0084 40F2D911 		movw	r1, #473
  149 0088 0748     		ldr	r0, .L11+4
  150 008a FFF7FEFF 		bl	_Error_Handler
  151              	.LVL8:
  152              	.L9:
- 471:Src/main.c    ****   }
- 153              		.loc 1 471 0
- 154 008e 40F2D711 		movw	r1, #471
+ 487:Src/main.c    ****   }
+ 153              		.loc 1 487 0
+ 154 008e 40F2E711 		movw	r1, #487
  155 0092 0548     		ldr	r0, .L11+4
  156 0094 FFF7FEFF 		bl	_Error_Handler
  157              	.LVL9:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 13
-
-
  158              	.L10:
- 479:Src/main.c    ****   }
- 159              		.loc 1 479 0
- 160 0098 40F2DF11 		movw	r1, #479
+ 495:Src/main.c    ****   }
+ 159              		.loc 1 495 0
+ 160 0098 40F2EF11 		movw	r1, #495
  161 009c 0248     		ldr	r0, .L11+4
  162 009e FFF7FEFF 		bl	_Error_Handler
  163              	.LVL10:
@@ -750,8 +766,8 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
  184              		.fpu fpv4-sp-d16
  186              	main:
  187              	.LFB126:
- 264:Src/main.c    **** 
- 188              		.loc 1 264 0
+ 266:Src/main.c    **** 
+ 188              		.loc 1 266 0
  189              		.cfi_startproc
  190              		@ args = 0, pretend = 0, frame = 2048
  191              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -762,1407 +778,1430 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 1
  196              		.cfi_offset 5, -16
  197              		.cfi_offset 6, -12
  198              		.cfi_offset 7, -8
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 14
+
+
  199              		.cfi_offset 14, -4
  200 0002 ADF61C0D 		subw	sp, sp, #2076
  201              	.LCFI5:
  202              		.cfi_def_cfa_offset 2096
- 273:Src/main.c    **** 
- 203              		.loc 1 273 0
+ 275:Src/main.c    **** 
+ 203              		.loc 1 275 0
  204 0006 FFF7FEFF 		bl	HAL_Init
  205              	.LVL11:
- 286:Src/main.c    **** 
- 206              		.loc 1 286 0
+ 288:Src/main.c    **** 
+ 206              		.loc 1 288 0
  207 000a FFF7FEFF 		bl	SystemClock_Config
  208              	.LVL12:
- 293:Src/main.c    ****   MX_DMA_Init();
- 209              		.loc 1 293 0
+ 295:Src/main.c    ****   MX_DMA_Init();
+ 209              		.loc 1 295 0
  210 000e FFF7FEFF 		bl	MX_GPIO_Init
  211              	.LVL13:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 14
-
-
- 294:Src/main.c    ****   MX_USART2_UART_Init();
- 212              		.loc 1 294 0
+ 296:Src/main.c    ****   MX_USART2_UART_Init();
+ 212              		.loc 1 296 0
  213 0012 FFF7FEFF 		bl	MX_DMA_Init
  214              	.LVL14:
- 295:Src/main.c    ****   MX_TIM1_Init();
- 215              		.loc 1 295 0
+ 297:Src/main.c    ****   MX_TIM1_Init();
+ 215              		.loc 1 297 0
  216 0016 FFF7FEFF 		bl	MX_USART2_UART_Init
  217              	.LVL15:
- 296:Src/main.c    ****   MX_USART1_UART_Init();
- 218              		.loc 1 296 0
+ 298:Src/main.c    ****   MX_USART1_UART_Init();
+ 218              		.loc 1 298 0
  219 001a FFF7FEFF 		bl	MX_TIM1_Init
  220              	.LVL16:
- 297:Src/main.c    ****   MX_SPI1_Init();
- 221              		.loc 1 297 0
+ 299:Src/main.c    ****   MX_SPI1_Init();
+ 221              		.loc 1 299 0
  222 001e FFF7FEFF 		bl	MX_USART1_UART_Init
  223              	.LVL17:
- 298:Src/main.c    ****   MX_ADC1_Init();
- 224              		.loc 1 298 0
+ 300:Src/main.c    ****   MX_ADC1_Init();
+ 224              		.loc 1 300 0
  225 0022 FFF7FEFF 		bl	MX_SPI1_Init
  226              	.LVL18:
- 299:Src/main.c    **** 
- 227              		.loc 1 299 0
+ 301:Src/main.c    **** 
+ 227              		.loc 1 301 0
  228 0026 FFF7FEFF 		bl	MX_ADC1_Init
  229              	.LVL19:
- 306:Src/main.c    ****   HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
- 230              		.loc 1 306 0
- 231 002a 4FF40062 		mov	r2, #2048
- 232 002e 0021     		movs	r1, #0
- 233 0030 06A8     		add	r0, sp, #24
- 234 0032 FFF7FEFF 		bl	memset
- 235              	.LVL20:
- 307:Src/main.c    **** 
- 236              		.loc 1 307 0
- 237 0036 4FF48062 		mov	r2, #1024
- 238 003a 06A9     		add	r1, sp, #24
- 239 003c B048     		ldr	r0, .L38+24
- 240 003e FFF7FEFF 		bl	HAL_ADC_Start_DMA
- 241              	.LVL21:
- 310:Src/main.c    ****   HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 1); // Set RES=H (OLED activate)
- 242              		.loc 1 310 0
- 243 0042 B04C     		ldr	r4, .L38+28
- 244 0044 B04B     		ldr	r3, .L38+32
- 245 0046 B14A     		ldr	r2, .L38+36
- 246 0048 B149     		ldr	r1, .L38+40
- 247 004a 2046     		mov	r0, r4
- 248 004c FFF7FEFF 		bl	u8g2_Setup_ssd1309_128x64_noname2_f
- 249              	.LVL22:
- 311:Src/main.c    ****   u8g2_InitDisplay(&u8g2); // send init sequence to the display, display is in sleep mode after thi
- 250              		.loc 1 311 0
- 251 0050 0122     		movs	r2, #1
- 252 0052 0821     		movs	r1, #8
- 253 0054 AF48     		ldr	r0, .L38+44
- 254 0056 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 255              	.LVL23:
- 312:Src/main.c    ****   u8g2_SetPowerSave(&u8g2, 0); // wake up display
- 256              		.loc 1 312 0
- 257 005a 2046     		mov	r0, r4
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 15
+ 307:Src/main.c    ****   {
+ 230              		.loc 1 307 0
+ 231 002a BB48     		ldr	r0, .L39+24
+ 232 002c FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 233              	.LVL20:
+ 234 0030 20B1     		cbz	r0, .L14
+ 309:Src/main.c    ****   }
+ 235              		.loc 1 309 0
+ 236 0032 40F23511 		movw	r1, #309
+ 237 0036 B948     		ldr	r0, .L39+28
+ 238 0038 FFF7FEFF 		bl	_Error_Handler
+ 239              	.LVL21:
+ 240              	.L14:
+ 316:Src/main.c    ****   HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
+ 241              		.loc 1 316 0
+ 242 003c 4FF40062 		mov	r2, #2048
+ 243 0040 0021     		movs	r1, #0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 15
 
 
- 258 005c FFF7FEFF 		bl	u8x8_InitDisplay
- 259              	.LVL24:
- 313:Src/main.c    ****   u8g2_SetContrast(&u8g2, 128); // set contrast
- 260              		.loc 1 313 0
- 261 0060 0021     		movs	r1, #0
- 262 0062 2046     		mov	r0, r4
- 263 0064 FFF7FEFF 		bl	u8x8_SetPowerSave
- 264              	.LVL25:
- 314:Src/main.c    ****   u8g2_ClearDisplay(&u8g2);
- 265              		.loc 1 314 0
- 266 0068 8021     		movs	r1, #128
- 267 006a 2046     		mov	r0, r4
- 268 006c FFF7FEFF 		bl	u8x8_SetContrast
- 269              	.LVL26:
- 315:Src/main.c    **** 
- 270              		.loc 1 315 0
- 271 0070 2046     		mov	r0, r4
- 272 0072 FFF7FEFF 		bl	u8g2_ClearDisplay
- 273              	.LVL27:
+ 244 0042 06A8     		add	r0, sp, #24
+ 245 0044 FFF7FEFF 		bl	memset
+ 246              	.LVL22:
  317:Src/main.c    **** 
- 274              		.loc 1 317 0
- 275 0076 2046     		mov	r0, r4
- 276 0078 FFF7FEFF 		bl	u8g2_ClearBuffer
- 277              	.LVL28:
- 321:Src/main.c    **** 
- 278              		.loc 1 321 0
- 279 007c A64B     		ldr	r3, .L38+48
- 280 007e 0193     		str	r3, [sp, #4]
- 281 0080 3023     		movs	r3, #48
- 282 0082 0093     		str	r3, [sp]
- 283 0084 0022     		movs	r2, #0
- 284 0086 2821     		movs	r1, #40
- 285 0088 2046     		mov	r0, r4
- 286 008a FFF7FEFF 		bl	u8g2_DrawXBMP
- 287              	.LVL29:
- 323:Src/main.c    ****   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
- 288              		.loc 1 323 0
- 289 008e A349     		ldr	r1, .L38+52
- 290 0090 2046     		mov	r0, r4
- 291 0092 FFF7FEFF 		bl	u8g2_SetFont
- 292              	.LVL30:
- 324:Src/main.c    ****   u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
- 293              		.loc 1 324 0
- 294 0096 A24B     		ldr	r3, .L38+56
- 295 0098 3722     		movs	r2, #55
- 296 009a 1021     		movs	r1, #16
- 297 009c 2046     		mov	r0, r4
- 298 009e FFF7FEFF 		bl	u8g2_DrawStr
- 299              	.LVL31:
+ 247              		.loc 1 317 0
+ 248 0048 4FF48062 		mov	r2, #1024
+ 249 004c 06A9     		add	r1, sp, #24
+ 250 004e B448     		ldr	r0, .L39+32
+ 251 0050 FFF7FEFF 		bl	HAL_ADC_Start_DMA
+ 252              	.LVL23:
+ 320:Src/main.c    ****   HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 1); // Set RES=H (OLED activate)
+ 253              		.loc 1 320 0
+ 254 0054 B34C     		ldr	r4, .L39+36
+ 255 0056 B44B     		ldr	r3, .L39+40
+ 256 0058 B44A     		ldr	r2, .L39+44
+ 257 005a B549     		ldr	r1, .L39+48
+ 258 005c 2046     		mov	r0, r4
+ 259 005e FFF7FEFF 		bl	u8g2_Setup_ssd1309_128x64_noname2_f
+ 260              	.LVL24:
+ 321:Src/main.c    ****   u8g2_InitDisplay(&u8g2); // send init sequence to the display, display is in sleep mode after thi
+ 261              		.loc 1 321 0
+ 262 0062 0122     		movs	r2, #1
+ 263 0064 0821     		movs	r1, #8
+ 264 0066 B348     		ldr	r0, .L39+52
+ 265 0068 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 266              	.LVL25:
+ 322:Src/main.c    ****   u8g2_SetPowerSave(&u8g2, 0); // wake up display
+ 267              		.loc 1 322 0
+ 268 006c 2046     		mov	r0, r4
+ 269 006e FFF7FEFF 		bl	u8x8_InitDisplay
+ 270              	.LVL26:
+ 323:Src/main.c    ****   u8g2_SetContrast(&u8g2, 128); // set contrast
+ 271              		.loc 1 323 0
+ 272 0072 0021     		movs	r1, #0
+ 273 0074 2046     		mov	r0, r4
+ 274 0076 FFF7FEFF 		bl	u8x8_SetPowerSave
+ 275              	.LVL27:
+ 324:Src/main.c    ****   u8g2_ClearDisplay(&u8g2);
+ 276              		.loc 1 324 0
+ 277 007a 8021     		movs	r1, #128
+ 278 007c 2046     		mov	r0, r4
+ 279 007e FFF7FEFF 		bl	u8x8_SetContrast
+ 280              	.LVL28:
  325:Src/main.c    **** 
- 300              		.loc 1 325 0
- 301 00a2 A04B     		ldr	r3, .L38+60
- 302 00a4 4022     		movs	r2, #64
- 303 00a6 2821     		movs	r1, #40
- 304 00a8 2046     		mov	r0, r4
- 305 00aa FFF7FEFF 		bl	u8g2_DrawStr
- 306              	.LVL32:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 16
-
-
+ 281              		.loc 1 325 0
+ 282 0082 2046     		mov	r0, r4
+ 283 0084 FFF7FEFF 		bl	u8g2_ClearDisplay
+ 284              	.LVL29:
  327:Src/main.c    **** 
- 307              		.loc 1 327 0
+ 285              		.loc 1 327 0
+ 286 0088 2046     		mov	r0, r4
+ 287 008a FFF7FEFF 		bl	u8g2_ClearBuffer
+ 288              	.LVL30:
+ 331:Src/main.c    **** 
+ 289              		.loc 1 331 0
+ 290 008e AA4B     		ldr	r3, .L39+56
+ 291 0090 0193     		str	r3, [sp, #4]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 16
+
+
+ 292 0092 3023     		movs	r3, #48
+ 293 0094 0093     		str	r3, [sp]
+ 294 0096 0022     		movs	r2, #0
+ 295 0098 2821     		movs	r1, #40
+ 296 009a 2046     		mov	r0, r4
+ 297 009c FFF7FEFF 		bl	u8g2_DrawXBMP
+ 298              	.LVL31:
+ 333:Src/main.c    ****   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
+ 299              		.loc 1 333 0
+ 300 00a0 A649     		ldr	r1, .L39+60
+ 301 00a2 2046     		mov	r0, r4
+ 302 00a4 FFF7FEFF 		bl	u8g2_SetFont
+ 303              	.LVL32:
+ 334:Src/main.c    ****   u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
+ 304              		.loc 1 334 0
+ 305 00a8 A54B     		ldr	r3, .L39+64
+ 306 00aa 3722     		movs	r2, #55
+ 307 00ac 1021     		movs	r1, #16
  308 00ae 2046     		mov	r0, r4
- 309 00b0 FFF7FEFF 		bl	u8g2_SendBuffer
+ 309 00b0 FFF7FEFF 		bl	u8g2_DrawStr
  310              	.LVL33:
- 329:Src/main.c    **** 
- 311              		.loc 1 329 0
- 312 00b4 4FF4FA60 		mov	r0, #2000
- 313 00b8 FFF7FEFF 		bl	HAL_Delay
- 314              	.LVL34:
- 336:Src/main.c    **** 
- 315              		.loc 1 336 0
- 316 00bc 2046     		mov	r0, r4
- 317 00be FFF7FEFF 		bl	u8g2_ClearBuffer
- 318              	.LVL35:
- 340:Src/main.c    **** 	  x = meas_x;
- 319              		.loc 1 340 0
- 320 00c2 0024     		movs	r4, #0
- 321 00c4 20E0     		b	.L14
- 322              	.LVL36:
- 323              	.L15:
- 342:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width1, meas_height, meas_name[n], meas_unit[n]);
- 324              		.loc 1 342 0 discriminator 3
- 325 00c6 984B     		ldr	r3, .L38+64
- 326 00c8 A3FB0423 		umull	r2, r3, r3, r4
- 327 00cc 5B08     		lsrs	r3, r3, #1
- 328 00ce 03EB4303 		add	r3, r3, r3, lsl #1
- 329 00d2 E31A     		subs	r3, r4, r3
- 330 00d4 03EB4303 		add	r3, r3, r3, lsl #1
- 331 00d8 9A00     		lsls	r2, r3, #2
- 332 00da D2B2     		uxtb	r2, r2
- 333 00dc 1032     		adds	r2, r2, #16
- 334              	.LVL37:
- 343:Src/main.c    ****   }
- 335              		.loc 1 343 0 discriminator 3
- 336 00de C4EBC401 		rsb	r1, r4, r4, lsl #3
- 337 00e2 924B     		ldr	r3, .L38+68
- 338 00e4 0B44     		add	r3, r3, r1
- 339 00e6 04EB8400 		add	r0, r4, r4, lsl #2
- 340 00ea 9149     		ldr	r1, .L38+72
- 341 00ec 0144     		add	r1, r1, r0
- 342 00ee 0291     		str	r1, [sp, #8]
- 343 00f0 0193     		str	r3, [sp, #4]
- 344 00f2 0C23     		movs	r3, #12
- 345 00f4 0093     		str	r3, [sp]
- 346 00f6 4623     		movs	r3, #70
- 347 00f8 02F0FC02 		and	r2, r2, #252
- 348              	.LVL38:
- 349 00fc 0021     		movs	r1, #0
- 350 00fe 8148     		ldr	r0, .L38+28
- 351 0100 FFF7FEFF 		bl	draw_MeasLabelUnit
- 352              	.LVL39:
- 340:Src/main.c    **** 	  x = meas_x;
- 353              		.loc 1 340 0 discriminator 3
- 354 0104 0134     		adds	r4, r4, #1
- 355              	.LVL40:
- 356 0106 E4B2     		uxtb	r4, r4
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 17
+ 335:Src/main.c    **** 
+ 311              		.loc 1 335 0
+ 312 00b4 A34B     		ldr	r3, .L39+68
+ 313 00b6 4022     		movs	r2, #64
+ 314 00b8 2821     		movs	r1, #40
+ 315 00ba 2046     		mov	r0, r4
+ 316 00bc FFF7FEFF 		bl	u8g2_DrawStr
+ 317              	.LVL34:
+ 337:Src/main.c    **** 
+ 318              		.loc 1 337 0
+ 319 00c0 2046     		mov	r0, r4
+ 320 00c2 FFF7FEFF 		bl	u8g2_SendBuffer
+ 321              	.LVL35:
+ 339:Src/main.c    **** 
+ 322              		.loc 1 339 0
+ 323 00c6 4FF4FA60 		mov	r0, #2000
+ 324 00ca FFF7FEFF 		bl	HAL_Delay
+ 325              	.LVL36:
+ 346:Src/main.c    **** 
+ 326              		.loc 1 346 0
+ 327 00ce 2046     		mov	r0, r4
+ 328 00d0 FFF7FEFF 		bl	u8g2_ClearBuffer
+ 329              	.LVL37:
+ 350:Src/main.c    **** 	  x = meas_x;
+ 330              		.loc 1 350 0
+ 331 00d4 0024     		movs	r4, #0
+ 332 00d6 20E0     		b	.L15
+ 333              	.LVL38:
+ 334              	.L16:
+ 352:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width1, meas_height, meas_name[n], meas_unit[n]);
+ 335              		.loc 1 352 0 discriminator 3
+ 336 00d8 9B4B     		ldr	r3, .L39+72
+ 337 00da A3FB0423 		umull	r2, r3, r3, r4
+ 338 00de 5B08     		lsrs	r3, r3, #1
+ 339 00e0 03EB4303 		add	r3, r3, r3, lsl #1
+ 340 00e4 E31A     		subs	r3, r4, r3
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 17
 
 
- 357              	.LVL41:
- 358              	.L14:
- 340:Src/main.c    **** 	  x = meas_x;
- 359              		.loc 1 340 0 is_stmt 0 discriminator 1
- 360 0108 022C     		cmp	r4, #2
- 361 010a DCD9     		bls	.L15
- 345:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
- 362              		.loc 1 345 0 is_stmt 1
- 363 010c 0324     		movs	r4, #3
- 364              	.LVL42:
- 365 010e 20E0     		b	.L16
- 366              	.LVL43:
- 367              	.L17:
- 347:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width2, meas_height, meas_name[n], meas_unit[n]);
- 368              		.loc 1 347 0 discriminator 3
- 369 0110 854B     		ldr	r3, .L38+64
- 370 0112 A3FB0423 		umull	r2, r3, r3, r4
- 371 0116 5B08     		lsrs	r3, r3, #1
- 372 0118 03EB4303 		add	r3, r3, r3, lsl #1
- 373 011c E31A     		subs	r3, r4, r3
- 374 011e 03EB4303 		add	r3, r3, r3, lsl #1
- 375 0122 9A00     		lsls	r2, r3, #2
- 376 0124 D2B2     		uxtb	r2, r2
- 377 0126 1032     		adds	r2, r2, #16
- 378              	.LVL44:
- 348:Src/main.c    ****   }
- 379              		.loc 1 348 0 discriminator 3
- 380 0128 C4EBC401 		rsb	r1, r4, r4, lsl #3
- 381 012c 7F4B     		ldr	r3, .L38+68
- 382 012e 0B44     		add	r3, r3, r1
- 383 0130 04EB8400 		add	r0, r4, r4, lsl #2
- 384 0134 7E49     		ldr	r1, .L38+72
- 385 0136 0144     		add	r1, r1, r0
- 386 0138 0291     		str	r1, [sp, #8]
- 387 013a 0193     		str	r3, [sp, #4]
- 388 013c 0C23     		movs	r3, #12
- 389 013e 0093     		str	r3, [sp]
- 390 0140 3823     		movs	r3, #56
- 391 0142 02F0FC02 		and	r2, r2, #252
- 392              	.LVL45:
- 393 0146 4821     		movs	r1, #72
- 394 0148 6E48     		ldr	r0, .L38+28
- 395 014a FFF7FEFF 		bl	draw_MeasLabelUnit
- 396              	.LVL46:
- 345:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
- 397              		.loc 1 345 0 discriminator 3
- 398 014e 0134     		adds	r4, r4, #1
- 399              	.LVL47:
- 400 0150 E4B2     		uxtb	r4, r4
- 401              	.LVL48:
- 402              	.L16:
- 345:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
- 403              		.loc 1 345 0 is_stmt 0 discriminator 1
- 404 0152 052C     		cmp	r4, #5
- 405 0154 DCD9     		bls	.L17
- 353:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
- 406              		.loc 1 353 0 is_stmt 1
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 18
+ 341 00e6 03EB4303 		add	r3, r3, r3, lsl #1
+ 342 00ea 9A00     		lsls	r2, r3, #2
+ 343 00ec D2B2     		uxtb	r2, r2
+ 344 00ee 1032     		adds	r2, r2, #16
+ 345              	.LVL39:
+ 353:Src/main.c    ****   }
+ 346              		.loc 1 353 0 discriminator 3
+ 347 00f0 C4EBC401 		rsb	r1, r4, r4, lsl #3
+ 348 00f4 954B     		ldr	r3, .L39+76
+ 349 00f6 0B44     		add	r3, r3, r1
+ 350 00f8 04EB8400 		add	r0, r4, r4, lsl #2
+ 351 00fc 9449     		ldr	r1, .L39+80
+ 352 00fe 0144     		add	r1, r1, r0
+ 353 0100 0291     		str	r1, [sp, #8]
+ 354 0102 0193     		str	r3, [sp, #4]
+ 355 0104 0C23     		movs	r3, #12
+ 356 0106 0093     		str	r3, [sp]
+ 357 0108 4623     		movs	r3, #70
+ 358 010a 02F0FC02 		and	r2, r2, #252
+ 359              	.LVL40:
+ 360 010e 0021     		movs	r1, #0
+ 361 0110 8448     		ldr	r0, .L39+36
+ 362 0112 FFF7FEFF 		bl	draw_MeasLabelUnit
+ 363              	.LVL41:
+ 350:Src/main.c    **** 	  x = meas_x;
+ 364              		.loc 1 350 0 discriminator 3
+ 365 0116 0134     		adds	r4, r4, #1
+ 366              	.LVL42:
+ 367 0118 E4B2     		uxtb	r4, r4
+ 368              	.LVL43:
+ 369              	.L15:
+ 350:Src/main.c    **** 	  x = meas_x;
+ 370              		.loc 1 350 0 is_stmt 0 discriminator 1
+ 371 011a 022C     		cmp	r4, #2
+ 372 011c DCD9     		bls	.L16
+ 355:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
+ 373              		.loc 1 355 0 is_stmt 1
+ 374 011e 0324     		movs	r4, #3
+ 375              	.LVL44:
+ 376 0120 20E0     		b	.L17
+ 377              	.LVL45:
+ 378              	.L18:
+ 357:Src/main.c    **** 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width2, meas_height, meas_name[n], meas_unit[n]);
+ 379              		.loc 1 357 0 discriminator 3
+ 380 0122 894B     		ldr	r3, .L39+72
+ 381 0124 A3FB0423 		umull	r2, r3, r3, r4
+ 382 0128 5B08     		lsrs	r3, r3, #1
+ 383 012a 03EB4303 		add	r3, r3, r3, lsl #1
+ 384 012e E31A     		subs	r3, r4, r3
+ 385 0130 03EB4303 		add	r3, r3, r3, lsl #1
+ 386 0134 9A00     		lsls	r2, r3, #2
+ 387 0136 D2B2     		uxtb	r2, r2
+ 388 0138 1032     		adds	r2, r2, #16
+ 389              	.LVL46:
+ 358:Src/main.c    ****   }
+ 390              		.loc 1 358 0 discriminator 3
+ 391 013a C4EBC401 		rsb	r1, r4, r4, lsl #3
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 18
 
 
- 407 0156 0024     		movs	r4, #0
- 408              	.LVL49:
- 409              	.L18:
- 353:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
- 410              		.loc 1 353 0 is_stmt 0 discriminator 1
- 411 0158 012C     		cmp	r4, #1
- 412 015a 17D8     		bhi	.L35
- 354:Src/main.c    ****   }
- 413              		.loc 1 354 0 is_stmt 1 discriminator 3
- 414 015c 04EB8402 		add	r2, r4, r4, lsl #2
- 415 0160 744B     		ldr	r3, .L38+76
- 416 0162 1344     		add	r3, r3, r2
- 417 0164 C4EBC401 		rsb	r1, r4, r4, lsl #3
- 418 0168 04EB8101 		add	r1, r4, r1, lsl #2
- 419 016c 4831     		adds	r1, r1, #72
- 420 016e 0293     		str	r3, [sp, #8]
- 421 0170 714B     		ldr	r3, .L38+80
- 422 0172 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
- 423 0174 0193     		str	r3, [sp, #4]
- 424 0176 0923     		movs	r3, #9
- 425 0178 0093     		str	r3, [sp]
- 426 017a 1B23     		movs	r3, #27
- 427 017c 3522     		movs	r2, #53
- 428 017e C9B2     		uxtb	r1, r1
- 429 0180 6048     		ldr	r0, .L38+28
- 430 0182 FFF7FEFF 		bl	draw_IndicatorBox
- 431              	.LVL50:
- 353:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
- 432              		.loc 1 353 0 discriminator 3
- 433 0186 0134     		adds	r4, r4, #1
- 434              	.LVL51:
- 435 0188 E4B2     		uxtb	r4, r4
- 436              	.LVL52:
- 437 018a E5E7     		b	.L18
- 438              	.L35:
- 356:Src/main.c    **** 
- 439              		.loc 1 356 0
- 440 018c 5D4C     		ldr	r4, .L38+28
- 441              	.LVL53:
- 442 018e 2046     		mov	r0, r4
- 443 0190 FFF7FEFF 		bl	u8g2_SendBuffer
- 444              	.LVL54:
- 360:Src/main.c    ****   draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%  ");
- 445              		.loc 1 360 0
- 446 0194 694D     		ldr	r5, .L38+84
- 447 0196 0295     		str	r5, [sp, #8]
- 448 0198 694B     		ldr	r3, .L38+88
- 449 019a 0193     		str	r3, [sp, #4]
- 450 019c 0C26     		movs	r6, #12
- 451 019e 0096     		str	r6, [sp]
- 452 01a0 4623     		movs	r3, #70
- 453 01a2 3422     		movs	r2, #52
- 454 01a4 0021     		movs	r1, #0
- 455 01a6 2046     		mov	r0, r4
- 456 01a8 FFF7FEFF 		bl	draw_MeasLabelUnit
- 457              	.LVL55:
- 361:Src/main.c    **** 
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 19
+ 392 013e 834B     		ldr	r3, .L39+76
+ 393 0140 0B44     		add	r3, r3, r1
+ 394 0142 04EB8400 		add	r0, r4, r4, lsl #2
+ 395 0146 8249     		ldr	r1, .L39+80
+ 396 0148 0144     		add	r1, r1, r0
+ 397 014a 0291     		str	r1, [sp, #8]
+ 398 014c 0193     		str	r3, [sp, #4]
+ 399 014e 0C23     		movs	r3, #12
+ 400 0150 0093     		str	r3, [sp]
+ 401 0152 3823     		movs	r3, #56
+ 402 0154 02F0FC02 		and	r2, r2, #252
+ 403              	.LVL47:
+ 404 0158 4821     		movs	r1, #72
+ 405 015a 7248     		ldr	r0, .L39+36
+ 406 015c FFF7FEFF 		bl	draw_MeasLabelUnit
+ 407              	.LVL48:
+ 355:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
+ 408              		.loc 1 355 0 discriminator 3
+ 409 0160 0134     		adds	r4, r4, #1
+ 410              	.LVL49:
+ 411 0162 E4B2     		uxtb	r4, r4
+ 412              	.LVL50:
+ 413              	.L17:
+ 355:Src/main.c    **** 	  x = meas_width1 + meas_x + meas_x_offset;
+ 414              		.loc 1 355 0 is_stmt 0 discriminator 1
+ 415 0164 052C     		cmp	r4, #5
+ 416 0166 DCD9     		bls	.L18
+ 363:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
+ 417              		.loc 1 363 0 is_stmt 1
+ 418 0168 0024     		movs	r4, #0
+ 419              	.LVL51:
+ 420              	.L19:
+ 363:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
+ 421              		.loc 1 363 0 is_stmt 0 discriminator 1
+ 422 016a 012C     		cmp	r4, #1
+ 423 016c 17D8     		bhi	.L36
+ 364:Src/main.c    ****   }
+ 424              		.loc 1 364 0 is_stmt 1 discriminator 3
+ 425 016e 04EB8402 		add	r2, r4, r4, lsl #2
+ 426 0172 784B     		ldr	r3, .L39+84
+ 427 0174 1344     		add	r3, r3, r2
+ 428 0176 C4EBC401 		rsb	r1, r4, r4, lsl #3
+ 429 017a 04EB8101 		add	r1, r4, r1, lsl #2
+ 430 017e 4831     		adds	r1, r1, #72
+ 431 0180 0293     		str	r3, [sp, #8]
+ 432 0182 754B     		ldr	r3, .L39+88
+ 433 0184 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
+ 434 0186 0193     		str	r3, [sp, #4]
+ 435 0188 0923     		movs	r3, #9
+ 436 018a 0093     		str	r3, [sp]
+ 437 018c 1B23     		movs	r3, #27
+ 438 018e 3522     		movs	r2, #53
+ 439 0190 C9B2     		uxtb	r1, r1
+ 440 0192 6448     		ldr	r0, .L39+36
+ 441 0194 FFF7FEFF 		bl	draw_IndicatorBox
+ 442              	.LVL52:
+ 363:Src/main.c    **** 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 19
 
 
- 458              		.loc 1 361 0
- 459 01ac 0595     		str	r5, [sp, #20]
- 460 01ae 0025     		movs	r5, #0
- 461 01b0 0495     		str	r5, [sp, #16]
- 462 01b2 0395     		str	r5, [sp, #12]
- 463 01b4 0323     		movs	r3, #3
- 464 01b6 0293     		str	r3, [sp, #8]
- 465 01b8 6423     		movs	r3, #100
- 466 01ba 0193     		str	r3, [sp, #4]
- 467 01bc 0096     		str	r6, [sp]
- 468 01be 4623     		movs	r3, #70
- 469 01c0 3422     		movs	r2, #52
- 470 01c2 2946     		mov	r1, r5
- 471 01c4 2046     		mov	r0, r4
- 472 01c6 FFF7FEFF 		bl	draw_Value
- 473              	.LVL56:
- 364:Src/main.c    **** 
- 474              		.loc 1 364 0
- 475 01ca 2046     		mov	r0, r4
- 476 01cc FFF7FEFF 		bl	u8g2_SendBuffer
- 477              	.LVL57:
- 478 01d0 27E1     		b	.L32
- 479              	.LVL58:
- 480              	.L20:
- 378:Src/main.c    **** 				gear++;
- 481              		.loc 1 378 0
- 482 01d2 5C4B     		ldr	r3, .L38+92
- 483 01d4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 484 01d6 032B     		cmp	r3, #3
- 485 01d8 23D8     		bhi	.L22
- 379:Src/main.c    **** 				rpm = (double)speed / (0.002*60.0) * (MT[gear]*4.1);
- 486              		.loc 1 379 0
- 487 01da 0133     		adds	r3, r3, #1
- 488 01dc DCB2     		uxtb	r4, r3
- 489 01de 594B     		ldr	r3, .L38+92
- 490 01e0 1C70     		strb	r4, [r3]
- 380:Src/main.c    **** 			}else{
- 491              		.loc 1 380 0
- 492 01e2 594B     		ldr	r3, .L38+96
- 493 01e4 1888     		ldrh	r0, [r3]
- 494 01e6 FFF7FEFF 		bl	__aeabi_ui2d
- 495              	.LVL59:
- 496 01ea 3FA3     		adr	r3, .L38
- 497 01ec D3E90023 		ldrd	r2, [r3]
- 498 01f0 FFF7FEFF 		bl	__aeabi_ddiv
- 499              	.LVL60:
- 500 01f4 0646     		mov	r6, r0
- 501 01f6 0F46     		mov	r7, r1
- 502 01f8 544B     		ldr	r3, .L38+100
- 503 01fa 03EBC404 		add	r4, r3, r4, lsl #3
- 504 01fe 3CA3     		adr	r3, .L38+8
- 505 0200 D3E90023 		ldrd	r2, [r3]
- 506 0204 D4E90001 		ldrd	r0, [r4]
- 507 0208 FFF7FEFF 		bl	__aeabi_dmul
- 508              	.LVL61:
- 509 020c 0246     		mov	r2, r0
- 510 020e 0B46     		mov	r3, r1
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 20
+ 443              		.loc 1 363 0 discriminator 3
+ 444 0198 0134     		adds	r4, r4, #1
+ 445              	.LVL53:
+ 446 019a E4B2     		uxtb	r4, r4
+ 447              	.LVL54:
+ 448 019c E5E7     		b	.L19
+ 449              	.L36:
+ 366:Src/main.c    **** 
+ 450              		.loc 1 366 0
+ 451 019e 614C     		ldr	r4, .L39+36
+ 452              	.LVL55:
+ 453 01a0 2046     		mov	r0, r4
+ 454 01a2 FFF7FEFF 		bl	u8g2_SendBuffer
+ 455              	.LVL56:
+ 370:Src/main.c    ****   draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%  ");
+ 456              		.loc 1 370 0
+ 457 01a6 6D4D     		ldr	r5, .L39+92
+ 458 01a8 0295     		str	r5, [sp, #8]
+ 459 01aa 6D4B     		ldr	r3, .L39+96
+ 460 01ac 0193     		str	r3, [sp, #4]
+ 461 01ae 0C26     		movs	r6, #12
+ 462 01b0 0096     		str	r6, [sp]
+ 463 01b2 4623     		movs	r3, #70
+ 464 01b4 3422     		movs	r2, #52
+ 465 01b6 0021     		movs	r1, #0
+ 466 01b8 2046     		mov	r0, r4
+ 467 01ba FFF7FEFF 		bl	draw_MeasLabelUnit
+ 468              	.LVL57:
+ 371:Src/main.c    **** 
+ 469              		.loc 1 371 0
+ 470 01be 0595     		str	r5, [sp, #20]
+ 471 01c0 0025     		movs	r5, #0
+ 472 01c2 0495     		str	r5, [sp, #16]
+ 473 01c4 0395     		str	r5, [sp, #12]
+ 474 01c6 0323     		movs	r3, #3
+ 475 01c8 0293     		str	r3, [sp, #8]
+ 476 01ca 6423     		movs	r3, #100
+ 477 01cc 0193     		str	r3, [sp, #4]
+ 478 01ce 0096     		str	r6, [sp]
+ 479 01d0 4623     		movs	r3, #70
+ 480 01d2 3422     		movs	r2, #52
+ 481 01d4 2946     		mov	r1, r5
+ 482 01d6 2046     		mov	r0, r4
+ 483 01d8 FFF7FEFF 		bl	draw_Value
+ 484              	.LVL58:
+ 374:Src/main.c    **** 
+ 485              		.loc 1 374 0
+ 486 01dc 2046     		mov	r0, r4
+ 487 01de FFF7FEFF 		bl	u8g2_SendBuffer
+ 488              	.LVL59:
+ 489 01e2 2EE1     		b	.L33
+ 490              	.LVL60:
+ 491              	.L21:
+ 388:Src/main.c    **** 				gear++;
+ 492              		.loc 1 388 0
+ 493 01e4 5F4B     		ldr	r3, .L39+100
+ 494 01e6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 20
 
 
- 511 0210 3046     		mov	r0, r6
- 512 0212 3946     		mov	r1, r7
- 513 0214 FFF7FEFF 		bl	__aeabi_dmul
- 514              	.LVL62:
- 515 0218 FFF7FEFF 		bl	__aeabi_d2uiz
- 516              	.LVL63:
- 517 021c 4C4B     		ldr	r3, .L38+104
- 518 021e 1880     		strh	r0, [r3]	@ movhi
- 519 0220 16E1     		b	.L21
- 520              	.L22:
- 382:Src/main.c    **** 				rpm = 1000;
- 521              		.loc 1 382 0
- 522 0222 484B     		ldr	r3, .L38+92
- 523 0224 0022     		movs	r2, #0
- 524 0226 1A70     		strb	r2, [r3]
- 383:Src/main.c    **** 			}
- 525              		.loc 1 383 0
- 526 0228 494B     		ldr	r3, .L38+104
- 527 022a 4FF47A72 		mov	r2, #1000
- 528 022e 1A80     		strh	r2, [r3]	@ movhi
- 529 0230 0EE1     		b	.L21
- 530              	.L33:
- 390:Src/main.c    **** 		}else{
- 531              		.loc 1 390 0
- 532 0232 0025     		movs	r5, #0
- 533              	.LVL64:
- 534 0234 33E1     		b	.L23
- 535              	.LVL65:
- 536              	.L37:
- 396:Src/main.c    **** 			}else{
- 537              		.loc 1 396 0
- 538 0236 A5F14B02 		sub	r2, r5, #75
- 539 023a 4649     		ldr	r1, .L38+108
- 540 023c 21F81320 		strh	r2, [r1, r3, lsl #1]	@ movhi
- 541              	.L26:
- 394:Src/main.c    **** 			if( n==1 ){
- 542              		.loc 1 394 0 discriminator 2
- 543 0240 0133     		adds	r3, r3, #1
+ 495 01e8 032B     		cmp	r3, #3
+ 496 01ea 23D8     		bhi	.L23
+ 389:Src/main.c    **** 				rpm = (double)speed / (0.002*60.0) * (MT[gear]*4.1);
+ 497              		.loc 1 389 0
+ 498 01ec 0133     		adds	r3, r3, #1
+ 499 01ee DCB2     		uxtb	r4, r3
+ 500 01f0 5C4B     		ldr	r3, .L39+100
+ 501 01f2 1C70     		strb	r4, [r3]
+ 390:Src/main.c    **** 			}else{
+ 502              		.loc 1 390 0
+ 503 01f4 5C4B     		ldr	r3, .L39+104
+ 504 01f6 1888     		ldrh	r0, [r3]
+ 505 01f8 FFF7FEFF 		bl	__aeabi_ui2d
+ 506              	.LVL61:
+ 507 01fc 40A3     		adr	r3, .L39
+ 508 01fe D3E90023 		ldrd	r2, [r3]
+ 509 0202 FFF7FEFF 		bl	__aeabi_ddiv
+ 510              	.LVL62:
+ 511 0206 0646     		mov	r6, r0
+ 512 0208 0F46     		mov	r7, r1
+ 513 020a 584B     		ldr	r3, .L39+108
+ 514 020c 03EBC404 		add	r4, r3, r4, lsl #3
+ 515 0210 3DA3     		adr	r3, .L39+8
+ 516 0212 D3E90023 		ldrd	r2, [r3]
+ 517 0216 D4E90001 		ldrd	r0, [r4]
+ 518 021a FFF7FEFF 		bl	__aeabi_dmul
+ 519              	.LVL63:
+ 520 021e 0246     		mov	r2, r0
+ 521 0220 0B46     		mov	r3, r1
+ 522 0222 3046     		mov	r0, r6
+ 523 0224 3946     		mov	r1, r7
+ 524 0226 FFF7FEFF 		bl	__aeabi_dmul
+ 525              	.LVL64:
+ 526 022a FFF7FEFF 		bl	__aeabi_d2uiz
+ 527              	.LVL65:
+ 528 022e 504B     		ldr	r3, .L39+112
+ 529 0230 1880     		strh	r0, [r3]	@ movhi
+ 530 0232 1DE1     		b	.L22
+ 531              	.L23:
+ 392:Src/main.c    **** 				rpm = 1000;
+ 532              		.loc 1 392 0
+ 533 0234 4B4B     		ldr	r3, .L39+100
+ 534 0236 0022     		movs	r2, #0
+ 535 0238 1A70     		strb	r2, [r3]
+ 393:Src/main.c    **** 			}
+ 536              		.loc 1 393 0
+ 537 023a 4D4B     		ldr	r3, .L39+112
+ 538 023c 4FF47A72 		mov	r2, #1000
+ 539 0240 1A80     		strh	r2, [r3]	@ movhi
+ 540 0242 15E1     		b	.L22
+ 541              	.L34:
+ 400:Src/main.c    **** 		}else{
+ 542              		.loc 1 400 0
+ 543 0244 0025     		movs	r5, #0
  544              	.LVL66:
- 545 0242 DBB2     		uxtb	r3, r3
+ 545 0246 3AE1     		b	.L24
  546              	.LVL67:
- 547              	.L24:
- 394:Src/main.c    **** 			if( n==1 ){
- 548              		.loc 1 394 0 is_stmt 0 discriminator 1
- 549 0244 052B     		cmp	r3, #5
- 550 0246 05D8     		bhi	.L36
- 395:Src/main.c    **** 				meas_value[n] = a - 75;
- 551              		.loc 1 395 0 is_stmt 1
- 552 0248 012B     		cmp	r3, #1
- 553 024a F4D0     		beq	.L37
- 398:Src/main.c    **** 			}
- 554              		.loc 1 398 0
- 555 024c 414A     		ldr	r2, .L38+108
- 556 024e 22F81350 		strh	r5, [r2, r3, lsl #1]	@ movhi
- 557 0252 F5E7     		b	.L26
- 558              	.L36:
- 404:Src/main.c    **** 
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 21
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 21
 
 
- 559              		.loc 1 404 0
- 560 0254 BDF81830 		ldrh	r3, [sp, #24]
- 561              	.LVL68:
- 562 0258 07EE103A 		vmov	s14, r3	@ int
- 563 025c B8EE477A 		vcvt.f32.u32	s14, s14
- 564 0260 DFED3D7A 		vldr.32	s15, .L38+112
- 565 0264 27EE277A 		vmul.f32	s14, s14, s15
- 566 0268 DFED3C6A 		vldr.32	s13, .L38+116
- 567 026c C7EE267A 		vdiv.f32	s15, s14, s13
- 568 0270 FDEEE77A 		vcvt.s32.f32	s15, s15
- 569 0274 17EE903A 		vmov	r3, s15	@ int
- 570 0278 1CB2     		sxth	r4, r3
- 571 027a 364E     		ldr	r6, .L38+108
- 572 027c 7481     		strh	r4, [r6, #10]	@ movhi
- 407:Src/main.c    ****     FP_duty = (int16_t)(FP_volt/(14.4)*10);
- 573              		.loc 1 407 0
- 574 027e 384B     		ldr	r3, .L38+120
- 575 0280 1C80     		strh	r4, [r3]	@ movhi
- 408:Src/main.c    **** 		meas_value[2] = FP_volt;
- 576              		.loc 1 408 0
- 577 0282 2046     		mov	r0, r4
- 578 0284 FFF7FEFF 		bl	__aeabi_i2d
- 579              	.LVL69:
- 580 0288 1BA3     		adr	r3, .L38+16
- 581 028a D3E90023 		ldrd	r2, [r3]
- 582 028e FFF7FEFF 		bl	__aeabi_ddiv
- 583              	.LVL70:
- 584 0292 0022     		movs	r2, #0
- 585 0294 334B     		ldr	r3, .L38+124
- 586 0296 FFF7FEFF 		bl	__aeabi_dmul
- 587              	.LVL71:
- 588 029a FFF7FEFF 		bl	__aeabi_d2iz
- 589              	.LVL72:
- 590 029e 00B2     		sxth	r0, r0
- 591 02a0 314B     		ldr	r3, .L38+128
- 592 02a2 1880     		strh	r0, [r3]	@ movhi
- 409:Src/main.c    **** 
- 593              		.loc 1 409 0
- 594 02a4 B480     		strh	r4, [r6, #4]	@ movhi
- 412:Src/main.c    **** 
- 595              		.loc 1 412 0
- 596 02a6 174E     		ldr	r6, .L38+28
- 597 02a8 244B     		ldr	r3, .L38+84
- 598 02aa 0593     		str	r3, [sp, #20]
- 599 02ac 0024     		movs	r4, #0
- 600 02ae 0494     		str	r4, [sp, #16]
- 601 02b0 0394     		str	r4, [sp, #12]
- 602 02b2 0323     		movs	r3, #3
- 603 02b4 0293     		str	r3, [sp, #8]
- 604 02b6 0190     		str	r0, [sp, #4]
- 605 02b8 0C23     		movs	r3, #12
- 606 02ba 0093     		str	r3, [sp]
- 607 02bc 4623     		movs	r3, #70
- 608 02be 3422     		movs	r2, #52
- 609 02c0 2146     		mov	r1, r4
- 610 02c2 3046     		mov	r0, r6
- 611 02c4 FFF7FEFF 		bl	draw_Value
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 22
+ 547              	.L38:
+ 406:Src/main.c    **** 			}else{
+ 548              		.loc 1 406 0
+ 549 0248 A5F14B02 		sub	r2, r5, #75
+ 550 024c 4949     		ldr	r1, .L39+116
+ 551 024e 21F81320 		strh	r2, [r1, r3, lsl #1]	@ movhi
+ 552              	.L27:
+ 404:Src/main.c    **** 			if( n==1 ){
+ 553              		.loc 1 404 0 discriminator 2
+ 554 0252 0133     		adds	r3, r3, #1
+ 555              	.LVL68:
+ 556 0254 DBB2     		uxtb	r3, r3
+ 557              	.LVL69:
+ 558              	.L25:
+ 404:Src/main.c    **** 			if( n==1 ){
+ 559              		.loc 1 404 0 is_stmt 0 discriminator 1
+ 560 0256 052B     		cmp	r3, #5
+ 561 0258 05D8     		bhi	.L37
+ 405:Src/main.c    **** 				meas_value[n] = a - 75;
+ 562              		.loc 1 405 0 is_stmt 1
+ 563 025a 012B     		cmp	r3, #1
+ 564 025c F4D0     		beq	.L38
+ 408:Src/main.c    **** 			}
+ 565              		.loc 1 408 0
+ 566 025e 454A     		ldr	r2, .L39+116
+ 567 0260 22F81350 		strh	r5, [r2, r3, lsl #1]	@ movhi
+ 568 0264 F5E7     		b	.L27
+ 569              	.L37:
+ 414:Src/main.c    **** 
+ 570              		.loc 1 414 0
+ 571 0266 BDF81830 		ldrh	r3, [sp, #24]
+ 572              	.LVL70:
+ 573 026a 07EE103A 		vmov	s14, r3	@ int
+ 574 026e B8EE477A 		vcvt.f32.u32	s14, s14
+ 575 0272 DFED417A 		vldr.32	s15, .L39+120
+ 576 0276 27EE277A 		vmul.f32	s14, s14, s15
+ 577 027a DFED406A 		vldr.32	s13, .L39+124
+ 578 027e C7EE267A 		vdiv.f32	s15, s14, s13
+ 579 0282 FDEEE77A 		vcvt.s32.f32	s15, s15
+ 580 0286 17EE903A 		vmov	r3, s15	@ int
+ 581 028a 1CB2     		sxth	r4, r3
+ 582 028c 394E     		ldr	r6, .L39+116
+ 583 028e 7481     		strh	r4, [r6, #10]	@ movhi
+ 417:Src/main.c    ****     FP_duty = (int16_t)(FP_volt/(14.4)*10);
+ 584              		.loc 1 417 0
+ 585 0290 3B4B     		ldr	r3, .L39+128
+ 586 0292 1C80     		strh	r4, [r3]	@ movhi
+ 418:Src/main.c    **** 		meas_value[2] = FP_volt;
+ 587              		.loc 1 418 0
+ 588 0294 2046     		mov	r0, r4
+ 589 0296 FFF7FEFF 		bl	__aeabi_i2d
+ 590              	.LVL71:
+ 591 029a 1DA3     		adr	r3, .L39+16
+ 592 029c D3E90023 		ldrd	r2, [r3]
+ 593 02a0 FFF7FEFF 		bl	__aeabi_ddiv
+ 594              	.LVL72:
+ 595 02a4 0022     		movs	r2, #0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 22
 
 
- 612              	.LVL73:
- 415:Src/main.c    **** 
- 613              		.loc 1 415 0
- 614 02c8 42F22833 		movw	r3, #9000
- 615 02cc 0393     		str	r3, [sp, #12]
- 616 02ce 0294     		str	r4, [sp, #8]
- 617 02d0 1F4B     		ldr	r3, .L38+104
- 618 02d2 1B88     		ldrh	r3, [r3]
- 619 02d4 0193     		str	r3, [sp, #4]
- 620 02d6 0E23     		movs	r3, #14
- 621 02d8 0093     		str	r3, [sp]
- 622 02da 8023     		movs	r3, #128
- 623 02dc 2246     		mov	r2, r4
- 624 02de 2146     		mov	r1, r4
- 625 02e0 3046     		mov	r0, r6
- 626 02e2 FFF7FEFF 		bl	draw_BarGraph
- 627              	.LVL74:
- 418:Src/main.c    **** 			x = meas_x;
- 628              		.loc 1 418 0
- 629 02e6 6AE0     		b	.L28
- 630              	.L39:
- 631              		.align	3
- 632              	.L38:
- 633 02e8 B81E85EB 		.word	3951369912
- 634 02ec 51B8BE3F 		.word	1069463633
- 635 02f0 66666666 		.word	1717986918
- 636 02f4 66661040 		.word	1074816614
- 637 02f8 CDCCCCCC 		.word	3435973837
- 638 02fc CCCC2C40 		.word	1076677836
- 639 0300 00000000 		.word	hadc1
- 640 0304 00000000 		.word	u8g2
- 641 0308 00000000 		.word	u8x8_gpio_and_delay_STM32F303
- 642 030c 00000000 		.word	u8x8_byte_4wire_hw_spi
- 643 0310 00000000 		.word	u8g2_cb_r0
- 644 0314 00040048 		.word	1207960576
- 645 0318 00000000 		.word	.LANCHOR0
- 646 031c 00000000 		.word	u8g2_font_5x7_tf
- 647 0320 00000000 		.word	.LC1
- 648 0324 18000000 		.word	.LC2
- 649 0328 ABAAAAAA 		.word	-1431655765
- 650 032c 00000000 		.word	.LANCHOR1
- 651 0330 00000000 		.word	.LANCHOR2
- 652 0334 00000000 		.word	.LANCHOR3
- 653 0338 00000000 		.word	.LANCHOR4
- 654 033c 24000000 		.word	.LC3
- 655 0340 28000000 		.word	.LC4
- 656 0344 00000000 		.word	.LANCHOR7
- 657 0348 00000000 		.word	.LANCHOR8
- 658 034c 00000000 		.word	.LANCHOR6
- 659 0350 00000000 		.word	.LANCHOR5
- 660 0354 00000000 		.word	.LANCHOR9
- 661 0358 0000A543 		.word	1134886912
- 662 035c 00007F43 		.word	1132396544
- 663 0360 00000000 		.word	.LANCHOR10
- 664 0364 00002440 		.word	1076101120
- 665 0368 00000000 		.word	.LANCHOR11
- 666              	.LVL75:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 23
+ 596 02a6 374B     		ldr	r3, .L39+132
+ 597 02a8 FFF7FEFF 		bl	__aeabi_dmul
+ 598              	.LVL73:
+ 599 02ac FFF7FEFF 		bl	__aeabi_d2iz
+ 600              	.LVL74:
+ 601 02b0 00B2     		sxth	r0, r0
+ 602 02b2 354B     		ldr	r3, .L39+136
+ 603 02b4 1880     		strh	r0, [r3]	@ movhi
+ 419:Src/main.c    **** 
+ 604              		.loc 1 419 0
+ 605 02b6 B480     		strh	r4, [r6, #4]	@ movhi
+ 424:Src/main.c    **** 
+ 606              		.loc 1 424 0
+ 607 02b8 1A4E     		ldr	r6, .L39+36
+ 608 02ba 284B     		ldr	r3, .L39+92
+ 609 02bc 0593     		str	r3, [sp, #20]
+ 610 02be 0024     		movs	r4, #0
+ 611 02c0 0494     		str	r4, [sp, #16]
+ 612 02c2 0394     		str	r4, [sp, #12]
+ 613 02c4 0323     		movs	r3, #3
+ 614 02c6 0293     		str	r3, [sp, #8]
+ 615 02c8 0190     		str	r0, [sp, #4]
+ 616 02ca 0C23     		movs	r3, #12
+ 617 02cc 0093     		str	r3, [sp]
+ 618 02ce 4623     		movs	r3, #70
+ 619 02d0 3422     		movs	r2, #52
+ 620 02d2 2146     		mov	r1, r4
+ 621 02d4 3046     		mov	r0, r6
+ 622 02d6 FFF7FEFF 		bl	draw_Value
+ 623              	.LVL75:
+ 427:Src/main.c    **** 
+ 624              		.loc 1 427 0
+ 625 02da 42F22833 		movw	r3, #9000
+ 626 02de 0393     		str	r3, [sp, #12]
+ 627 02e0 0294     		str	r4, [sp, #8]
+ 628 02e2 234B     		ldr	r3, .L39+112
+ 629 02e4 1B88     		ldrh	r3, [r3]
+ 630 02e6 0193     		str	r3, [sp, #4]
+ 631 02e8 0E23     		movs	r3, #14
+ 632 02ea 0093     		str	r3, [sp]
+ 633 02ec 8023     		movs	r3, #128
+ 634 02ee 2246     		mov	r2, r4
+ 635 02f0 2146     		mov	r1, r4
+ 636 02f2 3046     		mov	r0, r6
+ 637 02f4 FFF7FEFF 		bl	draw_BarGraph
+ 638              	.LVL76:
+ 430:Src/main.c    ****         x = meas_x;
+ 639              		.loc 1 430 0
+ 640 02f8 71E0     		b	.L29
+ 641              	.L40:
+ 642 02fa 00BFAFF3 		.align	3
+ 642      0080
+ 643              	.L39:
+ 644 0300 B81E85EB 		.word	3951369912
+ 645 0304 51B8BE3F 		.word	1069463633
+ 646 0308 66666666 		.word	1717986918
+ 647 030c 66661040 		.word	1074816614
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 23
 
 
- 667              	.L29:
- 420:Src/main.c    **** 			draw_Value(&u8g2, x, y, meas_width1, meas_height, meas_value[n], meas_digit[n], meas_frac[n], me
- 668              		.loc 1 420 0 discriminator 3
- 669 036c 524B     		ldr	r3, .L40+16
- 670 036e A3FB0423 		umull	r2, r3, r3, r4
- 671 0372 5B08     		lsrs	r3, r3, #1
- 672 0374 03EB4303 		add	r3, r3, r3, lsl #1
- 673 0378 E31A     		subs	r3, r4, r3
- 674 037a 03EB4303 		add	r3, r3, r3, lsl #1
- 675 037e 9A00     		lsls	r2, r3, #2
- 676 0380 D2B2     		uxtb	r2, r2
- 677 0382 1032     		adds	r2, r2, #16
- 678              	.LVL76:
- 421:Src/main.c    **** 		}
- 679              		.loc 1 421 0 discriminator 3
- 680 0384 04EB8401 		add	r1, r4, r4, lsl #2
- 681 0388 4C4B     		ldr	r3, .L40+20
- 682 038a 0B44     		add	r3, r3, r1
- 683 038c 0593     		str	r3, [sp, #20]
- 684 038e 4C4B     		ldr	r3, .L40+24
- 685 0390 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
- 686 0392 0493     		str	r3, [sp, #16]
- 687 0394 4B4B     		ldr	r3, .L40+28
- 688 0396 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
- 689 0398 0393     		str	r3, [sp, #12]
- 690 039a 4B4B     		ldr	r3, .L40+32
- 691 039c 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
- 692 039e 0293     		str	r3, [sp, #8]
- 693 03a0 4A4B     		ldr	r3, .L40+36
- 694 03a2 33F91430 		ldrsh	r3, [r3, r4, lsl #1]
- 695 03a6 0193     		str	r3, [sp, #4]
- 696 03a8 0C23     		movs	r3, #12
- 697 03aa 0093     		str	r3, [sp]
- 698 03ac 4623     		movs	r3, #70
- 699 03ae 02F0FC02 		and	r2, r2, #252
- 700              	.LVL77:
- 701 03b2 0021     		movs	r1, #0
- 702 03b4 4648     		ldr	r0, .L40+40
- 703 03b6 FFF7FEFF 		bl	draw_Value
- 704              	.LVL78:
- 418:Src/main.c    **** 			x = meas_x;
- 705              		.loc 1 418 0 discriminator 3
- 706 03ba 0134     		adds	r4, r4, #1
- 707              	.LVL79:
- 708 03bc E4B2     		uxtb	r4, r4
- 709              	.LVL80:
- 710              	.L28:
- 418:Src/main.c    **** 			x = meas_x;
- 711              		.loc 1 418 0 is_stmt 0 discriminator 1
- 712 03be 022C     		cmp	r4, #2
- 713 03c0 D4D9     		bls	.L29
- 423:Src/main.c    **** 			x = meas_width1 + meas_x + meas_x_offset;
- 714              		.loc 1 423 0 is_stmt 1
- 715 03c2 0324     		movs	r4, #3
- 716              	.LVL81:
- 717 03c4 28E0     		b	.L30
- 718              	.LVL82:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 24
+ 648 0310 CDCCCCCC 		.word	3435973837
+ 649 0314 CCCC2C40 		.word	1076677836
+ 650 0318 00000000 		.word	htim1
+ 651 031c 00000000 		.word	.LC0
+ 652 0320 00000000 		.word	hadc1
+ 653 0324 00000000 		.word	u8g2
+ 654 0328 00000000 		.word	u8x8_gpio_and_delay_STM32F303
+ 655 032c 00000000 		.word	u8x8_byte_4wire_hw_spi
+ 656 0330 00000000 		.word	u8g2_cb_r0
+ 657 0334 00040048 		.word	1207960576
+ 658 0338 00000000 		.word	.LANCHOR0
+ 659 033c 00000000 		.word	u8g2_font_5x7_tf
+ 660 0340 00000000 		.word	.LC1
+ 661 0344 18000000 		.word	.LC2
+ 662 0348 ABAAAAAA 		.word	-1431655765
+ 663 034c 00000000 		.word	.LANCHOR1
+ 664 0350 00000000 		.word	.LANCHOR2
+ 665 0354 00000000 		.word	.LANCHOR3
+ 666 0358 00000000 		.word	.LANCHOR4
+ 667 035c 24000000 		.word	.LC3
+ 668 0360 28000000 		.word	.LC4
+ 669 0364 00000000 		.word	.LANCHOR7
+ 670 0368 00000000 		.word	.LANCHOR8
+ 671 036c 00000000 		.word	.LANCHOR6
+ 672 0370 00000000 		.word	.LANCHOR5
+ 673 0374 00000000 		.word	.LANCHOR9
+ 674 0378 0000A543 		.word	1134886912
+ 675 037c 00007F43 		.word	1132396544
+ 676 0380 00000000 		.word	.LANCHOR10
+ 677 0384 00002440 		.word	1076101120
+ 678 0388 00000000 		.word	.LANCHOR11
+ 679              	.LVL77:
+ 680              	.L30:
+ 432:Src/main.c    ****         draw_Value(&u8g2, x, y, meas_width1, meas_height, meas_value[n], meas_digit[n], meas_frac[n
+ 681              		.loc 1 432 0 discriminator 3
+ 682 038c 524B     		ldr	r3, .L41+16
+ 683 038e A3FB0423 		umull	r2, r3, r3, r4
+ 684 0392 5B08     		lsrs	r3, r3, #1
+ 685 0394 03EB4303 		add	r3, r3, r3, lsl #1
+ 686 0398 E31A     		subs	r3, r4, r3
+ 687 039a 03EB4303 		add	r3, r3, r3, lsl #1
+ 688 039e 9A00     		lsls	r2, r3, #2
+ 689 03a0 D2B2     		uxtb	r2, r2
+ 690 03a2 1032     		adds	r2, r2, #16
+ 691              	.LVL78:
+ 433:Src/main.c    ****       }
+ 692              		.loc 1 433 0 discriminator 3
+ 693 03a4 04EB8401 		add	r1, r4, r4, lsl #2
+ 694 03a8 4C4B     		ldr	r3, .L41+20
+ 695 03aa 0B44     		add	r3, r3, r1
+ 696 03ac 0593     		str	r3, [sp, #20]
+ 697 03ae 4C4B     		ldr	r3, .L41+24
+ 698 03b0 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
+ 699 03b2 0493     		str	r3, [sp, #16]
+ 700 03b4 4B4B     		ldr	r3, .L41+28
+ 701 03b6 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
+ 702 03b8 0393     		str	r3, [sp, #12]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 24
 
 
- 719              	.L31:
- 425:Src/main.c    **** 			draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n], me
- 720              		.loc 1 425 0 discriminator 3
- 721 03c6 3C4B     		ldr	r3, .L40+16
- 722 03c8 A3FB0423 		umull	r2, r3, r3, r4
- 723 03cc 5B08     		lsrs	r3, r3, #1
- 724 03ce 03EB4303 		add	r3, r3, r3, lsl #1
- 725 03d2 E31A     		subs	r3, r4, r3
- 726 03d4 03EB4303 		add	r3, r3, r3, lsl #1
- 727 03d8 9A00     		lsls	r2, r3, #2
- 728 03da D2B2     		uxtb	r2, r2
- 729 03dc 1032     		adds	r2, r2, #16
- 730              	.LVL83:
- 426:Src/main.c    **** 		}
- 731              		.loc 1 426 0 discriminator 3
- 732 03de 04EB8401 		add	r1, r4, r4, lsl #2
- 733 03e2 364B     		ldr	r3, .L40+20
- 734 03e4 0B44     		add	r3, r3, r1
- 735 03e6 0593     		str	r3, [sp, #20]
- 736 03e8 354B     		ldr	r3, .L40+24
- 737 03ea 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
- 738 03ec 0493     		str	r3, [sp, #16]
- 739 03ee 354B     		ldr	r3, .L40+28
- 740 03f0 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
- 741 03f2 0393     		str	r3, [sp, #12]
- 742 03f4 344B     		ldr	r3, .L40+32
- 743 03f6 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
- 744 03f8 0293     		str	r3, [sp, #8]
- 745 03fa 344B     		ldr	r3, .L40+36
- 746 03fc 33F91430 		ldrsh	r3, [r3, r4, lsl #1]
- 747 0400 0193     		str	r3, [sp, #4]
- 748 0402 0C23     		movs	r3, #12
- 749 0404 0093     		str	r3, [sp]
- 750 0406 3823     		movs	r3, #56
- 751 0408 02F0FC02 		and	r2, r2, #252
- 752              	.LVL84:
- 753 040c 4821     		movs	r1, #72
- 754 040e 3048     		ldr	r0, .L40+40
- 755 0410 FFF7FEFF 		bl	draw_Value
- 756              	.LVL85:
- 423:Src/main.c    **** 			x = meas_width1 + meas_x + meas_x_offset;
- 757              		.loc 1 423 0 discriminator 3
- 758 0414 0134     		adds	r4, r4, #1
- 759              	.LVL86:
- 760 0416 E4B2     		uxtb	r4, r4
- 761              	.LVL87:
- 762              	.L30:
- 423:Src/main.c    **** 			x = meas_width1 + meas_x + meas_x_offset;
- 763              		.loc 1 423 0 is_stmt 0 discriminator 1
- 764 0418 052C     		cmp	r4, #5
- 765 041a D4D9     		bls	.L31
- 430:Src/main.c    **** 
- 766              		.loc 1 430 0 is_stmt 1
- 767 041c 2C48     		ldr	r0, .L40+40
- 768 041e FFF7FEFF 		bl	u8g2_SendBuffer
- 769              	.LVL88:
- 770              	.L32:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 25
+ 703 03ba 4B4B     		ldr	r3, .L41+32
+ 704 03bc 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
+ 705 03be 0293     		str	r3, [sp, #8]
+ 706 03c0 4A4B     		ldr	r3, .L41+36
+ 707 03c2 33F91430 		ldrsh	r3, [r3, r4, lsl #1]
+ 708 03c6 0193     		str	r3, [sp, #4]
+ 709 03c8 0C23     		movs	r3, #12
+ 710 03ca 0093     		str	r3, [sp]
+ 711 03cc 4623     		movs	r3, #70
+ 712 03ce 02F0FC02 		and	r2, r2, #252
+ 713              	.LVL79:
+ 714 03d2 0021     		movs	r1, #0
+ 715 03d4 4648     		ldr	r0, .L41+40
+ 716 03d6 FFF7FEFF 		bl	draw_Value
+ 717              	.LVL80:
+ 430:Src/main.c    ****         x = meas_x;
+ 718              		.loc 1 430 0 discriminator 3
+ 719 03da 0134     		adds	r4, r4, #1
+ 720              	.LVL81:
+ 721 03dc E4B2     		uxtb	r4, r4
+ 722              	.LVL82:
+ 723              	.L29:
+ 430:Src/main.c    ****         x = meas_x;
+ 724              		.loc 1 430 0 is_stmt 0 discriminator 1
+ 725 03de 022C     		cmp	r4, #2
+ 726 03e0 D4D9     		bls	.L30
+ 435:Src/main.c    ****         x = meas_width1 + meas_x + meas_x_offset;
+ 727              		.loc 1 435 0 is_stmt 1
+ 728 03e2 0324     		movs	r4, #3
+ 729              	.LVL83:
+ 730 03e4 28E0     		b	.L31
+ 731              	.LVL84:
+ 732              	.L32:
+ 437:Src/main.c    ****         draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n
+ 733              		.loc 1 437 0 discriminator 3
+ 734 03e6 3C4B     		ldr	r3, .L41+16
+ 735 03e8 A3FB0423 		umull	r2, r3, r3, r4
+ 736 03ec 5B08     		lsrs	r3, r3, #1
+ 737 03ee 03EB4303 		add	r3, r3, r3, lsl #1
+ 738 03f2 E31A     		subs	r3, r4, r3
+ 739 03f4 03EB4303 		add	r3, r3, r3, lsl #1
+ 740 03f8 9A00     		lsls	r2, r3, #2
+ 741 03fa D2B2     		uxtb	r2, r2
+ 742 03fc 1032     		adds	r2, r2, #16
+ 743              	.LVL85:
+ 438:Src/main.c    ****       }
+ 744              		.loc 1 438 0 discriminator 3
+ 745 03fe 04EB8401 		add	r1, r4, r4, lsl #2
+ 746 0402 364B     		ldr	r3, .L41+20
+ 747 0404 0B44     		add	r3, r3, r1
+ 748 0406 0593     		str	r3, [sp, #20]
+ 749 0408 354B     		ldr	r3, .L41+24
+ 750 040a 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
+ 751 040c 0493     		str	r3, [sp, #16]
+ 752 040e 354B     		ldr	r3, .L41+28
+ 753 0410 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
+ 754 0412 0393     		str	r3, [sp, #12]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 25
 
 
- 374:Src/main.c    **** 			  rpm = rpm + (int)(5*MT[gear]);
- 771              		.loc 1 374 0
- 772 0422 2C4B     		ldr	r3, .L40+44
- 773 0424 1C88     		ldrh	r4, [r3]
- 774 0426 42F20803 		movw	r3, #8200
- 775 042a 9C42     		cmp	r4, r3
- 776 042c 3FF6D1AE 		bhi	.L20
- 375:Src/main.c    **** 			  //rpm=rpm+10;
- 777              		.loc 1 375 0
- 778 0430 294B     		ldr	r3, .L40+48
- 779 0432 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 780 0434 2949     		ldr	r1, .L40+52
- 781 0436 01EBC301 		add	r1, r1, r3, lsl #3
- 782 043a 0022     		movs	r2, #0
- 783 043c 284B     		ldr	r3, .L40+56
- 784 043e D1E90001 		ldrd	r0, [r1]
- 785 0442 FFF7FEFF 		bl	__aeabi_dmul
- 786              	.LVL89:
- 787 0446 FFF7FEFF 		bl	__aeabi_d2iz
- 788              	.LVL90:
- 789 044a 2044     		add	r0, r0, r4
- 790 044c 214B     		ldr	r3, .L40+44
- 791 044e 1880     		strh	r0, [r3]	@ movhi
- 792              	.L21:
- 386:Src/main.c    **** 		meas_value[0] = speed; // speed
- 793              		.loc 1 386 0
- 794 0450 204B     		ldr	r3, .L40+44
- 795 0452 1888     		ldrh	r0, [r3]
- 796 0454 FFF7FEFF 		bl	__aeabi_ui2d
- 797              	.LVL91:
- 798 0458 13A3     		adr	r3, .L40
- 799 045a D3E90023 		ldrd	r2, [r3]
- 800 045e FFF7FEFF 		bl	__aeabi_dmul
+ 755 0414 344B     		ldr	r3, .L41+32
+ 756 0416 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
+ 757 0418 0293     		str	r3, [sp, #8]
+ 758 041a 344B     		ldr	r3, .L41+36
+ 759 041c 33F91430 		ldrsh	r3, [r3, r4, lsl #1]
+ 760 0420 0193     		str	r3, [sp, #4]
+ 761 0422 0C23     		movs	r3, #12
+ 762 0424 0093     		str	r3, [sp]
+ 763 0426 3823     		movs	r3, #56
+ 764 0428 02F0FC02 		and	r2, r2, #252
+ 765              	.LVL86:
+ 766 042c 4821     		movs	r1, #72
+ 767 042e 3048     		ldr	r0, .L41+40
+ 768 0430 FFF7FEFF 		bl	draw_Value
+ 769              	.LVL87:
+ 435:Src/main.c    ****         x = meas_width1 + meas_x + meas_x_offset;
+ 770              		.loc 1 435 0 discriminator 3
+ 771 0434 0134     		adds	r4, r4, #1
+ 772              	.LVL88:
+ 773 0436 E4B2     		uxtb	r4, r4
+ 774              	.LVL89:
+ 775              	.L31:
+ 435:Src/main.c    ****         x = meas_width1 + meas_x + meas_x_offset;
+ 776              		.loc 1 435 0 is_stmt 0 discriminator 1
+ 777 0438 052C     		cmp	r4, #5
+ 778 043a D4D9     		bls	.L32
+ 442:Src/main.c    ****     }
+ 779              		.loc 1 442 0 is_stmt 1
+ 780 043c 2C48     		ldr	r0, .L41+40
+ 781 043e FFF7FEFF 		bl	u8g2_SendBuffer
+ 782              	.LVL90:
+ 783              	.L33:
+ 384:Src/main.c    **** 			  rpm = rpm + (int)(10*MT[gear]);
+ 784              		.loc 1 384 0
+ 785 0442 2C4B     		ldr	r3, .L41+44
+ 786 0444 1C88     		ldrh	r4, [r3]
+ 787 0446 42F20803 		movw	r3, #8200
+ 788 044a 9C42     		cmp	r4, r3
+ 789 044c 3FF6CAAE 		bhi	.L21
+ 385:Src/main.c    **** 			  //rpm=rpm+10;
+ 790              		.loc 1 385 0
+ 791 0450 294B     		ldr	r3, .L41+48
+ 792 0452 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 793 0454 2949     		ldr	r1, .L41+52
+ 794 0456 01EBC301 		add	r1, r1, r3, lsl #3
+ 795 045a 0022     		movs	r2, #0
+ 796 045c 284B     		ldr	r3, .L41+56
+ 797 045e D1E90001 		ldrd	r0, [r1]
+ 798 0462 FFF7FEFF 		bl	__aeabi_dmul
+ 799              	.LVL91:
+ 800 0466 FFF7FEFF 		bl	__aeabi_d2iz
  801              	.LVL92:
- 802 0462 0022     		movs	r2, #0
- 803 0464 1F4B     		ldr	r3, .L40+60
- 804 0466 FFF7FEFF 		bl	__aeabi_dmul
- 805              	.LVL93:
- 806 046a 1B4B     		ldr	r3, .L40+48
- 807 046c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
- 808 046e 1B4B     		ldr	r3, .L40+52
- 809 0470 03EBC203 		add	r3, r3, r2, lsl #3
- 810 0474 D3E90023 		ldrd	r2, [r3]
- 811 0478 FFF7FEFF 		bl	__aeabi_ddiv
- 812              	.LVL94:
- 813 047c 0CA3     		adr	r3, .L40+8
- 814 047e D3E90023 		ldrd	r2, [r3]
- 815 0482 FFF7FEFF 		bl	__aeabi_ddiv
- 816              	.LVL95:
- 817 0486 FFF7FEFF 		bl	__aeabi_d2uiz
- 818              	.LVL96:
- 819 048a 80B2     		uxth	r0, r0
- 820 048c 164B     		ldr	r3, .L40+64
- 821 048e 1880     		strh	r0, [r3]	@ movhi
- 387:Src/main.c    **** 
- 822              		.loc 1 387 0
- 823 0490 0E4B     		ldr	r3, .L40+36
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 26
+ 802 046a 2044     		add	r0, r0, r4
+ 803 046c 214B     		ldr	r3, .L41+44
+ 804 046e 1880     		strh	r0, [r3]	@ movhi
+ 805              	.L22:
+ 396:Src/main.c    **** 		meas_value[0] = speed; // speed
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 26
 
 
- 824 0492 1880     		strh	r0, [r3]	@ movhi
- 389:Src/main.c    **** 			a = 0;
- 825              		.loc 1 389 0
- 826 0494 952D     		cmp	r5, #149
- 827 0496 3FF6CCAE 		bhi	.L33
- 392:Src/main.c    **** 		}
- 828              		.loc 1 392 0
- 829 049a 0135     		adds	r5, r5, #1
- 830              	.LVL97:
- 831 049c ADB2     		uxth	r5, r5
- 832              	.LVL98:
- 833              	.L23:
- 394:Src/main.c    **** 			if( n==1 ){
- 834              		.loc 1 394 0
- 835 049e 0123     		movs	r3, #1
- 836 04a0 D0E6     		b	.L24
- 837              	.L41:
- 838 04a2 00BFAFF3 		.align	3
- 838      0080
- 839              	.L40:
- 840 04a8 FCA9F1D2 		.word	3539053052
- 841 04ac 4D62603F 		.word	1063281229
- 842 04b0 66666666 		.word	1717986918
- 843 04b4 66661040 		.word	1074816614
- 844 04b8 ABAAAAAA 		.word	-1431655765
- 845 04bc 00000000 		.word	.LANCHOR2
- 846 04c0 00000000 		.word	.LANCHOR12
- 847 04c4 00000000 		.word	.LANCHOR13
- 848 04c8 00000000 		.word	.LANCHOR14
- 849 04cc 00000000 		.word	.LANCHOR9
- 850 04d0 00000000 		.word	u8g2
- 851 04d4 00000000 		.word	.LANCHOR5
- 852 04d8 00000000 		.word	.LANCHOR7
- 853 04dc 00000000 		.word	.LANCHOR6
- 854 04e0 00001440 		.word	1075052544
- 855 04e4 00004E40 		.word	1078853632
- 856 04e8 00000000 		.word	.LANCHOR8
- 857              		.cfi_endproc
- 858              	.LFE126:
- 860              		.section	.text.assert_failed,"ax",%progbits
- 861              		.align	1
- 862              		.global	assert_failed
- 863              		.syntax unified
- 864              		.thumb
- 865              		.thumb_func
- 866              		.fpu fpv4-sp-d16
- 868              	assert_failed:
- 869              	.LFB129:
- 505:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
- 506:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
- 507:Src/main.c    ****   while(1) 
- 508:Src/main.c    ****   {
- 509:Src/main.c    ****   }
- 510:Src/main.c    ****   /* USER CODE END Error_Handler_Debug */ 
- 511:Src/main.c    **** }
- 512:Src/main.c    **** 
- 513:Src/main.c    **** #ifdef USE_FULL_ASSERT
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 27
+ 806              		.loc 1 396 0
+ 807 0470 204B     		ldr	r3, .L41+44
+ 808 0472 1888     		ldrh	r0, [r3]
+ 809 0474 FFF7FEFF 		bl	__aeabi_ui2d
+ 810              	.LVL93:
+ 811 0478 13A3     		adr	r3, .L41
+ 812 047a D3E90023 		ldrd	r2, [r3]
+ 813 047e FFF7FEFF 		bl	__aeabi_dmul
+ 814              	.LVL94:
+ 815 0482 0022     		movs	r2, #0
+ 816 0484 1F4B     		ldr	r3, .L41+60
+ 817 0486 FFF7FEFF 		bl	__aeabi_dmul
+ 818              	.LVL95:
+ 819 048a 1B4B     		ldr	r3, .L41+48
+ 820 048c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 821 048e 1B4B     		ldr	r3, .L41+52
+ 822 0490 03EBC203 		add	r3, r3, r2, lsl #3
+ 823 0494 D3E90023 		ldrd	r2, [r3]
+ 824 0498 FFF7FEFF 		bl	__aeabi_ddiv
+ 825              	.LVL96:
+ 826 049c 0CA3     		adr	r3, .L41+8
+ 827 049e D3E90023 		ldrd	r2, [r3]
+ 828 04a2 FFF7FEFF 		bl	__aeabi_ddiv
+ 829              	.LVL97:
+ 830 04a6 FFF7FEFF 		bl	__aeabi_d2uiz
+ 831              	.LVL98:
+ 832 04aa 80B2     		uxth	r0, r0
+ 833 04ac 164B     		ldr	r3, .L41+64
+ 834 04ae 1880     		strh	r0, [r3]	@ movhi
+ 397:Src/main.c    **** 
+ 835              		.loc 1 397 0
+ 836 04b0 0E4B     		ldr	r3, .L41+36
+ 837 04b2 1880     		strh	r0, [r3]	@ movhi
+ 399:Src/main.c    **** 			a = 0;
+ 838              		.loc 1 399 0
+ 839 04b4 952D     		cmp	r5, #149
+ 840 04b6 3FF6C5AE 		bhi	.L34
+ 402:Src/main.c    **** 		}
+ 841              		.loc 1 402 0
+ 842 04ba 0135     		adds	r5, r5, #1
+ 843              	.LVL99:
+ 844 04bc ADB2     		uxth	r5, r5
+ 845              	.LVL100:
+ 846              	.L24:
+ 404:Src/main.c    **** 			if( n==1 ){
+ 847              		.loc 1 404 0
+ 848 04be 0123     		movs	r3, #1
+ 849 04c0 C9E6     		b	.L25
+ 850              	.L42:
+ 851 04c2 00BFAFF3 		.align	3
+ 851      0080
+ 852              	.L41:
+ 853 04c8 FCA9F1D2 		.word	3539053052
+ 854 04cc 4D62603F 		.word	1063281229
+ 855 04d0 66666666 		.word	1717986918
+ 856 04d4 66661040 		.word	1074816614
+ 857 04d8 ABAAAAAA 		.word	-1431655765
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 27
 
 
- 514:Src/main.c    **** 
- 515:Src/main.c    **** /**
- 516:Src/main.c    ****    * @brief Reports the name of the source file and the source line number
- 517:Src/main.c    ****    * where the assert_param error has occurred.
- 518:Src/main.c    ****    * @param file: pointer to the source file name
- 519:Src/main.c    ****    * @param line: assert_param error line source number
- 520:Src/main.c    ****    * @retval None
- 521:Src/main.c    ****    */
- 522:Src/main.c    **** void assert_failed(uint8_t* file, uint32_t line)
- 523:Src/main.c    **** {
- 870              		.loc 1 523 0
- 871              		.cfi_startproc
- 872              		@ args = 0, pretend = 0, frame = 0
- 873              		@ frame_needed = 0, uses_anonymous_args = 0
- 874              		@ link register save eliminated.
- 875              	.LVL99:
- 524:Src/main.c    ****   /* USER CODE BEGIN 6 */
- 525:Src/main.c    ****   /* User can add his own implementation to report the file name and line number,
- 526:Src/main.c    ****     ex: printf("Wrong parameters value: file %s on line %d¥r¥n", file, line) */
- 527:Src/main.c    ****   /* USER CODE END 6 */
+ 858 04dc 00000000 		.word	.LANCHOR2
+ 859 04e0 00000000 		.word	.LANCHOR12
+ 860 04e4 00000000 		.word	.LANCHOR13
+ 861 04e8 00000000 		.word	.LANCHOR14
+ 862 04ec 00000000 		.word	.LANCHOR9
+ 863 04f0 00000000 		.word	u8g2
+ 864 04f4 00000000 		.word	.LANCHOR5
+ 865 04f8 00000000 		.word	.LANCHOR7
+ 866 04fc 00000000 		.word	.LANCHOR6
+ 867 0500 00002440 		.word	1076101120
+ 868 0504 00004E40 		.word	1078853632
+ 869 0508 00000000 		.word	.LANCHOR8
+ 870              		.cfi_endproc
+ 871              	.LFE126:
+ 873              		.section	.text.assert_failed,"ax",%progbits
+ 874              		.align	1
+ 875              		.global	assert_failed
+ 876              		.syntax unified
+ 877              		.thumb
+ 878              		.thumb_func
+ 879              		.fpu fpv4-sp-d16
+ 881              	assert_failed:
+ 882              	.LFB129:
+ 521:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 522:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
+ 523:Src/main.c    ****   while(1) 
+ 524:Src/main.c    ****   {
+ 525:Src/main.c    ****   }
+ 526:Src/main.c    ****   /* USER CODE END Error_Handler_Debug */ 
+ 527:Src/main.c    **** }
  528:Src/main.c    **** 
- 529:Src/main.c    **** }
- 876              		.loc 1 529 0
- 877 0000 7047     		bx	lr
- 878              		.cfi_endproc
- 879              	.LFE129:
- 881              		.global	FP_duty
- 882              		.global	FP_volt
- 883              		.global	meas_value
- 884              		.global	meas_sign
- 885              		.global	meas_frac
- 886              		.global	meas_digit
- 887              		.global	meas_unit
- 888              		.global	meas_name
- 889              		.global	idct_status
- 890              		.global	idct_name
- 891              		.global	MT
- 892              		.global	gear
- 893              		.global	speed
- 894              		.global	rpm
- 895              		.global	logo_bits
- 896              		.comm	u8g2,128,4
- 897              		.section	.bss.gear,"aw",%nobits
- 898              		.set	.LANCHOR7,. + 0
- 901              	gear:
- 902 0000 00       		.space	1
- 903              		.section	.bss.rpm,"aw",%nobits
- 904              		.align	1
- 905              		.set	.LANCHOR5,. + 0
- 908              	rpm:
- 909 0000 0000     		.space	2
- 910              		.section	.data.FP_duty,"aw",%progbits
- 911              		.align	1
- 912              		.set	.LANCHOR11,. + 0
- 915              	FP_duty:
- 916 0000 6400     		.short	100
- 917              		.section	.data.FP_volt,"aw",%progbits
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 28
+ 529:Src/main.c    **** #ifdef USE_FULL_ASSERT
+ 530:Src/main.c    **** 
+ 531:Src/main.c    **** /**
+ 532:Src/main.c    ****    * @brief Reports the name of the source file and the source line number
+ 533:Src/main.c    ****    * where the assert_param error has occurred.
+ 534:Src/main.c    ****    * @param file: pointer to the source file name
+ 535:Src/main.c    ****    * @param line: assert_param error line source number
+ 536:Src/main.c    ****    * @retval None
+ 537:Src/main.c    ****    */
+ 538:Src/main.c    **** void assert_failed(uint8_t* file, uint32_t line)
+ 539:Src/main.c    **** {
+ 883              		.loc 1 539 0
+ 884              		.cfi_startproc
+ 885              		@ args = 0, pretend = 0, frame = 0
+ 886              		@ frame_needed = 0, uses_anonymous_args = 0
+ 887              		@ link register save eliminated.
+ 888              	.LVL101:
+ 540:Src/main.c    ****   /* USER CODE BEGIN 6 */
+ 541:Src/main.c    ****   /* User can add his own implementation to report the file name and line number,
+ 542:Src/main.c    ****     ex: printf("Wrong parameters value: file %s on line %d¥r¥n", file, line) */
+ 543:Src/main.c    ****   /* USER CODE END 6 */
+ 544:Src/main.c    **** 
+ 545:Src/main.c    **** }
+ 889              		.loc 1 545 0
+ 890 0000 7047     		bx	lr
+ 891              		.cfi_endproc
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 28
 
 
+ 892              	.LFE129:
+ 894              		.global	FP_duty
+ 895              		.global	FP_volt
+ 896              		.global	meas_value
+ 897              		.global	meas_sign
+ 898              		.global	meas_frac
+ 899              		.global	meas_digit
+ 900              		.global	meas_unit
+ 901              		.global	meas_name
+ 902              		.global	idct_status
+ 903              		.global	idct_name
+ 904              		.global	MT
+ 905              		.global	gear
+ 906              		.global	speed
+ 907              		.global	rpm
+ 908              		.global	logo_bits
+ 909              		.global	update_display
+ 910              		.comm	u8g2,128,4
+ 911              		.section	.bss.gear,"aw",%nobits
+ 912              		.set	.LANCHOR7,. + 0
+ 915              	gear:
+ 916 0000 00       		.space	1
+ 917              		.section	.bss.rpm,"aw",%nobits
  918              		.align	1
- 919              		.set	.LANCHOR10,. + 0
- 922              	FP_volt:
- 923 0000 4A01     		.short	330
- 924              		.section	.data.MT,"aw",%progbits
- 925              		.align	3
- 926              		.set	.LANCHOR6,. + 0
- 929              	MT:
- 930 0000 77BE9F1A 		.word	446676599
- 931 0004 2FDD0B40 		.word	1074519343
- 932 0008 1F85EB51 		.word	1374389535
- 933 000c B81E0040 		.word	1073749688
- 934 0010 A8C64B37 		.word	927712936
- 935 0014 8941F63F 		.word	1073103241
- 936 0018 00000000 		.word	0
- 937 001c 0000F03F 		.word	1072693248
- 938 0020 986E1283 		.word	2199023256
- 939 0024 C0CAE93F 		.word	1072286400
- 940              		.section	.data.meas_value,"aw",%progbits
- 941              		.align	2
- 942              		.set	.LANCHOR9,. + 0
- 945              	meas_value:
- 946 0000 8502     		.short	645
- 947 0002 6900     		.short	105
- 948 0004 EB00     		.short	235
- 949 0006 5900     		.short	89
- 950 0008 4900     		.short	73
- 951 000a 8F00     		.short	143
- 952              		.section	.data.speed,"aw",%progbits
- 953              		.align	1
- 954              		.set	.LANCHOR8,. + 0
- 957              	speed:
- 958 0000 F000     		.short	240
- 959              		.section	.rodata.SystemClock_Config.str1.4,"aMS",%progbits,1
+ 919              		.set	.LANCHOR5,. + 0
+ 922              	rpm:
+ 923 0000 0000     		.space	2
+ 924              		.section	.bss.update_display,"aw",%nobits
+ 927              	update_display:
+ 928 0000 00       		.space	1
+ 929              		.section	.data.FP_duty,"aw",%progbits
+ 930              		.align	1
+ 931              		.set	.LANCHOR11,. + 0
+ 934              	FP_duty:
+ 935 0000 6400     		.short	100
+ 936              		.section	.data.FP_volt,"aw",%progbits
+ 937              		.align	1
+ 938              		.set	.LANCHOR10,. + 0
+ 941              	FP_volt:
+ 942 0000 4A01     		.short	330
+ 943              		.section	.data.MT,"aw",%progbits
+ 944              		.align	3
+ 945              		.set	.LANCHOR6,. + 0
+ 948              	MT:
+ 949 0000 77BE9F1A 		.word	446676599
+ 950 0004 2FDD0B40 		.word	1074519343
+ 951 0008 1F85EB51 		.word	1374389535
+ 952 000c B81E0040 		.word	1073749688
+ 953 0010 A8C64B37 		.word	927712936
+ 954 0014 8941F63F 		.word	1073103241
+ 955 0018 00000000 		.word	0
+ 956 001c 0000F03F 		.word	1072693248
+ 957 0020 986E1283 		.word	2199023256
+ 958 0024 C0CAE93F 		.word	1072286400
+ 959              		.section	.data.meas_value,"aw",%progbits
  960              		.align	2
- 961              	.LC0:
- 962 0000 5372632F 		.ascii	"Src/main.c\000"
- 962      6D61696E 
- 962      2E6300
- 963              		.section	.rodata.idct_name,"a",%progbits
- 964              		.align	2
- 965              		.set	.LANCHOR3,. + 0
- 968              	idct_name:
- 969 0000 43414E00 		.ascii	"CAN\000"
- 970 0004 00       		.space	1
- 971 0005 4F324642 		.ascii	"O2FB\000"
- 971      00
- 972              		.section	.rodata.idct_status,"a",%progbits
- 973              		.align	2
- 974              		.set	.LANCHOR4,. + 0
- 977              	idct_status:
- 978 0000 01       		.byte	1
- 979 0001 00       		.byte	0
- 980              		.section	.rodata.logo_bits,"a",%progbits
- 981              		.align	2
- 982              		.set	.LANCHOR0,. + 0
- 985              	logo_bits:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 29
+ 961              		.set	.LANCHOR9,. + 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 29
 
 
- 986 0000 00       		.byte	0
- 987 0001 00       		.byte	0
- 988 0002 00       		.byte	0
- 989 0003 00       		.byte	0
- 990 0004 00       		.byte	0
- 991 0005 00       		.byte	0
- 992 0006 00       		.byte	0
- 993 0007 00       		.byte	0
- 994 0008 00       		.byte	0
- 995 0009 00       		.byte	0
- 996 000a 00       		.byte	0
- 997 000b 00       		.byte	0
- 998 000c 00       		.byte	0
- 999 000d 00       		.byte	0
- 1000 000e 00       		.byte	0
- 1001 000f 00       		.byte	0
- 1002 0010 00       		.byte	0
- 1003 0011 00       		.byte	0
- 1004 0012 00       		.byte	0
- 1005 0013 00       		.byte	0
- 1006 0014 00       		.byte	0
- 1007 0015 00       		.byte	0
- 1008 0016 00       		.byte	0
- 1009 0017 00       		.byte	0
- 1010 0018 00       		.byte	0
- 1011 0019 00       		.byte	0
- 1012 001a F0       		.byte	-16
- 1013 001b 0F       		.byte	15
- 1014 001c 00       		.byte	0
- 1015 001d 00       		.byte	0
- 1016 001e 00       		.byte	0
- 1017 001f FC       		.byte	-4
- 1018 0020 FF       		.byte	-1
- 1019 0021 FF       		.byte	-1
- 1020 0022 3F       		.byte	63
- 1021 0023 00       		.byte	0
- 1022 0024 80       		.byte	-128
- 1023 0025 FF       		.byte	-1
- 1024 0026 FF       		.byte	-1
- 1025 0027 FF       		.byte	-1
- 1026 0028 FF       		.byte	-1
- 1027 0029 01       		.byte	1
- 1028 002a E0       		.byte	-32
- 1029 002b 1F       		.byte	31
- 1030 002c 00       		.byte	0
- 1031 002d 80       		.byte	-128
- 1032 002e FF       		.byte	-1
- 1033 002f 07       		.byte	7
- 1034 0030 E0       		.byte	-32
- 1035 0031 01       		.byte	1
- 1036 0032 00       		.byte	0
- 1037 0033 80       		.byte	-128
- 1038 0034 81       		.byte	-127
- 1039 0035 07       		.byte	7
- 1040 0036 E0       		.byte	-32
- 1041 0037 01       		.byte	1
- 1042 0038 00       		.byte	0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 30
+ 964              	meas_value:
+ 965 0000 8502     		.short	645
+ 966 0002 6900     		.short	105
+ 967 0004 EB00     		.short	235
+ 968 0006 5900     		.short	89
+ 969 0008 4900     		.short	73
+ 970 000a 8F00     		.short	143
+ 971              		.section	.data.speed,"aw",%progbits
+ 972              		.align	1
+ 973              		.set	.LANCHOR8,. + 0
+ 976              	speed:
+ 977 0000 F000     		.short	240
+ 978              		.section	.rodata.SystemClock_Config.str1.4,"aMS",%progbits,1
+ 979              		.align	2
+ 980              	.LC0:
+ 981 0000 5372632F 		.ascii	"Src/main.c\000"
+ 981      6D61696E 
+ 981      2E6300
+ 982              		.section	.rodata.idct_name,"a",%progbits
+ 983              		.align	2
+ 984              		.set	.LANCHOR3,. + 0
+ 987              	idct_name:
+ 988 0000 43414E00 		.ascii	"CAN\000"
+ 989 0004 00       		.space	1
+ 990 0005 4F324642 		.ascii	"O2FB\000"
+ 990      00
+ 991              		.section	.rodata.idct_status,"a",%progbits
+ 992              		.align	2
+ 993              		.set	.LANCHOR4,. + 0
+ 996              	idct_status:
+ 997 0000 01       		.byte	1
+ 998 0001 01       		.byte	1
+ 999              		.section	.rodata.logo_bits,"a",%progbits
+ 1000              		.align	2
+ 1001              		.set	.LANCHOR0,. + 0
+ 1004              	logo_bits:
+ 1005 0000 00       		.byte	0
+ 1006 0001 00       		.byte	0
+ 1007 0002 00       		.byte	0
+ 1008 0003 00       		.byte	0
+ 1009 0004 00       		.byte	0
+ 1010 0005 00       		.byte	0
+ 1011 0006 00       		.byte	0
+ 1012 0007 00       		.byte	0
+ 1013 0008 00       		.byte	0
+ 1014 0009 00       		.byte	0
+ 1015 000a 00       		.byte	0
+ 1016 000b 00       		.byte	0
+ 1017 000c 00       		.byte	0
+ 1018 000d 00       		.byte	0
+ 1019 000e 00       		.byte	0
+ 1020 000f 00       		.byte	0
+ 1021 0010 00       		.byte	0
+ 1022 0011 00       		.byte	0
+ 1023 0012 00       		.byte	0
+ 1024 0013 00       		.byte	0
+ 1025 0014 00       		.byte	0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 30
 
 
- 1043 0039 80       		.byte	-128
- 1044 003a 81       		.byte	-127
- 1045 003b 07       		.byte	7
- 1046 003c C0       		.byte	-64
- 1047 003d E1       		.byte	-31
- 1048 003e 07       		.byte	7
- 1049 003f C0       		.byte	-64
- 1050 0040 80       		.byte	-128
- 1051 0041 03       		.byte	3
- 1052 0042 00       		.byte	0
- 1053 0043 FC       		.byte	-4
- 1054 0044 1F       		.byte	31
- 1055 0045 E0       		.byte	-32
- 1056 0046 80       		.byte	-128
- 1057 0047 03       		.byte	3
- 1058 0048 00       		.byte	0
- 1059 0049 FE       		.byte	-2
- 1060 004a 7F       		.byte	127
- 1061 004b 70       		.byte	112
- 1062 004c C0       		.byte	-64
- 1063 004d 01       		.byte	1
- 1064 004e 00       		.byte	0
- 1065 004f 0F       		.byte	15
- 1066 0050 FE       		.byte	-2
- 1067 0051 39       		.byte	57
- 1068 0052 E0       		.byte	-32
- 1069 0053 00       		.byte	0
- 1070 0054 00       		.byte	0
- 1071 0055 07       		.byte	7
- 1072 0056 F8       		.byte	-8
- 1073 0057 1F       		.byte	31
- 1074 0058 F0       		.byte	-16
- 1075 0059 00       		.byte	0
- 1076 005a 00       		.byte	0
- 1077 005b 0E       		.byte	14
- 1078 005c E0       		.byte	-32
- 1079 005d 1F       		.byte	31
- 1080 005e 78       		.byte	120
- 1081 005f 00       		.byte	0
- 1082 0060 00       		.byte	0
- 1083 0061 0C       		.byte	12
- 1084 0062 C0       		.byte	-64
- 1085 0063 FF       		.byte	-1
- 1086 0064 3F       		.byte	63
- 1087 0065 00       		.byte	0
- 1088 0066 00       		.byte	0
- 1089 0067 18       		.byte	24
- 1090 0068 00       		.byte	0
- 1091 0069 FF       		.byte	-1
- 1092 006a 1F       		.byte	31
- 1093 006b 00       		.byte	0
- 1094 006c 00       		.byte	0
- 1095 006d 38       		.byte	56
- 1096 006e C0       		.byte	-64
- 1097 006f FF       		.byte	-1
- 1098 0070 0F       		.byte	15
- 1099 0071 00       		.byte	0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 31
+ 1026 0015 00       		.byte	0
+ 1027 0016 00       		.byte	0
+ 1028 0017 00       		.byte	0
+ 1029 0018 00       		.byte	0
+ 1030 0019 00       		.byte	0
+ 1031 001a F0       		.byte	-16
+ 1032 001b 0F       		.byte	15
+ 1033 001c 00       		.byte	0
+ 1034 001d 00       		.byte	0
+ 1035 001e 00       		.byte	0
+ 1036 001f FC       		.byte	-4
+ 1037 0020 FF       		.byte	-1
+ 1038 0021 FF       		.byte	-1
+ 1039 0022 3F       		.byte	63
+ 1040 0023 00       		.byte	0
+ 1041 0024 80       		.byte	-128
+ 1042 0025 FF       		.byte	-1
+ 1043 0026 FF       		.byte	-1
+ 1044 0027 FF       		.byte	-1
+ 1045 0028 FF       		.byte	-1
+ 1046 0029 01       		.byte	1
+ 1047 002a E0       		.byte	-32
+ 1048 002b 1F       		.byte	31
+ 1049 002c 00       		.byte	0
+ 1050 002d 80       		.byte	-128
+ 1051 002e FF       		.byte	-1
+ 1052 002f 07       		.byte	7
+ 1053 0030 E0       		.byte	-32
+ 1054 0031 01       		.byte	1
+ 1055 0032 00       		.byte	0
+ 1056 0033 80       		.byte	-128
+ 1057 0034 81       		.byte	-127
+ 1058 0035 07       		.byte	7
+ 1059 0036 E0       		.byte	-32
+ 1060 0037 01       		.byte	1
+ 1061 0038 00       		.byte	0
+ 1062 0039 80       		.byte	-128
+ 1063 003a 81       		.byte	-127
+ 1064 003b 07       		.byte	7
+ 1065 003c C0       		.byte	-64
+ 1066 003d E1       		.byte	-31
+ 1067 003e 07       		.byte	7
+ 1068 003f C0       		.byte	-64
+ 1069 0040 80       		.byte	-128
+ 1070 0041 03       		.byte	3
+ 1071 0042 00       		.byte	0
+ 1072 0043 FC       		.byte	-4
+ 1073 0044 1F       		.byte	31
+ 1074 0045 E0       		.byte	-32
+ 1075 0046 80       		.byte	-128
+ 1076 0047 03       		.byte	3
+ 1077 0048 00       		.byte	0
+ 1078 0049 FE       		.byte	-2
+ 1079 004a 7F       		.byte	127
+ 1080 004b 70       		.byte	112
+ 1081 004c C0       		.byte	-64
+ 1082 004d 01       		.byte	1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 31
 
 
- 1100 0072 00       		.byte	0
- 1101 0073 70       		.byte	112
- 1102 0074 E0       		.byte	-32
- 1103 0075 F1       		.byte	-15
- 1104 0076 03       		.byte	3
- 1105 0077 00       		.byte	0
- 1106 0078 00       		.byte	0
- 1107 0079 E0       		.byte	-32
- 1108 007a 78       		.byte	120
- 1109 007b 00       		.byte	0
- 1110 007c 00       		.byte	0
- 1111 007d 00       		.byte	0
- 1112 007e 00       		.byte	0
- 1113 007f C0       		.byte	-64
- 1114 0080 3F       		.byte	63
- 1115 0081 E0       		.byte	-32
- 1116 0082 01       		.byte	1
- 1117 0083 00       		.byte	0
- 1118 0084 00       		.byte	0
- 1119 0085 80       		.byte	-128
- 1120 0086 1F       		.byte	31
- 1121 0087 F0       		.byte	-16
- 1122 0088 01       		.byte	1
- 1123 0089 00       		.byte	0
- 1124 008a 00       		.byte	0
- 1125 008b 00       		.byte	0
- 1126 008c 07       		.byte	7
- 1127 008d F8       		.byte	-8
- 1128 008e 00       		.byte	0
- 1129 008f 00       		.byte	0
- 1130 0090 00       		.byte	0
- 1131 0091 00       		.byte	0
- 1132 0092 1E       		.byte	30
- 1133 0093 7C       		.byte	124
- 1134 0094 00       		.byte	0
- 1135 0095 00       		.byte	0
- 1136 0096 00       		.byte	0
- 1137 0097 00       		.byte	0
- 1138 0098 F8       		.byte	-8
- 1139 0099 1F       		.byte	31
- 1140 009a 00       		.byte	0
- 1141 009b 00       		.byte	0
- 1142 009c 00       		.byte	0
- 1143 009d 00       		.byte	0
- 1144 009e F0       		.byte	-16
- 1145 009f 0F       		.byte	15
- 1146 00a0 00       		.byte	0
- 1147 00a1 00       		.byte	0
- 1148 00a2 00       		.byte	0
- 1149 00a3 00       		.byte	0
- 1150 00a4 80       		.byte	-128
- 1151 00a5 01       		.byte	1
- 1152 00a6 00       		.byte	0
- 1153 00a7 00       		.byte	0
- 1154 00a8 00       		.byte	0
- 1155 00a9 00       		.byte	0
- 1156 00aa 00       		.byte	0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 32
+ 1083 004e 00       		.byte	0
+ 1084 004f 0F       		.byte	15
+ 1085 0050 FE       		.byte	-2
+ 1086 0051 39       		.byte	57
+ 1087 0052 E0       		.byte	-32
+ 1088 0053 00       		.byte	0
+ 1089 0054 00       		.byte	0
+ 1090 0055 07       		.byte	7
+ 1091 0056 F8       		.byte	-8
+ 1092 0057 1F       		.byte	31
+ 1093 0058 F0       		.byte	-16
+ 1094 0059 00       		.byte	0
+ 1095 005a 00       		.byte	0
+ 1096 005b 0E       		.byte	14
+ 1097 005c E0       		.byte	-32
+ 1098 005d 1F       		.byte	31
+ 1099 005e 78       		.byte	120
+ 1100 005f 00       		.byte	0
+ 1101 0060 00       		.byte	0
+ 1102 0061 0C       		.byte	12
+ 1103 0062 C0       		.byte	-64
+ 1104 0063 FF       		.byte	-1
+ 1105 0064 3F       		.byte	63
+ 1106 0065 00       		.byte	0
+ 1107 0066 00       		.byte	0
+ 1108 0067 18       		.byte	24
+ 1109 0068 00       		.byte	0
+ 1110 0069 FF       		.byte	-1
+ 1111 006a 1F       		.byte	31
+ 1112 006b 00       		.byte	0
+ 1113 006c 00       		.byte	0
+ 1114 006d 38       		.byte	56
+ 1115 006e C0       		.byte	-64
+ 1116 006f FF       		.byte	-1
+ 1117 0070 0F       		.byte	15
+ 1118 0071 00       		.byte	0
+ 1119 0072 00       		.byte	0
+ 1120 0073 70       		.byte	112
+ 1121 0074 E0       		.byte	-32
+ 1122 0075 F1       		.byte	-15
+ 1123 0076 03       		.byte	3
+ 1124 0077 00       		.byte	0
+ 1125 0078 00       		.byte	0
+ 1126 0079 E0       		.byte	-32
+ 1127 007a 78       		.byte	120
+ 1128 007b 00       		.byte	0
+ 1129 007c 00       		.byte	0
+ 1130 007d 00       		.byte	0
+ 1131 007e 00       		.byte	0
+ 1132 007f C0       		.byte	-64
+ 1133 0080 3F       		.byte	63
+ 1134 0081 E0       		.byte	-32
+ 1135 0082 01       		.byte	1
+ 1136 0083 00       		.byte	0
+ 1137 0084 00       		.byte	0
+ 1138 0085 80       		.byte	-128
+ 1139 0086 1F       		.byte	31
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 32
 
 
- 1157 00ab 00       		.byte	0
- 1158 00ac 00       		.byte	0
- 1159 00ad 00       		.byte	0
- 1160 00ae 00       		.byte	0
- 1161 00af 00       		.byte	0
- 1162 00b0 00       		.byte	0
- 1163 00b1 00       		.byte	0
- 1164 00b2 00       		.byte	0
- 1165 00b3 00       		.byte	0
- 1166 00b4 00       		.byte	0
- 1167 00b5 00       		.byte	0
- 1168 00b6 00       		.byte	0
- 1169 00b7 00       		.byte	0
- 1170 00b8 00       		.byte	0
- 1171 00b9 00       		.byte	0
- 1172 00ba 00       		.byte	0
- 1173 00bb 00       		.byte	0
- 1174 00bc 00       		.byte	0
- 1175 00bd 00       		.byte	0
- 1176 00be 00       		.byte	0
- 1177 00bf 00       		.byte	0
- 1178 00c0 00       		.byte	0
- 1179 00c1 00       		.byte	0
- 1180 00c2 00       		.byte	0
- 1181 00c3 00       		.byte	0
- 1182 00c4 00       		.byte	0
- 1183 00c5 00       		.byte	0
- 1184 00c6 00       		.byte	0
- 1185 00c7 4C       		.byte	76
- 1186 00c8 1C       		.byte	28
- 1187 00c9 00       		.byte	0
- 1188 00ca 00       		.byte	0
- 1189 00cb 00       		.byte	0
- 1190 00cc 00       		.byte	0
- 1191 00cd 32       		.byte	50
- 1192 00ce 0E       		.byte	14
- 1193 00cf 00       		.byte	0
- 1194 00d0 00       		.byte	0
- 1195 00d1 00       		.byte	0
- 1196 00d2 00       		.byte	0
- 1197 00d3 00       		.byte	0
- 1198 00d4 C6       		.byte	-58
- 1199 00d5 00       		.byte	0
- 1200 00d6 18       		.byte	24
- 1201 00d7 00       		.byte	0
- 1202 00d8 00       		.byte	0
- 1203 00d9 7C       		.byte	124
- 1204 00da EF       		.byte	-17
- 1205 00db FC       		.byte	-4
- 1206 00dc 39       		.byte	57
- 1207 00dd 00       		.byte	0
- 1208 00de 00       		.byte	0
- 1209 00df 4E       		.byte	78
- 1210 00e0 C6       		.byte	-58
- 1211 00e1 B8       		.byte	-72
- 1212 00e2 31       		.byte	49
- 1213 00e3 00       		.byte	0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 33
+ 1140 0087 F0       		.byte	-16
+ 1141 0088 01       		.byte	1
+ 1142 0089 00       		.byte	0
+ 1143 008a 00       		.byte	0
+ 1144 008b 00       		.byte	0
+ 1145 008c 07       		.byte	7
+ 1146 008d F8       		.byte	-8
+ 1147 008e 00       		.byte	0
+ 1148 008f 00       		.byte	0
+ 1149 0090 00       		.byte	0
+ 1150 0091 00       		.byte	0
+ 1151 0092 1E       		.byte	30
+ 1152 0093 7C       		.byte	124
+ 1153 0094 00       		.byte	0
+ 1154 0095 00       		.byte	0
+ 1155 0096 00       		.byte	0
+ 1156 0097 00       		.byte	0
+ 1157 0098 F8       		.byte	-8
+ 1158 0099 1F       		.byte	31
+ 1159 009a 00       		.byte	0
+ 1160 009b 00       		.byte	0
+ 1161 009c 00       		.byte	0
+ 1162 009d 00       		.byte	0
+ 1163 009e F0       		.byte	-16
+ 1164 009f 0F       		.byte	15
+ 1165 00a0 00       		.byte	0
+ 1166 00a1 00       		.byte	0
+ 1167 00a2 00       		.byte	0
+ 1168 00a3 00       		.byte	0
+ 1169 00a4 80       		.byte	-128
+ 1170 00a5 01       		.byte	1
+ 1171 00a6 00       		.byte	0
+ 1172 00a7 00       		.byte	0
+ 1173 00a8 00       		.byte	0
+ 1174 00a9 00       		.byte	0
+ 1175 00aa 00       		.byte	0
+ 1176 00ab 00       		.byte	0
+ 1177 00ac 00       		.byte	0
+ 1178 00ad 00       		.byte	0
+ 1179 00ae 00       		.byte	0
+ 1180 00af 00       		.byte	0
+ 1181 00b0 00       		.byte	0
+ 1182 00b1 00       		.byte	0
+ 1183 00b2 00       		.byte	0
+ 1184 00b3 00       		.byte	0
+ 1185 00b4 00       		.byte	0
+ 1186 00b5 00       		.byte	0
+ 1187 00b6 00       		.byte	0
+ 1188 00b7 00       		.byte	0
+ 1189 00b8 00       		.byte	0
+ 1190 00b9 00       		.byte	0
+ 1191 00ba 00       		.byte	0
+ 1192 00bb 00       		.byte	0
+ 1193 00bc 00       		.byte	0
+ 1194 00bd 00       		.byte	0
+ 1195 00be 00       		.byte	0
+ 1196 00bf 00       		.byte	0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 33
 
 
- 1214 00e4 00       		.byte	0
- 1215 00e5 3E       		.byte	62
- 1216 00e6 C6       		.byte	-58
- 1217 00e7 98       		.byte	-104
- 1218 00e8 31       		.byte	49
- 1219 00e9 00       		.byte	0
- 1220 00ea 00       		.byte	0
- 1221 00eb 3C       		.byte	60
- 1222 00ec C6       		.byte	-58
- 1223 00ed 98       		.byte	-104
- 1224 00ee 31       		.byte	49
- 1225 00ef 00       		.byte	0
- 1226 00f0 00       		.byte	0
- 1227 00f1 0E       		.byte	14
- 1228 00f2 C6       		.byte	-58
- 1229 00f3 98       		.byte	-104
- 1230 00f4 31       		.byte	49
- 1231 00f5 00       		.byte	0
- 1232 00f6 00       		.byte	0
- 1233 00f7 4E       		.byte	78
- 1234 00f8 CE       		.byte	-50
- 1235 00f9 99       		.byte	-103
- 1236 00fa 31       		.byte	49
- 1237 00fb 00       		.byte	0
- 1238 00fc 00       		.byte	0
- 1239 00fd 7C       		.byte	124
- 1240 00fe EF       		.byte	-17
- 1241 00ff FD       		.byte	-3
- 1242 0100 7B       		.byte	123
- 1243 0101 00       		.byte	0
- 1244 0102 00       		.byte	0
- 1245 0103 00       		.byte	0
- 1246 0104 00       		.byte	0
- 1247 0105 00       		.byte	0
- 1248 0106 00       		.byte	0
- 1249 0107 00       		.byte	0
- 1250 0108 00       		.byte	0
- 1251 0109 00       		.byte	0
- 1252 010a 00       		.byte	0
- 1253 010b 00       		.byte	0
- 1254 010c 00       		.byte	0
- 1255 010d 00       		.byte	0
- 1256 010e 00       		.byte	0
- 1257 010f 00       		.byte	0
- 1258 0110 00       		.byte	0
- 1259 0111 00       		.byte	0
- 1260 0112 00       		.byte	0
- 1261 0113 00       		.byte	0
- 1262 0114 00       		.byte	0
- 1263 0115 00       		.byte	0
- 1264 0116 00       		.byte	0
- 1265 0117 00       		.byte	0
- 1266 0118 00       		.byte	0
- 1267 0119 00       		.byte	0
- 1268 011a 00       		.byte	0
- 1269 011b 00       		.byte	0
- 1270 011c 00       		.byte	0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 34
+ 1197 00c0 00       		.byte	0
+ 1198 00c1 00       		.byte	0
+ 1199 00c2 00       		.byte	0
+ 1200 00c3 00       		.byte	0
+ 1201 00c4 00       		.byte	0
+ 1202 00c5 00       		.byte	0
+ 1203 00c6 00       		.byte	0
+ 1204 00c7 4C       		.byte	76
+ 1205 00c8 1C       		.byte	28
+ 1206 00c9 00       		.byte	0
+ 1207 00ca 00       		.byte	0
+ 1208 00cb 00       		.byte	0
+ 1209 00cc 00       		.byte	0
+ 1210 00cd 32       		.byte	50
+ 1211 00ce 0E       		.byte	14
+ 1212 00cf 00       		.byte	0
+ 1213 00d0 00       		.byte	0
+ 1214 00d1 00       		.byte	0
+ 1215 00d2 00       		.byte	0
+ 1216 00d3 00       		.byte	0
+ 1217 00d4 C6       		.byte	-58
+ 1218 00d5 00       		.byte	0
+ 1219 00d6 18       		.byte	24
+ 1220 00d7 00       		.byte	0
+ 1221 00d8 00       		.byte	0
+ 1222 00d9 7C       		.byte	124
+ 1223 00da EF       		.byte	-17
+ 1224 00db FC       		.byte	-4
+ 1225 00dc 39       		.byte	57
+ 1226 00dd 00       		.byte	0
+ 1227 00de 00       		.byte	0
+ 1228 00df 4E       		.byte	78
+ 1229 00e0 C6       		.byte	-58
+ 1230 00e1 B8       		.byte	-72
+ 1231 00e2 31       		.byte	49
+ 1232 00e3 00       		.byte	0
+ 1233 00e4 00       		.byte	0
+ 1234 00e5 3E       		.byte	62
+ 1235 00e6 C6       		.byte	-58
+ 1236 00e7 98       		.byte	-104
+ 1237 00e8 31       		.byte	49
+ 1238 00e9 00       		.byte	0
+ 1239 00ea 00       		.byte	0
+ 1240 00eb 3C       		.byte	60
+ 1241 00ec C6       		.byte	-58
+ 1242 00ed 98       		.byte	-104
+ 1243 00ee 31       		.byte	49
+ 1244 00ef 00       		.byte	0
+ 1245 00f0 00       		.byte	0
+ 1246 00f1 0E       		.byte	14
+ 1247 00f2 C6       		.byte	-58
+ 1248 00f3 98       		.byte	-104
+ 1249 00f4 31       		.byte	49
+ 1250 00f5 00       		.byte	0
+ 1251 00f6 00       		.byte	0
+ 1252 00f7 4E       		.byte	78
+ 1253 00f8 CE       		.byte	-50
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 34
 
 
- 1271 011d 00       		.byte	0
- 1272 011e 00       		.byte	0
- 1273 011f 00       		.byte	0
- 1274              		.section	.rodata.main.str1.4,"aMS",%progbits,1
- 1275              		.align	2
- 1276              	.LC1:
- 1277 0000 4D756C74 		.ascii	"Multi Function Meter\000"
- 1277      69204675 
- 1277      6E637469 
- 1277      6F6E204D 
- 1277      65746572 
- 1278 0015 000000   		.space	3
- 1279              	.LC2:
- 1280 0018 5265762E 		.ascii	"Rev. 0.1a\000"
- 1280      20302E31 
- 1280      6100
- 1281 0022 0000     		.space	2
- 1282              	.LC3:
- 1283 0024 25202000 		.ascii	"%  \000"
- 1284              	.LC4:
- 1285 0028 44555459 		.ascii	"DUTY\000"
- 1285      00
- 1286              		.section	.rodata.meas_digit,"a",%progbits
- 1287              		.align	2
- 1288              		.set	.LANCHOR14,. + 0
- 1291              	meas_digit:
- 1292 0000 03       		.byte	3
- 1293 0001 03       		.byte	3
- 1294 0002 03       		.byte	3
- 1295 0003 03       		.byte	3
- 1296 0004 03       		.byte	3
- 1297 0005 03       		.byte	3
- 1298              		.section	.rodata.meas_frac,"a",%progbits
- 1299              		.align	2
- 1300              		.set	.LANCHOR13,. + 0
- 1303              	meas_frac:
- 1304 0000 02       		.byte	2
- 1305 0001 02       		.byte	2
- 1306 0002 01       		.byte	1
- 1307 0003 00       		.byte	0
- 1308 0004 00       		.byte	0
- 1309 0005 02       		.byte	2
- 1310              		.section	.rodata.meas_name,"a",%progbits
- 1311              		.align	2
- 1312              		.set	.LANCHOR1,. + 0
- 1315              	meas_name:
- 1316 0000 4D415000 		.ascii	"MAP\000"
- 1317 0004 000000   		.space	3
- 1318 0007 4F494C50 		.ascii	"OILP\000"
- 1318      00
- 1319 000c 0000     		.space	2
- 1320 000e 4650564F 		.ascii	"FPVOLT\000"
- 1320      4C5400
- 1321 0015 45435400 		.ascii	"ECT\000"
- 1322 0019 000000   		.space	3
- 1323 001c 4F494C54 		.ascii	"OILT\000"
- 1323      00
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 35
+ 1254 00f9 99       		.byte	-103
+ 1255 00fa 31       		.byte	49
+ 1256 00fb 00       		.byte	0
+ 1257 00fc 00       		.byte	0
+ 1258 00fd 7C       		.byte	124
+ 1259 00fe EF       		.byte	-17
+ 1260 00ff FD       		.byte	-3
+ 1261 0100 7B       		.byte	123
+ 1262 0101 00       		.byte	0
+ 1263 0102 00       		.byte	0
+ 1264 0103 00       		.byte	0
+ 1265 0104 00       		.byte	0
+ 1266 0105 00       		.byte	0
+ 1267 0106 00       		.byte	0
+ 1268 0107 00       		.byte	0
+ 1269 0108 00       		.byte	0
+ 1270 0109 00       		.byte	0
+ 1271 010a 00       		.byte	0
+ 1272 010b 00       		.byte	0
+ 1273 010c 00       		.byte	0
+ 1274 010d 00       		.byte	0
+ 1275 010e 00       		.byte	0
+ 1276 010f 00       		.byte	0
+ 1277 0110 00       		.byte	0
+ 1278 0111 00       		.byte	0
+ 1279 0112 00       		.byte	0
+ 1280 0113 00       		.byte	0
+ 1281 0114 00       		.byte	0
+ 1282 0115 00       		.byte	0
+ 1283 0116 00       		.byte	0
+ 1284 0117 00       		.byte	0
+ 1285 0118 00       		.byte	0
+ 1286 0119 00       		.byte	0
+ 1287 011a 00       		.byte	0
+ 1288 011b 00       		.byte	0
+ 1289 011c 00       		.byte	0
+ 1290 011d 00       		.byte	0
+ 1291 011e 00       		.byte	0
+ 1292 011f 00       		.byte	0
+ 1293              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 1294              		.align	2
+ 1295              	.LC1:
+ 1296 0000 4D756C74 		.ascii	"Multi Function Meter\000"
+ 1296      69204675 
+ 1296      6E637469 
+ 1296      6F6E204D 
+ 1296      65746572 
+ 1297 0015 000000   		.space	3
+ 1298              	.LC2:
+ 1299 0018 5265762E 		.ascii	"Rev. 0.1a\000"
+ 1299      20302E31 
+ 1299      6100
+ 1300 0022 0000     		.space	2
+ 1301              	.LC3:
+ 1302 0024 25202000 		.ascii	"%  \000"
+ 1303              	.LC4:
+ 1304 0028 44555459 		.ascii	"DUTY\000"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 35
 
 
- 1324 0021 0000     		.space	2
- 1325 0023 4F3200   		.ascii	"O2\000"
- 1326 0026 00000000 		.space	4
- 1327              		.section	.rodata.meas_sign,"a",%progbits
- 1328              		.align	2
- 1329              		.set	.LANCHOR12,. + 0
- 1332              	meas_sign:
- 1333 0000 01       		.byte	1
- 1334 0001 00       		.byte	0
- 1335 0002 00       		.byte	0
- 1336 0003 00       		.byte	0
- 1337 0004 00       		.byte	0
- 1338 0005 00       		.byte	0
- 1339              		.section	.rodata.meas_unit,"a",%progbits
- 1340              		.align	2
- 1341              		.set	.LANCHOR2,. + 0
- 1344              	meas_unit:
- 1345 0000 6B706100 		.ascii	"kpa\000"
- 1346 0004 00       		.space	1
- 1347 0005 6B706100 		.ascii	"kpa\000"
- 1348 0009 00       		.space	1
- 1349 000a 56202000 		.ascii	"V  \000"
- 1350 000e 00       		.space	1
- 1351 000f B0       		.byte	-80
- 1352 0010 43       		.byte	67
- 1353 0011 00       		.byte	0
- 1354 0012 0000     		.space	2
- 1355 0014 B0       		.byte	-80
- 1356 0015 43       		.byte	67
- 1357 0016 00       		.byte	0
- 1358 0017 0000     		.space	2
- 1359 0019 5600     		.ascii	"V\000"
- 1360 001b 000000   		.space	3
- 1361              		.text
- 1362              	.Letext0:
- 1363              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
- 1364              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
- 1365              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 1366              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
- 1367              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
- 1368              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
- 1369              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
- 1370              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
- 1371              		.file 10 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
- 1372              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
- 1373              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h"
- 1374              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc_ex.h"
- 1375              		.file 14 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
- 1376              		.file 15 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h"
- 1377              		.file 16 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h"
- 1378              		.file 17 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h"
- 1379              		.file 18 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
- 1380              		.file 19 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h"
- 1381              		.file 20 "Inc/adc.h"
- 1382              		.file 21 "Inc/spi.h"
- 1383              		.file 22 "Inc/tim.h"
- 1384              		.file 23 "Inc/usart.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 36
+ 1304      00
+ 1305              		.section	.rodata.meas_digit,"a",%progbits
+ 1306              		.align	2
+ 1307              		.set	.LANCHOR14,. + 0
+ 1310              	meas_digit:
+ 1311 0000 03       		.byte	3
+ 1312 0001 03       		.byte	3
+ 1313 0002 03       		.byte	3
+ 1314 0003 03       		.byte	3
+ 1315 0004 03       		.byte	3
+ 1316 0005 03       		.byte	3
+ 1317              		.section	.rodata.meas_frac,"a",%progbits
+ 1318              		.align	2
+ 1319              		.set	.LANCHOR13,. + 0
+ 1322              	meas_frac:
+ 1323 0000 02       		.byte	2
+ 1324 0001 02       		.byte	2
+ 1325 0002 01       		.byte	1
+ 1326 0003 00       		.byte	0
+ 1327 0004 00       		.byte	0
+ 1328 0005 02       		.byte	2
+ 1329              		.section	.rodata.meas_name,"a",%progbits
+ 1330              		.align	2
+ 1331              		.set	.LANCHOR1,. + 0
+ 1334              	meas_name:
+ 1335 0000 4D415000 		.ascii	"MAP\000"
+ 1336 0004 000000   		.space	3
+ 1337 0007 4F494C50 		.ascii	"OILP\000"
+ 1337      00
+ 1338 000c 0000     		.space	2
+ 1339 000e 4650564F 		.ascii	"FPVOLT\000"
+ 1339      4C5400
+ 1340 0015 45435400 		.ascii	"ECT\000"
+ 1341 0019 000000   		.space	3
+ 1342 001c 4F494C54 		.ascii	"OILT\000"
+ 1342      00
+ 1343 0021 0000     		.space	2
+ 1344 0023 4F3200   		.ascii	"O2\000"
+ 1345 0026 00000000 		.space	4
+ 1346              		.section	.rodata.meas_sign,"a",%progbits
+ 1347              		.align	2
+ 1348              		.set	.LANCHOR12,. + 0
+ 1351              	meas_sign:
+ 1352 0000 01       		.byte	1
+ 1353 0001 00       		.byte	0
+ 1354 0002 00       		.byte	0
+ 1355 0003 00       		.byte	0
+ 1356 0004 00       		.byte	0
+ 1357 0005 00       		.byte	0
+ 1358              		.section	.rodata.meas_unit,"a",%progbits
+ 1359              		.align	2
+ 1360              		.set	.LANCHOR2,. + 0
+ 1363              	meas_unit:
+ 1364 0000 6B706100 		.ascii	"kpa\000"
+ 1365 0004 00       		.space	1
+ 1366 0005 6B706100 		.ascii	"kpa\000"
+ 1367 0009 00       		.space	1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 36
 
 
- 1385              		.file 24 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/math.h"
- 1386              		.file 25 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
- 1387              		.file 26 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
- 1388              		.file 27 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h"
- 1389              		.file 28 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
- 1390              		.file 29 "Inc/gpio.h"
- 1391              		.file 30 "Inc/dma.h"
- 1392              		.file 31 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
- 1393              		.file 32 "/Users/imashio/Electronics/ARM/_Library/draw_Value.h"
- 1394              		.file 33 "/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h"
- 1395              		.file 34 "/Users/imashio/Electronics/ARM/_Library/draw_BarGraph.h"
- 1396              		.file 35 "<built-in>"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 37
+ 1368 000a 56202000 		.ascii	"V  \000"
+ 1369 000e 00       		.space	1
+ 1370 000f B0       		.byte	-80
+ 1371 0010 43       		.byte	67
+ 1372 0011 00       		.byte	0
+ 1373 0012 0000     		.space	2
+ 1374 0014 B0       		.byte	-80
+ 1375 0015 43       		.byte	67
+ 1376 0016 00       		.byte	0
+ 1377 0017 0000     		.space	2
+ 1378 0019 5600     		.ascii	"V\000"
+ 1379 001b 000000   		.space	3
+ 1380              		.text
+ 1381              	.Letext0:
+ 1382              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 1383              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 1384              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 1385              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
+ 1386              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+ 1387              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
+ 1388              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
+ 1389              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
+ 1390              		.file 10 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
+ 1391              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+ 1392              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h"
+ 1393              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc_ex.h"
+ 1394              		.file 14 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+ 1395              		.file 15 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h"
+ 1396              		.file 16 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h"
+ 1397              		.file 17 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h"
+ 1398              		.file 18 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h"
+ 1399              		.file 19 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h"
+ 1400              		.file 20 "Inc/adc.h"
+ 1401              		.file 21 "Inc/spi.h"
+ 1402              		.file 22 "Inc/tim.h"
+ 1403              		.file 23 "Inc/usart.h"
+ 1404              		.file 24 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/math.h"
+ 1405              		.file 25 "/Users/imashio/Electronics/ARM/_Library/basic.h"
+ 1406              		.file 26 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 1407              		.file 27 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ 1408              		.file 28 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h"
+ 1409              		.file 29 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
+ 1410              		.file 30 "Inc/gpio.h"
+ 1411              		.file 31 "Inc/dma.h"
+ 1412              		.file 32 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
+ 1413              		.file 33 "/Users/imashio/Electronics/ARM/_Library/draw_Value.h"
+ 1414              		.file 34 "/Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h"
+ 1415              		.file 35 "/Users/imashio/Electronics/ARM/_Library/draw_BarGraph.h"
+ 1416              		.file 36 "<built-in>"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 37
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:18     .text._Error_Handler:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:25     .text._Error_Handler:0000000000000000 _Error_Handler
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:41     .text.SystemClock_Config:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:48     .text.SystemClock_Config:0000000000000000 SystemClock_Config
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:167    .text.SystemClock_Config:00000000000000a4 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:179    .text.main:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:186    .text.main:0000000000000000 main
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:633    .text.main:00000000000002e8 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:18     .text._Error_Handler:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:25     .text._Error_Handler:0000000000000000 _Error_Handler
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:41     .text.SystemClock_Config:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:48     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:167    .text.SystemClock_Config:00000000000000a4 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:179    .text.main:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:186    .text.main:0000000000000000 main
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:644    .text.main:0000000000000300 $d
                             *COM*:0000000000000080 u8g2
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:669    .text.main:000000000000036c $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:840    .text.main:00000000000004a8 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:861    .text.assert_failed:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:868    .text.assert_failed:0000000000000000 assert_failed
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:915    .data.FP_duty:0000000000000000 FP_duty
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:922    .data.FP_volt:0000000000000000 FP_volt
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:945    .data.meas_value:0000000000000000 meas_value
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1332   .rodata.meas_sign:0000000000000000 meas_sign
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1303   .rodata.meas_frac:0000000000000000 meas_frac
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1291   .rodata.meas_digit:0000000000000000 meas_digit
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1344   .rodata.meas_unit:0000000000000000 meas_unit
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1315   .rodata.meas_name:0000000000000000 meas_name
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:977    .rodata.idct_status:0000000000000000 idct_status
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:968    .rodata.idct_name:0000000000000000 idct_name
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:929    .data.MT:0000000000000000 MT
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:901    .bss.gear:0000000000000000 gear
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:957    .data.speed:0000000000000000 speed
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:908    .bss.rpm:0000000000000000 rpm
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:985    .rodata.logo_bits:0000000000000000 logo_bits
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:902    .bss.gear:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:904    .bss.rpm:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:911    .data.FP_duty:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:918    .data.FP_volt:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:925    .data.MT:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:941    .data.meas_value:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:953    .data.speed:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:960    .rodata.SystemClock_Config.str1.4:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:964    .rodata.idct_name:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:973    .rodata.idct_status:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:981    .rodata.logo_bits:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1275   .rodata.main.str1.4:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1287   .rodata.meas_digit:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1299   .rodata.meas_frac:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1311   .rodata.meas_name:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1328   .rodata.meas_sign:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s:1340   .rodata.meas_unit:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:682    .text.main:000000000000038c $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:853    .text.main:00000000000004c8 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:874    .text.assert_failed:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:881    .text.assert_failed:0000000000000000 assert_failed
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:934    .data.FP_duty:0000000000000000 FP_duty
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:941    .data.FP_volt:0000000000000000 FP_volt
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:964    .data.meas_value:0000000000000000 meas_value
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1351   .rodata.meas_sign:0000000000000000 meas_sign
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1322   .rodata.meas_frac:0000000000000000 meas_frac
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1310   .rodata.meas_digit:0000000000000000 meas_digit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1363   .rodata.meas_unit:0000000000000000 meas_unit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1334   .rodata.meas_name:0000000000000000 meas_name
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:996    .rodata.idct_status:0000000000000000 idct_status
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:987    .rodata.idct_name:0000000000000000 idct_name
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:948    .data.MT:0000000000000000 MT
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:915    .bss.gear:0000000000000000 gear
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:976    .data.speed:0000000000000000 speed
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:922    .bss.rpm:0000000000000000 rpm
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1004   .rodata.logo_bits:0000000000000000 logo_bits
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:927    .bss.update_display:0000000000000000 update_display
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:916    .bss.gear:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:918    .bss.rpm:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:928    .bss.update_display:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:930    .data.FP_duty:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:937    .data.FP_volt:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:944    .data.MT:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:960    .data.meas_value:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:972    .data.speed:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:979    .rodata.SystemClock_Config.str1.4:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:983    .rodata.idct_name:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:992    .rodata.idct_status:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1000   .rodata.logo_bits:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1294   .rodata.main.str1.4:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1306   .rodata.meas_digit:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1318   .rodata.meas_frac:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1330   .rodata.meas_name:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1347   .rodata.meas_sign:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s:1359   .rodata.meas_unit:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_RCC_OscConfig
@@ -2171,11 +2210,11 @@ HAL_RCCEx_PeriphCLKConfig
 HAL_RCC_GetHCLKFreq
 HAL_SYSTICK_Config
 HAL_SYSTICK_CLKSourceConfig
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBmazTz.s 			page 38
+
+
 HAL_NVIC_SetPriority
 __aeabi_dmul
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLDoNVZ.s 			page 38
-
-
 __aeabi_d2iz
 __aeabi_ui2d
 __aeabi_ddiv
@@ -2189,6 +2228,7 @@ MX_TIM1_Init
 MX_USART1_UART_Init
 MX_SPI1_Init
 MX_ADC1_Init
+HAL_TIM_Base_Start_IT
 memset
 HAL_ADC_Start_DMA
 u8g2_Setup_ssd1309_128x64_noname2_f
@@ -2207,6 +2247,7 @@ draw_MeasLabelUnit
 draw_IndicatorBox
 draw_Value
 draw_BarGraph
+htim1
 hadc1
 u8x8_gpio_and_delay_STM32F303
 u8x8_byte_4wire_hw_spi
