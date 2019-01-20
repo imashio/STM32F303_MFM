@@ -36,12 +36,18 @@
 #include "stm32f3xx_it.h"
 
 /* USER CODE BEGIN 0 */
+#include "usart.h"
+#include "flag.h"
+
+extern UART_HandleTypeDef huart2;
 
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_adc1;
 extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim6;
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
 
@@ -72,6 +78,40 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+* @brief This function handles EXTI line 1 interrupt.
+*/
+void EXTI1_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI1_IRQn 0 */
+
+  /* USER CODE END EXTI1_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
+  /* USER CODE BEGIN EXTI1_IRQn 1 */
+  // SW Enter input
+  if(HAL_GPIO_ReadPin( GPIOF, GPIO_PIN_1 ) == 0 ){
+    flag_sw = 3;
+  }
+  /* USER CODE END EXTI1_IRQn 1 */
+}
+
+/**
+* @brief This function handles EXTI line 4 interrupt.
+*/
+void EXTI4_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI4_IRQn 0 */
+
+  /* USER CODE END EXTI4_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
+  /* USER CODE BEGIN EXTI4_IRQn 1 */
+  if(HAL_GPIO_ReadPin( GPIOB, GPIO_PIN_4 ) == 0 ){ // Tacho input
+    HAL_UART_Transmit_printf(&huart1, "Tacho ");
+    HAL_UART_Transmit_printf(&huart2, "Tacho "); // USB
+  }
+  /* USER CODE END EXTI4_IRQn 1 */
+}
+
+/**
 * @brief This function handles DMA1 channel1 global interrupt.
 */
 void DMA1_Channel1_IRQHandler(void)
@@ -86,17 +126,24 @@ void DMA1_Channel1_IRQHandler(void)
 }
 
 /**
-* @brief This function handles TIM1 break and TIM15 interrupts.
+* @brief This function handles EXTI line[9:5] interrupts.
 */
-void TIM1_BRK_TIM15_IRQHandler(void)
+void EXTI9_5_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM1_BRK_TIM15_IRQn 0 */
+  /* USER CODE BEGIN EXTI9_5_IRQn 0 */
 
-  /* USER CODE END TIM1_BRK_TIM15_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim1);
-  /* USER CODE BEGIN TIM1_BRK_TIM15_IRQn 1 */
-  
-  /* USER CODE END TIM1_BRK_TIM15_IRQn 1 */
+  /* USER CODE END EXTI9_5_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);
+  /* USER CODE BEGIN EXTI9_5_IRQn 1 */
+  // SW "Up"/"Down" input
+  if(HAL_GPIO_ReadPin( GPIOB, GPIO_PIN_5 ) == 0 ){
+    flag_sw = 1;
+  }else if(HAL_GPIO_ReadPin( GPIOB, GPIO_PIN_7 ) == 0 ){
+    flag_sw = 2;
+  }
+
+  /* USER CODE END EXTI9_5_IRQn 1 */
 }
 
 /**
@@ -109,8 +156,24 @@ void TIM1_UP_TIM16_IRQHandler(void)
   /* USER CODE END TIM1_UP_TIM16_IRQn 0 */
   HAL_TIM_IRQHandler(&htim1);
   /* USER CODE BEGIN TIM1_UP_TIM16_IRQn 1 */
-  HAL_UART_Transmit_printf( &huart2, "\nInterrupt!!\n\n");
+
   /* USER CODE END TIM1_UP_TIM16_IRQn 1 */
+}
+
+/**
+* @brief This function handles TIM2 global interrupt.
+*/
+void TIM2_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM2_IRQn 0 */
+
+  /* USER CODE END TIM2_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim2);
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+  // 20ms timer for diaplay update
+  flag_disp = 1;
+  flag_meas_short = 1;
+  /* USER CODE END TIM2_IRQn 1 */
 }
 
 /**
@@ -139,6 +202,23 @@ void USART2_IRQHandler(void)
   /* USER CODE BEGIN USART2_IRQn 1 */
 
   /* USER CODE END USART2_IRQn 1 */
+}
+
+/**
+* @brief This function handles TIM6 global and DAC1 underrun error interrupts.
+*/
+void TIM6_DAC1_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM6_DAC1_IRQn 0 */
+
+  /* USER CODE END TIM6_DAC1_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim6);
+  /* USER CODE BEGIN TIM6_DAC1_IRQn 1 */
+  // SW external interrupt
+  HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
+  /* USER CODE END TIM6_DAC1_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

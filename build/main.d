@@ -17,6 +17,7 @@ build/main.d: Src/main.c Inc/main.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h \
+ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c.h \
@@ -29,7 +30,7 @@ build/main.d: Src/main.c Inc/main.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h Inc/adc.h \
- Inc/dma.h Inc/spi.h Inc/tim.h Inc/usart.h Inc/gpio.h \
+ Inc/can.h Inc/dma.h Inc/spi.h Inc/tim.h Inc/usart.h Inc/gpio.h \
  /Users/imashio/Electronics/ARM/_Library/basic.h \
  /Users/imashio/Electronics/ARM/_Library/u8g2.h \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h \
@@ -38,7 +39,7 @@ build/main.d: Src/main.c Inc/main.h \
  /Users/imashio/Electronics/ARM/_Library/draw_Value.h \
  /Users/imashio/Electronics/ARM/_Library/u8g2.h \
  /Users/imashio/Electronics/ARM/_Library/draw_BarGraph.h \
- /Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h
+ /Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h Inc/flag.h
 
 Inc/main.h:
 
@@ -84,6 +85,8 @@ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc_ex.h:
 
+Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h:
+
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash_ex.h:
@@ -109,6 +112,8 @@ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h:
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
 
 Inc/adc.h:
+
+Inc/can.h:
 
 Inc/dma.h:
 
@@ -137,3 +142,5 @@ Inc/gpio.h:
 /Users/imashio/Electronics/ARM/_Library/draw_BarGraph.h:
 
 /Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h:
+
+Inc/flag.h:
