@@ -53,6 +53,9 @@
 #define ADC__O2_GPIO_Port GPIOA
 #define USART2__USB_TX_Pin GPIO_PIN_2
 #define USART2__USB_TX_GPIO_Port GPIOA
+#define EXTI__SW_Down_Pin GPIO_PIN_6
+#define EXTI__SW_Down_GPIO_Port GPIOA
+#define EXTI__SW_Down_EXTI_IRQn EXTI9_5_IRQn
 #define OLED__CS_Pin GPIO_PIN_0
 #define OLED__CS_GPIO_Port GPIOB
 #define OLED__D_C_Pin GPIO_PIN_1
@@ -71,9 +74,6 @@
 #define EXTI__SW_Up_Pin GPIO_PIN_5
 #define EXTI__SW_Up_GPIO_Port GPIOB
 #define EXTI__SW_Up_EXTI_IRQn EXTI9_5_IRQn
-#define EXTI__SW_Dn_Pin GPIO_PIN_7
-#define EXTI__SW_Dn_GPIO_Port GPIOB
-#define EXTI__SW_Dn_EXTI_IRQn EXTI9_5_IRQn
 
 /* USER CODE BEGIN Private defines */
 

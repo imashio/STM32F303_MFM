@@ -41,6 +41,7 @@
 #include "adc.h"
 #include "can.h"
 #include "dma.h"
+#include "i2c.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
@@ -50,7 +51,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "basic.h"  // original library
+// #include "basic.h"  // original library
+#include "usart_transmit_printf.h"
 #include "u8g2.h"		// graphic display library
 #include "u8x8_gpio_STM32F303.h"
 #include "u8x8_byte_4wire_hw_spi.h"
@@ -59,6 +61,7 @@
 #include "draw_IndicatorBox.h"
 
 #include "flag.h"
+#include "defi_decoder.h"
 
 /* USER CODE END Includes */
 
@@ -67,6 +70,9 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 u8g2_t u8g2; // a structure which will contain all the data for one display
+
+// mode definition
+#define N_mode        2
 
 // RPM bar graph parameter definition
 #define	rpmbar_x		  0
@@ -100,10 +106,10 @@ u8g2_t u8g2; // a structure which will contain all the data for one display
 #define	FP_duty_width	70
 
 // wave display parameter definition
-#define	wave_x			0
-#define	wave_y			15
+#define	wave_x			  0
+#define	wave_y			  13
 #define	wave_width		128
-#define	wave_height		40
+#define	wave_height		52
 #define	wave_value_min	-6
 #define	wave_value_max	+12
 
@@ -111,7 +117,7 @@ u8g2_t u8g2; // a structure which will contain all the data for one display
 #define logo_width    48
 #define logo_height   48
 
-uint8_t   update_display=0;
+uint8_t   update_display = 0;
 
 const unsigned char logo_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -181,6 +187,12 @@ uint16_t	rpm = 0;
 uint16_t	speed = 240;
 uint8_t		gear = 0;
 double		MT[5] = {3.483, 2.015, 1.391, 1.000, 0.806};
+
+// UI
+uint8_t mode;
+uint8_t setting;
+uint8_t cursor = 0;
+
 
 /*
 typedef struct {
@@ -255,6 +267,9 @@ int16_t	meas_value[N_meas] = {
 		143		// O2
 };
 
+// O2 senser Voltage
+int16_t O2_volt = 330;
+
 // Fuel Pump Voltage
 int16_t FP_volt = 330;
 int16_t FP_duty = 100;
@@ -279,7 +294,6 @@ void draw_indicators(){
   }
 }
 
-extern unsigned int cursor = 0;
 void draw_MeasLabels(){
   uint8_t n;
   uint8_t x, y;
@@ -318,11 +332,10 @@ int main(void)
   uint8_t n;
   uint8_t x, y;
 
-  uint16_t a = 0;
-  uint16_t b = 0;
+  uint16_t a = 0; // for dummy data
+  uint16_t b = 0; // for dummy data
 
-  uint8_t mode;
-
+  // circular buffer for ADC data
   uint16_t circular_buffer_index = 0;
   int16_t circular_buffer[128]={};
 
@@ -344,30 +357,11 @@ int main(void)
   MX_SPI1_Init();
   MX_ADC1_Init();
   MX_TIM2_Init();
-  MX_ADC2_Init();
   MX_CAN_Init();
   MX_TIM6_Init();
+  MX_I2C1_Init();
 
   /* USER CODE BEGIN 2 */
-
-  // OLED diaplay initialization
-  u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_hw_spi, u8x8_gpio_and_delay_STM32F303);  // init u8g2 structure
-  HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 1); // Set RES=H (OLED activate)
-  u8g2_InitDisplay(&u8g2); // send init sequence to the display, display is in sleep mode after this,
-  u8g2_SetPowerSave(&u8g2, 0); // wake up display
-  u8g2_SetContrast(&u8g2, 128); // set contrast
-  u8g2_ClearDisplay(&u8g2);
-
-
-  // draw opening
-  u8g2_DrawXBMP(&u8g2, 40, 0, logo_width, logo_height, logo_bits );
-
-  u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
-  u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
-  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
-  u8g2_SendBuffer(&u8g2);
-
-  HAL_Delay(2000);
 
   ///// Timer /////
   // PWM for Fuel Pump Driver ()
@@ -388,15 +382,42 @@ int main(void)
     Error_Handler();
   }
 
+  // UART1 interrupt setup for DEFI decoder
+  HAL_UART_Receive_IT(&huart1, &UART1_Data, 1);
+  // variables is defined in 'defi.h'
+
+
   // ADC (for PA0) buffer definition
   enum{ ADC_BUFFER_LENGTH = 1024 };
   uint16_t g_ADCBuffer[ADC_BUFFER_LENGTH];
   memset(g_ADCBuffer, 0, sizeof(g_ADCBuffer));
   HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
 
+
+  // OLED diaplay initialization
+  u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_hw_spi, u8x8_gpio_and_delay_STM32F303);  // init u8g2 structure
+
+  // OLED display Reset (must be more than 3us!!)
+  HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 0); // Set RES=L (OLED Reset)
+  HAL_Delay(5);
+  HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 1); // Set RES=H (OLED activate)
+  u8g2_InitDisplay(&u8g2); // send init sequence to the display, display is in sleep mode after this,
+  u8g2_SetPowerSave(&u8g2, 0); // wake up display
+  u8g2_SetContrast(&u8g2, 255); // set contrast
+  u8g2_ClearDisplay(&u8g2);
+
+  // draw opening
+  u8g2_DrawXBMP(&u8g2, 40, 0, logo_width, logo_height, logo_bits );
+
+  u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
+  u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
+  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
+  u8g2_SendBuffer(&u8g2);
+
+//  HAL_Delay(2000);
+
   u8g2_ClearBuffer(&u8g2);
 
-  HAL_UART_Transmit_printf(&huart1, "Hello. This is MFM.\n");
   HAL_UART_Transmit_printf(&huart2, "Hello. This is MFM.\n");
 
   /* USER CODE END 2 */
@@ -408,15 +429,24 @@ int main(void)
   draw_indicators();
   u8g2_SendBuffer(&u8g2);
 
-
   while (1) 
   {
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
 
-	  // start of create dummy data for debug
-    if( flag_meas_short == 1 ){
+    ///// ADC /////
+		// read O2 sensor ADC output
+		O2_volt = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
+
+		// read Fuel Pump Voltage ADC output
+		FP_volt = (int16_t)(330*(float)g_ADCBuffer[0]/255);
+    FP_duty = (int16_t)(FP_volt/(14.4)*10);
+
+
+    if( flag_meas == 1 ){
+
+  	  // create dummy data for debug
       if( rpm <= 8200 ){
           rpm = rpm + (int)(20*MT[gear]);
           //rpm=rpm+10;
@@ -436,28 +466,25 @@ int main(void)
       }else{
         a++;
       }
-
+/*
       for( n=0; n<=5; n++){
         if( n==0 ){
-          meas_value[n] = a - 75;
+          meas_value[n] = defi_decode_value(UART1_RxData); // DEFI decoder
         }else{
           meas_value[n] = a;
         }
       }
+*/
+      meas_value[0] = DEFI_value[0];	// MAP
+		  meas_value[1] = DEFI_value[2]; // OILP
+			meas_value[2] = FP_volt; // FuelPump Voltage
+		  meas_value[5] = DEFI_value[6]; // ECT
+			meas_value[5] = DEFI_value[5]; // OILT
+		  meas_value[5] = O2_volt; // O2
 
-      flag_meas_short = 0;
+
+      flag_meas = 0; // enable again by TIM2 interrupt
     }
-	  // end of create dummy data for debug
-
-
-    ///// ADC /////
-		// read O2 sensor ADC output
-		meas_value[5] = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
-
-		// read Fuel Pump Voltage ADC output
-		FP_volt = (int16_t)(330*(float)g_ADCBuffer[0]/255);
-    FP_duty = (int16_t)(FP_volt/(14.4)*10);
-		meas_value[2] = FP_volt;
 
     ///// Switch /////
     if( flag_sw != 0 ){
@@ -466,11 +493,11 @@ int main(void)
           HAL_UART_Transmit_printf(&huart2, "UP ");
           HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
           // SW "UP"
-          if( mode == 10 ){
-            if( cursor == 1 ){
-              cursor = 0;
+          if( setting == 0 ){
+            if( mode == N_mode-1 ){
+              mode = 0;
             }else{
-              cursor++;
+              mode++;
             }
           }
           break;
@@ -478,36 +505,39 @@ int main(void)
           HAL_UART_Transmit_printf(&huart2, "DOWN ");
           HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
           // SW "DOWN"
-          if( mode == 10 ){
-            if( cursor == 0 ){
-              cursor = 1;
+          if( setting == 0 ){
+            if( mode == 0 ){
+              mode = N_mode-1;
             }else{
-              cursor--;
+              mode--;
             }
           }
           break;
         case 3:
           HAL_UART_Transmit_printf(&huart2, "ENTER ");
-          HAL_NVIC_DisableIRQ(EXTI1_IRQn);
+          HAL_NVIC_DisableIRQ (EXTI1_IRQn);
           // SW "ENTER"
-          if( mode == 10 ){
-            mode = cursor;
-            u8g2_ClearBuffer(&u8g2);
-            if( mode == 0 ){
-              draw_MeasLabels();
-              draw_indicators();
-            }else if( mode == 1 ){
-              draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max);
-              draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "MAP", "kPa");
-            }
-            u8g2_SendBuffer(&u8g2);
-          }else{
-            mode = 10;
-          }
-          break;
+
+          // if( setting == 0 ){
+          //   mode = cursor;
+          //   u8g2_ClearBuffer(&u8g2);
+          // }else{
+          //   mode = 10;
+          // }
+          // break;
+
         default:
           break;
       }
+      u8g2_ClearBuffer(&u8g2);
+      if( mode == 0 ){
+        draw_MeasLabels();
+        draw_indicators();
+      }else if( mode == 1 ){
+        draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max);
+        draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "MAP", "kPa");
+      }
+      u8g2_SendBuffer(&u8g2);
       TIM6->CNT = 0;
       flag_sw = 0;
     }
@@ -533,6 +563,7 @@ int main(void)
           y = (n % 3) * meas_height	+ meas_y;
           draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
         }
+        
       ///// Scope /////
       }else if( mode == 1 ){
 
@@ -541,7 +572,6 @@ int main(void)
         }else{
           circular_buffer_index = 128;
         }
-//    		circular_buffer[circular_buffer_index] = b; // sine-wave
         circular_buffer[circular_buffer_index] = (int16_t)(18 * (float)g_ADCBuffer[0]/255 - 6); // ADC output
 
         // draw wave
@@ -549,7 +579,7 @@ int main(void)
         draw_Value(&u8g2, 0, 0, 64, 13, circular_buffer[circular_buffer_index], 3, 1, 1, "kPa");
 
       // mode setting
-      }else if( mode == 10 ){
+      }else if( setting == 1 ){
         u8g2_ClearBuffer(&u8g2);
         u8g2_SetFont(&u8g2, u8g2_font_7x14B_tf);
         u8g2_DrawStr(&u8g2, 2, 15, "Mode Setting" );
@@ -570,9 +600,8 @@ int main(void)
       // send buffer
       u8g2_SendBuffer(&u8g2);
 
-      flag_disp = 0;
+      flag_disp = 0; // enable again by TIM2 interrupt
     }
-
 
   }
   /* USER CODE END 3 */
@@ -590,10 +619,11 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = 16;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
@@ -616,8 +646,10 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_TIM1;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_I2C1
+                              |RCC_PERIPHCLK_TIM1;
   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
+  PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_HSI;
   PeriphClkInit.Tim1ClockSelection = RCC_TIM1CLK_HCLK;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {

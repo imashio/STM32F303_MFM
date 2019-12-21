@@ -30,8 +30,8 @@ build/main.d: Src/main.c Inc/main.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h Inc/adc.h \
- Inc/can.h Inc/dma.h Inc/spi.h Inc/tim.h Inc/usart.h Inc/gpio.h \
- /Users/imashio/Electronics/ARM/_Library/basic.h \
+ Inc/can.h Inc/dma.h Inc/i2c.h Inc/spi.h Inc/tim.h Inc/usart.h Inc/gpio.h \
+ /Users/imashio/Electronics/ARM/_Library/usart_transmit_printf.h \
  /Users/imashio/Electronics/ARM/_Library/u8g2.h \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h \
  /Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.h \
@@ -39,7 +39,8 @@ build/main.d: Src/main.c Inc/main.h \
  /Users/imashio/Electronics/ARM/_Library/draw_Value.h \
  /Users/imashio/Electronics/ARM/_Library/u8g2.h \
  /Users/imashio/Electronics/ARM/_Library/draw_BarGraph.h \
- /Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h Inc/flag.h
+ /Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h \
+ /Users/imashio/Electronics/ARM/_Library/flag.h Inc/defi_decoder.h
 
 Inc/main.h:
 
@@ -117,6 +118,8 @@ Inc/can.h:
 
 Inc/dma.h:
 
+Inc/i2c.h:
+
 Inc/spi.h:
 
 Inc/tim.h:
@@ -125,7 +128,7 @@ Inc/usart.h:
 
 Inc/gpio.h:
 
-/Users/imashio/Electronics/ARM/_Library/basic.h:
+/Users/imashio/Electronics/ARM/_Library/usart_transmit_printf.h:
 
 /Users/imashio/Electronics/ARM/_Library/u8g2.h:
 
@@ -143,4 +146,6 @@ Inc/gpio.h:
 
 /Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h:
 
-Inc/flag.h:
+/Users/imashio/Electronics/ARM/_Library/flag.h:
+
+Inc/defi_decoder.h:

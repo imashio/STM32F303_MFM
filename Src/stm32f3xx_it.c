@@ -105,7 +105,6 @@ void EXTI4_IRQHandler(void)
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
   /* USER CODE BEGIN EXTI4_IRQn 1 */
   if(HAL_GPIO_ReadPin( GPIOB, GPIO_PIN_4 ) == 0 ){ // Tacho input
-    HAL_UART_Transmit_printf(&huart1, "Tacho ");
     HAL_UART_Transmit_printf(&huart2, "Tacho "); // USB
   }
   /* USER CODE END EXTI4_IRQn 1 */
@@ -134,12 +133,14 @@ void EXTI9_5_IRQHandler(void)
 
   /* USER CODE END EXTI9_5_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
   /* USER CODE BEGIN EXTI9_5_IRQn 1 */
   // SW "Up"/"Down" input
+  // UP key : PB5
   if(HAL_GPIO_ReadPin( GPIOB, GPIO_PIN_5 ) == 0 ){
     flag_sw = 1;
-  }else if(HAL_GPIO_ReadPin( GPIOB, GPIO_PIN_7 ) == 0 ){
+  // DOWN key : PA6
+  }else if(HAL_GPIO_ReadPin( GPIOA, GPIO_PIN_6 ) == 0 ){
     flag_sw = 2;
   }
 
@@ -172,7 +173,7 @@ void TIM2_IRQHandler(void)
   /* USER CODE BEGIN TIM2_IRQn 1 */
   // 20ms timer for diaplay update
   flag_disp = 1;
-  flag_meas_short = 1;
+  flag_meas = 1;
   /* USER CODE END TIM2_IRQn 1 */
 }
 
@@ -211,12 +212,16 @@ void TIM6_DAC1_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM6_DAC1_IRQn 0 */
 
+
   /* USER CODE END TIM6_DAC1_IRQn 0 */
   HAL_TIM_IRQHandler(&htim6);
   /* USER CODE BEGIN TIM6_DAC1_IRQn 1 */
+
+
   // SW external interrupt
   HAL_NVIC_EnableIRQ(EXTI1_IRQn);
   HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
 
   /* USER CODE END TIM6_DAC1_IRQn 1 */
 }
