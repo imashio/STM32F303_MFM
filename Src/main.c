@@ -62,6 +62,7 @@
 
 #include "flag.h"
 #include "defi_decoder.h"
+#include "pulse_counter.h"
 
 /* USER CODE END Includes */
 
@@ -72,7 +73,7 @@
 u8g2_t u8g2; // a structure which will contain all the data for one display
 
 // mode definition
-#define N_mode        2
+#define N_mode        3
 
 // RPM bar graph parameter definition
 #define	rpmbar_x		  0
@@ -83,6 +84,7 @@ u8g2_t u8g2; // a structure which will contain all the data for one display
 #define	rpm_max			  9000
 
 // measurements display parameter definition
+// Bar graph
 #define	N_meas			  6
 #define	meas_x			  0
 #define	meas_y			  16
@@ -90,6 +92,13 @@ u8g2_t u8g2; // a structure which will contain all the data for one display
 #define	meas_width1		70
 #define	meas_width2		56
 #define	meas_height		12
+// Circular Meter
+#define	N_meas_C			4
+#define	meas_C_x			68
+#define	meas_C_y			2
+#define	meas_C_x_offset		2
+#define	meas_C_width		60
+#define	meas_C_height		13
 
 // indicators parameter definition
 #define	N_idct			  2
@@ -110,8 +119,8 @@ u8g2_t u8g2; // a structure which will contain all the data for one display
 #define	wave_y			  13
 #define	wave_width		128
 #define	wave_height		52
-#define	wave_value_min	-6
-#define	wave_value_max	+12
+#define	wave_value_min	-100
+#define	wave_value_max	+200
 
 // logo parameter definition (small 'enfini' logo)
 #define logo_width    48
@@ -183,7 +192,7 @@ static unsigned char logo_bits[] = {
   };
 */
 
-uint16_t	rpm = 0;
+// uint16_t	rpm = 0;
 uint16_t	speed = 240;
 uint8_t		gear = 0;
 double		MT[5] = {3.483, 2.015, 1.391, 1.000, 0.806};
@@ -216,7 +225,7 @@ const uint8_t	idct_status[N_idct] = {
 const unsigned char meas_name[N_meas][7] = { // length must be (text length + 1)
 		"MAP"	,
 		"OILP"	,
-		"FPVOLT"	,
+		"FPV"	,
 		"ECT"	,
 		"OILT"	,
 		"O2"
@@ -242,7 +251,7 @@ const uint8_t	meas_digit[N_meas] = {
 
 const uint8_t	meas_frac[N_meas] = {
 		2	,	// MAP
-		2	,	// OILP
+		1	,	// OILP
 		1	,	// FuelPump Voltage
 		0	,	// ECT
 		0	,	// OILT
@@ -274,6 +283,35 @@ int16_t O2_volt = 330;
 int16_t FP_volt = 330;
 int16_t FP_duty = 100;
 
+uint8_t   Gsens_X1;
+uint8_t   Gsens_X0;
+int16_t   Gsens_X;
+uint8_t   Gsens_Y1;
+uint8_t   Gsens_Y0;
+int16_t   Gsens_Y;
+uint8_t   Gsens_Z1;
+uint8_t   Gsens_Z0;
+int16_t   Gsens_Z;
+
+#define ADXL0_ADDR 0x1D
+// ADXL345     I2C
+// SDO/ALT   Address
+//    H        0x1D
+//    L        0x53
+
+void ADXL345_RegWrite(uint8_t slv_addr, uint8_t addr, uint8_t data){
+  uint8_t i2c_buf[2];
+  i2c_buf[0] = addr;
+  i2c_buf[1] = data;  
+  HAL_I2C_Master_Transmit(&hi2c1, slv_addr << 1, &i2c_buf, 2, 10);
+}
+
+uint8_t ADXL345_RegRead_1byte(uint8_t slv_addr, uint8_t addr){
+  uint8_t data;
+  HAL_I2C_Master_Transmit(&hi2c1, slv_addr << 1, &addr, 1, 10);
+  HAL_I2C_Master_Receive(&hi2c1, slv_addr << 1, &data, 1, 10);
+  return data;
+}
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -360,23 +398,39 @@ int main(void)
   MX_CAN_Init();
   MX_TIM6_Init();
   MX_I2C1_Init();
+  MX_TIM3_Init();
 
   /* USER CODE BEGIN 2 */
 
+  ///// PWM initialize ----------------------------------------------------------------
+
   ///// Timer /////
-  // PWM for Fuel Pump Driver ()
+  // TIM1 - PWM for Fuel Pump Driver (Cycle 100kHz = 1MHz / 100count)
+  /*
   if (HAL_TIM_Base_Start_IT(&htim1) != HAL_OK)
   {
     Error_Handler();
   }
+  */
+  // Start Timer1 / ch1
+  if (HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
 
-  // display (20ms)
+  // TIM2 - display (Cycle 20ms = 1/100kHz x 2,000count)
   if (HAL_TIM_Base_Start_IT(&htim2) != HAL_OK)
   {
     Error_Handler();
   }
 
-  // interrupt control (100ms)
+  // TIM3 - Pulse counter for Tacho (f 200kHz, count 65535)
+  if (HAL_TIM_Base_Start_IT(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  // TIM6 - SW interrupt control (Cycle 100ms = 1/100kHz x 10,000count)
   if (HAL_TIM_Base_Start_IT(&htim6) != HAL_OK)
   {
     Error_Handler();
@@ -414,11 +468,15 @@ int main(void)
   u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
   u8g2_SendBuffer(&u8g2);
 
+  HAL_Delay(500);
 //  HAL_Delay(2000);
 
   u8g2_ClearBuffer(&u8g2);
 
   HAL_UART_Transmit_printf(&huart2, "Hello. This is MFM.\n");
+
+  // Set PWM Duty for Timer1 / Output1 (Asymmetric PWM2)
+  TIM1->CCR1 = (100 - FP_duty);
 
   /* USER CODE END 2 */
 
@@ -429,24 +487,47 @@ int main(void)
   draw_indicators();
   u8g2_SendBuffer(&u8g2);
 
-  while (1) 
+
+  // I2C communication to ADXL345(3-axis G-sensor)
+  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00); // DEIVID
+  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08); // Enable 'Measure' at "POWER_CTL"
+  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check "POWER_CTL"
+
+
+  while(1)
   {
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
 
-    ///// ADC /////
+    ///// ADC ----------------------------------------------------------------
 		// read O2 sensor ADC output
 		O2_volt = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
 
 		// read Fuel Pump Voltage ADC output
-		FP_volt = (int16_t)(330*(float)g_ADCBuffer[0]/255);
-    FP_duty = (int16_t)(FP_volt/(14.4)*10);
+		FP_volt = (int16_t)((165/33)*33*(float)g_ADCBuffer[0]/255);
+    // Ressister attenation ratio '165/33'
+    FP_duty = (int16_t)(FP_volt/(16.6)*10);
 
+    //// Measure data  ----------------------------------------------------------------
+    defi_decoder(UART1_RxData); // DEFI decoder
 
     if( flag_meas == 1 ){
 
-  	  // create dummy data for debug
+      // I2C communication to ADXL345(3-axis G-sensor)
+      Gsens_X1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x33); // Check "DATAX1" (MSB side)
+      Gsens_X0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x32); // Check "DATAX0" (LSB side)
+      Gsens_X = (Gsens_X1<<8) | Gsens_X0;
+      Gsens_Y1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x35); // Check "DATAY1" (MSB side)
+      Gsens_Y0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x34); // Check "DATAY0" (LSB side)
+      Gsens_Y = (Gsens_Y1<<8) | Gsens_Y0;
+      Gsens_Z1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x37); // Check "DATAZ1" (MSB side)
+      Gsens_Z0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x36); // Check "DATAZ0" (LSB side)
+      Gsens_Z = (Gsens_Z1<<8) | Gsens_Z0;
+      HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", Gsens_X, Gsens_Y, Gsens_Z); // debug
+
+/*
+  	  // start of create dummy data for debug
       if( rpm <= 8200 ){
           rpm = rpm + (int)(20*MT[gear]);
           //rpm=rpm+10;
@@ -466,27 +547,24 @@ int main(void)
       }else{
         a++;
       }
-/*
-      for( n=0; n<=5; n++){
-        if( n==0 ){
-          meas_value[n] = defi_decode_value(UART1_RxData); // DEFI decoder
-        }else{
-          meas_value[n] = a;
-        }
-      }
+  	  // end of create dummy data for debug
 */
-      meas_value[0] = DEFI_value[0];	// MAP
-		  meas_value[1] = DEFI_value[2]; // OILP
-			meas_value[2] = FP_volt; // FuelPump Voltage
-		  meas_value[5] = DEFI_value[6]; // ECT
-			meas_value[5] = DEFI_value[5]; // OILT
-		  meas_value[5] = O2_volt; // O2
+      meas_value[0] = DEFI_value[0];  // MAP
+		  meas_value[1] = DEFI_value[2];  // OILP
+			meas_value[2] = FP_volt;        // FuelPump Voltage
+		  meas_value[3] = DEFI_value[6];  // ECT
+			meas_value[4] = DEFI_value[5];  // OILT
+		  meas_value[5] = O2_volt;        // O2
 
 
       flag_meas = 0; // enable again by TIM2 interrupt
     }
 
-    ///// Switch /////
+    ///// FP driver ----------------------------------------------------------------
+    // Set PWM Duty for Timer1 / Output1 (Asymmetric PWM2)
+    TIM1->CCR1 = (100 - FP_duty);
+
+    ///// Switch ----------------------------------------------------------------
     if( flag_sw != 0 ){
       switch( flag_sw ){
         case 1:
@@ -533,16 +611,32 @@ int main(void)
       if( mode == 0 ){
         draw_MeasLabels();
         draw_indicators();
+
       }else if( mode == 1 ){
+        for( n=0; n<N_meas_C; n++ ){
+          x = meas_C_x;
+          y = n * meas_C_height	+ meas_C_y;
+          draw_MeasLabelUnit(&u8g2, x, y, meas_C_width, meas_C_height, meas_name[n], meas_unit[n]);
+        }
+        // draw indicators
+        for( n=0; n<4; n++ ){
+          draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n], idct_name[n]);
+        }
+        draw_CircularMeter_Init(32, 32, 31, 3, -60, 300, 10, 20, -1, -80, 120);
+//        draw_CircularMeter_Init(26, 26, 26, 3, -60, 300, 10, 20, -1, -80, 120);
+        draw_CircularMeter(&u8g2, 0);
+
+      }else if( mode == 2 ){
         draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max);
         draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "MAP", "kPa");
+
       }
       u8g2_SendBuffer(&u8g2);
       TIM6->CNT = 0;
       flag_sw = 0;
     }
 
-    ///// Display sequence /////
+    ///// Display sequence ----------------------------------------------------------------
     if( flag_disp == 1 ){
       ///// multi meter /////
       if( mode == 0 ){
@@ -564,19 +658,38 @@ int main(void)
           draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
         }
         
-      ///// Scope /////
+      ///// Circular Meter /////
       }else if( mode == 1 ){
+
+        draw_CircularMeter(&u8g2, meas_value[0]);
+        
+        draw_Value(&u8g2, 36, 33, 30, 16, meas_value[0], 3, 2, 1, "");
+        draw_MeasUnit(&u8g2, 38, 40, 28, 16, "kPa");
+/*        
+        draw_Value(&u8g2, 34, 28, 30, 16, meas_value[0], 3, 2, 1, "");
+        draw_MeasUnit(&u8g2, 36, 36, 28, 16, "kPa");
+*/
+
+        // draw measurement data
+        for( n=0; n<N_meas_C; n++ ){
+          x = meas_C_x;
+          y = n * meas_C_height	+ meas_C_y;
+          draw_Value(&u8g2, x, y, meas_C_width, meas_C_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
+        }
+
+      ///// Scope /////
+      }else if( mode == 2 ){
 
         if( circular_buffer_index > 0 ){
           circular_buffer_index--;
         }else{
           circular_buffer_index = 128;
         }
-        circular_buffer[circular_buffer_index] = (int16_t)(18 * (float)g_ADCBuffer[0]/255 - 6); // ADC output
+        circular_buffer[circular_buffer_index] = meas_value[0];
 
         // draw wave
         draw_Wave(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max, circular_buffer, circular_buffer_index);
-        draw_Value(&u8g2, 0, 0, 64, 13, circular_buffer[circular_buffer_index], 3, 1, 1, "kPa");
+        draw_Value(&u8g2, 0, 0, 64, 13, circular_buffer[circular_buffer_index], 3, 2, 1, "kPa");
 
       // mode setting
       }else if( setting == 1 ){

@@ -38,8 +38,10 @@
 /* USER CODE BEGIN 0 */
 #include "usart.h"
 #include "flag.h"
+#include "pulse_counter.h"
 
 extern UART_HandleTypeDef huart2;
+
 
 /* USER CODE END 0 */
 
@@ -47,6 +49,7 @@ extern UART_HandleTypeDef huart2;
 extern DMA_HandleTypeDef hdma_adc1;
 extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim6;
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
@@ -105,7 +108,7 @@ void EXTI4_IRQHandler(void)
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
   /* USER CODE BEGIN EXTI4_IRQn 1 */
   if(HAL_GPIO_ReadPin( GPIOB, GPIO_PIN_4 ) == 0 ){ // Tacho input
-    HAL_UART_Transmit_printf(&huart2, "Tacho "); // USB
+    tacho();
   }
   /* USER CODE END EXTI4_IRQn 1 */
 }
@@ -175,6 +178,20 @@ void TIM2_IRQHandler(void)
   flag_disp = 1;
   flag_meas = 1;
   /* USER CODE END TIM2_IRQn 1 */
+}
+
+/**
+* @brief This function handles TIM3 global interrupt.
+*/
+void TIM3_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM3_IRQn 0 */
+
+  /* USER CODE END TIM3_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim3);
+  /* USER CODE BEGIN TIM3_IRQn 1 */
+  tacho_overflow();
+  /* USER CODE END TIM3_IRQn 1 */
 }
 
 /**

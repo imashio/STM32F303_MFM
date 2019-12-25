@@ -40,7 +40,8 @@ build/main.d: Src/main.c Inc/main.h \
  /Users/imashio/Electronics/ARM/_Library/u8g2.h \
  /Users/imashio/Electronics/ARM/_Library/draw_BarGraph.h \
  /Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h \
- /Users/imashio/Electronics/ARM/_Library/flag.h Inc/defi_decoder.h
+ /Users/imashio/Electronics/ARM/_Library/flag.h Inc/defi_decoder.h \
+ Src/pulse_counter.h
 
 Inc/main.h:
 
@@ -149,3 +150,5 @@ Inc/gpio.h:
 /Users/imashio/Electronics/ARM/_Library/flag.h:
 
 Inc/defi_decoder.h:
+
+Src/pulse_counter.h:
