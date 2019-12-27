@@ -73,7 +73,7 @@
 u8g2_t u8g2; // a structure which will contain all the data for one display
 
 // mode definition
-#define N_mode        3
+#define N_mode        4
 
 // RPM bar graph parameter definition
 #define	rpmbar_x		  0
@@ -283,6 +283,8 @@ int16_t O2_volt = 330;
 int16_t FP_volt = 330;
 int16_t FP_duty = 100;
 
+// ADXL345 3-axis acceration sensor --------------------------------
+uint8_t   Gsens_EN;
 uint8_t   Gsens_X1;
 uint8_t   Gsens_X0;
 int16_t   Gsens_X;
@@ -306,12 +308,31 @@ void ADXL345_RegWrite(uint8_t slv_addr, uint8_t addr, uint8_t data){
   HAL_I2C_Master_Transmit(&hi2c1, slv_addr << 1, &i2c_buf, 2, 10);
 }
 
-uint8_t ADXL345_RegRead_1byte(uint8_t slv_addr, uint8_t addr){
+int8_t ADXL345_RegRead_1byte(uint8_t slv_addr, uint8_t addr){
   uint8_t data;
   HAL_I2C_Master_Transmit(&hi2c1, slv_addr << 1, &addr, 1, 10);
   HAL_I2C_Master_Receive(&hi2c1, slv_addr << 1, &data, 1, 10);
   return data;
 }
+
+/*
+typedef struct { int X, Y, Z; } ADXL345_G_struct;
+ADXL345_G_struct ADXL345_Read_G(unsigned char slv_addr){
+  uint8_t data[6];
+  uint8_t addr = 0x33;
+  int X, Y, Z;
+
+  HAL_I2C_Master_Transmit(&hi2c1, slv_addr << 1, &addr, 6, 10);
+
+  X = data[1]<<4 | data[0];
+  Y = data[3]<<4 | data[2];
+  Z = data[5]<<4 | data[4];
+
+  return (ADXL345_G_struct){X, Y, Z};
+}
+*/
+
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -370,8 +391,8 @@ int main(void)
   uint8_t n;
   uint8_t x, y;
 
-  uint16_t a = 0; // for dummy data
-  uint16_t b = 0; // for dummy data
+  uint8_t a = 0; // for dummy data
+  uint8_t b = 0; // for dummy data
 
   // circular buffer for ADC data
   uint16_t circular_buffer_index = 0;
@@ -468,8 +489,7 @@ int main(void)
   u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
   u8g2_SendBuffer(&u8g2);
 
-  HAL_Delay(500);
-//  HAL_Delay(2000);
+  HAL_Delay(1000);
 
   u8g2_ClearBuffer(&u8g2);
 
@@ -489,9 +509,26 @@ int main(void)
 
 
   // I2C communication to ADXL345(3-axis G-sensor)
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00); // DEIVID
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08); // Enable 'Measure' at "POWER_CTL"
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check "POWER_CTL"
+
+  // DEIVID
+  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
+  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
+  if( a == 0xE5 ){
+    Gsens_EN = 1;
+  }else{
+    Gsens_EN = 0;
+  }
+
+  // POWER_CTL
+  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
+  // bit 3    Measure   1'b1
+  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
+
+  // DATA_FORMAT
+  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
+  // bit 2    Justify   1'b1
+  // bit 1:0  Range     2'b01
+  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
 
 
   while(1)
@@ -505,7 +542,7 @@ int main(void)
 		O2_volt = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
 
 		// read Fuel Pump Voltage ADC output
-		FP_volt = (int16_t)((165/33)*33*(float)g_ADCBuffer[0]/255);
+		FP_volt = (int16_t)((165/33)*33*(float)g_ADCBuffer[1]/255);
     // Ressister attenation ratio '165/33'
     FP_duty = (int16_t)(FP_volt/(16.6)*10);
 
@@ -515,16 +552,39 @@ int main(void)
     if( flag_meas == 1 ){
 
       // I2C communication to ADXL345(3-axis G-sensor)
-      Gsens_X1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x33); // Check "DATAX1" (MSB side)
-      Gsens_X0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x32); // Check "DATAX0" (LSB side)
-      Gsens_X = (Gsens_X1<<8) | Gsens_X0;
-      Gsens_Y1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x35); // Check "DATAY1" (MSB side)
-      Gsens_Y0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x34); // Check "DATAY0" (LSB side)
-      Gsens_Y = (Gsens_Y1<<8) | Gsens_Y0;
-      Gsens_Z1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x37); // Check "DATAZ1" (MSB side)
-      Gsens_Z0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x36); // Check "DATAZ0" (LSB side)
-      Gsens_Z = (Gsens_Z1<<8) | Gsens_Z0;
-      HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", Gsens_X, Gsens_Y, Gsens_Z); // debug
+      if( Gsens_EN == 1 ){
+        /*
+        // Justify = 0
+        Gsens_X1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x33); // Check "DATAX1" (MSB side)
+        Gsens_X0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x32); // Check "DATAX0" (LSB side)
+        Gsens_X = (Gsens_X1<<8) | Gsens_X0;
+        Gsens_Y1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x35); // Check "DATAY1" (MSB side)
+        Gsens_Y0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x34); // Check "DATAY0" (LSB side)
+        Gsens_Y = (Gsens_Y1<<8) | Gsens_Y0;
+        Gsens_Z1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x37); // Check "DATAZ1" (MSB side)
+        Gsens_Z0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x36); // Check "DATAZ0" (LSB side)
+        Gsens_Z = (Gsens_Z1<<8) | Gsens_Z0;
+        HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", Gsens_X, Gsens_Y, Gsens_Z); // debug
+        */
+
+        // Justify = 1
+        Gsens_X1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x33); // Check "DATAX1" (MSB side)
+        Gsens_Y1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x35); // Check "DATAY1" (MSB side)
+        Gsens_Z1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x37); // Check "DATAZ1" (MSB side)
+        // Acceration 1G = 100
+        Gsens_X = 400 * (int8_t)Gsens_X1 / 128; // unsigned->signed & scaling
+        Gsens_Y = 400 * (int8_t)Gsens_Y1 / 128; // unsigned->signed & scaling
+        Gsens_Z = 400 * (int8_t)Gsens_Z1 / 128; // unsigned->signed & scaling
+
+        HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", Gsens_X, Gsens_Y, Gsens_Z); // debug
+        
+
+        /*
+        ADXL345_G_struct ADXL345_G_data = ADXL345_Read_G(ADXL0_ADDR);
+        HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", ADXL345_G_data.X, ADXL345_G_data.Y, ADXL345_G_data.Z); // debug
+        */
+      }
+
 
 /*
   	  // start of create dummy data for debug
@@ -555,7 +615,6 @@ int main(void)
 		  meas_value[3] = DEFI_value[6];  // ECT
 			meas_value[4] = DEFI_value[5];  // OILT
 		  meas_value[5] = O2_volt;        // O2
-
 
       flag_meas = 0; // enable again by TIM2 interrupt
     }
@@ -627,8 +686,12 @@ int main(void)
         draw_CircularMeter(&u8g2, 0);
 
       }else if( mode == 2 ){
-        draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max);
+        draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max, 3);
         draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "MAP", "kPa");
+
+      }else if( mode == 3 ){
+        draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, -200, 200, 4);
+        draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "LatG", "G");
 
       }
       u8g2_SendBuffer(&u8g2);
@@ -690,6 +753,20 @@ int main(void)
         // draw wave
         draw_Wave(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max, circular_buffer, circular_buffer_index);
         draw_Value(&u8g2, 0, 0, 64, 13, circular_buffer[circular_buffer_index], 3, 2, 1, "kPa");
+
+      ///// G-Scope /////
+      }else if( mode == 3 ){
+
+        if( circular_buffer_index > 0 ){
+          circular_buffer_index--;
+        }else{
+          circular_buffer_index = 128;
+        }
+        circular_buffer[circular_buffer_index] = Gsens_Y;
+
+        // draw wave
+        draw_Wave(&u8g2, wave_x, wave_y, wave_width, wave_height, -200, +200, circular_buffer, circular_buffer_index);
+        draw_Value(&u8g2, 0, 0, 64, 13, circular_buffer[circular_buffer_index], 3, 2, 1, "G");
 
       // mode setting
       }else if( setting == 1 ){
