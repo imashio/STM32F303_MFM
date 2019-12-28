@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -10,7 +10,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 30, 2
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.file	"u8x8_gpio_STM32F303.c"
@@ -19,14 +19,15 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 1
   16              		.cfi_sections	.debug_frame
   17              		.section	.text.u8x8_gpio_and_delay_STM32F303,"ax",%progbits
   18              		.align	1
-  19              		.global	u8x8_gpio_and_delay_STM32F303
-  20              		.syntax unified
-  21              		.thumb
-  22              		.thumb_func
-  23              		.fpu fpv4-sp-d16
-  25              	u8x8_gpio_and_delay_STM32F303:
-  26              	.LFB126:
-  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c"
+  19              		.p2align 2,,3
+  20              		.global	u8x8_gpio_and_delay_STM32F303
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	u8x8_gpio_and_delay_STM32F303:
+  27              	.LFB126:
+  28              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c"
    1:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** /*
    2:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****  * u8x8_gpio_STM32F303.c
    3:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****  *
@@ -39,94 +40,90 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 1
   10:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** 
   11:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** uint8_t u8x8_gpio_and_delay_STM32F303(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
   12:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** {
-  28              		.loc 1 12 0
-  29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 0
-  31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32              	.LVL0:
-  33 0000 08B5     		push	{r3, lr}
-  34              	.LCFI0:
-  35              		.cfi_def_cfa_offset 8
-  36              		.cfi_offset 3, -8
-  37              		.cfi_offset 14, -4
+  29              		.loc 1 12 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
   13:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****   switch(msg)
-  38              		.loc 1 13 0
-  39 0002 2839     		subs	r1, r1, #40
-  40              	.LVL1:
-  41 0004 2B29     		cmp	r1, #43
-  42 0006 44D8     		bhi	.L2
-  43 0008 DFE801F0 		tbb	[pc, r1]
-  44              	.LVL2:
-  45              	.L4:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 2
+  34              		.loc 1 13 0
+  35 0000 2839     		subs	r1, r1, #40
+  36              	.LVL1:
+  12:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****   switch(msg)
+  37              		.loc 1 12 0
+  38 0002 08B5     		push	{r3, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 3, -8
+  42              		.cfi_offset 14, -4
+  43              		.loc 1 13 0
+  44 0004 2B29     		cmp	r1, #43
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s 			page 2
 
 
-  46 000c 19       		.byte	(.L3-.L4)/2
-  47 000d 1B       		.byte	(.L5-.L4)/2
-  48 000e 16       		.byte	(.L6-.L4)/2
-  49 000f 19       		.byte	(.L3-.L4)/2
-  50 0010 19       		.byte	(.L3-.L4)/2
-  51 0011 19       		.byte	(.L3-.L4)/2
-  52 0012 43       		.byte	(.L2-.L4)/2
-  53 0013 43       		.byte	(.L2-.L4)/2
-  54 0014 43       		.byte	(.L2-.L4)/2
-  55 0015 43       		.byte	(.L2-.L4)/2
-  56 0016 43       		.byte	(.L2-.L4)/2
-  57 0017 43       		.byte	(.L2-.L4)/2
-  58 0018 43       		.byte	(.L2-.L4)/2
-  59 0019 43       		.byte	(.L2-.L4)/2
-  60 001a 43       		.byte	(.L2-.L4)/2
-  61 001b 43       		.byte	(.L2-.L4)/2
-  62 001c 43       		.byte	(.L2-.L4)/2
-  63 001d 43       		.byte	(.L2-.L4)/2
-  64 001e 43       		.byte	(.L2-.L4)/2
-  65 001f 43       		.byte	(.L2-.L4)/2
-  66 0020 43       		.byte	(.L2-.L4)/2
-  67 0021 43       		.byte	(.L2-.L4)/2
-  68 0022 43       		.byte	(.L2-.L4)/2
-  69 0023 43       		.byte	(.L2-.L4)/2
-  70 0024 1F       		.byte	(.L7-.L4)/2
-  71 0025 24       		.byte	(.L8-.L4)/2
-  72 0026 19       		.byte	(.L3-.L4)/2
-  73 0027 19       		.byte	(.L3-.L4)/2
-  74 0028 19       		.byte	(.L3-.L4)/2
-  75 0029 19       		.byte	(.L3-.L4)/2
-  76 002a 19       		.byte	(.L3-.L4)/2
-  77 002b 19       		.byte	(.L3-.L4)/2
-  78 002c 19       		.byte	(.L3-.L4)/2
-  79 002d 29       		.byte	(.L9-.L4)/2
-  80 002e 2E       		.byte	(.L10-.L4)/2
-  81 002f 19       		.byte	(.L3-.L4)/2
-  82 0030 19       		.byte	(.L3-.L4)/2
-  83 0031 19       		.byte	(.L3-.L4)/2
-  84 0032 19       		.byte	(.L3-.L4)/2
-  85 0033 19       		.byte	(.L3-.L4)/2
-  86 0034 33       		.byte	(.L11-.L4)/2
-  87 0035 37       		.byte	(.L12-.L4)/2
-  88 0036 3B       		.byte	(.L13-.L4)/2
-  89 0037 3F       		.byte	(.L14-.L4)/2
-  90              		.p2align 1
-  91              	.L6:
-  92              	.LBB2:
+  45 0006 17D8     		bhi	.L2
+  46 0008 DFE801F0 		tbb	[pc, r1]
+  47              	.LVL2:
+  48              	.L4:
+  49 000c 19       		.byte	(.L3-.L4)/2
+  50 000d 34       		.byte	(.L5-.L4)/2
+  51 000e 38       		.byte	(.L6-.L4)/2
+  52 000f 19       		.byte	(.L3-.L4)/2
+  53 0010 19       		.byte	(.L3-.L4)/2
+  54 0011 19       		.byte	(.L3-.L4)/2
+  55 0012 16       		.byte	(.L2-.L4)/2
+  56 0013 16       		.byte	(.L2-.L4)/2
+  57 0014 16       		.byte	(.L2-.L4)/2
+  58 0015 16       		.byte	(.L2-.L4)/2
+  59 0016 16       		.byte	(.L2-.L4)/2
+  60 0017 16       		.byte	(.L2-.L4)/2
+  61 0018 16       		.byte	(.L2-.L4)/2
+  62 0019 16       		.byte	(.L2-.L4)/2
+  63 001a 16       		.byte	(.L2-.L4)/2
+  64 001b 16       		.byte	(.L2-.L4)/2
+  65 001c 16       		.byte	(.L2-.L4)/2
+  66 001d 16       		.byte	(.L2-.L4)/2
+  67 001e 16       		.byte	(.L2-.L4)/2
+  68 001f 16       		.byte	(.L2-.L4)/2
+  69 0020 16       		.byte	(.L2-.L4)/2
+  70 0021 16       		.byte	(.L2-.L4)/2
+  71 0022 16       		.byte	(.L2-.L4)/2
+  72 0023 16       		.byte	(.L2-.L4)/2
+  73 0024 2A       		.byte	(.L7-.L4)/2
+  74 0025 2F       		.byte	(.L8-.L4)/2
+  75 0026 19       		.byte	(.L3-.L4)/2
+  76 0027 19       		.byte	(.L3-.L4)/2
+  77 0028 19       		.byte	(.L3-.L4)/2
+  78 0029 19       		.byte	(.L3-.L4)/2
+  79 002a 19       		.byte	(.L3-.L4)/2
+  80 002b 19       		.byte	(.L3-.L4)/2
+  81 002c 19       		.byte	(.L3-.L4)/2
+  82 002d 20       		.byte	(.L9-.L4)/2
+  83 002e 25       		.byte	(.L10-.L4)/2
+  84 002f 19       		.byte	(.L3-.L4)/2
+  85 0030 19       		.byte	(.L3-.L4)/2
+  86 0031 19       		.byte	(.L3-.L4)/2
+  87 0032 19       		.byte	(.L3-.L4)/2
+  88 0033 19       		.byte	(.L3-.L4)/2
+  89 0034 1B       		.byte	(.L11-.L4)/2
+  90 0035 1B       		.byte	(.L11-.L4)/2
+  91 0036 1B       		.byte	(.L11-.L4)/2
+  92 0037 1B       		.byte	(.L11-.L4)/2
+  93              		.p2align 1
+  94              	.L2:
+  95              	.LBB2:
   14:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****   {
   15:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_AND_DELAY_INIT:	// called once during init phase of u8g2/u8x8
   16:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     	break;							// can be used to setup pins
   17:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_DELAY_NANO:			// delay arg_int * 1 nano second
   18:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** 		break;
   19:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_DELAY_100NANO:		// delay arg_int * 100 nano seconds
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s 			page 3
+
+
   20:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** 		break;
   21:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_DELAY_10MICRO:		// delay arg_int * 10 micro seconds
   22:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     	delay_us(1);
-  93              		.loc 1 22 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 3
-
-
-  94 0038 0120     		movs	r0, #1
-  95              	.LVL3:
-  96 003a FFF7FEFF 		bl	delay_us
-  97              	.LVL4:
-  98              	.L3:
-  99              	.LBE2:
   23:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** 		break;
   24:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_DELAY_MILLI:			// delay arg_int * 1 milli second
   25:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** 		HAL_Delay(arg_int);
@@ -178,164 +175,152 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 1
   71:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       u8x8_SetGPIOResult(u8x8, /* get menu next pin state */ 0);
   72:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       break;
   73:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_MENU_PREV:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 4
-
-
   74:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       u8x8_SetGPIOResult(u8x8, /* get menu prev pin state */ 0);
   75:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       break;
   76:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_MENU_HOME:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s 			page 4
+
+
   77:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       u8x8_SetGPIOResult(u8x8, /* get menu home pin state */ 0);
   78:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       break;
   79:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     default:
   80:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       u8x8_SetGPIOResult(u8x8, 1);			// default return value
+  96              		.loc 1 80 0
+  97 0038 0123     		movs	r3, #1
+  98 003a 80F82430 		strb	r3, [r0, #36]
+  99              	.LVL3:
+ 100              	.L3:
+ 101              	.LBE2:
   81:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       break;
   82:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****   }
   83:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****   return 1;
   84:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** }
- 100              		.loc 1 84 0
- 101 003e 0120     		movs	r0, #1
- 102 0040 08BD     		pop	{r3, pc}
- 103              	.LVL5:
- 104              	.L5:
- 105              	.LBB3:
-  25:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** 		break;
- 106              		.loc 1 25 0
- 107 0042 1046     		mov	r0, r2
- 108              	.LVL6:
- 109 0044 FFF7FEFF 		bl	HAL_Delay
- 110              	.LVL7:
-  26:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_DELAY_I2C:				// arg_int is the I2C speed in 100KHz, e.g. 4 = 400 KHz
- 111              		.loc 1 26 0
- 112 0048 F9E7     		b	.L3
- 113              	.LVL8:
- 114              	.L7:
-  31:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     	break;
- 115              		.loc 1 31 0
- 116 004a 1021     		movs	r1, #16
- 117 004c 1348     		ldr	r0, .L16
- 118              	.LVL9:
- 119 004e FFF7FEFF 		bl	HAL_GPIO_WritePin
- 120              	.LVL10:
-  32:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     //case U8X8_MSG_GPIO_D1:				// D1 or SPI data pin: Output level in arg_int
- 121              		.loc 1 32 0
- 122 0052 F4E7     		b	.L3
- 123              	.LVL11:
- 124              	.L8:
-  35:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     	break;
- 125              		.loc 1 35 0
- 126 0054 2021     		movs	r1, #32
- 127 0056 1148     		ldr	r0, .L16
- 128              	.LVL12:
- 129 0058 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 130              	.LVL13:
-  36:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_D2:				// D2 pin: Output level in arg_int
- 131              		.loc 1 36 0
- 132 005c EFE7     		b	.L3
- 133              	.LVL14:
- 134              	.L9:
-  52:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     	break;
- 135              		.loc 1 52 0
- 136 005e 0121     		movs	r1, #1
- 137 0060 0E48     		ldr	r0, .L16
- 138              	.LVL15:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 5
-
-
- 139 0062 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 140              	.LVL16:
-  53:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_DC:				// DC (data/cmd, A0, register select) pin: Output level in arg_int
- 141              		.loc 1 53 0
- 142 0066 EAE7     		b	.L3
- 143              	.LVL17:
- 144              	.L10:
-  55:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     	break;
- 145              		.loc 1 55 0
- 146 0068 0221     		movs	r1, #2
- 147 006a 0C48     		ldr	r0, .L16
- 148              	.LVL18:
- 149 006c FFF7FEFF 		bl	HAL_GPIO_WritePin
- 150              	.LVL19:
-  56:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_RESET:			// Reset pin: Output level in arg_int
- 151              		.loc 1 56 0
- 152 0070 E5E7     		b	.L3
- 153              	.LVL20:
- 154              	.L11:
+ 102              		.loc 1 84 0
+ 103 003e 0120     		movs	r0, #1
+ 104 0040 08BD     		pop	{r3, pc}
+ 105              	.LVL4:
+ 106              	.L11:
+ 107              	.LBB3:
   68:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       break;
- 155              		.loc 1 68 0
- 156 0072 0023     		movs	r3, #0
- 157 0074 80F82430 		strb	r3, [r0, #36]
-  69:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_MENU_NEXT:
- 158              		.loc 1 69 0
- 159 0078 E1E7     		b	.L3
- 160              	.L12:
-  71:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       break;
- 161              		.loc 1 71 0
- 162 007a 0023     		movs	r3, #0
- 163 007c 80F82430 		strb	r3, [r0, #36]
-  72:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_MENU_PREV:
- 164              		.loc 1 72 0
- 165 0080 DDE7     		b	.L3
- 166              	.L13:
-  74:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       break;
- 167              		.loc 1 74 0
- 168 0082 0023     		movs	r3, #0
- 169 0084 80F82430 		strb	r3, [r0, #36]
-  75:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_MENU_HOME:
- 170              		.loc 1 75 0
- 171 0088 D9E7     		b	.L3
- 172              	.L14:
-  77:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       break;
- 173              		.loc 1 77 0
- 174 008a 0023     		movs	r3, #0
- 175 008c 80F82430 		strb	r3, [r0, #36]
-  78:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     default:
- 176              		.loc 1 78 0
- 177 0090 D5E7     		b	.L3
- 178              	.L2:
-  80:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****       break;
- 179              		.loc 1 80 0
- 180 0092 0123     		movs	r3, #1
- 181 0094 80F82430 		strb	r3, [r0, #36]
-  81:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****   }
- 182              		.loc 1 81 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 6
+ 108              		.loc 1 68 0
+ 109 0042 0023     		movs	r3, #0
+ 110 0044 80F82430 		strb	r3, [r0, #36]
+ 111              	.LBE3:
+ 112              		.loc 1 84 0
+ 113 0048 0120     		movs	r0, #1
+ 114              	.LVL5:
+ 115 004a 08BD     		pop	{r3, pc}
+ 116              	.LVL6:
+ 117              	.L9:
+ 118              	.LBB4:
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     	break;
+ 119              		.loc 1 52 0
+ 120 004c 0121     		movs	r1, #1
+ 121 004e 0D48     		ldr	r0, .L14
+ 122              	.LVL7:
+ 123 0050 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 124              	.LVL8:
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_DC:				// DC (data/cmd, A0, register select) pin: Output level in arg_int
+ 125              		.loc 1 53 0
+ 126 0054 F3E7     		b	.L3
+ 127              	.LVL9:
+ 128              	.L10:
+  55:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     	break;
+ 129              		.loc 1 55 0
+ 130 0056 0221     		movs	r1, #2
+ 131 0058 0A48     		ldr	r0, .L14
+ 132              	.LVL10:
+ 133 005a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 134              	.LVL11:
+  56:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_RESET:			// Reset pin: Output level in arg_int
+ 135              		.loc 1 56 0
+ 136 005e EEE7     		b	.L3
+ 137              	.LVL12:
+ 138              	.L7:
+  31:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     	break;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s 			page 5
 
 
- 183 0098 D1E7     		b	.L3
- 184              	.L17:
- 185 009a 00BF     		.align	2
- 186              	.L16:
- 187 009c 00040048 		.word	1207960576
- 188              	.LBE3:
- 189              		.cfi_endproc
- 190              	.LFE126:
- 192              		.text
- 193              	.Letext0:
- 194              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
- 195              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
- 196              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 197              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
- 198              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
- 199              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
- 200              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
- 201              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
- 202              		.file 10 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
- 203              		.file 11 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
- 204              		.file 12 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
- 205              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
- 206              		.file 14 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s 			page 7
+ 139              		.loc 1 31 0
+ 140 0060 1021     		movs	r1, #16
+ 141 0062 0848     		ldr	r0, .L14
+ 142              	.LVL13:
+ 143 0064 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 144              	.LVL14:
+  32:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     //case U8X8_MSG_GPIO_D1:				// D1 or SPI data pin: Output level in arg_int
+ 145              		.loc 1 32 0
+ 146 0068 E9E7     		b	.L3
+ 147              	.LVL15:
+ 148              	.L8:
+  35:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     	break;
+ 149              		.loc 1 35 0
+ 150 006a 2021     		movs	r1, #32
+ 151 006c 0548     		ldr	r0, .L14
+ 152              	.LVL16:
+ 153 006e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 154              	.LVL17:
+  36:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_GPIO_D2:				// D2 pin: Output level in arg_int
+ 155              		.loc 1 36 0
+ 156 0072 E4E7     		b	.L3
+ 157              	.LVL18:
+ 158              	.L5:
+  25:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** 		break;
+ 159              		.loc 1 25 0
+ 160 0074 1046     		mov	r0, r2
+ 161              	.LVL19:
+ 162 0076 FFF7FEFF 		bl	HAL_Delay
+ 163              	.LVL20:
+  26:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_DELAY_I2C:				// arg_int is the I2C speed in 100KHz, e.g. 4 = 400 KHz
+ 164              		.loc 1 26 0
+ 165 007a E0E7     		b	.L3
+ 166              	.LVL21:
+ 167              	.L6:
+  22:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c **** 		break;
+ 168              		.loc 1 22 0
+ 169 007c 0120     		movs	r0, #1
+ 170              	.LVL22:
+ 171 007e FFF7FEFF 		bl	delay_us
+ 172              	.LVL23:
+  23:/Users/imashio/Electronics/ARM/_Library/u8x8_gpio_STM32F303.c ****     case U8X8_MSG_DELAY_MILLI:			// delay arg_int * 1 milli second
+ 173              		.loc 1 23 0
+ 174 0082 DCE7     		b	.L3
+ 175              	.L15:
+ 176              		.align	2
+ 177              	.L14:
+ 178 0084 00040048 		.word	1207960576
+ 179              	.LBE4:
+ 180              		.cfi_endproc
+ 181              	.LFE126:
+ 183              		.text
+ 184              	.Letext0:
+ 185              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 186              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 187              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 188              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
+ 189              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s 			page 6
+
+
+ 190              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
+ 191              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
+ 192              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
+ 193              		.file 10 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
+ 194              		.file 11 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 195              		.file 12 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ 196              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h"
+ 197              		.file 14 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 u8x8_gpio_STM32F303.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s:18     .text.u8x8_gpio_and_delay_STM32F303:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s:25     .text.u8x8_gpio_and_delay_STM32F303:0000000000000000 u8x8_gpio_and_delay_STM32F303
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s:46     .text.u8x8_gpio_and_delay_STM32F303:000000000000000c $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s:90     .text.u8x8_gpio_and_delay_STM32F303:0000000000000038 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccwfDrrT.s:187    .text.u8x8_gpio_and_delay_STM32F303:000000000000009c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s:18     .text.u8x8_gpio_and_delay_STM32F303:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s:26     .text.u8x8_gpio_and_delay_STM32F303:0000000000000000 u8x8_gpio_and_delay_STM32F303
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s:49     .text.u8x8_gpio_and_delay_STM32F303:000000000000000c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s:93     .text.u8x8_gpio_and_delay_STM32F303:0000000000000038 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFhE0ut.s:178    .text.u8x8_gpio_and_delay_STM32F303:0000000000000084 $d
 
 UNDEFINED SYMBOLS
-delay_us
-HAL_Delay
 HAL_GPIO_WritePin
+HAL_Delay
+delay_us

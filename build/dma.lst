@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8Xw4tC.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -10,7 +10,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 30, 2
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.file	"dma.c"
@@ -19,14 +19,15 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s 			page 1
   16              		.cfi_sections	.debug_frame
   17              		.section	.text.MX_DMA_Init,"ax",%progbits
   18              		.align	1
-  19              		.global	MX_DMA_Init
-  20              		.syntax unified
-  21              		.thumb
-  22              		.thumb_func
-  23              		.fpu fpv4-sp-d16
-  25              	MX_DMA_Init:
-  26              	.LFB126:
-  27              		.file 1 "Src/dma.c"
+  19              		.p2align 2,,3
+  20              		.global	MX_DMA_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	MX_DMA_Init:
+  27              	.LFB126:
+  28              		.file 1 "Src/dma.c"
    1:Src/dma.c     **** /**
    2:Src/dma.c     ****   ******************************************************************************
    3:Src/dma.c     ****   * File Name          : dma.c
@@ -57,10 +58,10 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s 			page 1
   28:Src/dma.c     ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
   29:Src/dma.c     ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
   30:Src/dma.c     ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8Xw4tC.s 			page 2
+
+
   31:Src/dma.c     ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s 			page 2
-
-
   32:Src/dma.c     ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:Src/dma.c     ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
   34:Src/dma.c     ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -88,82 +89,107 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s 			page 1
   56:Src/dma.c     ****   */
   57:Src/dma.c     **** void MX_DMA_Init(void) 
   58:Src/dma.c     **** {
-  28              		.loc 1 58 0
-  29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 8
-  31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32 0000 00B5     		push	{lr}
-  33              	.LCFI0:
-  34              		.cfi_def_cfa_offset 4
-  35              		.cfi_offset 14, -4
-  36 0002 83B0     		sub	sp, sp, #12
-  37              	.LCFI1:
-  38              		.cfi_def_cfa_offset 16
-  39              	.LBB2:
+  29              		.loc 1 58 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 8
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LBB2:
   59:Src/dma.c     ****   /* DMA controller clock enable */
   60:Src/dma.c     ****   __HAL_RCC_DMA1_CLK_ENABLE();
-  40              		.loc 1 60 0
-  41 0004 0A4B     		ldr	r3, .L3
-  42 0006 5A69     		ldr	r2, [r3, #20]
-  43 0008 42F00102 		orr	r2, r2, #1
-  44 000c 5A61     		str	r2, [r3, #20]
-  45 000e 5B69     		ldr	r3, [r3, #20]
-  46 0010 03F00103 		and	r3, r3, #1
-  47 0014 0193     		str	r3, [sp, #4]
-  48 0016 019B     		ldr	r3, [sp, #4]
-  49              	.LBE2:
+  34              		.loc 1 60 0
+  35 0000 0B4B     		ldr	r3, .L4
+  36              	.LBE2:
+  58:Src/dma.c     ****   /* DMA controller clock enable */
+  37              		.loc 1 58 0
+  38 0002 00B5     		push	{lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 4
+  41              		.cfi_offset 14, -4
+  42              	.LBB3:
+  43              		.loc 1 60 0
+  44 0004 5A69     		ldr	r2, [r3, #20]
+  45 0006 42F00102 		orr	r2, r2, #1
+  46 000a 5A61     		str	r2, [r3, #20]
+  47 000c 5B69     		ldr	r3, [r3, #20]
+  48              	.LBE3:
+  58:Src/dma.c     ****   /* DMA controller clock enable */
+  49              		.loc 1 58 0
+  50 000e 83B0     		sub	sp, sp, #12
+  51              	.LCFI1:
+  52              		.cfi_def_cfa_offset 16
   61:Src/dma.c     **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8Xw4tC.s 			page 3
+
+
   62:Src/dma.c     ****   /* DMA interrupt init */
   63:Src/dma.c     ****   /* DMA1_Channel1_IRQn interrupt configuration */
   64:Src/dma.c     ****   HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
-  50              		.loc 1 64 0
-  51 0018 0022     		movs	r2, #0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s 			page 3
-
-
-  52 001a 1146     		mov	r1, r2
-  53 001c 0B20     		movs	r0, #11
-  54 001e FFF7FEFF 		bl	HAL_NVIC_SetPriority
-  55              	.LVL0:
+  53              		.loc 1 64 0
+  54 0010 0022     		movs	r2, #0
+  55              	.LBB4:
+  60:Src/dma.c     **** 
+  56              		.loc 1 60 0
+  57 0012 03F00103 		and	r3, r3, #1
+  58 0016 0193     		str	r3, [sp, #4]
+  59              	.LBE4:
+  60              		.loc 1 64 0
+  61 0018 1146     		mov	r1, r2
+  62 001a 0B20     		movs	r0, #11
+  63              	.LBB5:
+  60:Src/dma.c     **** 
+  64              		.loc 1 60 0
+  65 001c 019B     		ldr	r3, [sp, #4]
+  66              	.LBE5:
+  67              		.loc 1 64 0
+  68 001e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  69              	.LVL0:
   65:Src/dma.c     ****   HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
-  56              		.loc 1 65 0
-  57 0022 0B20     		movs	r0, #11
-  58 0024 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
-  59              	.LVL1:
+  70              		.loc 1 65 0
+  71 0022 0B20     		movs	r0, #11
   66:Src/dma.c     **** 
   67:Src/dma.c     **** }
-  60              		.loc 1 67 0
-  61 0028 03B0     		add	sp, sp, #12
-  62              	.LCFI2:
-  63              		.cfi_def_cfa_offset 4
-  64              		@ sp needed
-  65 002a 5DF804FB 		ldr	pc, [sp], #4
-  66              	.L4:
-  67 002e 00BF     		.align	2
-  68              	.L3:
-  69 0030 00100240 		.word	1073876992
-  70              		.cfi_endproc
-  71              	.LFE126:
-  73              		.text
-  74              	.Letext0:
-  75              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
-  76              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
-  77              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
-  78              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
-  79              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
-  80              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
-  81              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
-  82              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
-  83              		.file 10 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
-  84              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s 			page 4
+  72              		.loc 1 67 0
+  73 0024 03B0     		add	sp, sp, #12
+  74              	.LCFI2:
+  75              		.cfi_def_cfa_offset 4
+  76              		@ sp needed
+  77 0026 5DF804EB 		ldr	lr, [sp], #4
+  78              	.LCFI3:
+  79              		.cfi_restore 14
+  80              		.cfi_def_cfa_offset 0
+  65:Src/dma.c     ****   HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+  81              		.loc 1 65 0
+  82 002a FFF7FEBF 		b	HAL_NVIC_EnableIRQ
+  83              	.LVL1:
+  84              	.L5:
+  85 002e 00BF     		.align	2
+  86              	.L4:
+  87 0030 00100240 		.word	1073876992
+  88              		.cfi_endproc
+  89              	.LFE126:
+  91              		.text
+  92              	.Letext0:
+  93              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+  94              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+  95              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+  96              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
+  97              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
+  98              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
+  99              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
+ 100              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
+ 101              		.file 10 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8Xw4tC.s 			page 4
+
+
+ 102              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8Xw4tC.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 dma.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s:18     .text.MX_DMA_Init:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s:25     .text.MX_DMA_Init:0000000000000000 MX_DMA_Init
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccKoEQbt.s:69     .text.MX_DMA_Init:0000000000000030 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8Xw4tC.s:18     .text.MX_DMA_Init:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8Xw4tC.s:26     .text.MX_DMA_Init:0000000000000000 MX_DMA_Init
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc8Xw4tC.s:87     .text.MX_DMA_Init:0000000000000030 $d
 
 UNDEFINED SYMBOLS
 HAL_NVIC_SetPriority

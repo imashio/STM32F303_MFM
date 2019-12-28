@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -10,7 +10,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 30, 2
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.file	"u8g2_circle.c"
@@ -19,13 +19,14 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
   16              		.cfi_sections	.debug_frame
   17              		.section	.text.u8g2_draw_circle_section,"ax",%progbits
   18              		.align	1
-  19              		.syntax unified
-  20              		.thumb
-  21              		.thumb_func
-  22              		.fpu fpv4-sp-d16
-  24              	u8g2_draw_circle_section:
-  25              	.LFB0:
-  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c"
+  19              		.p2align 2,,3
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	u8g2_draw_circle_section:
+  26              	.LFB0:
+  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c"
    1:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** /*
    2:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
    3:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_box.c
@@ -57,10 +58,10 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
   29:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
   30:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
   31:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 2
+
+
   32:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 2
-
-
   33:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
   34:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** */
   35:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
@@ -73,35 +74,40 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
   42:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
   43:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** static void u8g2_draw_circle_section(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t x0, u8
   44:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** {
-  27              		.loc 1 44 0
-  28              		.cfi_startproc
-  29              		@ args = 8, pretend = 0, frame = 0
-  30              		@ frame_needed = 0, uses_anonymous_args = 0
-  31              	.LVL0:
-  32 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
-  33              	.LCFI0:
-  34              		.cfi_def_cfa_offset 32
-  35              		.cfi_offset 3, -32
-  36              		.cfi_offset 4, -28
-  37              		.cfi_offset 5, -24
-  38              		.cfi_offset 6, -20
-  39              		.cfi_offset 7, -16
-  40              		.cfi_offset 8, -12
-  41              		.cfi_offset 9, -8
-  42              		.cfi_offset 14, -4
-  43 0004 0746     		mov	r7, r0
-  44 0006 0E46     		mov	r6, r1
-  45 0008 9046     		mov	r8, r2
-  46 000a 1D46     		mov	r5, r3
-  47 000c 9DF82090 		ldrb	r9, [sp, #32]	@ zero_extendqisi2
-  48 0010 9DF82440 		ldrb	r4, [sp, #36]	@ zero_extendqisi2
+  28              		.loc 1 44 0
+  29              		.cfi_startproc
+  30              		@ args = 8, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 32
+  36              		.cfi_offset 3, -32
+  37              		.cfi_offset 4, -28
+  38              		.cfi_offset 5, -24
+  39              		.cfi_offset 6, -20
+  40              		.cfi_offset 7, -16
+  41              		.cfi_offset 8, -12
+  42              		.cfi_offset 9, -8
+  43              		.cfi_offset 14, -4
+  44              		.loc 1 44 0
+  45 0004 9DF82440 		ldrb	r4, [sp, #36]	@ zero_extendqisi2
+  46 0008 9DF82080 		ldrb	r8, [sp, #32]	@ zero_extendqisi2
+  47 000c 1D46     		mov	r5, r3
   45:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper right */
   46:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_UPPER_RIGHT )
-  49              		.loc 1 46 0
-  50 0014 14F0010F 		tst	r4, #1
-  51 0018 0AD1     		bne	.L7
-  52              	.LVL1:
-  53              	.L2:
+  48              		.loc 1 46 0
+  49 000e E307     		lsls	r3, r4, #31
+  50              	.LVL1:
+  44:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper right */
+  51              		.loc 1 44 0
+  52 0010 0E46     		mov	r6, r1
+  53 0012 1746     		mov	r7, r2
+  54 0014 8146     		mov	r9, r0
+  55              		.loc 1 46 0
+  56 0016 3BD4     		bmi	.L17
+  57              	.LVL2:
+  58              	.L2:
   47:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
   48:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 + x, y0 - y);
   49:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 + y, y0 - x);
@@ -109,24 +115,24 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
   51:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
   52:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper left */
   53:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_UPPER_LEFT )
-  54              		.loc 1 53 0
-  55 001a 14F0020F 		tst	r4, #2
-  56 001e 18D1     		bne	.L8
-  57              	.L3:
+  59              		.loc 1 53 0
+  60 0018 A107     		lsls	r1, r4, #30
+  61 001a 28D4     		bmi	.L18
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 3
+
+
+  62              	.L3:
   54:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
   55:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 - x, y0 - y);
   56:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 - y, y0 - x);
   57:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
   58:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 3
-
-
   59:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* lower right */
   60:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_LOWER_RIGHT )
-  58              		.loc 1 60 0
-  59 0020 14F0080F 		tst	r4, #8
-  60 0024 27D1     		bne	.L9
-  61              	.L4:
+  63              		.loc 1 60 0
+  64 001c 2207     		lsls	r2, r4, #28
+  65 001e 15D4     		bmi	.L19
+  66              	.L4:
   61:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
   62:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 + x, y0 + y);
   63:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 + y, y0 + x);
@@ -134,145 +140,136 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
   65:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
   66:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* lower left */
   67:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_LOWER_LEFT )
-  62              		.loc 1 67 0
-  63 0026 14F0040F 		tst	r4, #4
-  64 002a 36D1     		bne	.L10
-  65              	.L1:
+  67              		.loc 1 67 0
+  68 0020 6307     		lsls	r3, r4, #29
+  69 0022 01D4     		bmi	.L20
   68:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
   69:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 - x, y0 + y);
   70:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 - y, y0 + x);
   71:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
   72:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
-  66              		.loc 1 72 0
-  67 002c BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
-  68              	.LVL2:
-  69              	.L7:
-  48:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 + y, y0 - x);
-  70              		.loc 1 48 0
-  71 0030 A9EB0202 		sub	r2, r9, r2
+  70              		.loc 1 72 0
+  71 0024 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
   72              	.LVL3:
-  73 0034 5918     		adds	r1, r3, r1
-  74              	.LVL4:
-  75 0036 D2B2     		uxtb	r2, r2
-  76 0038 C9B2     		uxtb	r1, r1
-  77 003a FFF7FEFF 		bl	u8g2_DrawPixel
-  78              	.LVL5:
-  49:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
-  79              		.loc 1 49 0
-  80 003e A9EB0602 		sub	r2, r9, r6
-  81 0042 05EB0801 		add	r1, r5, r8
-  82 0046 D2B2     		uxtb	r2, r2
-  83 0048 C9B2     		uxtb	r1, r1
-  84 004a 3846     		mov	r0, r7
-  85 004c FFF7FEFF 		bl	u8g2_DrawPixel
-  86              	.LVL6:
-  87 0050 E3E7     		b	.L2
-  88              	.L8:
-  55:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 - y, y0 - x);
-  89              		.loc 1 55 0
-  90 0052 A9EB0802 		sub	r2, r9, r8
-  91 0056 A91B     		subs	r1, r5, r6
-  92 0058 D2B2     		uxtb	r2, r2
-  93 005a C9B2     		uxtb	r1, r1
-  94 005c 3846     		mov	r0, r7
-  95 005e FFF7FEFF 		bl	u8g2_DrawPixel
-  96              	.LVL7:
-  56:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 4
-
-
-  97              		.loc 1 56 0
-  98 0062 A9EB0602 		sub	r2, r9, r6
-  99 0066 A5EB0801 		sub	r1, r5, r8
- 100 006a D2B2     		uxtb	r2, r2
- 101 006c C9B2     		uxtb	r1, r1
- 102 006e 3846     		mov	r0, r7
- 103 0070 FFF7FEFF 		bl	u8g2_DrawPixel
- 104              	.LVL8:
- 105 0074 D4E7     		b	.L3
- 106              	.L9:
-  62:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 + y, y0 + x);
- 107              		.loc 1 62 0
- 108 0076 09EB0802 		add	r2, r9, r8
- 109 007a A919     		adds	r1, r5, r6
- 110 007c D2B2     		uxtb	r2, r2
- 111 007e C9B2     		uxtb	r1, r1
- 112 0080 3846     		mov	r0, r7
- 113 0082 FFF7FEFF 		bl	u8g2_DrawPixel
- 114              	.LVL9:
-  63:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 115              		.loc 1 63 0
- 116 0086 06EB0902 		add	r2, r6, r9
- 117 008a 05EB0801 		add	r1, r5, r8
- 118 008e D2B2     		uxtb	r2, r2
- 119 0090 C9B2     		uxtb	r1, r1
- 120 0092 3846     		mov	r0, r7
- 121 0094 FFF7FEFF 		bl	u8g2_DrawPixel
- 122              	.LVL10:
- 123 0098 C5E7     		b	.L4
- 124              	.L10:
+  73              	.L20:
   69:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 - y, y0 + x);
- 125              		.loc 1 69 0
- 126 009a 09EB0802 		add	r2, r9, r8
- 127 009e A91B     		subs	r1, r5, r6
- 128 00a0 D2B2     		uxtb	r2, r2
- 129 00a2 C9B2     		uxtb	r1, r1
- 130 00a4 3846     		mov	r0, r7
- 131 00a6 FFF7FEFF 		bl	u8g2_DrawPixel
- 132              	.LVL11:
+  74              		.loc 1 69 0
+  75 0028 08EB0702 		add	r2, r8, r7
+  76 002c A91B     		subs	r1, r5, r6
+  77 002e 4846     		mov	r0, r9
+  78 0030 D2B2     		uxtb	r2, r2
+  79 0032 C9B2     		uxtb	r1, r1
+  80 0034 FFF7FEFF 		bl	u8g2_DrawPixel
+  81              	.LVL4:
   70:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 133              		.loc 1 70 0
- 134 00aa 06EB0902 		add	r2, r6, r9
- 135 00ae A5EB0801 		sub	r1, r5, r8
- 136 00b2 D2B2     		uxtb	r2, r2
- 137 00b4 C9B2     		uxtb	r1, r1
- 138 00b6 3846     		mov	r0, r7
- 139 00b8 FFF7FEFF 		bl	u8g2_DrawPixel
- 140              	.LVL12:
- 141              		.loc 1 72 0
- 142 00bc B6E7     		b	.L1
- 143              		.cfi_endproc
- 144              	.LFE0:
- 146              		.section	.text.u8g2_draw_circle,"ax",%progbits
- 147              		.align	1
- 148              		.syntax unified
- 149              		.thumb
- 150              		.thumb_func
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 5
+  82              		.loc 1 70 0
+  83 0038 06EB0802 		add	r2, r6, r8
+  84 003c E91B     		subs	r1, r5, r7
+  85 003e 4846     		mov	r0, r9
+  86 0040 D2B2     		uxtb	r2, r2
+  87 0042 C9B2     		uxtb	r1, r1
+  88              		.loc 1 72 0
+  89 0044 BDE8F843 		pop	{r3, r4, r5, r6, r7, r8, r9, lr}
+  90              	.LCFI1:
+  91              		.cfi_remember_state
+  92              		.cfi_restore 14
+  93              		.cfi_restore 9
+  94              		.cfi_restore 8
+  95              		.cfi_restore 7
+  96              		.cfi_restore 6
+  97              		.cfi_restore 5
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 4
 
 
- 151              		.fpu fpv4-sp-d16
- 153              	u8g2_draw_circle:
- 154              	.LFB1:
+  98              		.cfi_restore 4
+  99              		.cfi_restore 3
+ 100              		.cfi_def_cfa_offset 0
+ 101              	.LVL5:
+  70:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 102              		.loc 1 70 0
+ 103 0048 FFF7FEBF 		b	u8g2_DrawPixel
+ 104              	.LVL6:
+ 105              	.L19:
+ 106              	.LCFI2:
+ 107              		.cfi_restore_state
+  62:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 + y, y0 + x);
+ 108              		.loc 1 62 0
+ 109 004c 08EB0702 		add	r2, r8, r7
+ 110 0050 A919     		adds	r1, r5, r6
+ 111 0052 4846     		mov	r0, r9
+ 112 0054 D2B2     		uxtb	r2, r2
+ 113 0056 C9B2     		uxtb	r1, r1
+ 114 0058 FFF7FEFF 		bl	u8g2_DrawPixel
+ 115              	.LVL7:
+  63:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 116              		.loc 1 63 0
+ 117 005c 06EB0802 		add	r2, r6, r8
+ 118 0060 E919     		adds	r1, r5, r7
+ 119 0062 D2B2     		uxtb	r2, r2
+ 120 0064 C9B2     		uxtb	r1, r1
+ 121 0066 4846     		mov	r0, r9
+ 122 0068 FFF7FEFF 		bl	u8g2_DrawPixel
+ 123              	.LVL8:
+ 124 006c D8E7     		b	.L4
+ 125              	.L18:
+  55:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 - y, y0 - x);
+ 126              		.loc 1 55 0
+ 127 006e A8EB0702 		sub	r2, r8, r7
+ 128 0072 A91B     		subs	r1, r5, r6
+ 129 0074 4846     		mov	r0, r9
+ 130 0076 D2B2     		uxtb	r2, r2
+ 131 0078 C9B2     		uxtb	r1, r1
+ 132 007a FFF7FEFF 		bl	u8g2_DrawPixel
+ 133              	.LVL9:
+  56:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 134              		.loc 1 56 0
+ 135 007e A8EB0602 		sub	r2, r8, r6
+ 136 0082 E91B     		subs	r1, r5, r7
+ 137 0084 D2B2     		uxtb	r2, r2
+ 138 0086 C9B2     		uxtb	r1, r1
+ 139 0088 4846     		mov	r0, r9
+ 140 008a FFF7FEFF 		bl	u8g2_DrawPixel
+ 141              	.LVL10:
+ 142 008e C5E7     		b	.L3
+ 143              	.LVL11:
+ 144              	.L17:
+  48:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 + y, y0 - x);
+ 145              		.loc 1 48 0
+ 146 0090 A8EB0202 		sub	r2, r8, r2
+ 147              	.LVL12:
+ 148 0094 6918     		adds	r1, r5, r1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 5
+
+
+ 149              	.LVL13:
+ 150 0096 D2B2     		uxtb	r2, r2
+ 151 0098 C9B2     		uxtb	r1, r1
+ 152 009a FFF7FEFF 		bl	u8g2_DrawPixel
+ 153              	.LVL14:
+  49:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 154              		.loc 1 49 0
+ 155 009e A8EB0602 		sub	r2, r8, r6
+ 156 00a2 E919     		adds	r1, r5, r7
+ 157 00a4 D2B2     		uxtb	r2, r2
+ 158 00a6 C9B2     		uxtb	r1, r1
+ 159 00a8 4846     		mov	r0, r9
+ 160 00aa FFF7FEFF 		bl	u8g2_DrawPixel
+ 161              	.LVL15:
+ 162 00ae B3E7     		b	.L2
+ 163              		.cfi_endproc
+ 164              	.LFE0:
+ 166              		.section	.text.u8g2_draw_ellipse_section,"ax",%progbits
+ 167              		.align	1
+ 168              		.p2align 2,,3
+ 169              		.syntax unified
+ 170              		.thumb
+ 171              		.thumb_func
+ 172              		.fpu fpv4-sp-d16
+ 174              	u8g2_draw_ellipse_section:
+ 175              	.LFB6:
   73:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
   74:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** static void u8g2_draw_circle(u8g2_t *u8g2, u8g2_uint_t x0, u8g2_uint_t y0, u8g2_uint_t rad, uint8_t
   75:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** {
- 155              		.loc 1 75 0
- 156              		.cfi_startproc
- 157              		@ args = 4, pretend = 0, frame = 8
- 158              		@ frame_needed = 0, uses_anonymous_args = 0
- 159              	.LVL13:
- 160 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
- 161              	.LCFI1:
- 162              		.cfi_def_cfa_offset 36
- 163              		.cfi_offset 4, -36
- 164              		.cfi_offset 5, -32
- 165              		.cfi_offset 6, -28
- 166              		.cfi_offset 7, -24
- 167              		.cfi_offset 8, -20
- 168              		.cfi_offset 9, -16
- 169              		.cfi_offset 10, -12
- 170              		.cfi_offset 11, -8
- 171              		.cfi_offset 14, -4
- 172 0004 85B0     		sub	sp, sp, #20
- 173              	.LCFI2:
- 174              		.cfi_def_cfa_offset 56
- 175 0006 0390     		str	r0, [sp, #12]
- 176 0008 8946     		mov	r9, r1
- 177 000a 9246     		mov	r10, r2
- 178 000c 1F46     		mov	r7, r3
- 179 000e 9DF838B0 		ldrb	fp, [sp, #56]	@ zero_extendqisi2
- 180              	.LVL14:
   76:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     u8g2_int_t f;
   77:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     u8g2_int_t ddF_x;
   78:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     u8g2_int_t ddF_y;
@@ -281,49 +278,16 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
   81:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
   82:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     f = 1;
   83:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     f -= rad;
- 181              		.loc 1 83 0
- 182 0012 C3F10108 		rsb	r8, r3, #1
- 183 0016 4FFA88F8 		sxtb	r8, r8
- 184              	.LVL15:
   84:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ddF_x = 1;
   85:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ddF_y = 0;
   86:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ddF_y -= rad;
   87:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ddF_y *= 2;
- 185              		.loc 1 87 0
- 186 001a C3EBC313 		rsb	r3, r3, r3, lsl #7
- 187              	.LVL16:
- 188 001e 5D00     		lsls	r5, r3, #1
- 189 0020 6DB2     		sxtb	r5, r5
- 190              	.LVL17:
   88:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     x = 0;
   89:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     y = rad;
   90:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 6
-
-
   91:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     u8g2_draw_circle_section(u8g2, x, y, x0, y0, option);
- 191              		.loc 1 91 0
- 192 0022 CDF804B0 		str	fp, [sp, #4]
- 193 0026 0092     		str	r2, [sp]
- 194 0028 0B46     		mov	r3, r1
- 195 002a 3A46     		mov	r2, r7
- 196              	.LVL18:
- 197 002c 0021     		movs	r1, #0
- 198              	.LVL19:
- 199 002e FFF7FEFF 		bl	u8g2_draw_circle_section
- 200              	.LVL20:
-  88:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     x = 0;
- 201              		.loc 1 88 0
- 202 0032 0026     		movs	r6, #0
-  84:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ddF_x = 1;
- 203              		.loc 1 84 0
- 204 0034 0124     		movs	r4, #1
   92:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
   93:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     while ( x < y )
- 205              		.loc 1 93 0
- 206 0036 11E0     		b	.L12
- 207              	.LVL21:
- 208              	.L13:
   94:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
   95:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       if (f >= 0) 
   96:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       {
@@ -332,95 +296,21 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
   99:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****         f += ddF_y;
  100:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       }
  101:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       x++;
- 209              		.loc 1 101 0
- 210 0038 0136     		adds	r6, r6, #1
- 211              	.LVL22:
- 212 003a F6B2     		uxtb	r6, r6
- 213              	.LVL23:
  102:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ddF_x += 2;
- 214              		.loc 1 102 0
- 215 003c 0234     		adds	r4, r4, #2
- 216              	.LVL24:
- 217 003e E3B2     		uxtb	r3, r4
- 218 0040 5CB2     		sxtb	r4, r3
- 219              	.LVL25:
  103:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       f += ddF_x;
- 220              		.loc 1 103 0
- 221 0042 9844     		add	r8, r8, r3
- 222              	.LVL26:
- 223 0044 4FFA88F8 		sxtb	r8, r8
- 224              	.LVL27:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 6
+
+
  104:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
  105:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_draw_circle_section(u8g2, x, y, x0, y0, option);    
- 225              		.loc 1 105 0
- 226 0048 CDF804B0 		str	fp, [sp, #4]
- 227 004c CDF800A0 		str	r10, [sp]
- 228 0050 4B46     		mov	r3, r9
- 229 0052 3A46     		mov	r2, r7
- 230 0054 3146     		mov	r1, r6
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 7
-
-
- 231 0056 0398     		ldr	r0, [sp, #12]
- 232 0058 FFF7FEFF 		bl	u8g2_draw_circle_section
- 233              	.LVL28:
- 234              	.L12:
-  93:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
- 235              		.loc 1 93 0
- 236 005c BE42     		cmp	r6, r7
- 237 005e 0BD2     		bcs	.L16
-  95:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       {
- 238              		.loc 1 95 0
- 239 0060 B8F1000F 		cmp	r8, #0
- 240 0064 E8DB     		blt	.L13
-  97:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****         ddF_y += 2;
- 241              		.loc 1 97 0
- 242 0066 013F     		subs	r7, r7, #1
- 243              	.LVL29:
- 244 0068 FFB2     		uxtb	r7, r7
- 245              	.LVL30:
-  98:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****         f += ddF_y;
- 246              		.loc 1 98 0
- 247 006a 0235     		adds	r5, r5, #2
- 248              	.LVL31:
- 249 006c EBB2     		uxtb	r3, r5
- 250 006e 5DB2     		sxtb	r5, r3
- 251              	.LVL32:
-  99:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       }
- 252              		.loc 1 99 0
- 253 0070 9844     		add	r8, r8, r3
- 254              	.LVL33:
- 255 0072 4FFA88F8 		sxtb	r8, r8
- 256              	.LVL34:
- 257 0076 DFE7     		b	.L13
- 258              	.L16:
  106:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  107:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
- 259              		.loc 1 107 0
- 260 0078 05B0     		add	sp, sp, #20
- 261              	.LCFI3:
- 262              		.cfi_def_cfa_offset 36
- 263              		@ sp needed
- 264 007a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
- 265              		.cfi_endproc
- 266              	.LFE1:
- 268              		.section	.text.u8g2_draw_ellipse_section,"ax",%progbits
- 269              		.align	1
- 270              		.syntax unified
- 271              		.thumb
- 272              		.thumb_func
- 273              		.fpu fpv4-sp-d16
- 275              	u8g2_draw_ellipse_section:
- 276              	.LFB6:
  108:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
  109:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** void u8g2_DrawCircle(u8g2_t *u8g2, u8g2_uint_t x0, u8g2_uint_t y0, u8g2_uint_t rad, uint8_t option)
  110:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** {
  111:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
  112:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** #ifdef U8G2_WITH_INTERSECTION
  113:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 8
-
-
  114:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( u8g2_IsIntersection(u8g2, x0-rad, y0-rad, x0+rad+1, y0+rad+1) == 0 ) 
  115:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
  116:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   }
@@ -468,6 +358,9 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  158:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
  159:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
  160:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** static void u8g2_draw_disc(u8g2_t *u8g2, u8g2_uint_t x0, u8g2_uint_t y0, u8g2_uint_t rad, uint8_t o
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 7
+
+
  161:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** {
  162:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_int_t f;
  163:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_int_t ddF_x;
@@ -478,9 +371,6 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  168:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   f = 1;
  169:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   f -= rad;
  170:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ddF_x = 1;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 9
-
-
  171:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ddF_y = 0;
  172:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ddF_y -= rad;
  173:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ddF_y *= 2;
@@ -528,170 +418,349 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  215:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** */
  216:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** static void u8g2_draw_ellipse_section(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t x0, u
  217:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** static void u8g2_draw_ellipse_section(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t x0, u
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 8
+
+
  218:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** {
- 277              		.loc 1 218 0
- 278              		.cfi_startproc
- 279              		@ args = 8, pretend = 0, frame = 0
- 280              		@ frame_needed = 0, uses_anonymous_args = 0
- 281              	.LVL35:
- 282 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
- 283              	.LCFI4:
- 284              		.cfi_def_cfa_offset 32
- 285              		.cfi_offset 3, -32
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 10
-
-
- 286              		.cfi_offset 4, -28
- 287              		.cfi_offset 5, -24
- 288              		.cfi_offset 6, -20
- 289              		.cfi_offset 7, -16
- 290              		.cfi_offset 8, -12
- 291              		.cfi_offset 9, -8
- 292              		.cfi_offset 14, -4
- 293 0004 0746     		mov	r7, r0
- 294 0006 8846     		mov	r8, r1
- 295 0008 9146     		mov	r9, r2
- 296 000a 1D46     		mov	r5, r3
- 297 000c 9DF82060 		ldrb	r6, [sp, #32]	@ zero_extendqisi2
- 298 0010 9DF82440 		ldrb	r4, [sp, #36]	@ zero_extendqisi2
+ 176              		.loc 1 218 0
+ 177              		.cfi_startproc
+ 178              		@ args = 8, pretend = 0, frame = 0
+ 179              		@ frame_needed = 0, uses_anonymous_args = 0
+ 180              	.LVL16:
+ 181 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 182              	.LCFI3:
+ 183              		.cfi_def_cfa_offset 32
+ 184              		.cfi_offset 3, -32
+ 185              		.cfi_offset 4, -28
+ 186              		.cfi_offset 5, -24
+ 187              		.cfi_offset 6, -20
+ 188              		.cfi_offset 7, -16
+ 189              		.cfi_offset 8, -12
+ 190              		.cfi_offset 9, -8
+ 191              		.cfi_offset 14, -4
+ 192              		.loc 1 218 0
+ 193 0004 9DF82440 		ldrb	r4, [sp, #36]	@ zero_extendqisi2
+ 194 0008 9DF82060 		ldrb	r6, [sp, #32]	@ zero_extendqisi2
+ 195 000c 1D46     		mov	r5, r3
  219:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper right */
  220:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_UPPER_RIGHT )
- 299              		.loc 1 220 0
- 300 0014 14F0010F 		tst	r4, #1
- 301 0018 0AD1     		bne	.L23
- 302              	.LVL36:
- 303              	.L18:
+ 196              		.loc 1 220 0
+ 197 000e E307     		lsls	r3, r4, #31
+ 198              	.LVL17:
+ 218:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper right */
+ 199              		.loc 1 218 0
+ 200 0010 0F46     		mov	r7, r1
+ 201 0012 9046     		mov	r8, r2
+ 202 0014 8146     		mov	r9, r0
+ 203              		.loc 1 220 0
+ 204 0016 23D4     		bmi	.L36
+ 205              	.LVL18:
+ 206              	.L22:
  221:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  222:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 + x, y0 - y);
  223:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  224:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
  225:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper left */
  226:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_UPPER_LEFT )
- 304              		.loc 1 226 0
- 305 001a 14F0020F 		tst	r4, #2
- 306 001e 0ED1     		bne	.L24
- 307              	.L19:
+ 207              		.loc 1 226 0
+ 208 0018 A107     		lsls	r1, r4, #30
+ 209 001a 18D4     		bmi	.L37
+ 210              	.L23:
  227:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  228:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 - x, y0 - y);
  229:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  230:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
  231:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* lower right */
  232:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_LOWER_RIGHT )
- 308              		.loc 1 232 0
- 309 0020 14F0080F 		tst	r4, #8
- 310 0024 15D1     		bne	.L25
- 311              	.L20:
+ 211              		.loc 1 232 0
+ 212 001c 2207     		lsls	r2, r4, #28
+ 213 001e 0DD4     		bmi	.L38
+ 214              	.L24:
  233:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  234:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 + x, y0 + y);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 9
+
+
  235:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  236:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
  237:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* lower left */
  238:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_LOWER_LEFT )
- 312              		.loc 1 238 0
- 313 0026 14F0040F 		tst	r4, #4
- 314 002a 1CD1     		bne	.L26
- 315              	.L17:
+ 215              		.loc 1 238 0
+ 216 0020 6307     		lsls	r3, r4, #29
+ 217 0022 01D4     		bmi	.L39
  239:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  240:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawPixel(u8g2, x0 - x, y0 + y);
  241:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  242:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
- 316              		.loc 1 242 0
- 317 002c BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
- 318              	.LVL37:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 11
-
-
- 319              	.L23:
- 222:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 320              		.loc 1 222 0
- 321 0030 B21A     		subs	r2, r6, r2
- 322              	.LVL38:
- 323 0032 5918     		adds	r1, r3, r1
- 324              	.LVL39:
- 325 0034 D2B2     		uxtb	r2, r2
- 326 0036 C9B2     		uxtb	r1, r1
- 327 0038 FFF7FEFF 		bl	u8g2_DrawPixel
- 328              	.LVL40:
- 329 003c EDE7     		b	.L18
- 330              	.L24:
- 228:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 331              		.loc 1 228 0
- 332 003e A6EB0902 		sub	r2, r6, r9
- 333 0042 A5EB0801 		sub	r1, r5, r8
- 334 0046 D2B2     		uxtb	r2, r2
- 335 0048 C9B2     		uxtb	r1, r1
- 336 004a 3846     		mov	r0, r7
- 337 004c FFF7FEFF 		bl	u8g2_DrawPixel
- 338              	.LVL41:
- 339 0050 E6E7     		b	.L19
- 340              	.L25:
- 234:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 341              		.loc 1 234 0
- 342 0052 06EB0902 		add	r2, r6, r9
- 343 0056 05EB0801 		add	r1, r5, r8
- 344 005a D2B2     		uxtb	r2, r2
- 345 005c C9B2     		uxtb	r1, r1
- 346 005e 3846     		mov	r0, r7
- 347 0060 FFF7FEFF 		bl	u8g2_DrawPixel
- 348              	.LVL42:
- 349 0064 DFE7     		b	.L20
- 350              	.L26:
+ 218              		.loc 1 242 0
+ 219 0024 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 220              	.LVL19:
+ 221              	.L39:
  240:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 351              		.loc 1 240 0
- 352 0066 06EB0902 		add	r2, r6, r9
- 353 006a A5EB0801 		sub	r1, r5, r8
- 354 006e D2B2     		uxtb	r2, r2
- 355 0070 C9B2     		uxtb	r1, r1
- 356 0072 3846     		mov	r0, r7
- 357 0074 FFF7FEFF 		bl	u8g2_DrawPixel
- 358              	.LVL43:
- 359              		.loc 1 242 0
- 360 0078 D8E7     		b	.L17
- 361              		.cfi_endproc
- 362              	.LFE6:
- 364              		.section	.text.u8g2_draw_ellipse,"ax",%progbits
- 365              		.align	1
- 366              		.syntax unified
- 367              		.thumb
- 368              		.thumb_func
- 369              		.fpu fpv4-sp-d16
- 371              	u8g2_draw_ellipse:
- 372              	.LFB7:
+ 222              		.loc 1 240 0
+ 223 0028 06EB0802 		add	r2, r6, r8
+ 224 002c E91B     		subs	r1, r5, r7
+ 225 002e 4846     		mov	r0, r9
+ 226 0030 D2B2     		uxtb	r2, r2
+ 227 0032 C9B2     		uxtb	r1, r1
+ 228              		.loc 1 242 0
+ 229 0034 BDE8F843 		pop	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 230              	.LCFI4:
+ 231              		.cfi_remember_state
+ 232              		.cfi_restore 14
+ 233              		.cfi_restore 9
+ 234              		.cfi_restore 8
+ 235              		.cfi_restore 7
+ 236              		.cfi_restore 6
+ 237              		.cfi_restore 5
+ 238              		.cfi_restore 4
+ 239              		.cfi_restore 3
+ 240              		.cfi_def_cfa_offset 0
+ 241              	.LVL20:
+ 240:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 242              		.loc 1 240 0
+ 243 0038 FFF7FEBF 		b	u8g2_DrawPixel
+ 244              	.LVL21:
+ 245              	.L38:
+ 246              	.LCFI5:
+ 247              		.cfi_restore_state
+ 234:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 248              		.loc 1 234 0
+ 249 003c 06EB0802 		add	r2, r6, r8
+ 250 0040 E919     		adds	r1, r5, r7
+ 251 0042 D2B2     		uxtb	r2, r2
+ 252 0044 C9B2     		uxtb	r1, r1
+ 253 0046 4846     		mov	r0, r9
+ 254 0048 FFF7FEFF 		bl	u8g2_DrawPixel
+ 255              	.LVL22:
+ 256 004c E8E7     		b	.L24
+ 257              	.L37:
+ 228:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 258              		.loc 1 228 0
+ 259 004e A6EB0802 		sub	r2, r6, r8
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 10
+
+
+ 260 0052 E91B     		subs	r1, r5, r7
+ 261 0054 D2B2     		uxtb	r2, r2
+ 262 0056 C9B2     		uxtb	r1, r1
+ 263 0058 4846     		mov	r0, r9
+ 264 005a FFF7FEFF 		bl	u8g2_DrawPixel
+ 265              	.LVL23:
+ 266 005e DDE7     		b	.L23
+ 267              	.LVL24:
+ 268              	.L36:
+ 222:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 269              		.loc 1 222 0
+ 270 0060 B21A     		subs	r2, r6, r2
+ 271              	.LVL25:
+ 272 0062 6918     		adds	r1, r5, r1
+ 273              	.LVL26:
+ 274 0064 D2B2     		uxtb	r2, r2
+ 275 0066 C9B2     		uxtb	r1, r1
+ 276 0068 FFF7FEFF 		bl	u8g2_DrawPixel
+ 277              	.LVL27:
+ 278 006c D4E7     		b	.L22
+ 279              		.cfi_endproc
+ 280              	.LFE6:
+ 282 006e 00BF     		.section	.text.u8g2_draw_disc_section,"ax",%progbits
+ 283              		.align	1
+ 284              		.p2align 2,,3
+ 285              		.syntax unified
+ 286              		.thumb
+ 287              		.thumb_func
+ 288              		.fpu fpv4-sp-d16
+ 290              	u8g2_draw_disc_section:
+ 291              	.LFB3:
+ 130:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper right */
+ 292              		.loc 1 130 0
+ 293              		.cfi_startproc
+ 294              		@ args = 8, pretend = 0, frame = 0
+ 295              		@ frame_needed = 0, uses_anonymous_args = 0
+ 296              	.LVL28:
+ 297 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 298              	.LCFI6:
+ 299              		.cfi_def_cfa_offset 32
+ 300              		.cfi_offset 4, -32
+ 301              		.cfi_offset 5, -28
+ 302              		.cfi_offset 6, -24
+ 303              		.cfi_offset 7, -20
+ 304              		.cfi_offset 8, -16
+ 305              		.cfi_offset 9, -12
+ 306              		.cfi_offset 10, -8
+ 307              		.cfi_offset 14, -4
+ 130:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper right */
+ 308              		.loc 1 130 0
+ 309 0004 9DF82450 		ldrb	r5, [sp, #36]	@ zero_extendqisi2
+ 310 0008 9DF82080 		ldrb	r8, [sp, #32]	@ zero_extendqisi2
+ 311 000c 1E46     		mov	r6, r3
+ 132:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 312              		.loc 1 132 0
+ 313 000e EB07     		lsls	r3, r5, #31
+ 314              	.LVL29:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 11
+
+
+ 130:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper right */
+ 315              		.loc 1 130 0
+ 316 0010 0C46     		mov	r4, r1
+ 317 0012 1746     		mov	r7, r2
+ 318 0014 8146     		mov	r9, r0
+ 132:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 319              		.loc 1 132 0
+ 320 0016 3FD4     		bmi	.L55
+ 321              	.LVL30:
+ 322              	.L41:
+ 139:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 323              		.loc 1 139 0
+ 324 0018 A907     		lsls	r1, r5, #30
+ 325 001a 28D4     		bmi	.L56
+ 326              	.L42:
+ 146:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 327              		.loc 1 146 0
+ 328 001c 2A07     		lsls	r2, r5, #28
+ 329 001e 15D4     		bmi	.L57
+ 330              	.L43:
+ 153:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 331              		.loc 1 153 0
+ 332 0020 6B07     		lsls	r3, r5, #29
+ 333 0022 01D4     		bmi	.L58
+ 158:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 334              		.loc 1 158 0
+ 335 0024 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 336              	.LVL31:
+ 337              	.L58:
+ 155:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0-y, y0, x+1);
+ 338              		.loc 1 155 0
+ 339 0028 7B1C     		adds	r3, r7, #1
+ 340 002a 311B     		subs	r1, r6, r4
+ 341 002c 4246     		mov	r2, r8
+ 342 002e 4846     		mov	r0, r9
+ 343 0030 DBB2     		uxtb	r3, r3
+ 344 0032 C9B2     		uxtb	r1, r1
+ 345 0034 FFF7FEFF 		bl	u8g2_DrawVLine
+ 346              	.LVL32:
+ 156:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 347              		.loc 1 156 0
+ 348 0038 631C     		adds	r3, r4, #1
+ 349 003a F11B     		subs	r1, r6, r7
+ 350 003c 4246     		mov	r2, r8
+ 351 003e 4846     		mov	r0, r9
+ 352 0040 DBB2     		uxtb	r3, r3
+ 353 0042 C9B2     		uxtb	r1, r1
+ 158:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 354              		.loc 1 158 0
+ 355 0044 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 356              	.LCFI7:
+ 357              		.cfi_remember_state
+ 358              		.cfi_restore 14
+ 359              		.cfi_restore 10
+ 360              		.cfi_restore 9
+ 361              		.cfi_restore 8
+ 362              		.cfi_restore 7
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 12
+
+
+ 363              		.cfi_restore 6
+ 364              		.cfi_restore 5
+ 365              		.cfi_restore 4
+ 366              		.cfi_def_cfa_offset 0
+ 367              	.LVL33:
+ 156:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 368              		.loc 1 156 0
+ 369 0048 FFF7FEBF 		b	u8g2_DrawVLine
+ 370              	.LVL34:
+ 371              	.L57:
+ 372              	.LCFI8:
+ 373              		.cfi_restore_state
+ 148:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0+y, y0, x+1);
+ 374              		.loc 1 148 0
+ 375 004c 7B1C     		adds	r3, r7, #1
+ 376 004e 3119     		adds	r1, r6, r4
+ 377 0050 4246     		mov	r2, r8
+ 378 0052 4846     		mov	r0, r9
+ 379 0054 DBB2     		uxtb	r3, r3
+ 380 0056 C9B2     		uxtb	r1, r1
+ 381 0058 FFF7FEFF 		bl	u8g2_DrawVLine
+ 382              	.LVL35:
+ 149:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 383              		.loc 1 149 0
+ 384 005c 631C     		adds	r3, r4, #1
+ 385 005e F119     		adds	r1, r6, r7
+ 386 0060 DBB2     		uxtb	r3, r3
+ 387 0062 C9B2     		uxtb	r1, r1
+ 388 0064 4246     		mov	r2, r8
+ 389 0066 4846     		mov	r0, r9
+ 390 0068 FFF7FEFF 		bl	u8g2_DrawVLine
+ 391              	.LVL36:
+ 392 006c D8E7     		b	.L43
+ 393              	.L56:
+ 141:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0-y, y0-x, x+1);
+ 394              		.loc 1 141 0
+ 395 006e 7B1C     		adds	r3, r7, #1
+ 396 0070 A8EB0702 		sub	r2, r8, r7
+ 397 0074 311B     		subs	r1, r6, r4
+ 398 0076 4846     		mov	r0, r9
+ 399 0078 DBB2     		uxtb	r3, r3
+ 400 007a D2B2     		uxtb	r2, r2
+ 401 007c C9B2     		uxtb	r1, r1
+ 402 007e FFF7FEFF 		bl	u8g2_DrawVLine
+ 403              	.LVL37:
+ 142:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 404              		.loc 1 142 0
+ 405 0082 631C     		adds	r3, r4, #1
+ 406 0084 A8EB0402 		sub	r2, r8, r4
+ 407 0088 F11B     		subs	r1, r6, r7
+ 408 008a DBB2     		uxtb	r3, r3
+ 409 008c D2B2     		uxtb	r2, r2
+ 410 008e C9B2     		uxtb	r1, r1
+ 411 0090 4846     		mov	r0, r9
+ 412 0092 FFF7FEFF 		bl	u8g2_DrawVLine
+ 413              	.LVL38:
+ 414 0096 C1E7     		b	.L42
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 13
+
+
+ 415              	.LVL39:
+ 416              	.L55:
+ 134:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0+y, y0-x, x+1);
+ 417              		.loc 1 134 0
+ 418 0098 531C     		adds	r3, r2, #1
+ 419 009a 7118     		adds	r1, r6, r1
+ 420              	.LVL40:
+ 421 009c A8EB0202 		sub	r2, r8, r2
+ 422              	.LVL41:
+ 423 00a0 DBB2     		uxtb	r3, r3
+ 424 00a2 D2B2     		uxtb	r2, r2
+ 425 00a4 C9B2     		uxtb	r1, r1
+ 426 00a6 FFF7FEFF 		bl	u8g2_DrawVLine
+ 427              	.LVL42:
+ 135:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 428              		.loc 1 135 0
+ 429 00aa 631C     		adds	r3, r4, #1
+ 430 00ac A8EB0402 		sub	r2, r8, r4
+ 431 00b0 F119     		adds	r1, r6, r7
+ 432 00b2 DBB2     		uxtb	r3, r3
+ 433 00b4 D2B2     		uxtb	r2, r2
+ 434 00b6 C9B2     		uxtb	r1, r1
+ 435 00b8 4846     		mov	r0, r9
+ 436 00ba FFF7FEFF 		bl	u8g2_DrawVLine
+ 437              	.LVL43:
+ 438 00be ABE7     		b	.L41
+ 439              		.cfi_endproc
+ 440              	.LFE3:
+ 442              		.section	.text.u8g2_draw_filled_ellipse_section,"ax",%progbits
+ 443              		.align	1
+ 444              		.p2align 2,,3
+ 445              		.syntax unified
+ 446              		.thumb
+ 447              		.thumb_func
+ 448              		.fpu fpv4-sp-d16
+ 450              	u8g2_draw_filled_ellipse_section:
+ 451              	.LFB9:
  243:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 12
-
-
  244:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** static void u8g2_draw_ellipse(u8g2_t *u8g2, u8g2_uint_t x0, u8g2_uint_t y0, u8g2_uint_t rx, u8g2_ui
  245:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** {
- 373              		.loc 1 245 0
- 374              		.cfi_startproc
- 375              		@ args = 8, pretend = 0, frame = 40
- 376              		@ frame_needed = 0, uses_anonymous_args = 0
- 377              	.LVL44:
- 378 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
- 379              	.LCFI5:
- 380              		.cfi_def_cfa_offset 36
- 381              		.cfi_offset 4, -36
- 382              		.cfi_offset 5, -32
- 383              		.cfi_offset 6, -28
- 384              		.cfi_offset 7, -24
- 385              		.cfi_offset 8, -20
- 386              		.cfi_offset 9, -16
- 387              		.cfi_offset 10, -12
- 388              		.cfi_offset 11, -8
- 389              		.cfi_offset 14, -4
- 390 0004 8DB0     		sub	sp, sp, #52
- 391              	.LCFI6:
- 392              		.cfi_def_cfa_offset 88
- 393 0006 0790     		str	r0, [sp, #28]
- 394 0008 0891     		str	r1, [sp, #32]
- 395 000a 0992     		str	r2, [sp, #36]
- 396 000c 0393     		str	r3, [sp, #12]
- 397 000e 9DF85810 		ldrb	r1, [sp, #88]	@ zero_extendqisi2
- 398              	.LVL45:
- 399 0012 0491     		str	r1, [sp, #16]
- 400 0014 9DF85C90 		ldrb	r9, [sp, #92]	@ zero_extendqisi2
- 401              	.LVL46:
  246:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_uint_t x, y;
  247:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_long_t xchg, ychg;
  248:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_long_t err;
@@ -701,67 +770,23 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  252:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  253:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 = rx;
  254:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 *= rx;
- 402              		.loc 1 254 0
- 403 0018 9BB2     		uxth	r3, r3
- 404              	.LVL47:
- 405 001a 0A93     		str	r3, [sp, #40]
- 406 001c 03FB03F7 		mul	r7, r3, r3
- 407 0020 3AB2     		sxth	r2, r7
- 408              	.LVL48:
- 409 0022 0692     		str	r2, [sp, #24]
- 410              	.LVL49:
  255:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 *= 2;
- 411              		.loc 1 255 0
- 412 0024 7F00     		lsls	r7, r7, #1
- 413 0026 BFB2     		uxth	r7, r7
- 414              	.LVL50:
  256:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  257:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 = ry;
  258:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 *= ry;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 13
-
-
- 415              		.loc 1 258 0
- 416 0028 89B2     		uxth	r1, r1
- 417              	.LVL51:
- 418 002a 0B91     		str	r1, [sp, #44]
- 419 002c 01FB01F8 		mul	r8, r1, r1
- 420 0030 0FFA88F2 		sxth	r2, r8
- 421 0034 0592     		str	r2, [sp, #20]
- 422              	.LVL52:
  259:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 *= 2;
- 423              		.loc 1 259 0
- 424 0036 4FEA4808 		lsl	r8, r8, #1
- 425 003a 1FFA88F8 		uxth	r8, r8
- 426              	.LVL53:
  260:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  261:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   x = rx;
  262:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   y = 0;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 14
+
+
  263:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  264:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg = 1;
  265:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg -= rx;
- 427              		.loc 1 265 0
- 428 003e C3F10105 		rsb	r5, r3, #1
- 429 0042 ADB2     		uxth	r5, r5
- 430              	.LVL54:
  266:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg -= rx;
- 431              		.loc 1 266 0
- 432 0044 ED1A     		subs	r5, r5, r3
- 433              	.LVL55:
- 434 0046 ADB2     		uxth	r5, r5
- 435              	.LVL56:
  267:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg *= ry;
- 436              		.loc 1 267 0
- 437 0048 11FB05F5 		smulbb	r5, r1, r5
- 438              	.LVL57:
- 439 004c ADB2     		uxth	r5, r5
- 440              	.LVL58:
  268:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg *= ry;
- 441              		.loc 1 268 0
- 442 004e 11FB05F5 		smulbb	r5, r1, r5
- 443              	.LVL59:
- 444 0052 2DB2     		sxth	r5, r5
- 445              	.LVL60:
  269:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  270:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg = rx;
  271:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg *= rx;
@@ -770,105 +795,21 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  274:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  275:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopx = ryry2;
  276:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopx *= rx;
- 446              		.loc 1 276 0
- 447 0054 13FB08FB 		smulbb	fp, r3, r8
- 448 0058 0FFA8BFB 		sxth	fp, fp
- 449              	.LVL61:
  277:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopy = 0;
- 450              		.loc 1 277 0
- 451 005c 0026     		movs	r6, #0
- 273:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 14
-
-
- 452              		.loc 1 273 0
- 453 005e 3446     		mov	r4, r6
- 262:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
- 454              		.loc 1 262 0
- 455 0060 B246     		mov	r10, r6
- 456              	.LVL62:
- 457              	.L28:
  278:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  279:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   while( stopx >= stopy )
- 458              		.loc 1 279 0
- 459 0062 B345     		cmp	fp, r6
- 460 0064 29DB     		blt	.L35
  280:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
  281:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     u8g2_draw_ellipse_section(u8g2, x, y, x0, y0, option);
- 461              		.loc 1 281 0
- 462 0066 CDF80490 		str	r9, [sp, #4]
- 463 006a 099B     		ldr	r3, [sp, #36]
- 464 006c 0093     		str	r3, [sp]
- 465 006e 089B     		ldr	r3, [sp, #32]
- 466 0070 5246     		mov	r2, r10
- 467 0072 0399     		ldr	r1, [sp, #12]
- 468 0074 0798     		ldr	r0, [sp, #28]
- 469 0076 FFF7FEFF 		bl	u8g2_draw_ellipse_section
- 470              	.LVL63:
  282:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     y++;
- 471              		.loc 1 282 0
- 472 007a 0AF1010A 		add	r10, r10, #1
- 473              	.LVL64:
- 474 007e 5FFA8AFA 		uxtb	r10, r10
- 475              	.LVL65:
  283:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     stopy += rxrx2;
- 476              		.loc 1 283 0
- 477 0082 3E44     		add	r6, r6, r7
- 478              	.LVL66:
- 479 0084 36B2     		sxth	r6, r6
- 480              	.LVL67:
  284:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     err += ychg;
- 481              		.loc 1 284 0
- 482 0086 BDF81820 		ldrh	r2, [sp, #24]
- 483 008a 1444     		add	r4, r4, r2
- 484              	.LVL68:
- 485 008c A3B2     		uxth	r3, r4
- 486 008e 1CB2     		sxth	r4, r3
- 487              	.LVL69:
  285:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ychg += rxrx2;
- 488              		.loc 1 285 0
- 489 0090 3A44     		add	r2, r2, r7
- 490 0092 12B2     		sxth	r2, r2
- 491 0094 0692     		str	r2, [sp, #24]
- 492              	.LVL70:
  286:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( 2*err+xchg > 0 )
- 493              		.loc 1 286 0
- 494 0096 05EB4402 		add	r2, r5, r4, lsl #1
- 495 009a 002A     		cmp	r2, #0
- 496 009c E1DD     		ble	.L28
  287:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  288:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       x--;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 15
-
-
- 497              		.loc 1 288 0
- 498 009e 039A     		ldr	r2, [sp, #12]
- 499 00a0 013A     		subs	r2, r2, #1
- 500 00a2 D2B2     		uxtb	r2, r2
- 501 00a4 0392     		str	r2, [sp, #12]
- 502              	.LVL71:
  289:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopx -= ryry2;
- 503              		.loc 1 289 0
- 504 00a6 ABEB080B 		sub	fp, fp, r8
- 505              	.LVL72:
- 506 00aa 0FFA8BFB 		sxth	fp, fp
- 507              	.LVL73:
  290:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += xchg;
- 508              		.loc 1 290 0
- 509 00ae ADB2     		uxth	r5, r5
- 510 00b0 5C19     		adds	r4, r3, r5
- 511              	.LVL74:
- 512 00b2 24B2     		sxth	r4, r4
- 513              	.LVL75:
  291:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       xchg += ryry2;      
- 514              		.loc 1 291 0
- 515 00b4 4544     		add	r5, r5, r8
- 516              	.LVL76:
- 517 00b6 2DB2     		sxth	r5, r5
- 518              	.LVL77:
- 519 00b8 D3E7     		b	.L28
- 520              	.L35:
- 521              	.LVL78:
  292:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  293:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   }
  294:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
@@ -880,33 +821,9 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  300:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  301:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg = 1;
  302:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg -= ry;
- 522              		.loc 1 302 0
- 523 00ba 0B9B     		ldr	r3, [sp, #44]
- 524 00bc C3F10105 		rsb	r5, r3, #1
- 525 00c0 ADB2     		uxth	r5, r5
- 526              	.LVL79:
  303:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg -= ry;
- 527              		.loc 1 303 0
- 528 00c2 ED1A     		subs	r5, r5, r3
- 529              	.LVL80:
- 530 00c4 ADB2     		uxth	r5, r5
- 531              	.LVL81:
  304:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg *= rx;
- 532              		.loc 1 304 0
- 533 00c6 0A9A     		ldr	r2, [sp, #40]
- 534 00c8 12FB05F5 		smulbb	r5, r2, r5
- 535              	.LVL82:
- 536 00cc ADB2     		uxth	r5, r5
- 537              	.LVL83:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 16
-
-
  305:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg *= rx;
- 538              		.loc 1 305 0
- 539 00ce 12FB05F5 		smulbb	r5, r2, r5
- 540              	.LVL84:
- 541 00d2 2DB2     		sxth	r5, r5
- 542              	.LVL85:
  306:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  307:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   err = 0;
  308:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
@@ -914,431 +831,28 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  310:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
  311:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopy = rxrx2;
  312:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopy *= ry;
- 543              		.loc 1 312 0
- 544 00d4 17FB03FA 		smulbb	r10, r7, r3
- 545 00d8 0FFA8AFA 		sxth	r10, r10
- 546              	.LVL86:
- 309:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
- 547              		.loc 1 309 0
- 548 00dc 0026     		movs	r6, #0
- 307:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
- 549              		.loc 1 307 0
- 550 00de 3446     		mov	r4, r6
- 295:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   y = ry;
- 551              		.loc 1 295 0
- 552 00e0 B346     		mov	fp, r6
- 553              	.LVL87:
- 554              	.L31:
  313:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  314:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
  315:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   while( stopx <= stopy )
- 555              		.loc 1 315 0
- 556 00e2 5645     		cmp	r6, r10
- 557 00e4 29DC     		bgt	.L36
  316:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
  317:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     u8g2_draw_ellipse_section(u8g2, x, y, x0, y0, option);
- 558              		.loc 1 317 0
- 559 00e6 CDF80490 		str	r9, [sp, #4]
- 560 00ea 099B     		ldr	r3, [sp, #36]
- 561 00ec 0093     		str	r3, [sp]
- 562 00ee 089B     		ldr	r3, [sp, #32]
- 563 00f0 049A     		ldr	r2, [sp, #16]
- 564 00f2 5946     		mov	r1, fp
- 565 00f4 0798     		ldr	r0, [sp, #28]
- 566 00f6 FFF7FEFF 		bl	u8g2_draw_ellipse_section
- 567              	.LVL88:
  318:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     x++;
- 568              		.loc 1 318 0
- 569 00fa 0BF1010B 		add	fp, fp, #1
- 570              	.LVL89:
- 571 00fe 5FFA8BFB 		uxtb	fp, fp
- 572              	.LVL90:
  319:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     stopx += ryry2;
- 573              		.loc 1 319 0
- 574 0102 4644     		add	r6, r6, r8
- 575              	.LVL91:
- 576 0104 36B2     		sxth	r6, r6
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 17
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 15
 
 
- 577              	.LVL92:
  320:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     err += xchg;
- 578              		.loc 1 320 0
- 579 0106 BDF81420 		ldrh	r2, [sp, #20]
- 580 010a 1444     		add	r4, r4, r2
- 581              	.LVL93:
- 582 010c A3B2     		uxth	r3, r4
- 583 010e 1CB2     		sxth	r4, r3
- 584              	.LVL94:
  321:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     xchg += ryry2;
- 585              		.loc 1 321 0
- 586 0110 4244     		add	r2, r2, r8
- 587 0112 12B2     		sxth	r2, r2
- 588 0114 0592     		str	r2, [sp, #20]
- 589              	.LVL95:
  322:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( 2*err+ychg > 0 )
- 590              		.loc 1 322 0
- 591 0116 05EB4402 		add	r2, r5, r4, lsl #1
- 592 011a 002A     		cmp	r2, #0
- 593 011c E1DD     		ble	.L31
  323:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  324:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       y--;
- 594              		.loc 1 324 0
- 595 011e 049A     		ldr	r2, [sp, #16]
- 596 0120 013A     		subs	r2, r2, #1
- 597 0122 D2B2     		uxtb	r2, r2
- 598 0124 0492     		str	r2, [sp, #16]
- 599              	.LVL96:
  325:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopy -= rxrx2;
- 600              		.loc 1 325 0
- 601 0126 AAEB070A 		sub	r10, r10, r7
- 602              	.LVL97:
- 603 012a 0FFA8AFA 		sxth	r10, r10
- 604              	.LVL98:
  326:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += ychg;
- 605              		.loc 1 326 0
- 606 012e ADB2     		uxth	r5, r5
- 607 0130 5C19     		adds	r4, r3, r5
- 608              	.LVL99:
- 609 0132 24B2     		sxth	r4, r4
- 610              	.LVL100:
  327:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ychg += rxrx2;
- 611              		.loc 1 327 0
- 612 0134 3D44     		add	r5, r5, r7
- 613              	.LVL101:
- 614 0136 2DB2     		sxth	r5, r5
- 615              	.LVL102:
- 616 0138 D3E7     		b	.L31
- 617              	.L36:
  328:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  329:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   }
  330:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  331:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
- 618              		.loc 1 331 0
- 619 013a 0DB0     		add	sp, sp, #52
- 620              	.LCFI7:
- 621              		.cfi_def_cfa_offset 36
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 18
-
-
- 622              		@ sp needed
- 623 013c BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
- 624              		.cfi_endproc
- 625              	.LFE7:
- 627              		.section	.text.u8g2_draw_disc_section,"ax",%progbits
- 628              		.align	1
- 629              		.syntax unified
- 630              		.thumb
- 631              		.thumb_func
- 632              		.fpu fpv4-sp-d16
- 634              	u8g2_draw_disc_section:
- 635              	.LFB3:
- 130:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper right */
- 636              		.loc 1 130 0
- 637              		.cfi_startproc
- 638              		@ args = 8, pretend = 0, frame = 0
- 639              		@ frame_needed = 0, uses_anonymous_args = 0
- 640              	.LVL103:
- 641 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
- 642              	.LCFI8:
- 643              		.cfi_def_cfa_offset 32
- 644              		.cfi_offset 3, -32
- 645              		.cfi_offset 4, -28
- 646              		.cfi_offset 5, -24
- 647              		.cfi_offset 6, -20
- 648              		.cfi_offset 7, -16
- 649              		.cfi_offset 8, -12
- 650              		.cfi_offset 9, -8
- 651              		.cfi_offset 14, -4
- 652 0004 8046     		mov	r8, r0
- 653 0006 0C46     		mov	r4, r1
- 654 0008 1746     		mov	r7, r2
- 655 000a 1E46     		mov	r6, r3
- 656 000c 9DF82090 		ldrb	r9, [sp, #32]	@ zero_extendqisi2
- 657 0010 9DF82450 		ldrb	r5, [sp, #36]	@ zero_extendqisi2
- 132:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
- 658              		.loc 1 132 0
- 659 0014 15F0010F 		tst	r5, #1
- 660 0018 0AD1     		bne	.L43
- 661              	.LVL104:
- 662              	.L38:
- 139:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
- 663              		.loc 1 139 0
- 664 001a 15F0020F 		tst	r5, #2
- 665 001e 1BD1     		bne	.L44
- 666              	.L39:
- 146:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
- 667              		.loc 1 146 0
- 668 0020 15F0080F 		tst	r5, #8
- 669 0024 2DD1     		bne	.L45
- 670              	.L40:
- 153:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
- 671              		.loc 1 153 0
- 672 0026 15F0040F 		tst	r5, #4
- 673 002a 3BD1     		bne	.L46
- 674              	.L37:
- 158:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 19
-
-
- 675              		.loc 1 158 0
- 676 002c BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
- 677              	.LVL105:
- 678              	.L43:
- 134:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0+y, y0-x, x+1);
- 679              		.loc 1 134 0
- 680 0030 531C     		adds	r3, r2, #1
- 681              	.LVL106:
- 682 0032 A9EB0202 		sub	r2, r9, r2
- 683              	.LVL107:
- 684 0036 7118     		adds	r1, r6, r1
- 685              	.LVL108:
- 686 0038 DBB2     		uxtb	r3, r3
- 687 003a D2B2     		uxtb	r2, r2
- 688 003c C9B2     		uxtb	r1, r1
- 689 003e FFF7FEFF 		bl	u8g2_DrawVLine
- 690              	.LVL109:
- 135:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 691              		.loc 1 135 0
- 692 0042 631C     		adds	r3, r4, #1
- 693 0044 A9EB0402 		sub	r2, r9, r4
- 694 0048 F119     		adds	r1, r6, r7
- 695 004a DBB2     		uxtb	r3, r3
- 696 004c D2B2     		uxtb	r2, r2
- 697 004e C9B2     		uxtb	r1, r1
- 698 0050 4046     		mov	r0, r8
- 699 0052 FFF7FEFF 		bl	u8g2_DrawVLine
- 700              	.LVL110:
- 701 0056 E0E7     		b	.L38
- 702              	.L44:
- 141:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0-y, y0-x, x+1);
- 703              		.loc 1 141 0
- 704 0058 7B1C     		adds	r3, r7, #1
- 705 005a A9EB0702 		sub	r2, r9, r7
- 706 005e 311B     		subs	r1, r6, r4
- 707 0060 DBB2     		uxtb	r3, r3
- 708 0062 D2B2     		uxtb	r2, r2
- 709 0064 C9B2     		uxtb	r1, r1
- 710 0066 4046     		mov	r0, r8
- 711 0068 FFF7FEFF 		bl	u8g2_DrawVLine
- 712              	.LVL111:
- 142:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 713              		.loc 1 142 0
- 714 006c 631C     		adds	r3, r4, #1
- 715 006e A9EB0402 		sub	r2, r9, r4
- 716 0072 F11B     		subs	r1, r6, r7
- 717 0074 DBB2     		uxtb	r3, r3
- 718 0076 D2B2     		uxtb	r2, r2
- 719 0078 C9B2     		uxtb	r1, r1
- 720 007a 4046     		mov	r0, r8
- 721 007c FFF7FEFF 		bl	u8g2_DrawVLine
- 722              	.LVL112:
- 723 0080 CEE7     		b	.L39
- 724              	.L45:
- 148:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0+y, y0, x+1);
- 725              		.loc 1 148 0
- 726 0082 7B1C     		adds	r3, r7, #1
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 20
-
-
- 727 0084 3119     		adds	r1, r6, r4
- 728 0086 DBB2     		uxtb	r3, r3
- 729 0088 4A46     		mov	r2, r9
- 730 008a C9B2     		uxtb	r1, r1
- 731 008c 4046     		mov	r0, r8
- 732 008e FFF7FEFF 		bl	u8g2_DrawVLine
- 733              	.LVL113:
- 149:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 734              		.loc 1 149 0
- 735 0092 631C     		adds	r3, r4, #1
- 736 0094 F119     		adds	r1, r6, r7
- 737 0096 DBB2     		uxtb	r3, r3
- 738 0098 4A46     		mov	r2, r9
- 739 009a C9B2     		uxtb	r1, r1
- 740 009c 4046     		mov	r0, r8
- 741 009e FFF7FEFF 		bl	u8g2_DrawVLine
- 742              	.LVL114:
- 743 00a2 C0E7     		b	.L40
- 744              	.L46:
- 155:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0-y, y0, x+1);
- 745              		.loc 1 155 0
- 746 00a4 7B1C     		adds	r3, r7, #1
- 747 00a6 311B     		subs	r1, r6, r4
- 748 00a8 DBB2     		uxtb	r3, r3
- 749 00aa 4A46     		mov	r2, r9
- 750 00ac C9B2     		uxtb	r1, r1
- 751 00ae 4046     		mov	r0, r8
- 752 00b0 FFF7FEFF 		bl	u8g2_DrawVLine
- 753              	.LVL115:
- 156:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 754              		.loc 1 156 0
- 755 00b4 631C     		adds	r3, r4, #1
- 756 00b6 F11B     		subs	r1, r6, r7
- 757 00b8 DBB2     		uxtb	r3, r3
- 758 00ba 4A46     		mov	r2, r9
- 759 00bc C9B2     		uxtb	r1, r1
- 760 00be 4046     		mov	r0, r8
- 761 00c0 FFF7FEFF 		bl	u8g2_DrawVLine
- 762              	.LVL116:
- 158:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
- 763              		.loc 1 158 0
- 764 00c4 B2E7     		b	.L37
- 765              		.cfi_endproc
- 766              	.LFE3:
- 768              		.section	.text.u8g2_draw_disc,"ax",%progbits
- 769              		.align	1
- 770              		.syntax unified
- 771              		.thumb
- 772              		.thumb_func
- 773              		.fpu fpv4-sp-d16
- 775              	u8g2_draw_disc:
- 776              	.LFB4:
- 161:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_int_t f;
- 777              		.loc 1 161 0
- 778              		.cfi_startproc
- 779              		@ args = 4, pretend = 0, frame = 8
- 780              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 21
-
-
- 781              	.LVL117:
- 782 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
- 783              	.LCFI9:
- 784              		.cfi_def_cfa_offset 36
- 785              		.cfi_offset 4, -36
- 786              		.cfi_offset 5, -32
- 787              		.cfi_offset 6, -28
- 788              		.cfi_offset 7, -24
- 789              		.cfi_offset 8, -20
- 790              		.cfi_offset 9, -16
- 791              		.cfi_offset 10, -12
- 792              		.cfi_offset 11, -8
- 793              		.cfi_offset 14, -4
- 794 0004 85B0     		sub	sp, sp, #20
- 795              	.LCFI10:
- 796              		.cfi_def_cfa_offset 56
- 797 0006 0390     		str	r0, [sp, #12]
- 798 0008 8946     		mov	r9, r1
- 799 000a 9246     		mov	r10, r2
- 800 000c 1F46     		mov	r7, r3
- 801 000e 9DF838B0 		ldrb	fp, [sp, #56]	@ zero_extendqisi2
- 802              	.LVL118:
- 169:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ddF_x = 1;
- 803              		.loc 1 169 0
- 804 0012 C3F10108 		rsb	r8, r3, #1
- 805 0016 4FFA88F8 		sxtb	r8, r8
- 806              	.LVL119:
- 173:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   x = 0;
- 807              		.loc 1 173 0
- 808 001a C3EBC313 		rsb	r3, r3, r3, lsl #7
- 809              	.LVL120:
- 810 001e 5D00     		lsls	r5, r3, #1
- 811 0020 6DB2     		sxtb	r5, r5
- 812              	.LVL121:
- 177:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
- 813              		.loc 1 177 0
- 814 0022 CDF804B0 		str	fp, [sp, #4]
- 815 0026 0092     		str	r2, [sp]
- 816 0028 0B46     		mov	r3, r1
- 817 002a 3A46     		mov	r2, r7
- 818              	.LVL122:
- 819 002c 0021     		movs	r1, #0
- 820              	.LVL123:
- 821 002e FFF7FEFF 		bl	u8g2_draw_disc_section
- 822              	.LVL124:
- 174:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   y = rad;
- 823              		.loc 1 174 0
- 824 0032 0026     		movs	r6, #0
- 170:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ddF_y = 0;
- 825              		.loc 1 170 0
- 826 0034 0124     		movs	r4, #1
- 179:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
- 827              		.loc 1 179 0
- 828 0036 11E0     		b	.L48
- 829              	.LVL125:
- 830              	.L49:
- 187:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ddF_x += 2;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 22
-
-
- 831              		.loc 1 187 0
- 832 0038 0136     		adds	r6, r6, #1
- 833              	.LVL126:
- 834 003a F6B2     		uxtb	r6, r6
- 835              	.LVL127:
- 188:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     f += ddF_x;
- 836              		.loc 1 188 0
- 837 003c 0234     		adds	r4, r4, #2
- 838              	.LVL128:
- 839 003e E3B2     		uxtb	r3, r4
- 840 0040 5CB2     		sxtb	r4, r3
- 841              	.LVL129:
- 189:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
- 842              		.loc 1 189 0
- 843 0042 9844     		add	r8, r8, r3
- 844              	.LVL130:
- 845 0044 4FFA88F8 		sxtb	r8, r8
- 846              	.LVL131:
- 191:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   }
- 847              		.loc 1 191 0
- 848 0048 CDF804B0 		str	fp, [sp, #4]
- 849 004c CDF800A0 		str	r10, [sp]
- 850 0050 4B46     		mov	r3, r9
- 851 0052 3A46     		mov	r2, r7
- 852 0054 3146     		mov	r1, r6
- 853 0056 0398     		ldr	r0, [sp, #12]
- 854 0058 FFF7FEFF 		bl	u8g2_draw_disc_section
- 855              	.LVL132:
- 856              	.L48:
- 179:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
- 857              		.loc 1 179 0
- 858 005c BE42     		cmp	r6, r7
- 859 005e 0BD2     		bcs	.L52
- 181:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
- 860              		.loc 1 181 0
- 861 0060 B8F1000F 		cmp	r8, #0
- 862 0064 E8DB     		blt	.L49
- 183:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ddF_y += 2;
- 863              		.loc 1 183 0
- 864 0066 013F     		subs	r7, r7, #1
- 865              	.LVL133:
- 866 0068 FFB2     		uxtb	r7, r7
- 867              	.LVL134:
- 184:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       f += ddF_y;
- 868              		.loc 1 184 0
- 869 006a 0235     		adds	r5, r5, #2
- 870              	.LVL135:
- 871 006c EBB2     		uxtb	r3, r5
- 872 006e 5DB2     		sxtb	r5, r3
- 873              	.LVL136:
- 185:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 874              		.loc 1 185 0
- 875 0070 9844     		add	r8, r8, r3
- 876              	.LVL137:
- 877 0072 4FFA88F8 		sxtb	r8, r8
- 878              	.LVL138:
- 879 0076 DFE7     		b	.L49
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 23
-
-
- 880              	.L52:
- 193:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
- 881              		.loc 1 193 0
- 882 0078 05B0     		add	sp, sp, #20
- 883              	.LCFI11:
- 884              		.cfi_def_cfa_offset 36
- 885              		@ sp needed
- 886 007a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
- 887              		.cfi_endproc
- 888              	.LFE4:
- 890              		.section	.text.u8g2_draw_filled_ellipse_section,"ax",%progbits
- 891              		.align	1
- 892              		.syntax unified
- 893              		.thumb
- 894              		.thumb_func
- 895              		.fpu fpv4-sp-d16
- 897              	u8g2_draw_filled_ellipse_section:
- 898              	.LFB9:
  332:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
  333:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** void u8g2_DrawEllipse(u8g2_t *u8g2, u8g2_uint_t x0, u8g2_uint_t y0, u8g2_uint_t rx, u8g2_uint_t ry,
  334:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** {
@@ -1359,176 +873,965 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  349:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** static void u8g2_draw_filled_ellipse_section(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_
  350:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** static void u8g2_draw_filled_ellipse_section(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_
  351:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** {
- 899              		.loc 1 351 0
- 900              		.cfi_startproc
- 901              		@ args = 8, pretend = 0, frame = 0
- 902              		@ frame_needed = 0, uses_anonymous_args = 0
- 903              	.LVL139:
- 904 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
- 905              	.LCFI12:
- 906              		.cfi_def_cfa_offset 32
- 907              		.cfi_offset 3, -32
- 908              		.cfi_offset 4, -28
- 909              		.cfi_offset 5, -24
- 910              		.cfi_offset 6, -20
- 911              		.cfi_offset 7, -16
- 912              		.cfi_offset 8, -12
- 913              		.cfi_offset 9, -8
- 914              		.cfi_offset 14, -4
- 915 0004 0746     		mov	r7, r0
- 916 0006 8946     		mov	r9, r1
- 917 0008 1546     		mov	r5, r2
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 24
-
-
- 918 000a 1E46     		mov	r6, r3
- 919 000c 9DF82080 		ldrb	r8, [sp, #32]	@ zero_extendqisi2
- 920 0010 9DF82440 		ldrb	r4, [sp, #36]	@ zero_extendqisi2
+ 452              		.loc 1 351 0
+ 453              		.cfi_startproc
+ 454              		@ args = 8, pretend = 0, frame = 0
+ 455              		@ frame_needed = 0, uses_anonymous_args = 0
+ 456              	.LVL44:
+ 457 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 458              	.LCFI9:
+ 459              		.cfi_def_cfa_offset 32
+ 460              		.cfi_offset 4, -32
+ 461              		.cfi_offset 5, -28
+ 462              		.cfi_offset 6, -24
+ 463              		.cfi_offset 7, -20
+ 464              		.cfi_offset 8, -16
+ 465              		.cfi_offset 9, -12
+ 466              		.cfi_offset 10, -8
+ 467              		.cfi_offset 14, -4
+ 468              		.loc 1 351 0
+ 469 0004 9DF82440 		ldrb	r4, [sp, #36]	@ zero_extendqisi2
+ 470 0008 9DF82070 		ldrb	r7, [sp, #32]	@ zero_extendqisi2
+ 471 000c 1E46     		mov	r6, r3
  352:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper right */
  353:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_UPPER_RIGHT )
- 921              		.loc 1 353 0
- 922 0014 14F0010F 		tst	r4, #1
- 923 0018 0AD1     		bne	.L59
- 924              	.LVL140:
- 925              	.L54:
+ 472              		.loc 1 353 0
+ 473 000e E307     		lsls	r3, r4, #31
+ 474              	.LVL45:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 16
+
+
+ 351:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper right */
+ 475              		.loc 1 351 0
+ 476 0010 8846     		mov	r8, r1
+ 477 0012 1546     		mov	r5, r2
+ 478 0014 8146     		mov	r9, r0
+ 479              		.loc 1 353 0
+ 480 0016 27D4     		bmi	.L74
+ 481              	.LVL46:
+ 482              	.L60:
  354:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  355:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0+x, y0-y, y+1);
  356:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  357:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
  358:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* upper left */
  359:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_UPPER_LEFT )
- 926              		.loc 1 359 0
- 927 001a 14F0020F 		tst	r4, #2
- 928 001e 11D1     		bne	.L60
- 929              	.L55:
+ 483              		.loc 1 359 0
+ 484 0018 A107     		lsls	r1, r4, #30
+ 485 001a 1AD4     		bmi	.L75
+ 486              	.L61:
  360:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  361:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0-x, y0-y, y+1);
  362:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  363:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
  364:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* lower right */
  365:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_LOWER_RIGHT )
- 930              		.loc 1 365 0
- 931 0020 14F0080F 		tst	r4, #8
- 932 0024 1AD1     		bne	.L61
- 933              	.L56:
+ 487              		.loc 1 365 0
+ 488 001c 2207     		lsls	r2, r4, #28
+ 489 001e 0ED4     		bmi	.L76
+ 490              	.L62:
  366:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  367:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0+x, y0, y+1);
  368:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  369:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
  370:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     /* lower left */
  371:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( option & U8G2_DRAW_LOWER_LEFT )
- 934              		.loc 1 371 0
- 935 0026 14F0040F 		tst	r4, #4
- 936 002a 21D1     		bne	.L62
- 937              	.L53:
+ 491              		.loc 1 371 0
+ 492 0020 6307     		lsls	r3, r4, #29
+ 493 0022 01D4     		bmi	.L77
  372:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  373:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       u8g2_DrawVLine(u8g2, x0-x, y0, y+1);
  374:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  375:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
- 938              		.loc 1 375 0
- 939 002c BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
- 940              	.LVL141:
- 941              	.L59:
- 355:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 942              		.loc 1 355 0
- 943 0030 531C     		adds	r3, r2, #1
- 944              	.LVL142:
- 945 0032 A8EB0202 		sub	r2, r8, r2
- 946              	.LVL143:
- 947 0036 7118     		adds	r1, r6, r1
- 948              	.LVL144:
- 949 0038 DBB2     		uxtb	r3, r3
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 25
-
-
- 950 003a D2B2     		uxtb	r2, r2
- 951 003c C9B2     		uxtb	r1, r1
- 952 003e FFF7FEFF 		bl	u8g2_DrawVLine
- 953              	.LVL145:
- 954 0042 EAE7     		b	.L54
- 955              	.L60:
- 361:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 956              		.loc 1 361 0
- 957 0044 6B1C     		adds	r3, r5, #1
- 958 0046 A8EB0502 		sub	r2, r8, r5
- 959 004a A6EB0901 		sub	r1, r6, r9
- 960 004e DBB2     		uxtb	r3, r3
- 961 0050 D2B2     		uxtb	r2, r2
- 962 0052 C9B2     		uxtb	r1, r1
- 963 0054 3846     		mov	r0, r7
- 964 0056 FFF7FEFF 		bl	u8g2_DrawVLine
- 965              	.LVL146:
- 966 005a E1E7     		b	.L55
- 967              	.L61:
- 367:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 968              		.loc 1 367 0
- 969 005c 6B1C     		adds	r3, r5, #1
- 970 005e 06EB0901 		add	r1, r6, r9
- 971 0062 DBB2     		uxtb	r3, r3
- 972 0064 4246     		mov	r2, r8
- 973 0066 C9B2     		uxtb	r1, r1
- 974 0068 3846     		mov	r0, r7
- 975 006a FFF7FEFF 		bl	u8g2_DrawVLine
- 976              	.LVL147:
- 977 006e DAE7     		b	.L56
- 978              	.L62:
+ 494              		.loc 1 375 0
+ 495 0024 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 496              	.LVL47:
+ 497              	.L77:
  373:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
- 979              		.loc 1 373 0
- 980 0070 6B1C     		adds	r3, r5, #1
- 981 0072 A6EB0901 		sub	r1, r6, r9
- 982 0076 DBB2     		uxtb	r3, r3
- 983 0078 4246     		mov	r2, r8
- 984 007a C9B2     		uxtb	r1, r1
- 985 007c 3846     		mov	r0, r7
- 986 007e FFF7FEFF 		bl	u8g2_DrawVLine
- 987              	.LVL148:
- 988              		.loc 1 375 0
- 989 0082 D3E7     		b	.L53
- 990              		.cfi_endproc
- 991              	.LFE9:
- 993              		.section	.text.u8g2_draw_filled_ellipse,"ax",%progbits
- 994              		.align	1
- 995              		.syntax unified
- 996              		.thumb
- 997              		.thumb_func
- 998              		.fpu fpv4-sp-d16
- 1000              	u8g2_draw_filled_ellipse:
- 1001              	.LFB10:
+ 498              		.loc 1 373 0
+ 499 0028 6B1C     		adds	r3, r5, #1
+ 500 002a A6EB0801 		sub	r1, r6, r8
+ 501 002e 3A46     		mov	r2, r7
+ 502 0030 4846     		mov	r0, r9
+ 503 0032 DBB2     		uxtb	r3, r3
+ 504 0034 C9B2     		uxtb	r1, r1
+ 505              		.loc 1 375 0
+ 506 0036 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 507              	.LCFI10:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 17
+
+
+ 508              		.cfi_remember_state
+ 509              		.cfi_restore 14
+ 510              		.cfi_restore 10
+ 511              		.cfi_restore 9
+ 512              		.cfi_restore 8
+ 513              		.cfi_restore 7
+ 514              		.cfi_restore 6
+ 515              		.cfi_restore 5
+ 516              		.cfi_restore 4
+ 517              		.cfi_def_cfa_offset 0
+ 518              	.LVL48:
+ 373:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 519              		.loc 1 373 0
+ 520 003a FFF7FEBF 		b	u8g2_DrawVLine
+ 521              	.LVL49:
+ 522              	.L76:
+ 523              	.LCFI11:
+ 524              		.cfi_restore_state
+ 367:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 525              		.loc 1 367 0
+ 526 003e 6B1C     		adds	r3, r5, #1
+ 527 0040 06EB0801 		add	r1, r6, r8
+ 528 0044 DBB2     		uxtb	r3, r3
+ 529 0046 C9B2     		uxtb	r1, r1
+ 530 0048 3A46     		mov	r2, r7
+ 531 004a 4846     		mov	r0, r9
+ 532 004c FFF7FEFF 		bl	u8g2_DrawVLine
+ 533              	.LVL50:
+ 534 0050 E6E7     		b	.L62
+ 535              	.L75:
+ 361:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 536              		.loc 1 361 0
+ 537 0052 6B1C     		adds	r3, r5, #1
+ 538 0054 7A1B     		subs	r2, r7, r5
+ 539 0056 A6EB0801 		sub	r1, r6, r8
+ 540 005a DBB2     		uxtb	r3, r3
+ 541 005c D2B2     		uxtb	r2, r2
+ 542 005e C9B2     		uxtb	r1, r1
+ 543 0060 4846     		mov	r0, r9
+ 544 0062 FFF7FEFF 		bl	u8g2_DrawVLine
+ 545              	.LVL51:
+ 546 0066 D9E7     		b	.L61
+ 547              	.LVL52:
+ 548              	.L74:
+ 355:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 549              		.loc 1 355 0
+ 550 0068 531C     		adds	r3, r2, #1
+ 551 006a 7118     		adds	r1, r6, r1
+ 552              	.LVL53:
+ 553 006c BA1A     		subs	r2, r7, r2
+ 554              	.LVL54:
+ 555 006e DBB2     		uxtb	r3, r3
+ 556 0070 D2B2     		uxtb	r2, r2
+ 557 0072 C9B2     		uxtb	r1, r1
+ 558 0074 FFF7FEFF 		bl	u8g2_DrawVLine
+ 559              	.LVL55:
+ 560 0078 CEE7     		b	.L60
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 18
+
+
+ 561              		.cfi_endproc
+ 562              	.LFE9:
+ 564 007a 00BF     		.section	.text.u8g2_DrawCircle,"ax",%progbits
+ 565              		.align	1
+ 566              		.p2align 2,,3
+ 567              		.global	u8g2_DrawCircle
+ 568              		.syntax unified
+ 569              		.thumb
+ 570              		.thumb_func
+ 571              		.fpu fpv4-sp-d16
+ 573              	u8g2_DrawCircle:
+ 574              	.LFB2:
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 575              		.loc 1 110 0
+ 576              		.cfi_startproc
+ 577              		@ args = 4, pretend = 0, frame = 0
+ 578              		@ frame_needed = 0, uses_anonymous_args = 0
+ 579              	.LVL56:
+ 580 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 581              	.LCFI12:
+ 582              		.cfi_def_cfa_offset 36
+ 583              		.cfi_offset 4, -36
+ 584              		.cfi_offset 5, -32
+ 585              		.cfi_offset 6, -28
+ 586              		.cfi_offset 7, -24
+ 587              		.cfi_offset 8, -20
+ 588              		.cfi_offset 9, -16
+ 589              		.cfi_offset 10, -12
+ 590              		.cfi_offset 11, -8
+ 591              		.cfi_offset 14, -4
+ 592 0004 1C46     		mov	r4, r3
+ 114:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 593              		.loc 1 114 0
+ 594 0006 531C     		adds	r3, r2, #1
+ 595              	.LVL57:
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 596              		.loc 1 110 0
+ 597 0008 83B0     		sub	sp, sp, #12
+ 598              	.LCFI13:
+ 599              		.cfi_def_cfa_offset 48
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 600              		.loc 1 110 0
+ 601 000a 9146     		mov	r9, r2
+ 114:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 602              		.loc 1 114 0
+ 603 000c 2344     		add	r3, r3, r4
+ 604 000e 621C     		adds	r2, r4, #1
+ 605              	.LVL58:
+ 606 0010 DDB2     		uxtb	r5, r3
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 607              		.loc 1 110 0
+ 608 0012 8846     		mov	r8, r1
+ 114:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 609              		.loc 1 114 0
+ 610 0014 8B18     		adds	r3, r1, r2
+ 611 0016 A9EB0402 		sub	r2, r9, r4
+ 612 001a 091B     		subs	r1, r1, r4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 19
+
+
+ 613              	.LVL59:
+ 614 001c 0095     		str	r5, [sp]
+ 615 001e DBB2     		uxtb	r3, r3
+ 616 0020 D2B2     		uxtb	r2, r2
+ 617 0022 C9B2     		uxtb	r1, r1
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 618              		.loc 1 110 0
+ 619 0024 8246     		mov	r10, r0
+ 620 0026 9DF830B0 		ldrb	fp, [sp, #48]	@ zero_extendqisi2
+ 114:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 621              		.loc 1 114 0
+ 622 002a FFF7FEFF 		bl	u8g2_IsIntersection
+ 623              	.LVL60:
+ 624 002e 10B9     		cbnz	r0, .L90
+ 625              	.L78:
+ 122:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 626              		.loc 1 122 0
+ 627 0030 03B0     		add	sp, sp, #12
+ 628              	.LCFI14:
+ 629              		.cfi_remember_state
+ 630              		.cfi_def_cfa_offset 36
+ 631              		@ sp needed
+ 632 0032 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 633              	.LVL61:
+ 634              	.L90:
+ 635              	.LCFI15:
+ 636              		.cfi_restore_state
+ 637              	.LBB4:
+ 638              	.LBB5:
+  87:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     x = 0;
+ 639              		.loc 1 87 0
+ 640 0036 C4EBC417 		rsb	r7, r4, r4, lsl #7
+ 641 003a 7F00     		lsls	r7, r7, #1
+  83:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ddF_x = 1;
+ 642              		.loc 1 83 0
+ 643 003c C4F10106 		rsb	r6, r4, #1
+  91:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
+ 644              		.loc 1 91 0
+ 645 0040 CDE9009B 		strd	r9, fp, [sp]
+ 646 0044 4346     		mov	r3, r8
+ 647 0046 2246     		mov	r2, r4
+ 648 0048 0021     		movs	r1, #0
+ 649 004a 5046     		mov	r0, r10
+  87:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     x = 0;
+ 650              		.loc 1 87 0
+ 651 004c 7FB2     		sxtb	r7, r7
+  83:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ddF_x = 1;
+ 652              		.loc 1 83 0
+ 653 004e 76B2     		sxtb	r6, r6
+ 654              	.LVL62:
+  91:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     
+ 655              		.loc 1 91 0
+ 656 0050 FFF7FEFF 		bl	u8g2_draw_circle_section
+ 657              	.LVL63:
+  93:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 658              		.loc 1 93 0
+ 659 0054 002C     		cmp	r4, #0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 20
+
+
+ 660 0056 EBD0     		beq	.L78
+  88:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     y = rad;
+ 661              		.loc 1 88 0
+ 662 0058 0025     		movs	r5, #0
+ 663              	.LVL64:
+ 664              	.L81:
+ 101:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ddF_x += 2;
+ 665              		.loc 1 101 0
+ 666 005a 0135     		adds	r5, r5, #1
+ 667              	.LVL65:
+ 668 005c EDB2     		uxtb	r5, r5
+  95:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       {
+ 669              		.loc 1 95 0
+ 670 005e 002E     		cmp	r6, #0
+ 671 0060 F2B2     		uxtb	r2, r6
+ 105:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 672              		.loc 1 105 0
+ 673 0062 4346     		mov	r3, r8
+ 674 0064 2946     		mov	r1, r5
+ 675 0066 5046     		mov	r0, r10
+  98:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****         f += ddF_y;
+ 676              		.loc 1 98 0
+ 677 0068 07F10206 		add	r6, r7, #2
+ 678              	.LVL66:
+  95:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       {
+ 679              		.loc 1 95 0
+ 680 006c 05DB     		blt	.L80
+ 681              	.LVL67:
+  98:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****         f += ddF_y;
+ 682              		.loc 1 98 0
+ 683 006e F7B2     		uxtb	r7, r6
+ 684              	.LVL68:
+  99:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       }
+ 685              		.loc 1 99 0
+ 686 0070 3A44     		add	r2, r2, r7
+ 687              	.LVL69:
+  97:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****         ddF_y += 2;
+ 688              		.loc 1 97 0
+ 689 0072 013C     		subs	r4, r4, #1
+ 690              	.LVL70:
+  99:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       }
+ 691              		.loc 1 99 0
+ 692 0074 D2B2     		uxtb	r2, r2
+  98:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****         f += ddF_y;
+ 693              		.loc 1 98 0
+ 694 0076 7FB2     		sxtb	r7, r7
+  97:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****         ddF_y += 2;
+ 695              		.loc 1 97 0
+ 696 0078 E4B2     		uxtb	r4, r4
+ 697              	.LVL71:
+ 698              	.L80:
+ 103:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 699              		.loc 1 103 0
+ 700 007a 02EB4506 		add	r6, r2, r5, lsl #1
+ 105:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 701              		.loc 1 105 0
+ 702 007e CDE9009B 		strd	r9, fp, [sp]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 21
+
+
+ 703 0082 2246     		mov	r2, r4
+ 103:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 704              		.loc 1 103 0
+ 705 0084 0136     		adds	r6, r6, #1
+ 105:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 706              		.loc 1 105 0
+ 707 0086 FFF7FEFF 		bl	u8g2_draw_circle_section
+ 708              	.LVL72:
+  93:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 709              		.loc 1 93 0
+ 710 008a A542     		cmp	r5, r4
+ 103:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 711              		.loc 1 103 0
+ 712 008c 76B2     		sxtb	r6, r6
+ 713              	.LVL73:
+  93:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 714              		.loc 1 93 0
+ 715 008e E4D3     		bcc	.L81
+ 716              	.LBE5:
+ 717              	.LBE4:
+ 122:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 718              		.loc 1 122 0
+ 719 0090 03B0     		add	sp, sp, #12
+ 720              	.LCFI16:
+ 721              		.cfi_def_cfa_offset 36
+ 722              		@ sp needed
+ 723 0092 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 724              		.cfi_endproc
+ 725              	.LFE2:
+ 727 0096 00BF     		.section	.text.u8g2_DrawDisc,"ax",%progbits
+ 728              		.align	1
+ 729              		.p2align 2,,3
+ 730              		.global	u8g2_DrawDisc
+ 731              		.syntax unified
+ 732              		.thumb
+ 733              		.thumb_func
+ 734              		.fpu fpv4-sp-d16
+ 736              	u8g2_DrawDisc:
+ 737              	.LFB5:
+ 196:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 738              		.loc 1 196 0
+ 739              		.cfi_startproc
+ 740              		@ args = 4, pretend = 0, frame = 0
+ 741              		@ frame_needed = 0, uses_anonymous_args = 0
+ 742              	.LVL74:
+ 743 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 744              	.LCFI17:
+ 745              		.cfi_def_cfa_offset 36
+ 746              		.cfi_offset 4, -36
+ 747              		.cfi_offset 5, -32
+ 748              		.cfi_offset 6, -28
+ 749              		.cfi_offset 7, -24
+ 750              		.cfi_offset 8, -20
+ 751              		.cfi_offset 9, -16
+ 752              		.cfi_offset 10, -12
+ 753              		.cfi_offset 11, -8
+ 754              		.cfi_offset 14, -4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 22
+
+
+ 755 0004 1C46     		mov	r4, r3
+ 200:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 756              		.loc 1 200 0
+ 757 0006 531C     		adds	r3, r2, #1
+ 758              	.LVL75:
+ 196:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 759              		.loc 1 196 0
+ 760 0008 83B0     		sub	sp, sp, #12
+ 761              	.LCFI18:
+ 762              		.cfi_def_cfa_offset 48
+ 196:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 763              		.loc 1 196 0
+ 764 000a 9146     		mov	r9, r2
+ 200:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 765              		.loc 1 200 0
+ 766 000c 2344     		add	r3, r3, r4
+ 767 000e 621C     		adds	r2, r4, #1
+ 768              	.LVL76:
+ 769 0010 DDB2     		uxtb	r5, r3
+ 196:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 770              		.loc 1 196 0
+ 771 0012 8846     		mov	r8, r1
+ 200:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 772              		.loc 1 200 0
+ 773 0014 8B18     		adds	r3, r1, r2
+ 774 0016 A9EB0402 		sub	r2, r9, r4
+ 775 001a 091B     		subs	r1, r1, r4
+ 776              	.LVL77:
+ 777 001c 0095     		str	r5, [sp]
+ 778 001e DBB2     		uxtb	r3, r3
+ 779 0020 D2B2     		uxtb	r2, r2
+ 780 0022 C9B2     		uxtb	r1, r1
+ 196:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 781              		.loc 1 196 0
+ 782 0024 8246     		mov	r10, r0
+ 783 0026 9DF830B0 		ldrb	fp, [sp, #48]	@ zero_extendqisi2
+ 200:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 784              		.loc 1 200 0
+ 785 002a FFF7FEFF 		bl	u8g2_IsIntersection
+ 786              	.LVL78:
+ 787 002e 10B9     		cbnz	r0, .L103
+ 788              	.L91:
+ 207:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 789              		.loc 1 207 0
+ 790 0030 03B0     		add	sp, sp, #12
+ 791              	.LCFI19:
+ 792              		.cfi_remember_state
+ 793              		.cfi_def_cfa_offset 36
+ 794              		@ sp needed
+ 795 0032 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 796              	.LVL79:
+ 797              	.L103:
+ 798              	.LCFI20:
+ 799              		.cfi_restore_state
+ 800              	.LBB8:
+ 801              	.LBB9:
+ 173:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   x = 0;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 23
+
+
+ 802              		.loc 1 173 0
+ 803 0036 C4EBC417 		rsb	r7, r4, r4, lsl #7
+ 804 003a 7F00     		lsls	r7, r7, #1
+ 169:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ddF_x = 1;
+ 805              		.loc 1 169 0
+ 806 003c C4F10106 		rsb	r6, r4, #1
+ 177:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 807              		.loc 1 177 0
+ 808 0040 CDE9009B 		strd	r9, fp, [sp]
+ 809 0044 4346     		mov	r3, r8
+ 810 0046 2246     		mov	r2, r4
+ 811 0048 0021     		movs	r1, #0
+ 812 004a 5046     		mov	r0, r10
+ 173:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   x = 0;
+ 813              		.loc 1 173 0
+ 814 004c 7FB2     		sxtb	r7, r7
+ 169:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ddF_x = 1;
+ 815              		.loc 1 169 0
+ 816 004e 76B2     		sxtb	r6, r6
+ 817              	.LVL80:
+ 177:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 818              		.loc 1 177 0
+ 819 0050 FFF7FEFF 		bl	u8g2_draw_disc_section
+ 820              	.LVL81:
+ 179:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 821              		.loc 1 179 0
+ 822 0054 002C     		cmp	r4, #0
+ 823 0056 EBD0     		beq	.L91
+ 174:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   y = rad;
+ 824              		.loc 1 174 0
+ 825 0058 0025     		movs	r5, #0
+ 826              	.LVL82:
+ 827              	.L94:
+ 187:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ddF_x += 2;
+ 828              		.loc 1 187 0
+ 829 005a 0135     		adds	r5, r5, #1
+ 830              	.LVL83:
+ 831 005c EDB2     		uxtb	r5, r5
+ 181:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 832              		.loc 1 181 0
+ 833 005e 002E     		cmp	r6, #0
+ 834 0060 F2B2     		uxtb	r2, r6
+ 191:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   }
+ 835              		.loc 1 191 0
+ 836 0062 4346     		mov	r3, r8
+ 837 0064 2946     		mov	r1, r5
+ 838 0066 5046     		mov	r0, r10
+ 184:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       f += ddF_y;
+ 839              		.loc 1 184 0
+ 840 0068 07F10206 		add	r6, r7, #2
+ 841              	.LVL84:
+ 181:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 842              		.loc 1 181 0
+ 843 006c 05DB     		blt	.L93
+ 844              	.LVL85:
+ 184:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       f += ddF_y;
+ 845              		.loc 1 184 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 24
+
+
+ 846 006e F7B2     		uxtb	r7, r6
+ 847              	.LVL86:
+ 185:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 848              		.loc 1 185 0
+ 849 0070 3A44     		add	r2, r2, r7
+ 850              	.LVL87:
+ 183:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ddF_y += 2;
+ 851              		.loc 1 183 0
+ 852 0072 013C     		subs	r4, r4, #1
+ 853              	.LVL88:
+ 185:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 854              		.loc 1 185 0
+ 855 0074 D2B2     		uxtb	r2, r2
+ 184:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       f += ddF_y;
+ 856              		.loc 1 184 0
+ 857 0076 7FB2     		sxtb	r7, r7
+ 183:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ddF_y += 2;
+ 858              		.loc 1 183 0
+ 859 0078 E4B2     		uxtb	r4, r4
+ 860              	.LVL89:
+ 861              	.L93:
+ 189:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 862              		.loc 1 189 0
+ 863 007a 02EB4506 		add	r6, r2, r5, lsl #1
+ 191:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   }
+ 864              		.loc 1 191 0
+ 865 007e CDE9009B 		strd	r9, fp, [sp]
+ 866 0082 2246     		mov	r2, r4
+ 189:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 867              		.loc 1 189 0
+ 868 0084 0136     		adds	r6, r6, #1
+ 191:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   }
+ 869              		.loc 1 191 0
+ 870 0086 FFF7FEFF 		bl	u8g2_draw_disc_section
+ 871              	.LVL90:
+ 179:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 872              		.loc 1 179 0
+ 873 008a A542     		cmp	r5, r4
+ 189:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 874              		.loc 1 189 0
+ 875 008c 76B2     		sxtb	r6, r6
+ 876              	.LVL91:
+ 179:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 877              		.loc 1 179 0
+ 878 008e E4D3     		bcc	.L94
+ 879              	.LBE9:
+ 880              	.LBE8:
+ 207:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 881              		.loc 1 207 0
+ 882 0090 03B0     		add	sp, sp, #12
+ 883              	.LCFI21:
+ 884              		.cfi_def_cfa_offset 36
+ 885              		@ sp needed
+ 886 0092 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 887              		.cfi_endproc
+ 888              	.LFE5:
+ 890 0096 00BF     		.section	.text.u8g2_DrawEllipse,"ax",%progbits
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 25
+
+
+ 891              		.align	1
+ 892              		.p2align 2,,3
+ 893              		.global	u8g2_DrawEllipse
+ 894              		.syntax unified
+ 895              		.thumb
+ 896              		.thumb_func
+ 897              		.fpu fpv4-sp-d16
+ 899              	u8g2_DrawEllipse:
+ 900              	.LFB8:
+ 334:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 901              		.loc 1 334 0
+ 902              		.cfi_startproc
+ 903              		@ args = 8, pretend = 0, frame = 40
+ 904              		@ frame_needed = 0, uses_anonymous_args = 0
+ 905              	.LVL92:
+ 906 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 907              	.LCFI22:
+ 908              		.cfi_def_cfa_offset 36
+ 909              		.cfi_offset 4, -36
+ 910              		.cfi_offset 5, -32
+ 911              		.cfi_offset 6, -28
+ 912              		.cfi_offset 7, -24
+ 913              		.cfi_offset 8, -20
+ 914              		.cfi_offset 9, -16
+ 915              		.cfi_offset 10, -12
+ 916              		.cfi_offset 11, -8
+ 917              		.cfi_offset 14, -4
+ 918 0004 8DB0     		sub	sp, sp, #52
+ 919              	.LCFI23:
+ 920              		.cfi_def_cfa_offset 88
+ 334:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 921              		.loc 1 334 0
+ 922 0006 1F46     		mov	r7, r3
+ 923 0008 9DF85880 		ldrb	r8, [sp, #88]	@ zero_extendqisi2
+ 924 000c 9DF85C40 		ldrb	r4, [sp, #92]	@ zero_extendqisi2
+ 925 0010 0290     		str	r0, [sp, #8]
+ 338:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 926              		.loc 1 338 0
+ 927 0012 08F10103 		add	r3, r8, #1
+ 928              	.LVL93:
+ 334:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 929              		.loc 1 334 0
+ 930 0016 8A46     		mov	r10, r1
+ 338:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 931              		.loc 1 338 0
+ 932 0018 1344     		add	r3, r3, r2
+ 933 001a 1146     		mov	r1, r2
+ 934              	.LVL94:
+ 334:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 935              		.loc 1 334 0
+ 936 001c CDE90324 		strd	r2, r4, [sp, #12]
+ 338:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
+ 937              		.loc 1 338 0
+ 938 0020 7A1C     		adds	r2, r7, #1
+ 939              	.LVL95:
+ 940 0022 DCB2     		uxtb	r4, r3
+ 941 0024 0AEB0203 		add	r3, r10, r2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 26
+
+
+ 942 0028 A1EB0802 		sub	r2, r1, r8
+ 943 002c AAEB0701 		sub	r1, r10, r7
+ 944 0030 0094     		str	r4, [sp]
+ 945 0032 DBB2     		uxtb	r3, r3
+ 946 0034 D2B2     		uxtb	r2, r2
+ 947 0036 C9B2     		uxtb	r1, r1
+ 948 0038 FFF7FEFF 		bl	u8g2_IsIntersection
+ 949              	.LVL96:
+ 950 003c 10B9     		cbnz	r0, .L117
+ 951              	.L104:
+ 344:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 952              		.loc 1 344 0
+ 953 003e 0DB0     		add	sp, sp, #52
+ 954              	.LCFI24:
+ 955              		.cfi_remember_state
+ 956              		.cfi_def_cfa_offset 36
+ 957              		@ sp needed
+ 958 0040 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 959              	.LVL97:
+ 960              	.L117:
+ 961              	.LCFI25:
+ 962              		.cfi_restore_state
+ 963              	.LBB12:
+ 964              	.LBB13:
+ 258:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 *= 2;
+ 965              		.loc 1 258 0
+ 966 0044 1FFA88F3 		uxth	r3, r8
+ 967 0048 03FB03F1 		mul	r1, r3, r3
+ 259:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 968              		.loc 1 259 0
+ 969 004c 4A00     		lsls	r2, r1, #1
+ 258:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 *= 2;
+ 970              		.loc 1 258 0
+ 971 004e 0993     		str	r3, [sp, #36]
+ 254:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 *= 2;
+ 972              		.loc 1 254 0
+ 973 0050 BBB2     		uxth	r3, r7
+ 259:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 974              		.loc 1 259 0
+ 975 0052 92B2     		uxth	r2, r2
+ 265:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg -= rx;
+ 976              		.loc 1 265 0
+ 977 0054 C3F1010B 		rsb	fp, r3, #1
+ 276:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopy = 0;
+ 978              		.loc 1 276 0
+ 979 0058 13FB02F6 		smulbb	r6, r3, r2
+ 266:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg *= ry;
+ 980              		.loc 1 266 0
+ 981 005c ABEB030B 		sub	fp, fp, r3
+ 254:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 *= 2;
+ 982              		.loc 1 254 0
+ 983 0060 03FB03F3 		mul	r3, r3, r3
+ 268:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 984              		.loc 1 268 0
+ 985 0064 1BFB01FB 		smulbb	fp, fp, r1
+ 258:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 *= 2;
+ 986              		.loc 1 258 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 27
+
+
+ 987 0068 0A91     		str	r1, [sp, #40]
+ 254:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 *= 2;
+ 988              		.loc 1 254 0
+ 989 006a 0893     		str	r3, [sp, #32]
+ 990              	.LVL98:
+ 276:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopy = 0;
+ 991              		.loc 1 276 0
+ 992 006c 36B2     		sxth	r6, r6
+ 255:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 993              		.loc 1 255 0
+ 994 006e 1946     		mov	r1, r3
+ 995 0070 5B00     		lsls	r3, r3, #1
+ 996              	.LVL99:
+ 997 0072 9BB2     		uxth	r3, r3
+ 279:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 998              		.loc 1 279 0
+ 999 0074 002E     		cmp	r6, #0
+ 259:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1000              		.loc 1 259 0
+ 1001 0076 0692     		str	r2, [sp, #24]
+ 268:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1002              		.loc 1 268 0
+ 1003 0078 0FFA8BFB 		sxth	fp, fp
+ 255:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1004              		.loc 1 255 0
+ 1005 007c 0593     		str	r3, [sp, #20]
+ 1006              	.LVL100:
+ 279:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1007              		.loc 1 279 0
+ 1008 007e 33DB     		blt	.L106
+ 1009 0080 4FF00009 		mov	r9, #0
+ 1010 0084 CB1A     		subs	r3, r1, r3
+ 1011              	.LVL101:
+ 1012 0086 CDF82C80 		str	r8, [sp, #44]
+ 273:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1013              		.loc 1 273 0
+ 1014 008a 4C46     		mov	r4, r9
+ 277:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1015              		.loc 1 277 0
+ 1016 008c 4D46     		mov	r5, r9
+ 1017 008e 0793     		str	r3, [sp, #28]
+ 1018 0090 9046     		mov	r8, r2
+ 1019              	.LVL102:
+ 1020              	.L108:
+ 281:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     y++;
+ 1021              		.loc 1 281 0
+ 1022 0092 049B     		ldr	r3, [sp, #16]
+ 1023 0094 0193     		str	r3, [sp, #4]
+ 1024 0096 039B     		ldr	r3, [sp, #12]
+ 1025 0098 0093     		str	r3, [sp]
+ 1026 009a 5FFA89F2 		uxtb	r2, r9
+ 1027 009e 5346     		mov	r3, r10
+ 1028 00a0 3946     		mov	r1, r7
+ 1029 00a2 0298     		ldr	r0, [sp, #8]
+ 1030 00a4 FFF7FEFF 		bl	u8g2_draw_ellipse_section
+ 1031              	.LVL103:
+ 1032 00a8 059B     		ldr	r3, [sp, #20]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 28
+
+
+ 1033 00aa 1D44     		add	r5, r5, r3
+ 1034              	.LVL104:
+ 284:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ychg += rxrx2;
+ 1035              		.loc 1 284 0
+ 1036 00ac 079B     		ldr	r3, [sp, #28]
+ 1037 00ae ADB2     		uxth	r5, r5
+ 1038 00b0 EB18     		adds	r3, r5, r3
+ 1039 00b2 1C44     		add	r4, r4, r3
+ 1040              	.LVL105:
+ 1041 00b4 A3B2     		uxth	r3, r4
+ 1042 00b6 1CB2     		sxth	r4, r3
+ 286:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 1043              		.loc 1 286 0
+ 1044 00b8 0BEB4402 		add	r2, fp, r4, lsl #1
+ 1045 00bc 002A     		cmp	r2, #0
+ 1046 00be 2DB2     		sxth	r5, r5
+ 1047              	.LVL106:
+ 1048 00c0 09F10109 		add	r9, r9, #1
+ 1049              	.LVL107:
+ 1050 00c4 0CDD     		ble	.L107
+ 290:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       xchg += ryry2;      
+ 1051              		.loc 1 290 0
+ 1052 00c6 1FFA8BFB 		uxth	fp, fp
+ 1053 00ca 03EB0B04 		add	r4, r3, fp
+ 1054              	.LVL108:
+ 288:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopx -= ryry2;
+ 1055              		.loc 1 288 0
+ 1056 00ce 013F     		subs	r7, r7, #1
+ 1057              	.LVL109:
+ 291:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 1058              		.loc 1 291 0
+ 1059 00d0 C344     		add	fp, fp, r8
+ 1060              	.LVL110:
+ 289:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += xchg;
+ 1061              		.loc 1 289 0
+ 1062 00d2 A6EB0806 		sub	r6, r6, r8
+ 1063              	.LVL111:
+ 290:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       xchg += ryry2;      
+ 1064              		.loc 1 290 0
+ 1065 00d6 24B2     		sxth	r4, r4
+ 291:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 1066              		.loc 1 291 0
+ 1067 00d8 0FFA8BFB 		sxth	fp, fp
+ 288:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopx -= ryry2;
+ 1068              		.loc 1 288 0
+ 1069 00dc FFB2     		uxtb	r7, r7
+ 1070              	.LVL112:
+ 289:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += xchg;
+ 1071              		.loc 1 289 0
+ 1072 00de 36B2     		sxth	r6, r6
+ 1073              	.LVL113:
+ 1074              	.L107:
+ 279:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1075              		.loc 1 279 0
+ 1076 00e0 AE42     		cmp	r6, r5
+ 1077 00e2 D6DA     		bge	.L108
+ 1078 00e4 DDF82C80 		ldr	r8, [sp, #44]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 29
+
+
+ 1079              	.LVL114:
+ 1080              	.L106:
+ 302:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg -= ry;
+ 1081              		.loc 1 302 0
+ 1082 00e8 099B     		ldr	r3, [sp, #36]
+ 312:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1083              		.loc 1 312 0
+ 1084 00ea 059A     		ldr	r2, [sp, #20]
+ 302:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg -= ry;
+ 1085              		.loc 1 302 0
+ 1086 00ec C3F10106 		rsb	r6, r3, #1
+ 1087              	.LVL115:
+ 303:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg *= rx;
+ 1088              		.loc 1 303 0
+ 1089 00f0 F61A     		subs	r6, r6, r3
+ 312:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1090              		.loc 1 312 0
+ 1091 00f2 12FB03F7 		smulbb	r7, r2, r3
+ 305:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1092              		.loc 1 305 0
+ 1093 00f6 089B     		ldr	r3, [sp, #32]
+ 312:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1094              		.loc 1 312 0
+ 1095 00f8 3FB2     		sxth	r7, r7
+ 305:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1096              		.loc 1 305 0
+ 1097 00fa 16FB03F6 		smulbb	r6, r6, r3
+ 315:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1098              		.loc 1 315 0
+ 1099 00fe 002F     		cmp	r7, #0
+ 305:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1100              		.loc 1 305 0
+ 1101 0100 36B2     		sxth	r6, r6
+ 1102              	.LVL116:
+ 315:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1103              		.loc 1 315 0
+ 1104 0102 9CDB     		blt	.L104
+ 1105 0104 0A9B     		ldr	r3, [sp, #40]
+ 1106 0106 069A     		ldr	r2, [sp, #24]
+ 1107 0108 4FF00009 		mov	r9, #0
+ 1108 010c A3EB020B 		sub	fp, r3, r2
+ 307:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1109              		.loc 1 307 0
+ 1110 0110 4C46     		mov	r4, r9
+ 309:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 1111              		.loc 1 309 0
+ 1112 0112 4D46     		mov	r5, r9
+ 1113              	.LVL117:
+ 1114              	.L110:
+ 317:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     x++;
+ 1115              		.loc 1 317 0
+ 1116 0114 049B     		ldr	r3, [sp, #16]
+ 1117 0116 0193     		str	r3, [sp, #4]
+ 1118 0118 039B     		ldr	r3, [sp, #12]
+ 1119 011a 0093     		str	r3, [sp]
+ 1120 011c 4246     		mov	r2, r8
+ 1121 011e 5346     		mov	r3, r10
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 30
+
+
+ 1122 0120 5FFA89F1 		uxtb	r1, r9
+ 1123 0124 0298     		ldr	r0, [sp, #8]
+ 1124 0126 FFF7FEFF 		bl	u8g2_draw_ellipse_section
+ 1125              	.LVL118:
+ 1126 012a 069B     		ldr	r3, [sp, #24]
+ 1127 012c 1D44     		add	r5, r5, r3
+ 1128              	.LVL119:
+ 1129 012e ADB2     		uxth	r5, r5
+ 320:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     xchg += ryry2;
+ 1130              		.loc 1 320 0
+ 1131 0130 05EB0B03 		add	r3, r5, fp
+ 1132 0134 1C44     		add	r4, r4, r3
+ 1133              	.LVL120:
+ 1134 0136 A3B2     		uxth	r3, r4
+ 1135 0138 1CB2     		sxth	r4, r3
+ 322:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 1136              		.loc 1 322 0
+ 1137 013a 06EB4402 		add	r2, r6, r4, lsl #1
+ 1138 013e 002A     		cmp	r2, #0
+ 1139 0140 2DB2     		sxth	r5, r5
+ 1140              	.LVL121:
+ 1141 0142 09F10109 		add	r9, r9, #1
+ 1142              	.LVL122:
+ 1143 0146 0BDD     		ble	.L109
+ 326:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ychg += rxrx2;
+ 1144              		.loc 1 326 0
+ 1145 0148 B6B2     		uxth	r6, r6
+ 1146 014a 9C19     		adds	r4, r3, r6
+ 1147              	.LVL123:
+ 327:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 1148              		.loc 1 327 0
+ 1149 014c 059B     		ldr	r3, [sp, #20]
+ 1150              	.LVL124:
+ 324:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopy -= rxrx2;
+ 1151              		.loc 1 324 0
+ 1152 014e 08F1FF38 		add	r8, r8, #-1
+ 1153              	.LVL125:
+ 327:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 1154              		.loc 1 327 0
+ 1155 0152 1E44     		add	r6, r6, r3
+ 1156              	.LVL126:
+ 325:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += ychg;
+ 1157              		.loc 1 325 0
+ 1158 0154 FF1A     		subs	r7, r7, r3
+ 1159              	.LVL127:
+ 326:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ychg += rxrx2;
+ 1160              		.loc 1 326 0
+ 1161 0156 24B2     		sxth	r4, r4
+ 327:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 1162              		.loc 1 327 0
+ 1163 0158 36B2     		sxth	r6, r6
+ 324:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopy -= rxrx2;
+ 1164              		.loc 1 324 0
+ 1165 015a 5FFA88F8 		uxtb	r8, r8
+ 1166              	.LVL128:
+ 325:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += ychg;
+ 1167              		.loc 1 325 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 31
+
+
+ 1168 015e 3FB2     		sxth	r7, r7
+ 1169              	.LVL129:
+ 1170              	.L109:
+ 315:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1171              		.loc 1 315 0
+ 1172 0160 AF42     		cmp	r7, r5
+ 1173 0162 D7DA     		bge	.L110
+ 1174              	.LBE13:
+ 1175              	.LBE12:
+ 344:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 1176              		.loc 1 344 0
+ 1177 0164 0DB0     		add	sp, sp, #52
+ 1178              	.LCFI26:
+ 1179              		.cfi_def_cfa_offset 36
+ 1180              		@ sp needed
+ 1181 0166 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1182              		.cfi_endproc
+ 1183              	.LFE8:
+ 1185 016a 00BF     		.section	.text.u8g2_DrawFilledEllipse,"ax",%progbits
+ 1186              		.align	1
+ 1187              		.p2align 2,,3
+ 1188              		.global	u8g2_DrawFilledEllipse
+ 1189              		.syntax unified
+ 1190              		.thumb
+ 1191              		.thumb_func
+ 1192              		.fpu fpv4-sp-d16
+ 1194              	u8g2_DrawFilledEllipse:
+ 1195              	.LFB11:
  376:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
  377:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** static void u8g2_draw_filled_ellipse(u8g2_t *u8g2, u8g2_uint_t x0, u8g2_uint_t y0, u8g2_uint_t rx, 
  378:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** {
- 1002              		.loc 1 378 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 26
-
-
- 1003              		.cfi_startproc
- 1004              		@ args = 8, pretend = 0, frame = 40
- 1005              		@ frame_needed = 0, uses_anonymous_args = 0
- 1006              	.LVL149:
- 1007 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
- 1008              	.LCFI13:
- 1009              		.cfi_def_cfa_offset 36
- 1010              		.cfi_offset 4, -36
- 1011              		.cfi_offset 5, -32
- 1012              		.cfi_offset 6, -28
- 1013              		.cfi_offset 7, -24
- 1014              		.cfi_offset 8, -20
- 1015              		.cfi_offset 9, -16
- 1016              		.cfi_offset 10, -12
- 1017              		.cfi_offset 11, -8
- 1018              		.cfi_offset 14, -4
- 1019 0004 8DB0     		sub	sp, sp, #52
- 1020              	.LCFI14:
- 1021              		.cfi_def_cfa_offset 88
- 1022 0006 0790     		str	r0, [sp, #28]
- 1023 0008 0891     		str	r1, [sp, #32]
- 1024 000a 0992     		str	r2, [sp, #36]
- 1025 000c 0393     		str	r3, [sp, #12]
- 1026 000e 9DF85810 		ldrb	r1, [sp, #88]	@ zero_extendqisi2
- 1027              	.LVL150:
- 1028 0012 0491     		str	r1, [sp, #16]
- 1029 0014 9DF85C90 		ldrb	r9, [sp, #92]	@ zero_extendqisi2
- 1030              	.LVL151:
  379:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_uint_t x, y;
  380:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_long_t xchg, ychg;
  381:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_long_t err;
@@ -1538,174 +1841,46 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  385:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  386:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 = rx;
  387:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 *= rx;
- 1031              		.loc 1 387 0
- 1032 0018 9BB2     		uxth	r3, r3
- 1033              	.LVL152:
- 1034 001a 0A93     		str	r3, [sp, #40]
- 1035 001c 03FB03F7 		mul	r7, r3, r3
- 1036 0020 3AB2     		sxth	r2, r7
- 1037              	.LVL153:
- 1038 0022 0692     		str	r2, [sp, #24]
- 1039              	.LVL154:
  388:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 *= 2;
- 1040              		.loc 1 388 0
- 1041 0024 7F00     		lsls	r7, r7, #1
- 1042 0026 BFB2     		uxth	r7, r7
- 1043              	.LVL155:
  389:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  390:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 = ry;
  391:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 *= ry;
- 1044              		.loc 1 391 0
- 1045 0028 89B2     		uxth	r1, r1
- 1046              	.LVL156:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 27
-
-
- 1047 002a 0B91     		str	r1, [sp, #44]
- 1048 002c 01FB01F8 		mul	r8, r1, r1
- 1049 0030 0FFA88F2 		sxth	r2, r8
- 1050 0034 0592     		str	r2, [sp, #20]
- 1051              	.LVL157:
  392:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 *= 2;
- 1052              		.loc 1 392 0
- 1053 0036 4FEA4808 		lsl	r8, r8, #1
- 1054 003a 1FFA88F8 		uxth	r8, r8
- 1055              	.LVL158:
  393:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  394:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   x = rx;
  395:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   y = 0;
  396:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  397:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg = 1;
  398:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg -= rx;
- 1056              		.loc 1 398 0
- 1057 003e C3F10105 		rsb	r5, r3, #1
- 1058 0042 ADB2     		uxth	r5, r5
- 1059              	.LVL159:
  399:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg -= rx;
- 1060              		.loc 1 399 0
- 1061 0044 ED1A     		subs	r5, r5, r3
- 1062              	.LVL160:
- 1063 0046 ADB2     		uxth	r5, r5
- 1064              	.LVL161:
  400:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg *= ry;
- 1065              		.loc 1 400 0
- 1066 0048 11FB05F5 		smulbb	r5, r1, r5
- 1067              	.LVL162:
- 1068 004c ADB2     		uxth	r5, r5
- 1069              	.LVL163:
  401:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg *= ry;
- 1070              		.loc 1 401 0
- 1071 004e 11FB05F5 		smulbb	r5, r1, r5
- 1072              	.LVL164:
- 1073 0052 2DB2     		sxth	r5, r5
- 1074              	.LVL165:
  402:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  403:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg = rx;
  404:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg *= rx;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 32
+
+
  405:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  406:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   err = 0;
  407:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  408:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopx = ryry2;
  409:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopx *= rx;
- 1075              		.loc 1 409 0
- 1076 0054 13FB08FB 		smulbb	fp, r3, r8
- 1077 0058 0FFA8BFB 		sxth	fp, fp
- 1078              	.LVL166:
  410:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopy = 0;
- 1079              		.loc 1 410 0
- 1080 005c 0026     		movs	r6, #0
- 406:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
- 1081              		.loc 1 406 0
- 1082 005e 3446     		mov	r4, r6
- 395:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 28
-
-
- 1083              		.loc 1 395 0
- 1084 0060 B246     		mov	r10, r6
- 1085              	.LVL167:
- 1086              	.L64:
  411:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  412:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   while( stopx >= stopy )
- 1087              		.loc 1 412 0
- 1088 0062 B345     		cmp	fp, r6
- 1089 0064 29DB     		blt	.L71
  413:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
  414:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     u8g2_draw_filled_ellipse_section(u8g2, x, y, x0, y0, option);
- 1090              		.loc 1 414 0
- 1091 0066 CDF80490 		str	r9, [sp, #4]
- 1092 006a 099B     		ldr	r3, [sp, #36]
- 1093 006c 0093     		str	r3, [sp]
- 1094 006e 089B     		ldr	r3, [sp, #32]
- 1095 0070 5246     		mov	r2, r10
- 1096 0072 0399     		ldr	r1, [sp, #12]
- 1097 0074 0798     		ldr	r0, [sp, #28]
- 1098 0076 FFF7FEFF 		bl	u8g2_draw_filled_ellipse_section
- 1099              	.LVL168:
  415:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     y++;
- 1100              		.loc 1 415 0
- 1101 007a 0AF1010A 		add	r10, r10, #1
- 1102              	.LVL169:
- 1103 007e 5FFA8AFA 		uxtb	r10, r10
- 1104              	.LVL170:
  416:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     stopy += rxrx2;
- 1105              		.loc 1 416 0
- 1106 0082 3E44     		add	r6, r6, r7
- 1107              	.LVL171:
- 1108 0084 36B2     		sxth	r6, r6
- 1109              	.LVL172:
  417:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     err += ychg;
- 1110              		.loc 1 417 0
- 1111 0086 BDF81820 		ldrh	r2, [sp, #24]
- 1112 008a 1444     		add	r4, r4, r2
- 1113              	.LVL173:
- 1114 008c A3B2     		uxth	r3, r4
- 1115 008e 1CB2     		sxth	r4, r3
- 1116              	.LVL174:
  418:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ychg += rxrx2;
- 1117              		.loc 1 418 0
- 1118 0090 3A44     		add	r2, r2, r7
- 1119 0092 12B2     		sxth	r2, r2
- 1120 0094 0692     		str	r2, [sp, #24]
- 1121              	.LVL175:
  419:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( 2*err+xchg > 0 )
- 1122              		.loc 1 419 0
- 1123 0096 05EB4402 		add	r2, r5, r4, lsl #1
- 1124 009a 002A     		cmp	r2, #0
- 1125 009c E1DD     		ble	.L64
  420:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  421:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       x--;
- 1126              		.loc 1 421 0
- 1127 009e 039A     		ldr	r2, [sp, #12]
- 1128 00a0 013A     		subs	r2, r2, #1
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 29
-
-
- 1129 00a2 D2B2     		uxtb	r2, r2
- 1130 00a4 0392     		str	r2, [sp, #12]
- 1131              	.LVL176:
  422:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopx -= ryry2;
- 1132              		.loc 1 422 0
- 1133 00a6 ABEB080B 		sub	fp, fp, r8
- 1134              	.LVL177:
- 1135 00aa 0FFA8BFB 		sxth	fp, fp
- 1136              	.LVL178:
  423:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += xchg;
- 1137              		.loc 1 423 0
- 1138 00ae ADB2     		uxth	r5, r5
- 1139 00b0 5C19     		adds	r4, r3, r5
- 1140              	.LVL179:
- 1141 00b2 24B2     		sxth	r4, r4
- 1142              	.LVL180:
  424:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       xchg += ryry2;      
- 1143              		.loc 1 424 0
- 1144 00b4 4544     		add	r5, r5, r8
- 1145              	.LVL181:
- 1146 00b6 2DB2     		sxth	r5, r5
- 1147              	.LVL182:
- 1148 00b8 D3E7     		b	.L64
- 1149              	.L71:
- 1150              	.LVL183:
  425:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
  426:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   }
  427:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
@@ -1717,33 +1892,9 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  433:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  434:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg = 1;
  435:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg -= ry;
- 1151              		.loc 1 435 0
- 1152 00ba 0B9B     		ldr	r3, [sp, #44]
- 1153 00bc C3F10105 		rsb	r5, r3, #1
- 1154 00c0 ADB2     		uxth	r5, r5
- 1155              	.LVL184:
  436:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg -= ry;
- 1156              		.loc 1 436 0
- 1157 00c2 ED1A     		subs	r5, r5, r3
- 1158              	.LVL185:
- 1159 00c4 ADB2     		uxth	r5, r5
- 1160              	.LVL186:
  437:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg *= rx;
- 1161              		.loc 1 437 0
- 1162 00c6 0A9A     		ldr	r2, [sp, #40]
- 1163 00c8 12FB05F5 		smulbb	r5, r2, r5
- 1164              	.LVL187:
- 1165 00cc ADB2     		uxth	r5, r5
- 1166              	.LVL188:
  438:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg *= rx;
- 1167              		.loc 1 438 0
- 1168 00ce 12FB05F5 		smulbb	r5, r2, r5
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 30
-
-
- 1169              	.LVL189:
- 1170 00d2 2DB2     		sxth	r5, r5
- 1171              	.LVL190:
  439:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  440:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   err = 0;
  441:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
@@ -1751,495 +1902,430 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 1
  443:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
  444:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopy = rxrx2;
  445:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopy *= ry;
- 1172              		.loc 1 445 0
- 1173 00d4 17FB03FA 		smulbb	r10, r7, r3
- 1174 00d8 0FFA8AFA 		sxth	r10, r10
- 1175              	.LVL191:
- 442:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
- 1176              		.loc 1 442 0
- 1177 00dc 0026     		movs	r6, #0
- 440:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
- 1178              		.loc 1 440 0
- 1179 00de 3446     		mov	r4, r6
- 428:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   y = ry;
- 1180              		.loc 1 428 0
- 1181 00e0 B346     		mov	fp, r6
- 1182              	.LVL192:
- 1183              	.L67:
  446:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  447:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
  448:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   while( stopx <= stopy )
- 1184              		.loc 1 448 0
- 1185 00e2 5645     		cmp	r6, r10
- 1186 00e4 29DC     		bgt	.L72
  449:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
  450:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     u8g2_draw_filled_ellipse_section(u8g2, x, y, x0, y0, option);
- 1187              		.loc 1 450 0
- 1188 00e6 CDF80490 		str	r9, [sp, #4]
- 1189 00ea 099B     		ldr	r3, [sp, #36]
- 1190 00ec 0093     		str	r3, [sp]
- 1191 00ee 089B     		ldr	r3, [sp, #32]
- 1192 00f0 049A     		ldr	r2, [sp, #16]
- 1193 00f2 5946     		mov	r1, fp
- 1194 00f4 0798     		ldr	r0, [sp, #28]
- 1195 00f6 FFF7FEFF 		bl	u8g2_draw_filled_ellipse_section
- 1196              	.LVL193:
  451:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     x++;
- 1197              		.loc 1 451 0
- 1198 00fa 0BF1010B 		add	fp, fp, #1
- 1199              	.LVL194:
- 1200 00fe 5FFA8BFB 		uxtb	fp, fp
- 1201              	.LVL195:
  452:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     stopx += ryry2;
- 1202              		.loc 1 452 0
- 1203 0102 4644     		add	r6, r6, r8
- 1204              	.LVL196:
- 1205 0104 36B2     		sxth	r6, r6
- 1206              	.LVL197:
  453:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     err += xchg;
- 1207              		.loc 1 453 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 31
-
-
- 1208 0106 BDF81420 		ldrh	r2, [sp, #20]
- 1209 010a 1444     		add	r4, r4, r2
- 1210              	.LVL198:
- 1211 010c A3B2     		uxth	r3, r4
- 1212 010e 1CB2     		sxth	r4, r3
- 1213              	.LVL199:
  454:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     xchg += ryry2;
- 1214              		.loc 1 454 0
- 1215 0110 4244     		add	r2, r2, r8
- 1216 0112 12B2     		sxth	r2, r2
- 1217 0114 0592     		str	r2, [sp, #20]
- 1218              	.LVL200:
  455:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( 2*err+ychg > 0 )
- 1219              		.loc 1 455 0
- 1220 0116 05EB4402 		add	r2, r5, r4, lsl #1
- 1221 011a 002A     		cmp	r2, #0
- 1222 011c E1DD     		ble	.L67
  456:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
  457:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       y--;
- 1223              		.loc 1 457 0
- 1224 011e 049A     		ldr	r2, [sp, #16]
- 1225 0120 013A     		subs	r2, r2, #1
- 1226 0122 D2B2     		uxtb	r2, r2
- 1227 0124 0492     		str	r2, [sp, #16]
- 1228              	.LVL201:
  458:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopy -= rxrx2;
- 1229              		.loc 1 458 0
- 1230 0126 AAEB070A 		sub	r10, r10, r7
- 1231              	.LVL202:
- 1232 012a 0FFA8AFA 		sxth	r10, r10
- 1233              	.LVL203:
  459:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += ychg;
- 1234              		.loc 1 459 0
- 1235 012e ADB2     		uxth	r5, r5
- 1236 0130 5C19     		adds	r4, r3, r5
- 1237              	.LVL204:
- 1238 0132 24B2     		sxth	r4, r4
- 1239              	.LVL205:
  460:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ychg += rxrx2;
- 1240              		.loc 1 460 0
- 1241 0134 3D44     		add	r5, r5, r7
- 1242              	.LVL206:
- 1243 0136 2DB2     		sxth	r5, r5
- 1244              	.LVL207:
- 1245 0138 D3E7     		b	.L67
- 1246              	.L72:
  461:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 33
+
+
  462:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   }
  463:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  464:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
- 1247              		.loc 1 464 0
- 1248 013a 0DB0     		add	sp, sp, #52
- 1249              	.LCFI15:
- 1250              		.cfi_def_cfa_offset 36
- 1251              		@ sp needed
- 1252 013c BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
- 1253              		.cfi_endproc
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 32
-
-
- 1254              	.LFE10:
- 1256              		.section	.text.u8g2_DrawCircle,"ax",%progbits
- 1257              		.align	1
- 1258              		.global	u8g2_DrawCircle
- 1259              		.syntax unified
- 1260              		.thumb
- 1261              		.thumb_func
- 1262              		.fpu fpv4-sp-d16
- 1264              	u8g2_DrawCircle:
- 1265              	.LFB2:
- 110:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
- 1266              		.loc 1 110 0
- 1267              		.cfi_startproc
- 1268              		@ args = 4, pretend = 0, frame = 0
- 1269              		@ frame_needed = 0, uses_anonymous_args = 0
- 1270              	.LVL208:
- 1271 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
- 1272              	.LCFI16:
- 1273              		.cfi_def_cfa_offset 24
- 1274              		.cfi_offset 4, -24
- 1275              		.cfi_offset 5, -20
- 1276              		.cfi_offset 6, -16
- 1277              		.cfi_offset 7, -12
- 1278              		.cfi_offset 8, -8
- 1279              		.cfi_offset 14, -4
- 1280 0004 82B0     		sub	sp, sp, #8
- 1281              	.LCFI17:
- 1282              		.cfi_def_cfa_offset 32
- 1283 0006 8046     		mov	r8, r0
- 1284 0008 0E46     		mov	r6, r1
- 1285 000a 1746     		mov	r7, r2
- 1286 000c 1D46     		mov	r5, r3
- 114:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
- 1287              		.loc 1 114 0
- 1288 000e CB18     		adds	r3, r1, r3
- 1289              	.LVL209:
- 1290 0010 DBB2     		uxtb	r3, r3
- 1291 0012 AC18     		adds	r4, r5, r2
- 1292 0014 E4B2     		uxtb	r4, r4
- 1293 0016 0133     		adds	r3, r3, #1
- 1294 0018 521B     		subs	r2, r2, r5
- 1295              	.LVL210:
- 1296 001a 491B     		subs	r1, r1, r5
- 1297              	.LVL211:
- 1298 001c 0134     		adds	r4, r4, #1
- 1299 001e E4B2     		uxtb	r4, r4
- 1300 0020 0094     		str	r4, [sp]
- 1301 0022 DBB2     		uxtb	r3, r3
- 1302 0024 D2B2     		uxtb	r2, r2
- 1303 0026 C9B2     		uxtb	r1, r1
- 1304 0028 FFF7FEFF 		bl	u8g2_IsIntersection
- 1305              	.LVL212:
- 1306 002c 10B9     		cbnz	r0, .L76
- 1307              	.L73:
- 122:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
- 1308              		.loc 1 122 0
- 1309 002e 02B0     		add	sp, sp, #8
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 33
-
-
- 1310              	.LCFI18:
- 1311              		.cfi_remember_state
- 1312              		.cfi_def_cfa_offset 24
- 1313              		@ sp needed
- 1314 0030 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 1315              	.LVL213:
- 1316              	.L76:
- 1317              	.LCFI19:
- 1318              		.cfi_restore_state
- 121:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
- 1319              		.loc 1 121 0
- 1320 0034 9DF82030 		ldrb	r3, [sp, #32]	@ zero_extendqisi2
- 1321 0038 0093     		str	r3, [sp]
- 1322 003a 2B46     		mov	r3, r5
- 1323 003c 3A46     		mov	r2, r7
- 1324 003e 3146     		mov	r1, r6
- 1325 0040 4046     		mov	r0, r8
- 1326 0042 FFF7FEFF 		bl	u8g2_draw_circle
- 1327              	.LVL214:
- 1328 0046 F2E7     		b	.L73
- 1329              		.cfi_endproc
- 1330              	.LFE2:
- 1332              		.section	.text.u8g2_DrawDisc,"ax",%progbits
- 1333              		.align	1
- 1334              		.global	u8g2_DrawDisc
- 1335              		.syntax unified
- 1336              		.thumb
- 1337              		.thumb_func
- 1338              		.fpu fpv4-sp-d16
- 1340              	u8g2_DrawDisc:
- 1341              	.LFB5:
- 196:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
- 1342              		.loc 1 196 0
- 1343              		.cfi_startproc
- 1344              		@ args = 4, pretend = 0, frame = 0
- 1345              		@ frame_needed = 0, uses_anonymous_args = 0
- 1346              	.LVL215:
- 1347 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
- 1348              	.LCFI20:
- 1349              		.cfi_def_cfa_offset 24
- 1350              		.cfi_offset 4, -24
- 1351              		.cfi_offset 5, -20
- 1352              		.cfi_offset 6, -16
- 1353              		.cfi_offset 7, -12
- 1354              		.cfi_offset 8, -8
- 1355              		.cfi_offset 14, -4
- 1356 0004 82B0     		sub	sp, sp, #8
- 1357              	.LCFI21:
- 1358              		.cfi_def_cfa_offset 32
- 1359 0006 8046     		mov	r8, r0
- 1360 0008 0E46     		mov	r6, r1
- 1361 000a 1746     		mov	r7, r2
- 1362 000c 1D46     		mov	r5, r3
- 200:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
- 1363              		.loc 1 200 0
- 1364 000e CB18     		adds	r3, r1, r3
- 1365              	.LVL216:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 34
-
-
- 1366 0010 DBB2     		uxtb	r3, r3
- 1367 0012 AC18     		adds	r4, r5, r2
- 1368 0014 E4B2     		uxtb	r4, r4
- 1369 0016 0133     		adds	r3, r3, #1
- 1370 0018 521B     		subs	r2, r2, r5
- 1371              	.LVL217:
- 1372 001a 491B     		subs	r1, r1, r5
- 1373              	.LVL218:
- 1374 001c 0134     		adds	r4, r4, #1
- 1375 001e E4B2     		uxtb	r4, r4
- 1376 0020 0094     		str	r4, [sp]
- 1377 0022 DBB2     		uxtb	r3, r3
- 1378 0024 D2B2     		uxtb	r2, r2
- 1379 0026 C9B2     		uxtb	r1, r1
- 1380 0028 FFF7FEFF 		bl	u8g2_IsIntersection
- 1381              	.LVL219:
- 1382 002c 10B9     		cbnz	r0, .L80
- 1383              	.L77:
- 207:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
- 1384              		.loc 1 207 0
- 1385 002e 02B0     		add	sp, sp, #8
- 1386              	.LCFI22:
- 1387              		.cfi_remember_state
- 1388              		.cfi_def_cfa_offset 24
- 1389              		@ sp needed
- 1390 0030 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 1391              	.LVL220:
- 1392              	.L80:
- 1393              	.LCFI23:
- 1394              		.cfi_restore_state
- 206:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
- 1395              		.loc 1 206 0
- 1396 0034 9DF82030 		ldrb	r3, [sp, #32]	@ zero_extendqisi2
- 1397 0038 0093     		str	r3, [sp]
- 1398 003a 2B46     		mov	r3, r5
- 1399 003c 3A46     		mov	r2, r7
- 1400 003e 3146     		mov	r1, r6
- 1401 0040 4046     		mov	r0, r8
- 1402 0042 FFF7FEFF 		bl	u8g2_draw_disc
- 1403              	.LVL221:
- 1404 0046 F2E7     		b	.L77
- 1405              		.cfi_endproc
- 1406              	.LFE5:
- 1408              		.section	.text.u8g2_DrawEllipse,"ax",%progbits
- 1409              		.align	1
- 1410              		.global	u8g2_DrawEllipse
- 1411              		.syntax unified
- 1412              		.thumb
- 1413              		.thumb_func
- 1414              		.fpu fpv4-sp-d16
- 1416              	u8g2_DrawEllipse:
- 1417              	.LFB8:
- 334:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
- 1418              		.loc 1 334 0
- 1419              		.cfi_startproc
- 1420              		@ args = 8, pretend = 0, frame = 0
- 1421              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 35
-
-
- 1422              	.LVL222:
- 1423 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
- 1424              	.LCFI24:
- 1425              		.cfi_def_cfa_offset 28
- 1426              		.cfi_offset 4, -28
- 1427              		.cfi_offset 5, -24
- 1428              		.cfi_offset 6, -20
- 1429              		.cfi_offset 7, -16
- 1430              		.cfi_offset 8, -12
- 1431              		.cfi_offset 9, -8
- 1432              		.cfi_offset 14, -4
- 1433 0004 83B0     		sub	sp, sp, #12
- 1434              	.LCFI25:
- 1435              		.cfi_def_cfa_offset 40
- 1436 0006 8146     		mov	r9, r0
- 1437 0008 0D46     		mov	r5, r1
- 1438 000a 1646     		mov	r6, r2
- 1439 000c 1F46     		mov	r7, r3
- 1440 000e 9DF82880 		ldrb	r8, [sp, #40]	@ zero_extendqisi2
- 338:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
- 1441              		.loc 1 338 0
- 1442 0012 CB18     		adds	r3, r1, r3
- 1443              	.LVL223:
- 1444 0014 DBB2     		uxtb	r3, r3
- 1445 0016 02EB0804 		add	r4, r2, r8
- 1446 001a E4B2     		uxtb	r4, r4
- 1447 001c 0133     		adds	r3, r3, #1
- 1448 001e A2EB0802 		sub	r2, r2, r8
- 1449              	.LVL224:
- 1450 0022 C91B     		subs	r1, r1, r7
- 1451              	.LVL225:
- 1452 0024 0134     		adds	r4, r4, #1
- 1453 0026 E4B2     		uxtb	r4, r4
- 1454 0028 0094     		str	r4, [sp]
- 1455 002a DBB2     		uxtb	r3, r3
- 1456 002c D2B2     		uxtb	r2, r2
- 1457 002e C9B2     		uxtb	r1, r1
- 1458 0030 FFF7FEFF 		bl	u8g2_IsIntersection
- 1459              	.LVL226:
- 1460 0034 10B9     		cbnz	r0, .L84
- 1461              	.L81:
- 344:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
- 1462              		.loc 1 344 0
- 1463 0036 03B0     		add	sp, sp, #12
- 1464              	.LCFI26:
- 1465              		.cfi_remember_state
- 1466              		.cfi_def_cfa_offset 28
- 1467              		@ sp needed
- 1468 0038 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
- 1469              	.LVL227:
- 1470              	.L84:
- 1471              	.LCFI27:
- 1472              		.cfi_restore_state
- 343:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
- 1473              		.loc 1 343 0
- 1474 003c 9DF82C30 		ldrb	r3, [sp, #44]	@ zero_extendqisi2
- 1475 0040 0193     		str	r3, [sp, #4]
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 36
-
-
- 1476 0042 CDF80080 		str	r8, [sp]
- 1477 0046 3B46     		mov	r3, r7
- 1478 0048 3246     		mov	r2, r6
- 1479 004a 2946     		mov	r1, r5
- 1480 004c 4846     		mov	r0, r9
- 1481 004e FFF7FEFF 		bl	u8g2_draw_ellipse
- 1482              	.LVL228:
- 1483 0052 F0E7     		b	.L81
- 1484              		.cfi_endproc
- 1485              	.LFE8:
- 1487              		.section	.text.u8g2_DrawFilledEllipse,"ax",%progbits
- 1488              		.align	1
- 1489              		.global	u8g2_DrawFilledEllipse
- 1490              		.syntax unified
- 1491              		.thumb
- 1492              		.thumb_func
- 1493              		.fpu fpv4-sp-d16
- 1495              	u8g2_DrawFilledEllipse:
- 1496              	.LFB11:
  465:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
  466:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** void u8g2_DrawFilledEllipse(u8g2_t *u8g2, u8g2_uint_t x0, u8g2_uint_t y0, u8g2_uint_t rx, u8g2_uint
  467:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** {
- 1497              		.loc 1 467 0
- 1498              		.cfi_startproc
- 1499              		@ args = 8, pretend = 0, frame = 0
- 1500              		@ frame_needed = 0, uses_anonymous_args = 0
- 1501              	.LVL229:
- 1502 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
- 1503              	.LCFI28:
- 1504              		.cfi_def_cfa_offset 28
- 1505              		.cfi_offset 4, -28
- 1506              		.cfi_offset 5, -24
- 1507              		.cfi_offset 6, -20
- 1508              		.cfi_offset 7, -16
- 1509              		.cfi_offset 8, -12
- 1510              		.cfi_offset 9, -8
- 1511              		.cfi_offset 14, -4
- 1512 0004 83B0     		sub	sp, sp, #12
- 1513              	.LCFI29:
- 1514              		.cfi_def_cfa_offset 40
- 1515 0006 8146     		mov	r9, r0
- 1516 0008 0D46     		mov	r5, r1
- 1517 000a 1646     		mov	r6, r2
- 1518 000c 1F46     		mov	r7, r3
- 1519 000e 9DF82880 		ldrb	r8, [sp, #40]	@ zero_extendqisi2
+ 1196              		.loc 1 467 0
+ 1197              		.cfi_startproc
+ 1198              		@ args = 8, pretend = 0, frame = 40
+ 1199              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1200              	.LVL130:
+ 1201 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1202              	.LCFI27:
+ 1203              		.cfi_def_cfa_offset 36
+ 1204              		.cfi_offset 4, -36
+ 1205              		.cfi_offset 5, -32
+ 1206              		.cfi_offset 6, -28
+ 1207              		.cfi_offset 7, -24
+ 1208              		.cfi_offset 8, -20
+ 1209              		.cfi_offset 9, -16
+ 1210              		.cfi_offset 10, -12
+ 1211              		.cfi_offset 11, -8
+ 1212              		.cfi_offset 14, -4
+ 1213 0004 8DB0     		sub	sp, sp, #52
+ 1214              	.LCFI28:
+ 1215              		.cfi_def_cfa_offset 88
+ 1216              		.loc 1 467 0
+ 1217 0006 1F46     		mov	r7, r3
+ 1218 0008 9DF85880 		ldrb	r8, [sp, #88]	@ zero_extendqisi2
+ 1219 000c 9DF85C40 		ldrb	r4, [sp, #92]	@ zero_extendqisi2
+ 1220 0010 0290     		str	r0, [sp, #8]
  468:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
  469:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** #ifdef U8G2_WITH_INTERSECTION
  470:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
  471:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     if ( u8g2_IsIntersection(u8g2, x0-rx, y0-ry, x0+rx+1, y0+ry+1) == 0 ) 
- 1520              		.loc 1 471 0
- 1521 0012 CB18     		adds	r3, r1, r3
- 1522              	.LVL230:
- 1523 0014 DBB2     		uxtb	r3, r3
- 1524 0016 02EB0804 		add	r4, r2, r8
- 1525 001a E4B2     		uxtb	r4, r4
- 1526 001c 0133     		adds	r3, r3, #1
- 1527 001e A2EB0802 		sub	r2, r2, r8
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 37
+ 1221              		.loc 1 471 0
+ 1222 0012 08F10103 		add	r3, r8, #1
+ 1223              	.LVL131:
+ 467:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 1224              		.loc 1 467 0
+ 1225 0016 8A46     		mov	r10, r1
+ 1226              		.loc 1 471 0
+ 1227 0018 1344     		add	r3, r3, r2
+ 1228 001a 1146     		mov	r1, r2
+ 1229              	.LVL132:
+ 467:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   /* check for bounding box */
+ 1230              		.loc 1 467 0
+ 1231 001c CDE90324 		strd	r2, r4, [sp, #12]
+ 1232              		.loc 1 471 0
+ 1233 0020 7A1C     		adds	r2, r7, #1
+ 1234              	.LVL133:
+ 1235 0022 DCB2     		uxtb	r4, r3
+ 1236 0024 0AEB0203 		add	r3, r10, r2
+ 1237 0028 A1EB0802 		sub	r2, r1, r8
+ 1238 002c AAEB0701 		sub	r1, r10, r7
+ 1239 0030 0094     		str	r4, [sp]
+ 1240 0032 DBB2     		uxtb	r3, r3
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 34
 
 
- 1528              	.LVL231:
- 1529 0022 C91B     		subs	r1, r1, r7
- 1530              	.LVL232:
- 1531 0024 0134     		adds	r4, r4, #1
- 1532 0026 E4B2     		uxtb	r4, r4
- 1533 0028 0094     		str	r4, [sp]
- 1534 002a DBB2     		uxtb	r3, r3
- 1535 002c D2B2     		uxtb	r2, r2
- 1536 002e C9B2     		uxtb	r1, r1
- 1537 0030 FFF7FEFF 		bl	u8g2_IsIntersection
- 1538              	.LVL233:
- 1539 0034 10B9     		cbnz	r0, .L88
- 1540              	.L85:
+ 1241 0034 D2B2     		uxtb	r2, r2
+ 1242 0036 C9B2     		uxtb	r1, r1
+ 1243 0038 FFF7FEFF 		bl	u8g2_IsIntersection
+ 1244              	.LVL134:
+ 1245 003c 10B9     		cbnz	r0, .L131
+ 1246              	.L118:
  472:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       return;
  473:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   }
  474:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** #endif /* U8G2_WITH_INTERSECTION */
  475:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
  476:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   u8g2_draw_filled_ellipse(u8g2, x0, y0, rx, ry, option);
  477:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
- 1541              		.loc 1 477 0
- 1542 0036 03B0     		add	sp, sp, #12
- 1543              	.LCFI30:
- 1544              		.cfi_remember_state
- 1545              		.cfi_def_cfa_offset 28
- 1546              		@ sp needed
- 1547 0038 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
- 1548              	.LVL234:
- 1549              	.L88:
- 1550              	.LCFI31:
- 1551              		.cfi_restore_state
- 476:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** }
- 1552              		.loc 1 476 0
- 1553 003c 9DF82C30 		ldrb	r3, [sp, #44]	@ zero_extendqisi2
- 1554 0040 0193     		str	r3, [sp, #4]
- 1555 0042 CDF80080 		str	r8, [sp]
- 1556 0046 3B46     		mov	r3, r7
- 1557 0048 3246     		mov	r2, r6
- 1558 004a 2946     		mov	r1, r5
- 1559 004c 4846     		mov	r0, r9
- 1560 004e FFF7FEFF 		bl	u8g2_draw_filled_ellipse
- 1561              	.LVL235:
- 1562 0052 F0E7     		b	.L85
- 1563              		.cfi_endproc
- 1564              	.LFE11:
- 1566              		.text
- 1567              	.Letext0:
- 1568              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
- 1569              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
- 1570              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
- 1571              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s 			page 38
+ 1247              		.loc 1 477 0
+ 1248 003e 0DB0     		add	sp, sp, #52
+ 1249              	.LCFI29:
+ 1250              		.cfi_remember_state
+ 1251              		.cfi_def_cfa_offset 36
+ 1252              		@ sp needed
+ 1253 0040 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1254              	.LVL135:
+ 1255              	.L131:
+ 1256              	.LCFI30:
+ 1257              		.cfi_restore_state
+ 1258              	.LBB16:
+ 1259              	.LBB17:
+ 391:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 *= 2;
+ 1260              		.loc 1 391 0
+ 1261 0044 1FFA88F3 		uxth	r3, r8
+ 1262 0048 03FB03F1 		mul	r1, r3, r3
+ 392:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1263              		.loc 1 392 0
+ 1264 004c 4A00     		lsls	r2, r1, #1
+ 391:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 *= 2;
+ 1265              		.loc 1 391 0
+ 1266 004e 0993     		str	r3, [sp, #36]
+ 387:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 *= 2;
+ 1267              		.loc 1 387 0
+ 1268 0050 BBB2     		uxth	r3, r7
+ 392:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1269              		.loc 1 392 0
+ 1270 0052 92B2     		uxth	r2, r2
+ 398:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg -= rx;
+ 1271              		.loc 1 398 0
+ 1272 0054 C3F1010B 		rsb	fp, r3, #1
+ 409:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopy = 0;
+ 1273              		.loc 1 409 0
+ 1274 0058 13FB02F6 		smulbb	r6, r3, r2
+ 399:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   xchg *= ry;
+ 1275              		.loc 1 399 0
+ 1276 005c ABEB030B 		sub	fp, fp, r3
+ 387:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 *= 2;
+ 1277              		.loc 1 387 0
+ 1278 0060 03FB03F3 		mul	r3, r3, r3
+ 401:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1279              		.loc 1 401 0
+ 1280 0064 1BFB01FB 		smulbb	fp, fp, r1
+ 391:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ryry2 *= 2;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 35
+
+
+ 1281              		.loc 1 391 0
+ 1282 0068 0A91     		str	r1, [sp, #40]
+ 387:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   rxrx2 *= 2;
+ 1283              		.loc 1 387 0
+ 1284 006a 0893     		str	r3, [sp, #32]
+ 1285              	.LVL136:
+ 409:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   stopy = 0;
+ 1286              		.loc 1 409 0
+ 1287 006c 36B2     		sxth	r6, r6
+ 388:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1288              		.loc 1 388 0
+ 1289 006e 1946     		mov	r1, r3
+ 1290 0070 5B00     		lsls	r3, r3, #1
+ 1291              	.LVL137:
+ 1292 0072 9BB2     		uxth	r3, r3
+ 412:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1293              		.loc 1 412 0
+ 1294 0074 002E     		cmp	r6, #0
+ 392:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1295              		.loc 1 392 0
+ 1296 0076 0692     		str	r2, [sp, #24]
+ 401:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1297              		.loc 1 401 0
+ 1298 0078 0FFA8BFB 		sxth	fp, fp
+ 388:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1299              		.loc 1 388 0
+ 1300 007c 0593     		str	r3, [sp, #20]
+ 1301              	.LVL138:
+ 412:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1302              		.loc 1 412 0
+ 1303 007e 33DB     		blt	.L120
+ 1304 0080 4FF00009 		mov	r9, #0
+ 1305 0084 CB1A     		subs	r3, r1, r3
+ 1306              	.LVL139:
+ 1307 0086 CDF82C80 		str	r8, [sp, #44]
+ 406:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1308              		.loc 1 406 0
+ 1309 008a 4C46     		mov	r4, r9
+ 410:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1310              		.loc 1 410 0
+ 1311 008c 4D46     		mov	r5, r9
+ 1312 008e 0793     		str	r3, [sp, #28]
+ 1313 0090 9046     		mov	r8, r2
+ 1314              	.LVL140:
+ 1315              	.L122:
+ 414:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     y++;
+ 1316              		.loc 1 414 0
+ 1317 0092 049B     		ldr	r3, [sp, #16]
+ 1318 0094 0193     		str	r3, [sp, #4]
+ 1319 0096 039B     		ldr	r3, [sp, #12]
+ 1320 0098 0093     		str	r3, [sp]
+ 1321 009a 5FFA89F2 		uxtb	r2, r9
+ 1322 009e 5346     		mov	r3, r10
+ 1323 00a0 3946     		mov	r1, r7
+ 1324 00a2 0298     		ldr	r0, [sp, #8]
+ 1325 00a4 FFF7FEFF 		bl	u8g2_draw_filled_ellipse_section
+ 1326              	.LVL141:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 36
+
+
+ 1327 00a8 059B     		ldr	r3, [sp, #20]
+ 1328 00aa 1D44     		add	r5, r5, r3
+ 1329              	.LVL142:
+ 417:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     ychg += rxrx2;
+ 1330              		.loc 1 417 0
+ 1331 00ac 079B     		ldr	r3, [sp, #28]
+ 1332 00ae ADB2     		uxth	r5, r5
+ 1333 00b0 EB18     		adds	r3, r5, r3
+ 1334 00b2 1C44     		add	r4, r4, r3
+ 1335              	.LVL143:
+ 1336 00b4 A3B2     		uxth	r3, r4
+ 1337 00b6 1CB2     		sxth	r4, r3
+ 419:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 1338              		.loc 1 419 0
+ 1339 00b8 0BEB4402 		add	r2, fp, r4, lsl #1
+ 1340 00bc 002A     		cmp	r2, #0
+ 1341 00be 2DB2     		sxth	r5, r5
+ 1342              	.LVL144:
+ 1343 00c0 09F10109 		add	r9, r9, #1
+ 1344              	.LVL145:
+ 1345 00c4 0CDD     		ble	.L121
+ 423:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       xchg += ryry2;      
+ 1346              		.loc 1 423 0
+ 1347 00c6 1FFA8BFB 		uxth	fp, fp
+ 1348 00ca 03EB0B04 		add	r4, r3, fp
+ 1349              	.LVL146:
+ 421:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopx -= ryry2;
+ 1350              		.loc 1 421 0
+ 1351 00ce 013F     		subs	r7, r7, #1
+ 1352              	.LVL147:
+ 424:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 1353              		.loc 1 424 0
+ 1354 00d0 C344     		add	fp, fp, r8
+ 1355              	.LVL148:
+ 422:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += xchg;
+ 1356              		.loc 1 422 0
+ 1357 00d2 A6EB0806 		sub	r6, r6, r8
+ 1358              	.LVL149:
+ 423:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       xchg += ryry2;      
+ 1359              		.loc 1 423 0
+ 1360 00d6 24B2     		sxth	r4, r4
+ 424:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 1361              		.loc 1 424 0
+ 1362 00d8 0FFA8BFB 		sxth	fp, fp
+ 421:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopx -= ryry2;
+ 1363              		.loc 1 421 0
+ 1364 00dc FFB2     		uxtb	r7, r7
+ 1365              	.LVL150:
+ 422:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += xchg;
+ 1366              		.loc 1 422 0
+ 1367 00de 36B2     		sxth	r6, r6
+ 1368              	.LVL151:
+ 1369              	.L121:
+ 412:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1370              		.loc 1 412 0
+ 1371 00e0 AE42     		cmp	r6, r5
+ 1372 00e2 D6DA     		bge	.L122
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 37
+
+
+ 1373 00e4 DDF82C80 		ldr	r8, [sp, #44]
+ 1374              	.LVL152:
+ 1375              	.L120:
+ 435:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg -= ry;
+ 1376              		.loc 1 435 0
+ 1377 00e8 099B     		ldr	r3, [sp, #36]
+ 445:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1378              		.loc 1 445 0
+ 1379 00ea 059A     		ldr	r2, [sp, #20]
+ 435:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg -= ry;
+ 1380              		.loc 1 435 0
+ 1381 00ec C3F10106 		rsb	r6, r3, #1
+ 1382              	.LVL153:
+ 436:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   ychg *= rx;
+ 1383              		.loc 1 436 0
+ 1384 00f0 F61A     		subs	r6, r6, r3
+ 445:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1385              		.loc 1 445 0
+ 1386 00f2 12FB03F7 		smulbb	r7, r2, r3
+ 438:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1387              		.loc 1 438 0
+ 1388 00f6 089B     		ldr	r3, [sp, #32]
+ 445:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1389              		.loc 1 445 0
+ 1390 00f8 3FB2     		sxth	r7, r7
+ 438:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1391              		.loc 1 438 0
+ 1392 00fa 16FB03F6 		smulbb	r6, r6, r3
+ 448:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1393              		.loc 1 448 0
+ 1394 00fe 002F     		cmp	r7, #0
+ 438:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1395              		.loc 1 438 0
+ 1396 0100 36B2     		sxth	r6, r6
+ 1397              	.LVL154:
+ 448:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1398              		.loc 1 448 0
+ 1399 0102 9CDB     		blt	.L118
+ 1400 0104 0A9B     		ldr	r3, [sp, #40]
+ 1401 0106 069A     		ldr	r2, [sp, #24]
+ 1402 0108 4FF00009 		mov	r9, #0
+ 1403 010c A3EB020B 		sub	fp, r3, r2
+ 440:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   
+ 1404              		.loc 1 440 0
+ 1405 0110 4C46     		mov	r4, r9
+ 442:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c **** 
+ 1406              		.loc 1 442 0
+ 1407 0112 4D46     		mov	r5, r9
+ 1408              	.LVL155:
+ 1409              	.L124:
+ 450:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     x++;
+ 1410              		.loc 1 450 0
+ 1411 0114 049B     		ldr	r3, [sp, #16]
+ 1412 0116 0193     		str	r3, [sp, #4]
+ 1413 0118 039B     		ldr	r3, [sp, #12]
+ 1414 011a 0093     		str	r3, [sp]
+ 1415 011c 4246     		mov	r2, r8
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 38
+
+
+ 1416 011e 5346     		mov	r3, r10
+ 1417 0120 5FFA89F1 		uxtb	r1, r9
+ 1418 0124 0298     		ldr	r0, [sp, #8]
+ 1419 0126 FFF7FEFF 		bl	u8g2_draw_filled_ellipse_section
+ 1420              	.LVL156:
+ 1421 012a 069B     		ldr	r3, [sp, #24]
+ 1422 012c 1D44     		add	r5, r5, r3
+ 1423              	.LVL157:
+ 1424 012e ADB2     		uxth	r5, r5
+ 453:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     xchg += ryry2;
+ 1425              		.loc 1 453 0
+ 1426 0130 05EB0B03 		add	r3, r5, fp
+ 1427 0134 1C44     		add	r4, r4, r3
+ 1428              	.LVL158:
+ 1429 0136 A3B2     		uxth	r3, r4
+ 1430 0138 1CB2     		sxth	r4, r3
+ 455:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     {
+ 1431              		.loc 1 455 0
+ 1432 013a 06EB4402 		add	r2, r6, r4, lsl #1
+ 1433 013e 002A     		cmp	r2, #0
+ 1434 0140 2DB2     		sxth	r5, r5
+ 1435              	.LVL159:
+ 1436 0142 09F10109 		add	r9, r9, #1
+ 1437              	.LVL160:
+ 1438 0146 0BDD     		ble	.L123
+ 459:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ychg += rxrx2;
+ 1439              		.loc 1 459 0
+ 1440 0148 B6B2     		uxth	r6, r6
+ 1441 014a 9C19     		adds	r4, r3, r6
+ 1442              	.LVL161:
+ 460:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 1443              		.loc 1 460 0
+ 1444 014c 059B     		ldr	r3, [sp, #20]
+ 1445              	.LVL162:
+ 457:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopy -= rxrx2;
+ 1446              		.loc 1 457 0
+ 1447 014e 08F1FF38 		add	r8, r8, #-1
+ 1448              	.LVL163:
+ 460:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 1449              		.loc 1 460 0
+ 1450 0152 1E44     		add	r6, r6, r3
+ 1451              	.LVL164:
+ 458:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += ychg;
+ 1452              		.loc 1 458 0
+ 1453 0154 FF1A     		subs	r7, r7, r3
+ 1454              	.LVL165:
+ 459:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       ychg += rxrx2;
+ 1455              		.loc 1 459 0
+ 1456 0156 24B2     		sxth	r4, r4
+ 460:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****     }
+ 1457              		.loc 1 460 0
+ 1458 0158 36B2     		sxth	r6, r6
+ 457:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       stopy -= rxrx2;
+ 1459              		.loc 1 457 0
+ 1460 015a 5FFA88F8 		uxtb	r8, r8
+ 1461              	.LVL166:
+ 458:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****       err += ychg;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 39
+
+
+ 1462              		.loc 1 458 0
+ 1463 015e 3FB2     		sxth	r7, r7
+ 1464              	.LVL167:
+ 1465              	.L123:
+ 448:/Users/imashio/Electronics/ARM/_Library/u8g2_circle.c ****   {
+ 1466              		.loc 1 448 0
+ 1467 0160 AF42     		cmp	r7, r5
+ 1468 0162 D7DA     		bge	.L124
+ 1469              	.LBE17:
+ 1470              	.LBE16:
+ 1471              		.loc 1 477 0
+ 1472 0164 0DB0     		add	sp, sp, #52
+ 1473              	.LCFI31:
+ 1474              		.cfi_def_cfa_offset 36
+ 1475              		@ sp needed
+ 1476 0166 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1477              		.cfi_endproc
+ 1478              	.LFE11:
+ 1480 016a 00BF     		.text
+ 1481              	.Letext0:
+ 1482              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 1483              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 1484              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 1485              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s 			page 40
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 u8g2_circle.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:18     .text.u8g2_draw_circle_section:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:24     .text.u8g2_draw_circle_section:0000000000000000 u8g2_draw_circle_section
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:147    .text.u8g2_draw_circle:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:153    .text.u8g2_draw_circle:0000000000000000 u8g2_draw_circle
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:269    .text.u8g2_draw_ellipse_section:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:275    .text.u8g2_draw_ellipse_section:0000000000000000 u8g2_draw_ellipse_section
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:365    .text.u8g2_draw_ellipse:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:371    .text.u8g2_draw_ellipse:0000000000000000 u8g2_draw_ellipse
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:628    .text.u8g2_draw_disc_section:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:634    .text.u8g2_draw_disc_section:0000000000000000 u8g2_draw_disc_section
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:769    .text.u8g2_draw_disc:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:775    .text.u8g2_draw_disc:0000000000000000 u8g2_draw_disc
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:891    .text.u8g2_draw_filled_ellipse_section:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:897    .text.u8g2_draw_filled_ellipse_section:0000000000000000 u8g2_draw_filled_ellipse_section
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:994    .text.u8g2_draw_filled_ellipse:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:1000   .text.u8g2_draw_filled_ellipse:0000000000000000 u8g2_draw_filled_ellipse
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:1257   .text.u8g2_DrawCircle:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:1264   .text.u8g2_DrawCircle:0000000000000000 u8g2_DrawCircle
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:1333   .text.u8g2_DrawDisc:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:1340   .text.u8g2_DrawDisc:0000000000000000 u8g2_DrawDisc
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:1409   .text.u8g2_DrawEllipse:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:1416   .text.u8g2_DrawEllipse:0000000000000000 u8g2_DrawEllipse
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:1488   .text.u8g2_DrawFilledEllipse:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccFzdq3m.s:1495   .text.u8g2_DrawFilledEllipse:0000000000000000 u8g2_DrawFilledEllipse
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:18     .text.u8g2_draw_circle_section:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:25     .text.u8g2_draw_circle_section:0000000000000000 u8g2_draw_circle_section
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:167    .text.u8g2_draw_ellipse_section:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:174    .text.u8g2_draw_ellipse_section:0000000000000000 u8g2_draw_ellipse_section
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:283    .text.u8g2_draw_disc_section:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:290    .text.u8g2_draw_disc_section:0000000000000000 u8g2_draw_disc_section
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:443    .text.u8g2_draw_filled_ellipse_section:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:450    .text.u8g2_draw_filled_ellipse_section:0000000000000000 u8g2_draw_filled_ellipse_section
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:565    .text.u8g2_DrawCircle:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:573    .text.u8g2_DrawCircle:0000000000000000 u8g2_DrawCircle
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:728    .text.u8g2_DrawDisc:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:736    .text.u8g2_DrawDisc:0000000000000000 u8g2_DrawDisc
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:891    .text.u8g2_DrawEllipse:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:899    .text.u8g2_DrawEllipse:0000000000000000 u8g2_DrawEllipse
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:1186   .text.u8g2_DrawFilledEllipse:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc3wr5xy.s:1194   .text.u8g2_DrawFilledEllipse:0000000000000000 u8g2_DrawFilledEllipse
 
 UNDEFINED SYMBOLS
 u8g2_DrawPixel

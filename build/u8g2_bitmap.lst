@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -10,7 +10,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 30, 2
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.file	"u8g2_bitmap.c"
@@ -19,14 +19,15 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 1
   16              		.cfi_sections	.debug_frame
   17              		.section	.text.u8g2_SetBitmapMode,"ax",%progbits
   18              		.align	1
-  19              		.global	u8g2_SetBitmapMode
-  20              		.syntax unified
-  21              		.thumb
-  22              		.thumb_func
-  23              		.fpu fpv4-sp-d16
-  25              	u8g2_SetBitmapMode:
-  26              	.LFB0:
-  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c"
+  19              		.p2align 2,,3
+  20              		.global	u8g2_SetBitmapMode
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	u8g2_SetBitmapMode:
+  27              	.LFB0:
+  28              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c"
    1:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** /*
    2:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
    3:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2_bitmap.c
@@ -57,10 +58,10 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 1
   28:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
   29:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
   30:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 2
+
+
   31:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 2
-
-
   32:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
   33:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
   34:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** */
@@ -69,29 +70,30 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 1
   37:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
   38:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
   39:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** void u8g2_SetBitmapMode(u8g2_t *u8g2, uint8_t is_transparent) {
-  28              		.loc 1 39 0
-  29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 0
-  31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32              		@ link register save eliminated.
-  33              	.LVL0:
+  29              		.loc 1 39 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              	.LVL0:
   40:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2->bitmap_transparency = is_transparent;
-  34              		.loc 1 40 0
-  35 0000 80F87C10 		strb	r1, [r0, #124]
+  35              		.loc 1 40 0
+  36 0000 80F87C10 		strb	r1, [r0, #124]
   41:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** }
-  36              		.loc 1 41 0
-  37 0004 7047     		bx	lr
-  38              		.cfi_endproc
-  39              	.LFE0:
-  41              		.section	.text.u8g2_DrawHorizontalBitmap,"ax",%progbits
-  42              		.align	1
-  43              		.global	u8g2_DrawHorizontalBitmap
-  44              		.syntax unified
-  45              		.thumb
-  46              		.thumb_func
-  47              		.fpu fpv4-sp-d16
-  49              	u8g2_DrawHorizontalBitmap:
-  50              	.LFB1:
+  37              		.loc 1 41 0
+  38 0004 7047     		bx	lr
+  39              		.cfi_endproc
+  40              	.LFE0:
+  42 0006 00BF     		.section	.text.u8g2_DrawHorizontalBitmap,"ax",%progbits
+  43              		.align	1
+  44              		.p2align 2,,3
+  45              		.global	u8g2_DrawHorizontalBitmap
+  46              		.syntax unified
+  47              		.thumb
+  48              		.thumb_func
+  49              		.fpu fpv4-sp-d16
+  51              	u8g2_DrawHorizontalBitmap:
+  52              	.LFB1:
   42:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
   43:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** /*
   44:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   x,y 	Position on the display
@@ -102,899 +104,715 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 1
   49:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
   50:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** void u8g2_DrawHorizontalBitmap(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, const u
   51:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** {
-  51              		.loc 1 51 0
-  52              		.cfi_startproc
-  53              		@ args = 4, pretend = 0, frame = 0
-  54              		@ frame_needed = 0, uses_anonymous_args = 0
-  55              	.LVL1:
-  56 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
-  57              	.LCFI0:
-  58              		.cfi_def_cfa_offset 36
-  59              		.cfi_offset 4, -36
-  60              		.cfi_offset 5, -32
-  61              		.cfi_offset 6, -28
-  62              		.cfi_offset 7, -24
-  63              		.cfi_offset 8, -20
-  64              		.cfi_offset 9, -16
-  65              		.cfi_offset 10, -12
-  66              		.cfi_offset 11, -8
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 3
+  53              		.loc 1 51 0
+  54              		.cfi_startproc
+  55              		@ args = 4, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57              	.LVL1:
+  58 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  59              	.LCFI0:
+  60              		.cfi_def_cfa_offset 36
+  61              		.cfi_offset 4, -36
+  62              		.cfi_offset 5, -32
+  63              		.cfi_offset 6, -28
+  64              		.cfi_offset 7, -24
+  65              		.cfi_offset 8, -20
+  66              		.cfi_offset 9, -16
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 3
 
 
-  67              		.cfi_offset 14, -4
-  68 0004 83B0     		sub	sp, sp, #12
-  69              	.LCFI1:
-  70              		.cfi_def_cfa_offset 48
-  71 0006 0746     		mov	r7, r0
-  72 0008 0D46     		mov	r5, r1
-  73 000a 9146     		mov	r9, r2
-  74 000c 1C46     		mov	r4, r3
-  75 000e DDF83080 		ldr	r8, [sp, #48]
+  67              		.cfi_offset 10, -12
+  68              		.cfi_offset 11, -8
+  69              		.cfi_offset 14, -4
   52:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
   53:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t color = u8g2->draw_color;
-  76              		.loc 1 53 0
-  77 0012 90F87DB0 		ldrb	fp, [r0, #125]	@ zero_extendqisi2
-  78              	.LVL2:
   54:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t ncolor = (color == 0 ? 1 : 0);
   55:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
   56:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #ifdef U8G2_WITH_INTERSECTION
   57:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   if ( u8g2_IsIntersection(u8g2, x, y, x+len, y+1) == 0 ) 
-  79              		.loc 1 57 0
-  80 0016 CB18     		adds	r3, r1, r3
-  81              	.LVL3:
-  82 0018 561C     		adds	r6, r2, #1
-  83 001a F6B2     		uxtb	r6, r6
-  84 001c 0096     		str	r6, [sp]
-  85 001e DBB2     		uxtb	r3, r3
-  86 0020 FFF7FEFF 		bl	u8g2_IsIntersection
-  87              	.LVL4:
-  88 0024 68B3     		cbz	r0, .L2
-  89 0026 BBFA8BFA 		clz	r10, fp
-  90              	.LVL5:
-  91 002a 4FEA5A1A 		lsr	r10, r10, #5
-  92              	.LVL6:
+  70              		.loc 1 57 0
+  71 0004 01EB0308 		add	r8, r1, r3
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
+  72              		.loc 1 51 0
+  73 0008 83B0     		sub	sp, sp, #12
+  74              	.LCFI1:
+  75              		.cfi_def_cfa_offset 48
+  76              		.loc 1 57 0
+  77 000a 551C     		adds	r5, r2, #1
+  78 000c 5FFA88F8 		uxtb	r8, r8
+  79 0010 EDB2     		uxtb	r5, r5
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
+  80              		.loc 1 51 0
+  81 0012 9B46     		mov	fp, r3
+  82              		.loc 1 57 0
+  83 0014 0095     		str	r5, [sp]
+  84 0016 4346     		mov	r3, r8
+  85              	.LVL2:
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
+  86              		.loc 1 51 0
+  87 0018 0C46     		mov	r4, r1
+  88 001a 9146     		mov	r9, r2
+  89 001c 0646     		mov	r6, r0
+  53:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t ncolor = (color == 0 ? 1 : 0);
+  90              		.loc 1 53 0
+  91 001e 90F87DA0 		ldrb	r10, [r0, #125]	@ zero_extendqisi2
+  92              	.LVL3:
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
+  93              		.loc 1 51 0
+  94 0022 0C9F     		ldr	r7, [sp, #48]
+  95              		.loc 1 57 0
+  96 0024 FFF7FEFF 		bl	u8g2_IsIntersection
+  97              	.LVL4:
+  98 0028 08B3     		cbz	r0, .L3
+  99              	.LVL5:
   58:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     return;
   59:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #endif /* U8G2_WITH_INTERSECTION */
   60:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   
   61:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   mask = 128;
-  93              		.loc 1 61 0
-  94 002e 8026     		movs	r6, #128
-  95 0030 12E0     		b	.L4
-  96              	.LVL7:
-  97              	.L11:
   62:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   while(len > 0)
+ 100              		.loc 1 62 0
+ 101 002a BBF1000F 		cmp	fp, #0
+ 102 002e 1CD0     		beq	.L5
+  61:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   while(len > 0)
+ 103              		.loc 1 61 0
+ 104 0030 8025     		movs	r5, #128
   63:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
   64:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     if ( *b & mask ) {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 4
+
+
   65:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = color;
-  98              		.loc 1 65 0
-  99 0032 87F87DB0 		strb	fp, [r7, #125]
   66:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
- 100              		.loc 1 66 0
- 101 0036 0023     		movs	r3, #0
- 102 0038 0093     		str	r3, [sp]
- 103 003a 0123     		movs	r3, #1
- 104 003c 4A46     		mov	r2, r9
- 105 003e 2946     		mov	r1, r5
- 106 0040 3846     		mov	r0, r7
- 107 0042 FFF7FEFF 		bl	u8g2_DrawHVLine
- 108              	.LVL8:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 4
-
-
- 109              	.L6:
+ 105              		.loc 1 66 0
+ 106 0032 4FF0000B 		mov	fp, #0
+ 107              	.LVL6:
+ 108 0036 0AE0     		b	.L9
+ 109              	.LVL7:
+ 110              	.L6:
   67:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     } else if ( u8g2->bitmap_transparency == 0 ) {
+ 111              		.loc 1 67 0
+ 112 0038 96F87C30 		ldrb	r3, [r6, #124]	@ zero_extendqisi2
+ 113 003c D3B1     		cbz	r3, .L19
+ 114              	.L7:
+ 115              	.LVL8:
   68:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = ncolor;
   69:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
   70:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
   71:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
   72:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     x++;
- 110              		.loc 1 72 0
- 111 0046 0135     		adds	r5, r5, #1
- 112              	.LVL9:
- 113 0048 EDB2     		uxtb	r5, r5
- 114              	.LVL10:
+ 116              		.loc 1 72 0
+ 117 003e 0134     		adds	r4, r4, #1
+ 118              	.LVL9:
   73:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     mask >>= 1;
   74:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     if ( mask == 0 )
- 115              		.loc 1 74 0
- 116 004a 7608     		lsrs	r6, r6, #1
- 117              	.LVL11:
- 118 004c 02D1     		bne	.L7
- 119              	.LVL12:
+ 119              		.loc 1 74 0
+ 120 0040 6D08     		lsrs	r5, r5, #1
+  72:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     mask >>= 1;
+ 121              		.loc 1 72 0
+ 122 0042 E4B2     		uxtb	r4, r4
+ 123              	.LVL10:
   75:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     {
   76:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       mask = 128;
   77:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       b++;
- 120              		.loc 1 77 0
- 121 004e 08F10108 		add	r8, r8, #1
- 122              	.LVL13:
+ 124              		.loc 1 77 0
+ 125 0044 04BF     		itt	eq
+ 126 0046 0137     		addeq	r7, r7, #1
+ 127              	.LVL11:
   76:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       b++;
- 123              		.loc 1 76 0
- 124 0052 8026     		movs	r6, #128
- 125              	.LVL14:
- 126              	.L7:
-  78:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
-  79:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     len--;
- 127              		.loc 1 79 0
- 128 0054 013C     		subs	r4, r4, #1
- 129              	.LVL15:
- 130 0056 E4B2     		uxtb	r4, r4
- 131              	.LVL16:
- 132              	.L4:
+ 128              		.loc 1 76 0
+ 129 0048 8025     		moveq	r5, #128
+ 130              	.LVL12:
   62:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
- 133              		.loc 1 62 0
- 134 0058 8CB1     		cbz	r4, .L10
+ 131              		.loc 1 62 0
+ 132 004a A045     		cmp	r8, r4
+ 133 004c 0DD0     		beq	.L5
+ 134              	.LVL13:
+ 135              	.L9:
   64:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = color;
- 135              		.loc 1 64 0
- 136 005a 98F80030 		ldrb	r3, [r8]	@ zero_extendqisi2
- 137 005e 1E42     		tst	r6, r3
- 138 0060 E7D1     		bne	.L11
-  67:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = ncolor;
- 139              		.loc 1 67 0
- 140 0062 97F87C30 		ldrb	r3, [r7, #124]	@ zero_extendqisi2
- 141 0066 002B     		cmp	r3, #0
- 142 0068 EDD1     		bne	.L6
-  68:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
- 143              		.loc 1 68 0
- 144 006a 87F87DA0 		strb	r10, [r7, #125]
+ 136              		.loc 1 64 0
+ 137 004e 3B78     		ldrb	r3, [r7]	@ zero_extendqisi2
+ 138 0050 1D42     		tst	r5, r3
+ 139 0052 F1D0     		beq	.L6
+  65:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
+ 140              		.loc 1 65 0
+ 141 0054 86F87DA0 		strb	r10, [r6, #125]
+  66:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     } else if ( u8g2->bitmap_transparency == 0 ) {
+ 142              		.loc 1 66 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 5
+
+
+ 143 0058 CDF800B0 		str	fp, [sp]
+ 144              	.L18:
   69:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
  145              		.loc 1 69 0
- 146 006e 0093     		str	r3, [sp]
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 5
-
-
- 147 0070 0123     		movs	r3, #1
- 148 0072 4A46     		mov	r2, r9
- 149 0074 2946     		mov	r1, r5
- 150 0076 3846     		mov	r0, r7
- 151 0078 FFF7FEFF 		bl	u8g2_DrawHVLine
- 152              	.LVL17:
- 153 007c E3E7     		b	.L6
- 154              	.L10:
+ 146 005c 0123     		movs	r3, #1
+ 147 005e 4A46     		mov	r2, r9
+ 148 0060 2146     		mov	r1, r4
+ 149 0062 3046     		mov	r0, r6
+ 150 0064 FFF7FEFF 		bl	u8g2_DrawHVLine
+ 151              	.LVL14:
+ 152 0068 E9E7     		b	.L7
+ 153              	.LVL15:
+ 154              	.L5:
+  78:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
+  79:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     len--;
   80:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   }
   81:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2->draw_color = color;
  155              		.loc 1 81 0
- 156 007e 87F87DB0 		strb	fp, [r7, #125]
- 157              	.LVL18:
- 158              	.L2:
+ 156 006a 86F87DA0 		strb	r10, [r6, #125]
+ 157              	.LVL16:
+ 158              	.L3:
   82:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** }
  159              		.loc 1 82 0
- 160 0082 03B0     		add	sp, sp, #12
+ 160 006e 03B0     		add	sp, sp, #12
  161              	.LCFI2:
- 162              		.cfi_def_cfa_offset 36
- 163              		@ sp needed
- 164 0084 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
- 165              		.cfi_endproc
- 166              	.LFE1:
- 168              		.section	.text.u8g2_DrawBitmap,"ax",%progbits
- 169              		.align	1
- 170              		.global	u8g2_DrawBitmap
- 171              		.syntax unified
- 172              		.thumb
- 173              		.thumb_func
- 174              		.fpu fpv4-sp-d16
- 176              	u8g2_DrawBitmap:
- 177              	.LFB2:
+ 162              		.cfi_remember_state
+ 163              		.cfi_def_cfa_offset 36
+ 164              		@ sp needed
+ 165 0070 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 166              	.LVL17:
+ 167              	.L19:
+ 168              	.LCFI3:
+ 169              		.cfi_restore_state
+  54:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
+ 170              		.loc 1 54 0
+ 171 0074 BAFA8AF2 		clz	r2, r10
+ 172 0078 5209     		lsrs	r2, r2, #5
+  69:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
+ 173              		.loc 1 69 0
+ 174 007a 0093     		str	r3, [sp]
+  54:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
+ 175              		.loc 1 54 0
+ 176 007c 86F87D20 		strb	r2, [r6, #125]
+ 177 0080 ECE7     		b	.L18
+ 178              		.cfi_endproc
+ 179              	.LFE1:
+ 181 0082 00BF     		.section	.text.u8g2_DrawBitmap,"ax",%progbits
+ 182              		.align	1
+ 183              		.p2align 2,,3
+ 184              		.global	u8g2_DrawBitmap
+ 185              		.syntax unified
+ 186              		.thumb
+ 187              		.thumb_func
+ 188              		.fpu fpv4-sp-d16
+ 190              	u8g2_DrawBitmap:
+ 191              	.LFB2:
   83:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 6
+
+
   84:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
   85:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** /* u8glib compatible bitmap draw function */
   86:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** void u8g2_DrawBitmap(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t cnt, u8g2_uint_t h, co
   87:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** {
- 178              		.loc 1 87 0
- 179              		.cfi_startproc
- 180              		@ args = 8, pretend = 0, frame = 0
- 181              		@ frame_needed = 0, uses_anonymous_args = 0
- 182              	.LVL19:
- 183 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
- 184              	.LCFI3:
- 185              		.cfi_def_cfa_offset 32
- 186              		.cfi_offset 4, -32
- 187              		.cfi_offset 5, -28
- 188              		.cfi_offset 6, -24
- 189              		.cfi_offset 7, -20
- 190              		.cfi_offset 8, -16
- 191              		.cfi_offset 9, -12
- 192              		.cfi_offset 10, -8
- 193              		.cfi_offset 14, -4
- 194 0004 82B0     		sub	sp, sp, #8
- 195              	.LCFI4:
- 196              		.cfi_def_cfa_offset 40
- 197 0006 8246     		mov	r10, r0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 6
-
-
- 198 0008 8846     		mov	r8, r1
- 199 000a 1546     		mov	r5, r2
- 200 000c 9946     		mov	r9, r3
- 201 000e 9DF82840 		ldrb	r4, [sp, #40]	@ zero_extendqisi2
- 202 0012 0B9E     		ldr	r6, [sp, #44]
- 203              	.LVL20:
+ 192              		.loc 1 87 0
+ 193              		.cfi_startproc
+ 194              		@ args = 8, pretend = 0, frame = 0
+ 195              		@ frame_needed = 0, uses_anonymous_args = 0
+ 196              	.LVL18:
+ 197 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 198              	.LCFI4:
+ 199              		.cfi_def_cfa_offset 36
+ 200              		.cfi_offset 4, -36
+ 201              		.cfi_offset 5, -32
+ 202              		.cfi_offset 6, -28
+ 203              		.cfi_offset 7, -24
+ 204              		.cfi_offset 8, -20
+ 205              		.cfi_offset 9, -16
+ 206              		.cfi_offset 10, -12
+ 207              		.cfi_offset 11, -8
+ 208              		.cfi_offset 14, -4
+ 209 0004 83B0     		sub	sp, sp, #12
+ 210              	.LCFI5:
+ 211              		.cfi_def_cfa_offset 48
   88:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2_uint_t w;
   89:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   w = cnt;
   90:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   w *= 8;
- 204              		.loc 1 90 0
- 205 0014 DF00     		lsls	r7, r3, #3
- 206 0016 FFB2     		uxtb	r7, r7
- 207              	.LVL21:
+ 212              		.loc 1 90 0
+ 213 0006 DF00     		lsls	r7, r3, #3
+  87:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2_uint_t w;
+ 214              		.loc 1 87 0
+ 215 0008 9DF830B0 		ldrb	fp, [sp, #48]	@ zero_extendqisi2
+ 216 000c 0D9D     		ldr	r5, [sp, #52]
+ 217              		.loc 1 90 0
+ 218 000e FFB2     		uxtb	r7, r7
   91:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #ifdef U8G2_WITH_INTERSECTION
   92:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   if ( u8g2_IsIntersection(u8g2, x, y, x+w, y+h) == 0 ) 
- 208              		.loc 1 92 0
- 209 0018 07EB010C 		add	ip, r7, r1
- 210 001c 1319     		adds	r3, r2, r4
- 211              	.LVL22:
- 212 001e DBB2     		uxtb	r3, r3
- 213 0020 0093     		str	r3, [sp]
- 214 0022 5FFA8CF3 		uxtb	r3, ip
- 215 0026 FFF7FEFF 		bl	u8g2_IsIntersection
- 216              	.LVL23:
- 217 002a 60B9     		cbnz	r0, .L14
- 218 002c 0DE0     		b	.L12
- 219              	.LVL24:
- 220              	.L15:
+ 219              		.loc 1 92 0
+ 220 0010 02EB0B06 		add	r6, r2, fp
+  87:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2_uint_t w;
+ 221              		.loc 1 87 0
+ 222 0014 9946     		mov	r9, r3
+ 223              	.LVL19:
+ 224              		.loc 1 92 0
+ 225 0016 F6B2     		uxtb	r6, r6
+ 226 0018 7B18     		adds	r3, r7, r1
+ 227              	.LVL20:
+ 228 001a DBB2     		uxtb	r3, r3
+ 229 001c 0096     		str	r6, [sp]
+  87:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2_uint_t w;
+ 230              		.loc 1 87 0
+ 231 001e 1446     		mov	r4, r2
+ 232 0020 8846     		mov	r8, r1
+ 233 0022 8246     		mov	r10, r0
+ 234              		.loc 1 92 0
+ 235 0024 FFF7FEFF 		bl	u8g2_IsIntersection
+ 236              	.LVL21:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 7
+
+
+ 237 0028 70B1     		cbz	r0, .L20
+ 238              	.LVL22:
   93:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     return;
   94:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #endif /* U8G2_WITH_INTERSECTION */
   95:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   
   96:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   while( h > 0 )
+ 239              		.loc 1 96 0
+ 240 002a BBF1000F 		cmp	fp, #0
+ 241 002e 0BD0     		beq	.L20
+ 242              	.LVL23:
+ 243              	.L22:
   97:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
   98:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     u8g2_DrawHorizontalBitmap(u8g2, x, y, w, bitmap);
- 221              		.loc 1 98 0
- 222 002e 0096     		str	r6, [sp]
- 223 0030 3B46     		mov	r3, r7
- 224 0032 2A46     		mov	r2, r5
- 225 0034 4146     		mov	r1, r8
- 226 0036 5046     		mov	r0, r10
- 227 0038 FFF7FEFF 		bl	u8g2_DrawHorizontalBitmap
- 228              	.LVL25:
+ 244              		.loc 1 98 0
+ 245 0030 2246     		mov	r2, r4
   99:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     bitmap += cnt;
- 229              		.loc 1 99 0
- 230 003c 4E44     		add	r6, r6, r9
- 231              	.LVL26:
  100:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     y++;
- 232              		.loc 1 100 0
- 233 003e 0135     		adds	r5, r5, #1
- 234              	.LVL27:
- 235 0040 EDB2     		uxtb	r5, r5
- 236              	.LVL28:
- 101:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     h--;
- 237              		.loc 1 101 0
- 238 0042 013C     		subs	r4, r4, #1
- 239              	.LVL29:
- 240 0044 E4B2     		uxtb	r4, r4
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 7
-
-
- 241              	.LVL30:
- 242              	.L14:
+ 246              		.loc 1 100 0
+ 247 0032 0134     		adds	r4, r4, #1
+ 248              	.LVL24:
+  98:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     bitmap += cnt;
+ 249              		.loc 1 98 0
+ 250 0034 0095     		str	r5, [sp]
+ 251 0036 3B46     		mov	r3, r7
+ 252 0038 4146     		mov	r1, r8
+ 253 003a 5046     		mov	r0, r10
+ 254              		.loc 1 100 0
+ 255 003c E4B2     		uxtb	r4, r4
+  98:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     bitmap += cnt;
+ 256              		.loc 1 98 0
+ 257 003e FFF7FEFF 		bl	u8g2_DrawHorizontalBitmap
+ 258              	.LVL25:
   96:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
- 243              		.loc 1 96 0
- 244 0046 002C     		cmp	r4, #0
- 245 0048 F1D1     		bne	.L15
- 246              	.LVL31:
- 247              	.L12:
+ 259              		.loc 1 96 0
+ 260 0042 A642     		cmp	r6, r4
+  99:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     bitmap += cnt;
+ 261              		.loc 1 99 0
+ 262 0044 4D44     		add	r5, r5, r9
+ 263              	.LVL26:
+  96:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
+ 264              		.loc 1 96 0
+ 265 0046 F3D1     		bne	.L22
+ 266              	.LVL27:
+ 267              	.L20:
+ 101:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     h--;
  102:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   }
  103:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** }
- 248              		.loc 1 103 0
- 249 004a 02B0     		add	sp, sp, #8
- 250              	.LCFI5:
- 251              		.cfi_def_cfa_offset 32
- 252              		@ sp needed
- 253 004c BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
- 254              		.cfi_endproc
- 255              	.LFE2:
- 257              		.section	.text.u8g2_DrawHXBM,"ax",%progbits
- 258              		.align	1
- 259              		.global	u8g2_DrawHXBM
- 260              		.syntax unified
- 261              		.thumb
- 262              		.thumb_func
- 263              		.fpu fpv4-sp-d16
- 265              	u8g2_DrawHXBM:
- 266              	.LFB3:
+ 268              		.loc 1 103 0
+ 269 0048 03B0     		add	sp, sp, #12
+ 270              	.LCFI6:
+ 271              		.cfi_def_cfa_offset 36
+ 272              		@ sp needed
+ 273 004a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 274              		.cfi_endproc
+ 275              	.LFE2:
+ 277 004e 00BF     		.section	.text.u8g2_DrawHXBM,"ax",%progbits
+ 278              		.align	1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 8
+
+
+ 279              		.p2align 2,,3
+ 280              		.global	u8g2_DrawHXBM
+ 281              		.syntax unified
+ 282              		.thumb
+ 283              		.thumb_func
+ 284              		.fpu fpv4-sp-d16
+ 286              	u8g2_DrawHXBM:
+ 287              	.LFB3:
  104:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
  105:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
  106:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
  107:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** void u8g2_DrawHXBM(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, const uint8_t *b)
  108:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** {
- 267              		.loc 1 108 0
- 268              		.cfi_startproc
- 269              		@ args = 4, pretend = 0, frame = 0
- 270              		@ frame_needed = 0, uses_anonymous_args = 0
- 271              	.LVL32:
- 272 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
- 273              	.LCFI6:
- 274              		.cfi_def_cfa_offset 36
- 275              		.cfi_offset 4, -36
- 276              		.cfi_offset 5, -32
- 277              		.cfi_offset 6, -28
- 278              		.cfi_offset 7, -24
- 279              		.cfi_offset 8, -20
- 280              		.cfi_offset 9, -16
- 281              		.cfi_offset 10, -12
- 282              		.cfi_offset 11, -8
- 283              		.cfi_offset 14, -4
- 284 0004 83B0     		sub	sp, sp, #12
- 285              	.LCFI7:
- 286              		.cfi_def_cfa_offset 48
- 287 0006 0746     		mov	r7, r0
- 288 0008 0E46     		mov	r6, r1
- 289 000a 9146     		mov	r9, r2
- 290 000c 1D46     		mov	r5, r3
- 291 000e DDF83080 		ldr	r8, [sp, #48]
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 8
-
-
+ 288              		.loc 1 108 0
+ 289              		.cfi_startproc
+ 290              		@ args = 4, pretend = 0, frame = 0
+ 291              		@ frame_needed = 0, uses_anonymous_args = 0
+ 292              	.LVL28:
+ 293 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 294              	.LCFI7:
+ 295              		.cfi_def_cfa_offset 36
+ 296              		.cfi_offset 4, -36
+ 297              		.cfi_offset 5, -32
+ 298              		.cfi_offset 6, -28
+ 299              		.cfi_offset 7, -24
+ 300              		.cfi_offset 8, -20
+ 301              		.cfi_offset 9, -16
+ 302              		.cfi_offset 10, -12
+ 303              		.cfi_offset 11, -8
+ 304              		.cfi_offset 14, -4
  109:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
  110:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t color = u8g2->draw_color;
- 292              		.loc 1 110 0
- 293 0012 90F87DB0 		ldrb	fp, [r0, #125]	@ zero_extendqisi2
- 294              	.LVL33:
  111:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t ncolor = (color == 0 ? 1 : 0);
  112:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #ifdef U8G2_WITH_INTERSECTION
  113:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   if ( u8g2_IsIntersection(u8g2, x, y, x+len, y+1) == 0 ) 
- 295              		.loc 1 113 0
- 296 0016 CB18     		adds	r3, r1, r3
- 297              	.LVL34:
- 298 0018 541C     		adds	r4, r2, #1
- 299 001a E4B2     		uxtb	r4, r4
- 300 001c 0094     		str	r4, [sp]
- 301 001e DBB2     		uxtb	r3, r3
- 302 0020 FFF7FEFF 		bl	u8g2_IsIntersection
- 303              	.LVL35:
- 304 0024 78B3     		cbz	r0, .L17
- 305 0026 BBFA8BFA 		clz	r10, fp
- 306              	.LVL36:
- 307 002a 4FEA5A1A 		lsr	r10, r10, #5
- 308              	.LVL37:
+ 305              		.loc 1 113 0
+ 306 0004 01EB0308 		add	r8, r1, r3
+ 108:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
+ 307              		.loc 1 108 0
+ 308 0008 83B0     		sub	sp, sp, #12
+ 309              	.LCFI8:
+ 310              		.cfi_def_cfa_offset 48
+ 311              		.loc 1 113 0
+ 312 000a 541C     		adds	r4, r2, #1
+ 313 000c 5FFA88F8 		uxtb	r8, r8
+ 314 0010 E4B2     		uxtb	r4, r4
+ 108:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
+ 315              		.loc 1 108 0
+ 316 0012 9B46     		mov	fp, r3
+ 317              		.loc 1 113 0
+ 318 0014 0094     		str	r4, [sp]
+ 319 0016 4346     		mov	r3, r8
+ 320              	.LVL29:
+ 108:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
+ 321              		.loc 1 108 0
+ 322 0018 0D46     		mov	r5, r1
+ 323 001a 9146     		mov	r9, r2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 9
+
+
+ 324 001c 0646     		mov	r6, r0
+ 110:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t ncolor = (color == 0 ? 1 : 0);
+ 325              		.loc 1 110 0
+ 326 001e 90F87DA0 		ldrb	r10, [r0, #125]	@ zero_extendqisi2
+ 327              	.LVL30:
+ 108:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
+ 328              		.loc 1 108 0
+ 329 0022 0C9F     		ldr	r7, [sp, #48]
+ 330              		.loc 1 113 0
+ 331 0024 FFF7FEFF 		bl	u8g2_IsIntersection
+ 332              	.LVL31:
+ 333 0028 18B3     		cbz	r0, .L31
+ 334              	.LVL32:
  114:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     return;
  115:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #endif /* U8G2_WITH_INTERSECTION */
  116:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   
  117:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   mask = 1;
- 309              		.loc 1 117 0
- 310 002e 0124     		movs	r4, #1
- 311 0030 14E0     		b	.L19
- 312              	.LVL38:
- 313              	.L26:
  118:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   while(len > 0) {
+ 335              		.loc 1 118 0
+ 336 002a BBF1000F 		cmp	fp, #0
+ 337 002e 1ED0     		beq	.L33
+ 117:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   while(len > 0) {
+ 338              		.loc 1 117 0
+ 339 0030 0124     		movs	r4, #1
  119:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     if ( *b & mask ) {
  120:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = color;
- 314              		.loc 1 120 0
- 315 0032 87F87DB0 		strb	fp, [r7, #125]
  121:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
- 316              		.loc 1 121 0
- 317 0036 0023     		movs	r3, #0
- 318 0038 0093     		str	r3, [sp]
- 319 003a 0123     		movs	r3, #1
- 320 003c 4A46     		mov	r2, r9
- 321 003e 3146     		mov	r1, r6
- 322 0040 3846     		mov	r0, r7
- 323 0042 FFF7FEFF 		bl	u8g2_DrawHVLine
- 324              	.LVL39:
- 325              	.L21:
+ 340              		.loc 1 121 0
+ 341 0032 4FF0000B 		mov	fp, #0
+ 342              	.LVL33:
+ 343 0036 0CE0     		b	.L37
+ 344              	.LVL34:
+ 345              	.L34:
  122:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     } else if ( u8g2->bitmap_transparency == 0 ) {
+ 346              		.loc 1 122 0
+ 347 0038 96F87C30 		ldrb	r3, [r6, #124]	@ zero_extendqisi2
+ 348 003c E3B1     		cbz	r3, .L47
+ 349              	.L35:
+ 350              	.LVL35:
  123:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = ncolor;
  124:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
  125:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
  126:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     x++;
- 326              		.loc 1 126 0
- 327 0046 0136     		adds	r6, r6, #1
- 328              	.LVL40:
- 329 0048 F6B2     		uxtb	r6, r6
- 330              	.LVL41:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 9
-
-
+ 351              		.loc 1 126 0
+ 352 003e 0135     		adds	r5, r5, #1
+ 353              	.LVL36:
  127:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     mask <<= 1;
- 331              		.loc 1 127 0
- 332 004a 6400     		lsls	r4, r4, #1
- 333              	.LVL42:
+ 354              		.loc 1 127 0
+ 355 0040 6400     		lsls	r4, r4, #1
  128:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     if ( mask == 0 )
- 334              		.loc 1 128 0
- 335 004c 14F0FF04 		ands	r4, r4, #255
- 336              	.LVL43:
- 337 0050 02D1     		bne	.L22
- 338              	.LVL44:
+ 356              		.loc 1 128 0
+ 357 0042 14F0FF04 		ands	r4, r4, #255
+ 126:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     mask <<= 1;
+ 358              		.loc 1 126 0
+ 359 0046 EDB2     		uxtb	r5, r5
+ 360              	.LVL37:
  129:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     {
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 10
+
+
  130:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       mask = 1;
  131:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       b++;
- 339              		.loc 1 131 0
- 340 0052 08F10108 		add	r8, r8, #1
- 341              	.LVL45:
+ 361              		.loc 1 131 0
+ 362 0048 04BF     		itt	eq
+ 363 004a 0137     		addeq	r7, r7, #1
+ 364              	.LVL38:
  130:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       b++;
- 342              		.loc 1 130 0
- 343 0056 0124     		movs	r4, #1
- 344              	.LVL46:
- 345              	.L22:
+ 365              		.loc 1 130 0
+ 366 004c 0124     		moveq	r4, #1
+ 367              	.LVL39:
+ 118:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     if ( *b & mask ) {
+ 368              		.loc 1 118 0
+ 369 004e A845     		cmp	r8, r5
+ 370 0050 0DD0     		beq	.L33
+ 371              	.LVL40:
+ 372              	.L37:
+ 119:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = color;
+ 373              		.loc 1 119 0
+ 374 0052 3B78     		ldrb	r3, [r7]	@ zero_extendqisi2
+ 375 0054 1C42     		tst	r4, r3
+ 376 0056 EFD0     		beq	.L34
+ 120:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
+ 377              		.loc 1 120 0
+ 378 0058 86F87DA0 		strb	r10, [r6, #125]
+ 121:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     } else if ( u8g2->bitmap_transparency == 0 ) {
+ 379              		.loc 1 121 0
+ 380 005c CDF800B0 		str	fp, [sp]
+ 381              	.L46:
+ 124:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
+ 382              		.loc 1 124 0
+ 383 0060 0123     		movs	r3, #1
+ 384 0062 4A46     		mov	r2, r9
+ 385 0064 2946     		mov	r1, r5
+ 386 0066 3046     		mov	r0, r6
+ 387 0068 FFF7FEFF 		bl	u8g2_DrawHVLine
+ 388              	.LVL41:
+ 389 006c E7E7     		b	.L35
+ 390              	.LVL42:
+ 391              	.L33:
  132:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
  133:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     len--;
- 346              		.loc 1 133 0
- 347 0058 013D     		subs	r5, r5, #1
- 348              	.LVL47:
- 349 005a EDB2     		uxtb	r5, r5
- 350              	.LVL48:
- 351              	.L19:
- 118:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     if ( *b & mask ) {
- 352              		.loc 1 118 0
- 353 005c 8DB1     		cbz	r5, .L25
- 119:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = color;
- 354              		.loc 1 119 0
- 355 005e 98F80030 		ldrb	r3, [r8]	@ zero_extendqisi2
- 356 0062 1C42     		tst	r4, r3
- 357 0064 E5D1     		bne	.L26
- 122:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = ncolor;
- 358              		.loc 1 122 0
- 359 0066 97F87C30 		ldrb	r3, [r7, #124]	@ zero_extendqisi2
- 360 006a 002B     		cmp	r3, #0
- 361 006c EBD1     		bne	.L21
- 123:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
- 362              		.loc 1 123 0
- 363 006e 87F87DA0 		strb	r10, [r7, #125]
- 124:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
- 364              		.loc 1 124 0
- 365 0072 0093     		str	r3, [sp]
- 366 0074 0123     		movs	r3, #1
- 367 0076 4A46     		mov	r2, r9
- 368 0078 3146     		mov	r1, r6
- 369 007a 3846     		mov	r0, r7
- 370 007c FFF7FEFF 		bl	u8g2_DrawHVLine
- 371              	.LVL49:
- 372 0080 E1E7     		b	.L21
- 373              	.L25:
  134:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   }
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 10
-
-
  135:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2->draw_color = color;
- 374              		.loc 1 135 0
- 375 0082 87F87DB0 		strb	fp, [r7, #125]
- 376              	.LVL50:
- 377              	.L17:
+ 392              		.loc 1 135 0
+ 393 006e 86F87DA0 		strb	r10, [r6, #125]
+ 394              	.LVL43:
+ 395              	.L31:
  136:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** }
- 378              		.loc 1 136 0
- 379 0086 03B0     		add	sp, sp, #12
- 380              	.LCFI8:
- 381              		.cfi_def_cfa_offset 36
- 382              		@ sp needed
- 383 0088 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
- 384              		.cfi_endproc
- 385              	.LFE3:
- 387              		.section	.text.u8g2_DrawXBM,"ax",%progbits
- 388              		.align	1
- 389              		.global	u8g2_DrawXBM
- 390              		.syntax unified
- 391              		.thumb
- 392              		.thumb_func
- 393              		.fpu fpv4-sp-d16
- 395              	u8g2_DrawXBM:
- 396              	.LFB4:
+ 396              		.loc 1 136 0
+ 397 0072 03B0     		add	sp, sp, #12
+ 398              	.LCFI9:
+ 399              		.cfi_remember_state
+ 400              		.cfi_def_cfa_offset 36
+ 401              		@ sp needed
+ 402 0074 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 403              	.LVL44:
+ 404              	.L47:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 11
+
+
+ 405              	.LCFI10:
+ 406              		.cfi_restore_state
+ 111:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #ifdef U8G2_WITH_INTERSECTION
+ 407              		.loc 1 111 0
+ 408 0078 BAFA8AF2 		clz	r2, r10
+ 409 007c 5209     		lsrs	r2, r2, #5
+ 124:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
+ 410              		.loc 1 124 0
+ 411 007e 0093     		str	r3, [sp]
+ 111:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #ifdef U8G2_WITH_INTERSECTION
+ 412              		.loc 1 111 0
+ 413 0080 86F87D20 		strb	r2, [r6, #125]
+ 414 0084 ECE7     		b	.L46
+ 415              		.cfi_endproc
+ 416              	.LFE3:
+ 418 0086 00BF     		.section	.text.u8g2_DrawXBM,"ax",%progbits
+ 419              		.align	1
+ 420              		.p2align 2,,3
+ 421              		.global	u8g2_DrawXBM
+ 422              		.syntax unified
+ 423              		.thumb
+ 424              		.thumb_func
+ 425              		.fpu fpv4-sp-d16
+ 427              	u8g2_DrawXBM:
+ 428              	.LFB4:
  137:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
  138:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
  139:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** void u8g2_DrawXBM(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t w, u8g2_uint_t h, const u
  140:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** {
- 397              		.loc 1 140 0
- 398              		.cfi_startproc
- 399              		@ args = 8, pretend = 0, frame = 0
- 400              		@ frame_needed = 0, uses_anonymous_args = 0
- 401              	.LVL51:
- 402 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
- 403              	.LCFI9:
- 404              		.cfi_def_cfa_offset 32
- 405              		.cfi_offset 4, -32
- 406              		.cfi_offset 5, -28
- 407              		.cfi_offset 6, -24
- 408              		.cfi_offset 7, -20
- 409              		.cfi_offset 8, -16
- 410              		.cfi_offset 9, -12
- 411              		.cfi_offset 10, -8
- 412              		.cfi_offset 14, -4
- 413 0004 82B0     		sub	sp, sp, #8
- 414              	.LCFI10:
- 415              		.cfi_def_cfa_offset 40
- 416 0006 8246     		mov	r10, r0
- 417 0008 8946     		mov	r9, r1
- 418 000a 1546     		mov	r5, r2
- 419 000c 1F46     		mov	r7, r3
- 420 000e 9DF82840 		ldrb	r4, [sp, #40]	@ zero_extendqisi2
- 421 0012 0B9E     		ldr	r6, [sp, #44]
- 422              	.LVL52:
+ 429              		.loc 1 140 0
+ 430              		.cfi_startproc
+ 431              		@ args = 8, pretend = 0, frame = 0
+ 432              		@ frame_needed = 0, uses_anonymous_args = 0
+ 433              	.LVL45:
+ 434 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 435              	.LCFI11:
+ 436              		.cfi_def_cfa_offset 32
+ 437              		.cfi_offset 4, -32
+ 438              		.cfi_offset 5, -28
+ 439              		.cfi_offset 6, -24
+ 440              		.cfi_offset 7, -20
+ 441              		.cfi_offset 8, -16
+ 442              		.cfi_offset 9, -12
+ 443              		.cfi_offset 10, -8
+ 444              		.cfi_offset 14, -4
+ 445 0004 82B0     		sub	sp, sp, #8
+ 446              	.LCFI12:
+ 447              		.cfi_def_cfa_offset 40
+ 448              		.loc 1 140 0
+ 449 0006 1F46     		mov	r7, r3
+ 450              	.LVL46:
+ 451 0008 9DF82890 		ldrb	r9, [sp, #40]	@ zero_extendqisi2
+ 452 000c 0B9D     		ldr	r5, [sp, #44]
  141:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2_uint_t blen;
  142:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   blen = w;
  143:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   blen += 7;
- 423              		.loc 1 143 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 11
-
-
- 424 0014 03F10708 		add	r8, r3, #7
- 425              	.LVL53:
  144:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   blen >>= 3;
- 426              		.loc 1 144 0
- 427 0018 C8F3C408 		ubfx	r8, r8, #3, #5
- 428              	.LVL54:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 12
+
+
  145:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #ifdef U8G2_WITH_INTERSECTION
  146:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   if ( u8g2_IsIntersection(u8g2, x, y, x+w, y+h) == 0 ) 
- 429              		.loc 1 146 0
- 430 001c 03EB010C 		add	ip, r3, r1
- 431 0020 1319     		adds	r3, r2, r4
- 432              	.LVL55:
- 433 0022 DBB2     		uxtb	r3, r3
- 434 0024 0093     		str	r3, [sp]
- 435 0026 5FFA8CF3 		uxtb	r3, ip
- 436 002a FFF7FEFF 		bl	u8g2_IsIntersection
- 437              	.LVL56:
- 438 002e 60B9     		cbnz	r0, .L29
- 439 0030 0DE0     		b	.L27
- 440              	.LVL57:
- 441              	.L30:
+ 453              		.loc 1 146 0
+ 454 000e 02EB0906 		add	r6, r2, r9
+ 455 0012 F6B2     		uxtb	r6, r6
+ 456 0014 0B44     		add	r3, r3, r1
+ 457              	.LVL47:
+ 458 0016 0096     		str	r6, [sp]
+ 459 0018 DBB2     		uxtb	r3, r3
+ 140:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2_uint_t blen;
+ 460              		.loc 1 140 0
+ 461 001a 1446     		mov	r4, r2
+ 462 001c 8846     		mov	r8, r1
+ 463 001e 8246     		mov	r10, r0
+ 464              		.loc 1 146 0
+ 465 0020 FFF7FEFF 		bl	u8g2_IsIntersection
+ 466              	.LVL48:
+ 467 0024 90B1     		cbz	r0, .L48
+ 468              	.LVL49:
  147:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     return;
  148:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #endif /* U8G2_WITH_INTERSECTION */
  149:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   
  150:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   while( h > 0 )
+ 469              		.loc 1 150 0
+ 470 0026 B9F1000F 		cmp	r9, #0
+ 471 002a 0FD0     		beq	.L48
+ 143:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   blen >>= 3;
+ 472              		.loc 1 143 0
+ 473 002c 07F10709 		add	r9, r7, #7
+ 474              	.LVL50:
+ 475 0030 C9F3C409 		ubfx	r9, r9, #3, #5
+ 476              	.LVL51:
+ 477              	.L50:
  151:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
  152:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     u8g2_DrawHXBM(u8g2, x, y, w, bitmap);
- 442              		.loc 1 152 0
- 443 0032 0096     		str	r6, [sp]
- 444 0034 3B46     		mov	r3, r7
- 445 0036 2A46     		mov	r2, r5
- 446 0038 4946     		mov	r1, r9
- 447 003a 5046     		mov	r0, r10
- 448 003c FFF7FEFF 		bl	u8g2_DrawHXBM
- 449              	.LVL58:
+ 478              		.loc 1 152 0
+ 479 0034 2246     		mov	r2, r4
  153:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     bitmap += blen;
- 450              		.loc 1 153 0
- 451 0040 4644     		add	r6, r6, r8
- 452              	.LVL59:
  154:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     y++;
- 453              		.loc 1 154 0
- 454 0042 0135     		adds	r5, r5, #1
- 455              	.LVL60:
- 456 0044 EDB2     		uxtb	r5, r5
- 457              	.LVL61:
- 155:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     h--;
- 458              		.loc 1 155 0
- 459 0046 013C     		subs	r4, r4, #1
- 460              	.LVL62:
- 461 0048 E4B2     		uxtb	r4, r4
- 462              	.LVL63:
- 463              	.L29:
+ 480              		.loc 1 154 0
+ 481 0036 0134     		adds	r4, r4, #1
+ 482              	.LVL52:
+ 152:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     bitmap += blen;
+ 483              		.loc 1 152 0
+ 484 0038 0095     		str	r5, [sp]
+ 485 003a 3B46     		mov	r3, r7
+ 486 003c 4146     		mov	r1, r8
+ 487 003e 5046     		mov	r0, r10
+ 488              		.loc 1 154 0
+ 489 0040 E4B2     		uxtb	r4, r4
+ 152:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     bitmap += blen;
+ 490              		.loc 1 152 0
+ 491 0042 FFF7FEFF 		bl	u8g2_DrawHXBM
+ 492              	.LVL53:
  150:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
- 464              		.loc 1 150 0
- 465 004a 002C     		cmp	r4, #0
- 466 004c F1D1     		bne	.L30
- 467              	.LVL64:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 12
+ 493              		.loc 1 150 0
+ 494 0046 A642     		cmp	r6, r4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 13
 
 
- 468              	.L27:
+ 153:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     bitmap += blen;
+ 495              		.loc 1 153 0
+ 496 0048 4D44     		add	r5, r5, r9
+ 497              	.LVL54:
+ 150:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
+ 498              		.loc 1 150 0
+ 499 004a F3D1     		bne	.L50
+ 500              	.LVL55:
+ 501              	.L48:
+ 155:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     h--;
  156:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   }
  157:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** }
- 469              		.loc 1 157 0
- 470 004e 02B0     		add	sp, sp, #8
- 471              	.LCFI11:
- 472              		.cfi_def_cfa_offset 32
- 473              		@ sp needed
- 474 0050 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
- 475              		.cfi_endproc
- 476              	.LFE4:
- 478              		.section	.text.u8g2_DrawHXBMP,"ax",%progbits
- 479              		.align	1
- 480              		.global	u8g2_DrawHXBMP
- 481              		.syntax unified
- 482              		.thumb
- 483              		.thumb_func
- 484              		.fpu fpv4-sp-d16
- 486              	u8g2_DrawHXBMP:
- 487              	.LFB5:
- 158:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
- 159:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
- 160:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
- 161:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
- 162:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
- 163:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
- 164:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** void u8g2_DrawHXBMP(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, const uint8_t *b)
- 165:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** {
- 488              		.loc 1 165 0
- 489              		.cfi_startproc
- 490              		@ args = 4, pretend = 0, frame = 0
- 491              		@ frame_needed = 0, uses_anonymous_args = 0
- 492              	.LVL65:
- 493 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
- 494              	.LCFI12:
- 495              		.cfi_def_cfa_offset 36
- 496              		.cfi_offset 4, -36
- 497              		.cfi_offset 5, -32
- 498              		.cfi_offset 6, -28
- 499              		.cfi_offset 7, -24
- 500              		.cfi_offset 8, -20
- 501              		.cfi_offset 9, -16
- 502              		.cfi_offset 10, -12
- 503              		.cfi_offset 11, -8
- 504              		.cfi_offset 14, -4
- 505 0004 83B0     		sub	sp, sp, #12
- 506              	.LCFI13:
- 507              		.cfi_def_cfa_offset 48
- 508 0006 0746     		mov	r7, r0
- 509 0008 0E46     		mov	r6, r1
- 510 000a 9146     		mov	r9, r2
- 511 000c 1D46     		mov	r5, r3
- 512 000e DDF83080 		ldr	r8, [sp, #48]
- 166:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t mask;
- 167:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t color = u8g2->draw_color;
- 513              		.loc 1 167 0
- 514 0012 90F87DB0 		ldrb	fp, [r0, #125]	@ zero_extendqisi2
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 13
+ 502              		.loc 1 157 0
+ 503 004c 02B0     		add	sp, sp, #8
+ 504              	.LCFI13:
+ 505              		.cfi_def_cfa_offset 32
+ 506              		@ sp needed
+ 507 004e BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 508              		.cfi_endproc
+ 509              	.LFE4:
+ 511 0052 00BF     		.section	.text.u8g2_DrawHXBMP,"ax",%progbits
+ 512              		.align	1
+ 513              		.p2align 2,,3
+ 514              		.global	u8g2_DrawHXBMP
+ 515              		.syntax unified
+ 516              		.thumb
+ 517              		.thumb_func
+ 518              		.fpu fpv4-sp-d16
+ 520              	u8g2_DrawHXBMP:
+ 521              	.LFB10:
+ 522              		.cfi_startproc
+ 523              		@ args = 4, pretend = 0, frame = 0
+ 524              		@ frame_needed = 0, uses_anonymous_args = 0
+ 525              		@ link register save eliminated.
+ 526 0000 FFF7FEBF 		b	u8g2_DrawHXBM
+ 527              		.cfi_endproc
+ 528              	.LFE10:
+ 530              		.section	.text.u8g2_DrawXBMP,"ax",%progbits
+ 531              		.align	1
+ 532              		.p2align 2,,3
+ 533              		.global	u8g2_DrawXBMP
+ 534              		.syntax unified
+ 535              		.thumb
+ 536              		.thumb_func
+ 537              		.fpu fpv4-sp-d16
+ 539              	u8g2_DrawXBMP:
+ 540              	.LFB8:
+ 541              		.cfi_startproc
+ 542              		@ args = 8, pretend = 0, frame = 0
+ 543              		@ frame_needed = 0, uses_anonymous_args = 0
+ 544              		@ link register save eliminated.
+ 545 0000 10B4     		push	{r4}
+ 546              	.LCFI14:
+ 547              		.cfi_def_cfa_offset 4
+ 548              		.cfi_offset 4, -4
+ 549 0002 9DF80440 		ldrb	r4, [sp, #4]	@ zero_extendqisi2
+ 550 0006 0194     		str	r4, [sp, #4]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 14
 
 
- 515              	.LVL66:
- 168:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   uint8_t ncolor = (color == 0 ? 1 : 0);
- 169:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #ifdef U8G2_WITH_INTERSECTION
- 170:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   if ( u8g2_IsIntersection(u8g2, x, y, x+len, y+1) == 0 ) 
- 516              		.loc 1 170 0
- 517 0016 CB18     		adds	r3, r1, r3
- 518              	.LVL67:
- 519 0018 541C     		adds	r4, r2, #1
- 520 001a E4B2     		uxtb	r4, r4
- 521 001c 0094     		str	r4, [sp]
- 522 001e DBB2     		uxtb	r3, r3
- 523 0020 FFF7FEFF 		bl	u8g2_IsIntersection
- 524              	.LVL68:
- 525 0024 78B3     		cbz	r0, .L32
- 526 0026 BBFA8BFA 		clz	r10, fp
- 527              	.LVL69:
- 528 002a 4FEA5A1A 		lsr	r10, r10, #5
- 529              	.LVL70:
- 171:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     return;
- 172:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #endif /* U8G2_WITH_INTERSECTION */
- 173:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   
- 174:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   mask = 1;
- 530              		.loc 1 174 0
- 531 002e 0124     		movs	r4, #1
- 532 0030 14E0     		b	.L34
- 533              	.LVL71:
- 534              	.L41:
- 175:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   while(len > 0)
- 176:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
- 177:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     if( u8x8_pgm_read(b) & mask ) {
- 178:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = color;
- 535              		.loc 1 178 0
- 536 0032 87F87DB0 		strb	fp, [r7, #125]
- 179:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
- 537              		.loc 1 179 0
- 538 0036 0023     		movs	r3, #0
- 539 0038 0093     		str	r3, [sp]
- 540 003a 0123     		movs	r3, #1
- 541 003c 4A46     		mov	r2, r9
- 542 003e 3146     		mov	r1, r6
- 543 0040 3846     		mov	r0, r7
- 544 0042 FFF7FEFF 		bl	u8g2_DrawHVLine
- 545              	.LVL72:
- 546              	.L36:
- 180:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     } else if( u8g2->bitmap_transparency == 0 ) {
- 181:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = ncolor;
- 182:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
- 183:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
- 184:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****    
- 185:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     x++;
- 547              		.loc 1 185 0
- 548 0046 0136     		adds	r6, r6, #1
- 549              	.LVL73:
- 550 0048 F6B2     		uxtb	r6, r6
- 551              	.LVL74:
- 186:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     mask <<= 1;
- 552              		.loc 1 186 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 14
-
-
- 553 004a 6400     		lsls	r4, r4, #1
- 554              	.LVL75:
- 187:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     if ( mask == 0 )
- 555              		.loc 1 187 0
- 556 004c 14F0FF04 		ands	r4, r4, #255
- 557              	.LVL76:
- 558 0050 02D1     		bne	.L37
- 559              	.LVL77:
- 188:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     {
- 189:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       mask = 1;
- 190:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       b++;
- 560              		.loc 1 190 0
- 561 0052 08F10108 		add	r8, r8, #1
- 562              	.LVL78:
- 189:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       b++;
- 563              		.loc 1 189 0
- 564 0056 0124     		movs	r4, #1
- 565              	.LVL79:
- 566              	.L37:
- 191:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
- 192:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     len--;
- 567              		.loc 1 192 0
- 568 0058 013D     		subs	r5, r5, #1
- 569              	.LVL80:
- 570 005a EDB2     		uxtb	r5, r5
- 571              	.LVL81:
- 572              	.L34:
- 175:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
- 573              		.loc 1 175 0
- 574 005c 8DB1     		cbz	r5, .L40
- 177:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = color;
- 575              		.loc 1 177 0
- 576 005e 98F80030 		ldrb	r3, [r8]	@ zero_extendqisi2
- 577 0062 2342     		tst	r3, r4
- 578 0064 E5D1     		bne	.L41
- 180:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2->draw_color = ncolor;
- 579              		.loc 1 180 0
- 580 0066 97F87C30 		ldrb	r3, [r7, #124]	@ zero_extendqisi2
- 581 006a 002B     		cmp	r3, #0
- 582 006c EBD1     		bne	.L36
- 181:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****       u8g2_DrawHVLine(u8g2, x, y, 1, 0);
- 583              		.loc 1 181 0
- 584 006e 87F87DA0 		strb	r10, [r7, #125]
- 182:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     }
- 585              		.loc 1 182 0
- 586 0072 0093     		str	r3, [sp]
- 587 0074 0123     		movs	r3, #1
- 588 0076 4A46     		mov	r2, r9
- 589 0078 3146     		mov	r1, r6
- 590 007a 3846     		mov	r0, r7
- 591 007c FFF7FEFF 		bl	u8g2_DrawHVLine
- 592              	.LVL82:
- 593 0080 E1E7     		b	.L36
- 594              	.L40:
- 193:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   }
- 194:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2->draw_color = color;
- 595              		.loc 1 194 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 15
-
-
- 596 0082 87F87DB0 		strb	fp, [r7, #125]
- 597              	.LVL83:
- 598              	.L32:
- 195:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** }
- 599              		.loc 1 195 0
- 600 0086 03B0     		add	sp, sp, #12
- 601              	.LCFI14:
- 602              		.cfi_def_cfa_offset 36
- 603              		@ sp needed
- 604 0088 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
- 605              		.cfi_endproc
- 606              	.LFE5:
- 608              		.section	.text.u8g2_DrawXBMP,"ax",%progbits
- 609              		.align	1
- 610              		.global	u8g2_DrawXBMP
- 611              		.syntax unified
- 612              		.thumb
- 613              		.thumb_func
- 614              		.fpu fpv4-sp-d16
- 616              	u8g2_DrawXBMP:
- 617              	.LFB6:
- 196:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
- 197:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** 
- 198:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** void u8g2_DrawXBMP(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t w, u8g2_uint_t h, const 
- 199:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** {
- 618              		.loc 1 199 0
- 619              		.cfi_startproc
- 620              		@ args = 8, pretend = 0, frame = 0
- 621              		@ frame_needed = 0, uses_anonymous_args = 0
- 622              	.LVL84:
- 623 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
- 624              	.LCFI15:
- 625              		.cfi_def_cfa_offset 32
- 626              		.cfi_offset 4, -32
- 627              		.cfi_offset 5, -28
- 628              		.cfi_offset 6, -24
- 629              		.cfi_offset 7, -20
- 630              		.cfi_offset 8, -16
- 631              		.cfi_offset 9, -12
- 632              		.cfi_offset 10, -8
- 633              		.cfi_offset 14, -4
- 634 0004 82B0     		sub	sp, sp, #8
- 635              	.LCFI16:
- 636              		.cfi_def_cfa_offset 40
- 637 0006 8246     		mov	r10, r0
- 638 0008 8946     		mov	r9, r1
- 639 000a 1546     		mov	r5, r2
- 640 000c 1F46     		mov	r7, r3
- 641 000e 9DF82840 		ldrb	r4, [sp, #40]	@ zero_extendqisi2
- 642 0012 0B9E     		ldr	r6, [sp, #44]
- 643              	.LVL85:
- 200:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   u8g2_uint_t blen;
- 201:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   blen = w;
- 202:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   blen += 7;
- 644              		.loc 1 202 0
- 645 0014 03F10708 		add	r8, r3, #7
- 646              	.LVL86:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 16
-
-
- 203:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   blen >>= 3;
- 647              		.loc 1 203 0
- 648 0018 C8F3C408 		ubfx	r8, r8, #3, #5
- 649              	.LVL87:
- 204:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #ifdef U8G2_WITH_INTERSECTION
- 205:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   if ( u8g2_IsIntersection(u8g2, x, y, x+w, y+h) == 0 ) 
- 650              		.loc 1 205 0
- 651 001c 03EB010C 		add	ip, r3, r1
- 652 0020 1319     		adds	r3, r2, r4
- 653              	.LVL88:
- 654 0022 DBB2     		uxtb	r3, r3
- 655 0024 0093     		str	r3, [sp]
- 656 0026 5FFA8CF3 		uxtb	r3, ip
- 657 002a FFF7FEFF 		bl	u8g2_IsIntersection
- 658              	.LVL89:
- 659 002e 60B9     		cbnz	r0, .L44
- 660 0030 0DE0     		b	.L42
- 661              	.LVL90:
- 662              	.L45:
- 206:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     return;
- 207:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** #endif /* U8G2_WITH_INTERSECTION */
- 208:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   
- 209:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   while( h > 0 )
- 210:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
- 211:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     u8g2_DrawHXBMP(u8g2, x, y, w, bitmap);
- 663              		.loc 1 211 0
- 664 0032 0096     		str	r6, [sp]
- 665 0034 3B46     		mov	r3, r7
- 666 0036 2A46     		mov	r2, r5
- 667 0038 4946     		mov	r1, r9
- 668 003a 5046     		mov	r0, r10
- 669 003c FFF7FEFF 		bl	u8g2_DrawHXBMP
- 670              	.LVL91:
- 212:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     bitmap += blen;
- 671              		.loc 1 212 0
- 672 0040 4644     		add	r6, r6, r8
- 673              	.LVL92:
- 213:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     y++;
- 674              		.loc 1 213 0
- 675 0042 0135     		adds	r5, r5, #1
- 676              	.LVL93:
- 677 0044 EDB2     		uxtb	r5, r5
- 678              	.LVL94:
- 214:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****     h--;
- 679              		.loc 1 214 0
- 680 0046 013C     		subs	r4, r4, #1
- 681              	.LVL95:
- 682 0048 E4B2     		uxtb	r4, r4
- 683              	.LVL96:
- 684              	.L44:
- 209:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   {
- 685              		.loc 1 209 0
- 686 004a 002C     		cmp	r4, #0
- 687 004c F1D1     		bne	.L45
- 688              	.LVL97:
- 689              	.L42:
- 215:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c ****   }
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 17
-
-
- 216:/Users/imashio/Electronics/ARM/_Library/u8g2_bitmap.c **** }
- 690              		.loc 1 216 0
- 691 004e 02B0     		add	sp, sp, #8
- 692              	.LCFI17:
- 693              		.cfi_def_cfa_offset 32
- 694              		@ sp needed
- 695 0050 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
- 696              		.cfi_endproc
- 697              	.LFE6:
- 699              		.text
- 700              	.Letext0:
- 701              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
- 702              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
- 703              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
- 704              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s 			page 18
+ 551 0008 5DF8044B 		ldr	r4, [sp], #4
+ 552              	.LCFI15:
+ 553              		.cfi_restore 4
+ 554              		.cfi_def_cfa_offset 0
+ 555 000c FFF7FEBF 		b	u8g2_DrawXBM
+ 556              		.cfi_endproc
+ 557              	.LFE8:
+ 559              		.text
+ 560              	.Letext0:
+ 561              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 562              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 563              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 564              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 u8g2_bitmap.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:18     .text.u8g2_SetBitmapMode:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:25     .text.u8g2_SetBitmapMode:0000000000000000 u8g2_SetBitmapMode
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:42     .text.u8g2_DrawHorizontalBitmap:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:49     .text.u8g2_DrawHorizontalBitmap:0000000000000000 u8g2_DrawHorizontalBitmap
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:169    .text.u8g2_DrawBitmap:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:176    .text.u8g2_DrawBitmap:0000000000000000 u8g2_DrawBitmap
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:258    .text.u8g2_DrawHXBM:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:265    .text.u8g2_DrawHXBM:0000000000000000 u8g2_DrawHXBM
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:388    .text.u8g2_DrawXBM:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:395    .text.u8g2_DrawXBM:0000000000000000 u8g2_DrawXBM
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:479    .text.u8g2_DrawHXBMP:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:486    .text.u8g2_DrawHXBMP:0000000000000000 u8g2_DrawHXBMP
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:609    .text.u8g2_DrawXBMP:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccAHjTYV.s:616    .text.u8g2_DrawXBMP:0000000000000000 u8g2_DrawXBMP
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:18     .text.u8g2_SetBitmapMode:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:26     .text.u8g2_SetBitmapMode:0000000000000000 u8g2_SetBitmapMode
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:43     .text.u8g2_DrawHorizontalBitmap:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:51     .text.u8g2_DrawHorizontalBitmap:0000000000000000 u8g2_DrawHorizontalBitmap
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:182    .text.u8g2_DrawBitmap:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:190    .text.u8g2_DrawBitmap:0000000000000000 u8g2_DrawBitmap
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:278    .text.u8g2_DrawHXBM:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:286    .text.u8g2_DrawHXBM:0000000000000000 u8g2_DrawHXBM
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:419    .text.u8g2_DrawXBM:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:427    .text.u8g2_DrawXBM:0000000000000000 u8g2_DrawXBM
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:512    .text.u8g2_DrawHXBMP:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:520    .text.u8g2_DrawHXBMP:0000000000000000 u8g2_DrawHXBMP
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:531    .text.u8g2_DrawXBMP:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBhF1GQ.s:539    .text.u8g2_DrawXBMP:0000000000000000 u8g2_DrawXBMP
 
 UNDEFINED SYMBOLS
 u8g2_IsIntersection

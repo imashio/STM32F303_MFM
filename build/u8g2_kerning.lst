@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -10,7 +10,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 30, 2
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.file	"u8g2_kerning.c"
@@ -19,14 +19,15 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 1
   16              		.cfi_sections	.debug_frame
   17              		.section	.text.u8g2_GetKerning,"ax",%progbits
   18              		.align	1
-  19              		.global	u8g2_GetKerning
-  20              		.syntax unified
-  21              		.thumb
-  22              		.thumb_func
-  23              		.fpu fpv4-sp-d16
-  25              	u8g2_GetKerning:
-  26              	.LFB0:
-  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c"
+  19              		.p2align 2,,3
+  20              		.global	u8g2_GetKerning
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	u8g2_GetKerning:
+  27              	.LFB0:
+  28              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c"
    1:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** /*
    2:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** 
    3:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   u8g2_kerning.c
@@ -57,10 +58,10 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 1
   28:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
   29:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
   30:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s 			page 2
+
+
   31:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 2
-
-
   32:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
   33:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** 
   34:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** */
@@ -78,302 +79,357 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 1
   46:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** /* this function is used as "u8g2_get_kerning_cb" */
   47:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** uint8_t u8g2_GetKerning(U8X8_UNUSED u8g2_t *u8g2, u8g2_kerning_t *kerning, uint16_t e1, uint16_t e2
   48:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** {
-  28              		.loc 1 48 0
-  29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 0
-  31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32              		@ link register save eliminated.
-  33              	.LVL0:
+  29              		.loc 1 48 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              	.LVL0:
   49:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   uint16_t i1, i2, cnt, end;
   50:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   if ( kerning == NULL )
-  34              		.loc 1 50 0
-  35 0000 31B3     		cbz	r1, .L9
+  35              		.loc 1 50 0
+  36 0000 0029     		cmp	r1, #0
+  37 0002 37D0     		beq	.L10
   48:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   uint16_t i1, i2, cnt, end;
-  36              		.loc 1 48 0
-  37 0002 30B4     		push	{r4, r5}
-  38              	.LCFI0:
-  39              		.cfi_def_cfa_offset 8
-  40              		.cfi_offset 4, -8
-  41              		.cfi_offset 5, -4
-  42 0004 0846     		mov	r0, r1
-  43              	.LVL1:
+  38              		.loc 1 48 0
+  39 0004 F0B4     		push	{r4, r5, r6, r7}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 16
+  42              		.cfi_offset 4, -16
+  43              		.cfi_offset 5, -12
+  44              		.cfi_offset 6, -8
+  45              		.cfi_offset 7, -4
   51:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     return 0;
   52:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   
   53:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   /* search for the encoding in the first table */
   54:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   cnt = kerning->first_table_cnt;
-  44              		.loc 1 54 0
-  45 0006 0C88     		ldrh	r4, [r1]
-  46              	.LVL2:
+  46              		.loc 1 54 0
+  47 0006 0E88     		ldrh	r6, [r1]
+  48              	.LVL1:
   55:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   cnt--;	/* ignore the last element of the table, which is 0x0ffff */
-  47              		.loc 1 55 0
-  48 0008 013C     		subs	r4, r4, #1
-  49              	.LVL3:
-  50 000a A4B2     		uxth	r4, r4
-  51              	.LVL4:
+  49              		.loc 1 55 0
+  50 0008 013E     		subs	r6, r6, #1
+  51              	.LVL2:
+  52 000a B6B2     		uxth	r6, r6
+  53              	.LVL3:
   56:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   for( i1 = 0; i1 < cnt; i1++ )
-  52              		.loc 1 56 0
-  53 000c 0021     		movs	r1, #0
-  54              	.LVL5:
-  55              	.L3:
-  56              		.loc 1 56 0 is_stmt 0 discriminator 1
-  57 000e A142     		cmp	r1, r4
-  58 0010 07D2     		bcs	.L4
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 3
-
-
+  54              		.loc 1 56 0
+  55 000c 8EB1     		cbz	r6, .L14
   57:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   {
   58:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     if ( kerning->first_encoding_table[i1] == e1 )
-  59              		.loc 1 58 0 is_stmt 1
-  60 0012 4568     		ldr	r5, [r0, #4]
-  61 0014 35F81150 		ldrh	r5, [r5, r1, lsl #1]
-  62 0018 9542     		cmp	r5, r2
-  63 001a 02D0     		beq	.L4
+  56              		.loc 1 58 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s 			page 3
+
+
+  57 000e 4D68     		ldr	r5, [r1, #4]
+  58 0010 2888     		ldrh	r0, [r5]
+  59              	.LVL4:
+  60 0012 9042     		cmp	r0, r2
+  61 0014 18BF     		it	ne
+  62 0016 0124     		movne	r4, #1
+  63 0018 04D1     		bne	.L5
+  64 001a 31E0     		b	.L22
+  65              	.LVL5:
+  66              	.L6:
+  67 001c 35F8020F 		ldrh	r0, [r5, #2]!
+  68 0020 9042     		cmp	r0, r2
+  69 0022 09D0     		beq	.L23
+  70              	.L5:
+  71              	.LVL6:
   56:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   for( i1 = 0; i1 < cnt; i1++ )
-  64              		.loc 1 56 0 discriminator 2
-  65 001c 0131     		adds	r1, r1, #1
-  66              	.LVL6:
-  67 001e 89B2     		uxth	r1, r1
-  68              	.LVL7:
-  69 0020 F5E7     		b	.L3
-  70              	.L4:
+  72              		.loc 1 56 0 discriminator 2
+  73 0024 A7B2     		uxth	r7, r4
+  74 0026 BE42     		cmp	r6, r7
+  75              		.loc 1 58 0 discriminator 2
+  76 0028 4FEA4407 		lsl	r7, r4, #1
+  77 002c 04F10104 		add	r4, r4, #1
+  78              	.LVL7:
+  56:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   for( i1 = 0; i1 < cnt; i1++ )
+  79              		.loc 1 56 0 discriminator 2
+  80 0030 F4D8     		bhi	.L6
+  81              	.LVL8:
+  82              	.L14:
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   
+  83              		.loc 1 51 0
+  84 0032 0020     		movs	r0, #0
   59:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       break;
   60:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   }
   61:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   if ( i1 >= cnt )
-  71              		.loc 1 61 0
-  72 0022 A142     		cmp	r1, r4
-  73 0024 16D2     		bcs	.L10
   62:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     return 0;	/* e1 not part of the kerning table, return 0 */
   63:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** 
   64:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   /* get the upper index for i2 */
   65:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   end = kerning->index_to_second_table[i1+1];
-  74              		.loc 1 65 0
-  75 0026 8268     		ldr	r2, [r0, #8]
-  76              	.LVL8:
-  77 0028 4C1C     		adds	r4, r1, #1
-  78              	.LVL9:
-  79 002a 32F81440 		ldrh	r4, [r2, r4, lsl #1]
-  80              	.LVL10:
   66:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   for( i2 = kerning->index_to_second_table[i1]; i2 < end; i2++ )
-  81              		.loc 1 66 0
-  82 002e 32F81120 		ldrh	r2, [r2, r1, lsl #1]
-  83              	.LVL11:
-  84              	.L6:
-  85              		.loc 1 66 0 is_stmt 0 discriminator 1
-  86 0032 A242     		cmp	r2, r4
-  87 0034 07D2     		bcs	.L7
   67:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   {
   68:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     if ( kerning->second_encoding_table[i2] == e2 )
-  88              		.loc 1 68 0 is_stmt 1
-  89 0036 C168     		ldr	r1, [r0, #12]
-  90 0038 31F81210 		ldrh	r1, [r1, r2, lsl #1]
-  91 003c 9942     		cmp	r1, r3
-  92 003e 02D0     		beq	.L7
-  66:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   for( i2 = kerning->index_to_second_table[i1]; i2 < end; i2++ )
-  93              		.loc 1 66 0 discriminator 2
-  94 0040 0132     		adds	r2, r2, #1
-  95              	.LVL12:
-  96 0042 92B2     		uxth	r2, r2
-  97              	.LVL13:
-  98 0044 F5E7     		b	.L6
-  99              	.L7:
   69:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       break;
   70:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   }
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 4
-
-
   71:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   
   72:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   if ( i2 >= end )
- 100              		.loc 1 72 0
- 101 0046 A242     		cmp	r2, r4
- 102 0048 07D2     		bcs	.L11
   73:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     return 0;	/* e2 not part of any pair with e1, return 0 */
   74:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   
   75:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   return kerning->kerning_values[i2];
- 103              		.loc 1 75 0
- 104 004a 0369     		ldr	r3, [r0, #16]
- 105              	.LVL14:
- 106 004c 985C     		ldrb	r0, [r3, r2]	@ zero_extendqisi2
- 107              	.LVL15:
- 108 004e 02E0     		b	.L2
- 109              	.LVL16:
- 110              	.L9:
- 111              	.LCFI1:
- 112              		.cfi_def_cfa_offset 0
- 113              		.cfi_restore 4
- 114              		.cfi_restore 5
-  51:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   
- 115              		.loc 1 51 0
- 116 0050 0020     		movs	r0, #0
- 117              	.LVL17:
   76:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** }
- 118              		.loc 1 76 0
- 119 0052 7047     		bx	lr
- 120              	.LVL18:
- 121              	.L10:
- 122              	.LCFI2:
- 123              		.cfi_def_cfa_offset 8
- 124              		.cfi_offset 4, -8
- 125              		.cfi_offset 5, -4
-  62:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** 
- 126              		.loc 1 62 0
- 127 0054 0020     		movs	r0, #0
- 128              	.LVL19:
- 129              	.L2:
- 130              		.loc 1 76 0
- 131 0056 30BC     		pop	{r4, r5}
- 132              	.LCFI3:
- 133              		.cfi_remember_state
- 134              		.cfi_restore 5
- 135              		.cfi_restore 4
- 136              		.cfi_def_cfa_offset 0
- 137 0058 7047     		bx	lr
- 138              	.LVL20:
- 139              	.L11:
- 140              	.LCFI4:
- 141              		.cfi_restore_state
-  73:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   
- 142              		.loc 1 73 0
- 143 005a 0020     		movs	r0, #0
- 144              	.LVL21:
- 145 005c FBE7     		b	.L2
- 146              		.cfi_endproc
- 147              	.LFE0:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 5
+  85              		.loc 1 76 0
+  86 0034 F0BC     		pop	{r4, r5, r6, r7}
+  87              	.LCFI1:
+  88              		.cfi_remember_state
+  89              		.cfi_restore 7
+  90              		.cfi_restore 6
+  91              		.cfi_restore 5
+  92              		.cfi_restore 4
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s 			page 4
 
 
- 149              		.section	.text.u8g2_GetKerningByTable,"ax",%progbits
- 150              		.align	1
- 151              		.global	u8g2_GetKerningByTable
- 152              		.syntax unified
- 153              		.thumb
- 154              		.thumb_func
- 155              		.fpu fpv4-sp-d16
- 157              	u8g2_GetKerningByTable:
- 158              	.LFB1:
+  93              		.cfi_def_cfa_offset 0
+  94 0036 7047     		bx	lr
+  95              	.LVL9:
+  96              	.L23:
+  97              	.LCFI2:
+  98              		.cfi_restore_state
+  99 0038 6400     		lsls	r4, r4, #1
+ 100              	.L3:
+  65:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   for( i2 = kerning->index_to_second_table[i1]; i2 < end; i2++ )
+ 101              		.loc 1 65 0
+ 102 003a 8A68     		ldr	r2, [r1, #8]
+ 103              	.LVL10:
+ 104 003c 165B     		ldrh	r6, [r2, r4]
+ 105              	.LVL11:
+  66:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   {
+ 106              		.loc 1 66 0
+ 107 003e D25B     		ldrh	r2, [r2, r7]
+ 108              	.LVL12:
+ 109 0040 9642     		cmp	r6, r2
+ 110 0042 F6D9     		bls	.L14
+  68:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       break;
+ 111              		.loc 1 68 0
+ 112 0044 C868     		ldr	r0, [r1, #12]
+ 113 0046 30F81240 		ldrh	r4, [r0, r2, lsl #1]
+ 114 004a 9C42     		cmp	r4, r3
+ 115 004c 14D0     		beq	.L7
+ 116 004e 0132     		adds	r2, r2, #1
+ 117              	.LVL13:
+ 118 0050 92B2     		uxth	r2, r2
+ 119              	.LVL14:
+ 120 0052 02F10044 		add	r4, r2, #-2147483648
+ 121 0056 013C     		subs	r4, r4, #1
+ 122 0058 00EB4400 		add	r0, r0, r4, lsl #1
+ 123 005c 04E0     		b	.L8
+ 124              	.LVL15:
+ 125              	.L9:
+ 126 005e 30F8025F 		ldrh	r5, [r0, #2]!
+ 127 0062 9D42     		cmp	r5, r3
+ 128 0064 08D0     		beq	.L7
+ 129 0066 2246     		mov	r2, r4
+ 130              	.LVL16:
+ 131              	.L8:
+  66:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   {
+ 132              		.loc 1 66 0 discriminator 2
+ 133 0068 94B2     		uxth	r4, r2
+ 134 006a B442     		cmp	r4, r6
+ 135 006c 02F10104 		add	r4, r2, #1
+ 136 0070 F5D3     		bcc	.L9
+ 137 0072 DEE7     		b	.L14
+ 138              	.LVL17:
+ 139              	.L10:
+ 140              	.LCFI3:
+ 141              		.cfi_def_cfa_offset 0
+ 142              		.cfi_restore 4
+ 143              		.cfi_restore 5
+ 144              		.cfi_restore 6
+ 145              		.cfi_restore 7
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s 			page 5
+
+
+  51:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   
+ 146              		.loc 1 51 0
+ 147 0074 0846     		mov	r0, r1
+ 148              	.LVL18:
+ 149              		.loc 1 76 0
+ 150 0076 7047     		bx	lr
+ 151              	.LVL19:
+ 152              	.L7:
+ 153              	.LCFI4:
+ 154              		.cfi_def_cfa_offset 16
+ 155              		.cfi_offset 4, -16
+ 156              		.cfi_offset 5, -12
+ 157              		.cfi_offset 6, -8
+ 158              		.cfi_offset 7, -4
+  75:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** }
+ 159              		.loc 1 75 0
+ 160 0078 0B69     		ldr	r3, [r1, #16]
+ 161              	.LVL20:
+ 162              		.loc 1 76 0
+ 163 007a F0BC     		pop	{r4, r5, r6, r7}
+ 164              	.LCFI5:
+ 165              		.cfi_remember_state
+ 166              		.cfi_restore 7
+ 167              		.cfi_restore 6
+ 168              		.cfi_restore 5
+ 169              		.cfi_restore 4
+ 170              		.cfi_def_cfa_offset 0
+ 171              	.LVL21:
+  75:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** }
+ 172              		.loc 1 75 0
+ 173 007c 985C     		ldrb	r0, [r3, r2]	@ zero_extendqisi2
+ 174              		.loc 1 76 0
+ 175 007e 7047     		bx	lr
+ 176              	.LVL22:
+ 177              	.L22:
+ 178              	.LCFI6:
+ 179              		.cfi_restore_state
+  58:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       break;
+ 180              		.loc 1 58 0
+ 181 0080 0027     		movs	r7, #0
+ 182 0082 0224     		movs	r4, #2
+ 183 0084 D9E7     		b	.L3
+ 184              		.cfi_endproc
+ 185              	.LFE0:
+ 187 0086 00BF     		.section	.text.u8g2_GetKerningByTable,"ax",%progbits
+ 188              		.align	1
+ 189              		.p2align 2,,3
+ 190              		.global	u8g2_GetKerningByTable
+ 191              		.syntax unified
+ 192              		.thumb
+ 193              		.thumb_func
+ 194              		.fpu fpv4-sp-d16
+ 196              	u8g2_GetKerningByTable:
+ 197              	.LFB1:
   77:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** 
   78:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** uint8_t u8g2_GetKerningByTable(U8X8_UNUSED u8g2_t *u8g2, const uint16_t *kt, uint16_t e1, uint16_t 
   79:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** {
- 159              		.loc 1 79 0
- 160              		.cfi_startproc
- 161              		@ args = 0, pretend = 0, frame = 0
- 162              		@ frame_needed = 0, uses_anonymous_args = 0
- 163              		@ link register save eliminated.
- 164              	.LVL22:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s 			page 6
+
+
+ 198              		.loc 1 79 0
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 0
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202              		@ link register save eliminated.
+ 203              	.LVL23:
   80:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   uint16_t i;
   81:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   i = 0;
   82:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   if ( kt == NULL )
- 165              		.loc 1 82 0
- 166 0000 B9B1     		cbz	r1, .L20
+ 204              		.loc 1 82 0
+ 205 0000 F1B1     		cbz	r1, .L28
   79:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   uint16_t i;
- 167              		.loc 1 79 0
- 168 0002 70B4     		push	{r4, r5, r6}
- 169              	.LCFI5:
- 170              		.cfi_def_cfa_offset 12
- 171              		.cfi_offset 4, -12
- 172              		.cfi_offset 5, -8
- 173              		.cfi_offset 6, -4
- 174 0004 0D46     		mov	r5, r1
-  81:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   if ( kt == NULL )
- 175              		.loc 1 81 0
- 176 0006 0021     		movs	r1, #0
- 177              	.LVL23:
- 178 0008 01E0     		b	.L19
- 179              	.LVL24:
- 180              	.L18:
+ 206              		.loc 1 79 0
+ 207 0002 70B4     		push	{r4, r5, r6}
+ 208              	.LCFI7:
+ 209              		.cfi_def_cfa_offset 12
+ 210              		.cfi_offset 4, -12
+ 211              		.cfi_offset 5, -8
+ 212              		.cfi_offset 6, -4
   83:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     return 0;
   84:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   for(;;)
   85:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   {
   86:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     if ( kt[i] == 0x0ffff )
+ 213              		.loc 1 86 0
+ 214 0004 0D88     		ldrh	r5, [r1]
+ 215 0006 4FF6FF76 		movw	r6, #65535
+ 216 000a B542     		cmp	r5, r6
+ 217 000c 15D0     		beq	.L29
+  81:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   if ( kt == NULL )
+ 218              		.loc 1 81 0
+ 219 000e 0024     		movs	r4, #0
+ 220              		.loc 1 86 0
+ 221 0010 2046     		mov	r0, r4
+ 222              	.LVL24:
+ 223 0012 04E0     		b	.L27
+ 224              	.LVL25:
+ 225              	.L26:
+ 226 0014 31F81450 		ldrh	r5, [r1, r4, lsl #1]
+ 227 0018 B542     		cmp	r5, r6
+ 228 001a 2046     		mov	r0, r4
+ 229 001c 0DD0     		beq	.L29
+ 230              	.LVL26:
+ 231              	.L27:
   87:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       break;
   88:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     if ( kt[i] == e1 && kt[i+1] == e2 )
   89:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       return kt[i+2];
   90:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     i+=3;
- 181              		.loc 1 90 0
- 182 000a 0331     		adds	r1, r1, #3
- 183              	.LVL25:
- 184 000c 89B2     		uxth	r1, r1
- 185              	.LVL26:
- 186              	.L19:
-  86:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       break;
- 187              		.loc 1 86 0
- 188 000e 0E46     		mov	r6, r1
- 189 0010 35F81100 		ldrh	r0, [r5, r1, lsl #1]
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 6
+ 232              		.loc 1 90 0
+ 233 001e 0334     		adds	r4, r4, #3
+ 234              	.LVL27:
+  88:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       return kt[i+2];
+ 235              		.loc 1 88 0
+ 236 0020 AA42     		cmp	r2, r5
+ 237              		.loc 1 90 0
+ 238 0022 A4B2     		uxth	r4, r4
+ 239              	.LVL28:
+  88:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       return kt[i+2];
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s 			page 7
 
 
- 190 0014 4FF6FF74 		movw	r4, #65535
- 191 0018 A042     		cmp	r0, r4
- 192 001a 0CD0     		beq	.L21
+ 240              		.loc 1 88 0
+ 241 0024 F6D1     		bne	.L26
   88:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       return kt[i+2];
- 193              		.loc 1 88 0
- 194 001c 9042     		cmp	r0, r2
- 195 001e F4D1     		bne	.L18
-  88:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****       return kt[i+2];
- 196              		.loc 1 88 0 is_stmt 0 discriminator 1
- 197 0020 481C     		adds	r0, r1, #1
- 198 0022 35F81000 		ldrh	r0, [r5, r0, lsl #1]
- 199 0026 9842     		cmp	r0, r3
- 200 0028 EFD1     		bne	.L18
+ 242              		.loc 1 88 0 is_stmt 0 discriminator 1
+ 243 0026 451C     		adds	r5, r0, #1
+ 244 0028 31F81550 		ldrh	r5, [r1, r5, lsl #1]
+ 245 002c 9D42     		cmp	r5, r3
+ 246 002e F1D1     		bne	.L26
   89:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     i+=3;
- 201              		.loc 1 89 0 is_stmt 1
- 202 002a 0236     		adds	r6, r6, #2
- 203 002c 15F81600 		ldrb	r0, [r5, r6, lsl #1]	@ zero_extendqisi2
- 204 0030 02E0     		b	.L17
- 205              	.LVL27:
- 206              	.L20:
- 207              	.LCFI6:
- 208              		.cfi_def_cfa_offset 0
- 209              		.cfi_restore 4
- 210              		.cfi_restore 5
- 211              		.cfi_restore 6
-  83:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   for(;;)
- 212              		.loc 1 83 0
- 213 0032 0020     		movs	r0, #0
- 214              	.LVL28:
+ 247              		.loc 1 89 0 is_stmt 1
+ 248 0030 0230     		adds	r0, r0, #2
   91:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   }
   92:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   return 0;
   93:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** }
- 215              		.loc 1 93 0
- 216 0034 7047     		bx	lr
- 217              	.LVL29:
- 218              	.L21:
- 219              	.LCFI7:
- 220              		.cfi_def_cfa_offset 12
- 221              		.cfi_offset 4, -12
- 222              		.cfi_offset 5, -8
- 223              		.cfi_offset 6, -4
-  92:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c **** }
- 224              		.loc 1 92 0
- 225 0036 0020     		movs	r0, #0
- 226              	.L17:
- 227              		.loc 1 93 0
- 228 0038 70BC     		pop	{r4, r5, r6}
- 229              	.LCFI8:
- 230              		.cfi_restore 6
- 231              		.cfi_restore 5
- 232              		.cfi_restore 4
- 233              		.cfi_def_cfa_offset 0
- 234              	.LVL30:
- 235 003a 7047     		bx	lr
- 236              		.cfi_endproc
- 237              	.LFE1:
- 239              		.text
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 7
+ 249              		.loc 1 93 0
+ 250 0032 70BC     		pop	{r4, r5, r6}
+ 251              	.LCFI8:
+ 252              		.cfi_remember_state
+ 253              		.cfi_restore 6
+ 254              		.cfi_restore 5
+ 255              		.cfi_restore 4
+ 256              		.cfi_def_cfa_offset 0
+ 257              	.LVL29:
+  89:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****     i+=3;
+ 258              		.loc 1 89 0
+ 259 0034 11F81000 		ldrb	r0, [r1, r0, lsl #1]	@ zero_extendqisi2
+ 260              		.loc 1 93 0
+ 261 0038 7047     		bx	lr
+ 262              	.L29:
+ 263              	.LCFI9:
+ 264              		.cfi_restore_state
+  83:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   for(;;)
+ 265              		.loc 1 83 0
+ 266 003a 0020     		movs	r0, #0
+ 267              		.loc 1 93 0
+ 268 003c 70BC     		pop	{r4, r5, r6}
+ 269              	.LCFI10:
+ 270              		.cfi_restore 6
+ 271              		.cfi_restore 5
+ 272              		.cfi_restore 4
+ 273              		.cfi_def_cfa_offset 0
+ 274 003e 7047     		bx	lr
+ 275              	.LVL30:
+ 276              	.L28:
+  83:/Users/imashio/Electronics/ARM/_Library/u8g2_kerning.c ****   for(;;)
+ 277              		.loc 1 83 0
+ 278 0040 0846     		mov	r0, r1
+ 279              	.LVL31:
+ 280              		.loc 1 93 0
+ 281 0042 7047     		bx	lr
+ 282              		.cfi_endproc
+ 283              	.LFE1:
+ 285              		.text
+ 286              	.Letext0:
+ 287              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 288              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 289              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s 			page 8
 
 
- 240              	.Letext0:
- 241              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
- 242              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
- 243              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
- 244              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s 			page 8
+ 290              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 u8g2_kerning.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s:18     .text.u8g2_GetKerning:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s:25     .text.u8g2_GetKerning:0000000000000000 u8g2_GetKerning
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s:150    .text.u8g2_GetKerningByTable:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLNyHiv.s:157    .text.u8g2_GetKerningByTable:0000000000000000 u8g2_GetKerningByTable
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s:18     .text.u8g2_GetKerning:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s:26     .text.u8g2_GetKerning:0000000000000000 u8g2_GetKerning
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s:188    .text.u8g2_GetKerningByTable:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cctLR9KW.s:196    .text.u8g2_GetKerningByTable:0000000000000000 u8g2_GetKerningByTable
 
 NO UNDEFINED SYMBOLS

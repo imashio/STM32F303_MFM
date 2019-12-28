@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -10,7 +10,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 30, 2
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.file	"u8x8_d_uc1601.c"
@@ -19,14 +19,15 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 1
   16              		.cfi_sections	.debug_frame
   17              		.section	.text.u8x8_d_uc1601_128x32,"ax",%progbits
   18              		.align	1
-  19              		.global	u8x8_d_uc1601_128x32
-  20              		.syntax unified
-  21              		.thumb
-  22              		.thumb_func
-  23              		.fpu fpv4-sp-d16
-  25              	u8x8_d_uc1601_128x32:
-  26              	.LFB0:
-  27              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c"
+  19              		.p2align 2,,3
+  20              		.global	u8x8_d_uc1601_128x32
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	u8x8_d_uc1601_128x32:
+  27              	.LFB0:
+  28              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c"
    1:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** /*
    2:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 
    3:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   u8x8_d_uc1601.c
@@ -57,10 +58,10 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 1
   28:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
   29:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
   30:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 2
+
+
   31:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 2
-
-
   32:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
   33:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 
   34:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   This is for the uc1601s controller
@@ -117,10 +118,10 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 1
   85:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   /* sck_clock_hz = */ 2000000UL,	/* */
   86:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   /* spi_mode = */ 0,		/* active high, rising edge */
   87:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   /* i2c_bus_clock_100kHz = */ 1,
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 3
+
+
   88:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   /* data_setup_time_ns = */ 60,	/* uc1601 datasheet, page 43 */
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 3
-
-
   89:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   /* write_pulse_width_ns = */ 80,	/* uc1601 datasheet, page 43 */
   90:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   /* tile_width = */ 16,		
   91:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   /* tile_hight = */ 4,
@@ -156,53 +157,54 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 1
  121:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 
  122:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** uint8_t u8x8_d_uc1601_128x32(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
  123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** {
-  28              		.loc 1 123 0
-  29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 0
-  31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32              	.LVL0:
-  33 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
-  34              	.LCFI0:
-  35              		.cfi_def_cfa_offset 24
-  36              		.cfi_offset 3, -24
-  37              		.cfi_offset 4, -20
-  38              		.cfi_offset 5, -16
-  39              		.cfi_offset 6, -12
-  40              		.cfi_offset 7, -8
-  41              		.cfi_offset 14, -4
-  42 0002 0546     		mov	r5, r0
-  43 0004 1446     		mov	r4, r2
-  44 0006 1F46     		mov	r7, r3
+  29              		.loc 1 123 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
  124:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   uint8_t x, c;
  125:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   uint8_t *ptr;
  126:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   switch(msg)
-  45              		.loc 1 126 0
-  46 0008 0939     		subs	r1, r1, #9
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 4
+  34              		.loc 1 126 0
+  35 0000 0939     		subs	r1, r1, #9
+  36              	.LVL1:
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   uint8_t x, c;
+  37              		.loc 1 123 0
+  38 0002 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 24
+  41              		.cfi_offset 3, -24
+  42              		.cfi_offset 4, -20
+  43              		.cfi_offset 5, -16
+  44              		.cfi_offset 6, -12
+  45              		.cfi_offset 7, -8
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 4
 
 
-  47              	.LVL1:
-  48 000a 0629     		cmp	r1, #6
-  49 000c 68D8     		bhi	.L13
-  50 000e DFE801F0 		tbb	[pc, r1]
-  51              	.LVL2:
-  52              	.L4:
-  53 0012 04       		.byte	(.L3-.L4)/2
-  54 0013 09       		.byte	(.L5-.L4)/2
-  55 0014 11       		.byte	(.L6-.L4)/2
-  56 0015 67       		.byte	(.L13-.L4)/2
-  57 0016 1C       		.byte	(.L7-.L4)/2
-  58 0017 2D       		.byte	(.L8-.L4)/2
-  59 0018 3C       		.byte	(.L9-.L4)/2
-  60 0019 00       		.p2align 1
-  61              	.L3:
+  46              		.cfi_offset 14, -4
+ 123:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   uint8_t x, c;
+  47              		.loc 1 123 0
+  48 0004 0546     		mov	r5, r0
+  49 0006 1446     		mov	r4, r2
+  50 0008 1F46     		mov	r7, r3
+  51              		.loc 1 126 0
+  52 000a 0629     		cmp	r1, #6
+  53 000c 5BD8     		bhi	.L13
+  54 000e DFE801F0 		tbb	[pc, r1]
+  55              	.LVL2:
+  56              	.L4:
+  57 0012 2F       		.byte	(.L3-.L4)/2
+  58 0013 34       		.byte	(.L5-.L4)/2
+  59 0014 54       		.byte	(.L6-.L4)/2
+  60 0015 5A       		.byte	(.L13-.L4)/2
+  61 0016 3C       		.byte	(.L7-.L4)/2
+  62 0017 45       		.byte	(.L8-.L4)/2
+  63 0018 04       		.byte	(.L9-.L4)/2
+  64 0019 00       		.p2align 1
+  65              	.L9:
  127:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   {
  128:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
  129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_uc1601_128x32_display_info);
-  62              		.loc 1 129 0
-  63 001a 3249     		ldr	r1, .L15
-  64 001c FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
-  65              	.LVL3:
  130:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       break;
  131:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****     case U8X8_MSG_DISPLAY_INIT:
  132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_d_helper_display_init(u8x8);
@@ -236,390 +238,380 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 1
  160:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** #endif
  161:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****     case U8X8_MSG_DISPLAY_DRAW_TILE:
  162:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_StartTransfer(u8x8);
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 5
+
+
+  66              		.loc 1 162 0
+  67 001a FFF7FEFF 		bl	u8x8_cad_StartTransfer
+  68              	.LVL3:
  163:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****     
  164:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       x = ((u8x8_tile_t *)arg_ptr)->x_pos;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 5
-
-
+  69              		.loc 1 164 0
+  70 001e 7B79     		ldrb	r3, [r7, #5]	@ zero_extendqisi2
+  71              	.LVL4:
  165:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       x *= 8;
  166:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       x += u8x8->x_offset;
+  72              		.loc 1 166 0
+  73 0020 AE7F     		ldrb	r6, [r5, #30]	@ zero_extendqisi2
+  74 0022 06EBC306 		add	r6, r6, r3, lsl #3
+  75 0026 06F0FF06 		and	r6, r6, #255
+  76              	.LVL5:
  167:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_SendCmd(u8x8, 0x010 | (x>>4) );
+  77              		.loc 1 167 0
+  78 002a 3109     		lsrs	r1, r6, #4
+  79 002c 41F01001 		orr	r1, r1, #16
+  80 0030 2846     		mov	r0, r5
+  81 0032 FFF7FEFF 		bl	u8x8_cad_SendCmd
+  82              	.LVL6:
  168:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_SendCmd(u8x8, 0x000 | ((x&15)));
+  83              		.loc 1 168 0
+  84 0036 06F00F01 		and	r1, r6, #15
+  85 003a 2846     		mov	r0, r5
+  86 003c FFF7FEFF 		bl	u8x8_cad_SendCmd
+  87              	.LVL7:
  169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_SendCmd(u8x8, 0x0b0 | (((u8x8_tile_t *)arg_ptr)->y_pos));
+  88              		.loc 1 169 0
+  89 0040 B979     		ldrb	r1, [r7, #6]	@ zero_extendqisi2
+  90 0042 2846     		mov	r0, r5
+  91 0044 41F0B001 		orr	r1, r1, #176
+  92 0048 FFF7FEFF 		bl	u8x8_cad_SendCmd
+  93              	.LVL8:
  170:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****     
  171:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       c = ((u8x8_tile_t *)arg_ptr)->cnt;
+  94              		.loc 1 171 0
+  95 004c 3E79     		ldrb	r6, [r7, #4]	@ zero_extendqisi2
+  96              	.LVL9:
  172:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       c *= 8;
  173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
+  97              		.loc 1 173 0
+  98 004e 3F68     		ldr	r7, [r7]
+  99              	.LVL10:
+ 172:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       c *= 8;
+ 100              		.loc 1 172 0
+ 101 0050 F600     		lsls	r6, r6, #3
+ 102              	.LVL11:
+ 103 0052 F6B2     		uxtb	r6, r6
+ 104              	.LVL12:
+ 105              	.L12:
  174:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       do
  175:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       {
  176:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 	u8x8_cad_SendData(u8x8, c, ptr);	/* note: SendData can not handle more than 255 bytes */
+ 106              		.loc 1 176 0 discriminator 1
+ 107 0054 3A46     		mov	r2, r7
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 6
+
+
+ 108 0056 3146     		mov	r1, r6
+ 109 0058 2846     		mov	r0, r5
  177:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 	arg_int--;
+ 110              		.loc 1 177 0 discriminator 1
+ 111 005a 013C     		subs	r4, r4, #1
+ 112              	.LVL13:
+ 176:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 	arg_int--;
+ 113              		.loc 1 176 0 discriminator 1
+ 114 005c FFF7FEFF 		bl	u8x8_cad_SendData
+ 115              	.LVL14:
  178:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       } while( arg_int > 0 );
+ 116              		.loc 1 178 0 discriminator 1
+ 117 0060 14F0FF04 		ands	r4, r4, #255
+ 118              	.LVL15:
+ 119 0064 F6D1     		bne	.L12
  179:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       
  180:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_EndTransfer(u8x8);
+ 120              		.loc 1 180 0
+ 121 0066 2846     		mov	r0, r5
+ 122 0068 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 123              	.LVL16:
  181:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       break;
  182:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****     default:
  183:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       return 0;
  184:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   }
  185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   return 1;
-  66              		.loc 1 185 0
-  67 0020 0120     		movs	r0, #1
-  68              	.LVL4:
-  69              	.L2:
+ 124              		.loc 1 185 0
+ 125 006c 0120     		movs	r0, #1
  186:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
-  70              		.loc 1 186 0
-  71 0022 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
-  72              	.LVL5:
-  73              	.L5:
+ 126              		.loc 1 186 0
+ 127 006e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 128              	.LVL17:
+ 129              	.L3:
+ 129:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       break;
+ 130              		.loc 1 129 0
+ 131 0070 1C49     		ldr	r1, .L17
+ 132 0072 FFF7FEFF 		bl	u8x8_d_helper_display_setup_memory
+ 133              	.LVL18:
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
+ 134              		.loc 1 185 0
+ 135 0076 0120     		movs	r0, #1
+ 136              		.loc 1 186 0
+ 137 0078 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 138              	.LVL19:
+ 139              	.L5:
  132:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_SendSequence(u8x8, u8x8_d_uc1601_128x32_init_seq);
-  74              		.loc 1 132 0
-  75 0024 FFF7FEFF 		bl	u8x8_d_helper_display_init
-  76              	.LVL6:
+ 140              		.loc 1 132 0
+ 141 007a FFF7FEFF 		bl	u8x8_d_helper_display_init
+ 142              	.LVL20:
  133:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       break;
-  77              		.loc 1 133 0
-  78 0028 2F49     		ldr	r1, .L15+4
-  79 002a 2846     		mov	r0, r5
-  80 002c FFF7FEFF 		bl	u8x8_cad_SendSequence
-  81              	.LVL7:
+ 143              		.loc 1 133 0
+ 144 007e 2846     		mov	r0, r5
+ 145 0080 1949     		ldr	r1, .L17+4
+ 146 0082 FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 147              	.LVL21:
  185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
-  82              		.loc 1 185 0
-  83 0030 0120     		movs	r0, #1
- 134:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
-  84              		.loc 1 134 0
-  85 0032 F6E7     		b	.L2
-  86              	.LVL8:
-  87              	.L6:
- 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_uc1601_128x32_powersave0_seq);
-  88              		.loc 1 136 0
-  89 0034 22B9     		cbnz	r2, .L10
- 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       else
-  90              		.loc 1 137 0
-  91 0036 2D49     		ldr	r1, .L15+8
-  92 0038 FFF7FEFF 		bl	u8x8_cad_SendSequence
-  93              	.LVL9:
- 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 6
+ 148              		.loc 1 185 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 7
 
 
-  94              		.loc 1 185 0
-  95 003c 0120     		movs	r0, #1
-  96 003e F0E7     		b	.L2
-  97              	.LVL10:
-  98              	.L10:
- 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       break;
-  99              		.loc 1 139 0
- 100 0040 2B49     		ldr	r1, .L15+12
- 101 0042 FFF7FEFF 		bl	u8x8_cad_SendSequence
- 102              	.LVL11:
- 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
- 103              		.loc 1 185 0
- 104 0046 0120     		movs	r0, #1
- 105 0048 EBE7     		b	.L2
- 106              	.LVL12:
- 107              	.L7:
+ 149 0086 0120     		movs	r0, #1
+ 150              		.loc 1 186 0
+ 151 0088 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 152              	.LVL22:
+ 153              	.L7:
  142:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       {
- 108              		.loc 1 142 0
- 109 004a 3AB9     		cbnz	r2, .L11
+ 154              		.loc 1 142 0
+ 155 008a F2B9     		cbnz	r2, .L11
  144:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 	u8x8->x_offset = u8x8->display_info->default_x_offset;
- 110              		.loc 1 144 0
- 111 004c 2949     		ldr	r1, .L15+16
- 112 004e FFF7FEFF 		bl	u8x8_cad_SendSequence
- 113              	.LVL13:
+ 156              		.loc 1 144 0
+ 157 008c 1749     		ldr	r1, .L17+8
+ 158 008e FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 159              	.LVL23:
  145:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       }
- 114              		.loc 1 145 0
- 115 0052 2B68     		ldr	r3, [r5]
- 116 0054 9B7C     		ldrb	r3, [r3, #18]	@ zero_extendqisi2
- 117 0056 AB77     		strb	r3, [r5, #30]
+ 160              		.loc 1 145 0
+ 161 0092 2B68     		ldr	r3, [r5]
+ 162 0094 9B7C     		ldrb	r3, [r3, #18]	@ zero_extendqisi2
+ 163 0096 AB77     		strb	r3, [r5, #30]
  185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
- 118              		.loc 1 185 0
- 119 0058 0120     		movs	r0, #1
- 120 005a E2E7     		b	.L2
- 121              	.LVL14:
- 122              	.L11:
- 149:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 	u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
- 123              		.loc 1 149 0
- 124 005c 2649     		ldr	r1, .L15+20
- 125 005e FFF7FEFF 		bl	u8x8_cad_SendSequence
- 126              	.LVL15:
- 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       }	
- 127              		.loc 1 150 0
- 128 0062 2B68     		ldr	r3, [r5]
- 129 0064 DB7C     		ldrb	r3, [r3, #19]	@ zero_extendqisi2
- 130 0066 AB77     		strb	r3, [r5, #30]
- 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
- 131              		.loc 1 185 0
- 132 0068 0120     		movs	r0, #1
- 133 006a DAE7     		b	.L2
- 134              	.LVL16:
- 135              	.L8:
+ 164              		.loc 1 185 0
+ 165 0098 0120     		movs	r0, #1
+ 166              		.loc 1 186 0
+ 167 009a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 168              	.LVL24:
+ 169              	.L8:
  155:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_SendCmd(u8x8, 0x081 );
- 136              		.loc 1 155 0
- 137 006c FFF7FEFF 		bl	u8x8_cad_StartTransfer
- 138              	.LVL17:
+ 170              		.loc 1 155 0
+ 171 009c FFF7FEFF 		bl	u8x8_cad_StartTransfer
+ 172              	.LVL25:
  156:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_SendArg(u8x8, arg_int );	/* uc1601 has range from 0 to 255 */
- 139              		.loc 1 156 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 7
-
-
- 140 0070 8121     		movs	r1, #129
- 141 0072 2846     		mov	r0, r5
- 142 0074 FFF7FEFF 		bl	u8x8_cad_SendCmd
- 143              	.LVL18:
+ 173              		.loc 1 156 0
+ 174 00a0 8121     		movs	r1, #129
+ 175 00a2 2846     		mov	r0, r5
+ 176 00a4 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 177              	.LVL26:
  157:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_EndTransfer(u8x8);
- 144              		.loc 1 157 0
- 145 0078 2146     		mov	r1, r4
- 146 007a 2846     		mov	r0, r5
- 147 007c FFF7FEFF 		bl	u8x8_cad_SendArg
- 148              	.LVL19:
+ 178              		.loc 1 157 0
+ 179 00a8 2146     		mov	r1, r4
+ 180 00aa 2846     		mov	r0, r5
+ 181 00ac FFF7FEFF 		bl	u8x8_cad_SendArg
+ 182              	.LVL27:
  158:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       break;
- 149              		.loc 1 158 0
- 150 0080 2846     		mov	r0, r5
- 151 0082 FFF7FEFF 		bl	u8x8_cad_EndTransfer
- 152              	.LVL20:
+ 183              		.loc 1 158 0
+ 184 00b0 2846     		mov	r0, r5
+ 185 00b2 FFF7FEFF 		bl	u8x8_cad_EndTransfer
+ 186              	.LVL28:
  185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
- 153              		.loc 1 185 0
- 154 0086 0120     		movs	r0, #1
- 159:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** #endif
- 155              		.loc 1 159 0
- 156 0088 CBE7     		b	.L2
- 157              	.LVL21:
- 158              	.L9:
- 162:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****     
- 159              		.loc 1 162 0
- 160 008a FFF7FEFF 		bl	u8x8_cad_StartTransfer
- 161              	.LVL22:
- 164:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       x *= 8;
- 162              		.loc 1 164 0
- 163 008e 7E79     		ldrb	r6, [r7, #5]	@ zero_extendqisi2
- 164              	.LVL23:
- 165:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       x += u8x8->x_offset;
- 165              		.loc 1 165 0
- 166 0090 F600     		lsls	r6, r6, #3
- 167              	.LVL24:
- 168 0092 F3B2     		uxtb	r3, r6
- 169              	.LVL25:
- 166:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_SendCmd(u8x8, 0x010 | (x>>4) );
- 170              		.loc 1 166 0
- 171 0094 AE7F     		ldrb	r6, [r5, #30]	@ zero_extendqisi2
- 172 0096 1E44     		add	r6, r6, r3
- 173 0098 F6B2     		uxtb	r6, r6
- 174              	.LVL26:
- 167:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_SendCmd(u8x8, 0x000 | ((x&15)));
- 175              		.loc 1 167 0
- 176 009a 3109     		lsrs	r1, r6, #4
- 177 009c 41F01001 		orr	r1, r1, #16
- 178 00a0 2846     		mov	r0, r5
- 179 00a2 FFF7FEFF 		bl	u8x8_cad_SendCmd
- 180              	.LVL27:
- 168:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       u8x8_cad_SendCmd(u8x8, 0x0b0 | (((u8x8_tile_t *)arg_ptr)->y_pos));
- 181              		.loc 1 168 0
- 182 00a6 06F00F01 		and	r1, r6, #15
- 183 00aa 2846     		mov	r0, r5
- 184 00ac FFF7FEFF 		bl	u8x8_cad_SendCmd
- 185              	.LVL28:
- 169:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****     
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 8
-
-
- 186              		.loc 1 169 0
- 187 00b0 B979     		ldrb	r1, [r7, #6]	@ zero_extendqisi2
- 188 00b2 41F0B001 		orr	r1, r1, #176
- 189 00b6 2846     		mov	r0, r5
- 190 00b8 FFF7FEFF 		bl	u8x8_cad_SendCmd
+ 187              		.loc 1 185 0
+ 188 00b6 0120     		movs	r0, #1
+ 189              		.loc 1 186 0
+ 190 00b8 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
  191              	.LVL29:
- 171:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       c *= 8;
- 192              		.loc 1 171 0
- 193 00bc 3E79     		ldrb	r6, [r7, #4]	@ zero_extendqisi2
- 194              	.LVL30:
- 172:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
- 195              		.loc 1 172 0
- 196 00be F600     		lsls	r6, r6, #3
- 197              	.LVL31:
- 198 00c0 F6B2     		uxtb	r6, r6
- 199              	.LVL32:
- 173:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       do
- 200              		.loc 1 173 0
- 201 00c2 3F68     		ldr	r7, [r7]
- 202              	.LVL33:
- 203              	.L12:
- 176:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 	arg_int--;
- 204              		.loc 1 176 0 discriminator 1
- 205 00c4 3A46     		mov	r2, r7
- 206 00c6 3146     		mov	r1, r6
- 207 00c8 2846     		mov	r0, r5
- 208 00ca FFF7FEFF 		bl	u8x8_cad_SendData
- 209              	.LVL34:
- 177:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       } while( arg_int > 0 );
- 210              		.loc 1 177 0 discriminator 1
- 211 00ce 013C     		subs	r4, r4, #1
- 212              	.LVL35:
- 178:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       
- 213              		.loc 1 178 0 discriminator 1
- 214 00d0 14F0FF04 		ands	r4, r4, #255
- 215              	.LVL36:
- 216 00d4 F6D1     		bne	.L12
- 180:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       break;
- 217              		.loc 1 180 0
- 218 00d6 2846     		mov	r0, r5
- 219 00d8 FFF7FEFF 		bl	u8x8_cad_EndTransfer
- 220              	.LVL37:
+ 192              	.L6:
+ 136:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 	u8x8_cad_SendSequence(u8x8, u8x8_d_uc1601_128x32_powersave0_seq);
+ 193              		.loc 1 136 0
+ 194 00ba 72B9     		cbnz	r2, .L10
+ 137:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       else
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 8
+
+
+ 195              		.loc 1 137 0
+ 196 00bc 0C49     		ldr	r1, .L17+12
+ 197 00be FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 198              	.LVL30:
  185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
- 221              		.loc 1 185 0
- 222 00dc 0120     		movs	r0, #1
- 181:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****     default:
- 223              		.loc 1 181 0
- 224 00de A0E7     		b	.L2
- 225              	.LVL38:
- 226              	.L13:
+ 199              		.loc 1 185 0
+ 200 00c2 0120     		movs	r0, #1
+ 201              		.loc 1 186 0
+ 202 00c4 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 203              	.LVL31:
+ 204              	.L13:
  183:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****   }
- 227              		.loc 1 183 0
- 228 00e0 0020     		movs	r0, #0
- 229              	.LVL39:
- 230 00e2 9EE7     		b	.L2
- 231              	.L16:
- 232              		.align	2
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 9
+ 205              		.loc 1 183 0
+ 206 00c6 0020     		movs	r0, #0
+ 207              	.LVL32:
+ 208              		.loc 1 186 0
+ 209 00c8 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 210              	.LVL33:
+ 211              	.L11:
+ 149:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** 	u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
+ 212              		.loc 1 149 0
+ 213 00ca 0A49     		ldr	r1, .L17+16
+ 214 00cc FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 215              	.LVL34:
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       }	
+ 216              		.loc 1 150 0
+ 217 00d0 2B68     		ldr	r3, [r5]
+ 218 00d2 DB7C     		ldrb	r3, [r3, #19]	@ zero_extendqisi2
+ 219 00d4 AB77     		strb	r3, [r5, #30]
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
+ 220              		.loc 1 185 0
+ 221 00d6 0120     		movs	r0, #1
+ 222              		.loc 1 186 0
+ 223 00d8 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 224              	.LVL35:
+ 225              	.L10:
+ 139:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c ****       break;
+ 226              		.loc 1 139 0
+ 227 00da 0749     		ldr	r1, .L17+20
+ 228 00dc FFF7FEFF 		bl	u8x8_cad_SendSequence
+ 229              	.LVL36:
+ 185:/Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c **** }
+ 230              		.loc 1 185 0
+ 231 00e0 0120     		movs	r0, #1
+ 232              		.loc 1 186 0
+ 233 00e2 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 234              	.LVL37:
+ 235              	.L18:
+ 236              		.align	2
+ 237              	.L17:
+ 238 00e4 00000000 		.word	.LANCHOR0
+ 239 00e8 00000000 		.word	.LANCHOR1
+ 240 00ec 00000000 		.word	.LANCHOR4
+ 241 00f0 00000000 		.word	.LANCHOR2
+ 242 00f4 00000000 		.word	.LANCHOR5
+ 243 00f8 00000000 		.word	.LANCHOR3
+ 244              		.cfi_endproc
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 9
 
 
- 233              	.L15:
- 234 00e4 00000000 		.word	.LANCHOR0
- 235 00e8 00000000 		.word	.LANCHOR1
- 236 00ec 00000000 		.word	.LANCHOR2
- 237 00f0 00000000 		.word	.LANCHOR3
- 238 00f4 00000000 		.word	.LANCHOR4
- 239 00f8 00000000 		.word	.LANCHOR5
- 240              		.cfi_endproc
- 241              	.LFE0:
- 243              		.section	.rodata.u8x8_d_uc1601_128x32_flip0_seq,"a",%progbits
- 244              		.align	2
- 245              		.set	.LANCHOR4,. + 0
- 248              	u8x8_d_uc1601_128x32_flip0_seq:
- 249 0000 18       		.byte	24
- 250 0001 15       		.byte	21
- 251 0002 C4       		.byte	-60
- 252 0003 15       		.byte	21
- 253 0004 60       		.byte	96
- 254 0005 19       		.byte	25
- 255 0006 FF       		.byte	-1
- 256              		.section	.rodata.u8x8_d_uc1601_128x32_flip1_seq,"a",%progbits
- 257              		.align	2
- 258              		.set	.LANCHOR5,. + 0
- 261              	u8x8_d_uc1601_128x32_flip1_seq:
- 262 0000 18       		.byte	24
- 263 0001 15       		.byte	21
- 264 0002 C2       		.byte	-62
- 265 0003 15       		.byte	21
- 266 0004 40       		.byte	64
- 267 0005 19       		.byte	25
- 268 0006 FF       		.byte	-1
- 269              		.section	.rodata.u8x8_d_uc1601_128x32_init_seq,"a",%progbits
- 270              		.align	2
- 271              		.set	.LANCHOR1,. + 0
- 274              	u8x8_d_uc1601_128x32_init_seq:
- 275 0000 18       		.byte	24
- 276 0001 15       		.byte	21
- 277 0002 E2       		.byte	-30
- 278 0003 15       		.byte	21
- 279 0004 EB       		.byte	-21
- 280 0005 15       		.byte	21
- 281 0006 24       		.byte	36
- 282 0007 15       		.byte	21
- 283 0008 89       		.byte	-119
- 284 0009 15       		.byte	21
- 285 000a C4       		.byte	-60
- 286 000b 15       		.byte	21
- 287 000c A0       		.byte	-96
- 288 000d 15       		.byte	21
- 289 000e 81       		.byte	-127
- 290 000f 16       		.byte	22
- 291 0010 DF       		.byte	-33
- 292 0011 15       		.byte	21
- 293 0012 2E       		.byte	46
- 294 0013 15       		.byte	21
- 295 0014 60       		.byte	96
- 296 0015 15       		.byte	21
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 10
+ 245              	.LFE0:
+ 247              		.section	.rodata.u8x8_d_uc1601_128x32_flip0_seq,"a",%progbits
+ 248              		.align	2
+ 249              		.set	.LANCHOR4,. + 0
+ 252              	u8x8_d_uc1601_128x32_flip0_seq:
+ 253 0000 18       		.byte	24
+ 254 0001 15       		.byte	21
+ 255 0002 C4       		.byte	-60
+ 256 0003 15       		.byte	21
+ 257 0004 60       		.byte	96
+ 258 0005 19       		.byte	25
+ 259 0006 FF       		.byte	-1
+ 260              		.section	.rodata.u8x8_d_uc1601_128x32_flip1_seq,"a",%progbits
+ 261              		.align	2
+ 262              		.set	.LANCHOR5,. + 0
+ 265              	u8x8_d_uc1601_128x32_flip1_seq:
+ 266 0000 18       		.byte	24
+ 267 0001 15       		.byte	21
+ 268 0002 C2       		.byte	-62
+ 269 0003 15       		.byte	21
+ 270 0004 40       		.byte	64
+ 271 0005 19       		.byte	25
+ 272 0006 FF       		.byte	-1
+ 273              		.section	.rodata.u8x8_d_uc1601_128x32_init_seq,"a",%progbits
+ 274              		.align	2
+ 275              		.set	.LANCHOR1,. + 0
+ 278              	u8x8_d_uc1601_128x32_init_seq:
+ 279 0000 18       		.byte	24
+ 280 0001 15       		.byte	21
+ 281 0002 E2       		.byte	-30
+ 282 0003 15       		.byte	21
+ 283 0004 EB       		.byte	-21
+ 284 0005 15       		.byte	21
+ 285 0006 24       		.byte	36
+ 286 0007 15       		.byte	21
+ 287 0008 89       		.byte	-119
+ 288 0009 15       		.byte	21
+ 289 000a C4       		.byte	-60
+ 290 000b 15       		.byte	21
+ 291 000c A0       		.byte	-96
+ 292 000d 15       		.byte	21
+ 293 000e 81       		.byte	-127
+ 294 000f 16       		.byte	22
+ 295 0010 DF       		.byte	-33
+ 296 0011 15       		.byte	21
+ 297 0012 2E       		.byte	46
+ 298 0013 15       		.byte	21
+ 299 0014 60       		.byte	96
+ 300 0015 15       		.byte	21
+ 301 0016 A6       		.byte	-90
+ 302 0017 19       		.byte	25
+ 303 0018 FF       		.byte	-1
+ 304              		.section	.rodata.u8x8_d_uc1601_128x32_powersave0_seq,"a",%progbits
+ 305              		.align	2
+ 306              		.set	.LANCHOR2,. + 0
+ 309              	u8x8_d_uc1601_128x32_powersave0_seq:
+ 310 0000 18       		.byte	24
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 10
 
 
- 297 0016 A6       		.byte	-90
- 298 0017 19       		.byte	25
- 299 0018 FF       		.byte	-1
- 300              		.section	.rodata.u8x8_d_uc1601_128x32_powersave0_seq,"a",%progbits
- 301              		.align	2
- 302              		.set	.LANCHOR2,. + 0
- 305              	u8x8_d_uc1601_128x32_powersave0_seq:
- 306 0000 18       		.byte	24
- 307 0001 15       		.byte	21
- 308 0002 AF       		.byte	-81
- 309 0003 19       		.byte	25
- 310 0004 FF       		.byte	-1
- 311              		.section	.rodata.u8x8_d_uc1601_128x32_powersave1_seq,"a",%progbits
- 312              		.align	2
- 313              		.set	.LANCHOR3,. + 0
- 316              	u8x8_d_uc1601_128x32_powersave1_seq:
- 317 0000 18       		.byte	24
- 318 0001 15       		.byte	21
- 319 0002 AE       		.byte	-82
- 320 0003 19       		.byte	25
- 321 0004 FF       		.byte	-1
- 322              		.section	.rodata.u8x8_uc1601_128x32_display_info,"a",%progbits
- 323              		.align	2
- 324              		.set	.LANCHOR0,. + 0
- 327              	u8x8_uc1601_128x32_display_info:
- 328 0000 00       		.byte	0
- 329 0001 01       		.byte	1
- 330 0002 01       		.byte	1
- 331 0003 05       		.byte	5
- 332 0004 01       		.byte	1
- 333 0005 06       		.byte	6
- 334 0006 0C       		.byte	12
- 335 0007 0F       		.byte	15
- 336 0008 80841E00 		.word	2000000
- 337 000c 00       		.byte	0
- 338 000d 01       		.byte	1
- 339 000e 3C       		.byte	60
- 340 000f 50       		.byte	80
- 341 0010 10       		.byte	16
- 342 0011 04       		.byte	4
- 343 0012 00       		.byte	0
- 344 0013 04       		.byte	4
- 345 0014 8000     		.short	128
- 346 0016 2000     		.short	32
- 347              		.text
- 348              	.Letext0:
- 349              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
- 350              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
- 351              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s 			page 11
+ 311 0001 15       		.byte	21
+ 312 0002 AF       		.byte	-81
+ 313 0003 19       		.byte	25
+ 314 0004 FF       		.byte	-1
+ 315              		.section	.rodata.u8x8_d_uc1601_128x32_powersave1_seq,"a",%progbits
+ 316              		.align	2
+ 317              		.set	.LANCHOR3,. + 0
+ 320              	u8x8_d_uc1601_128x32_powersave1_seq:
+ 321 0000 18       		.byte	24
+ 322 0001 15       		.byte	21
+ 323 0002 AE       		.byte	-82
+ 324 0003 19       		.byte	25
+ 325 0004 FF       		.byte	-1
+ 326              		.section	.rodata.u8x8_uc1601_128x32_display_info,"a",%progbits
+ 327              		.align	2
+ 328              		.set	.LANCHOR0,. + 0
+ 331              	u8x8_uc1601_128x32_display_info:
+ 332 0000 00       		.byte	0
+ 333 0001 01       		.byte	1
+ 334 0002 01       		.byte	1
+ 335 0003 05       		.byte	5
+ 336 0004 01       		.byte	1
+ 337 0005 06       		.byte	6
+ 338 0006 0C       		.byte	12
+ 339 0007 0F       		.byte	15
+ 340 0008 80841E00 		.word	2000000
+ 341 000c 00       		.byte	0
+ 342 000d 01       		.byte	1
+ 343 000e 3C       		.byte	60
+ 344 000f 50       		.byte	80
+ 345 0010 10       		.byte	16
+ 346 0011 04       		.byte	4
+ 347 0012 00       		.byte	0
+ 348 0013 04       		.byte	4
+ 349 0014 8000     		.short	128
+ 350 0016 2000     		.short	32
+ 351              		.text
+ 352              	.Letext0:
+ 353              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 354              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 355              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 u8x8_d_uc1601.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:18     .text.u8x8_d_uc1601_128x32:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:25     .text.u8x8_d_uc1601_128x32:0000000000000000 u8x8_d_uc1601_128x32
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:53     .text.u8x8_d_uc1601_128x32:0000000000000012 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:234    .text.u8x8_d_uc1601_128x32:00000000000000e4 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:244    .rodata.u8x8_d_uc1601_128x32_flip0_seq:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:248    .rodata.u8x8_d_uc1601_128x32_flip0_seq:0000000000000000 u8x8_d_uc1601_128x32_flip0_seq
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:257    .rodata.u8x8_d_uc1601_128x32_flip1_seq:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:261    .rodata.u8x8_d_uc1601_128x32_flip1_seq:0000000000000000 u8x8_d_uc1601_128x32_flip1_seq
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:270    .rodata.u8x8_d_uc1601_128x32_init_seq:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:274    .rodata.u8x8_d_uc1601_128x32_init_seq:0000000000000000 u8x8_d_uc1601_128x32_init_seq
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:301    .rodata.u8x8_d_uc1601_128x32_powersave0_seq:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:305    .rodata.u8x8_d_uc1601_128x32_powersave0_seq:0000000000000000 u8x8_d_uc1601_128x32_powersave0_seq
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:312    .rodata.u8x8_d_uc1601_128x32_powersave1_seq:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:316    .rodata.u8x8_d_uc1601_128x32_powersave1_seq:0000000000000000 u8x8_d_uc1601_128x32_powersave1_seq
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:323    .rodata.u8x8_uc1601_128x32_display_info:0000000000000000 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:327    .rodata.u8x8_uc1601_128x32_display_info:0000000000000000 u8x8_uc1601_128x32_display_info
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:60     .text.u8x8_d_uc1601_128x32:0000000000000019 $d
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccMN8GHn.s:60     .text.u8x8_d_uc1601_128x32:000000000000001a $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:18     .text.u8x8_d_uc1601_128x32:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:26     .text.u8x8_d_uc1601_128x32:0000000000000000 u8x8_d_uc1601_128x32
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:57     .text.u8x8_d_uc1601_128x32:0000000000000012 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:238    .text.u8x8_d_uc1601_128x32:00000000000000e4 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:248    .rodata.u8x8_d_uc1601_128x32_flip0_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:252    .rodata.u8x8_d_uc1601_128x32_flip0_seq:0000000000000000 u8x8_d_uc1601_128x32_flip0_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:261    .rodata.u8x8_d_uc1601_128x32_flip1_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:265    .rodata.u8x8_d_uc1601_128x32_flip1_seq:0000000000000000 u8x8_d_uc1601_128x32_flip1_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:274    .rodata.u8x8_d_uc1601_128x32_init_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:278    .rodata.u8x8_d_uc1601_128x32_init_seq:0000000000000000 u8x8_d_uc1601_128x32_init_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:305    .rodata.u8x8_d_uc1601_128x32_powersave0_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:309    .rodata.u8x8_d_uc1601_128x32_powersave0_seq:0000000000000000 u8x8_d_uc1601_128x32_powersave0_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:316    .rodata.u8x8_d_uc1601_128x32_powersave1_seq:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:320    .rodata.u8x8_d_uc1601_128x32_powersave1_seq:0000000000000000 u8x8_d_uc1601_128x32_powersave1_seq
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:327    .rodata.u8x8_uc1601_128x32_display_info:0000000000000000 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:331    .rodata.u8x8_uc1601_128x32_display_info:0000000000000000 u8x8_uc1601_128x32_display_info
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:64     .text.u8x8_d_uc1601_128x32:0000000000000019 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccciTNbW.s:64     .text.u8x8_d_uc1601_128x32:000000000000001a $t
 
 UNDEFINED SYMBOLS
+u8x8_cad_StartTransfer
+u8x8_cad_SendCmd
+u8x8_cad_SendData
+u8x8_cad_EndTransfer
 u8x8_d_helper_display_setup_memory
 u8x8_d_helper_display_init
 u8x8_cad_SendSequence
-u8x8_cad_StartTransfer
-u8x8_cad_SendCmd
 u8x8_cad_SendArg
-u8x8_cad_EndTransfer
-u8x8_cad_SendData

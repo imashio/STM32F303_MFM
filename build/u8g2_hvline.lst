@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -10,22 +10,24 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 30, 2
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.file	"u8g2_hvline.c"
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.section	.text.u8g2_clip_intersection,"ax",%progbits
+  17              		.section	.text.u8g2_draw_hv_line_4dir,"ax",%progbits
   18              		.align	1
-  19              		.syntax unified
-  20              		.thumb
-  21              		.thumb_func
-  22              		.fpu fpv4-sp-d16
-  24              	u8g2_clip_intersection:
-  25              	.LFB0:
-  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c"
+  19              		.p2align 2,,3
+  20              		.global	u8g2_draw_hv_line_4dir
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	u8g2_draw_hv_line_4dir:
+  27              	.LFB2:
+  28              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c"
    1:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** /*
    2:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
    3:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2_hvline.c
@@ -56,11 +58,11 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
   28:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
   29:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
   30:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 2
+
+
   31:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
   32:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 2
-
-
   33:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
   34:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
   35:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   Calltree
@@ -93,24 +95,8 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
   62:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** //static uint8_t u8g2_clip_intersection(u8g2_uint_t *ap, u8g2_uint_t *bp, u8g2_uint_t c, u8g2_uint_
   63:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** static uint8_t u8g2_clip_intersection(u8g2_uint_t *ap, u8g2_uint_t *bp, u8g2_uint_t d)
   64:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** {
-  27              		.loc 1 64 0
-  28              		.cfi_startproc
-  29              		@ args = 0, pretend = 0, frame = 0
-  30              		@ frame_needed = 0, uses_anonymous_args = 0
-  31              		@ link register save eliminated.
-  32              	.LVL0:
-  33 0000 10B4     		push	{r4}
-  34              	.LCFI0:
-  35              		.cfi_def_cfa_offset 4
-  36              		.cfi_offset 4, -4
   65:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2_uint_t a = *ap;
-  37              		.loc 1 65 0
-  38 0002 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
-  39              	.LVL1:
   66:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2_uint_t b = *bp;
-  40              		.loc 1 66 0
-  41 0004 0C78     		ldrb	r4, [r1]	@ zero_extendqisi2
-  42              	.LVL2:
   67:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   
   68:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* handle the a>b case correctly. If code and time is critical, this could */
   69:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* be removed completly (be aware about memory curruption for wrong */
@@ -118,118 +104,38 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
   71:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* arguments) */  
   72:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   
   73:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* removing the following if clause completly may lead to memory corruption of a>b */
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 3
-
-
   74:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( a > b )
-  43              		.loc 1 74 0
-  44 0006 A342     		cmp	r3, r4
-  45 0008 04D9     		bls	.L2
   75:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   {    
   76:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     /* replacing this if with a simple "return 0;" will not handle the case with negative a */    
   77:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     if ( a < d )
-  46              		.loc 1 77 0
-  47 000a 9342     		cmp	r3, r2
-  48 000c 0AD2     		bcs	.L3
-  49              	.LVL3:
   78:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     {
   79:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       b = d;
   80:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       b--;
-  50              		.loc 1 80 0
-  51 000e 541E     		subs	r4, r2, #1
-  52 0010 E4B2     		uxtb	r4, r4
-  53              	.LVL4:
   81:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       *bp = b;
-  54              		.loc 1 81 0
-  55 0012 0C70     		strb	r4, [r1]
-  56              	.LVL5:
-  57              	.L2:
   82:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     }
   83:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     else
   84:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     {
   85:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       a = 0;
   86:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       *ap = a;
   87:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 3
+
+
   88:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
   89:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   
   90:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* from now on, the asumption a <= b is ok */
   91:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   
   92:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( a >= d )
-  58              		.loc 1 92 0
-  59 0014 9342     		cmp	r3, r2
-  60 0016 08D2     		bcs	.L5
   93:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return 0;
   94:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( b <= 0 )		// was b <= c, could be replaced with b == 0
-  61              		.loc 1 94 0
-  62 0018 5CB1     		cbz	r4, .L6
   95:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return 0;
   96:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   //if ( a < c )		// never true with c == 0
   97:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   //  *ap = c;
   98:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( b > d )
-  63              		.loc 1 98 0
-  64 001a 9442     		cmp	r4, r2
-  65 001c 0BD9     		bls	.L7
   99:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     *bp = d;
-  66              		.loc 1 99 0
-  67 001e 0A70     		strb	r2, [r1]
  100:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     
  101:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   return 1;
-  68              		.loc 1 101 0
-  69 0020 0120     		movs	r0, #1
-  70              	.LVL6:
-  71 0022 03E0     		b	.L4
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 4
-
-
-  72              	.LVL7:
-  73              	.L3:
-  86:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     }
-  74              		.loc 1 86 0
-  75 0024 0023     		movs	r3, #0
-  76 0026 0370     		strb	r3, [r0]
-  77 0028 F4E7     		b	.L2
-  78              	.LVL8:
-  79              	.L5:
-  93:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( b <= 0 )		// was b <= c, could be replaced with b == 0
-  80              		.loc 1 93 0
-  81 002a 0020     		movs	r0, #0
-  82              	.LVL9:
-  83              	.L4:
  102:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
-  84              		.loc 1 102 0
-  85 002c 5DF8044B 		ldr	r4, [sp], #4
-  86              	.LCFI1:
-  87              		.cfi_remember_state
-  88              		.cfi_restore 4
-  89              		.cfi_def_cfa_offset 0
-  90              	.LVL10:
-  91 0030 7047     		bx	lr
-  92              	.LVL11:
-  93              	.L6:
-  94              	.LCFI2:
-  95              		.cfi_restore_state
-  95:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   //if ( a < c )		// never true with c == 0
-  96              		.loc 1 95 0
-  97 0032 0020     		movs	r0, #0
-  98              	.LVL12:
-  99 0034 FAE7     		b	.L4
- 100              	.LVL13:
- 101              	.L7:
- 101:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 102              		.loc 1 101 0
- 103 0036 0120     		movs	r0, #1
- 104              	.LVL14:
- 105 0038 F8E7     		b	.L4
- 106              		.cfi_endproc
- 107              	.LFE0:
- 109              		.section	.text.u8g2_draw_hv_line_2dir,"ax",%progbits
- 110              		.align	1
- 111              		.syntax unified
- 112              		.thumb
- 113              		.thumb_func
- 114              		.fpu fpv4-sp-d16
- 116              	u8g2_draw_hv_line_2dir:
- 117              	.LFB1:
  103:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  104:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  105:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
@@ -238,59 +144,22 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
  108:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   len		length of the line in pixel, len must not be 0
  109:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   dir		0: horizontal line (left to right)
  110:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 		1: vertical line (top to bottom)
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 5
-
-
  111:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   This function first adjusts the y position to the local buffer. Then it
  112:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   will clip the line and call u8g2_draw_low_level_hv_line()
  113:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  114:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** */
  115:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** static void u8g2_draw_hv_line_2dir(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, uin
  116:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** {
- 118              		.loc 1 116 0
- 119              		.cfi_startproc
- 120              		@ args = 4, pretend = 0, frame = 16
- 121              		@ frame_needed = 0, uses_anonymous_args = 0
- 122              	.LVL15:
- 123 0000 70B5     		push	{r4, r5, r6, lr}
- 124              	.LCFI3:
- 125              		.cfi_def_cfa_offset 16
- 126              		.cfi_offset 4, -16
- 127              		.cfi_offset 5, -12
- 128              		.cfi_offset 6, -8
- 129              		.cfi_offset 14, -4
- 130 0002 86B0     		sub	sp, sp, #24
- 131              	.LCFI4:
- 132              		.cfi_def_cfa_offset 40
- 133 0004 0446     		mov	r4, r0
- 134 0006 9DF82850 		ldrb	r5, [sp, #40]	@ zero_extendqisi2
- 135 000a 8DF80F10 		strb	r1, [sp, #15]
- 136 000e 8DF80E20 		strb	r2, [sp, #14]
  117:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2_uint_t a;
  118:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   register u8g2_uint_t w, h;
  119:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  120:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   h = u8g2->pixel_buf_height;		// this must be the real buffer height
- 137              		.loc 1 120 0
- 138 0012 90F83B20 		ldrb	r2, [r0, #59]	@ zero_extendqisi2
- 139              	.LVL16:
  121:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   w = u8g2->pixel_buf_width;		// this could be replaced by u8g2->u8x8.display_info->pixel_width
- 140              		.loc 1 121 0
- 141 0016 90F83A00 		ldrb	r0, [r0, #58]	@ zero_extendqisi2
- 142              	.LVL17:
  122:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  123:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  124:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( dir == 0 )
- 143              		.loc 1 124 0
- 144 001a 0DBB     		cbnz	r5, .L10
  125:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   {
  126:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     if ( y >= h )
- 145              		.loc 1 126 0
- 146 001c 9DF80E10 		ldrb	r1, [sp, #14]	@ zero_extendqisi2
- 147              	.LVL18:
- 148 0020 9142     		cmp	r1, r2
- 149 0022 01D3     		bcc	.L15
- 150              	.LVL19:
- 151              	.L9:
  127:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       return;
  128:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     a = x;
  129:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     a += len;
@@ -298,9 +167,6 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
  131:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       return;
  132:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     len = a;
  133:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     len -= x;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 6
-
-
  134:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
  135:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   else
  136:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   {
@@ -312,116 +178,13 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
  142:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       return;
  143:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     len = a;
  144:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     len -= y;
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 4
+
+
  145:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
  146:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   
  147:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2->ll_hvline(u8g2, x, y, len, dir);
  148:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 152              		.loc 1 148 0
- 153 0024 06B0     		add	sp, sp, #24
- 154              	.LCFI5:
- 155              		.cfi_remember_state
- 156              		.cfi_def_cfa_offset 16
- 157              		@ sp needed
- 158 0026 70BD     		pop	{r4, r5, r6, pc}
- 159              	.LVL20:
- 160              	.L15:
- 161              	.LCFI6:
- 162              		.cfi_restore_state
- 128:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     a += len;
- 163              		.loc 1 128 0
- 164 0028 9DF80F20 		ldrb	r2, [sp, #15]	@ zero_extendqisi2
- 165              	.LVL21:
- 129:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     if ( u8g2_clip_intersection(&x, &a, w) == 0 )
- 166              		.loc 1 129 0
- 167 002c 1344     		add	r3, r3, r2
- 168              	.LVL22:
- 169 002e 06A9     		add	r1, sp, #24
- 170 0030 01F8013D 		strb	r3, [r1, #-1]!
- 130:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       return;
- 171              		.loc 1 130 0
- 172 0034 0246     		mov	r2, r0
- 173 0036 0DF10F00 		add	r0, sp, #15
- 174              	.LVL23:
- 175 003a FFF7FEFF 		bl	u8g2_clip_intersection
- 176              	.LVL24:
- 177 003e 0028     		cmp	r0, #0
- 178 0040 F0D0     		beq	.L9
- 132:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     len -= x;
- 179              		.loc 1 132 0
- 180 0042 9DF81730 		ldrb	r3, [sp, #23]	@ zero_extendqisi2
- 181              	.LVL25:
- 133:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
- 182              		.loc 1 133 0
- 183 0046 9DF80F20 		ldrb	r2, [sp, #15]	@ zero_extendqisi2
- 184 004a 9B1A     		subs	r3, r3, r2
- 185              	.LVL26:
- 186 004c DBB2     		uxtb	r3, r3
- 187              	.LVL27:
- 188              	.L12:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 7
-
-
- 147:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 189              		.loc 1 147 0
- 190 004e E66A     		ldr	r6, [r4, #44]
- 191 0050 9DF80E20 		ldrb	r2, [sp, #14]	@ zero_extendqisi2
- 192 0054 9DF80F10 		ldrb	r1, [sp, #15]	@ zero_extendqisi2
- 193 0058 0095     		str	r5, [sp]
- 194 005a 2046     		mov	r0, r4
- 195 005c B047     		blx	r6
- 196              	.LVL28:
- 197 005e E1E7     		b	.L9
- 198              	.LVL29:
- 199              	.L10:
- 137:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       return;
- 200              		.loc 1 137 0
- 201 0060 9DF80F10 		ldrb	r1, [sp, #15]	@ zero_extendqisi2
- 202              	.LVL30:
- 203 0064 8142     		cmp	r1, r0
- 204 0066 DDD2     		bcs	.L9
- 139:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     a += len;
- 205              		.loc 1 139 0
- 206 0068 9DF80E10 		ldrb	r1, [sp, #14]	@ zero_extendqisi2
- 140:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     if ( u8g2_clip_intersection(&y, &a, h) == 0 )
- 207              		.loc 1 140 0
- 208 006c 0B44     		add	r3, r3, r1
- 209              	.LVL31:
- 210 006e 06A9     		add	r1, sp, #24
- 211 0070 01F8013D 		strb	r3, [r1, #-1]!
- 141:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       return;
- 212              		.loc 1 141 0
- 213 0074 0DF10E00 		add	r0, sp, #14
- 214              	.LVL32:
- 215 0078 FFF7FEFF 		bl	u8g2_clip_intersection
- 216              	.LVL33:
- 217 007c 0028     		cmp	r0, #0
- 218 007e D1D0     		beq	.L9
- 143:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     len -= y;
- 219              		.loc 1 143 0
- 220 0080 9DF81730 		ldrb	r3, [sp, #23]	@ zero_extendqisi2
- 221              	.LVL34:
- 144:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
- 222              		.loc 1 144 0
- 223 0084 9DF80E20 		ldrb	r2, [sp, #14]	@ zero_extendqisi2
- 224 0088 9B1A     		subs	r3, r3, r2
- 225              	.LVL35:
- 226 008a DBB2     		uxtb	r3, r3
- 227              	.LVL36:
- 228 008c DFE7     		b	.L12
- 229              		.cfi_endproc
- 230              	.LFE1:
- 232              		.section	.text.u8g2_draw_hv_line_4dir,"ax",%progbits
- 233              		.align	1
- 234              		.global	u8g2_draw_hv_line_4dir
- 235              		.syntax unified
- 236              		.thumb
- 237              		.thumb_func
- 238              		.fpu fpv4-sp-d16
- 240              	u8g2_draw_hv_line_4dir:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 8
-
-
- 241              	.LFB2:
  149:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  150:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #endif
  151:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
@@ -438,155 +201,364 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
  162:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** */
  163:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** void u8g2_draw_hv_line_4dir(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, uint8_t di
  164:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** {
- 242              		.loc 1 164 0
- 243              		.cfi_startproc
- 244              		@ args = 4, pretend = 0, frame = 0
- 245              		@ frame_needed = 0, uses_anonymous_args = 0
- 246              	.LVL37:
- 247 0000 30B5     		push	{r4, r5, lr}
- 248              	.LCFI7:
- 249              		.cfi_def_cfa_offset 12
- 250              		.cfi_offset 4, -12
- 251              		.cfi_offset 5, -8
- 252              		.cfi_offset 14, -4
- 253 0002 83B0     		sub	sp, sp, #12
- 254              	.LCFI8:
- 255              		.cfi_def_cfa_offset 24
- 256 0004 9DF81850 		ldrb	r5, [sp, #24]	@ zero_extendqisi2
+  29              		.loc 1 164 0
+  30              		.cfi_startproc
+  31              		@ args = 4, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              	.LVL0:
+  35 0000 F0B4     		push	{r4, r5, r6, r7}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 4, -16
+  39              		.cfi_offset 5, -12
+  40              		.cfi_offset 6, -8
+  41              		.cfi_offset 7, -4
  165:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_HVLINE_COUNT
  166:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2->hv_cnt++;
  167:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #endif /* U8G2_WITH_HVLINE_COUNT */   
  168:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  169:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* transform to pixel buffer coordinates */
  170:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****    y -= u8g2->tile_curr_row*8;
- 257              		.loc 1 170 0
- 258 0008 90F83940 		ldrb	r4, [r0, #57]	@ zero_extendqisi2
- 259 000c A2EBC402 		sub	r2, r2, r4, lsl #3
- 260              	.LVL38:
- 261 0010 D2B2     		uxtb	r2, r2
- 262              	.LVL39:
+  42              		.loc 1 170 0
+  43 0002 90F83940 		ldrb	r4, [r0, #57]	@ zero_extendqisi2
+  44 0006 90F83AC0 		ldrb	ip, [r0, #58]	@ zero_extendqisi2
+ 164:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_HVLINE_COUNT
+  45              		.loc 1 164 0
+  46 000a 9DF81070 		ldrb	r7, [sp, #16]	@ zero_extendqisi2
+  47              		.loc 1 170 0
+  48 000e A2EBC402 		sub	r2, r2, r4, lsl #3
+  49              	.LVL1:
  171:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  172:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* additional optimization for one pixel draw */
  173:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* requires about 60 bytes on the ATMega flash memory */
  174:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* 20% improvement for single pixel draw test in FPS.ino */
  175:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_ONE_PIXEL_OPTIMIZATION
  176:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( len == 1 )
- 263              		.loc 1 176 0
- 264 0012 012B     		cmp	r3, #1
- 265 0014 0AD0     		beq	.L22
+  50              		.loc 1 176 0
+  51 0012 012B     		cmp	r3, #1
+ 164:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_HVLINE_COUNT
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 5
+
+
+  52              		.loc 1 164 0
+  53 0014 0546     		mov	r5, r0
+ 170:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
+  54              		.loc 1 170 0
+  55 0016 D2B2     		uxtb	r2, r2
+  56              	.LVL2:
+ 164:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_HVLINE_COUNT
+  57              		.loc 1 164 0
+  58 0018 0C46     		mov	r4, r1
+  59              		.loc 1 176 0
+  60 001a 40D0     		beq	.L23
  177:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   {
  178:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     if ( x < u8g2->pixel_buf_width && y < u8g2->pixel_buf_height )
  179:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       u8g2->ll_hvline(u8g2, x, y, len, dir);
  180:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 9
-
-
  181:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
  182:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #endif
  183:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   
  184:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( dir == 2 )
- 266              		.loc 1 184 0
- 267 0016 022D     		cmp	r5, #2
- 268 0018 14D0     		beq	.L23
+  61              		.loc 1 184 0
+  62 001c 022F     		cmp	r7, #2
+  63 001e 1E46     		mov	r6, r3
+  64 0020 07F00101 		and	r1, r7, #1
+  65              	.LVL3:
+  66 0024 90F83B30 		ldrb	r3, [r0, #59]	@ zero_extendqisi2
+  67              	.LVL4:
+  68 0028 1AD0     		beq	.L24
  185:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   {
  186:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     x -= len;
  187:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     x++;
  188:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
  189:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   else if ( dir == 3 )
- 269              		.loc 1 189 0
- 270 001a 032D     		cmp	r5, #3
- 271 001c 17D0     		beq	.L24
- 272              	.L20:
+  69              		.loc 1 189 0
+  70 002a 032F     		cmp	r7, #3
+  71 002c 42D0     		beq	.L25
+  72              	.LVL5:
+  73              	.LBB18:
+  74              	.LBB19:
+ 124:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   {
+  75              		.loc 1 124 0
+  76 002e D9B1     		cbz	r1, .L5
+  77              	.LVL6:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       return;
+  78              		.loc 1 137 0
+  79 0030 6445     		cmp	r4, ip
+  80 0032 32D2     		bcs	.L1
+  81              	.LVL7:
+  82              	.L26:
+ 140:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     if ( u8g2_clip_intersection(&y, &a, h) == 0 )
+  83              		.loc 1 140 0
+  84 0034 1644     		add	r6, r6, r2
+  85              	.LVL8:
+  86 0036 F6B2     		uxtb	r6, r6
+  87              	.LVL9:
+  88              	.LBB20:
+  89              	.LBB21:
+  74:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   {    
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 6
+
+
+  90              		.loc 1 74 0
+  91 0038 9642     		cmp	r6, r2
+  92 003a 2AD2     		bcs	.L11
+  77:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     {
+  93              		.loc 1 77 0
+  94 003c 9342     		cmp	r3, r2
+  95 003e 27D9     		bls	.L14
+  96              	.LVL10:
+  80:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       *bp = b;
+  97              		.loc 1 80 0
+  98 0040 5E1E     		subs	r6, r3, #1
+  99              	.LVL11:
+ 100 0042 F6B2     		uxtb	r6, r6
+ 101              	.LVL12:
+ 102              	.L12:
+ 103              	.LBE21:
+ 104              	.LBE20:
+ 144:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
+ 105              		.loc 1 144 0
+ 106 0044 B342     		cmp	r3, r6
+ 107 0046 94BF     		ite	ls
+ 108 0048 C2EB0303 		rsbls	r3, r2, r3
+ 109 004c C2EB0603 		rsbhi	r3, r2, r6
+ 110              	.LVL13:
+ 111 0050 DBB2     		uxtb	r3, r3
+ 112              	.LVL14:
+ 113              	.L10:
+ 147:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
+ 114              		.loc 1 147 0
+ 115 0052 0491     		str	r1, [sp, #16]
+ 116 0054 2146     		mov	r1, r4
+ 117 0056 EC6A     		ldr	r4, [r5, #44]
+ 118 0058 2846     		mov	r0, r5
+ 119 005a A446     		mov	ip, r4
+ 120              	.LVL15:
+ 121              	.LBE19:
+ 122              	.LBE18:
  190:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   {
  191:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     y -= len;
  192:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     y++;
  193:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
  194:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   dir &= 1;  
- 273              		.loc 1 194 0
- 274 001e 05F00105 		and	r5, r5, #1
- 275              	.LVL40:
  195:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_CLIPPING
  196:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2_draw_hv_line_2dir(u8g2, x, y, len, dir);
- 276              		.loc 1 196 0
- 277 0022 0095     		str	r5, [sp]
- 278 0024 FFF7FEFF 		bl	u8g2_draw_hv_line_2dir
- 279              	.LVL41:
- 280              	.L16:
  197:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #else
  198:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2->ll_hvline(u8g2, x, y, len, dir);
  199:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #endif
  200:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 281              		.loc 1 200 0
- 282 0028 03B0     		add	sp, sp, #12
- 283              	.LCFI9:
- 284              		.cfi_remember_state
- 285              		.cfi_def_cfa_offset 12
- 286              		@ sp needed
- 287 002a 30BD     		pop	{r4, r5, pc}
- 288              	.LVL42:
- 289              	.L22:
- 290              	.LCFI10:
- 291              		.cfi_restore_state
- 178:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       u8g2->ll_hvline(u8g2, x, y, len, dir);
- 292              		.loc 1 178 0
- 293 002c 90F83A40 		ldrb	r4, [r0, #58]	@ zero_extendqisi2
- 294 0030 8C42     		cmp	r4, r1
- 295 0032 F9D9     		bls	.L16
- 178:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       u8g2->ll_hvline(u8g2, x, y, len, dir);
- 296              		.loc 1 178 0 is_stmt 0 discriminator 1
- 297 0034 90F83B40 		ldrb	r4, [r0, #59]	@ zero_extendqisi2
- 298 0038 9442     		cmp	r4, r2
- 299 003a F5D9     		bls	.L16
- 179:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 10
+ 123              		.loc 1 200 0
+ 124 005c F0BC     		pop	{r4, r5, r6, r7}
+ 125              	.LCFI1:
+ 126              		.cfi_remember_state
+ 127              		.cfi_restore 7
+ 128              		.cfi_restore 6
+ 129              		.cfi_restore 5
+ 130              		.cfi_restore 4
+ 131              		.cfi_def_cfa_offset 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 7
 
 
- 300              		.loc 1 179 0 is_stmt 1
- 301 003c C46A     		ldr	r4, [r0, #44]
- 302 003e 0095     		str	r5, [sp]
- 303 0040 A047     		blx	r4
- 304              	.LVL43:
- 305 0042 F1E7     		b	.L16
- 306              	.LVL44:
- 307              	.L23:
- 186:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     x++;
- 308              		.loc 1 186 0
- 309 0044 C91A     		subs	r1, r1, r3
- 310              	.LVL45:
- 311 0046 C9B2     		uxtb	r1, r1
- 312              	.LVL46:
+ 132              	.LVL16:
+ 133              	.LBB32:
+ 134              	.LBB28:
+ 147:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
+ 135              		.loc 1 147 0
+ 136 005e 6047     		bx	ip	@ indirect register sibling call
+ 137              	.LVL17:
+ 138              	.L24:
+ 139              	.LCFI2:
+ 140              		.cfi_restore_state
+ 141 0060 0134     		adds	r4, r4, #1
+ 142              	.LVL18:
+ 143              	.LBE28:
+ 144              	.LBE32:
  187:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
- 313              		.loc 1 187 0
- 314 0048 0131     		adds	r1, r1, #1
- 315              	.LVL47:
- 316 004a C9B2     		uxtb	r1, r1
- 317              	.LVL48:
- 318 004c E7E7     		b	.L20
- 319              	.L24:
- 191:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     y++;
- 320              		.loc 1 191 0
- 321 004e D21A     		subs	r2, r2, r3
- 322              	.LVL49:
- 323 0050 D2B2     		uxtb	r2, r2
- 324              	.LVL50:
+ 145              		.loc 1 187 0
+ 146 0062 A41B     		subs	r4, r4, r6
+ 147              	.LVL19:
+ 148 0064 04F0FF04 		and	r4, r4, #255
+ 149              	.LVL20:
+ 150              	.L5:
+ 151              	.LBB33:
+ 152              	.LBB29:
+ 126:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       return;
+ 153              		.loc 1 126 0
+ 154 0068 9A42     		cmp	r2, r3
+ 155 006a 16D2     		bcs	.L1
+ 129:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     if ( u8g2_clip_intersection(&x, &a, w) == 0 )
+ 156              		.loc 1 129 0
+ 157 006c 2644     		add	r6, r6, r4
+ 158              	.LVL21:
+ 159 006e F6B2     		uxtb	r6, r6
+ 160              	.LVL22:
+ 161              	.LBB23:
+ 162              	.LBB24:
+  74:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   {    
+ 163              		.loc 1 74 0
+ 164 0070 A642     		cmp	r6, r4
+ 165 0072 27D2     		bcs	.L8
+  77:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     {
+ 166              		.loc 1 77 0
+ 167 0074 A445     		cmp	ip, r4
+ 168 0076 24D9     		bls	.L13
+ 169              	.LVL23:
+  80:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       *bp = b;
+ 170              		.loc 1 80 0
+ 171 0078 0CF1FF36 		add	r6, ip, #-1
+ 172              	.LVL24:
+ 173 007c F6B2     		uxtb	r6, r6
+ 174              	.LVL25:
+ 175              	.L9:
+  94:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return 0;
+ 176              		.loc 1 94 0
+ 177 007e 66B1     		cbz	r6, .L1
+ 178              	.LVL26:
+ 179              	.LBE24:
+ 180              	.LBE23:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 8
+
+
+ 133:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
+ 181              		.loc 1 133 0
+ 182 0080 B445     		cmp	ip, r6
+ 183 0082 94BF     		ite	ls
+ 184 0084 C4EB0C06 		rsbls	r6, r4, ip
+ 185 0088 C4EB0606 		rsbhi	r6, r4, r6
+ 186              	.LVL27:
+ 187 008c F3B2     		uxtb	r3, r6
+ 188              	.LVL28:
+ 189 008e E0E7     		b	.L10
+ 190              	.LVL29:
+ 191              	.L14:
+ 192              	.LBB26:
+ 193              	.LBB22:
+  85:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       *ap = a;
+ 194              		.loc 1 85 0
+ 195 0090 0022     		movs	r2, #0
+ 196              	.LVL30:
+ 197              	.L11:
+  92:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return 0;
+ 198              		.loc 1 92 0
+ 199 0092 9342     		cmp	r3, r2
+ 200 0094 01D9     		bls	.L1
+  94:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return 0;
+ 201              		.loc 1 94 0
+ 202 0096 002E     		cmp	r6, #0
+ 203 0098 D4D1     		bne	.L12
+ 204              	.LVL31:
+ 205              	.L1:
+ 206              	.LBE22:
+ 207              	.LBE26:
+ 208              	.LBE29:
+ 209              	.LBE33:
+ 210              		.loc 1 200 0
+ 211 009a F0BC     		pop	{r4, r5, r6, r7}
+ 212              	.LCFI3:
+ 213              		.cfi_remember_state
+ 214              		.cfi_restore 7
+ 215              		.cfi_restore 6
+ 216              		.cfi_restore 5
+ 217              		.cfi_restore 4
+ 218              		.cfi_def_cfa_offset 0
+ 219              	.LVL32:
+ 220 009c 7047     		bx	lr
+ 221              	.LVL33:
+ 222              	.L23:
+ 223              	.LCFI4:
+ 224              		.cfi_restore_state
+ 178:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       u8g2->ll_hvline(u8g2, x, y, len, dir);
+ 225              		.loc 1 178 0
+ 226 009e 6145     		cmp	r1, ip
+ 227 00a0 FBD2     		bcs	.L1
+ 178:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       u8g2->ll_hvline(u8g2, x, y, len, dir);
+ 228              		.loc 1 178 0 is_stmt 0 discriminator 1
+ 229 00a2 90F83B40 		ldrb	r4, [r0, #59]	@ zero_extendqisi2
+ 230 00a6 9442     		cmp	r4, r2
+ 231 00a8 F7D9     		bls	.L1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 9
+
+
+ 179:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return;
+ 232              		.loc 1 179 0 is_stmt 1
+ 233 00aa 0497     		str	r7, [sp, #16]
+ 234              	.LVL34:
+ 235 00ac C46A     		ldr	r4, [r0, #44]
+ 236 00ae A446     		mov	ip, r4
+ 237              		.loc 1 200 0
+ 238 00b0 F0BC     		pop	{r4, r5, r6, r7}
+ 239              	.LCFI5:
+ 240              		.cfi_remember_state
+ 241              		.cfi_restore 7
+ 242              		.cfi_restore 6
+ 243              		.cfi_restore 5
+ 244              		.cfi_restore 4
+ 245              		.cfi_def_cfa_offset 0
+ 179:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return;
+ 246              		.loc 1 179 0
+ 247 00b2 6047     		bx	ip	@ indirect register sibling call
+ 248              	.LVL35:
+ 249              	.L25:
+ 250              	.LCFI6:
+ 251              		.cfi_restore_state
  192:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
- 325              		.loc 1 192 0
- 326 0052 0132     		adds	r2, r2, #1
- 327              	.LVL51:
- 328 0054 D2B2     		uxtb	r2, r2
- 329              	.LVL52:
- 330 0056 E2E7     		b	.L20
- 331              		.cfi_endproc
- 332              	.LFE2:
- 334              		.section	.text.u8g2_DrawHVLine,"ax",%progbits
- 335              		.align	1
- 336              		.global	u8g2_DrawHVLine
- 337              		.syntax unified
- 338              		.thumb
- 339              		.thumb_func
- 340              		.fpu fpv4-sp-d16
- 342              	u8g2_DrawHVLine:
- 343              	.LFB3:
+ 252              		.loc 1 192 0
+ 253 00b4 C6F10100 		rsb	r0, r6, #1
+ 254              	.LVL36:
+ 255 00b8 0244     		add	r2, r2, r0
+ 256              	.LVL37:
+ 257              	.LBB34:
+ 258              	.LBB30:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       return;
+ 259              		.loc 1 137 0
+ 260 00ba 6445     		cmp	r4, ip
+ 261              	.LBE30:
+ 262              	.LBE34:
+ 192:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   }
+ 263              		.loc 1 192 0
+ 264 00bc D2B2     		uxtb	r2, r2
+ 265              	.LVL38:
+ 266              	.LBB35:
+ 267              	.LBB31:
+ 137:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       return;
+ 268              		.loc 1 137 0
+ 269 00be B9D3     		bcc	.L26
+ 270 00c0 EBE7     		b	.L1
+ 271              	.LVL39:
+ 272              	.L13:
+ 273              	.LBB27:
+ 274              	.LBB25:
+  85:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****       *ap = a;
+ 275              		.loc 1 85 0
+ 276 00c2 0024     		movs	r4, #0
+ 277              	.LVL40:
+ 278              	.L8:
+  92:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return 0;
+ 279              		.loc 1 92 0
+ 280 00c4 6445     		cmp	r4, ip
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 10
+
+
+ 281 00c6 E8D2     		bcs	.L1
+ 282 00c8 D9E7     		b	.L9
+ 283              	.LBE25:
+ 284              	.LBE27:
+ 285              	.LBE31:
+ 286              	.LBE35:
+ 287              		.cfi_endproc
+ 288              	.LFE2:
+ 290 00ca 00BF     		.section	.text.u8g2_DrawHVLine,"ax",%progbits
+ 291              		.align	1
+ 292              		.p2align 2,,3
+ 293              		.global	u8g2_DrawHVLine
+ 294              		.syntax unified
+ 295              		.thumb
+ 296              		.thumb_func
+ 297              		.fpu fpv4-sp-d16
+ 299              	u8g2_DrawHVLine:
+ 300              	.LFB3:
  201:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  202:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** /*
  203:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   This is the toplevel function for the hv line draw procedures.
@@ -594,296 +566,343 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
  205:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** */
  206:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** void u8g2_DrawHVLine(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len, uint8_t dir)
  207:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** {
- 344              		.loc 1 207 0
- 345              		.cfi_startproc
- 346              		@ args = 4, pretend = 0, frame = 0
- 347              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 11
-
-
- 348              	.LVL53:
+ 301              		.loc 1 207 0
+ 302              		.cfi_startproc
+ 303              		@ args = 4, pretend = 0, frame = 0
+ 304              		@ frame_needed = 0, uses_anonymous_args = 0
+ 305              		@ link register save eliminated.
+ 306              	.LVL41:
+ 307 0000 30B4     		push	{r4, r5}
+ 308              	.LCFI7:
+ 309              		.cfi_def_cfa_offset 8
+ 310              		.cfi_offset 4, -8
+ 311              		.cfi_offset 5, -4
+ 312              		.loc 1 207 0
+ 313 0002 9DF80840 		ldrb	r4, [sp, #8]	@ zero_extendqisi2
  208:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* Make a call to the callback function (e.g. u8g2_draw_l90_r0). */
  209:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* The callback may rotate the hv line */
  210:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* after rotation this will call u8g2_draw_hv_line_4dir() */
  211:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( len != 0 )
- 349              		.loc 1 211 0
- 350 0000 4BB1     		cbz	r3, .L28
- 207:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   /* Make a call to the callback function (e.g. u8g2_draw_l90_r0). */
- 351              		.loc 1 207 0
- 352 0002 30B5     		push	{r4, r5, lr}
- 353              	.LCFI11:
- 354              		.cfi_def_cfa_offset 12
- 355              		.cfi_offset 4, -12
- 356              		.cfi_offset 5, -8
- 357              		.cfi_offset 14, -4
- 358 0004 83B0     		sub	sp, sp, #12
- 359              	.LCFI12:
- 360              		.cfi_def_cfa_offset 24
+ 314              		.loc 1 211 0
+ 315 0006 2BB1     		cbz	r3, .L27
  212:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     u8g2->cb->draw_l90(u8g2, x, y, len, dir);
- 361              		.loc 1 212 0
- 362 0006 046B     		ldr	r4, [r0, #48]
- 363 0008 6468     		ldr	r4, [r4, #4]
- 364 000a 9DF81850 		ldrb	r5, [sp, #24]	@ zero_extendqisi2
- 365 000e 0095     		str	r5, [sp]
- 366 0010 A047     		blx	r4
- 367              	.LVL54:
+ 316              		.loc 1 212 0
+ 317 0008 056B     		ldr	r5, [r0, #48]
+ 318 000a 0294     		str	r4, [sp, #8]
+ 319              	.LVL42:
+ 320 000c 6C68     		ldr	r4, [r5, #4]
+ 321 000e A446     		mov	ip, r4
  213:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 368              		.loc 1 213 0
- 369 0012 03B0     		add	sp, sp, #12
- 370              	.LCFI13:
- 371              		.cfi_def_cfa_offset 12
- 372              		@ sp needed
- 373 0014 30BD     		pop	{r4, r5, pc}
- 374              	.LVL55:
- 375              	.L28:
- 376              	.LCFI14:
- 377              		.cfi_def_cfa_offset 0
- 378              		.cfi_restore 4
- 379              		.cfi_restore 5
- 380              		.cfi_restore 14
- 381 0016 7047     		bx	lr
- 382              		.cfi_endproc
- 383              	.LFE3:
- 385              		.section	.text.u8g2_DrawHLine,"ax",%progbits
- 386              		.align	1
- 387              		.global	u8g2_DrawHLine
- 388              		.syntax unified
- 389              		.thumb
- 390              		.thumb_func
- 391              		.fpu fpv4-sp-d16
- 393              	u8g2_DrawHLine:
- 394              	.LFB4:
+ 322              		.loc 1 213 0
+ 323 0010 30BC     		pop	{r4, r5}
+ 324              	.LCFI8:
+ 325              		.cfi_remember_state
+ 326              		.cfi_restore 5
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 11
+
+
+ 327              		.cfi_restore 4
+ 328              		.cfi_def_cfa_offset 0
+ 212:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     u8g2->cb->draw_l90(u8g2, x, y, len, dir);
+ 329              		.loc 1 212 0
+ 330 0012 6047     		bx	ip	@ indirect register sibling call
+ 331              	.LVL43:
+ 332              	.L27:
+ 333              	.LCFI9:
+ 334              		.cfi_restore_state
+ 335              		.loc 1 213 0
+ 336 0014 30BC     		pop	{r4, r5}
+ 337              	.LCFI10:
+ 338              		.cfi_restore 5
+ 339              		.cfi_restore 4
+ 340              		.cfi_def_cfa_offset 0
+ 341              	.LVL44:
+ 342 0016 7047     		bx	lr
+ 343              		.cfi_endproc
+ 344              	.LFE3:
+ 346              		.section	.text.u8g2_DrawHLine,"ax",%progbits
+ 347              		.align	1
+ 348              		.p2align 2,,3
+ 349              		.global	u8g2_DrawHLine
+ 350              		.syntax unified
+ 351              		.thumb
+ 352              		.thumb_func
+ 353              		.fpu fpv4-sp-d16
+ 355              	u8g2_DrawHLine:
+ 356              	.LFB4:
  214:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  215:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** void u8g2_DrawHLine(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len)
  216:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** {
- 395              		.loc 1 216 0
- 396              		.cfi_startproc
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 12
-
-
- 397              		@ args = 0, pretend = 0, frame = 0
- 398              		@ frame_needed = 0, uses_anonymous_args = 0
- 399              	.LVL56:
- 400 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
- 401              	.LCFI15:
- 402              		.cfi_def_cfa_offset 24
- 403              		.cfi_offset 4, -24
- 404              		.cfi_offset 5, -20
- 405              		.cfi_offset 6, -16
- 406              		.cfi_offset 7, -12
- 407              		.cfi_offset 8, -8
- 408              		.cfi_offset 14, -4
- 409 0004 82B0     		sub	sp, sp, #8
- 410              	.LCFI16:
- 411              		.cfi_def_cfa_offset 32
- 412 0006 8046     		mov	r8, r0
- 413 0008 0D46     		mov	r5, r1
- 414 000a 1646     		mov	r6, r2
- 415 000c 1F46     		mov	r7, r3
+ 357              		.loc 1 216 0
+ 358              		.cfi_startproc
+ 359              		@ args = 0, pretend = 0, frame = 0
+ 360              		@ frame_needed = 0, uses_anonymous_args = 0
+ 361              	.LVL45:
+ 362 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 363              	.LCFI11:
+ 364              		.cfi_def_cfa_offset 20
+ 365              		.cfi_offset 4, -20
+ 366              		.cfi_offset 5, -16
+ 367              		.cfi_offset 6, -12
+ 368              		.cfi_offset 7, -8
+ 369              		.cfi_offset 14, -4
  217:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
  218:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( u8g2_IsIntersection(u8g2, x, y, x+len, y+1) == 0 ) 
- 416              		.loc 1 218 0
- 417 000e CB18     		adds	r3, r1, r3
- 418              	.LVL57:
- 419 0010 541C     		adds	r4, r2, #1
- 420 0012 E4B2     		uxtb	r4, r4
- 421 0014 0094     		str	r4, [sp]
- 422 0016 DBB2     		uxtb	r3, r3
- 423 0018 FFF7FEFF 		bl	u8g2_IsIntersection
- 424              	.LVL58:
- 425 001c 10B9     		cbnz	r0, .L34
- 426              	.L31:
+ 370              		.loc 1 218 0
+ 371 0002 541C     		adds	r4, r2, #1
+ 216:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
+ 372              		.loc 1 216 0
+ 373 0004 83B0     		sub	sp, sp, #12
+ 374              	.LCFI12:
+ 375              		.cfi_def_cfa_offset 32
+ 376              		.loc 1 218 0
+ 377 0006 E4B2     		uxtb	r4, r4
+ 216:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 12
+
+
+ 378              		.loc 1 216 0
+ 379 0008 1D46     		mov	r5, r3
+ 380              		.loc 1 218 0
+ 381 000a CB18     		adds	r3, r1, r3
+ 382              	.LVL46:
+ 383 000c 0094     		str	r4, [sp]
+ 384 000e DBB2     		uxtb	r3, r3
+ 216:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
+ 385              		.loc 1 216 0
+ 386 0010 1746     		mov	r7, r2
+ 387 0012 0E46     		mov	r6, r1
+ 388 0014 0446     		mov	r4, r0
+ 389              		.loc 1 218 0
+ 390 0016 FFF7FEFF 		bl	u8g2_IsIntersection
+ 391              	.LVL47:
+ 392 001a 48B1     		cbz	r0, .L30
+ 393              	.LVL48:
+ 394              	.LBB36:
+ 395              	.LBB37:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     u8g2->cb->draw_l90(u8g2, x, y, len, dir);
+ 396              		.loc 1 211 0
+ 397 001c 45B1     		cbz	r5, .L30
+ 212:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
+ 398              		.loc 1 212 0
+ 399 001e 206B     		ldr	r0, [r4, #48]
+ 400 0020 0023     		movs	r3, #0
+ 401 0022 0093     		str	r3, [sp]
+ 402 0024 3A46     		mov	r2, r7
+ 403 0026 2B46     		mov	r3, r5
+ 404 0028 3146     		mov	r1, r6
+ 405 002a 4568     		ldr	r5, [r0, #4]
+ 406              	.LVL49:
+ 407 002c 2046     		mov	r0, r4
+ 408 002e A847     		blx	r5
+ 409              	.LVL50:
+ 410              	.L30:
+ 411              	.LBE37:
+ 412              	.LBE36:
  219:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return;
  220:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #endif /* U8G2_WITH_INTERSECTION */
  221:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2_DrawHVLine(u8g2, x, y, len, 0);
  222:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 427              		.loc 1 222 0
- 428 001e 02B0     		add	sp, sp, #8
- 429              	.LCFI17:
- 430              		.cfi_remember_state
- 431              		.cfi_def_cfa_offset 24
- 432              		@ sp needed
- 433 0020 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 434              	.LVL59:
- 435              	.L34:
- 436              	.LCFI18:
- 437              		.cfi_restore_state
- 221:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 438              		.loc 1 221 0
- 439 0024 0023     		movs	r3, #0
- 440 0026 0093     		str	r3, [sp]
- 441 0028 3B46     		mov	r3, r7
- 442 002a 3246     		mov	r2, r6
- 443 002c 2946     		mov	r1, r5
- 444 002e 4046     		mov	r0, r8
- 445 0030 FFF7FEFF 		bl	u8g2_DrawHVLine
- 446              	.LVL60:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 13
+ 413              		.loc 1 222 0
+ 414 0030 03B0     		add	sp, sp, #12
+ 415              	.LCFI13:
+ 416              		.cfi_def_cfa_offset 20
+ 417              		@ sp needed
+ 418 0032 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 419              		.cfi_endproc
+ 420              	.LFE4:
+ 422              		.section	.text.u8g2_DrawVLine,"ax",%progbits
+ 423              		.align	1
+ 424              		.p2align 2,,3
+ 425              		.global	u8g2_DrawVLine
+ 426              		.syntax unified
+ 427              		.thumb
+ 428              		.thumb_func
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 13
 
 
- 447 0034 F3E7     		b	.L31
- 448              		.cfi_endproc
- 449              	.LFE4:
- 451              		.section	.text.u8g2_DrawVLine,"ax",%progbits
- 452              		.align	1
- 453              		.global	u8g2_DrawVLine
- 454              		.syntax unified
- 455              		.thumb
- 456              		.thumb_func
- 457              		.fpu fpv4-sp-d16
- 459              	u8g2_DrawVLine:
- 460              	.LFB5:
+ 429              		.fpu fpv4-sp-d16
+ 431              	u8g2_DrawVLine:
+ 432              	.LFB5:
  223:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  224:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** void u8g2_DrawVLine(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t len)
  225:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** {
- 461              		.loc 1 225 0
- 462              		.cfi_startproc
- 463              		@ args = 0, pretend = 0, frame = 0
- 464              		@ frame_needed = 0, uses_anonymous_args = 0
- 465              	.LVL61:
- 466 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
- 467              	.LCFI19:
- 468              		.cfi_def_cfa_offset 24
- 469              		.cfi_offset 4, -24
- 470              		.cfi_offset 5, -20
- 471              		.cfi_offset 6, -16
- 472              		.cfi_offset 7, -12
- 473              		.cfi_offset 8, -8
- 474              		.cfi_offset 14, -4
- 475 0004 82B0     		sub	sp, sp, #8
- 476              	.LCFI20:
- 477              		.cfi_def_cfa_offset 32
- 478 0006 8046     		mov	r8, r0
- 479 0008 0D46     		mov	r5, r1
- 480 000a 1646     		mov	r6, r2
- 481 000c 1F46     		mov	r7, r3
+ 433              		.loc 1 225 0
+ 434              		.cfi_startproc
+ 435              		@ args = 0, pretend = 0, frame = 0
+ 436              		@ frame_needed = 0, uses_anonymous_args = 0
+ 437              	.LVL51:
+ 438 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 439              	.LCFI14:
+ 440              		.cfi_def_cfa_offset 20
+ 441              		.cfi_offset 4, -20
+ 442              		.cfi_offset 5, -16
+ 443              		.cfi_offset 6, -12
+ 444              		.cfi_offset 7, -8
+ 445              		.cfi_offset 14, -4
  226:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
  227:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( u8g2_IsIntersection(u8g2, x, y, x+1, y+len) == 0 ) 
- 482              		.loc 1 227 0
- 483 000e 4B1C     		adds	r3, r1, #1
- 484              	.LVL62:
- 485 0010 D419     		adds	r4, r2, r7
- 486 0012 E4B2     		uxtb	r4, r4
- 487 0014 0094     		str	r4, [sp]
- 488 0016 DBB2     		uxtb	r3, r3
- 489 0018 FFF7FEFF 		bl	u8g2_IsIntersection
- 490              	.LVL63:
- 491 001c 10B9     		cbnz	r0, .L38
- 492              	.L35:
+ 446              		.loc 1 227 0
+ 447 0002 D418     		adds	r4, r2, r3
+ 225:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
+ 448              		.loc 1 225 0
+ 449 0004 83B0     		sub	sp, sp, #12
+ 450              	.LCFI15:
+ 451              		.cfi_def_cfa_offset 32
+ 452              		.loc 1 227 0
+ 453 0006 E4B2     		uxtb	r4, r4
+ 225:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
+ 454              		.loc 1 225 0
+ 455 0008 1D46     		mov	r5, r3
+ 456              		.loc 1 227 0
+ 457 000a 4B1C     		adds	r3, r1, #1
+ 458              	.LVL52:
+ 459 000c 0094     		str	r4, [sp]
+ 460 000e DBB2     		uxtb	r3, r3
+ 225:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
+ 461              		.loc 1 225 0
+ 462 0010 1746     		mov	r7, r2
+ 463 0012 0E46     		mov	r6, r1
+ 464 0014 0446     		mov	r4, r0
+ 465              		.loc 1 227 0
+ 466 0016 FFF7FEFF 		bl	u8g2_IsIntersection
+ 467              	.LVL53:
+ 468 001a 48B1     		cbz	r0, .L39
+ 469              	.LVL54:
+ 470              	.LBB38:
+ 471              	.LBB39:
+ 211:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     u8g2->cb->draw_l90(u8g2, x, y, len, dir);
+ 472              		.loc 1 211 0
+ 473 001c 45B1     		cbz	r5, .L39
+ 212:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
+ 474              		.loc 1 212 0
+ 475 001e 206B     		ldr	r0, [r4, #48]
+ 476 0020 0123     		movs	r3, #1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 14
+
+
+ 477 0022 0093     		str	r3, [sp]
+ 478 0024 3A46     		mov	r2, r7
+ 479 0026 2B46     		mov	r3, r5
+ 480 0028 3146     		mov	r1, r6
+ 481 002a 4568     		ldr	r5, [r0, #4]
+ 482              	.LVL55:
+ 483 002c 2046     		mov	r0, r4
+ 484 002e A847     		blx	r5
+ 485              	.LVL56:
+ 486              	.L39:
+ 487              	.LBE39:
+ 488              	.LBE38:
  228:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return;
  229:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #endif /* U8G2_WITH_INTERSECTION */
  230:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2_DrawHVLine(u8g2, x, y, len, 1);
  231:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 493              		.loc 1 231 0
- 494 001e 02B0     		add	sp, sp, #8
- 495              	.LCFI21:
- 496              		.cfi_remember_state
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 14
-
-
- 497              		.cfi_def_cfa_offset 24
- 498              		@ sp needed
- 499 0020 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 500              	.LVL64:
- 501              	.L38:
- 502              	.LCFI22:
- 503              		.cfi_restore_state
- 230:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 504              		.loc 1 230 0
- 505 0024 0123     		movs	r3, #1
- 506 0026 0093     		str	r3, [sp]
- 507 0028 3B46     		mov	r3, r7
- 508 002a 3246     		mov	r2, r6
- 509 002c 2946     		mov	r1, r5
- 510 002e 4046     		mov	r0, r8
- 511 0030 FFF7FEFF 		bl	u8g2_DrawHVLine
- 512              	.LVL65:
- 513 0034 F3E7     		b	.L35
- 514              		.cfi_endproc
- 515              	.LFE5:
- 517              		.section	.text.u8g2_DrawPixel,"ax",%progbits
- 518              		.align	1
- 519              		.global	u8g2_DrawPixel
- 520              		.syntax unified
- 521              		.thumb
- 522              		.thumb_func
- 523              		.fpu fpv4-sp-d16
- 525              	u8g2_DrawPixel:
- 526              	.LFB6:
+ 489              		.loc 1 231 0
+ 490 0030 03B0     		add	sp, sp, #12
+ 491              	.LCFI16:
+ 492              		.cfi_def_cfa_offset 20
+ 493              		@ sp needed
+ 494 0032 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 495              		.cfi_endproc
+ 496              	.LFE5:
+ 498              		.section	.text.u8g2_DrawPixel,"ax",%progbits
+ 499              		.align	1
+ 500              		.p2align 2,,3
+ 501              		.global	u8g2_DrawPixel
+ 502              		.syntax unified
+ 503              		.thumb
+ 504              		.thumb_func
+ 505              		.fpu fpv4-sp-d16
+ 507              	u8g2_DrawPixel:
+ 508              	.LFB6:
  232:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  233:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** void u8g2_DrawPixel(u8g2_t *u8g2, u8g2_uint_t x, u8g2_uint_t y)
  234:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** {
- 527              		.loc 1 234 0
- 528              		.cfi_startproc
- 529              		@ args = 0, pretend = 0, frame = 0
- 530              		@ frame_needed = 0, uses_anonymous_args = 0
- 531              	.LVL66:
+ 509              		.loc 1 234 0
+ 510              		.cfi_startproc
+ 511              		@ args = 0, pretend = 0, frame = 0
+ 512              		@ frame_needed = 0, uses_anonymous_args = 0
+ 513              	.LVL57:
+ 514 0000 70B5     		push	{r4, r5, r6, lr}
+ 515              	.LCFI17:
+ 516              		.cfi_def_cfa_offset 16
+ 517              		.cfi_offset 4, -16
+ 518              		.cfi_offset 5, -12
+ 519              		.cfi_offset 6, -8
+ 520              		.cfi_offset 14, -4
  235:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
  236:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( y < u8g2->user_y0 )
- 532              		.loc 1 236 0
- 533 0000 90F84330 		ldrb	r3, [r0, #67]	@ zero_extendqisi2
- 534 0004 9342     		cmp	r3, r2
- 535 0006 0BD8     		bhi	.L42
+ 521              		.loc 1 236 0
+ 522 0002 90F84350 		ldrb	r5, [r0, #67]	@ zero_extendqisi2
+ 523 0006 9542     		cmp	r5, r2
+ 234:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
+ 524              		.loc 1 234 0
+ 525 0008 82B0     		sub	sp, sp, #8
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 15
+
+
+ 526              	.LCFI18:
+ 527              		.cfi_def_cfa_offset 24
+ 528              		.loc 1 236 0
+ 529 000a 11D8     		bhi	.L48
  237:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return;
  238:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( y >= u8g2->user_y1 )
- 536              		.loc 1 238 0
- 537 0008 90F84430 		ldrb	r3, [r0, #68]	@ zero_extendqisi2
- 538 000c 9342     		cmp	r3, r2
- 539 000e 07D9     		bls	.L42
+ 530              		.loc 1 238 0
+ 531 000c 90F84450 		ldrb	r5, [r0, #68]	@ zero_extendqisi2
+ 532 0010 9542     		cmp	r5, r2
+ 533 0012 0DD9     		bls	.L48
  239:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return;
  240:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( x < u8g2->user_x0 )
- 540              		.loc 1 240 0
- 541 0010 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
- 542 0014 8B42     		cmp	r3, r1
- 543 0016 03D8     		bhi	.L42
+ 534              		.loc 1 240 0
+ 535 0014 90F84140 		ldrb	r4, [r0, #65]	@ zero_extendqisi2
+ 536 0018 8C42     		cmp	r4, r1
+ 537 001a 09D8     		bhi	.L48
  241:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return;
  242:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( x >= u8g2->user_x1 )
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 15
-
-
- 544              		.loc 1 242 0
- 545 0018 90F84230 		ldrb	r3, [r0, #66]	@ zero_extendqisi2
- 546 001c 8B42     		cmp	r3, r1
- 547 001e 00D8     		bhi	.L45
- 548              	.L42:
- 549 0020 7047     		bx	lr
- 550              	.L45:
- 234:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #ifdef U8G2_WITH_INTERSECTION
- 551              		.loc 1 234 0
- 552 0022 00B5     		push	{lr}
- 553              	.LCFI23:
- 554              		.cfi_def_cfa_offset 4
- 555              		.cfi_offset 14, -4
- 556 0024 83B0     		sub	sp, sp, #12
- 557              	.LCFI24:
- 558              		.cfi_def_cfa_offset 16
+ 538              		.loc 1 242 0
+ 539 001c 90F84240 		ldrb	r4, [r0, #66]	@ zero_extendqisi2
+ 540 0020 8C42     		cmp	r4, r1
+ 541 0022 05D9     		bls	.L48
+ 542              	.LVL58:
+ 543              	.LBB40:
+ 544              	.LBB41:
+ 212:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
+ 545              		.loc 1 212 0
+ 546 0024 036B     		ldr	r3, [r0, #48]
+ 547 0026 0024     		movs	r4, #0
+ 548 0028 0094     		str	r4, [sp]
+ 549 002a 5C68     		ldr	r4, [r3, #4]
+ 550 002c 0123     		movs	r3, #1
+ 551 002e A047     		blx	r4
+ 552              	.LVL59:
+ 553              	.L48:
+ 554              	.LBE41:
+ 555              	.LBE40:
  243:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     return;
  244:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** #endif /* U8G2_WITH_INTERSECTION */
  245:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2_DrawHVLine(u8g2, x, y, 1, 0);
- 559              		.loc 1 245 0
- 560 0026 0023     		movs	r3, #0
- 561 0028 0093     		str	r3, [sp]
- 562 002a 0123     		movs	r3, #1
- 563 002c FFF7FEFF 		bl	u8g2_DrawHVLine
- 564              	.LVL67:
  246:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 565              		.loc 1 246 0
- 566 0030 03B0     		add	sp, sp, #12
- 567              	.LCFI25:
- 568              		.cfi_def_cfa_offset 4
- 569              		@ sp needed
- 570 0032 5DF804FB 		ldr	pc, [sp], #4
- 571              		.cfi_endproc
- 572              	.LFE6:
- 574              		.section	.text.u8g2_SetDrawColor,"ax",%progbits
- 575              		.align	1
- 576              		.global	u8g2_SetDrawColor
- 577              		.syntax unified
- 578              		.thumb
- 579              		.thumb_func
- 580              		.fpu fpv4-sp-d16
- 582              	u8g2_SetDrawColor:
- 583              	.LFB7:
+ 556              		.loc 1 246 0
+ 557 0030 02B0     		add	sp, sp, #8
+ 558              	.LCFI19:
+ 559              		.cfi_def_cfa_offset 16
+ 560              		@ sp needed
+ 561 0032 70BD     		pop	{r4, r5, r6, pc}
+ 562              		.cfi_endproc
+ 563              	.LFE6:
+ 565              		.section	.text.u8g2_SetDrawColor,"ax",%progbits
+ 566              		.align	1
+ 567              		.p2align 2,,3
+ 568              		.global	u8g2_SetDrawColor
+ 569              		.syntax unified
+ 570              		.thumb
+ 571              		.thumb_func
+ 572              		.fpu fpv4-sp-d16
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 16
+
+
+ 574              	u8g2_SetDrawColor:
+ 575              	.LFB7:
  247:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** 
  248:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** /*
  249:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   Assign the draw color for all drawing functions.
@@ -898,61 +917,55 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 1
  258:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   7 Jan 2017: Allow color value 2 for XOR operation.
  259:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   
  260:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** */
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 16
-
-
  261:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** void u8g2_SetDrawColor(u8g2_t *u8g2, uint8_t color)
  262:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** {
- 584              		.loc 1 262 0
- 585              		.cfi_startproc
- 586              		@ args = 0, pretend = 0, frame = 0
- 587              		@ frame_needed = 0, uses_anonymous_args = 0
- 588              		@ link register save eliminated.
- 589              	.LVL68:
+ 576              		.loc 1 262 0
+ 577              		.cfi_startproc
+ 578              		@ args = 0, pretend = 0, frame = 0
+ 579              		@ frame_needed = 0, uses_anonymous_args = 0
+ 580              		@ link register save eliminated.
+ 581              	.LVL60:
  263:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2->draw_color = color;	/* u8g2_SetDrawColor: just assign the argument */ 
- 590              		.loc 1 263 0
- 591 0000 80F87D10 		strb	r1, [r0, #125]
  264:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   if ( color >= 3 )
- 592              		.loc 1 264 0
- 593 0004 0229     		cmp	r1, #2
- 594 0006 02D9     		bls	.L46
+ 582              		.loc 1 264 0
+ 583 0000 0229     		cmp	r1, #2
  265:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****     u8g2->draw_color = 1;	/* u8g2_SetDrawColor: make color as one if arg is invalid */
- 595              		.loc 1 265 0
- 596 0008 0123     		movs	r3, #1
- 597 000a 80F87D30 		strb	r3, [r0, #125]
- 598              	.L46:
+ 584              		.loc 1 265 0
+ 585 0002 8ABF     		itet	hi
+ 586 0004 0123     		movhi	r3, #1
+ 263:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c ****   u8g2->draw_color = color;	/* u8g2_SetDrawColor: just assign the argument */ 
+ 587              		.loc 1 263 0
+ 588 0006 80F87D10 		strbls	r1, [r0, #125]
+ 589              		.loc 1 265 0
+ 590 000a 80F87D30 		strbhi	r3, [r0, #125]
  266:/Users/imashio/Electronics/ARM/_Library/u8g2_hvline.c **** }
- 599              		.loc 1 266 0
- 600 000e 7047     		bx	lr
- 601              		.cfi_endproc
- 602              	.LFE7:
- 604              		.text
- 605              	.Letext0:
- 606              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
- 607              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
- 608              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
- 609              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s 			page 17
+ 591              		.loc 1 266 0
+ 592 000e 7047     		bx	lr
+ 593              		.cfi_endproc
+ 594              	.LFE7:
+ 596              		.text
+ 597              	.Letext0:
+ 598              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 599              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 600              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ 601              		.file 5 "/Users/imashio/Electronics/ARM/_Library/u8g2.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s 			page 17
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 u8g2_hvline.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:18     .text.u8g2_clip_intersection:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:24     .text.u8g2_clip_intersection:0000000000000000 u8g2_clip_intersection
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:110    .text.u8g2_draw_hv_line_2dir:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:116    .text.u8g2_draw_hv_line_2dir:0000000000000000 u8g2_draw_hv_line_2dir
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:233    .text.u8g2_draw_hv_line_4dir:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:240    .text.u8g2_draw_hv_line_4dir:0000000000000000 u8g2_draw_hv_line_4dir
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:335    .text.u8g2_DrawHVLine:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:342    .text.u8g2_DrawHVLine:0000000000000000 u8g2_DrawHVLine
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:386    .text.u8g2_DrawHLine:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:393    .text.u8g2_DrawHLine:0000000000000000 u8g2_DrawHLine
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:452    .text.u8g2_DrawVLine:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:459    .text.u8g2_DrawVLine:0000000000000000 u8g2_DrawVLine
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:518    .text.u8g2_DrawPixel:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:525    .text.u8g2_DrawPixel:0000000000000000 u8g2_DrawPixel
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:575    .text.u8g2_SetDrawColor:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccLBqrkU.s:582    .text.u8g2_SetDrawColor:0000000000000000 u8g2_SetDrawColor
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:18     .text.u8g2_draw_hv_line_4dir:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:26     .text.u8g2_draw_hv_line_4dir:0000000000000000 u8g2_draw_hv_line_4dir
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:291    .text.u8g2_DrawHVLine:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:299    .text.u8g2_DrawHVLine:0000000000000000 u8g2_DrawHVLine
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:347    .text.u8g2_DrawHLine:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:355    .text.u8g2_DrawHLine:0000000000000000 u8g2_DrawHLine
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:423    .text.u8g2_DrawVLine:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:431    .text.u8g2_DrawVLine:0000000000000000 u8g2_DrawVLine
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:499    .text.u8g2_DrawPixel:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:507    .text.u8g2_DrawPixel:0000000000000000 u8g2_DrawPixel
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:566    .text.u8g2_SetDrawColor:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc6TTsBl.s:574    .text.u8g2_SetDrawColor:0000000000000000 u8g2_SetDrawColor
 
 UNDEFINED SYMBOLS
 u8g2_IsIntersection

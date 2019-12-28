@@ -51,6 +51,8 @@
 #define EXTI__SW_Enter_EXTI_IRQn EXTI1_IRQn
 #define ADC__O2_Pin GPIO_PIN_0
 #define ADC__O2_GPIO_Port GPIOA
+#define ADC__FPVOLT_Pin GPIO_PIN_1
+#define ADC__FPVOLT_GPIO_Port GPIOA
 #define USART2__USB_TX_Pin GPIO_PIN_2
 #define USART2__USB_TX_GPIO_Port GPIOA
 #define EXTI__SW_Down_Pin GPIO_PIN_6

@@ -70,10 +70,15 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-u8g2_t u8g2; // a structure which will contain all the data for one display
 
 // mode definition
-#define N_mode        4
+#define N_mode                4
+
+#define MODE_BAR_METER        0
+#define MODE_CIRCULAR_METER   1
+#define MODE_SCOPE_MAP        2
+#define MODE_SCOPE_Gsens      3
+#define MODE_SETTING          4
 
 // RPM bar graph parameter definition
 #define	rpmbar_x		  0
@@ -85,48 +90,46 @@ u8g2_t u8g2; // a structure which will contain all the data for one display
 
 // measurements display parameter definition
 // Bar graph
-#define	N_meas			  6
-#define	meas_x			  0
-#define	meas_y			  16
-#define	meas_x_offset	2
-#define	meas_width1		70
-#define	meas_width2		56
-#define	meas_height		12
+#define	N_meas			      6
+#define	meas_x			      0
+#define	meas_y			      16
+#define	meas_x_offset   	2
+#define	meas_width1		    70
+#define	meas_width2		    56
+#define	meas_height		    12
 // Circular Meter
-#define	N_meas_C			4
-#define	meas_C_x			68
-#define	meas_C_y			2
+#define	N_meas_C			    4
+#define	meas_C_x			    68
+#define	meas_C_y			    2
 #define	meas_C_x_offset		2
-#define	meas_C_width		60
-#define	meas_C_height		13
+#define	meas_C_width		  60
+#define	meas_C_height		  13
 
 // indicators parameter definition
-#define	N_idct			  2
-#define	idct_x			  72
-#define	idct_y			  53
-#define	idct_width		27
-#define	idct_height		9
+#define	N_idct			      2
+#define	idct_x			      72
+#define	idct_y			      53
+#define	idct_width		    27
+#define	idct_height		    9
 
-//  Fuel Pump Voltage dosplay parameter definition
-#define	FP_x		    	0
-#define	FP_y          52
-#define	FP_height	    12
-#define	FP_volt_width	45
-#define	FP_duty_width	70
+//  Fuel Pump Voltage display parameter definition
+#define	FP_x		    	    0
+#define	FP_y              52
+#define	FP_height	        12
+#define	FP_volt_width	    45
+#define	FP_duty_width	    70
 
 // wave display parameter definition
-#define	wave_x			  0
-#define	wave_y			  13
-#define	wave_width		128
-#define	wave_height		52
-#define	wave_value_min	-100
-#define	wave_value_max	+200
+#define	wave_x			      0
+#define	wave_y			      13
+#define	wave_width		    128
+#define	wave_height		    52
+#define	wave_value_min	  -100
+#define	wave_value_max	  +200
 
 // logo parameter definition (small 'enfini' logo)
-#define logo_width    48
-#define logo_height   48
-
-uint8_t   update_display = 0;
+#define logo_width        48
+#define logo_height       48
 
 const unsigned char logo_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -157,8 +160,8 @@ const unsigned char logo_bits[] = {
 
 /*
 // logo parameter definition (meidium 'enfini' logo)
-#define logo_width 54
-#define logo_height 48
+#define logo_width        54
+#define logo_height       48
 
 static unsigned char logo_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF8, 0xFF, 0x0F,
@@ -192,16 +195,19 @@ static unsigned char logo_bits[] = {
   };
 */
 
+u8g2_t    u8g2; // a structure which will contain all the data for one display
+
+uint8_t   update_display = 0;
+
 // uint16_t	rpm = 0;
 uint16_t	speed = 240;
 uint8_t		gear = 0;
 double		MT[5] = {3.483, 2.015, 1.391, 1.000, 0.806};
 
 // UI
-uint8_t mode;
-uint8_t setting;
-uint8_t cursor = 0;
-
+uint8_t   mode;
+uint8_t   setting;
+uint8_t   cursor = 0;
 
 /*
 typedef struct {
@@ -223,21 +229,21 @@ const uint8_t	idct_status[N_idct] = {
 
 // variables for measurement
 const unsigned char meas_name[N_meas][7] = { // length must be (text length + 1)
-		"MAP"	,
-		"OILP"	,
-		"FPV"	,
-		"ECT"	,
-		"OILT"	,
-		"O2"
+		"MAP"         ,
+		"OILP"        ,
+		"FPV"         ,
+		"ECT"         ,
+		"OILT"        ,
+		"O2"          
 };
 
 const unsigned char meas_unit[N_meas][5] = {
-		"kpa"			,	// MAP
-		"kpa"			,	// OILP
-		"V  "     ,	// FuelPump Voltage
-		{176, 67, 0}	,	// ECT  degC...{176, 67, 0}
+		"kpa"			    ,	// MAP
+		"kpa"			    ,	// OILP
+		"V  "         ,	// FuelPump Voltage
+		{176, 67, 0}  ,	// ECT  degC...{176, 67, 0}
 		{176, 67, 0}	,	// OILT  degC...{176, 67, 0}
-		"V"					// O2
+		"V"					    // O2
 };
 
 const uint8_t	meas_digit[N_meas] = {
@@ -277,11 +283,11 @@ int16_t	meas_value[N_meas] = {
 };
 
 // O2 senser Voltage
-int16_t O2_volt = 330;
+int16_t   O2_volt = 330;
 
 // Fuel Pump Voltage
-int16_t FP_volt = 330;
-int16_t FP_duty = 100;
+int16_t   FP_volt = 330;
+int16_t   FP_duty = 100;
 
 // ADXL345 3-axis acceration sensor --------------------------------
 uint8_t   Gsens_EN;
@@ -314,23 +320,6 @@ int8_t ADXL345_RegRead_1byte(uint8_t slv_addr, uint8_t addr){
   HAL_I2C_Master_Receive(&hi2c1, slv_addr << 1, &data, 1, 10);
   return data;
 }
-
-/*
-typedef struct { int X, Y, Z; } ADXL345_G_struct;
-ADXL345_G_struct ADXL345_Read_G(unsigned char slv_addr){
-  uint8_t data[6];
-  uint8_t addr = 0x33;
-  int X, Y, Z;
-
-  HAL_I2C_Master_Transmit(&hi2c1, slv_addr << 1, &addr, 6, 10);
-
-  X = data[1]<<4 | data[0];
-  Y = data[3]<<4 | data[2];
-  Z = data[5]<<4 | data[4];
-
-  return (ADXL345_G_struct){X, Y, Z};
-}
-*/
 
 
 /* USER CODE END PV */
@@ -373,6 +362,17 @@ void draw_MeasLabels(){
   draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%  ");
 }
 
+// ADC buffer definition
+enum{ ADC_BUFFER_LENGTH = 10 };
+uint16_t g_ADCBuffer[ADC_BUFFER_LENGTH];
+uint16_t adc[ADC_BUFFER_LENGTH];  
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
+	for (unsigned int i =0; i<ADC_BUFFER_LENGTH; i++){
+	   adc[i] = g_ADCBuffer[i];  // store the values in adc[]
+	}
+}
+
 /* USER CODE END 0 */
 
 int main(void)
@@ -410,16 +410,16 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
-  MX_USART2_UART_Init();
-  MX_TIM1_Init();
-  MX_USART1_UART_Init();
-  MX_SPI1_Init();
   MX_ADC1_Init();
-  MX_TIM2_Init();
   MX_CAN_Init();
-  MX_TIM6_Init();
   MX_I2C1_Init();
+  MX_SPI1_Init();
+  MX_TIM1_Init();
+  MX_TIM2_Init();
   MX_TIM3_Init();
+  MX_TIM6_Init();
+  MX_USART1_UART_Init();
+  MX_USART2_UART_Init();
 
   /* USER CODE BEGIN 2 */
 
@@ -457,16 +457,12 @@ int main(void)
     Error_Handler();
   }
 
+  // ADC
+  HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
+
   // UART1 interrupt setup for DEFI decoder
   HAL_UART_Receive_IT(&huart1, &UART1_Data, 1);
   // variables is defined in 'defi.h'
-
-
-  // ADC (for PA0) buffer definition
-  enum{ ADC_BUFFER_LENGTH = 1024 };
-  uint16_t g_ADCBuffer[ADC_BUFFER_LENGTH];
-  memset(g_ADCBuffer, 0, sizeof(g_ADCBuffer));
-  HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
 
 
   // OLED diaplay initialization
@@ -486,7 +482,7 @@ int main(void)
 
   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
-  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.1a");
+  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.2a");
   u8g2_SendBuffer(&u8g2);
 
   HAL_Delay(1000);
@@ -497,6 +493,36 @@ int main(void)
 
   // Set PWM Duty for Timer1 / Output1 (Asymmetric PWM2)
   TIM1->CCR1 = (100 - FP_duty);
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+
+  draw_MeasLabels();
+  draw_indicators();
+  u8g2_SendBuffer(&u8g2);
+
+
+  // I2C communication to ADXL345(3-axis G-sensor)
+
+  // DEIVID
+  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
+  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
+  if( a == 0xE5 ){
+    Gsens_EN = 1;
+  }else{
+    Gsens_EN = 0;
+  }
+
+  // POWER_CTL
+  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
+  // bit 3    Measure   1'b1
+  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
+
+  // DATA_FORMAT
+  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
+  // bit 2    Justify   1'b1
+  // bit 1:0  Range     2'b01
+  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
 
   /* USER CODE END 2 */
 
@@ -530,6 +556,7 @@ int main(void)
   // bit 1:0  Range     2'b01
   a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
 
+  /* USER CODE END 2 */
 
   while(1)
   {
@@ -538,15 +565,31 @@ int main(void)
   /* USER CODE BEGIN 3 */
 
     ///// ADC ----------------------------------------------------------------
+
 		// read O2 sensor ADC output
-		O2_volt = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
+//		O2_volt = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
+		O2_volt = (int16_t)(330 * (float)adc[0]/255);
 
 		// read Fuel Pump Voltage ADC output
-		FP_volt = (int16_t)((165/33)*33*(float)g_ADCBuffer[1]/255);
+//		FP_volt = (int16_t)((165/33)*33*(float)g_ADCBuffer[1]/255);
+		FP_volt = (int16_t)((165/33)*33*(float)adc[1]/255);
     // Ressister attenation ratio '165/33'
-    FP_duty = (int16_t)(FP_volt/(16.6)*10);
+    
+    ///// Fuel Pump ----------------------------------------------------------------
+    // Duty calculation
+    if( (rpm >= 3000)|(DEFI_value[0] >= 0) ){
+      FP_duty = 100;
+    }else{
+      FP_duty = (int16_t)(rpm/3000*100);
+    }
+    // Saturation process
+    if( FP_duty > 100 ){
+      FP_duty = 100;
+    }else if( FP_duty < 60 ){
+      FP_duty = 60;
+    }
 
-    //// Measure data  ----------------------------------------------------------------
+    ///// Measure data  ----------------------------------------------------------------
     defi_decoder(UART1_RxData); // DEFI decoder
 
     if( flag_meas == 1 ){
@@ -667,11 +710,11 @@ int main(void)
           break;
       }
       u8g2_ClearBuffer(&u8g2);
-      if( mode == 0 ){
+      if( mode == MODE_BAR_METER ){
         draw_MeasLabels();
         draw_indicators();
 
-      }else if( mode == 1 ){
+      }else if( mode == MODE_CIRCULAR_METER ){
         for( n=0; n<N_meas_C; n++ ){
           x = meas_C_x;
           y = n * meas_C_height	+ meas_C_y;
@@ -685,11 +728,11 @@ int main(void)
 //        draw_CircularMeter_Init(26, 26, 26, 3, -60, 300, 10, 20, -1, -80, 120);
         draw_CircularMeter(&u8g2, 0);
 
-      }else if( mode == 2 ){
+      }else if( mode == MODE_SCOPE_MAP ){
         draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max, 3);
         draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "MAP", "kPa");
 
-      }else if( mode == 3 ){
+      }else if( mode == MODE_SCOPE_Gsens ){
         draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, -200, 200, 4);
         draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "LatG", "G");
 
@@ -700,9 +743,9 @@ int main(void)
     }
 
     ///// Display sequence ----------------------------------------------------------------
-    if( flag_disp == 1 ){
+    if( flag_disp ){
       ///// multi meter /////
-      if( mode == 0 ){
+      if( mode == MODE_BAR_METER ){
         // update Fuel Pump Voltage
         draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, FP_duty, 3, 0, 0, "%  ");
 
@@ -722,7 +765,7 @@ int main(void)
         }
         
       ///// Circular Meter /////
-      }else if( mode == 1 ){
+      }else if( mode == MODE_CIRCULAR_METER ){
 
         draw_CircularMeter(&u8g2, meas_value[0]);
         
@@ -741,7 +784,7 @@ int main(void)
         }
 
       ///// Scope /////
-      }else if( mode == 2 ){
+      }else if( mode == MODE_SCOPE_MAP ){
 
         if( circular_buffer_index > 0 ){
           circular_buffer_index--;
@@ -755,7 +798,7 @@ int main(void)
         draw_Value(&u8g2, 0, 0, 64, 13, circular_buffer[circular_buffer_index], 3, 2, 1, "kPa");
 
       ///// G-Scope /////
-      }else if( mode == 3 ){
+      }else if( mode == MODE_SCOPE_Gsens ){
 
         if( circular_buffer_index > 0 ){
           circular_buffer_index--;
@@ -769,7 +812,8 @@ int main(void)
         draw_Value(&u8g2, 0, 0, 64, 13, circular_buffer[circular_buffer_index], 3, 2, 1, "G");
 
       // mode setting
-      }else if( setting == 1 ){
+      }else if( mode == MODE_SETTING ){
+
         u8g2_ClearBuffer(&u8g2);
         u8g2_SetFont(&u8g2, u8g2_font_7x14B_tf);
         u8g2_DrawStr(&u8g2, 2, 15, "Mode Setting" );

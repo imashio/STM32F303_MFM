@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -10,22 +10,24 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 30, 2
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.file	"u8x8_debounce.c"
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.section	.text.u8x8_find_first_diff,"ax",%progbits
+  17              		.section	.text.u8x8_GetMenuEvent,"ax",%progbits
   18              		.align	1
-  19              		.syntax unified
-  20              		.thumb
-  21              		.thumb_func
-  22              		.fpu fpv4-sp-d16
-  24              	u8x8_find_first_diff:
-  25              	.LFB1:
-  26              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c"
+  19              		.p2align 2,,3
+  20              		.weak	u8x8_GetMenuEvent
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	u8x8_GetMenuEvent:
+  27              	.LFB2:
+  28              		.file 1 "/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c"
    1:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** /*
    2:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 
    3:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   u8x8_debounce.c
@@ -56,11 +58,11 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 1
   28:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
   29:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
   30:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s 			page 2
+
+
   31:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
   32:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 2
-
-
   33:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
   34:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
   35:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
@@ -93,159 +95,19 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 1
   62:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** */
   63:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** static uint8_t u8x8_find_first_diff(uint8_t a, uint8_t b)
   64:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** {
-  27              		.loc 1 64 0
-  28              		.cfi_startproc
-  29              		@ args = 0, pretend = 0, frame = 0
-  30              		@ frame_needed = 0, uses_anonymous_args = 0
-  31              		@ link register save eliminated.
-  32              	.LVL0:
-  33 0000 10B4     		push	{r4}
-  34              	.LCFI0:
-  35              		.cfi_def_cfa_offset 4
-  36              		.cfi_offset 4, -4
-  37              	.LVL1:
   65:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   uint8_t mask;
   66:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   uint8_t i;
   67:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   mask = 1;
   68:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   i = U8X8_PIN_INPUT_CNT;
-  38              		.loc 1 68 0
-  39 0002 0623     		movs	r3, #6
-  67:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   i = U8X8_PIN_INPUT_CNT;
-  40              		.loc 1 67 0
-  41 0004 0122     		movs	r2, #1
-  42              	.LVL2:
-  43              	.L3:
   69:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   do
   70:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   {
   71:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     i--;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 3
-
-
-  44              		.loc 1 71 0
-  45 0006 013B     		subs	r3, r3, #1
-  46              	.LVL3:
-  47 0008 DBB2     		uxtb	r3, r3
-  48              	.LVL4:
   72:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     if ( (a & mask) != (b & mask) )
-  49              		.loc 1 72 0
-  50 000a 80EA0104 		eor	r4, r0, r1
-  51 000e 2242     		tst	r2, r4
-  52 0010 04D1     		bne	.L2
   73:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       return i;
   74:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     mask <<= 1;
-  53              		.loc 1 74 0
-  54 0012 5200     		lsls	r2, r2, #1
-  55              	.LVL5:
-  56 0014 D2B2     		uxtb	r2, r2
-  57              	.LVL6:
   75:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   } while( i > 0 );
-  58              		.loc 1 75 0
-  59 0016 002B     		cmp	r3, #0
-  60 0018 F5D1     		bne	.L3
   76:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   return U8X8_PIN_INPUT_CNT;
-  61              		.loc 1 76 0
-  62 001a 0623     		movs	r3, #6
-  63              	.LVL7:
-  64              	.L2:
   77:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** }
-  65              		.loc 1 77 0
-  66 001c 1846     		mov	r0, r3
-  67              	.LVL8:
-  68 001e 5DF8044B 		ldr	r4, [sp], #4
-  69              	.LCFI1:
-  70              		.cfi_restore 4
-  71              		.cfi_def_cfa_offset 0
-  72 0022 7047     		bx	lr
-  73              		.cfi_endproc
-  74              	.LFE1:
-  76              		.section	.text.u8x8_read_pin_state,"ax",%progbits
-  77              		.align	1
-  78              		.syntax unified
-  79              		.thumb
-  80              		.thumb_func
-  81              		.fpu fpv4-sp-d16
-  83              	u8x8_read_pin_state:
-  84              	.LFB0:
-  41:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   uint8_t i;
-  85              		.loc 1 41 0
-  86              		.cfi_startproc
-  87              		@ args = 0, pretend = 0, frame = 0
-  88              		@ frame_needed = 0, uses_anonymous_args = 0
-  89              	.LVL9:
-  90 0000 70B5     		push	{r4, r5, r6, lr}
-  91              	.LCFI2:
-  92              		.cfi_def_cfa_offset 16
-  93              		.cfi_offset 4, -16
-  94              		.cfi_offset 5, -12
-  95              		.cfi_offset 6, -8
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 4
-
-
-  96              		.cfi_offset 14, -4
-  97 0002 0646     		mov	r6, r0
-  98              	.LVL10:
-  45:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   for( i = 0; i < U8X8_PIN_INPUT_CNT; i++ )
-  99              		.loc 1 45 0
- 100 0004 FF20     		movs	r0, #255
- 101              	.LVL11:
-  46:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   {
- 102              		.loc 1 46 0
- 103 0006 0024     		movs	r4, #0
- 104 0008 12E0     		b	.L6
- 105              	.LVL12:
- 106              	.L7:
-  48:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     
- 107              		.loc 1 48 0 discriminator 3
- 108 000a 4000     		lsls	r0, r0, #1
- 109              	.LVL13:
- 110 000c C5B2     		uxtb	r5, r0
- 111              	.LVL14:
-  51:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     u8x8_gpio_call(u8x8, U8X8_MSG_GPIO(i+U8X8_PIN_OUTPUT_CNT), 0);
- 112              		.loc 1 51 0 discriminator 3
- 113 000e 0123     		movs	r3, #1
- 114 0010 86F82430 		strb	r3, [r6, #36]
-  52:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     pin_state |= u8x8->gpio_result & 1;
- 115              		.loc 1 52 0 discriminator 3
- 116 0014 04F15001 		add	r1, r4, #80
- 117 0018 0022     		movs	r2, #0
- 118 001a C9B2     		uxtb	r1, r1
- 119 001c 3046     		mov	r0, r6
- 120 001e FFF7FEFF 		bl	u8x8_gpio_call
- 121              	.LVL15:
-  53:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   }
- 122              		.loc 1 53 0 discriminator 3
- 123 0022 96F92400 		ldrsb	r0, [r6, #36]
- 124 0026 00F00100 		and	r0, r0, #1
- 125 002a 2843     		orrs	r0, r0, r5
- 126              	.LVL16:
-  46:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   {
- 127              		.loc 1 46 0 discriminator 3
- 128 002c 0134     		adds	r4, r4, #1
- 129              	.LVL17:
- 130 002e E4B2     		uxtb	r4, r4
- 131              	.LVL18:
- 132              	.L6:
-  46:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   {
- 133              		.loc 1 46 0 is_stmt 0 discriminator 1
- 134 0030 052C     		cmp	r4, #5
- 135 0032 EAD9     		bls	.L7
-  57:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 
- 136              		.loc 1 57 0 is_stmt 1
- 137 0034 70BD     		pop	{r4, r5, r6, pc}
- 138              		.cfi_endproc
- 139              	.LFE0:
- 141              		.section	.text.u8x8_GetMenuEvent,"ax",%progbits
- 142              		.align	1
- 143              		.weak	u8x8_GetMenuEvent
- 144              		.syntax unified
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 5
-
-
- 145              		.thumb
- 146              		.thumb_func
- 147              		.fpu fpv4-sp-d16
- 149              	u8x8_GetMenuEvent:
- 150              	.LFB2:
   78:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 
   79:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** /*
   80:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   State A:
@@ -256,6 +118,9 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 1
   85:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       --> State B + cnt
   86:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 
   87:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   State B + cnt
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s 			page 3
+
+
   88:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     --> state--
   89:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 
   90:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   State B
@@ -298,9 +163,6 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 1
  127:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****             break;
  128:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     }
  129:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     return 0;
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 6
-
-
  130:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** }
  131:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 
  132:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 
@@ -315,37 +177,89 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 1
  141:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** #endif
  142:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** uint8_t u8x8_GetMenuEvent(u8x8_t *u8x8)
  143:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** {
- 151              		.loc 1 143 0
- 152              		.cfi_startproc
- 153              		@ args = 0, pretend = 0, frame = 0
- 154              		@ frame_needed = 0, uses_anonymous_args = 0
- 155              	.LVL19:
- 156 0000 10B5     		push	{r4, lr}
- 157              	.LCFI3:
- 158              		.cfi_def_cfa_offset 8
- 159              		.cfi_offset 4, -8
- 160              		.cfi_offset 14, -4
- 161 0002 0446     		mov	r4, r0
- 162              	.LVL20:
+  29              		.loc 1 143 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s 			page 4
+
+
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
+  34 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 24
+  37              		.cfi_offset 3, -24
+  38              		.cfi_offset 4, -20
+  39              		.cfi_offset 5, -16
+  40              		.cfi_offset 6, -12
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43              		.loc 1 143 0
+  44 0002 0646     		mov	r6, r0
+  45              	.LVL1:
+  46 0004 5024     		movs	r4, #80
+  47              	.LBB8:
+  48              	.LBB9:
+  45:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   for( i = 0; i < U8X8_PIN_INPUT_CNT; i++ )
+  49              		.loc 1 45 0
+  50 0006 FF25     		movs	r5, #255
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     u8x8_gpio_call(u8x8, U8X8_MSG_GPIO(i+U8X8_PIN_OUTPUT_CNT), 0);
+  51              		.loc 1 51 0
+  52 0008 0127     		movs	r7, #1
+  53              	.LVL2:
+  54              	.L2:
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     pin_state |= u8x8->gpio_result & 1;
+  55              		.loc 1 52 0
+  56 000a 2146     		mov	r1, r4
+  51:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     u8x8_gpio_call(u8x8, U8X8_MSG_GPIO(i+U8X8_PIN_OUTPUT_CNT), 0);
+  57              		.loc 1 51 0
+  58 000c 86F82470 		strb	r7, [r6, #36]
+  52:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     pin_state |= u8x8->gpio_result & 1;
+  59              		.loc 1 52 0
+  60 0010 0022     		movs	r2, #0
+  61 0012 3046     		mov	r0, r6
+  62 0014 FFF7FEFF 		bl	u8x8_gpio_call
+  63              	.LVL3:
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   }
+  64              		.loc 1 53 0
+  65 0018 96F82430 		ldrb	r3, [r6, #36]	@ zero_extendqisi2
+  66 001c 0134     		adds	r4, r4, #1
+  67              	.LVL4:
+  68 001e 03F00103 		and	r3, r3, #1
+  69 0022 E4B2     		uxtb	r4, r4
+  70 0024 43EA4503 		orr	r3, r3, r5, lsl #1
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   {
+  71              		.loc 1 46 0
+  72 0028 562C     		cmp	r4, #86
+  53:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   }
+  73              		.loc 1 53 0
+  74 002a DDB2     		uxtb	r5, r3
+  75              	.LVL5:
+  46:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   {
+  76              		.loc 1 46 0
+  77 002c EDD1     		bne	.L2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s 			page 5
+
+
+  78              	.LVL6:
+  79              	.LBE9:
+  80              	.LBE8:
  144:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   uint8_t pin_state;
  145:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   uint8_t result_msg = 0;	/* invalid message, no event */
  146:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
  147:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   pin_state = u8x8_read_pin_state(u8x8);
- 163              		.loc 1 147 0
- 164 0004 FFF7FEFF 		bl	u8x8_read_pin_state
- 165              	.LVL21:
  148:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
  149:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   /* States A, B, C & D are encoded in the upper 4 bit*/
  150:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   switch(u8x8->debounce_state)
- 166              		.loc 1 150 0
- 167 0008 94F82730 		ldrb	r3, [r4, #39]	@ zero_extendqisi2
- 168 000c 102B     		cmp	r3, #16
- 169 000e 14D0     		beq	.L11
- 170 0010 09D9     		bls	.L22
- 171 0012 202B     		cmp	r3, #32
- 172 0014 20D0     		beq	.L14
- 173 0016 302B     		cmp	r3, #48
- 174 0018 36D1     		bne	.L10
+  81              		.loc 1 150 0
+  82 002e 96F82730 		ldrb	r3, [r6, #39]	@ zero_extendqisi2
+  83 0032 102B     		cmp	r3, #16
+  84 0034 25D0     		beq	.L4
+  85 0036 13D9     		bls	.L22
+  86 0038 202B     		cmp	r3, #32
+  87 003a 08D0     		beq	.L7
+  88 003c 302B     		cmp	r3, #48
+  89 003e 1AD1     		bne	.L3
  151:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   {
  152:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     case 0x00:	/* State A, default state */
  153:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       if ( u8x8->debounce_default_pin_state != pin_state )
@@ -358,9 +272,6 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 1
  160:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       //if ( u8x8->debounce_last_pin_state != pin_state )
  161:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       if ( u8x8->debounce_default_pin_state == pin_state )
  162:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       {
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 7
-
-
  163:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 	u8x8->debounce_state = 0x00;	/* back to state A */
  164:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
  165:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       else
@@ -386,111 +297,21 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 1
  185:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     case 0x30:	/* State D */
  186:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       /* wait until key release */
  187:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       if ( u8x8->debounce_default_pin_state == pin_state )
- 175              		.loc 1 187 0
- 176 001a 94F82530 		ldrb	r3, [r4, #37]	@ zero_extendqisi2
- 177 001e 8342     		cmp	r3, r0
- 178 0020 27D0     		beq	.L23
- 145:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
- 179              		.loc 1 145 0
- 180 0022 0020     		movs	r0, #0
- 181              	.LVL22:
- 182 0024 34E0     		b	.L16
- 183              	.LVL23:
- 184              	.L22:
- 150:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   {
- 185              		.loc 1 150 0
- 186 0026 7BBB     		cbnz	r3, .L10
- 153:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       {
- 187              		.loc 1 153 0
- 188 0028 94F82530 		ldrb	r3, [r4, #37]	@ zero_extendqisi2
- 189 002c 8342     		cmp	r3, r0
- 190 002e 30D0     		beq	.L19
- 156:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
- 191              		.loc 1 156 0
- 192 0030 1223     		movs	r3, #18
- 193 0032 84F82730 		strb	r3, [r4, #39]
- 145:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
- 194              		.loc 1 145 0
- 195 0036 0020     		movs	r0, #0
- 196              	.LVL24:
- 197 0038 2AE0     		b	.L16
- 198              	.LVL25:
- 199              	.L11:
- 161:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       {
- 200              		.loc 1 161 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 8
+  90              		.loc 1 187 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s 			page 6
 
 
- 201 003a 94F82530 		ldrb	r3, [r4, #37]	@ zero_extendqisi2
- 202 003e 8342     		cmp	r3, r0
- 203 0040 06D0     		beq	.L24
- 168:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 	//result_msg = U8X8_MSG_GPIO_MENU_NEXT;
- 204              		.loc 1 168 0
- 205 0042 84F82600 		strb	r0, [r4, #38]
- 170:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
- 206              		.loc 1 170 0
- 207 0046 2223     		movs	r3, #34
- 208 0048 84F82730 		strb	r3, [r4, #39]
+  91 0040 96F82530 		ldrb	r3, [r6, #37]	@ zero_extendqisi2
+  92 0044 AB42     		cmp	r3, r5
+  93 0046 28D0     		beq	.L23
+  94              	.L16:
  145:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
- 209              		.loc 1 145 0
- 210 004c 0020     		movs	r0, #0
- 211              	.LVL26:
- 212 004e 1FE0     		b	.L16
- 213              	.LVL27:
- 214              	.L24:
- 163:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
- 215              		.loc 1 163 0
- 216 0050 0020     		movs	r0, #0
- 217              	.LVL28:
- 218 0052 84F82700 		strb	r0, [r4, #39]
- 219 0056 1BE0     		b	.L16
- 220              	.LVL29:
- 221              	.L14:
- 175:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       {
- 222              		.loc 1 175 0
- 223 0058 94F82630 		ldrb	r3, [r4, #38]	@ zero_extendqisi2
- 224 005c 8342     		cmp	r3, r0
- 225 005e 03D0     		beq	.L18
- 177:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
- 226              		.loc 1 177 0
- 227 0060 0020     		movs	r0, #0
- 228              	.LVL30:
- 229 0062 84F82700 		strb	r0, [r4, #39]
- 230 0066 13E0     		b	.L16
- 231              	.LVL31:
- 232              	.L18:
- 181:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
- 233              		.loc 1 181 0
- 234 0068 3023     		movs	r3, #48
- 235 006a 84F82730 		strb	r3, [r4, #39]
- 145:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
- 236              		.loc 1 145 0
- 237 006e 0020     		movs	r0, #0
- 238              	.LVL32:
- 239 0070 0EE0     		b	.L16
- 240              	.LVL33:
- 241              	.L23:
+  95              		.loc 1 145 0
+  96 0048 0024     		movs	r4, #0
+  97              	.LVL7:
  188:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       {
  189:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 	u8x8->debounce_state = 0x00;	/* back to state A */
- 242              		.loc 1 189 0
- 243 0072 0022     		movs	r2, #0
- 244 0074 84F82720 		strb	r2, [r4, #39]
  190:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 	result_msg = U8X8_MSG_GPIO(u8x8_find_first_diff(u8x8->debounce_default_pin_state, u8x8->debounce_l
- 245              		.loc 1 190 0
- 246 0078 94F82610 		ldrb	r1, [r4, #38]	@ zero_extendqisi2
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 9
-
-
- 247 007c 1846     		mov	r0, r3
- 248              	.LVL34:
- 249 007e FFF7FEFF 		bl	u8x8_find_first_diff
- 250              	.LVL35:
- 251 0082 5030     		adds	r0, r0, #80
- 252 0084 C0B2     		uxtb	r0, r0
- 253              	.LVL36:
- 254 0086 03E0     		b	.L16
- 255              	.LVL37:
- 256              	.L10:
  191:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
  192:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       else
  193:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       {
@@ -500,45 +321,175 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 1
  197:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       break;
  198:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     default:
  199:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       u8x8->debounce_state--;	/* count down, until there is a valid state */
- 257              		.loc 1 199 0
- 258 0088 013B     		subs	r3, r3, #1
- 259 008a 84F82730 		strb	r3, [r4, #39]
- 145:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
- 260              		.loc 1 145 0
- 261 008e 0020     		movs	r0, #0
- 262              	.LVL38:
- 263              	.L16:
  200:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       break;
  201:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   }
  202:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   return result_msg;
  203:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** }
- 264              		.loc 1 203 0
- 265 0090 10BD     		pop	{r4, pc}
- 266              	.LVL39:
- 267              	.L19:
+  98              		.loc 1 203 0
+  99 004a 2046     		mov	r0, r4
+ 100 004c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 101              	.LVL8:
+ 102              	.L7:
+ 175:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       {
+ 103              		.loc 1 175 0
+ 104 004e 96F82630 		ldrb	r3, [r6, #38]	@ zero_extendqisi2
+ 105 0052 AB42     		cmp	r3, r5
+ 106 0054 34D0     		beq	.L24
+ 107              	.L11:
+ 163:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
+ 108              		.loc 1 163 0
+ 109 0056 0024     		movs	r4, #0
+ 110 0058 86F82740 		strb	r4, [r6, #39]
+ 111              	.LVL9:
+ 112              	.L9:
+ 113              		.loc 1 203 0
+ 114 005c 2046     		mov	r0, r4
+ 115 005e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 116              	.LVL10:
+ 117              	.L22:
+ 150:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   {
+ 118              		.loc 1 150 0
+ 119 0060 4BB9     		cbnz	r3, .L3
+ 153:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       {
+ 120              		.loc 1 153 0
+ 121 0062 96F82520 		ldrb	r2, [r6, #37]	@ zero_extendqisi2
+ 122 0066 AA42     		cmp	r2, r5
+ 123 0068 EED0     		beq	.L16
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
+ 124              		.loc 1 156 0
+ 125 006a 1222     		movs	r2, #18
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s 			page 7
+
+
  145:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
- 268              		.loc 1 145 0
- 269 0092 0020     		movs	r0, #0
- 270              	.LVL40:
- 271 0094 FCE7     		b	.L16
- 272              		.cfi_endproc
- 273              	.LFE2:
- 275              		.text
- 276              	.Letext0:
- 277              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
- 278              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
- 279              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s 			page 10
+ 126              		.loc 1 145 0
+ 127 006c 1C46     		mov	r4, r3
+ 156:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
+ 128              		.loc 1 156 0
+ 129 006e 86F82720 		strb	r2, [r6, #39]
+ 130              	.LVL11:
+ 131              		.loc 1 203 0
+ 132 0072 2046     		mov	r0, r4
+ 133 0074 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 134              	.LVL12:
+ 135              	.L3:
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       break;
+ 136              		.loc 1 199 0
+ 137 0076 013B     		subs	r3, r3, #1
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
+ 138              		.loc 1 145 0
+ 139 0078 0024     		movs	r4, #0
+ 140              	.LVL13:
+ 199:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       break;
+ 141              		.loc 1 199 0
+ 142 007a 86F82730 		strb	r3, [r6, #39]
+ 143              		.loc 1 203 0
+ 144 007e 2046     		mov	r0, r4
+ 145 0080 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 146              	.LVL14:
+ 147              	.L4:
+ 161:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       {
+ 148              		.loc 1 161 0
+ 149 0082 96F82530 		ldrb	r3, [r6, #37]	@ zero_extendqisi2
+ 150 0086 AB42     		cmp	r3, r5
+ 151 0088 E5D0     		beq	.L11
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
+ 152              		.loc 1 170 0
+ 153 008a 2223     		movs	r3, #34
+ 145:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   
+ 154              		.loc 1 145 0
+ 155 008c 0024     		movs	r4, #0
+ 156              	.LVL15:
+ 168:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 	//result_msg = U8X8_MSG_GPIO_MENU_NEXT;
+ 157              		.loc 1 168 0
+ 158 008e 86F82650 		strb	r5, [r6, #38]
+ 170:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
+ 159              		.loc 1 170 0
+ 160 0092 86F82730 		strb	r3, [r6, #39]
+ 161              		.loc 1 203 0
+ 162 0096 2046     		mov	r0, r4
+ 163 0098 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 164              	.LVL16:
+ 165              	.L23:
+ 166 009a 96F82630 		ldrb	r3, [r6, #38]	@ zero_extendqisi2
+ 189:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c **** 	result_msg = U8X8_MSG_GPIO(u8x8_find_first_diff(u8x8->debounce_default_pin_state, u8x8->debounce_l
+ 167              		.loc 1 189 0
+ 168 009e 0022     		movs	r2, #0
+ 169 00a0 86F82720 		strb	r2, [r6, #39]
+ 170 00a4 6B40     		eors	r3, r3, r5
+ 171              	.LVL17:
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s 			page 8
+
+
+ 172              	.LBB10:
+ 173              	.LBB11:
+  68:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   do
+ 174              		.loc 1 68 0
+ 175 00a6 0620     		movs	r0, #6
+  67:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   i = U8X8_PIN_INPUT_CNT;
+ 176              		.loc 1 67 0
+ 177 00a8 0122     		movs	r2, #1
+ 178              	.LVL18:
+ 179              	.L13:
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     if ( (a & mask) != (b & mask) )
+ 180              		.loc 1 71 0
+ 181 00aa 411E     		subs	r1, r0, #1
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       return i;
+ 182              		.loc 1 72 0
+ 183 00ac 1A42     		tst	r2, r3
+  71:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****     if ( (a & mask) != (b & mask) )
+ 184              		.loc 1 71 0
+ 185 00ae C9B2     		uxtb	r1, r1
+ 186              	.LVL19:
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   } while( i > 0 );
+ 187              		.loc 1 74 0
+ 188 00b0 4FEA4202 		lsl	r2, r2, #1
+ 189              	.LVL20:
+  72:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       return i;
+ 190              		.loc 1 72 0
+ 191 00b4 08D1     		bne	.L12
+  74:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   } while( i > 0 );
+ 192              		.loc 1 74 0
+ 193 00b6 D2B2     		uxtb	r2, r2
+ 194              	.LVL21:
+  75:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****   return U8X8_PIN_INPUT_CNT;
+ 195              		.loc 1 75 0
+ 196 00b8 0846     		mov	r0, r1
+ 197 00ba 0029     		cmp	r1, #0
+ 198 00bc F5D1     		bne	.L13
+ 199 00be CDE7     		b	.L9
+ 200              	.LVL22:
+ 201              	.L24:
+ 202              	.LBE11:
+ 203              	.LBE10:
+ 181:/Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c ****       }
+ 204              		.loc 1 181 0
+ 205 00c0 3023     		movs	r3, #48
+ 206 00c2 86F82730 		strb	r3, [r6, #39]
+ 207 00c6 BFE7     		b	.L16
+ 208              	.LVL23:
+ 209              	.L12:
+ 210 00c8 4F30     		adds	r0, r0, #79
+ 211 00ca C4B2     		uxtb	r4, r0
+ 212              	.LVL24:
+ 213 00cc C6E7     		b	.L9
+ 214              		.cfi_endproc
+ 215              	.LFE2:
+ 217 00ce 00BF     		.text
+ 218              	.Letext0:
+ 219              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s 			page 9
+
+
+ 220              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 221              		.file 4 "/Users/imashio/Electronics/ARM/_Library/u8x8.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 u8x8_debounce.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s:18     .text.u8x8_find_first_diff:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s:24     .text.u8x8_find_first_diff:0000000000000000 u8x8_find_first_diff
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s:77     .text.u8x8_read_pin_state:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s:83     .text.u8x8_read_pin_state:0000000000000000 u8x8_read_pin_state
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s:142    .text.u8x8_GetMenuEvent:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc10rjOb.s:149    .text.u8x8_GetMenuEvent:0000000000000000 u8x8_GetMenuEvent
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s:18     .text.u8x8_GetMenuEvent:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccttV0fT.s:26     .text.u8x8_GetMenuEvent:0000000000000000 u8x8_GetMenuEvent
 
 UNDEFINED SYMBOLS
 u8x8_gpio_call
