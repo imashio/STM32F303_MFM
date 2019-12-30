@@ -1,4 +1,4 @@
-build/u8x8_debounce.d: \
+build/u8x8_debounce.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_debounce.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 

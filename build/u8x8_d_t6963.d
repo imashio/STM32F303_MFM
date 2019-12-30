@@ -1,4 +1,4 @@
-build/u8x8_d_t6963.d: \
+build/u8x8_d_t6963.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_d_t6963.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 

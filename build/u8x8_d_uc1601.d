@@ -1,4 +1,4 @@
-build/u8x8_d_uc1601.d: \
+build/u8x8_d_uc1601.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1601.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 

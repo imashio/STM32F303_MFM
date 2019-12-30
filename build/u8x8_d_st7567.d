@@ -1,4 +1,4 @@
-build/u8x8_d_st7567.d: \
+build/u8x8_d_st7567.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_d_st7567.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 

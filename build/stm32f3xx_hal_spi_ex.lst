@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc97oVKU.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,7 +26,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s 			page 1
   23              		.thumb_func
   24              		.fpu fpv4-sp-d16
   26              	HAL_SPIEx_FlushRxFifo:
-  27              	.LFB126:
+  27              	.LFB123:
   28              		.file 1 "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c"
    1:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /**
    2:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   ******************************************************************************
@@ -40,107 +40,91 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s 			page 1
   10:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   ******************************************************************************
   11:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @attention
   12:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *
-  13:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
-  14:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *
-  15:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * Redistribution and use in source and binary forms, with or without modification,
-  16:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * are permitted provided that the following conditions are met:
-  17:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *   1. Redistributions of source code must retain the above copyright notice,
-  18:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *      this list of conditions and the following disclaimer.
-  19:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
-  20:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *      this list of conditions and the following disclaimer in the documentation
-  21:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *      and/or other materials provided with the distribution.
-  22:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  23:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *      may be used to endorse or promote products derived from this software
-  24:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *      without specific prior written permission.
-  25:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *
-  26:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  27:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  28:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  29:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  30:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s 			page 2
+  13:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  14:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * All rights reserved.</center></h2>
+  15:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *
+  16:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * This software component is licensed by ST under BSD 3-Clause license,
+  17:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * the "License"; You may not use this file except in compliance with the
+  18:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * License. You may obtain a copy of the License at:
+  19:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *                        opensource.org/licenses/BSD-3-Clause
+  20:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *
+  21:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   ******************************************************************************
+  22:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
+  23:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
+  24:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Includes ------------------------------------------------------------------*/
+  25:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** #include "stm32f3xx_hal.h"
+  26:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
+  27:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /** @addtogroup STM32F3xx_HAL_Driver
+  28:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @{
+  29:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
+  30:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc97oVKU.s 			page 2
 
 
-  31:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  32:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  33:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  34:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  35:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  36:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *
-  37:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   ******************************************************************************
-  38:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
-  39:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
-  40:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Includes ------------------------------------------------------------------*/
-  41:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** #include "stm32f3xx_hal.h"
-  42:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
-  43:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /** @addtogroup STM32F3xx_HAL_Driver
-  44:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @{
+  31:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /** @defgroup SPIEx SPIEx
+  32:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @brief SPI Extended HAL module driver
+  33:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @{
+  34:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
+  35:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** #ifdef HAL_SPI_MODULE_ENABLED
+  36:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
+  37:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Private typedef -----------------------------------------------------------*/
+  38:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Private defines -----------------------------------------------------------*/
+  39:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /** @defgroup SPIEx_Private_Constants SPIEx Private Constants
+  40:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @{
+  41:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
+  42:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** #define SPI_FIFO_SIZE       4UL
+  43:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /**
+  44:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @}
   45:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
   46:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
-  47:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /** @defgroup SPIEx SPIEx
-  48:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @brief SPI Extended HAL module driver
-  49:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @{
-  50:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
-  51:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** #ifdef HAL_SPI_MODULE_ENABLED
-  52:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
-  53:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Private typedef -----------------------------------------------------------*/
-  54:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Private defines -----------------------------------------------------------*/
-  55:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /** @defgroup SPIEx_Private_Constants SPIEx Private Constants
-  56:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @{
-  57:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
-  58:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** #define SPI_FIFO_SIZE       4
-  59:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /**
-  60:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @}
-  61:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
-  62:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
-  63:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Private macros ------------------------------------------------------------*/
-  64:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Private variables ---------------------------------------------------------*/
-  65:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Private function prototypes -----------------------------------------------*/
-  66:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Exported functions ---------------------------------------------------------*/
-  67:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
-  68:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /** @defgroup SPIEx_Exported_Functions SPIEx Exported Functions
-  69:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @{
-  70:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
-  71:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
-  72:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /** @defgroup SPIEx_Exported_Functions_Group1 IO operation functions
-  73:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *  @brief   Data transfers functions
-  74:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *
-  75:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** @verbatim
-  76:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   ==============================================================================
-  77:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****                       ##### IO operation functions #####
-  78:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****  ===============================================================================
-  79:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****  [..]
-  80:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     This subsection provides a set of extended functions to manage the SPI
-  81:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     data transfers.
-  82:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
-  83:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     (#) Rx data flush function:
-  84:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****         (++) HAL_SPIEx_FlushRxFifo()
-  85:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
-  86:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** @endverbatim
-  87:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @{
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s 			page 3
-
-
-  88:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
-  89:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
-  90:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /**
-  91:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @brief Flush the RX fifo.
-  92:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @param  hspi pointer to a SPI_HandleTypeDef structure that contains
-  93:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *               the configuration information for the specified SPI module.
-  94:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @retval HAL status
-  95:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
-  96:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** HAL_StatusTypeDef HAL_SPIEx_FlushRxFifo(SPI_HandleTypeDef *hspi)
-  97:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** {
-  29              		.loc 1 97 0
+  47:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Private macros ------------------------------------------------------------*/
+  48:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Private variables ---------------------------------------------------------*/
+  49:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Private function prototypes -----------------------------------------------*/
+  50:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /* Exported functions --------------------------------------------------------*/
+  51:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
+  52:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /** @defgroup SPIEx_Exported_Functions SPIEx Exported Functions
+  53:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @{
+  54:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
+  55:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
+  56:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /** @defgroup SPIEx_Exported_Functions_Group1 IO operation functions
+  57:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *  @brief   Data transfers functions
+  58:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *
+  59:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** @verbatim
+  60:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   ==============================================================================
+  61:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****                       ##### IO operation functions #####
+  62:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****  ===============================================================================
+  63:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****  [..]
+  64:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     This subsection provides a set of extended functions to manage the SPI
+  65:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     data transfers.
+  66:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
+  67:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     (#) Rx data flush function:
+  68:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****         (++) HAL_SPIEx_FlushRxFifo()
+  69:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
+  70:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** @endverbatim
+  71:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @{
+  72:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
+  73:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** 
+  74:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** /**
+  75:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @brief  Flush the RX fifo.
+  76:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @param  hspi pointer to a SPI_HandleTypeDef structure that contains
+  77:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   *               the configuration information for the specified SPI module.
+  78:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   * @retval HAL status
+  79:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   */
+  80:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** HAL_StatusTypeDef HAL_SPIEx_FlushRxFifo(SPI_HandleTypeDef *hspi)
+  81:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** {
+  29              		.loc 1 81 0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 8
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
   34              	.LVL0:
-  98:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   __IO uint32_t tmpreg;
-  99:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   uint8_t  count = 0U;
- 100:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   while ((hspi->Instance->SR & SPI_FLAG_FRLVL) !=  SPI_FRLVL_EMPTY)
-  35              		.loc 1 100 0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc97oVKU.s 			page 3
+
+
+  82:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   __IO uint32_t tmpreg;
+  83:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   uint8_t  count = 0U;
+  84:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   while ((hspi->Instance->SR & SPI_FLAG_FRLVL) !=  SPI_FRLVL_EMPTY)
+  35              		.loc 1 84 0
   36 0000 0268     		ldr	r2, [r0]
   37 0002 9068     		ldr	r0, [r2, #8]
   38              	.LVL1:
@@ -150,59 +134,59 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s 			page 1
   42 000a 03F1FF33 		add	r3, r3, #-1
   43              	.LVL3:
   44 000e 10D0     		beq	.L12
-  97:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   __IO uint32_t tmpreg;
-  45              		.loc 1 97 0
+  81:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   __IO uint32_t tmpreg;
+  45              		.loc 1 81 0
   46 0010 82B0     		sub	sp, sp, #8
   47              	.LCFI0:
   48              		.cfi_def_cfa_offset 8
   49 0012 05E0     		b	.L4
   50              	.LVL4:
   51              	.L13:
-  52              		.loc 1 100 0
+  52              		.loc 1 84 0
   53 0014 9068     		ldr	r0, [r2, #8]
   54 0016 10F4C060 		ands	r0, r0, #1536
   55 001a 03F1FF33 		add	r3, r3, #-1
   56              	.LVL5:
   57 001e 06D0     		beq	.L3
   58              	.L4:
- 101:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   {
- 102:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     count++;
- 103:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     tmpreg = hspi->Instance->DR;
-  59              		.loc 1 103 0
+  85:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   {
+  86:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     count++;
+  87:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     tmpreg = hspi->Instance->DR;
+  59              		.loc 1 87 0
   60 0020 D168     		ldr	r1, [r2, #12]
   61 0022 0191     		str	r1, [sp, #4]
- 104:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     UNUSED(tmpreg); /* To avoid GCC warning */
- 105:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     if (count == SPI_FIFO_SIZE)
-  62              		.loc 1 105 0
+  88:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     UNUSED(tmpreg); /* To avoid GCC warning */
+  89:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     if (count == SPI_FIFO_SIZE)
+  62              		.loc 1 89 0
   63 0024 13F0FF03 		ands	r3, r3, #255
- 104:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     UNUSED(tmpreg); /* To avoid GCC warning */
-  64              		.loc 1 104 0
+  88:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     UNUSED(tmpreg); /* To avoid GCC warning */
+  64              		.loc 1 88 0
   65 0028 0199     		ldr	r1, [sp, #4]
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s 			page 4
-
-
-  66              		.loc 1 105 0
+  66              		.loc 1 89 0
   67 002a F3D1     		bne	.L13
- 106:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     {
- 107:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****       return HAL_TIMEOUT;
-  68              		.loc 1 107 0
+  90:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     {
+  91:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****       return HAL_TIMEOUT;
+  68              		.loc 1 91 0
   69 002c 0320     		movs	r0, #3
   70              	.L3:
- 108:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     }
- 109:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   }
- 110:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   return HAL_OK;
- 111:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** }
-  71              		.loc 1 111 0
+  92:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****     }
+  93:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   }
+  94:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c ****   return HAL_OK;
+  95:Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c **** }
+  71              		.loc 1 95 0
   72 002e 02B0     		add	sp, sp, #8
   73              	.LCFI1:
   74              		.cfi_def_cfa_offset 0
   75              		@ sp needed
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc97oVKU.s 			page 4
+
+
   76 0030 7047     		bx	lr
   77              	.LVL6:
   78              	.L12:
   79 0032 7047     		bx	lr
   80              		.cfi_endproc
-  81              	.LFE126:
+  81              	.LFE123:
   83              		.text
   84              	.Letext0:
   85              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
@@ -210,19 +194,16 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s 			page 1
   87              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
   88              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
   89              		.file 6 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h"
-  90              		.file 7 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/lock.h"
-  91              		.file 8 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_types.h"
-  92              		.file 9 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/lib/gcc/arm-none-eabi/7.3.1/include/stddef.
-  93              		.file 10 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/reent.h"
-  94              		.file 11 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
-  95              		.file 12 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
-  96              		.file 13 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s 			page 5
+  90              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h"
+  91              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h"
+  92              		.file 9 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h"
+  93              		.file 10 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc97oVKU.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f3xx_hal_spi_ex.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s:18     .text.HAL_SPIEx_FlushRxFifo:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBTYQzb.s:26     .text.HAL_SPIEx_FlushRxFifo:0000000000000000 HAL_SPIEx_FlushRxFifo
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc97oVKU.s:18     .text.HAL_SPIEx_FlushRxFifo:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//cc97oVKU.s:26     .text.HAL_SPIEx_FlushRxFifo:0000000000000000 HAL_SPIEx_FlushRxFifo
 
 NO UNDEFINED SYMBOLS

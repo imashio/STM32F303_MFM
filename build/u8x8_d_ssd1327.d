@@ -1,4 +1,4 @@
-build/u8x8_d_ssd1327.d: \
+build/u8x8_d_ssd1327.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1327.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 

@@ -1,4 +1,4 @@
-build/u8g2_polygon.d: \
+build/u8g2_polygon.o: \
  /Users/imashio/Electronics/ARM/_Library/u8g2_polygon.c \
  /Users/imashio/Electronics/ARM/_Library/u8g2.h \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h

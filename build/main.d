@@ -1,17 +1,17 @@
-build/main.d: Src/main.c Inc/main.h \
+build/main.o: Src/main.c Inc/main.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
- Inc/stm32f3xx_hal_conf.h Inc/main.h \
+ Inc/stm32f3xx_hal_conf.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h \
  Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h \
  Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h \
- Drivers/CMSIS/Include/core_cm4.h Drivers/CMSIS/Include/core_cmInstr.h \
- Drivers/CMSIS/Include/cmsis_gcc.h Drivers/CMSIS/Include/core_cmFunc.h \
- Drivers/CMSIS/Include/core_cmSimd.h \
+ Drivers/CMSIS/Include/core_cm4.h Drivers/CMSIS/Include/cmsis_version.h \
+ Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h \
  Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio_ex.h \
+ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_exti.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h \
@@ -30,7 +30,8 @@ build/main.d: Src/main.c Inc/main.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h Inc/adc.h \
- Inc/can.h Inc/dma.h Inc/i2c.h Inc/spi.h Inc/tim.h Inc/usart.h Inc/gpio.h \
+ Inc/main.h Inc/can.h Inc/dma.h Inc/i2c.h Inc/spi.h Inc/tim.h Inc/usart.h \
+ Inc/gpio.h \
  /Users/imashio/Electronics/ARM/_Library/usart_transmit_printf.h \
  /Users/imashio/Electronics/ARM/_Library/u8g2.h \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h \
@@ -49,8 +50,6 @@ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 
 Inc/stm32f3xx_hal_conf.h:
 
-Inc/main.h:
-
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h:
@@ -61,13 +60,11 @@ Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303x8.h:
 
 Drivers/CMSIS/Include/core_cm4.h:
 
-Drivers/CMSIS/Include/core_cmInstr.h:
+Drivers/CMSIS/Include/cmsis_version.h:
+
+Drivers/CMSIS/Include/cmsis_compiler.h:
 
 Drivers/CMSIS/Include/cmsis_gcc.h:
-
-Drivers/CMSIS/Include/core_cmFunc.h:
-
-Drivers/CMSIS/Include/core_cmSimd.h:
 
 Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h:
 
@@ -76,6 +73,8 @@ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc_ex.h:
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio_ex.h:
+
+Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_exti.h:
 
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h:
 
@@ -114,6 +113,8 @@ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h:
 Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
 
 Inc/adc.h:
+
+Inc/main.h:
 
 Inc/can.h:
 

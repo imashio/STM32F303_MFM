@@ -1,4 +1,4 @@
-build/u8x8_d_pcd8544_84x48.d: \
+build/u8x8_d_pcd8544_84x48.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_d_pcd8544_84x48.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 

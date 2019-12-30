@@ -1,4 +1,4 @@
-build/u8x8_d_uc1701_mini12864.d: \
+build/u8x8_d_uc1701_mini12864.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_d_uc1701_mini12864.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 

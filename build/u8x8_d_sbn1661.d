@@ -1,4 +1,4 @@
-build/u8x8_d_sbn1661.d: \
+build/u8x8_d_sbn1661.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_d_sbn1661.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 

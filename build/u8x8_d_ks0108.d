@@ -1,4 +1,4 @@
-build/u8x8_d_ks0108.d: \
+build/u8x8_d_ks0108.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_d_ks0108.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 

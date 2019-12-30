@@ -1,4 +1,4 @@
-build/u8x8_d_pcf8812.d: \
+build/u8x8_d_pcf8812.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_d_pcf8812.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 

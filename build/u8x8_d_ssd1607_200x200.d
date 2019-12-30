@@ -1,4 +1,4 @@
-build/u8x8_d_ssd1607_200x200.d: \
+build/u8x8_d_ssd1607_200x200.o: \
  /Users/imashio/Electronics/ARM/_Library/u8x8_d_ssd1607_200x200.c \
  /Users/imashio/Electronics/ARM/_Library/u8x8.h
 
