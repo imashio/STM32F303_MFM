@@ -59,6 +59,7 @@
 #include "draw_Value.h"
 #include "draw_BarGraph.h"
 #include "draw_IndicatorBox.h"
+//#include "draw_Rotary.h"
 
 #include "flag.h"
 #include "defi_decoder.h"
@@ -72,10 +73,11 @@
 /* Private variables ---------------------------------------------------------*/
 
 // mode definition
-#define N_mode                4
+#define N_mode                5
 
 #define MODE_BAR_METER        0
 #define MODE_CIRCULAR_METER   1
+//#define MODE_ROTARY           2
 #define MODE_SCOPE_MAP        2
 #define MODE_SCOPE_Gsens      3
 #define MODE_SETTING          4
@@ -362,6 +364,18 @@ void draw_MeasLabels(){
   draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, 100, 3, 0, 0, "%  ");
 }
 
+void draw_MeasLabels_Rotary(){
+  uint8_t n;
+  uint8_t x, y;
+  // draw measurements label & unit
+  for( n=0; n<4; n++ ){
+	  x = meas_x;
+	  y = (n % 4) * meas_height	+ meas_y;
+	  draw_MeasLabelUnit(&u8g2, x, y, meas_width1, meas_height, meas_name[n], meas_unit[n]);
+  }
+}
+
+
 // ADC buffer definition
 enum{ ADC_BUFFER_LENGTH = 10 };
 uint16_t g_ADCBuffer[ADC_BUFFER_LENGTH];
@@ -393,6 +407,10 @@ int main(void)
 
   uint8_t a = 0; // for dummy data
   uint8_t b = 0; // for dummy data
+
+  // ROTARY
+  uint16_t rpm_integral;
+  uint8_t index_animation;
 
   // circular buffer for ADC data
   uint16_t circular_buffer_index = 0;
@@ -727,7 +745,11 @@ int main(void)
         draw_CircularMeter_Init(32, 32, 31, 3, -60, 300, 10, 20, -1, -80, 120);
 //        draw_CircularMeter_Init(26, 26, 26, 3, -60, 300, 10, 20, -1, -80, 120);
         draw_CircularMeter(&u8g2, 0);
-
+/*
+      }else if( mode == MODE_ROTARY ){
+        draw_MeasLabels_Rotary();
+        draw_MeasLabelUnit(&u8g2, 0, 2, meas_width1, meas_height, "TACHO", "rpm");
+*/
       }else if( mode == MODE_SCOPE_MAP ){
         draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max, 3);
         draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "MAP", "kPa");
@@ -744,6 +766,7 @@ int main(void)
 
     ///// Display sequence ----------------------------------------------------------------
     if( flag_disp ){
+
       ///// multi meter /////
       if( mode == MODE_BAR_METER ){
         // update Fuel Pump Voltage
@@ -782,6 +805,29 @@ int main(void)
           y = n * meas_C_height	+ meas_C_y;
           draw_Value(&u8g2, x, y, meas_C_width, meas_C_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
         }
+
+/*
+      }else if( mode == MODE_ROTARY ){
+
+        rpm_integral = rpm_integral + rpm;
+        if( rpm_integral > 4000 ){
+          rpm_integral = rpm_integral - 4000;
+        }
+        index_animation = (uint8_t)( (float)rpm_integral / 1000.0 );
+
+        draw_Rotary(&u8g2, 58, 2, index_animation);
+
+        draw_MeasLabelUnit(&u8g2, 0, 2, meas_width1, meas_height, "TACHO", "rpm");
+        draw_Value(&u8g2, 0, 2, meas_width1, meas_height, rpm, 4, 0, 0, "rpm");
+
+        draw_MeasLabels_Rotary();
+        // draw measurement data
+        for( n=0; n<4; n++ ){
+          x = meas_x;
+          y = (n % 4) * meas_height	+ meas_y;
+          draw_Value(&u8g2, x, y, meas_width1, meas_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
+        }
+*/
 
       ///// Scope /////
       }else if( mode == MODE_SCOPE_MAP ){
