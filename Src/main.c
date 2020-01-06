@@ -47,6 +47,8 @@
 #include "flag.h"
 #include "defi_decoder.h"
 #include "pulse_counter.h"
+#include "can_obd.h"
+#include "gsens_ADXL345.h"
 
 /* USER CODE END Includes */
 
@@ -305,6 +307,7 @@ int16_t   Gsens_Z;
 //    H        0x1D
 //    L        0x53
 
+/*
 void ADXL345_RegWrite(uint8_t slv_addr, uint8_t addr, uint8_t data){
   uint8_t i2c_buf[2];
   i2c_buf[0] = addr;
@@ -318,7 +321,7 @@ int8_t ADXL345_RegRead_1byte(uint8_t slv_addr, uint8_t addr){
   HAL_I2C_Master_Receive(&hi2c1, slv_addr << 1, &data, 1, 10);
   return data;
 }
-
+*/
 
 /* USER CODE END PV */
 
@@ -481,6 +484,9 @@ int main(void)
   HAL_UART_Receive_IT(&huart1, &UART1_Data, 1);
   // variables is defined in 'defi.h'
 
+  // CAN initialization
+  CAN_OBD_Init();
+
 
   // OLED diaplay initialization
   u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_hw_spi, u8x8_gpio_and_delay_STM32F303);  // init u8g2 structure
@@ -511,6 +517,8 @@ int main(void)
   // Set PWM Duty for Timer1 / Output1 (Asymmetric PWM2)
   TIM1->CCR1 = (100 - FP_duty);
 
+  /* USER CODE END 2 */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
@@ -520,7 +528,8 @@ int main(void)
 
 
   // I2C communication to ADXL345(3-axis G-sensor)
-
+  Gsens_EN = Gsens_ADXL345_Init(0);
+/*
   // DEIVID
   a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
   HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
@@ -540,328 +549,7 @@ int main(void)
   // bit 2    Justify   1'b1
   // bit 1:0  Range     2'b01
   a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
-  draw_MeasLabels();
-  draw_indicators();
-  u8g2_SendBuffer(&u8g2);
-
-
-  // I2C communication to ADXL345(3-axis G-sensor)
-
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
-
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
-  draw_MeasLabels();
-  draw_indicators();
-  u8g2_SendBuffer(&u8g2);
-
-
-  // I2C communication to ADXL345(3-axis G-sensor)
-
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
-
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
-  draw_MeasLabels();
-  draw_indicators();
-  u8g2_SendBuffer(&u8g2);
-
-
-  // I2C communication to ADXL345(3-axis G-sensor)
-
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
-
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
-  draw_MeasLabels();
-  draw_indicators();
-  u8g2_SendBuffer(&u8g2);
-
-
-  // I2C communication to ADXL345(3-axis G-sensor)
-
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
-
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
-  draw_MeasLabels();
-  draw_indicators();
-  u8g2_SendBuffer(&u8g2);
-
-
-  // I2C communication to ADXL345(3-axis G-sensor)
-
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
-
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
-  draw_MeasLabels();
-  draw_indicators();
-  u8g2_SendBuffer(&u8g2);
-
-
-  // I2C communication to ADXL345(3-axis G-sensor)
-
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
-
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
-  draw_MeasLabels();
-  draw_indicators();
-  u8g2_SendBuffer(&u8g2);
-
-
-  // I2C communication to ADXL345(3-axis G-sensor)
-
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
-
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
-  draw_MeasLabels();
-  draw_indicators();
-  u8g2_SendBuffer(&u8g2);
-
-
-  // I2C communication to ADXL345(3-axis G-sensor)
-
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
-
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
-  draw_MeasLabels();
-  draw_indicators();
-  u8g2_SendBuffer(&u8g2);
-
-
-  // I2C communication to ADXL345(3-axis G-sensor)
-
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
-
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
-  draw_MeasLabels();
-  draw_indicators();
-  u8g2_SendBuffer(&u8g2);
-
-
-  // I2C communication to ADXL345(3-axis G-sensor)
-
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
-
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-
-  /* USER CODE END 2 */
+*/
 
   while(1)
   {
@@ -893,6 +581,11 @@ int main(void)
     }else if( FP_duty < 60 ){
       FP_duty = 60;
     }
+
+    ///// CAN ----------------------------------------------------------------
+
+//    CAN_OBD_Response(MAP, rpm, SPEED, THROTTLE);
+    CAN_OBD_Response(DEFI_value[0], rpm, 0x00, 0x00);
 
     ///// Measure data  ----------------------------------------------------------------
     defi_decoder(UART1_RxData); // DEFI decoder
@@ -926,11 +619,7 @@ int main(void)
 
         HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", Gsens_X, Gsens_Y, Gsens_Z); // debug
         
-
-        /*
-        ADXL345_G_struct ADXL345_G_data = ADXL345_Read_G(ADXL0_ADDR);
-        HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", ADXL345_G_data.X, ADXL345_G_data.Y, ADXL345_G_data.Z); // debug
-        */
+        
       }
 
 
@@ -957,6 +646,7 @@ int main(void)
       }
   	  // end of create dummy data for debug
 */
+
       meas_value[0] = DEFI_value[0];  // MAP
 		  meas_value[1] = DEFI_value[2];  // OILP
 			meas_value[2] = FP_volt;        // FuelPump Voltage
@@ -967,9 +657,11 @@ int main(void)
       flag_meas = 0; // enable again by TIM2 interrupt
     }
 
+
     ///// FP driver ----------------------------------------------------------------
     // Set PWM Duty for Timer1 / Output1 (Asymmetric PWM2)
     TIM1->CCR1 = (100 - FP_duty);
+
 
     ///// Switch ----------------------------------------------------------------
     if( flag_sw != 0 ){
@@ -1050,6 +742,7 @@ int main(void)
       TIM6->CNT = 0;
       flag_sw = 0;
     }
+
 
     ///// Display sequence ----------------------------------------------------------------
     if( flag_disp ){

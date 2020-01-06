@@ -42,7 +42,7 @@ build/main.o: Src/main.c Inc/main.h \
  /Users/imashio/Electronics/ARM/_Library/draw_BarGraph.h \
  /Users/imashio/Electronics/ARM/_Library/draw_IndicatorBox.h \
  /Users/imashio/Electronics/ARM/_Library/flag.h Inc/defi_decoder.h \
- Src/pulse_counter.h
+ Inc/pulse_counter.h Inc/can_obd.h Inc/gsens_ADXL345.h
 
 Inc/main.h:
 
@@ -152,4 +152,8 @@ Inc/gpio.h:
 
 Inc/defi_decoder.h:
 
-Src/pulse_counter.h:
+Inc/pulse_counter.h:
+
+Inc/can_obd.h:
+
+Inc/gsens_ADXL345.h:

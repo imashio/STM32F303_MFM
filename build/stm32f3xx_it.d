@@ -30,8 +30,8 @@ build/stm32f3xx_it.o: Src/stm32f3xx_it.c Inc/main.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
- Inc/stm32f3xx_it.h Inc/usart.h Inc/main.h \
- /Users/imashio/Electronics/ARM/_Library/flag.h Src/pulse_counter.h
+ Inc/stm32f3xx_it.h Inc/can_obd.h Inc/usart.h Inc/main.h \
+ /Users/imashio/Electronics/ARM/_Library/flag.h Inc/pulse_counter.h
 
 Inc/main.h:
 
@@ -103,10 +103,12 @@ Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
 
 Inc/stm32f3xx_it.h:
 
+Inc/can_obd.h:
+
 Inc/usart.h:
 
 Inc/main.h:
 
 /Users/imashio/Electronics/ARM/_Library/flag.h:
 
-Src/pulse_counter.h:
+Inc/pulse_counter.h:

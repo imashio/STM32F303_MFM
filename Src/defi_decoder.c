@@ -1,3 +1,5 @@
+#include "main.h"
+
 // Defi Link Unit II
 // seiral daisy chain decoder
 
