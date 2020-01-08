@@ -1,4 +1,7 @@
 
+// status
+extern unsigned int flag_status;
+
 // display
 extern unsigned int flag_disp;
 

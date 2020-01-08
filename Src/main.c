@@ -76,9 +76,9 @@
 #define MODE_BAR_METER        0
 #define MODE_CIRCULAR_METER   1
 //#define MODE_ROTARY           2
-#define MODE_SCOPE_MAP        2
-#define MODE_SCOPE_Gsens      3
-#define MODE_SETTING          4
+#define MODE_SCOPE_MAP        3
+#define MODE_SCOPE_Gsens      4
+#define MODE_SETTING          5
 
 // RPM bar graph parameter definition
 #define	rpmbar_x		  0
@@ -109,7 +109,8 @@
 #define	N_idct			      2
 #define	idct_x			      72
 #define	idct_y			      53
-#define	idct_width		    27
+ #define	idct_width		    27 // 2-items
+// #define	idct_width		    17 // 3-item
 #define	idct_height		    9
 
 //  Fuel Pump Voltage display parameter definition
@@ -219,12 +220,12 @@ typedef struct {
 // variables for indicators
 const unsigned char idct_name[N_idct][5] = { // length must be (text length + 1)
 		"CAN"	,
-		"O2FB"
+		"GSENS"	,
 };
 
-const uint8_t	idct_status[N_idct] = {
-		1	,
-		1
+uint8_t	idct_status[N_idct] = {
+		0	,
+		0
 };
 
 // variables for measurement
@@ -289,16 +290,19 @@ int16_t   O2_volt = 330;
 int16_t   FP_volt = 330;
 int16_t   FP_duty = 100;
 
+// CAN Tranceiver --------------------------------------------------
+uint8_t   CAN_EN;
+
 // ADXL345 3-axis acceration sensor --------------------------------
 uint8_t   Gsens_EN;
-uint8_t   Gsens_X1;
-uint8_t   Gsens_X0;
+// uint8_t   Gsens_X1;
+// uint8_t   Gsens_X0;
 int16_t   Gsens_X;
-uint8_t   Gsens_Y1;
-uint8_t   Gsens_Y0;
+// uint8_t   Gsens_Y1;
+// uint8_t   Gsens_Y0;
 int16_t   Gsens_Y;
-uint8_t   Gsens_Z1;
-uint8_t   Gsens_Z0;
+// uint8_t   Gsens_Z1;
+// uint8_t   Gsens_Z0;
 int16_t   Gsens_Z;
 
 #define ADXL0_ADDR 0x1D
@@ -338,6 +342,7 @@ void draw_indicators(){
   uint8_t n;
   uint8_t x, y;
   // draw indicators
+
   for( n=0; n<N_idct; n++ ){
 	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n], idct_name[n]);
   }
@@ -441,41 +446,38 @@ int main(void)
   MX_TIM6_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
+  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
 
   ///// PWM initialize ----------------------------------------------------------------
 
   ///// Timer /////
   // TIM1 - PWM for Fuel Pump Driver (Cycle 100kHz = 1MHz / 100count)
-  /*
-  if (HAL_TIM_Base_Start_IT(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  */
-  // Start Timer1 / ch1
-  if (HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1) != HAL_OK)
-  {
+//  if (HAL_TIM_Base_Start_IT(&htim1) != HAL_OK){
+  if (HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1) != HAL_OK){
     Error_Handler();
   }
 
   // TIM2 - display (Cycle 20ms = 1/100kHz x 2,000count)
-  if (HAL_TIM_Base_Start_IT(&htim2) != HAL_OK)
-  {
+  if (HAL_TIM_Base_Start_IT(&htim2) != HAL_OK){
     Error_Handler();
   }
 
   // TIM3 - Pulse counter for Tacho (f 200kHz, count 65535)
-  if (HAL_TIM_Base_Start_IT(&htim3) != HAL_OK)
-  {
+  if (HAL_TIM_Base_Start_IT(&htim3) != HAL_OK){
     Error_Handler();
   }
 
   // TIM6 - SW interrupt control (Cycle 100ms = 1/100kHz x 10,000count)
-  if (HAL_TIM_Base_Start_IT(&htim6) != HAL_OK)
-  {
+  if (HAL_TIM_Base_Start_IT(&htim6) != HAL_OK){
     Error_Handler();
   }
+
+  // TIM7 - SW interrupt control (Cycle 1000ms = 1/32.757kHz x 32,768count)
+  if (HAL_TIM_Base_Start_IT(&htim7) != HAL_OK){
+    Error_Handler();
+  }
+
 
   // ADC
   HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
@@ -529,42 +531,30 @@ int main(void)
 
   // I2C communication to ADXL345(3-axis G-sensor)
   Gsens_EN = Gsens_ADXL345_Init(0);
-/*
-  // DEIVID
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x00);
-  HAL_UART_Transmit_printf(&huart2, "ADXL324 DEVID %d\n", a); // debug
-  if( a == 0xE5 ){
-    Gsens_EN = 1;
-  }else{
-    Gsens_EN = 0;
-  }
 
-  // POWER_CTL
-  ADXL345_RegWrite(ADXL0_ADDR, 0x2D, 0x08);
-  // bit 3    Measure   1'b1
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x2D); // Check
-
-  // DATA_FORMAT
-  ADXL345_RegWrite(ADXL0_ADDR, 0x31, 0x05);
-  // bit 2    Justify   1'b1
-  // bit 1:0  Range     2'b01
-  a = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x31); // Check "POWER_CTL"
-*/
-
-  while(1)
-  {
+  while(1){
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
+    ///// STATUS ----------------------------------------------------------------
+    if( flag_status ){
+      CAN_EN = 0;
+      flag_status = 0;
+    }
+
+    if( CAN_EN == 0 ){
+      CAN_EN = CAN_Received;
+    }
+    idct_status[0] = CAN_EN;
+    idct_status[1] = Gsens_EN;
+
     ///// ADC ----------------------------------------------------------------
 
 		// read O2 sensor ADC output
-//		O2_volt = (int16_t)(330 * (float)g_ADCBuffer[0]/255);
 		O2_volt = (int16_t)(330 * (float)adc[0]/255);
 
 		// read Fuel Pump Voltage ADC output
-//		FP_volt = (int16_t)((165/33)*33*(float)g_ADCBuffer[1]/255);
 		FP_volt = (int16_t)((165/33)*33*(float)adc[1]/255);
     // Ressister attenation ratio '165/33'
     
@@ -584,7 +574,7 @@ int main(void)
 
     ///// CAN ----------------------------------------------------------------
 
-//    CAN_OBD_Response(MAP, rpm, SPEED, THROTTLE);
+    //CAN_OBD_Response(MAP, rpm, SPEED, THROTTLE);
     CAN_OBD_Response(DEFI_value[0], rpm, 0x00, 0x00);
 
     ///// Measure data  ----------------------------------------------------------------
@@ -592,36 +582,18 @@ int main(void)
 
     if( flag_meas == 1 ){
 
+//      CAN_EN = 0;
+
       // I2C communication to ADXL345(3-axis G-sensor)
       if( Gsens_EN == 1 ){
-        /*
-        // Justify = 0
-        Gsens_X1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x33); // Check "DATAX1" (MSB side)
-        Gsens_X0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x32); // Check "DATAX0" (LSB side)
-        Gsens_X = (Gsens_X1<<8) | Gsens_X0;
-        Gsens_Y1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x35); // Check "DATAY1" (MSB side)
-        Gsens_Y0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x34); // Check "DATAY0" (LSB side)
-        Gsens_Y = (Gsens_Y1<<8) | Gsens_Y0;
-        Gsens_Z1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x37); // Check "DATAZ1" (MSB side)
-        Gsens_Z0 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x36); // Check "DATAZ0" (LSB side)
-        Gsens_Z = (Gsens_Z1<<8) | Gsens_Z0;
-        HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", Gsens_X, Gsens_Y, Gsens_Z); // debug
-        */
-
-        // Justify = 1
-        Gsens_X1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x33); // Check "DATAX1" (MSB side)
-        Gsens_Y1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x35); // Check "DATAY1" (MSB side)
-        Gsens_Z1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x37); // Check "DATAZ1" (MSB side)
         // Acceration 1G = 100
-        Gsens_X = 400 * (int8_t)Gsens_X1 / 128; // unsigned->signed & scaling
-        Gsens_Y = 400 * (int8_t)Gsens_Y1 / 128; // unsigned->signed & scaling
-        Gsens_Z = 400 * (int8_t)Gsens_Z1 / 128; // unsigned->signed & scaling
+        Gsens_X = Gsens_ADXL345_Read_G('x', 0);
+        Gsens_Y = Gsens_ADXL345_Read_G('y', 0);
+        Gsens_Z = Gsens_ADXL345_Read_G('z', 0);
 
         HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", Gsens_X, Gsens_Y, Gsens_Z); // debug
-        
         
       }
-
 
 /*
   	  // start of create dummy data for debug
@@ -767,6 +739,8 @@ int main(void)
           draw_Value(&u8g2, x, y, meas_width2, meas_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
         }
         
+        draw_indicators();
+
       ///// Circular Meter /////
       }else if( mode == MODE_CIRCULAR_METER ){
 

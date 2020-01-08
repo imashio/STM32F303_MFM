@@ -1,6 +1,9 @@
 #include "flag.h"
 
 // display
+unsigned int flag_status = 0;
+
+// display
 unsigned int flag_disp = 0;
 
 // measurement

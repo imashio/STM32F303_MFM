@@ -9,3 +9,5 @@ void ADXL345_RegWrite(uint8_t slv_addr, uint8_t addr, uint8_t data);
 int8_t ADXL345_RegRead_1byte(uint8_t slv_addr, uint8_t addr);
 
 uint8_t Gsens_ADXL345_Init(uint8_t ch);
+
+int8_t Gsens_ADXL345_Read_G(char axis, uint8_t ch);

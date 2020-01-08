@@ -3,6 +3,7 @@
 #include "gsens_ADXL345.h"
 
 #define ADXL0_ADDR 0x1D
+#define ADXL1_ADDR 0x53
 // ADXL345     I2C
 // SDO/ALT   Address
 //    H        0x1D
@@ -50,20 +51,43 @@ uint8_t Gsens_ADXL345_Init(uint8_t ch){
 
 }
 
-/*
-int8_t Gsens_ADXL345_Init(char axis, uint8_t ch){
+
+int8_t Gsens_ADXL345_Read_G(char axis, uint8_t ch){
   int8_t  G_code;
   int16_t G_norm;
 
-  // Justify = 1
-  Gsens_X1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x33); // Check "DATAX1" (MSB side)
-  Gsens_Y1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x35); // Check "DATAY1" (MSB side)
-  Gsens_Z1 = ADXL345_RegRead_1byte(ADXL0_ADDR, 0x37); // Check "DATAZ1" (MSB side)
-  // Acceration 1G = 100
-  Gsens_X = 400 * (int8_t)Gsens_X1 / 128; // unsigned->signed & scaling
-  Gsens_Y = 400 * (int8_t)Gsens_Y1 / 128; // unsigned->signed & scaling
-  Gsens_Z = 400 * (int8_t)Gsens_Z1 / 128; // unsigned->signed & scaling
+  uint8_t slave_addr;
 
-  retutn G_norm;
+  switch(ch){
+    case 0:
+      slave_addr = ADXL0_ADDR;
+      break;
+    case 1:
+      slave_addr = ADXL1_ADDR;
+      break;
+    default:
+      slave_addr = ADXL0_ADDR;
+      break;
+  }
+
+  // Justify = 1
+  switch(axis){
+    case 'x' :
+      G_code = ADXL345_RegRead_1byte(slave_addr, 0x33); // Check "DATAX1" (MSB side)
+      break;
+    case 'y' :
+      G_code = ADXL345_RegRead_1byte(slave_addr, 0x35); // Check "DATAY1" (MSB side)
+      break;
+    case 'z' :
+      G_code = ADXL345_RegRead_1byte(slave_addr, 0x37); // Check "DATAZ1" (MSB side)
+      break;
+    default :
+      G_code = 0;
+      break;
+  }
+
+  // Acceration 1G = 100
+  G_norm = 400 * (int8_t)G_code / 128; // unsigned->signed & scaling
+
+  return G_norm;
 }
-*/
