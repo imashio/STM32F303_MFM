@@ -7,7 +7,7 @@ USART_TypeDef* huart2; // debug
 #define F_CPU           72000000
 
 // TIM prescaler
-#define Prescaler       360
+#define Prescaler       360         // Timer prescaler must be set '360-1'
 
 // Number of pulese pulse/rpm (Tacho)
 #define NCNT            65536

@@ -75,7 +75,7 @@
 
 #define MODE_BAR_METER        0
 #define MODE_CIRCULAR_METER   1
-//#define MODE_ROTARY           2
+#define MODE_ROTARY           2
 #define MODE_SCOPE_MAP        3
 #define MODE_SCOPE_Gsens      4
 #define MODE_SETTING          5
@@ -210,12 +210,6 @@ uint8_t   mode;
 uint8_t   setting;
 uint8_t   cursor = 0;
 
-/*
-typedef struct {
-	unsigned char	name;
-	uint8_t			status;
-} idct;
-*/
 
 // variables for indicators
 const unsigned char idct_name[N_idct][5] = { // length must be (text length + 1)
@@ -507,7 +501,7 @@ int main(void)
 
   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
-  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.2a");
+  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.2b");
   u8g2_SendBuffer(&u8g2);
 
   HAL_Delay(1000);
@@ -560,10 +554,10 @@ int main(void)
     
     ///// Fuel Pump ----------------------------------------------------------------
     // Duty calculation
-    if( (rpm >= 3000)|(DEFI_value[0] >= 0) ){
+    if( (rpm >= 3000)|(DEFI_value[0] >= 0) ){ // DEFI_value[0] .. MAP
       FP_duty = 100;
     }else{
-      FP_duty = (int16_t)(rpm/3000*100);
+      FP_duty = (uint16_t)(rpm/3000*100);
     }
     // Saturation process
     if( FP_duty > 100 ){
@@ -639,7 +633,7 @@ int main(void)
     if( flag_sw != 0 ){
       switch( flag_sw ){
         case 1:
-          HAL_UART_Transmit_printf(&huart2, "UP ");
+          HAL_UART_Transmit_printf(&huart2, "UP "); // debug
           HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
           // SW "UP"
           if( setting == 0 ){
@@ -651,7 +645,7 @@ int main(void)
           }
           break;
         case 2:
-          HAL_UART_Transmit_printf(&huart2, "DOWN ");
+          HAL_UART_Transmit_printf(&huart2, "DOWN "); // debug
           HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
           // SW "DOWN"
           if( setting == 0 ){
@@ -663,7 +657,7 @@ int main(void)
           }
           break;
         case 3:
-          HAL_UART_Transmit_printf(&huart2, "ENTER ");
+          HAL_UART_Transmit_printf(&huart2, "ENTER "); // debug
           HAL_NVIC_DisableIRQ (EXTI1_IRQn);
           // SW "ENTER"
 
@@ -696,11 +690,11 @@ int main(void)
         draw_CircularMeter_Init(32, 32, 31, 3, -60, 300, 10, 20, -1, -80, 120);
 //        draw_CircularMeter_Init(26, 26, 26, 3, -60, 300, 10, 20, -1, -80, 120);
         draw_CircularMeter(&u8g2, 0);
-/*
+
       }else if( mode == MODE_ROTARY ){
         draw_MeasLabels_Rotary();
         draw_MeasLabelUnit(&u8g2, 0, 2, meas_width1, meas_height, "TACHO", "rpm");
-*/
+
       }else if( mode == MODE_SCOPE_MAP ){
         draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max, 3);
         draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "MAP", "kPa");
@@ -760,12 +754,12 @@ int main(void)
           draw_Value(&u8g2, x, y, meas_C_width, meas_C_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
         }
 
-/*
+
       }else if( mode == MODE_ROTARY ){
 
         rpm_integral = rpm_integral + rpm;
-        if( rpm_integral > 4000 ){
-          rpm_integral = rpm_integral - 4000;
+        if( rpm_integral > 10000 ){
+          rpm_integral = rpm_integral - 10000;
         }
         index_animation = (uint8_t)( (float)rpm_integral / 1000.0 );
 
@@ -781,7 +775,7 @@ int main(void)
           y = (n % 4) * meas_height	+ meas_y;
           draw_Value(&u8g2, x, y, meas_width1, meas_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
         }
-*/
+
 
       ///// Scope /////
       }else if( mode == MODE_SCOPE_MAP ){
