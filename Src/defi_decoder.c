@@ -95,7 +95,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle){
 
 //// int defi_decode_value(unsigned char *UART1_RxData, unsigned char UART1_data_index){
 void defi_decoder(unsigned char *UART1_RxData){
-    unsigned int    m,n;
+    unsigned int    ite;
+    unsigned int    m, n;
     unsigned char   DEFI_valid_frame = 0;               // valid frame indicator
     
     unsigned char   DEFI_FRAME[N_DEFI_BYTE];
@@ -110,9 +111,11 @@ void defi_decoder(unsigned char *UART1_RxData){
     HAL_UART_Transmit_printf(&huart2, "DEFI_proc_data_index = %d\n", DEFI_proc_data_index); // debug
 */
 
+    ite = 0;
     // Defi data from UART1 data recognition
 //    for(DEFI_proc_data_index=0; DEFI_proc_data_index<N_DEFI_BYTE*2-1;DEFI_proc_data_index++){
     while( DEFI_proc_data_index != (UART1_data_index - N_DEFI_BYTE) ){
+
         // find Receiver ID
         if( ( UART1_RxData[DEFI_proc_data_index] & 0xF0 ) == 0x00 ){
 
@@ -178,6 +181,12 @@ void defi_decoder(unsigned char *UART1_RxData){
             DEFI_proc_data_index = 0;
         }
 
+        if( ite > 100 ){ // Time-out
+            break;
+        }else{
+            ite++;
+        }
+        
     }
 
 }

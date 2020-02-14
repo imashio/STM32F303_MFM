@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s 			page 1
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s 			page 1
   46              		.loc 1 9 0
   47 000c 0130     		adds	r0, r0, #1
   48              	.LVL3:
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s 			page 2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s 			page 2
 
 
   49 000e C0B2     		uxtb	r0, r0
@@ -78,238 +78,340 @@ ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s 			page 1
   60 0018 7047     		bx	lr
   61              		.cfi_endproc
   62              	.LFE123:
-  64 001a 00BF     		.section	.text.delayInit,"ax",%progbits
+  64 001a 00BF     		.section	.text.subStr,"ax",%progbits
   65              		.align	1
   66              		.p2align 2,,3
-  67              		.global	delayInit
+  67              		.global	subStr
   68              		.syntax unified
   69              		.thumb
   70              		.thumb_func
   71              		.fpu fpv4-sp-d16
-  73              	delayInit:
+  73              	subStr:
   74              	.LFB124:
   12:/Users/imashio/Electronics/ARM/_Library/basic.c **** 
-  13:/Users/imashio/Electronics/ARM/_Library/basic.c **** 
-  14:/Users/imashio/Electronics/ARM/_Library/basic.c **** 
-  15:/Users/imashio/Electronics/ARM/_Library/basic.c **** // SYSTICK delay (DO NOT USE with intteruput)
-  16:/Users/imashio/Electronics/ARM/_Library/basic.c **** __IO uint32_t DelayCnt;
-  17:/Users/imashio/Electronics/ARM/_Library/basic.c **** uint32_t Cnt_ms;
-  18:/Users/imashio/Electronics/ARM/_Library/basic.c **** uint32_t Cnt_us;
-  19:/Users/imashio/Electronics/ARM/_Library/basic.c **** uint32_t Cnt_100ns;
-  20:/Users/imashio/Electronics/ARM/_Library/basic.c **** 
-  21:/Users/imashio/Electronics/ARM/_Library/basic.c **** void delayInit(void)
-  22:/Users/imashio/Electronics/ARM/_Library/basic.c **** {
-  75              		.loc 1 22 0
+  13:/Users/imashio/Electronics/ARM/_Library/basic.c **** // substring
+  14:/Users/imashio/Electronics/ARM/_Library/basic.c **** int subStr( char *str_out, const char *str_in, unsigned int pos, unsigned int len ){
+  75              		.loc 1 14 0
   76              		.cfi_startproc
   77              		@ args = 0, pretend = 0, frame = 0
   78              		@ frame_needed = 0, uses_anonymous_args = 0
-  79 0000 10B5     		push	{r4, lr}
-  80              	.LCFI0:
-  81              		.cfi_def_cfa_offset 8
-  82              		.cfi_offset 4, -8
-  83              		.cfi_offset 14, -4
-  23:/Users/imashio/Electronics/ARM/_Library/basic.c ****   uint32_t freq;
-  24:/Users/imashio/Electronics/ARM/_Library/basic.c ****   freq = HAL_RCC_GetHCLKFreq();
-  84              		.loc 1 24 0
-  85 0002 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
-  86              	.LVL7:
-  25:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_ms = 1 * (freq/1000);
-  26:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_us = 1 * (freq/1000000);
-  87              		.loc 1 26 0
-  88 0006 064C     		ldr	r4, .L9
-  25:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_ms = 1 * (freq/1000);
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s 			page 3
+  79              	.LVL7:
+  80 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  81              	.LCFI0:
+  82              		.cfi_def_cfa_offset 24
+  83              		.cfi_offset 4, -24
+  84              		.cfi_offset 5, -20
+  85              		.cfi_offset 6, -16
+  86              		.cfi_offset 7, -12
+  87              		.cfi_offset 8, -8
+  88              		.cfi_offset 14, -4
+  89              		.loc 1 14 0
+  90 0004 0446     		mov	r4, r0
+  91              	.LBB2:
+  15:/Users/imashio/Electronics/ARM/_Library/basic.c ****     if( pos < 0 || len < 0 || len > strlen(str_in) )
+  92              		.loc 1 15 0
+  93 0006 0846     		mov	r0, r1
+  94              	.LVL8:
+  95              	.LBE2:
+  14:/Users/imashio/Electronics/ARM/_Library/basic.c ****     if( pos < 0 || len < 0 || len > strlen(str_in) )
+  96              		.loc 1 14 0
+  97 0008 1F46     		mov	r7, r3
+  98 000a 0E46     		mov	r6, r1
+  99 000c 9046     		mov	r8, r2
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s 			page 3
 
 
-  89              		.loc 1 25 0
-  90 0008 064B     		ldr	r3, .L9+4
-  91 000a 0749     		ldr	r1, .L9+8
-  92              		.loc 1 26 0
-  93 000c 074A     		ldr	r2, .L9+12
-  25:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_ms = 1 * (freq/1000);
-  94              		.loc 1 25 0
-  95 000e A3FB00C3 		umull	ip, r3, r3, r0
-  96              		.loc 1 26 0
-  97 0012 A4FB0040 		umull	r4, r0, r4, r0
-  98              	.LVL8:
-  25:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_ms = 1 * (freq/1000);
-  99              		.loc 1 25 0
- 100 0016 9B09     		lsrs	r3, r3, #6
- 101              		.loc 1 26 0
- 102 0018 800C     		lsrs	r0, r0, #18
-  25:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_ms = 1 * (freq/1000);
- 103              		.loc 1 25 0
- 104 001a 0B60     		str	r3, [r1]
- 105              		.loc 1 26 0
- 106 001c 1060     		str	r0, [r2]
-  27:/Users/imashio/Electronics/ARM/_Library/basic.c **** }
- 107              		.loc 1 27 0
- 108 001e 10BD     		pop	{r4, pc}
- 109              	.L10:
- 110              		.align	2
- 111              	.L9:
- 112 0020 83DE1B43 		.word	1125899907
- 113 0024 D34D6210 		.word	274877907
- 114 0028 00000000 		.word	Cnt_ms
- 115 002c 00000000 		.word	Cnt_us
- 116              		.cfi_endproc
- 117              	.LFE124:
- 119              		.section	.text.delay_us,"ax",%progbits
- 120              		.align	1
- 121              		.p2align 2,,3
- 122              		.global	delay_us
- 123              		.syntax unified
- 124              		.thumb
- 125              		.thumb_func
- 126              		.fpu fpv4-sp-d16
- 128              	delay_us:
- 129              	.LFB125:
+ 100              	.LBB3:
+ 101              		.loc 1 15 0
+ 102 000e FFF7FEFF 		bl	strlen
+ 103              	.LVL9:
+ 104 0012 B842     		cmp	r0, r7
+ 105 0014 13D3     		bcc	.L11
+ 106              	.LBE3:
+  16:/Users/imashio/Electronics/ARM/_Library/basic.c ****         return -1;
+  17:/Users/imashio/Electronics/ARM/_Library/basic.c ****     for( str_in += pos; *str_in != '\0' && len > 0; len-- )
+ 107              		.loc 1 17 0
+ 108 0016 16F80850 		ldrb	r5, [r6, r8]	@ zero_extendqisi2
+ 109 001a 06EB0802 		add	r2, r6, r8
+ 110              	.LVL10:
+ 111 001e 55B1     		cbz	r5, .L9
+ 112 0020 4FB1     		cbz	r7, .L9
+ 113 0022 E319     		adds	r3, r4, r7
+ 114 0024 01E0     		b	.L10
+ 115              	.LVL11:
+ 116              	.L23:
+ 117              		.loc 1 17 0 is_stmt 0 discriminator 3
+ 118 0026 9C42     		cmp	r4, r3
+ 119 0028 05D0     		beq	.L9
+ 120              	.LVL12:
+ 121              	.L10:
+  18:/Users/imashio/Electronics/ARM/_Library/basic.c ****         *str_out++ = *str_in++;
+ 122              		.loc 1 18 0 is_stmt 1 discriminator 4
+ 123 002a 04F8015B 		strb	r5, [r4], #1
+ 124              	.LVL13:
+  17:/Users/imashio/Electronics/ARM/_Library/basic.c ****         *str_out++ = *str_in++;
+ 125              		.loc 1 17 0 discriminator 4
+ 126 002e 12F8015F 		ldrb	r5, [r2, #1]!	@ zero_extendqisi2
+ 127 0032 002D     		cmp	r5, #0
+ 128 0034 F7D1     		bne	.L23
+ 129              	.LVL14:
+ 130              	.L9:
+  19:/Users/imashio/Electronics/ARM/_Library/basic.c ****     *str_out = '\0';
+ 131              		.loc 1 19 0
+ 132 0036 0020     		movs	r0, #0
+ 133 0038 2070     		strb	r0, [r4]
+ 134              	.L7:
+  20:/Users/imashio/Electronics/ARM/_Library/basic.c ****     return 0;
+  21:/Users/imashio/Electronics/ARM/_Library/basic.c **** }
+ 135              		.loc 1 21 0
+ 136 003a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 137              	.LVL15:
+ 138              	.L11:
+ 139              	.LBB4:
+  16:/Users/imashio/Electronics/ARM/_Library/basic.c ****     for( str_in += pos; *str_in != '\0' && len > 0; len-- )
+ 140              		.loc 1 16 0
+ 141 003e 4FF0FF30 		mov	r0, #-1
+ 142 0042 FAE7     		b	.L7
+ 143              	.LBE4:
+ 144              		.cfi_endproc
+ 145              	.LFE124:
+ 147              		.section	.text.delayInit,"ax",%progbits
+ 148              		.align	1
+ 149              		.p2align 2,,3
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s 			page 4
+
+
+ 150              		.global	delayInit
+ 151              		.syntax unified
+ 152              		.thumb
+ 153              		.thumb_func
+ 154              		.fpu fpv4-sp-d16
+ 156              	delayInit:
+ 157              	.LFB125:
+  22:/Users/imashio/Electronics/ARM/_Library/basic.c **** 
+  23:/Users/imashio/Electronics/ARM/_Library/basic.c **** // SYSTICK delay (DO NOT USE with intteruput)
+  24:/Users/imashio/Electronics/ARM/_Library/basic.c **** __IO uint32_t DelayCnt;
+  25:/Users/imashio/Electronics/ARM/_Library/basic.c **** uint32_t Cnt_ms;
+  26:/Users/imashio/Electronics/ARM/_Library/basic.c **** uint32_t Cnt_us;
+  27:/Users/imashio/Electronics/ARM/_Library/basic.c **** uint32_t Cnt_100ns;
   28:/Users/imashio/Electronics/ARM/_Library/basic.c **** 
-  29:/Users/imashio/Electronics/ARM/_Library/basic.c **** void delay_us(uint32_t t_us)
+  29:/Users/imashio/Electronics/ARM/_Library/basic.c **** void delayInit(void)
   30:/Users/imashio/Electronics/ARM/_Library/basic.c **** {
- 130              		.loc 1 30 0
- 131              		.cfi_startproc
- 132              		@ args = 0, pretend = 0, frame = 0
- 133              		@ frame_needed = 0, uses_anonymous_args = 0
- 134              	.LVL9:
-  31:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_us-1);
- 135              		.loc 1 31 0
- 136 0000 064B     		ldr	r3, .L15
- 137 0002 1B68     		ldr	r3, [r3]
-  30:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_us-1);
- 138              		.loc 1 30 0
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s 			page 4
+ 158              		.loc 1 30 0
+ 159              		.cfi_startproc
+ 160              		@ args = 0, pretend = 0, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162 0000 10B5     		push	{r4, lr}
+ 163              	.LCFI1:
+ 164              		.cfi_def_cfa_offset 8
+ 165              		.cfi_offset 4, -8
+ 166              		.cfi_offset 14, -4
+  31:/Users/imashio/Electronics/ARM/_Library/basic.c ****   uint32_t freq;
+  32:/Users/imashio/Electronics/ARM/_Library/basic.c ****   freq = HAL_RCC_GetHCLKFreq();
+ 167              		.loc 1 32 0
+ 168 0002 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ 169              	.LVL16:
+  33:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_ms = 1 * (freq/1000);
+  34:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_us = 1 * (freq/1000000);
+ 170              		.loc 1 34 0
+ 171 0006 064C     		ldr	r4, .L26
+  33:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_ms = 1 * (freq/1000);
+ 172              		.loc 1 33 0
+ 173 0008 064B     		ldr	r3, .L26+4
+ 174 000a 0749     		ldr	r1, .L26+8
+ 175              		.loc 1 34 0
+ 176 000c 074A     		ldr	r2, .L26+12
+  33:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_ms = 1 * (freq/1000);
+ 177              		.loc 1 33 0
+ 178 000e A3FB00C3 		umull	ip, r3, r3, r0
+ 179              		.loc 1 34 0
+ 180 0012 A4FB0040 		umull	r4, r0, r4, r0
+ 181              	.LVL17:
+  33:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_ms = 1 * (freq/1000);
+ 182              		.loc 1 33 0
+ 183 0016 9B09     		lsrs	r3, r3, #6
+ 184              		.loc 1 34 0
+ 185 0018 800C     		lsrs	r0, r0, #18
+  33:/Users/imashio/Electronics/ARM/_Library/basic.c ****   Cnt_ms = 1 * (freq/1000);
+ 186              		.loc 1 33 0
+ 187 001a 0B60     		str	r3, [r1]
+ 188              		.loc 1 34 0
+ 189 001c 1060     		str	r0, [r2]
+  35:/Users/imashio/Electronics/ARM/_Library/basic.c **** }
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s 			page 5
 
 
- 139 0004 10B5     		push	{r4, lr}
- 140              	.LCFI1:
- 141              		.cfi_def_cfa_offset 8
- 142              		.cfi_offset 4, -8
- 143              		.cfi_offset 14, -4
-  30:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_us-1);
- 144              		.loc 1 30 0
- 145 0006 0446     		mov	r4, r0
- 146              		.loc 1 31 0
- 147 0008 581E     		subs	r0, r3, #1
- 148              	.LVL10:
- 149 000a FFF7FEFF 		bl	HAL_SYSTICK_Config
- 150              	.LVL11:
-  32:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	DelayCnt = t_us;
- 151              		.loc 1 32 0
- 152 000e 044A     		ldr	r2, .L15+4
- 153 0010 1460     		str	r4, [r2]
- 154              	.L12:
-  33:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	while( DelayCnt != 0 );
- 155              		.loc 1 33 0 discriminator 1
- 156 0012 1368     		ldr	r3, [r2]
- 157 0014 002B     		cmp	r3, #0
- 158 0016 FCD1     		bne	.L12
-  34:/Users/imashio/Electronics/ARM/_Library/basic.c **** }
- 159              		.loc 1 34 0
- 160 0018 10BD     		pop	{r4, pc}
- 161              	.LVL12:
- 162              	.L16:
- 163 001a 00BF     		.align	2
- 164              	.L15:
- 165 001c 00000000 		.word	Cnt_us
- 166 0020 00000000 		.word	DelayCnt
- 167              		.cfi_endproc
- 168              	.LFE125:
- 170              		.section	.text.delay_ms,"ax",%progbits
- 171              		.align	1
- 172              		.p2align 2,,3
- 173              		.global	delay_ms
- 174              		.syntax unified
- 175              		.thumb
- 176              		.thumb_func
- 177              		.fpu fpv4-sp-d16
- 179              	delay_ms:
- 180              	.LFB126:
-  35:/Users/imashio/Electronics/ARM/_Library/basic.c **** 
-  36:/Users/imashio/Electronics/ARM/_Library/basic.c **** void delay_ms(uint32_t t_ms)
-  37:/Users/imashio/Electronics/ARM/_Library/basic.c **** {
- 181              		.loc 1 37 0
- 182              		.cfi_startproc
- 183              		@ args = 0, pretend = 0, frame = 0
- 184              		@ frame_needed = 0, uses_anonymous_args = 0
- 185              	.LVL13:
-  38:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_ms-1);
- 186              		.loc 1 38 0
- 187 0000 064B     		ldr	r3, .L21
- 188 0002 1B68     		ldr	r3, [r3]
-  37:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_ms-1);
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s 			page 5
+ 190              		.loc 1 35 0
+ 191 001e 10BD     		pop	{r4, pc}
+ 192              	.L27:
+ 193              		.align	2
+ 194              	.L26:
+ 195 0020 83DE1B43 		.word	1125899907
+ 196 0024 D34D6210 		.word	274877907
+ 197 0028 00000000 		.word	Cnt_ms
+ 198 002c 00000000 		.word	Cnt_us
+ 199              		.cfi_endproc
+ 200              	.LFE125:
+ 202              		.section	.text.delay_us,"ax",%progbits
+ 203              		.align	1
+ 204              		.p2align 2,,3
+ 205              		.global	delay_us
+ 206              		.syntax unified
+ 207              		.thumb
+ 208              		.thumb_func
+ 209              		.fpu fpv4-sp-d16
+ 211              	delay_us:
+ 212              	.LFB126:
+  36:/Users/imashio/Electronics/ARM/_Library/basic.c **** 
+  37:/Users/imashio/Electronics/ARM/_Library/basic.c **** void delay_us(uint32_t t_us)
+  38:/Users/imashio/Electronics/ARM/_Library/basic.c **** {
+ 213              		.loc 1 38 0
+ 214              		.cfi_startproc
+ 215              		@ args = 0, pretend = 0, frame = 0
+ 216              		@ frame_needed = 0, uses_anonymous_args = 0
+ 217              	.LVL18:
+  39:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_us-1);
+ 218              		.loc 1 39 0
+ 219 0000 064B     		ldr	r3, .L32
+ 220 0002 1B68     		ldr	r3, [r3]
+  38:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_us-1);
+ 221              		.loc 1 38 0
+ 222 0004 10B5     		push	{r4, lr}
+ 223              	.LCFI2:
+ 224              		.cfi_def_cfa_offset 8
+ 225              		.cfi_offset 4, -8
+ 226              		.cfi_offset 14, -4
+  38:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_us-1);
+ 227              		.loc 1 38 0
+ 228 0006 0446     		mov	r4, r0
+ 229              		.loc 1 39 0
+ 230 0008 581E     		subs	r0, r3, #1
+ 231              	.LVL19:
+ 232 000a FFF7FEFF 		bl	HAL_SYSTICK_Config
+ 233              	.LVL20:
+  40:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	DelayCnt = t_us;
+ 234              		.loc 1 40 0
+ 235 000e 044A     		ldr	r2, .L32+4
+ 236 0010 1460     		str	r4, [r2]
+ 237              	.L29:
+  41:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	while( DelayCnt != 0 );
+ 238              		.loc 1 41 0 discriminator 1
+ 239 0012 1368     		ldr	r3, [r2]
+ 240 0014 002B     		cmp	r3, #0
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s 			page 6
 
 
- 189              		.loc 1 37 0
- 190 0004 10B5     		push	{r4, lr}
- 191              	.LCFI2:
- 192              		.cfi_def_cfa_offset 8
- 193              		.cfi_offset 4, -8
- 194              		.cfi_offset 14, -4
-  37:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_ms-1);
- 195              		.loc 1 37 0
- 196 0006 0446     		mov	r4, r0
- 197              		.loc 1 38 0
- 198 0008 581E     		subs	r0, r3, #1
- 199              	.LVL14:
- 200 000a FFF7FEFF 		bl	HAL_SYSTICK_Config
- 201              	.LVL15:
-  39:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	DelayCnt = t_ms;
- 202              		.loc 1 39 0
- 203 000e 044A     		ldr	r2, .L21+4
- 204 0010 1460     		str	r4, [r2]
- 205              	.L18:
-  40:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	while( DelayCnt != 0 );
- 206              		.loc 1 40 0 discriminator 1
- 207 0012 1368     		ldr	r3, [r2]
- 208 0014 002B     		cmp	r3, #0
- 209 0016 FCD1     		bne	.L18
-  41:/Users/imashio/Electronics/ARM/_Library/basic.c **** }
- 210              		.loc 1 41 0
- 211 0018 10BD     		pop	{r4, pc}
- 212              	.LVL16:
- 213              	.L22:
- 214 001a 00BF     		.align	2
- 215              	.L21:
- 216 001c 00000000 		.word	Cnt_ms
- 217 0020 00000000 		.word	DelayCnt
- 218              		.cfi_endproc
- 219              	.LFE126:
- 221              		.comm	Cnt_100ns,4,4
- 222              		.comm	Cnt_us,4,4
- 223              		.comm	Cnt_ms,4,4
- 224              		.comm	DelayCnt,4,4
- 225              		.text
- 226              	.Letext0:
- 227              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
- 228              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
- 229              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 230              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
- 231              		.file 6 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
- 232              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h"
- 233              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h"
-ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s 			page 6
+ 241 0016 FCD1     		bne	.L29
+  42:/Users/imashio/Electronics/ARM/_Library/basic.c **** }
+ 242              		.loc 1 42 0
+ 243 0018 10BD     		pop	{r4, pc}
+ 244              	.LVL21:
+ 245              	.L33:
+ 246 001a 00BF     		.align	2
+ 247              	.L32:
+ 248 001c 00000000 		.word	Cnt_us
+ 249 0020 00000000 		.word	DelayCnt
+ 250              		.cfi_endproc
+ 251              	.LFE126:
+ 253              		.section	.text.delay_ms,"ax",%progbits
+ 254              		.align	1
+ 255              		.p2align 2,,3
+ 256              		.global	delay_ms
+ 257              		.syntax unified
+ 258              		.thumb
+ 259              		.thumb_func
+ 260              		.fpu fpv4-sp-d16
+ 262              	delay_ms:
+ 263              	.LFB127:
+  43:/Users/imashio/Electronics/ARM/_Library/basic.c **** 
+  44:/Users/imashio/Electronics/ARM/_Library/basic.c **** void delay_ms(uint32_t t_ms)
+  45:/Users/imashio/Electronics/ARM/_Library/basic.c **** {
+ 264              		.loc 1 45 0
+ 265              		.cfi_startproc
+ 266              		@ args = 0, pretend = 0, frame = 0
+ 267              		@ frame_needed = 0, uses_anonymous_args = 0
+ 268              	.LVL22:
+  46:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_ms-1);
+ 269              		.loc 1 46 0
+ 270 0000 064B     		ldr	r3, .L38
+ 271 0002 1B68     		ldr	r3, [r3]
+  45:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_ms-1);
+ 272              		.loc 1 45 0
+ 273 0004 10B5     		push	{r4, lr}
+ 274              	.LCFI3:
+ 275              		.cfi_def_cfa_offset 8
+ 276              		.cfi_offset 4, -8
+ 277              		.cfi_offset 14, -4
+  45:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	HAL_SYSTICK_Config(Cnt_ms-1);
+ 278              		.loc 1 45 0
+ 279 0006 0446     		mov	r4, r0
+ 280              		.loc 1 46 0
+ 281 0008 581E     		subs	r0, r3, #1
+ 282              	.LVL23:
+ 283 000a FFF7FEFF 		bl	HAL_SYSTICK_Config
+ 284              	.LVL24:
+  47:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	DelayCnt = t_ms;
+ 285              		.loc 1 47 0
+ 286 000e 044A     		ldr	r2, .L38+4
+ 287 0010 1460     		str	r4, [r2]
+ 288              	.L35:
+  48:/Users/imashio/Electronics/ARM/_Library/basic.c **** 	while( DelayCnt != 0 );
+ 289              		.loc 1 48 0 discriminator 1
+ 290 0012 1368     		ldr	r3, [r2]
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s 			page 7
+
+
+ 291 0014 002B     		cmp	r3, #0
+ 292 0016 FCD1     		bne	.L35
+  49:/Users/imashio/Electronics/ARM/_Library/basic.c **** }
+ 293              		.loc 1 49 0
+ 294 0018 10BD     		pop	{r4, pc}
+ 295              	.LVL25:
+ 296              	.L39:
+ 297 001a 00BF     		.align	2
+ 298              	.L38:
+ 299 001c 00000000 		.word	Cnt_ms
+ 300 0020 00000000 		.word	DelayCnt
+ 301              		.cfi_endproc
+ 302              	.LFE127:
+ 304              		.comm	Cnt_100ns,4,4
+ 305              		.comm	Cnt_us,4,4
+ 306              		.comm	Cnt_ms,4,4
+ 307              		.comm	DelayCnt,4,4
+ 308              		.text
+ 309              	.Letext0:
+ 310              		.file 2 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/machine/_default_type
+ 311              		.file 3 "/usr/local/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 312              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 313              		.file 5 "Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h"
+ 314              		.file 6 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h"
+ 315              		.file 7 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h"
+ 316              		.file 8 "Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h"
+ 317              		.file 9 "<built-in>"
+ARM GAS  /var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 basic.c
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:18     .text.StrLength:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:26     .text.StrLength:0000000000000000 StrLength
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:65     .text.delayInit:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:73     .text.delayInit:0000000000000000 delayInit
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:112    .text.delayInit:0000000000000020 $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:18     .text.StrLength:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:26     .text.StrLength:0000000000000000 StrLength
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:65     .text.subStr:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:73     .text.subStr:0000000000000000 subStr
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:148    .text.delayInit:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:156    .text.delayInit:0000000000000000 delayInit
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:195    .text.delayInit:0000000000000020 $d
                             *COM*:0000000000000004 Cnt_ms
                             *COM*:0000000000000004 Cnt_us
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:120    .text.delay_us:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:128    .text.delay_us:0000000000000000 delay_us
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:165    .text.delay_us:000000000000001c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:203    .text.delay_us:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:211    .text.delay_us:0000000000000000 delay_us
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:248    .text.delay_us:000000000000001c $d
                             *COM*:0000000000000004 DelayCnt
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:171    .text.delay_ms:0000000000000000 $t
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:179    .text.delay_ms:0000000000000000 delay_ms
-/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccBpvuRZ.s:216    .text.delay_ms:000000000000001c $d
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:254    .text.delay_ms:0000000000000000 $t
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:262    .text.delay_ms:0000000000000000 delay_ms
+/var/folders/v3/wysfpd052nz8jkbx04pk0ym80000gn/T//ccUaIJ0q.s:299    .text.delay_ms:000000000000001c $d
                             *COM*:0000000000000004 Cnt_100ns
 
 UNDEFINED SYMBOLS
+strlen
 HAL_RCC_GetHCLKFreq
 HAL_SYSTICK_Config

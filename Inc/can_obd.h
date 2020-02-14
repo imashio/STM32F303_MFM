@@ -9,4 +9,4 @@ extern volatile uint8_t         CAN_Received; // CAN data received flag
 
 void CAN_OBD_Init();
 
-void CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE);
+void CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE, uint16_t FUELPRESS);

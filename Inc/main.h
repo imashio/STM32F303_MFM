@@ -67,6 +67,8 @@ void Error_Handler(void);
 #define ADC__FPVOLT_GPIO_Port GPIOA
 #define USART2__USB_TX_Pin GPIO_PIN_2
 #define USART2__USB_TX_GPIO_Port GPIOA
+#define IN__Spped_Pin GPIO_PIN_4
+#define IN__Spped_GPIO_Port GPIOA
 #define EXTI__SW_Down_Pin GPIO_PIN_6
 #define EXTI__SW_Down_GPIO_Port GPIOA
 #define EXTI__SW_Down_EXTI_IRQn EXTI9_5_IRQn

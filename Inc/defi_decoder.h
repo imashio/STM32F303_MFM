@@ -4,7 +4,8 @@
 
 #define N_DEFI_MEAS_TYPE  7  // number of Defi measurement type 
 #define N_DEFI_BYTE       5  // number of Defi data per 1 packet
-#define N_DEFI_PACKET     7 // number of Defi data packet
+#define N_DEFI_PACKET     8 // number of Defi data packet
+
   // 0 : Receiver ID
   // 1 : Control
   // 2 : Angle data (100 digit)

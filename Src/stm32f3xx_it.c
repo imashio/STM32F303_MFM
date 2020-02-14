@@ -66,10 +66,12 @@ extern UART_HandleTypeDef huart2;
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_adc1;
 extern CAN_HandleTypeDef hcan;
+extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim7;
+extern TIM_HandleTypeDef htim16;
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
 /* USER CODE BEGIN EV */
@@ -110,6 +112,7 @@ void EXTI1_IRQHandler(void)
   /* USER CODE END EXTI1_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
   /* USER CODE BEGIN EXTI1_IRQn 1 */
+  
   // SW Enter input
   if(HAL_GPIO_ReadPin( GPIOF, GPIO_PIN_1 ) == 0 ){
     flag_sw = 3;
@@ -128,7 +131,7 @@ void EXTI4_IRQHandler(void)
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
   /* USER CODE BEGIN EXTI4_IRQn 1 */
   if(HAL_GPIO_ReadPin( GPIOB, GPIO_PIN_4 ) == 0 ){ // Tacho input
-    tacho();
+    tacho_meter();
   }
   /* USER CODE END EXTI4_IRQn 1 */
 }
@@ -171,6 +174,7 @@ void CAN_RX0_IRQHandler(void)
   /* USER CODE END CAN_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan);
   /* USER CODE BEGIN CAN_RX0_IRQn 1 */
+
   HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &CAN_RxHeader, CAN_RxData);
   CAN_Received = 1;
 
@@ -202,6 +206,7 @@ void EXTI9_5_IRQHandler(void)
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
   /* USER CODE BEGIN EXTI9_5_IRQn 1 */
+
   // SW "Up"/"Down" input
   // UP key : PB5
   if(HAL_GPIO_ReadPin( GPIOB, GPIO_PIN_5 ) == 0 ){
@@ -215,6 +220,23 @@ void EXTI9_5_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles TIM1 update and TIM16 interrupts.
+  */
+void TIM1_UP_TIM16_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM1_UP_TIM16_IRQn 0 */
+
+  /* USER CODE END TIM1_UP_TIM16_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim1);
+  HAL_TIM_IRQHandler(&htim16);
+  /* USER CODE BEGIN TIM1_UP_TIM16_IRQn 1 */
+
+  flag_status = 1;
+
+  /* USER CODE END TIM1_UP_TIM16_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM2 global interrupt.
   */
 void TIM2_IRQHandler(void)
@@ -225,8 +247,10 @@ void TIM2_IRQHandler(void)
   HAL_TIM_IRQHandler(&htim2);
   /* USER CODE BEGIN TIM2_IRQn 1 */
   // 20ms timer for diaplay update
+
   flag_disp = 1;
   flag_meas = 1;
+
   /* USER CODE END TIM2_IRQn 1 */
 }
 
@@ -240,7 +264,9 @@ void TIM3_IRQHandler(void)
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
+
   tacho_overflow();
+
   /* USER CODE END TIM3_IRQn 1 */
 }
 
@@ -284,11 +310,7 @@ void TIM6_DAC1_IRQHandler(void)
   HAL_TIM_IRQHandler(&htim6);
   /* USER CODE BEGIN TIM6_DAC1_IRQn 1 */
 
-
-  // SW external interrupt
-  HAL_NVIC_EnableIRQ(EXTI1_IRQn);
-  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
-
+  speed_overflow();
 
   /* USER CODE END TIM6_DAC1_IRQn 1 */
 }
@@ -303,7 +325,11 @@ void TIM7_DAC2_IRQHandler(void)
   /* USER CODE END TIM7_DAC2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim7);
   /* USER CODE BEGIN TIM7_DAC2_IRQn 1 */
-  flag_status = 1;
+
+  // SW external interrupt
+  HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
   /* USER CODE END TIM7_DAC2_IRQn 1 */
 }
 

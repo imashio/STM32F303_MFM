@@ -70,6 +70,9 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 
+// Debug
+#define DEBUG_USBserial       1
+
 // mode definition
 #define N_mode                5
 
@@ -81,12 +84,12 @@
 #define MODE_SETTING          5
 
 // RPM bar graph parameter definition
-#define	rpmbar_x		  0
-#define	rpmbar_y		  0
-#define	rpmbar_width	128
-#define	rpmbar_height	14
-#define	rpm_min			  0
-#define	rpm_max			  9000
+#define	rpmbar_x		          0
+#define	rpmbar_y		          0
+#define	rpmbar_width	        128
+#define	rpmbar_height	        14
+#define	rpm_min			          0
+#define	rpm_max			          9000
 
 // measurements display parameter definition
 // Bar graph
@@ -128,11 +131,15 @@
 #define	wave_value_min	  -100
 #define	wave_value_max	  +200
 
-// logo parameter definition (small 'enfini' logo)
-#define logo_width        48
-#define logo_height       48
 
-const unsigned char logo_bits[] = {
+// measurements display parameter definition
+#define	meas_width_NSX    128
+#define	meas_height_NSX   24
+
+// einfini logo definition (small 'enfini' logo)
+#define enfini_logo_width        48
+#define enfini_logo_height       48
+const unsigned char enfini_logo[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0xF0, 0x0F, 0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF, 0x3F, 0x00,
@@ -160,11 +167,10 @@ const unsigned char logo_bits[] = {
   };
 
 /*
-// logo parameter definition (meidium 'enfini' logo)
+// enfini logo definition (meidium 'enfini' logo)
 #define logo_width        54
 #define logo_height       48
-
-static unsigned char logo_bits[] = {
+static unsigned char enfini_logo[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF8, 0xFF, 0x0F,
   0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF, 0xFF, 0x1F, 0x00, 0xE0, 0xFF, 0xFF,
   0xFF, 0xFF, 0xFF, 0x01, 0xF8, 0x3F, 0x00, 0x00, 0xF0, 0xFF, 0x07, 0xF8,
@@ -201,7 +207,7 @@ u8g2_t    u8g2; // a structure which will contain all the data for one display
 uint8_t   update_display = 0;
 
 // uint16_t	rpm = 0;
-uint16_t	speed = 240;
+// uint16_t	speed = 240;
 uint8_t		gear = 0;
 double		MT[5] = {3.483, 2.015, 1.391, 1.000, 0.806};
 
@@ -338,7 +344,7 @@ void draw_indicators(){
   // draw indicators
 
   for( n=0; n<N_idct; n++ ){
-	  draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n], idct_name[n]);
+    draw_IndicatorBox(&u8g2, idct_x+(idct_width+2)*n, idct_y, idct_width, idct_height, idct_status[n], idct_name[n]);
   }
 }
 
@@ -347,7 +353,7 @@ void draw_MeasLabels(){
   uint8_t x, y;
   // draw measurements label & unit
   for( n=0; n<3; n++ ){
-	  x = meas_x;
+    x = meas_x;
 	  y = (n % 3) * meas_height	+ meas_y;
 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width1, meas_height, meas_name[n], meas_unit[n]);
   }
@@ -411,12 +417,12 @@ int main(void)
   uint8_t b = 0; // for dummy data
 
   // ROTARY
-  uint16_t rpm_integral;
-  uint8_t index_animation;
+  uint16_t  rpm_integral;
+  uint8_t   index_animation;
 
   // circular buffer for ADC data
-  uint16_t circular_buffer_index = 0;
-  int16_t circular_buffer[128]={};
+  uint16_t  circular_buffer_index = 0;
+  int16_t   circular_buffer[128]={};
 
   /* USER CODE END Init */
 
@@ -441,13 +447,14 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_TIM7_Init();
+  MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
 
   ///// PWM initialize ----------------------------------------------------------------
 
   ///// Timer /////
   // TIM1 - PWM for Fuel Pump Driver (Cycle 100kHz = 1MHz / 100count)
-//  if (HAL_TIM_Base_Start_IT(&htim1) != HAL_OK){
+  //  if (HAL_TIM_Base_Start_IT(&htim1) != HAL_OK){
   if (HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1) != HAL_OK){
     Error_Handler();
   }
@@ -462,13 +469,18 @@ int main(void)
     Error_Handler();
   }
 
-  // TIM6 - SW interrupt control (Cycle 100ms = 1/100kHz x 10,000count)
+  // TIM6 - Pulse counter for Speed (f 200kHz, count 65535)
   if (HAL_TIM_Base_Start_IT(&htim6) != HAL_OK){
     Error_Handler();
   }
 
-  // TIM7 - SW interrupt control (Cycle 1000ms = 1/32.757kHz x 32,768count)
+  // TIM7 - SW interrupt control (Cycle 100ms = 1/100kHz x 10,000count)
   if (HAL_TIM_Base_Start_IT(&htim7) != HAL_OK){
+    Error_Handler();
+  }
+
+  // TIM16 - Status control (Cycle 1000ms = 1/32.757kHz x 32,768count)
+  if (HAL_TIM_Base_Start_IT(&htim16) != HAL_OK){
     Error_Handler();
   }
 
@@ -483,9 +495,11 @@ int main(void)
   // CAN initialization
   CAN_OBD_Init();
 
-
   // OLED diaplay initialization
-  u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_hw_spi, u8x8_gpio_and_delay_STM32F303);  // init u8g2 structure
+  // 128x64 2.42inch SPI
+   u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_hw_spi, u8x8_gpio_and_delay_STM32F303);  // init u8g2 structure
+  // 128x64 1.3inch SPI
+  //u8g2_Setup_sh1106_128x64_noname_f(&u8g2, U8G2_R0, u8x8_byte_4wire_hw_spi, u8x8_gpio_and_delay_STM32F303);  // init u8g2 structure
 
   // OLED display Reset (must be more than 3us!!)
   HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 0); // Set RES=L (OLED Reset)
@@ -497,11 +511,11 @@ int main(void)
   u8g2_ClearDisplay(&u8g2);
 
   // draw opening
-  u8g2_DrawXBMP(&u8g2, 40, 0, logo_width, logo_height, logo_bits );
+  u8g2_DrawXBMP(&u8g2, 40, 0, enfini_logo_width, enfini_logo_height, enfini_logo );
 
   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
-  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.2b");
+  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.2c");
   u8g2_SendBuffer(&u8g2);
 
   HAL_Delay(1000);
@@ -522,7 +536,6 @@ int main(void)
   draw_indicators();
   u8g2_SendBuffer(&u8g2);
 
-
   // I2C communication to ADXL345(3-axis G-sensor)
   Gsens_EN = Gsens_ADXL345_Init(0);
 
@@ -540,24 +553,33 @@ int main(void)
     if( CAN_EN == 0 ){
       CAN_EN = CAN_Received;
     }
+
     idct_status[0] = CAN_EN;
     idct_status[1] = Gsens_EN;
+
 
     ///// ADC ----------------------------------------------------------------
 
 		// read O2 sensor ADC output
-		O2_volt = (int16_t)(330 * (float)adc[0]/255);
+		O2_volt = (int16_t)(100.0 * 3.3 * (float)adc[0]/255.0);
+    // Resister attenation ratio
+    //    O2 amp : 1
+    //    MFM Board : 1
+    // Fractional digit : 0.01 = 100.0
 
 		// read Fuel Pump Voltage ADC output
-		FP_volt = (int16_t)((165/33)*33*(float)adc[1]/255);
-    // Ressister attenation ratio '165/33'
-    
-    ///// Fuel Pump ----------------------------------------------------------------
+		FP_volt = (int16_t)(5.0 * 10.0 * 3.3 * (float)adc[1]/255.0);
+    // Resister attenation ratio
+    //    Fuel Pump driver : 1/5
+    //    MFM Board : 1
+    // Fractional digit : 0.1 = 10.0
+
+    ///// Fuel Pump Driver ----------------------------------------------------------------
     // Duty calculation
-    if( (rpm >= 3000)|(DEFI_value[0] >= 0) ){ // DEFI_value[0] .. MAP
+    if( (rpm >= 3000)|(DEFI_value[0] > 0) ){ // DEFI_value[0] .. MAP
       FP_duty = 100;
     }else{
-      FP_duty = (uint16_t)(rpm/3000*100);
+      FP_duty = (uint16_t)((float)rpm/3000.0*100.0);
     }
     // Saturation process
     if( FP_duty > 100 ){
@@ -566,10 +588,11 @@ int main(void)
       FP_duty = 60;
     }
 
+
     ///// CAN ----------------------------------------------------------------
 
-    //CAN_OBD_Response(MAP, rpm, SPEED, THROTTLE);
-    CAN_OBD_Response(DEFI_value[0], rpm, 0x00, 0x00);
+    //CAN_OBD_Response(MAP, rpm, SPEED, THROTTLE, FUELPRESS);
+    CAN_OBD_Response(DEFI_value[0], rpm, 0x00, 0x00, 0x00);
 
     ///// Measure data  ----------------------------------------------------------------
     defi_decoder(UART1_RxData); // DEFI decoder
@@ -585,7 +608,7 @@ int main(void)
         Gsens_Y = Gsens_ADXL345_Read_G('y', 0);
         Gsens_Z = Gsens_ADXL345_Read_G('z', 0);
 
-        HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", Gsens_X, Gsens_Y, Gsens_Z); // debug
+//        HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", Gsens_X, Gsens_Y, Gsens_Z); // debug
         
       }
 
@@ -632,11 +655,12 @@ int main(void)
     ///// Switch ----------------------------------------------------------------
     if( flag_sw != 0 ){
       switch( flag_sw ){
-        case 1:
+        case 1: // SW "UP"
+          #if DEBUG_USBserial
           HAL_UART_Transmit_printf(&huart2, "UP "); // debug
           HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
-          // SW "UP"
-          if( setting == 0 ){
+          #endif
+          if( mode < MODE_SETTING ){
             if( mode == N_mode-1 ){
               mode = 0;
             }else{
@@ -644,11 +668,12 @@ int main(void)
             }
           }
           break;
-        case 2:
+        case 2: // SW "DOWN"
+          #if DEBUG_USBserial
           HAL_UART_Transmit_printf(&huart2, "DOWN "); // debug
+          #endif
           HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
-          // SW "DOWN"
-          if( setting == 0 ){
+          if( mode < MODE_SETTING ){
             if( mode == 0 ){
               mode = N_mode-1;
             }else{
@@ -656,10 +681,11 @@ int main(void)
             }
           }
           break;
-        case 3:
+        case 3: // SW "ENTER"
+          #if DEBUG_USBserial
           HAL_UART_Transmit_printf(&huart2, "ENTER "); // debug
+          #endif
           HAL_NVIC_DisableIRQ (EXTI1_IRQn);
-          // SW "ENTER"
 
           // if( setting == 0 ){
           //   mode = cursor;
@@ -705,7 +731,9 @@ int main(void)
 
       }
       u8g2_SendBuffer(&u8g2);
+
       TIM6->CNT = 0;
+      
       flag_sw = 0;
     }
 
@@ -824,6 +852,7 @@ int main(void)
         }
         u8g2_DrawStr(&u8g2,10, 45, "Scope" );
         u8g2_SendBuffer(&u8g2);
+
       }
       // send buffer
       u8g2_SendBuffer(&u8g2);

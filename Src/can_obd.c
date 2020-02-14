@@ -69,7 +69,7 @@ void CAN_OBD_Init(){
 
 }
 
-void CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE){
+void CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE, uint16_t FUELPRESS){
 
     uint8_t	RPM_A;
     uint8_t RPM_B;
@@ -80,26 +80,81 @@ void CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE
     if( CAN_Received ){
 
         // Data detection process
-        // Mode 01h PID 00h / PIDs supported
+        // Mode 01h PID 00h / PIDs supported (01h-1Fh)
         if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x00 ){
-            CAN_TxData[0] = 0x06; // Data Length
+            CAN_TxData[0] = 0x06; // Data Length [byte]
             CAN_TxData[1] = 0x41; // Mode
             CAN_TxData[2] = 0x00; // PID
 
             CAN_TxData[3] = 0x00;
             CAN_TxData[4] = 0x38; // MAP & Engine RPM & Speed
-    //        CAN_TxData[4] = 0x18; // Engine RPM & Speed
             CAN_TxData[5] = 0x80; // Throttle position
-            CAN_TxData[6] = 0x00;
+            CAN_TxData[6] = 0x01; // PID 20h
+            CAN_TxData[7] = 0x00;
+
+        }
+        // Data detection process
+        // Mode 01h PID 00h / PIDs supported (01h-1Fh)
+        if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x00 ){
+            CAN_TxData[0] = 0x06; // Data Length [byte]
+            CAN_TxData[1] = 0x41; // Mode
+            CAN_TxData[2] = 0x00; // PID
+
+            CAN_TxData[3] = 0x00;
+            CAN_TxData[4] = 0x38; // MAP & Engine RPM & Speed
+            CAN_TxData[5] = 0x80; // Throttle position
+            CAN_TxData[6] = 0x01; // PID 20h
             CAN_TxData[7] = 0x00;
 
         }
 
-        // Mode 09h PID 00h / PIDs supported
-        if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x09 && CAN_RxData[2] == 0x00 ){
-            CAN_TxData[0] = 0x06; // Data Length
-            CAN_TxData[1] = 0x49; // Mode
-            CAN_TxData[2] = 0x00; // PID
+        // Mode 01h PID 20h / PIDs supported (21h-3Fh)
+        if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x20 ){
+            CAN_TxData[0] = 0x06; // Data Length [byte]
+            CAN_TxData[1] = 0x41; // Mode
+            CAN_TxData[2] = 0x20; // PID
+
+            CAN_TxData[3] = 0x00;
+            CAN_TxData[4] = 0x00;
+            CAN_TxData[5] = 0x00;
+            CAN_TxData[6] = 0x01; // PID 40h
+            CAN_TxData[7] = 0x00;
+
+        }
+
+        // Mode 01h PID 40h / PIDs supported (41h-5Fh)
+        if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x40 ){
+            CAN_TxData[0] = 0x06; // Data Length [byte]
+            CAN_TxData[1] = 0x41; // Mode
+            CAN_TxData[2] = 0x40; // PID
+
+            CAN_TxData[3] = 0x00;
+            CAN_TxData[4] = 0x00;
+            CAN_TxData[5] = 0x00;
+            CAN_TxData[6] = 0x81; // Fuel rail absolute pressure, PID 60h
+            CAN_TxData[7] = 0x00;
+
+        }
+
+        // Mode 01h PID 60h / PIDs supported (61h-7Fh)
+        if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x60 ){
+            CAN_TxData[0] = 0x06; // Data Length [byte]
+            CAN_TxData[1] = 0x41; // Mode
+            CAN_TxData[2] = 0x60; // PID
+
+            CAN_TxData[3] = 0x00;
+            CAN_TxData[4] = 0x00;
+            CAN_TxData[5] = 0x00;
+            CAN_TxData[6] = 0x01; // PID 80h
+            CAN_TxData[7] = 0x00;
+
+        }
+
+        // Mode 01h PID 80h / PIDs supported (81h-9Fh)
+        if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x80 ){
+            CAN_TxData[0] = 0x06; // Data Length [byte]
+            CAN_TxData[1] = 0x41; // Mode
+            CAN_TxData[2] = 0x80; // PID
 
             CAN_TxData[3] = 0x00;
             CAN_TxData[4] = 0x00;
@@ -109,9 +164,28 @@ void CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE
 
         }
 
-        // Mode 01h PID 0Bh / Intake manifold absolute pressure
+        // Mode 09h PID 00h / Service 9 supported PIDs 
+        if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x09 && CAN_RxData[2] == 0x00 ){
+/*
+            CAN_TxData[0] = 0x06; // Data Length [byte]
+            CAN_TxData[1] = 0x49; // Mode
+            CAN_TxData[2] = 0x00; // PID
+*/
+            CAN_TxData[0] = 0x04; // Data Length [byte]
+            CAN_TxData[1] = 0x00;
+            CAN_TxData[2] = 0x00;
+
+            CAN_TxData[3] = 0x00;
+            CAN_TxData[4] = 0x00;
+            CAN_TxData[5] = 0x00;
+            CAN_TxData[6] = 0x00;
+            CAN_TxData[7] = 0x00;
+
+        }
+
+        // Mode 01h PID 0Bh / MAP Intake manifold absolute pressure
         if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x0B ){
-            CAN_TxData[0] = 0x03; // Data Length
+            CAN_TxData[0] = 0x03; // Data Length [byte]
             CAN_TxData[1] = 0x41; // Mode
             CAN_TxData[2] = 0x0B; // PID
 
@@ -125,7 +199,7 @@ void CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE
 
         // Mode 01h PID 0Ch / Engine RPM
         if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x0C ){
-            CAN_TxData[0] = 0x04; // Data Length
+            CAN_TxData[0] = 0x04; // Data Length [byte]
             CAN_TxData[1] = 0x41; // Mode
             CAN_TxData[2] = 0x0C; // PID
 
@@ -139,11 +213,12 @@ void CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE
 
         // Mode 01h PID 0Dh / Speed
         if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x0D ){
-            CAN_TxData[0] = 0x03; // Data Length
+            CAN_TxData[0] = 0x03; // Data Length [byte]
             CAN_TxData[1] = 0x41; // Mode
             CAN_TxData[2] = 0x0D; // PID
 
-            CAN_TxData[3] = SPEED;
+//            CAN_TxData[3] = SPEED;
+            CAN_TxData[3] = 0x00;
             CAN_TxData[4] = 0x00;
             CAN_TxData[5] = 0x00;
             CAN_TxData[6] = 0x00;
@@ -153,12 +228,26 @@ void CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE
 
         // Mode 01h PID 11h / Throttle Position
         if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x11 ){
-            CAN_TxData[0] = 0x03; // Data Length
+            CAN_TxData[0] = 0x03; // Data Length [byte]
             CAN_TxData[1] = 0x41; // Mode
             CAN_TxData[2] = 0x11; // PID
 
             CAN_TxData[3] = THROTTLE;
             CAN_TxData[4] = 0x00;
+            CAN_TxData[5] = 0x00;
+            CAN_TxData[6] = 0x00;
+            CAN_TxData[7] = 0x00;
+
+        }
+
+        // Mode 01h PID 59h / 
+        if( CAN_RxData[0] == 0x02 && CAN_RxData[1] == 0x01 && CAN_RxData[2] == 0x59 ){
+            CAN_TxData[0] = 0x03; // Data Length [byte]
+            CAN_TxData[1] = 0x41; // Mode
+            CAN_TxData[2] = 0x59; // PID
+
+            CAN_TxData[3] = FUELPRESS >> 8;
+            CAN_TxData[4] = FUELPRESS & 0x00FF;
             CAN_TxData[5] = 0x00;
             CAN_TxData[6] = 0x00;
             CAN_TxData[7] = 0x00;
