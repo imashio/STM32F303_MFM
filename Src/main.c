@@ -73,6 +73,9 @@
 // Debug
 #define DEBUG_USBserial       1
 
+// Dummy data generation for debug
+#define DUMMY_DATA            1
+
 // mode definition
 #define N_mode                5
 
@@ -515,7 +518,13 @@ int main(void)
 
   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
-  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.2c");
+  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.3a");
+  u8g2_SendBuffer(&u8g2);
+  if( DUMMY_DATA ){
+    u8g2_DrawStr(&u8g2, 0, 8, "DUMMY DATA MODE");
+    u8g2_SendBuffer(&u8g2);
+    HAL_Delay(500);
+  }
   u8g2_SendBuffer(&u8g2);
 
   HAL_Delay(1000);
@@ -568,11 +577,18 @@ int main(void)
     // Fractional digit : 0.01 = 100.0
 
 		// read Fuel Pump Voltage ADC output
-		FP_volt = (int16_t)(5.0 * 10.0 * 3.3 * (float)adc[1]/255.0);
+		FP_volt = (int16_t)(5.0 * 2.0 * 10.0 * 3.3 * (float)adc[1]/255.0);
     // Resister attenation ratio
     //    Fuel Pump driver : 1/5
-    //    MFM Board : 1
+    //    MFM Board : 1/2
     // Fractional digit : 0.1 = 10.0
+
+    ///// CAN ----------------------------------------------------------------
+
+    //CAN_OBD_Response(MAP, rpm, SPEED, THROTTLE, FUELPRESS);
+    //CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE, uint8_t COOLANT_TEMP, uint8_t OIL_TEMP, uint16_t FUELPRESS);
+    CAN_OBD_Response(DEFI_value[0], rpm, 250, 0x00, 80, 70, 270);
+
 
     ///// Fuel Pump Driver ----------------------------------------------------------------
     // Duty calculation
@@ -589,17 +605,10 @@ int main(void)
     }
 
 
-    ///// CAN ----------------------------------------------------------------
-
-    //CAN_OBD_Response(MAP, rpm, SPEED, THROTTLE, FUELPRESS);
-    CAN_OBD_Response(DEFI_value[0], rpm, 0x00, 0x00, 0x00);
-
     ///// Measure data  ----------------------------------------------------------------
     defi_decoder(UART1_RxData); // DEFI decoder
 
     if( flag_meas == 1 ){
-
-//      CAN_EN = 0;
 
       // I2C communication to ADXL345(3-axis G-sensor)
       if( Gsens_EN == 1 ){
@@ -612,30 +621,6 @@ int main(void)
         
       }
 
-/*
-  	  // start of create dummy data for debug
-      if( rpm <= 8200 ){
-          rpm = rpm + (int)(20*MT[gear]);
-          //rpm=rpm+10;
-      }else{
-        if( gear < 4 ){
-          gear++;
-          rpm = (double)speed / (0.002*60.0) * (MT[gear]*4.1);
-        }else{
-          gear = 0;
-          rpm = 1000;
-        }
-      }
-      speed = (double)rpm*0.002*60.0/MT[gear]/4.1;
-
-      if( a >= 150){
-        a = 0;
-      }else{
-        a++;
-      }
-  	  // end of create dummy data for debug
-*/
-
       meas_value[0] = DEFI_value[0];  // MAP
 		  meas_value[1] = DEFI_value[2];  // OILP
 			meas_value[2] = FP_volt;        // FuelPump Voltage
@@ -644,7 +629,42 @@ int main(void)
 		  meas_value[5] = O2_volt;        // O2
 
       flag_meas = 0; // enable again by TIM2 interrupt
+
+      if( DUMMY_DATA ){
+        // MAP
+        if( DEFI_value[0] > 90 ){
+          DEFI_value[0] = -60;
+        }else{
+          DEFI_value[0] = DEFI_value[0] + 1;
+        }
+        // OILP
+        if( DEFI_value[2] > 60 ){
+          DEFI_value[2] = 15;
+        }else{
+          DEFI_value[2] = DEFI_value[2] + 1;
+        }
+        // ECT
+        if( DEFI_value[6] > 120 ){
+          DEFI_value[6] = 60;
+        }else{
+          DEFI_value[6] = DEFI_value[6] + 1;
+        }
+        // OILT
+        if( DEFI_value[5] > 120 ){
+          DEFI_value[5] = 50;
+        }else{
+          DEFI_value[5] = DEFI_value[5] + 1;
+        }
+        // Tacho 
+        if( rpm > 8500 ){
+          rpm = 750;
+        }else{
+          rpm = 0;
+        }
+      }
+
     }
+
 
 
     ///// FP driver ----------------------------------------------------------------
@@ -770,10 +790,10 @@ int main(void)
         
         draw_Value(&u8g2, 36, 33, 30, 16, meas_value[0], 3, 2, 1, "");
         draw_MeasUnit(&u8g2, 38, 40, 28, 16, "kPa");
-/*        
-        draw_Value(&u8g2, 34, 28, 30, 16, meas_value[0], 3, 2, 1, "");
-        draw_MeasUnit(&u8g2, 36, 36, 28, 16, "kPa");
-*/
+        
+//        draw_Value(&u8g2, 34, 28, 30, 16, meas_value[0], 3, 2, 1, "");
+//        draw_MeasUnit(&u8g2, 36, 36, 28, 16, "kPa");
+
 
         // draw measurement data
         for( n=0; n<N_meas_C; n++ ){
@@ -859,6 +879,8 @@ int main(void)
 
       flag_disp = 0; // enable again by TIM2 interrupt
     }
+  
+
 
   }
   /* USER CODE END 3 */
