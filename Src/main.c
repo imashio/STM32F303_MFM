@@ -74,7 +74,7 @@
 #define DEBUG_USBserial       1
 
 // Dummy data generation for debug
-#define DUMMY_DATA            1
+#define DUMMY_DATA            0
 
 // mode definition
 #define N_mode                5
@@ -585,9 +585,8 @@ int main(void)
 
     ///// CAN ----------------------------------------------------------------
 
-    //CAN_OBD_Response(MAP, rpm, SPEED, THROTTLE, FUELPRESS);
-    //CAN_OBD_Response(uint8_t MAP, uint16_t rpm, uint8_t SPEED, uint8_t THROTTLE, uint8_t COOLANT_TEMP, uint8_t OIL_TEMP, uint16_t FUELPRESS);
-    CAN_OBD_Response(DEFI_value[0], rpm, 250, 0x00, 80, 70, 270);
+    CAN_OBD_Response(DEFI_value[0], rpm, speed, 0x00, DEFI_value[6], DEFI_value[5], DEFI_value[3], 0);
+    //               MAP          , RPM, Speed, TPS , CoolantTemp  , OilTemp      , FuelPress    , IntakeAirTemp
 
 
     ///// Fuel Pump Driver ----------------------------------------------------------------
