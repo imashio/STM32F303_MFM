@@ -71,20 +71,21 @@
 /* Private variables ---------------------------------------------------------*/
 
 // Debug
-#define DEBUG_USBserial       1
+#define DEBUG_USBserial       0
 
-// Dummy data generation for debug
-#define DUMMY_DATA            0
+// GSENS USB serial output
+#define GSENS_USBserial       1
 
 // mode definition
-#define N_mode                5
+#define N_mode                6
 
 #define MODE_BAR_METER        0
 #define MODE_CIRCULAR_METER   1
 #define MODE_ROTARY           2
 #define MODE_SCOPE_MAP        3
-#define MODE_SCOPE_Gsens      4
-#define MODE_SETTING          5
+#define MODE_Gsens            4
+#define MODE_SCOPE_Gsens      5
+#define MODE_SETTING          6
 
 // RPM bar graph parameter definition
 #define	rpmbar_x		          0
@@ -94,50 +95,60 @@
 #define	rpm_min			          0
 #define	rpm_max			          9000
 
-// measurements display parameter definition
+//// measurements display parameter definition
 // Bar graph
-#define	N_meas			      6
-#define	meas_x			      0
-#define	meas_y			      16
-#define	meas_x_offset   	2
-#define	meas_width1		    70
-#define	meas_width2		    56
-#define	meas_height		    12
+#define	N_meas			          6
+#define	meas_x			          0
+#define	meas_y			          16
+#define	meas_x_offset       	2
+#define	meas_width1		        70
+#define	meas_width2		        56
+#define	meas_height		        12
 // Circular Meter
-#define	N_meas_C			    4
-#define	meas_C_x			    68
-#define	meas_C_y			    2
-#define	meas_C_x_offset		2
-#define	meas_C_width		  60
-#define	meas_C_height		  13
+#define	N_meas_Circ			      4
+#define	meas_Circ_x			      68
+#define	meas_Circ_y			      2
+#define	meas_Circ_x_offset		2
+#define	meas_Circ_width		    60
+#define	meas_Circ_height		  13
+
+// Gsens monitor
+#define	N_Gmoni			          6
+#define	Gmoni_x			          0
+#define	Gmoni_y			          0
+#define	Gmoni_x_offset       	2
+#define	Gmoni_width 		      64
+#define	Gmoni_height		      12
+// wave display parameter definition
+#define	Gcirc_x			          13 // 32 - 38/2
+#define	Gcirc_y			          24
+#define	Gcirc_size		        38
+#define	Gcirc_scale		        200
+
 
 // indicators parameter definition
-#define	N_idct			      2
-#define	idct_x			      72
-#define	idct_y			      53
- #define	idct_width		    27 // 2-items
+#define	N_idct			          2
+#define	idct_x			          72
+#define	idct_y			          53
+ #define	idct_width		      27 // 2-items
 // #define	idct_width		    17 // 3-item
-#define	idct_height		    9
+#define	idct_height		        9
 
 //  Fuel Pump Voltage display parameter definition
-#define	FP_x		    	    0
-#define	FP_y              52
-#define	FP_height	        12
-#define	FP_volt_width	    45
-#define	FP_duty_width	    70
+#define	FP_x		    	        0
+#define	FP_y                  52
+#define	FP_height	            12
+#define	FP_volt_width	        45
+#define	FP_duty_width	        70
 
 // wave display parameter definition
-#define	wave_x			      0
-#define	wave_y			      13
-#define	wave_width		    128
-#define	wave_height		    52
-#define	wave_value_min	  -100
-#define	wave_value_max	  +200
+#define	wave_x			          0
+#define	wave_y			          14
+#define	wave_width		        128
+#define	wave_height		        50
+#define	wave_value_min	      -100
+#define	wave_value_max	      +200
 
-
-// measurements display parameter definition
-#define	meas_width_NSX    128
-#define	meas_height_NSX   24
 
 // einfini logo definition (small 'enfini' logo)
 #define enfini_logo_width        48
@@ -209,8 +220,6 @@ u8g2_t    u8g2; // a structure which will contain all the data for one display
 
 uint8_t   update_display = 0;
 
-// uint16_t	rpm = 0;
-// uint16_t	speed = 240;
 uint8_t		gear = 0;
 double		MT[5] = {3.483, 2.015, 1.391, 1.000, 0.806};
 
@@ -219,6 +228,8 @@ uint8_t   mode;
 uint8_t   setting;
 uint8_t   cursor = 0;
 
+// Dummy data generation for debug
+uint8_t   DUMMY_DATA;
 
 // variables for indicators
 const unsigned char idct_name[N_idct][5] = { // length must be (text length + 1)
@@ -286,6 +297,26 @@ int16_t	meas_value[N_meas] = {
 		143		// O2
 };
 
+
+const unsigned char Gmoni_name[N_Gmoni][7] = { // length must be (text length + 1)
+		"X0"         ,
+		"Y0"        ,
+		"Z0"         ,
+		"X1"         ,
+		"Y1"        ,
+		"Z1"          
+};
+
+int16_t	Gmoni_value[N_Gmoni] = {
+		0	  ,	// 
+		0	  ,	// 
+		100	,	// 
+		0	  ,	// 
+		0	  ,	// 
+		100		// 
+};
+
+
 // O2 senser Voltage
 int16_t   O2_volt = 330;
 
@@ -297,37 +328,15 @@ int16_t   FP_duty = 100;
 uint8_t   CAN_EN;
 
 // ADXL345 3-axis acceration sensor --------------------------------
-uint8_t   Gsens_EN;
-// uint8_t   Gsens_X1;
-// uint8_t   Gsens_X0;
-int16_t   Gsens_X;
-// uint8_t   Gsens_Y1;
-// uint8_t   Gsens_Y0;
-int16_t   Gsens_Y;
-// uint8_t   Gsens_Z1;
-// uint8_t   Gsens_Z0;
-int16_t   Gsens_Z;
-
-#define ADXL0_ADDR 0x1D
-// ADXL345     I2C
-// SDO/ALT   Address
-//    H        0x1D
-//    L        0x53
-
+uint8_t   Gsens0_EN;
+uint8_t   Gsens1_EN;
 /*
-void ADXL345_RegWrite(uint8_t slv_addr, uint8_t addr, uint8_t data){
-  uint8_t i2c_buf[2];
-  i2c_buf[0] = addr;
-  i2c_buf[1] = data;  
-  HAL_I2C_Master_Transmit(&hi2c1, slv_addr << 1, &i2c_buf, 2, 10);
-}
-
-int8_t ADXL345_RegRead_1byte(uint8_t slv_addr, uint8_t addr){
-  uint8_t data;
-  HAL_I2C_Master_Transmit(&hi2c1, slv_addr << 1, &addr, 1, 10);
-  HAL_I2C_Master_Receive(&hi2c1, slv_addr << 1, &data, 1, 10);
-  return data;
-}
+int16_t   Gsens0_X;
+int16_t   Gsens1_X;
+int16_t   Gsens0_Y;
+int16_t   Gsens1_Y;
+int16_t   Gsens0_Z;
+int16_t   Gsens1_Z;
 */
 
 /* USER CODE END PV */
@@ -380,6 +389,23 @@ void draw_MeasLabels_Rotary(){
 	  y = (n % 4) * meas_height	+ meas_y;
 	  draw_MeasLabelUnit(&u8g2, x, y, meas_width1, meas_height, meas_name[n], meas_unit[n]);
   }
+}
+
+void draw_GmoniLabels(){
+  uint8_t n;
+  uint8_t x, y;
+  // draw measurements label & unit
+  for( n=0; n<3-1; n++ ){
+    x = Gmoni_x;
+	  y = (n % 3) * Gmoni_height	+ Gmoni_y;
+	  draw_MeasLabelUnit(&u8g2, x, y, Gmoni_width, Gmoni_height, Gmoni_name[n], "G");
+  }
+  for( n=3; n<N_Gmoni-1; n++ ){
+	  x = Gmoni_width + Gmoni_x + Gmoni_x_offset;
+	  y = (n % 2) * Gmoni_height	+ Gmoni_y;
+	  draw_MeasLabelUnit(&u8g2, x, y, Gmoni_width, Gmoni_height, Gmoni_name[n], "G");
+  }
+
 }
 
 
@@ -498,6 +524,10 @@ int main(void)
   // CAN initialization
   CAN_OBD_Init();
 
+  if( HAL_GPIO_ReadPin( GPIOF, GPIO_PIN_1 ) == 0 ){ // PF1 is pushed ?
+    DUMMY_DATA = 1;
+  }
+
   // OLED diaplay initialization
   // 128x64 2.42inch SPI
    u8g2_Setup_ssd1309_128x64_noname2_f(&u8g2, U8G2_R0, u8x8_byte_4wire_hw_spi, u8x8_gpio_and_delay_STM32F303);  // init u8g2 structure
@@ -518,7 +548,7 @@ int main(void)
 
   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
-  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.3a");
+  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.4a");
   u8g2_SendBuffer(&u8g2);
   if( DUMMY_DATA ){
     u8g2_DrawStr(&u8g2, 0, 8, "DUMMY DATA MODE");
@@ -546,7 +576,8 @@ int main(void)
   u8g2_SendBuffer(&u8g2);
 
   // I2C communication to ADXL345(3-axis G-sensor)
-  Gsens_EN = Gsens_ADXL345_Init(0);
+  Gsens0_EN = Gsens_ADXL345_Init(0);
+  Gsens1_EN = Gsens_ADXL345_Init(1);
 
   while(1){
     /* USER CODE END WHILE */
@@ -564,7 +595,7 @@ int main(void)
     }
 
     idct_status[0] = CAN_EN;
-    idct_status[1] = Gsens_EN;
+    idct_status[1] = Gsens0_EN & Gsens1_EN;
 
 
     ///// ADC ----------------------------------------------------------------
@@ -610,14 +641,26 @@ int main(void)
     if( flag_meas == 1 ){
 
       // I2C communication to ADXL345(3-axis G-sensor)
-      if( Gsens_EN == 1 ){
+      if( Gsens0_EN == 1 ){
         // Acceration 1G = 100
-        Gsens_X = Gsens_ADXL345_Read_G('x', 0);
-        Gsens_Y = Gsens_ADXL345_Read_G('y', 0);
-        Gsens_Z = Gsens_ADXL345_Read_G('z', 0);
+        Gmoni_value[0] = Gsens_ADXL345_Read_G('x', 0);
+        Gmoni_value[1] = Gsens_ADXL345_Read_G('y', 0);
+        Gmoni_value[2] = Gsens_ADXL345_Read_G('z', 0);
 
-//        HAL_UART_Transmit_printf(&huart2, "(%d,%d,%d)\n", Gsens_X, Gsens_Y, Gsens_Z); // debug
-        
+        #ifdef GSENS_USBserial
+          HAL_UART_Transmit_printf(&huart2, "Ch0, %d, %d , %d,   ", Gmoni_value[0], Gmoni_value[1], Gmoni_value[2]);
+        #endif
+      }
+
+      if( Gsens1_EN == 1 ){
+        // Acceration 1G = 100
+        Gmoni_value[3] = Gsens_ADXL345_Read_G('x', 1);
+        Gmoni_value[4] = Gsens_ADXL345_Read_G('y', 1);
+        Gmoni_value[5] = Gsens_ADXL345_Read_G('z', 1);
+
+        #ifdef GSENS_USBserial
+          HAL_UART_Transmit_printf(&huart2, "Ch1, %d, %d, %d\n", Gmoni_value[3], Gmoni_value[4], Gmoni_value[5]);
+        #endif
       }
 
       meas_value[0] = DEFI_value[0];  // MAP
@@ -673,13 +716,16 @@ int main(void)
 
     ///// Switch ----------------------------------------------------------------
     if( flag_sw != 0 ){
+      #if DEBUG_USBserial
+      HAL_UART_Transmit_printf(&huart2, " SW="); // debug
+      #endif
       switch( flag_sw ){
         case 1: // SW "UP"
           #if DEBUG_USBserial
           HAL_UART_Transmit_printf(&huart2, "UP "); // debug
-          HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
           #endif
-          if( mode < MODE_SETTING ){
+          HAL_NVIC_DisableIRQ(EXTI9_5_IRQn); // Re-Enable IRQ by Timer(TIM7) in stm32f3xx_it.c
+          if( mode != MODE_SETTING ){
             if( mode == N_mode-1 ){
               mode = 0;
             }else{
@@ -691,8 +737,8 @@ int main(void)
           #if DEBUG_USBserial
           HAL_UART_Transmit_printf(&huart2, "DOWN "); // debug
           #endif
-          HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
-          if( mode < MODE_SETTING ){
+          HAL_NVIC_DisableIRQ(EXTI9_5_IRQn); // Re-Enable IRQ by Timer(TIM7) in stm32f3xx_it.c
+          if( mode != MODE_SETTING ){
             if( mode == 0 ){
               mode = N_mode-1;
             }else{
@@ -704,7 +750,7 @@ int main(void)
           #if DEBUG_USBserial
           HAL_UART_Transmit_printf(&huart2, "ENTER "); // debug
           #endif
-          HAL_NVIC_DisableIRQ (EXTI1_IRQn);
+          HAL_NVIC_DisableIRQ (EXTI1_IRQn); // Re-Enable IRQ by Timer in stm32f3xx_it.c
 
           // if( setting == 0 ){
           //   mode = cursor;
@@ -717,16 +763,17 @@ int main(void)
         default:
           break;
       }
+
       u8g2_ClearBuffer(&u8g2);
       if( mode == MODE_BAR_METER ){
         draw_MeasLabels();
         draw_indicators();
 
       }else if( mode == MODE_CIRCULAR_METER ){
-        for( n=0; n<N_meas_C; n++ ){
-          x = meas_C_x;
-          y = n * meas_C_height	+ meas_C_y;
-          draw_MeasLabelUnit(&u8g2, x, y, meas_C_width, meas_C_height, meas_name[n], meas_unit[n]);
+        for( n=0; n<N_meas_Circ; n++ ){
+          x = meas_Circ_x;
+          y = n * meas_Circ_height	+ meas_Circ_y;
+          draw_MeasLabelUnit(&u8g2, x, y, meas_Circ_width, meas_Circ_height, meas_name[n], meas_unit[n]);
         }
         // draw indicators
         for( n=0; n<4; n++ ){
@@ -744,14 +791,17 @@ int main(void)
         draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max, 3);
         draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "MAP", "kPa");
 
+      }else if( mode == MODE_Gsens ){
+        draw_GmoniLabels();
+
       }else if( mode == MODE_SCOPE_Gsens ){
         draw_Wave_axis(&u8g2, wave_x, wave_y, wave_width, wave_height, -200, 200, 4);
-        draw_MeasLabelUnit(&u8g2, 0, 0, 64, 13, "LatG", "G");
+        draw_MeasLabelUnit(&u8g2, 0, 0, 128, 13, "2ch Average LatG", "G");
 
       }
       u8g2_SendBuffer(&u8g2);
 
-      TIM6->CNT = 0;
+      TIM7->CNT = 0;
       
       flag_sw = 0;
     }
@@ -795,10 +845,10 @@ int main(void)
 
 
         // draw measurement data
-        for( n=0; n<N_meas_C; n++ ){
-          x = meas_C_x;
-          y = n * meas_C_height	+ meas_C_y;
-          draw_Value(&u8g2, x, y, meas_C_width, meas_C_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
+        for( n=0; n<N_meas_Circ; n++ ){
+          x = meas_Circ_x;
+          y = n * meas_Circ_height	+ meas_Circ_y;
+          draw_Value(&u8g2, x, y, meas_Circ_width, meas_Circ_height, meas_value[n], meas_digit[n], meas_frac[n], meas_sign[n], meas_unit[n]);
         }
 
 
@@ -838,6 +888,33 @@ int main(void)
         draw_Wave(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max, circular_buffer, circular_buffer_index);
         draw_Value(&u8g2, 0, 0, 64, 13, circular_buffer[circular_buffer_index], 3, 2, 1, "kPa");
 
+      ///// G-Sens monitor /////
+      }else if( mode == MODE_Gsens ){
+        
+        // draw Gsens data
+        for( n=0; n<3-1; n++ ){
+          x = Gmoni_x;
+          y = (n % 3) * Gmoni_height	+ Gmoni_y;
+          draw_Value(&u8g2, x, y, Gmoni_width, Gmoni_height, Gmoni_value[n], 3, 2, 1, "G");
+        }
+        for( n=3; n<N_Gmoni-1; n++ ){
+          x = Gmoni_width + Gmoni_x + Gmoni_x_offset;
+          y = (n % 3) * Gmoni_height	+ Gmoni_y;
+          draw_Value(&u8g2, x, y, Gmoni_width, Gmoni_height, Gmoni_value[n], 3, 2, 1, "G");
+        }
+        
+        u8g2_SetDrawColor(&u8g2, 0);
+        u8g2_DrawDisc(&u8g2, Gcirc_x+Gcirc_size/2 + 0, Gcirc_y+Gcirc_size/2, Gcirc_size/2, U8G2_DRAW_ALL);
+        u8g2_SetDrawColor(&u8g2, 1);
+        u8g2_DrawCircle(&u8g2, Gcirc_x+Gcirc_size/2 + 0, Gcirc_y+Gcirc_size/2, Gcirc_size/2, U8G2_DRAW_ALL);
+        u8g2_DrawDisc(&u8g2, Gcirc_x+Gcirc_size/2 + 0 + (Gcirc_size/2*Gmoni_value[1]/(int16_t)Gcirc_scale), Gcirc_y+Gcirc_size/2 + (Gcirc_size/2*Gmoni_value[0]/(int16_t)Gcirc_scale), 1, U8G2_DRAW_ALL);
+        
+        u8g2_SetDrawColor(&u8g2, 0);
+        u8g2_DrawDisc(&u8g2, Gcirc_x+Gcirc_size/2 + 64, Gcirc_y+Gcirc_size/2, Gcirc_size/2, U8G2_DRAW_ALL);
+        u8g2_SetDrawColor(&u8g2, 1);
+        u8g2_DrawCircle(&u8g2, Gcirc_x+Gcirc_size/2 +64, Gcirc_y+Gcirc_size/2, Gcirc_size/2, U8G2_DRAW_ALL);
+        u8g2_DrawDisc(&u8g2, Gcirc_x+Gcirc_size/2 + 64 + (Gcirc_size/2*Gmoni_value[4]/(int16_t)Gcirc_scale), Gcirc_y+Gcirc_size/2 + (Gcirc_size/2*Gmoni_value[3]/(int16_t)Gcirc_scale), 1, U8G2_DRAW_ALL);
+
       ///// G-Scope /////
       }else if( mode == MODE_SCOPE_Gsens ){
 
@@ -846,11 +923,11 @@ int main(void)
         }else{
           circular_buffer_index = 128;
         }
-        circular_buffer[circular_buffer_index] = Gsens_Y;
+        circular_buffer[circular_buffer_index] = ( Gmoni_value[1] + Gmoni_value[4] ) /2;
 
         // draw wave
         draw_Wave(&u8g2, wave_x, wave_y, wave_width, wave_height, -200, +200, circular_buffer, circular_buffer_index);
-        draw_Value(&u8g2, 0, 0, 64, 13, circular_buffer[circular_buffer_index], 3, 2, 1, "G");
+        draw_Value(&u8g2, 0, 0, 128, 13, circular_buffer[circular_buffer_index], 3, 2, 1, "G");
 
       // mode setting
       }else if( mode == MODE_SETTING ){
