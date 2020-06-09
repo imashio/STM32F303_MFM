@@ -330,14 +330,6 @@ uint8_t   CAN_EN;
 // ADXL345 3-axis acceration sensor --------------------------------
 uint8_t   Gsens0_EN;
 uint8_t   Gsens1_EN;
-/*
-int16_t   Gsens0_X;
-int16_t   Gsens1_X;
-int16_t   Gsens0_Y;
-int16_t   Gsens1_Y;
-int16_t   Gsens0_Z;
-int16_t   Gsens1_Z;
-*/
 
 /* USER CODE END PV */
 
@@ -350,6 +342,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 void draw_indicators(){
   uint8_t n;
   uint8_t x, y;
@@ -408,6 +401,21 @@ void draw_GmoniLabels(){
 
 }
 
+
+volatile unsigned char    UART1_Data;
+volatile unsigned char    UART2_Data;
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle){
+  
+  if(UartHandle->Instance==USART1){ // Defi
+    HAL_UART_Receive_IT(&huart1, &UART1_Data, 1);
+    defi_data_update(UART1_Data);
+  }else if(UartHandle->Instance==USART2){ // USB serial
+    HAL_UART_Receive_IT(&huart2, &UART2_Data, 1);
+    HAL_UART_Transmit_printf(&huart2, "Received data : %c\n", UART2_Data);
+  }
+
+}
 
 // ADC buffer definition
 enum{ ADC_BUFFER_LENGTH = 10 };
@@ -521,9 +529,13 @@ int main(void)
   HAL_UART_Receive_IT(&huart1, &UART1_Data, 1);
   // variables is defined in 'defi.h'
 
+  // UART2 interrupt setup for USB serial
+  HAL_UART_Receive_IT(&huart2, &UART2_Data, 1);
+
   // CAN initialization
   CAN_OBD_Init();
 
+  // DEMO MODE
   if( HAL_GPIO_ReadPin( GPIOF, GPIO_PIN_1 ) == 0 ){ // PF1 is pushed ?
     DUMMY_DATA = 1;
   }
@@ -538,6 +550,7 @@ int main(void)
   HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 0); // Set RES=L (OLED Reset)
   HAL_Delay(5);
   HAL_GPIO_WritePin( GPIOB, GPIO_PIN_3, 1); // Set RES=H (OLED activate)
+
   u8g2_InitDisplay(&u8g2); // send init sequence to the display, display is in sleep mode after this,
   u8g2_SetPowerSave(&u8g2, 0); // wake up display
   u8g2_SetContrast(&u8g2, 255); // set contrast
@@ -633,15 +646,17 @@ int main(void)
     }else if( FP_duty < 60 ){
       FP_duty = 60;
     }
+    // Set PWM Duty for Timer1 / Output1 (Asymmetric PWM2)
+    TIM1->CCR1 = (100 - FP_duty);
 
 
     ///// Measure data  ----------------------------------------------------------------
-    defi_decoder(UART1_RxData); // DEFI decoder
+    defi_decoder(); // DEFI decoder
 
-    if( flag_meas == 1 ){
+    if( flag_meas ){
 
       // I2C communication to ADXL345(3-axis G-sensor)
-      if( Gsens0_EN == 1 ){
+      if( Gsens0_EN ){
         // Acceration 1G = 100
         Gmoni_value[0] = Gsens_ADXL345_Read_G('x', 0);
         Gmoni_value[1] = Gsens_ADXL345_Read_G('y', 0);
@@ -652,7 +667,7 @@ int main(void)
         #endif
       }
 
-      if( Gsens1_EN == 1 ){
+      if( Gsens1_EN ){
         // Acceration 1G = 100
         Gmoni_value[3] = Gsens_ADXL345_Read_G('x', 1);
         Gmoni_value[4] = Gsens_ADXL345_Read_G('y', 1);
@@ -706,13 +721,6 @@ int main(void)
       }
 
     }
-
-
-
-    ///// FP driver ----------------------------------------------------------------
-    // Set PWM Duty for Timer1 / Output1 (Asymmetric PWM2)
-    TIM1->CCR1 = (100 - FP_duty);
-
 
     ///// Switch ----------------------------------------------------------------
     if( flag_sw != 0 ){

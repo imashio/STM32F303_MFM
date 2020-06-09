@@ -70,12 +70,13 @@ volatile int16_t DEFI_value[] = {
   0	// Water Temp.
 };
 
-//unsigned char   UART1_RxData[N_DEFI_BYTE*2];
+volatile unsigned char    UART_data_index;
+volatile unsigned char    UART_RxData[N_DEFI_BYTE*N_DEFI_PACKET];
+
+/*
 volatile unsigned char    UART1_Data;
 volatile unsigned char    UART1_data_index;
 volatile unsigned char    UART1_RxData[N_DEFI_BYTE*N_DEFI_PACKET];
-
-volatile unsigned char    DEFI_proc_data_index;
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle){
     
@@ -91,10 +92,20 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle){
     }
 
 }
+*/
 
+volatile unsigned char    DEFI_proc_data_index;
 
-//// int defi_decode_value(unsigned char *UART1_RxData, unsigned char UART1_data_index){
-void defi_decoder(unsigned char *UART1_RxData){
+void defi_data_update(unsigned char *UART_Data){
+    UART_RxData[UART_data_index] = UART_Data;
+    if( UART_data_index < N_DEFI_BYTE*N_DEFI_PACKET-1 ){
+        UART_data_index++;
+    }else{
+        UART_data_index = 0;
+    }
+}
+
+void defi_decoder(){
     unsigned int    ite;
     unsigned int    m, n;
     unsigned char   DEFI_valid_frame = 0;               // valid frame indicator
@@ -106,24 +117,19 @@ void defi_decoder(unsigned char *UART1_RxData){
     unsigned int    DEFI_dec_ang;                   // Angle data (decimal)
     float           DEFI_dec_nrm;				            // Normalized Angle data (decimal)
 
-/*
-    HAL_UART_Transmit_printf(&huart2, "UART_data_index = %d, ", UART1_data_index); // debug
-    HAL_UART_Transmit_printf(&huart2, "DEFI_proc_data_index = %d\n", DEFI_proc_data_index); // debug
-*/
-
     ite = 0;
-    // Defi data from UART1 data recognition
-//    for(DEFI_proc_data_index=0; DEFI_proc_data_index<N_DEFI_BYTE*2-1;DEFI_proc_data_index++){
-    while( DEFI_proc_data_index != (UART1_data_index - N_DEFI_BYTE) ){
+
+    // Defi data from UART data recognition
+    while( DEFI_proc_data_index != (UART_data_index - N_DEFI_BYTE) ){
 
         // find Receiver ID
-        if( ( UART1_RxData[DEFI_proc_data_index] & 0xF0 ) == 0x00 ){
+        if( ( UART_RxData[DEFI_proc_data_index] & 0xF0 ) == 0x00 ){
 
-            DEFI_FRAME[0] =  UART1_RxData[DEFI_proc_data_index];    // Reciver ID
-            DEFI_FRAME[1] =  UART1_RxData[DEFI_proc_data_index+1];  // Control
-            DEFI_FRAME[2] =  UART1_RxData[DEFI_proc_data_index+2];  // Angle data (100)
-            DEFI_FRAME[3] =  UART1_RxData[DEFI_proc_data_index+3];  // Angle data ( 10)
-            DEFI_FRAME[4] =  UART1_RxData[DEFI_proc_data_index+4];  // Angle data (  1)
+            DEFI_FRAME[0] =  UART_RxData[DEFI_proc_data_index+0];    // Reciver ID
+            DEFI_FRAME[1] =  UART_RxData[DEFI_proc_data_index+1];  // Control
+            DEFI_FRAME[2] =  UART_RxData[DEFI_proc_data_index+2];  // Angle data (100)
+            DEFI_FRAME[3] =  UART_RxData[DEFI_proc_data_index+3];  // Angle data ( 10)
+            DEFI_FRAME[4] =  UART_RxData[DEFI_proc_data_index+4];  // Angle data (  1)
 
             // check Defi data ID
             for(DEFI_id_index=0;DEFI_id_index<N_DEFI_MEAS_TYPE;DEFI_id_index++){
@@ -190,82 +196,3 @@ void defi_decoder(unsigned char *UART1_RxData){
     }
 
 }
-
-/*
-//// int defi_decode_value(unsigned char *UART1_RxData, unsigned char UART1_data_index){
-void defi_decoder(unsigned char *UART1_RxData){
-    unsigned int    m,n;
-    unsigned char   DEFI_valid_frame = 0;               // valid frame indicator
-
-    unsigned char   DEFI_FRAME[N_DEFI_BYTE];
-    unsigned char   DEFI_id_index;
-    unsigned char	DEFI_low4bits[N_DEFI_BYTE];		// Extracted lower 4 bits from byte data
-    unsigned int    DEFI_maxv = 2352;		            // maximum decimal angle data value from 'Defi Link Unit II'
-    unsigned int    DEFI_dec_ang;                   // Angle data (decimal)
-    float           DEFI_dec_nrm;				            // Normalized Angle data (decimal)
-
-    // Defi data from UART1 data recognition
-    for(n=0;n<N_DEFI_BYTE*2-1;n++){
-        // find Receiver ID
-        if( ( UART1_RxData[n] & 0xF0 ) == 0x00 ){
-
-            DEFI_FRAME[0] =  UART1_RxData[n];    // Reciver ID
-            DEFI_FRAME[1] =  UART1_RxData[n+1];  // Control
-            DEFI_FRAME[2] =  UART1_RxData[n+2];  // Angle data (100)
-            DEFI_FRAME[3] =  UART1_RxData[n+3];  // Angle data ( 10)
-            DEFI_FRAME[4] =  UART1_RxData[n+4];  // Angle data (  1)
-
-            // check Defi data ID
-            for(DEFI_id_index=0;DEFI_id_index<N_DEFI_MEAS_TYPE;DEFI_id_index++){
-                if( DEFI_FRAME[0] == DEFI_ID[DEFI_id_index] ){
-                    break;
-                }
-            }
-            if( DEFI_id_index >= N_DEFI_MEAS_TYPE ){
-                DEFI_valid_frame = 0;
-            }
-
-            // Judge data validity
-            for( n = 2; n < N_DEFI_BYTE; n++ ){
-                if( (   ( (DEFI_FRAME[n] >= '0') & (DEFI_FRAME[n] <= '9') )
-                      | ( (DEFI_FRAME[n] >= 'A') & (DEFI_FRAME[n] <= 'F') ) ) ){
-                    DEFI_valid_frame = 1;
-                }else{
-                    DEFI_valid_frame = 0;
-                    break;
-                }
-            }
-            break;
-        }
-    }
-
-    // decode ASCII data to ISO value
-    if ( DEFI_valid_frame == 1 ) {
-        // Convert char to angle-dec
-        DEFI_dec_ang = 0;
-        m = 2; // bit shift number (4*m-bit left shift)
-        for( n = 2; n < N_DEFI_BYTE; n++){ // data[0-1] is control data
-            if  ( (DEFI_FRAME[n] & 0xf0) == 0x30 ){ // char is between '0' to '9'
-                DEFI_low4bits[n] = (unsigned int)(DEFI_FRAME[n] & 0x0f);
-            }else if ( (DEFI_FRAME[n] & 0xf0) == 0x40 ){ // char is between 'A' to 'F'
-                DEFI_low4bits[n] = (unsigned int)(DEFI_FRAME[n] & 0x0f) + 9;
-            }else{
-                break;
-            }
-            DEFI_dec_ang = DEFI_dec_ang + (DEFI_low4bits[n]<<(4*m));
-            m--;
-        }
-        // end of Convert char to angle-dec
-    
-        // Change angle-dec to normlized-dec
-        DEFI_dec_nrm = (float)DEFI_dec_ang / DEFI_maxv;
-        // end of Change angle-dec to normlized-dec
-        
-        // Change dec to ISO
-        DEFI_value[DEFI_id_index] = DEFI_dec_nrm * DEFI_eq_grad[DEFI_id_index] + DEFI_eq_intercept[DEFI_id_index];
-        // end of change
-
-    }
-
-}
-*/
