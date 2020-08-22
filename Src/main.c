@@ -483,6 +483,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM7_Init();
   MX_TIM16_Init();
+  MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
 
   ///// PWM initialize ----------------------------------------------------------------
@@ -516,6 +517,11 @@ int main(void)
 
   // TIM16 - Status control (Cycle 1000ms = 1/32.757kHz x 32,768count)
   if (HAL_TIM_Base_Start_IT(&htim16) != HAL_OK){
+    Error_Handler();
+  }
+
+  // TIM17 - Status control (Cycle 1000ms = 1/32.757kHz x 32,768count)
+  if (HAL_TIM_Base_Start_IT(&htim17) != HAL_OK){
     Error_Handler();
   }
 
@@ -559,7 +565,7 @@ int main(void)
 
   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
-  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.4a");
+  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.4b");
   u8g2_SendBuffer(&u8g2);
   if( DUMMY_DATA ){
     u8g2_DrawStr(&u8g2, 0, 8, "DUMMY DATA MODE");

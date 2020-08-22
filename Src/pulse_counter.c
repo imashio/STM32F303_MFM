@@ -113,10 +113,6 @@ void tacho_meter(){
 
         rpm = freq / (float)Npulse_tacho * 60.0;
 
-        if( rpm < 7000 ){
-            tacho_pulse_ovfl++;
-        }
-
         tacho_pulse_ovfl = 0;
     }
 

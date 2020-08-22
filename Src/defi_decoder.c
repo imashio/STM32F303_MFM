@@ -103,6 +103,7 @@ void defi_data_update(unsigned char *UART_Data){
     }else{
         UART_data_index = 0;
     }
+//    HAL_UART_Transmit_printf(&huart2, "[Defi] data_index=%d\n", UART_data_index); // DEBUG
 }
 
 void defi_decoder(){
@@ -119,8 +120,18 @@ void defi_decoder(){
 
     ite = 0;
 
+/*
+    unsigned int    index_offset;                   // Angle data (decimal)
+    // detect circular buffer index is lead / follow?
+    if( DEFI_proc_data_index < UART_data_index ){
+        index_offset = 0;
+    }else{
+        index_offset = N_DEFI_BYTE*N_DEFI_PACKET;
+    }
+*/
     // Defi data from UART data recognition
     while( DEFI_proc_data_index != (UART_data_index - N_DEFI_BYTE) ){
+//    while( DEFI_proc_data_index != (UART_data_index - N_DEFI_BYTE/2) ){
 
         // find Receiver ID
         if( ( UART_RxData[DEFI_proc_data_index] & 0xF0 ) == 0x00 ){
@@ -137,51 +148,73 @@ void defi_decoder(){
                     break;
                 }
             }
+/*
             if( DEFI_id_index >= N_DEFI_MEAS_TYPE ){
                 DEFI_valid_frame = 0;
             }
-
-            // Judge data validity
-            for( n = 2; n < N_DEFI_BYTE; n++ ){
-                if( (   ( (DEFI_FRAME[n] >= '0') & (DEFI_FRAME[n] <= '9') )
-                      | ( (DEFI_FRAME[n] >= 'A') & (DEFI_FRAME[n] <= 'F') ) ) ){
-                    DEFI_valid_frame = 1;
-                }else{
-                    DEFI_valid_frame = 0;
-                    break;
+*/
+            if( DEFI_id_index < N_DEFI_MEAS_TYPE ){
+                // Judge data validity
+                for( n = 2; n < N_DEFI_BYTE; n++ ){
+                    if( (   ( (DEFI_FRAME[n] >= '0') & (DEFI_FRAME[n] <= '9') )
+                        | ( (DEFI_FRAME[n] >= 'A') & (DEFI_FRAME[n] <= 'F') ) ) ){
+                        DEFI_valid_frame = 1;
+                    }else{
+                        DEFI_valid_frame = 0;
+                        break;
+                    }
                 }
             }
-        }
 
-        // decode ASCII data to ISO value
-        if ( DEFI_valid_frame == 1 ) {
-            // Convert char to angle-dec
-            DEFI_dec_ang = 0;
-            m = 2; // bit shift number (4*m-bit left shift)
-            for( n = 2; n < N_DEFI_BYTE; n++){ // data[0-1] is control data
-                if  ( (DEFI_FRAME[n] & 0xf0) == 0x30 ){ // char is between '0' to '9'
-                    DEFI_low4bits[n] = (unsigned int)(DEFI_FRAME[n] & 0x0f);
-                }else if ( (DEFI_FRAME[n] & 0xf0) == 0x40 ){ // char is between 'A' to 'F'
-                    DEFI_low4bits[n] = (unsigned int)(DEFI_FRAME[n] & 0x0f) + 9;
-                }else{
-                    break;
+            // decode ASCII data to ISO value
+            if ( DEFI_valid_frame ) {
+                // Convert char to angle-dec
+                DEFI_dec_ang = 0;
+                m = 2; // bit shift number (4*m-bit left shift)
+                for( n = 2; n < N_DEFI_BYTE; n++){ // data[0-1] is control data
+                    if  ( (DEFI_FRAME[n] & 0xf0) == 0x30 ){ // char is between '0' to '9'
+                        DEFI_low4bits[n] = (unsigned int)(DEFI_FRAME[n] & 0x0f);
+                    }else if ( (DEFI_FRAME[n] & 0xf0) == 0x40 ){ // char is between 'A' to 'F'
+                        DEFI_low4bits[n] = (unsigned int)(DEFI_FRAME[n] & 0x0f) + 9;
+                    }else{
+                        break;
+                    }
+                    DEFI_dec_ang = DEFI_dec_ang + (DEFI_low4bits[n]<<(4*m));
+                    m--;
                 }
-                DEFI_dec_ang = DEFI_dec_ang + (DEFI_low4bits[n]<<(4*m));
-                m--;
-            }
-            // end of Convert char to angle-dec
-        
-            // Change angle-dec to normlized-dec
-            DEFI_dec_nrm = (float)DEFI_dec_ang / DEFI_maxv;
-            // end of Change angle-dec to normlized-dec
+                // end of Convert char to angle-dec
             
-            // Change dec to ISO
-            DEFI_value[DEFI_id_index] = DEFI_dec_nrm * DEFI_eq_grad[DEFI_id_index] + DEFI_eq_intercept[DEFI_id_index];
-            // end of change
+                // Change angle-dec to normlized-dec
+                DEFI_dec_nrm = (float)DEFI_dec_ang / DEFI_maxv;
+                // end of Change angle-dec to normlized-dec
+                
+                // Change dec to ISO
+                DEFI_value[DEFI_id_index] = DEFI_dec_nrm * DEFI_eq_grad[DEFI_id_index] + DEFI_eq_intercept[DEFI_id_index];
+                // end of change
+
+            }
 
         }
 
-        if( DEFI_proc_data_index < N_DEFI_BYTE*20-1 ){
+/*
+        // DEBUG
+        if( (DEFI_id_index == 0x01) && (( DEFI_value[DEFI_id_index] > 400 )|( DEFI_value[DEFI_id_index] < -400 ) ) ){ // DEBUG
+            HAL_UART_Transmit_printf(&huart2, "UART:%d   id:%d   %d\n", UART_data_index, DEFI_id_index, DEFI_value[DEFI_id_index]); // DEBUG
+        }
+        // DEBUG
+*/
+/*
+        // DEBUG
+        HAL_UART_Transmit_printf(&huart2, "UART:%d   id:%d   %d\n", UART_data_index, DEFI_id_index, DEFI_value[1]); // DEBUG
+        // DEBUG
+*/
+        if( DEFI_id_index == 0x01 ){ // DEBUG
+            for( n = 0; n < N_DEFI_BYTE*N_DEFI_PACKET; n++){
+                HAL_UART_Transmit_printf(&huart2, "[%d], %x\n", n, UART_RxData[n]); // DEBUG
+            }
+        }
+
+        if( DEFI_proc_data_index < N_DEFI_BYTE*N_DEFI_PACKET-1 ){
             DEFI_proc_data_index++;
         }else{
             DEFI_proc_data_index = 0;
