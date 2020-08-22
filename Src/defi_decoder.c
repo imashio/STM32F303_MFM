@@ -208,11 +208,13 @@ void defi_decoder(){
         HAL_UART_Transmit_printf(&huart2, "UART:%d   id:%d   %d\n", UART_data_index, DEFI_id_index, DEFI_value[1]); // DEBUG
         // DEBUG
 */
+/*
         if( DEFI_id_index == 0x01 ){ // DEBUG
             for( n = 0; n < N_DEFI_BYTE*N_DEFI_PACKET; n++){
                 HAL_UART_Transmit_printf(&huart2, "[%d], %x\n", n, UART_RxData[n]); // DEBUG
             }
         }
+*/
 
         if( DEFI_proc_data_index < N_DEFI_BYTE*N_DEFI_PACKET-1 ){
             DEFI_proc_data_index++;
