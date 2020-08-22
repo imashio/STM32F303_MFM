@@ -601,6 +601,14 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
+    // UART1 Error control
+    if (  __HAL_UART_GET_FLAG(&huart1, UART_FLAG_ORE) || __HAL_UART_GET_FLAG(&huart1, UART_FLAG_NE) ||
+          __HAL_UART_GET_FLAG(&huart1, UART_FLAG_FE ) || __HAL_UART_GET_FLAG(&huart1, UART_FLAG_PE) ){
+      HAL_UART_Abort(&huart1);
+      //HAL_UART_Receive_DMA(&huart1, &UART1_Data, 1); //DMA
+      HAL_UART_Receive_IT(&huart1, &UART1_Data, 1); // Interrupt
+    }
+
     ///// STATUS ----------------------------------------------------------------
     if( flag_status ){
       CAN_EN = 0;
