@@ -400,16 +400,14 @@ void draw_GmoniLabels(){
 
 }
 
-
-volatile unsigned char    UART1_Data;
+// volatile unsigned char    UART1_Data;
 volatile unsigned char    UART2_Data;
 
+// UART Receive Interrupt
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle){
   
-  if(UartHandle->Instance==USART1){ // Defi
-    HAL_UART_Receive_IT(&huart1, &UART1_Data, 1);
-    defi_data_update(UART1_Data);
-  }else if(UartHandle->Instance==USART2){ // USB serial
+  // UART1 for defi : DMA
+  if(UartHandle->Instance==USART2){ // USB serial
     HAL_UART_Receive_IT(&huart2, &UART2_Data, 1);
     HAL_UART_Transmit_printf(&huart2, "Received data : %c\n", UART2_Data);
   }
@@ -530,8 +528,10 @@ int main(void)
   HAL_ADC_Start_DMA(&hadc1, g_ADCBuffer, ADC_BUFFER_LENGTH);
 
   // UART1 interrupt setup for DEFI decoder
-  HAL_UART_Receive_IT(&huart1, &UART1_Data, 1);
-  // variables is defined in 'defi.h'
+  defi_init(); // DMA
+  HAL_UART_Receive_DMA(&huart1, &UART_RxData, sizeof(UART_RxData));
+  // HAL_UART_Receive_IT(&huart1, &UART1_Data, 1);
+  // variables is defined in 'defi_decoder.h'
 
   // UART2 interrupt setup for USB serial
   HAL_UART_Receive_IT(&huart2, &UART2_Data, 1);
@@ -565,7 +565,7 @@ int main(void)
 
   u8g2_SetFont(&u8g2, u8g2_font_5x7_tf);
   u8g2_DrawStr(&u8g2, 16, 63 - 8, "Multi Function Meter");
-  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.4b");
+  u8g2_DrawStr(&u8g2, 40, 64, "Rev. 0.5a");
   u8g2_SendBuffer(&u8g2);
   if( DUMMY_DATA ){
     u8g2_DrawStr(&u8g2, 0, 8, "DUMMY DATA MODE");
@@ -601,12 +601,21 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
+/*
+    // DEBUG - Defi value monitor
+    for( n=0; n<7; n++ ){
+      HAL_UART_Transmit_printf(&huart2, "%d, ", DEFI_value[n]);
+    }
+    HAL_UART_Transmit_printf(&huart2, "\n");
+    // DEBUG - Defi value monitor
+*/
+
     // UART1 Error control
     if (  __HAL_UART_GET_FLAG(&huart1, UART_FLAG_ORE) || __HAL_UART_GET_FLAG(&huart1, UART_FLAG_NE) ||
           __HAL_UART_GET_FLAG(&huart1, UART_FLAG_FE ) || __HAL_UART_GET_FLAG(&huart1, UART_FLAG_PE) ){
       HAL_UART_Abort(&huart1);
-      //HAL_UART_Receive_DMA(&huart1, &UART1_Data, 1); //DMA
-      HAL_UART_Receive_IT(&huart1, &UART1_Data, 1); // Interrupt
+      HAL_UART_Receive_DMA(&huart1, &UART_RxData, sizeof(UART_RxData)); //DMA
+      //HAL_UART_Receive_IT(&huart1, &UART1_Data, 1); // Interrupt
     }
 
     ///// STATUS ----------------------------------------------------------------
@@ -690,14 +699,13 @@ int main(void)
         #endif
       }
 
+      // Measure values
       meas_value[0] = DEFI_value[0];  // MAP
 		  meas_value[1] = DEFI_value[2];  // OILP
 			meas_value[2] = FP_volt;        // FuelPump Voltage
 		  meas_value[3] = DEFI_value[6];  // ECT
 			meas_value[4] = DEFI_value[5];  // OILT
 		  meas_value[5] = O2_volt;        // O2
-
-      flag_meas = 0; // enable again by TIM2 interrupt
 
       if( DUMMY_DATA ){
         // MAP
@@ -731,6 +739,8 @@ int main(void)
           rpm = 0;
         }
       }
+
+      flag_meas = 0; // enable again by TIM2 interrupt
 
     }
 
@@ -852,6 +862,7 @@ int main(void)
         
         draw_indicators();
 
+
       ///// Circular Meter /////
       }else if( mode == MODE_CIRCULAR_METER ){
 
@@ -860,10 +871,6 @@ int main(void)
         draw_Value(&u8g2, 36, 33, 30, 16, meas_value[0], 3, 2, 1, "");
         draw_MeasUnit(&u8g2, 38, 40, 28, 16, "kPa");
         
-//        draw_Value(&u8g2, 34, 28, 30, 16, meas_value[0], 3, 2, 1, "");
-//        draw_MeasUnit(&u8g2, 36, 36, 28, 16, "kPa");
-
-
         // draw measurement data
         for( n=0; n<N_meas_Circ; n++ ){
           x = meas_Circ_x;
@@ -872,6 +879,7 @@ int main(void)
         }
 
 
+      ///// Rotary Meter /////
       }else if( mode == MODE_ROTARY ){
 
         rpm_integral = rpm_integral + rpm;
@@ -908,6 +916,7 @@ int main(void)
         draw_Wave(&u8g2, wave_x, wave_y, wave_width, wave_height, wave_value_min, wave_value_max, circular_buffer, circular_buffer_index);
         draw_Value(&u8g2, 0, 0, 64, 13, circular_buffer[circular_buffer_index], 3, 2, 1, "kPa");
 
+
       ///// G-Sens monitor /////
       }else if( mode == MODE_Gsens ){
         
@@ -935,6 +944,7 @@ int main(void)
         u8g2_DrawCircle(&u8g2, Gcirc_x+Gcirc_size/2 +64, Gcirc_y+Gcirc_size/2, Gcirc_size/2, U8G2_DRAW_ALL);
         u8g2_DrawDisc(&u8g2, Gcirc_x+Gcirc_size/2 + 64 + (Gcirc_size/2*Gmoni_value[4]/(int16_t)Gcirc_scale), Gcirc_y+Gcirc_size/2 + (Gcirc_size/2*Gmoni_value[3]/(int16_t)Gcirc_scale), 1, U8G2_DRAW_ALL);
 
+
       ///// G-Scope /////
       }else if( mode == MODE_SCOPE_Gsens ){
 
@@ -948,6 +958,7 @@ int main(void)
         // draw wave
         draw_Wave(&u8g2, wave_x, wave_y, wave_width, wave_height, -200, +200, circular_buffer, circular_buffer_index);
         draw_Value(&u8g2, 0, 0, 128, 13, circular_buffer[circular_buffer_index], 3, 2, 1, "G");
+
 
       // mode setting
       }else if( mode == MODE_SETTING ){

@@ -6,7 +6,6 @@
     "echoCommand": true, // added
     "tasks": [
         {
-            // setup makefile
             "taskName": "setup makefile",
             "command": "bash makefile_setting.sh",
             "problemMatcher": [
@@ -16,8 +15,8 @@
                 "kind": "build",
                 "isDefault": true
             }
-        },{
-            // BUILD ALL
+        },
+        {
             "taskName": "make all",
             "command": "make all -j4",
             "problemMatcher": [
@@ -27,9 +26,9 @@
                 "kind": "build",
                 "isDefault": true
             }
-        },{
-            // CLEAN
-            "taskName":"make clean",
+        },
+        {
+            "taskName": "make clean",
             "command": "make clean",
             "problemMatcher": [
                 "$gcc"
@@ -38,10 +37,9 @@
                 "kind": "build",
                 "isDefault": true
             }
-        },{
-            // RUN
-            "taskName":"Run",
-            //"command": "/usr/local/openocd/bin/openocd -f openocd.cfg -c \"flash_elf build/STM32F303_MFM.elf\"",
+        },
+        {
+            "taskName": "Run",
             "command": "make all; /usr/local/openocd/bin/openocd -f openocd.cfg -c \"flash_elf build/STM32F303_MFM.elf\"",
             "problemMatcher": [
                 "$gcc"

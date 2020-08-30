@@ -6,6 +6,9 @@
 #include "usart.h"
 #include "defi_decoder.h"
 
+volatile unsigned char    UART_data_index;
+volatile unsigned char    UART_RxData[N_DEFI_BYTE*N_DEFI_PACKET];
+
 volatile unsigned char DEFI_ID[] = {
   0x01,	// Turbo
   0x02,	// Tacho
@@ -56,7 +59,7 @@ volatile int DEFI_frac[] = {
   2,	// Fuel pres.
   0,	// Ext. Temp.
   0,	// Oil Temp.
-  0	// Water Temp.
+  0	    // Water Temp.
 };
 
 
@@ -67,48 +70,23 @@ volatile int16_t DEFI_value[] = {
   0,	// Fuel pres.
   0,	// Ext. Temp.
   0,	// Oil Temp.
-  0	// Water Temp.
+  0	    // Water Temp.
 };
-
-volatile unsigned char    UART_data_index;
-volatile unsigned char    UART_RxData[N_DEFI_BYTE*N_DEFI_PACKET];
-
-/*
-volatile unsigned char    UART1_Data;
-volatile unsigned char    UART1_data_index;
-volatile unsigned char    UART1_RxData[N_DEFI_BYTE*N_DEFI_PACKET];
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle){
-    
-    HAL_UART_Receive_IT(&huart1, &UART1_Data, 1);
-
-//    HAL_UART_Transmit_IT(&huart2, &UART1_Data, 1); // debug
-
-    UART1_RxData[UART1_data_index] = UART1_Data;
-    if( UART1_data_index < N_DEFI_BYTE*N_DEFI_PACKET-1 ){
-       UART1_data_index++;
-    }else{
-        UART1_data_index = 0;
-    }
-
-}
-*/
 
 volatile unsigned char    DEFI_proc_data_index;
 
-void defi_data_update(unsigned char *UART_Data){
-    UART_RxData[UART_data_index] = UART_Data;
-    if( UART_data_index < N_DEFI_BYTE*N_DEFI_PACKET-1 ){
-        UART_data_index++;
-    }else{
-        UART_data_index = 0;
-    }
-//    HAL_UART_Transmit_printf(&huart2, "[Defi] data_index=%d\n", UART_data_index); // DEBUG
+static UART_HandleTypeDef* pHuart;
+
+void defi_init(){
+    memset(UART_RxData, 0, sizeof(UART_RxData));
 }
 
 void defi_decoder(){
     unsigned int    ite;
     unsigned int    m, n;
+    unsigned int    UART_write_index;
+    unsigned int    UART_proc_end_index;
+
     unsigned char   DEFI_valid_frame = 0;               // valid frame indicator
     
     unsigned char   DEFI_FRAME[N_DEFI_BYTE];
@@ -120,18 +98,21 @@ void defi_decoder(){
 
     ite = 0;
 
-/*
-    unsigned int    index_offset;                   // Angle data (decimal)
-    // detect circular buffer index is lead / follow?
-    if( DEFI_proc_data_index < UART_data_index ){
-        index_offset = 0;
+    pHuart = &huart1;
+    UART_write_index = (sizeof(UART_RxData) - pHuart->hdmarx->Instance->CNDTR) % sizeof(UART_RxData);
+
+    if( (UART_write_index - N_DEFI_BYTE) < 0 ){
+        UART_proc_end_index = (UART_write_index - N_DEFI_BYTE) + sizeof(UART_RxData);
     }else{
-        index_offset = N_DEFI_BYTE*N_DEFI_PACKET;
+        UART_proc_end_index = (UART_write_index - N_DEFI_BYTE);
     }
+/*
+    // DEBUG
+    HAL_UART_Transmit_printf(&huart2, "DEFI_proc:%d, UART:%d\n", DEFI_proc_data_index,UART_write_index); // DEBUG
+    // DEBUG
 */
     // Defi data from UART data recognition
-    while( DEFI_proc_data_index != (UART_data_index - N_DEFI_BYTE) ){
-//    while( DEFI_proc_data_index != (UART_data_index - N_DEFI_BYTE/2) ){
+    while( (DEFI_proc_data_index <= (UART_write_index - N_DEFI_BYTE)) | (DEFI_proc_data_index > UART_write_index) ){
 
         // find Receiver ID
         if( ( UART_RxData[DEFI_proc_data_index] & 0xF0 ) == 0x00 ){
@@ -148,11 +129,7 @@ void defi_decoder(){
                     break;
                 }
             }
-/*
-            if( DEFI_id_index >= N_DEFI_MEAS_TYPE ){
-                DEFI_valid_frame = 0;
-            }
-*/
+
             if( DEFI_id_index < N_DEFI_MEAS_TYPE ){
                 // Judge data validity
                 for( n = 2; n < N_DEFI_BYTE; n++ ){
@@ -195,21 +172,17 @@ void defi_decoder(){
             }
 
         }
-
-/*
+        
+ /*       
         // DEBUG
-        if( (DEFI_id_index == 0x01) && (( DEFI_value[DEFI_id_index] > 400 )|( DEFI_value[DEFI_id_index] < -400 ) ) ){ // DEBUG
-            HAL_UART_Transmit_printf(&huart2, "UART:%d   id:%d   %d\n", UART_data_index, DEFI_id_index, DEFI_value[DEFI_id_index]); // DEBUG
+        //if( (DEFI_id_index == 0) && (( DEFI_value[DEFI_id_index] > 400 )|( DEFI_value[DEFI_id_index] < -400 ) ) ){ // DEBUG
+        if( (DEFI_id_index == 1)  ){ // DEBUG
+            HAL_UART_Transmit_printf(&huart2, "UART:%d   id:%d %x %x %x %x %x %d\n", UART_data_index, DEFI_id_index, DEFI_FRAME[0],DEFI_FRAME[1],DEFI_FRAME[2],DEFI_FRAME[3],DEFI_FRAME[4],DEFI_value[DEFI_id_index]); // DEBUG
         }
         // DEBUG
 */
 /*
-        // DEBUG
-        HAL_UART_Transmit_printf(&huart2, "UART:%d   id:%d   %d\n", UART_data_index, DEFI_id_index, DEFI_value[1]); // DEBUG
-        // DEBUG
-*/
-/*
-        if( DEFI_id_index == 0x01 ){ // DEBUG
+        if( DEFI_id_index == 0x02 ){ // DEBUG
             for( n = 0; n < N_DEFI_BYTE*N_DEFI_PACKET; n++){
                 HAL_UART_Transmit_printf(&huart2, "[%d], %x\n", n, UART_RxData[n]); // DEBUG
             }

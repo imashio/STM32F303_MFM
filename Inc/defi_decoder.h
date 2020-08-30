@@ -29,9 +29,6 @@ extern volatile int     DEFI_sign[];
 
 extern unsigned char    DEFI_FRAME[N_DEFI_BYTE];
 
-/*
-extern volatile unsigned char   UART1_Data;
-*/
 extern volatile unsigned char   UART_data_update;
 extern volatile unsigned char   UART_data_index;
 extern volatile unsigned char   UART_RxData[N_DEFI_BYTE*N_DEFI_PACKET];
@@ -40,9 +37,7 @@ extern volatile unsigned char    DEFI_proc_data_index;
 
 extern volatile int16_t DEFI_value[];
 
-//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle);
-
-void defi_data_update(unsigned char *UART_Data);
+void defi_init();
 
 void defi_decoder();
 
