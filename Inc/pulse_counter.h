@@ -13,3 +13,5 @@ void speed_meter();
 
 void tacho_meter();
 
+int MedianFilter();
+
