@@ -9,6 +9,9 @@
 volatile unsigned char    UART_data_index;
 volatile unsigned char    UART_RxData[N_DEFI_BYTE*N_DEFI_PACKET];
 
+volatile int DEFI_debug;
+volatile int DEFI_debug2;
+
 volatile unsigned char DEFI_ID[] = {
   0x01,	// Turbo
   0x02,	// Tacho
@@ -23,7 +26,7 @@ volatile unsigned char DEFI_ID[] = {
 // Gradient-term of decoding equation
 volatile unsigned int DEFI_eq_grad[] = {
   300,	// Turbo
-  9000,	// Tacho
+  11000,	// Tacho
   100,	// Oil pres.
   600,	// Fuel pres.
   900,	// Ext. Temp.
@@ -73,6 +76,47 @@ volatile int16_t DEFI_value[] = {
   0	    // Water Temp.
 };
 
+#define Tacho_NLUT 16
+#define Tacho_StepLUT 50 // Angle step
+volatile unsigned int Ang_LUT[] = {
+    25,     // 1
+    75,     // 2
+    125,    // 3
+    175,	// 4
+    225,	// 5
+    275,	// 6
+    325,    // 7
+    375,	// 8
+    425,	// 9
+    475,	// 10
+    525,	// 11
+    575,	// 12
+    625,    // 13
+    675,    // 14
+    725,    // 15
+    775,    // 16
+    2719    // 17
+};
+volatile unsigned int Tacho_LUT[] = {
+    0,      // 1
+    0,      // 2
+    0,      // 3
+    700,	// 4
+    735,	// 5
+    770,	// 6
+    805,    // 7
+    835,	// 8
+    971,	// 9
+    1449,	// 10
+    1947,	// 11
+    2358,	// 12
+    2749,   // 13
+    3023,   // 14
+    3244,   // 15
+    3502,   // 16
+    13000   // 17
+};
+
 volatile unsigned char    DEFI_proc_data_index;
 
 static UART_HandleTypeDef* pHuart;
@@ -92,9 +136,9 @@ void defi_decoder(){
     unsigned char   DEFI_FRAME[N_DEFI_BYTE];
     unsigned char   DEFI_id_index;
     unsigned char	DEFI_low4bits[N_DEFI_BYTE];		// Extracted lower 4 bits from byte data
-    unsigned int    DEFI_maxv = 2352;		            // maximum decimal angle data value from 'Defi Link Unit II'
+    float           DEFI_maxv = 2352.0;		        // maximum decimal angle data value from 'Defi Link Unit II'
     unsigned int    DEFI_dec_ang;                   // Angle data (decimal)
-    float           DEFI_dec_nrm;				            // Normalized Angle data (decimal)
+    float           DEFI_dec_nrm;		            // Normalized Angle data (decimal)
 
     ite = 0;
 
@@ -161,12 +205,52 @@ void defi_decoder(){
                 }
                 // end of Convert char to angle-dec
             
-                // Change angle-dec to normlized-dec
-                DEFI_dec_nrm = (float)DEFI_dec_ang / DEFI_maxv;
-                // end of Change angle-dec to normlized-dec
-                
                 // Change dec to ISO
-                DEFI_value[DEFI_id_index] = DEFI_dec_nrm * DEFI_eq_grad[DEFI_id_index] + DEFI_eq_intercept[DEFI_id_index];
+                if( DEFI_ID[DEFI_id_index] == 0x02 ){ 
+
+                    /*
+                    // Look up table
+                    float DIV;
+                    float FRAC;
+                    unsigned int LUT_index;
+
+                    DIV = ((float)DEFI_dec_ang+(float)Tacho_StepLUT/2) / (float)Tacho_StepLUT;
+                    LUT_index = (unsigned int)DIV;
+                    if( LUT_index > Tacho_NLUT ) LUT_index = Tacho_NLUT;
+                    FRAC = DEFI_dec_ang - Ang_LUT[LUT_index];
+
+                    DEFI_value[DEFI_id_index] = (Tacho_LUT[LUT_index+1]-Tacho_LUT[LUT_index])/(Ang_LUT[LUT_index+1]-Ang_LUT[LUT_index])*FRAC + Tacho_LUT[LUT_index];
+                    */
+
+                    if( DEFI_dec_ang <= (int)(119.3549/4.7708) ){
+                        DEFI_value[DEFI_id_index] = 0;
+                    }else{
+                        DEFI_value[DEFI_id_index] = (int)( DEFI_dec_ang * 4.7708 - 119.3549 );
+                    }
+
+                    /*
+                    if( DEFI_dec_nrm <= 50 ){
+                        DEFI_value[DEFI_id_index] = 0;
+                    }else if( (DEFI_dec_nrm >  50)&&(DEFI_dec_nrm <= 420) ){
+                        DEFI_value[DEFI_id_index] =  * 0.4360 + 634.6;
+                    }else if( (DEFI_dec_nrm > 420)&&(DEFI_dec_nrm <= 700) ){
+                        DEFI_value[DEFI_id_index] = DEFI_dec_nrm*DEFI_dec_nrm * (-0.0113) + DEFI_dec_nrm * 21.0445 - 6027.0;
+                    }else{
+                        DEFI_value[DEFI_id_index] = DEFI_dec_nrm*DEFI_dec_nrm * (-0.0003) + DEFI_dec_nrm * 5.5913 - 605.48;
+                    }
+                    */
+                    // debug 
+                    DEFI_debug = DEFI_dec_ang;
+                    DEFI_debug2 = DEFI_value[DEFI_id_index];
+                    // debug
+                    
+                }else{
+                    // Change angle-dec to normlized-dec
+                    DEFI_dec_nrm = (float)DEFI_dec_ang / DEFI_maxv;
+                    // end of Change angle-dec to normlized-dec
+                    
+                    DEFI_value[DEFI_id_index] = DEFI_dec_nrm * (float)DEFI_eq_grad[DEFI_id_index] + DEFI_eq_intercept[DEFI_id_index];
+                }
                 // end of change
 
             }

@@ -248,7 +248,8 @@ const unsigned char meas_name[N_meas][7] = { // length must be (text length + 1)
 		"FPV"         ,
 		"ECT"         ,
 		"OILT"        ,
-		"O2"          
+//		"O2" 
+    "ES" // tacho_debug
 };
 
 const unsigned char meas_unit[N_meas][5] = {
@@ -257,7 +258,8 @@ const unsigned char meas_unit[N_meas][5] = {
 		"V  "         ,	// FuelPump Voltage
 		{176, 67, 0}  ,	// ECT  degC...{176, 67, 0}
 		{176, 67, 0}	,	// OILT  degC...{176, 67, 0}
-		"V"					    // O2
+//		"V"					    // O2
+    "rpm" // tacho_debug
 };
 
 const uint8_t	meas_digit[N_meas] = {
@@ -266,7 +268,8 @@ const uint8_t	meas_digit[N_meas] = {
 		3	,	// FuelPump Voltage
 		3	,	// ECT
 		3	,	// OILT
-		3		// O2
+//		3		// O2
+		4		// tacho_debug
 };
 
 const uint8_t	meas_frac[N_meas] = {
@@ -275,7 +278,8 @@ const uint8_t	meas_frac[N_meas] = {
 		1	,	// FuelPump Voltage
 		0	,	// ECT
 		0	,	// OILT
-		2		// O2
+//		2		// O2
+		0		// tacho_debug
 };
 
 const uint8_t	meas_sign[N_meas] = {
@@ -295,7 +299,6 @@ int16_t	meas_value[N_meas] = {
 		73	,	// OILT
 		143		// O2
 };
-
 
 const unsigned char Gmoni_name[N_Gmoni][7] = { // length must be (text length + 1)
 		"X0"         ,
@@ -674,6 +677,11 @@ int main(void)
     ///// Measure data  ----------------------------------------------------------------
     defi_decoder(); // DEFI decoder
 
+// defi link tacho meter debug ==========================================
+//    HAL_UART_Transmit_printf(&huart2, "DEFI_dec_ang=%d, DEFI_value[1]=%d\n", DEFI_debug, DEFI_debug2);
+    HAL_UART_Transmit_printf(&huart2, "%d,%d,%d\n", DEFI_debug, DEFI_debug2, rpm);
+
+
     if( flag_meas ){
 
       // I2C communication to ADXL345(3-axis G-sensor)
@@ -706,6 +714,9 @@ int main(void)
 		  meas_value[3] = DEFI_value[6];  // ECT
 			meas_value[4] = DEFI_value[5];  // OILT
 		  meas_value[5] = O2_volt;        // O2
+
+      // DEBUG TACHO
+		  meas_value[5] = DEFI_value[1];  // TACHO
 
       if( DUMMY_DATA ){
         // MAP
@@ -842,6 +853,7 @@ int main(void)
 
       ///// multi meter /////
       if( mode == MODE_BAR_METER ){
+
         // update Fuel Pump Voltage
         draw_Value(&u8g2, FP_x, FP_y, FP_duty_width, FP_height, FP_duty, 3, 0, 0, "%  ");
 
