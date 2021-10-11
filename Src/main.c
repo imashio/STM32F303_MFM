@@ -677,10 +677,10 @@ int main(void)
     ///// Measure data  ----------------------------------------------------------------
     defi_decoder(); // DEFI decoder
 
+/*
 // defi link tacho meter debug ==========================================
-//    HAL_UART_Transmit_printf(&huart2, "DEFI_dec_ang=%d, DEFI_value[1]=%d\n", DEFI_debug, DEFI_debug2);
     HAL_UART_Transmit_printf(&huart2, "%d,%d,%d\n", DEFI_debug, DEFI_debug2, rpm);
-
+*/
 
     if( flag_meas ){
 
@@ -713,10 +713,8 @@ int main(void)
 			meas_value[2] = FP_volt;        // FuelPump Voltage
 		  meas_value[3] = DEFI_value[6];  // ECT
 			meas_value[4] = DEFI_value[5];  // OILT
-		  meas_value[5] = O2_volt;        // O2
-
-      // DEBUG TACHO
-		  meas_value[5] = DEFI_value[1];  // TACHO
+//		  meas_value[5] = O2_volt;        // O2
+		  meas_value[5] = DEFI_value[1];  // TACHO // DEBUG TACHO
 
       if( DUMMY_DATA ){
         // MAP

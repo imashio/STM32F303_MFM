@@ -76,47 +76,6 @@ volatile int16_t DEFI_value[] = {
   0	    // Water Temp.
 };
 
-#define Tacho_NLUT 16
-#define Tacho_StepLUT 50 // Angle step
-volatile unsigned int Ang_LUT[] = {
-    25,     // 1
-    75,     // 2
-    125,    // 3
-    175,	// 4
-    225,	// 5
-    275,	// 6
-    325,    // 7
-    375,	// 8
-    425,	// 9
-    475,	// 10
-    525,	// 11
-    575,	// 12
-    625,    // 13
-    675,    // 14
-    725,    // 15
-    775,    // 16
-    2719    // 17
-};
-volatile unsigned int Tacho_LUT[] = {
-    0,      // 1
-    0,      // 2
-    0,      // 3
-    700,	// 4
-    735,	// 5
-    770,	// 6
-    805,    // 7
-    835,	// 8
-    971,	// 9
-    1449,	// 10
-    1947,	// 11
-    2358,	// 12
-    2749,   // 13
-    3023,   // 14
-    3244,   // 15
-    3502,   // 16
-    13000   // 17
-};
-
 volatile unsigned char    DEFI_proc_data_index;
 
 static UART_HandleTypeDef* pHuart;
@@ -208,41 +167,11 @@ void defi_decoder(){
                 // Change dec to ISO
                 if( DEFI_ID[DEFI_id_index] == 0x02 ){ 
 
-                    /*
-                    // Look up table
-                    float DIV;
-                    float FRAC;
-                    unsigned int LUT_index;
-
-                    DIV = ((float)DEFI_dec_ang+(float)Tacho_StepLUT/2) / (float)Tacho_StepLUT;
-                    LUT_index = (unsigned int)DIV;
-                    if( LUT_index > Tacho_NLUT ) LUT_index = Tacho_NLUT;
-                    FRAC = DEFI_dec_ang - Ang_LUT[LUT_index];
-
-                    DEFI_value[DEFI_id_index] = (Tacho_LUT[LUT_index+1]-Tacho_LUT[LUT_index])/(Ang_LUT[LUT_index+1]-Ang_LUT[LUT_index])*FRAC + Tacho_LUT[LUT_index];
-                    */
-
                     if( DEFI_dec_ang <= (int)(119.3549/4.7708) ){
                         DEFI_value[DEFI_id_index] = 0;
                     }else{
                         DEFI_value[DEFI_id_index] = (int)( DEFI_dec_ang * 4.7708 - 119.3549 );
                     }
-
-                    /*
-                    if( DEFI_dec_nrm <= 50 ){
-                        DEFI_value[DEFI_id_index] = 0;
-                    }else if( (DEFI_dec_nrm >  50)&&(DEFI_dec_nrm <= 420) ){
-                        DEFI_value[DEFI_id_index] =  * 0.4360 + 634.6;
-                    }else if( (DEFI_dec_nrm > 420)&&(DEFI_dec_nrm <= 700) ){
-                        DEFI_value[DEFI_id_index] = DEFI_dec_nrm*DEFI_dec_nrm * (-0.0113) + DEFI_dec_nrm * 21.0445 - 6027.0;
-                    }else{
-                        DEFI_value[DEFI_id_index] = DEFI_dec_nrm*DEFI_dec_nrm * (-0.0003) + DEFI_dec_nrm * 5.5913 - 605.48;
-                    }
-                    */
-                    // debug 
-                    DEFI_debug = DEFI_dec_ang;
-                    DEFI_debug2 = DEFI_value[DEFI_id_index];
-                    // debug
                     
                 }else{
                     // Change angle-dec to normlized-dec

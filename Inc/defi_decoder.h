@@ -37,8 +37,10 @@ extern volatile unsigned char    DEFI_proc_data_index;
 
 extern volatile int16_t DEFI_value[];
 
+/*
 extern volatile int DEFI_debug;
 extern volatile int DEFI_debug2;
+*/
 
 void defi_init();
 
